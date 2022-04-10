@@ -1,3 +1,8 @@
+/**
+ * Describes the Bag Class
+ *
+ * @autor Dario Mazzola
+ */
 package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.exceptions.BagException;
@@ -13,6 +18,9 @@ public class Bag implements StudentAdderInterface {
     private final Map<House, Integer> houseMap;
     private int totalStudentsNumber = 120;
 
+    /**
+     * Bag class constructor: creates the bag full of all the students of each class
+     */
     public Bag(){
         houseMap = new HashMap<>();
 
@@ -23,16 +31,23 @@ public class Bag implements StudentAdderInterface {
         houseMap.put(PINK, 24);
     }
 
+    /**
+     * Return true if there are no students in the bag
+     */
     public boolean isEmpty(){
         return totalStudentsNumber == 0;
     }
 
+    /**
+     * Returns the number of students present in the bag
+     */
     public int getTotalStudentsNumber() {
         return totalStudentsNumber;
     }
 
     /**
-     * @throws BagException bag Exception
+     * @throws BagException If the bag is already full
+     * @throws NullPointerException If the house given as a parameter is a null value
      */
     @Override
     public void addStudents(House house, int numStudents) throws BagException, NullPointerException{
@@ -46,6 +61,12 @@ public class Bag implements StudentAdderInterface {
         houseMap.replace(house, houseMap.get(house) + numStudents);
         totalStudentsNumber += numStudents;
     }
+
+    /**
+     * Pulls out a student from a random house from the bag
+     * @return The house of the student pulled out
+     * @throws BagException If the bag is already empty
+     */
 
     public House pull() throws BagException {
         Random rand = new Random();
@@ -75,6 +96,9 @@ public class Bag implements StudentAdderInterface {
         return chosen;
     }
 
+    /**
+     * @throws NullPointerException If the house given as a parameter is a null value
+     */
     @Override
     public int getHouseStudents(House house) throws NullPointerException{
 
