@@ -1,6 +1,3 @@
-/**Describes the Dashboard
- * @author Dario Mazzola
- */
 package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.exceptions.EntranceException;
@@ -14,6 +11,9 @@ import java.util.Map;
 
 import static it.polimi.ingsw.model.House.*;
 
+/**Describes the Dashboard
+ * @author Dario Mazzola
+ */
 public class Dashboard implements StudentModifierInterface {
 
     private final Map<House, Integer> houseMap;
@@ -210,5 +210,9 @@ public class Dashboard implements StudentModifierInterface {
      */
     public DiningHall getDiningHall(){
         return diningHall;
+    }
+
+    public int getNumMaxStudents() {
+        return numMaxStudents;
     }
 }
