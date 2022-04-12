@@ -12,12 +12,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static it.polimi.ingsw.model.House.*;
-import static it.polimi.ingsw.model.House.PINK;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DashboardTest {
 
     Dashboard dashboard;
+    House houseDefault = YELLOW;
 
     @BeforeEach
     public void setup(){
@@ -44,7 +44,7 @@ class DashboardTest {
         housesValueBefore.put(PINK, dashboard.getHouseStudents(PINK));
 
         try{
-            dashboard.addStudents(YELLOW, 7);
+            dashboard.addStudents(houseDefault, 7);
         }
         catch (EntranceException e){
             fail();
@@ -53,7 +53,7 @@ class DashboardTest {
         assertEquals(totalNumberBefore +7, dashboard.getNumStudentsIn());
 
         for(House h: values()){
-            if(h.equals(YELLOW))
+            if(h.equals(houseDefault))
                 assertEquals(housesValueBefore.get(h) +7, dashboard.getHouseStudents(h));
             else
                 assertEquals(housesValueBefore.get(h), dashboard.getHouseStudents(h));
@@ -65,37 +65,19 @@ class DashboardTest {
     void addStudentsTest_FullEntranceGiven_ShouldThrowEntranceException(){
         fillEntrance();
 
-        try {
-            dashboard.addStudents(House.RED, 1);
-        }
-        catch (EntranceException e){
-            assert(true);
-        }
+        assertThrows(EntranceException.class, ()->dashboard.addStudents(House.RED, 1));
     }
 
     @Test
     void addStudentsTest_TooManyStudentsToAdd_ShouldThrowEntranceException(){
 
-        try{
-            dashboard.addStudents(RED, 8);
-        }
-        catch (EntranceException e){
-            assert(true);
-        }
+        assertThrows(EntranceException.class, ()->dashboard.addStudents(RED, 8));
     }
 
     @Test
     void addStudentsTest_NullHouseGiven_ShouldThrowNullPointerException(){
 
-        try{
-            dashboard.addStudents(null, 1);
-        }
-        catch (EntranceException e){
-            fail();
-        }
-        catch (NullPointerException e){
-            assert(true);
-        }
+        assertThrows(NullPointerException.class, ()->dashboard.addStudents(null, 1));
     }
 
     /**
@@ -109,9 +91,8 @@ class DashboardTest {
 
         Map<House, Integer> housesValueBefore= new HashMap<>();
 
-        //House.RED
         try{
-            dashboard.addStudents(RED, 2);
+            dashboard.addStudents(houseDefault, 2);
         }
         catch (EntranceException e){
             fail();
@@ -126,7 +107,7 @@ class DashboardTest {
         housesValueBefore.put(PINK, dashboard.getHouseStudents(PINK));
 
         try{
-            dashboard.removeStudents(RED, 1);
+            dashboard.removeStudents(houseDefault, 1);
         }
         catch (IllegalChoiceException e){
             fail();
@@ -135,7 +116,7 @@ class DashboardTest {
         assertEquals(totalNumberBefore -1, dashboard.getNumStudentsIn());
 
         for(House h: House.values()){
-            if(h.equals(RED))
+            if(h.equals(houseDefault))
                 assertEquals(housesValueBefore.get(h) -1, dashboard.getHouseStudents(h));
             else
                 assertEquals(housesValueBefore.get(h), dashboard.getHouseStudents(h));
@@ -147,70 +128,39 @@ class DashboardTest {
     void removeStudentsTest_TooManyStudentsToRemoveGiven_ShouldThrowIllegalChoice(){
 
         fillEntrance();
-        try{
-            dashboard.removeStudents(RED, 8);
-        }
-        catch (IllegalChoiceException e) {
-            assert(true);
-        }
+
+        assertThrows(IllegalChoiceException.class, ()->dashboard.removeStudents(houseDefault, 8));
     }
 
     @Test
     void removeStudentsTest_EmptyEntranceGiven_ShouldThrowIllegalChoiceException(){
 
-        try{
-            dashboard.removeStudents(RED, 1);
-        }
-        catch (IllegalChoiceException e) {
-            assert(true);
-        }
+        assertThrows(IllegalChoiceException.class, ()->dashboard.removeStudents(houseDefault, 1));
     }
 
     @Test
     void removeStudentsTest_NullHouseGiven_ShouldThrowNullPointerException(){
 
-        try{
-            dashboard.removeStudents(null, 1);
-        }
-        catch (IllegalChoiceException e){
-            fail();
-        }
-        catch (NullPointerException e){
-            assert (true);
-        }
+        assertThrows(NullPointerException.class, ()->dashboard.removeStudents(null, 1));
     }
 
     @Test
     void getHouseStudents_NullHouseGiven_ShouldThrowNullPointerException(){
 
-        try{
-            dashboard.getHouseStudents(null);
-        }
-        catch (NullPointerException e){
-            assert(true);
-        }
+        assertThrows(NullPointerException.class, ()->dashboard.getHouseStudents(null));
     }
 
     @Test
     void isProfPresentTest_NullColorGiven_ShouldThrowNullPointerException(){
 
-        try{
-            dashboard.isProfPresent(null);
-        }
-        catch (NullPointerException e){
-            assert(true);
-        }
+        assertThrows(NullPointerException.class, ()->dashboard.isProfPresent(null));
     }
 
     @Test
     void addProfTest_NullColorGiven_ShouldThrowNullPointerException(){
 
-        try{
-            dashboard.addProf(null);
-        }
-        catch (NullPointerException e){
-            assert(true);
-        }
+        assertThrows(NullPointerException.class, ()->dashboard.addProf(null));
+
     }
 
     /**
@@ -229,10 +179,10 @@ class DashboardTest {
         profValueBefore.put(RED, dashboard.isProfPresent(RED));
         profValueBefore.put(PINK, dashboard.isProfPresent(PINK));
 
-        dashboard.addProf(BLUE);
+        dashboard.addProf(houseDefault);
 
         for(House h: House.values()){
-            if(h.equals(BLUE))
+            if(h.equals(houseDefault))
                 assertEquals(!profValueBefore.get(h), dashboard.isProfPresent(h));
             else
                 assertEquals(profValueBefore.get(h), dashboard.isProfPresent(h));
@@ -250,7 +200,7 @@ class DashboardTest {
 
         Map<House, Boolean> profValueBefore= new HashMap<>();
 
-        dashboard.addProf(RED);
+        dashboard.addProf(houseDefault);
         dashboard.addProf(BLUE);
         dashboard.addProf(PINK);
 
@@ -261,14 +211,14 @@ class DashboardTest {
         profValueBefore.put(PINK, dashboard.isProfPresent(PINK));
 
         try{
-            dashboard.removeProf(House.RED);
+            dashboard.removeProf(houseDefault);
         }
         catch (IllegalChoiceException e){
             fail();
         }
 
         for(House h: House.values()){
-            if(h.equals(RED))
+            if(h.equals(houseDefault))
                 assertEquals(!profValueBefore.get(h), dashboard.isProfPresent(h));
             else
                 assertEquals(profValueBefore.get(h), dashboard.isProfPresent(h));
@@ -277,28 +227,15 @@ class DashboardTest {
     }
 
     @Test
-    void removeProfTest_ProfNotPresent_ShouldThrowException(){
+    void removeProfTest_ProfNotPresent_ShouldThrowIllegalChoiceExceptionException(){
 
-        try {
-            dashboard.removeProf(House.YELLOW);
-        }
-        catch (IllegalChoiceException e){
-            assert(true);
-        }
+        assertThrows(IllegalChoiceException.class, ()-> dashboard.removeProf(House.YELLOW));
     }
 
     @Test
     void removeProfTest_NullColorGiven_ShouldThrowNullPointerException(){
 
-        try{
-            dashboard.removeProf(null);
-        }
-        catch (IllegalChoiceException e){
-            fail();
-        }
-        catch (NullPointerException e){
-            assert(true);
-        }
+        assertThrows(NullPointerException.class, ()->dashboard.removeProf(null));
     }
 
     @Test
@@ -335,14 +272,9 @@ class DashboardTest {
     }
 
     @Test
-    void addTowerTest_FullTowerAreaGiven_ShouldThrowException(){
+    void addTowerTest_FullTowerAreaGiven_ShouldThrowTowerAreaException(){
 
-        try {
-            dashboard.addTower();
-        }
-        catch (TowerAreaException e){
-            assert(true);
-        }
+        assertThrows(TowerAreaException.class,()->dashboard.addTower());
     }
 
     @Test
@@ -358,17 +290,6 @@ class DashboardTest {
     }
 
     @Test
-    void removeTowerTest_EmptyTowerAreaGiven_ShouldThrowException(){
-
-        try{
-            dashboard.removeTower();
-        }
-        catch (TowerAreaException e) {
-            assert(true);
-        }
-    }
-
-    @Test
     void removeTowerTest_EmptyTowerAreaGiven_ShouldThrowTowerAreaException(){
 
         try{
@@ -379,12 +300,7 @@ class DashboardTest {
             fail();
         }
 
-        try{
-            dashboard.removeTower();
-        }
-        catch (TowerAreaException e){
-            assert(true);
-        }
+        assertThrows(TowerAreaException.class, ()->dashboard.removeTower());
     }
 
     @Test

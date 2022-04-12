@@ -12,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BagTest {
 
     private Bag bag;
+    House houseDefault = YELLOW;
 
     @BeforeEach
     public void setup(){
@@ -70,14 +71,10 @@ public class BagTest {
     }
 
     @Test
-    void pullTest_EmptyBagGiven_ShouldThrowEmptyBagException(){
+    void pullTest_EmptyBagGiven_ShouldThrowBagException(){
         removeAllStudents();
 
-        try{
-            bag.pull();
-        }catch (BagException e){
-            assert(true);
-        }
+        assertThrows(BagException.class, ()->bag.pull());
     }
 
     @Test
@@ -90,26 +87,13 @@ public class BagTest {
             fail();
         }
 
-        try {
-            bag.addStudents(null, 1);
-        }
-        catch (BagException e){
-            fail();
-        }
-        catch (NullPointerException e){
-            assert (true);
-        }
+        assertThrows(NullPointerException.class, ()->bag.addStudents(null, 1));
     }
 
     @Test
-    void addStudentTest_FullBagGiven_ShouldThrowFullBagException() {
+    void addStudentTest_FullBagGiven_ShouldThrowBagException() {
 
-        try{
-            bag.addStudents(YELLOW, 3);
-        }
-        catch (BagException e){
-            assert(true);
-        }
+        assertThrows(BagException.class, ()->bag.addStudents(houseDefault, 3));
     }
 
     /**
@@ -135,9 +119,9 @@ public class BagTest {
         housesValueBefore.put(RED, bag.getHouseStudents(RED));
         housesValueBefore.put(PINK, bag.getHouseStudents(PINK));
 
-        //adding a HOUSE.YELLOW to the bag
+        //adding a houseDefault student to the bag
         try{
-            bag.addStudents(YELLOW, 1);
+            bag.addStudents(houseDefault, 1);
         }
         catch (BagException e){
             fail();
@@ -146,7 +130,7 @@ public class BagTest {
         assertEquals(totalNumberBefore +1, bag.getTotalStudentsNumber()); //post-execution total students' number is increased
 
         for(House h : values()){
-            if(h != YELLOW) // the students' occupation number from other houses is unchanged
+            if(h != houseDefault) // the students' occupation number from other houses is unchanged
                 assertEquals(housesValueBefore.get(h), bag.getHouseStudents(h));
            else // the increased value corresponds to the house added
                 assertEquals(housesValueBefore.get(h) +1, bag.getHouseStudents(h));
@@ -160,19 +144,14 @@ public class BagTest {
     @Test
     void getHouseStudentsTest(){
 
-        assertEquals(24, bag.getHouseStudents(YELLOW));
+        assertEquals(24, bag.getHouseStudents(houseDefault));
 
     }
 
     @Test
     void getHouseStudentTest_NullHouseGiven_ShouldThrowNullPointerException(){
 
-        try{
-            bag.getHouseStudents(null);
-        }
-        catch (NullPointerException e){
-            assert(true);
-        }
+        assertThrows(NullPointerException.class, ()->bag.getHouseStudents(null));
     }
 
     //Utility method:

@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class DiningHallTest {
 
     DiningHall diningHall;
+    House houseDefault = House.YELLOW;
 
     @BeforeEach
     void setup(){
@@ -20,28 +21,15 @@ class DiningHallTest {
     void addStudentTest_FullDiningHallGiven_ShouldThrowStudentsTableException(){
         refillDiningHall();
 
-        //Color.YELLOW
-        try{
-            diningHall.addStudents(House.YELLOW, 1);
-        }
-        catch (StudentsTableException e){
-            assert(true);
-        }
+        assertThrows(StudentsTableException.class, ()->diningHall.addStudents(houseDefault, 1));
 
     }
+
 
     @Test
     void addStudentTest_NullHouseGiven_ShouldThrowNullPointerException(){
 
-        try{
-            diningHall.addStudents(null, 1);
-        }
-        catch (StudentsTableException e){
-            fail();
-        }
-        catch (NullPointerException e){
-            assert (true);
-        }
+        assertThrows(NullPointerException.class, ()->diningHall.addStudents(null, 1));
     }
 
     @Test
@@ -50,8 +38,7 @@ class DiningHallTest {
 
         int studentsNumber;
 
-        //House.YELLOW
-        studentsNumber = diningHall.getHouseStudents(House.YELLOW);
+        studentsNumber = diningHall.getHouseStudents(houseDefault);
         assertEquals(10, studentsNumber);
 
     }
@@ -60,22 +47,21 @@ class DiningHallTest {
     void removeStudentsTest(){
         refillDiningHall();
 
-        //House.YELLOW
         try{
-            diningHall.removeStudents(House.YELLOW, 1);
+            diningHall.removeStudents(houseDefault, 1);
         }
         catch(StudentsTableException e){
             fail();
         }
-        assertEquals(9, diningHall.getHouseStudents(House.YELLOW));
+        assertEquals(9, diningHall.getHouseStudents(houseDefault));
     }
 
     @Test
     void removeStudentTest_EmptyDiningHallGiven_ShouldThrowStudentsTableException(){
 
-        //House.YELLOW
+
         try{
-            diningHall.removeStudents(House.YELLOW, 1);
+            diningHall.removeStudents(houseDefault, 1);
         }
         catch(StudentsTableException e){
             assert(true);
@@ -86,15 +72,7 @@ class DiningHallTest {
     @Test
     void removeStudentsTest_NullHouseGiven_ShouldThrowNullPointerException(){
 
-        try{
-            diningHall.removeStudents(null, 1);
-        }
-        catch (StudentsTableException e){
-            fail();
-        }
-        catch (NullPointerException e){
-            assert(true);
-        }
+        assertThrows(NullPointerException.class, ()->diningHall.removeStudents(null, 1));
     }
 
     /**
