@@ -4,7 +4,7 @@ package it.polimi.ingsw.model;
  * @author Alessio Buda
  */
 public enum Wizard {
-    FISRT,
+    FIRST,
     SECOND,
     THIRD,
     FOURTH
