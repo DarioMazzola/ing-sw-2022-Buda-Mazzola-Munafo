@@ -105,7 +105,7 @@ public class Island implements StudentAdderInterface {
      * @throws noEntryTileException when the noEntryTile is already present on the island
      */
     public void addNoEntryTile() throws noEntryTileException {
-        if (this.noEntryTile){throw new noEntryTileException("True");}
+        if (this.noEntryTile){throw new noEntryTileException("NoEntryTile is already true");}
         this.noEntryTile = true;
     }
 
@@ -114,7 +114,7 @@ public class Island implements StudentAdderInterface {
      * @throws noEntryTileException when the noEntryTile is not present on the island
      */
     public void removeNoEntryTile() throws noEntryTileException{
-        if (!this.noEntryTile){throw new noEntryTileException("False");}
+        if (!this.noEntryTile){throw new noEntryTileException("NoEntryTile is already false");}
         this.noEntryTile = false;
     }
 }
