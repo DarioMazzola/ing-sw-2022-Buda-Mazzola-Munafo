@@ -61,7 +61,7 @@ public class DiningHall  implements StudentModifierInterface {
         if(house == null)
             throw new NullPointerException("The house given is null");
         if (tableOccupation.get(house) == 0)
-            throw new StudentsTableException("the table of the house where you want to add a student is already empty");
+            throw new StudentsTableException("The table of the house where you want to remove a student is already empty");
 
         tableOccupation.replace(house, tableOccupation.get(house) - numStudents);
     }

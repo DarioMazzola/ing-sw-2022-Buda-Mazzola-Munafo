@@ -192,7 +192,7 @@ public class Dashboard implements StudentModifierInterface {
             throw new NullPointerException("The house given is null");
 
         if(!profMap.get(house))
-            throw new IllegalChoiceException("Prof");
+            throw new IllegalChoiceException("This prof is not present in this dashboard");
         else{
             profMap.replace(house, false);
         }
