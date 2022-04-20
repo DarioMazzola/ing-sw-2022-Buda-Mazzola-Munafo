@@ -3,7 +3,6 @@ package it.polimi.ingsw.model;
 import it.polimi.ingsw.exceptions.EntranceException;
 import it.polimi.ingsw.exceptions.IllegalChoiceException;
 import it.polimi.ingsw.exceptions.TowerAreaException;
-
 import it.polimi.ingsw.model.interfaces.StudentModifierInterface;
 
 import java.util.HashMap;
@@ -41,17 +40,11 @@ public class Dashboard implements StudentModifierInterface {
             throw new NullPointerException("The tower color given is null");
 
         houseMap = new HashMap<>();
-        houseMap.put(YELLOW, 0);
-        houseMap.put(BLUE, 0);
-        houseMap.put(GREEN, 0);
-        houseMap.put(RED, 0);
-        houseMap.put(PINK, 0);
 
-        profMap.put(YELLOW, false);
-        profMap.put(BLUE, false);
-        profMap.put(GREEN, false);
-        profMap.put(RED, false);
-        profMap.put(PINK, false);
+        for(House h : values()) {
+            houseMap.put(h, 0);
+            profMap.put(h, false);
+        }
 
         this.numMaxStudents = numMaxStudents;
         numStudentsIn = 0;

@@ -6,6 +6,7 @@ package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.exceptions.StudentsTableException;
 import it.polimi.ingsw.model.interfaces.StudentModifierInterface;
+
 import java.util.HashMap;
 import java.util.Map;
 import static it.polimi.ingsw.model.House.*;
@@ -19,11 +20,10 @@ public class DiningHall  implements StudentModifierInterface {
      */
     public DiningHall(){
         tableOccupation = new HashMap<>();
-        tableOccupation.put(YELLOW, 0);
-        tableOccupation.put(BLUE, 0);
-        tableOccupation.put(GREEN, 0);
-        tableOccupation.put(RED, 0);
-        tableOccupation.put(PINK, 0);
+
+        for(House h : values())
+            tableOccupation.put(h, 0);
+
     }
 
     public int getHouseStudents(House house){

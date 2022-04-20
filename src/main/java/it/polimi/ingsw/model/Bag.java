@@ -24,11 +24,9 @@ public class Bag implements StudentAdderInterface {
     public Bag(){
         houseMap = new HashMap<>();
 
-        houseMap.put(YELLOW, 24);
-        houseMap.put(BLUE, 24);
-        houseMap.put(GREEN, 24);
-        houseMap.put(RED, 24);
-        houseMap.put(PINK, 24);
+        for(House h : values()){
+            houseMap.put(h, 24);
+        }
     }
 
     /**
@@ -74,12 +72,7 @@ public class Bag implements StudentAdderInterface {
 
         House chosen;
 
-        ArrayList<House> houses =  new ArrayList<>();
-        houses.add(YELLOW);
-        houses.add(BLUE);
-        houses.add(GREEN);
-        houses.add(RED);
-        houses.add(PINK);
+        ArrayList<House> houses = new ArrayList<>(Arrays.asList(values()));
 
         do{
             if(this.isEmpty())
