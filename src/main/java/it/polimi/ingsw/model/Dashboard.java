@@ -112,7 +112,7 @@ public class Dashboard implements StudentModifierInterface {
             throw new NullPointerException("The house given is null");
 
         if(houseMap.get(house) == 0)
-            throw new IllegalChoiceException("You cannot remove any students to the entrance, it is already empty");
+            throw new IllegalChoiceException("You cannot remove any students from the entrance, it is already empty");
 
         if(houseMap.get(house) - numStudents < 0)
             throw new IllegalChoiceException("You cannot remove so many students from the entrance");
