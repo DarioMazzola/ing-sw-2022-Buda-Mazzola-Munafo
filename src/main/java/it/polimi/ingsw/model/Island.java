@@ -103,7 +103,7 @@ public class Island implements StudentAdderInterface {
     /**
      * Adds the noEntryTile from the island
      */
-    public void addNoEntryTile() throws noEntryTileException {
+    public void addNoEntryTile(){
         this.noEntryTile += 1;
     }
 
