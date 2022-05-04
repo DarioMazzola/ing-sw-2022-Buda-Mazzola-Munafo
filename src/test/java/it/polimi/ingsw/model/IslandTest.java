@@ -178,18 +178,6 @@ class IslandTest {
         assertEquals(isl.getNumTower(), numTowers);
     }
 
-    /**
-     * Verifies that the noEntryTileException is correctly thrown by addNoEntryTile
-     */
-    @Test
-    void addNoEntryTile_ShouldThrowNoEntryTileException(){
-        try {
-            isl.addNoEntryTile();
-        } catch (noEntryTileException e) {
-            fail();
-        }
-        assertThrows(noEntryTileException.class, ()->isl.addNoEntryTile());
-    }
 
     /**
      * Verifies that the noEntryTileException is correctly thrown by addNoEntryTile

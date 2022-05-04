@@ -2,7 +2,6 @@ package it.polimi.ingsw.model.characterCard;
 
 import it.polimi.ingsw.exceptions.EntranceException;
 import it.polimi.ingsw.exceptions.IllegalChoiceException;
-import it.polimi.ingsw.exceptions.noEntryTileException;
 import it.polimi.ingsw.model.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -317,11 +316,7 @@ class CharacterCardTest {
 
         Player winner = null;
 
-        try {
-            island.addNoEntryTile();
-        } catch (noEntryTileException e) {
-            e.printStackTrace();
-        }
+        island.addNoEntryTile();
 
         expertMode = true;
 
