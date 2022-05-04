@@ -83,12 +83,17 @@ public class Dashboard implements StudentModifierInterface {
      * @throws EntranceException If the entrance is already full
      * @throws EntranceException If the number of students to add exceed the maximum students' number
      * @throws NullPointerException If the house given as a parameter is a null value
+     * @throws IllegalArgumentException if the number of students given as a parameter is negative
      */
     @Override
-    public void addStudents(House house, int numStudents) throws EntranceException, NullPointerException{
+    public void addStudents(House house, int numStudents) throws EntranceException, NullPointerException, IllegalArgumentException{
 
         if(house == null)
             throw new NullPointerException("The house given is null");
+
+        if(numStudents < 0){
+            throw new IllegalArgumentException("You cannot add a negative number of students!");
+        }
 
         if(numStudentsIn == numMaxStudents)
             throw new EntranceException("You cannot add any students to the entrance, it is already full");
@@ -104,12 +109,17 @@ public class Dashboard implements StudentModifierInterface {
      * @throws IllegalChoiceException If there is no professor of that house in the dashboard
      * @throws IllegalChoiceException If the students' number that the player wants to remove is greater than the number of available students
      * @throws NullPointerException If the house given as a parameter is a null value
+     * @throws IllegalArgumentException if the number of students given as a parameter is negative
      */
     @Override
-    public void removeStudents(House house, int numStudents) throws IllegalChoiceException, NullPointerException{
+    public void removeStudents(House house, int numStudents) throws IllegalChoiceException, NullPointerException, IllegalArgumentException{
 
         if(house == null)
             throw new NullPointerException("The house given is null");
+
+        if(numStudents < 0){
+            throw new IllegalArgumentException("You cannot remove a negative number of students!");
+        }
 
         if(houseMap.get(house) == 0)
             throw new IllegalChoiceException("You cannot remove any students from the entrance, it is already empty");
