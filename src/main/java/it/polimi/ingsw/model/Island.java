@@ -17,7 +17,7 @@ public class Island implements StudentAdderInterface {
     private final Map<House,Integer> houseMap;
     private Color towerColor;
     private int numTowers;
-    private boolean noEntryTile;
+    private int noEntryTile;
 
     /**
      * Class constructor, initializes the Island
@@ -31,7 +31,7 @@ public class Island implements StudentAdderInterface {
         houseMap.put(PINK, 0);
         towerColor = null;
         numTowers = 0;
-        noEntryTile = false;
+        noEntryTile = 0;
     }
 
     /**
@@ -97,24 +97,26 @@ public class Island implements StudentAdderInterface {
     }
 
     public boolean isNoEntryTilePresent(){
-        return(this.noEntryTile);
+        return this.noEntryTile > 0;
     }
 
     /**
      * Adds the noEntryTile from the island
-     * @throws noEntryTileException when the noEntryTile is already present on the island
      */
     public void addNoEntryTile() throws noEntryTileException {
-        if (this.noEntryTile){throw new noEntryTileException("NoEntryTile is already true");}
-        this.noEntryTile = true;
+        this.noEntryTile += 1;
     }
 
     /**
      * Removes the noEntryTile from the island
-     * @throws noEntryTileException when the noEntryTile is not present on the island
+     * @throws noEntryTileException when no noEntryTile are present on the island
      */
     public void removeNoEntryTile() throws noEntryTileException{
-        if (!this.noEntryTile){throw new noEntryTileException("NoEntryTile is already false");}
-        this.noEntryTile = false;
+        if (this.noEntryTile < 1){throw new noEntryTileException("There aren't noEntryTiles on this island");}
+        this.noEntryTile -= 1;
+    }
+
+    public int getNoEntryTile(){
+        return(noEntryTile);
     }
 }
