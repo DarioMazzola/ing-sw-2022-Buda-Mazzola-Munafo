@@ -38,8 +38,6 @@ class MagicalMailManTest {
 
         assertEquals(maxMoves+2, ((Player)parameters.get("currentPlayer")).getMaxMoves());
         assertEquals(maxMoves+2, currentPlayer.getMaxMoves());
-
-        System.out.println(magicalMailMan.getDescription());
     }
 
     @Test
