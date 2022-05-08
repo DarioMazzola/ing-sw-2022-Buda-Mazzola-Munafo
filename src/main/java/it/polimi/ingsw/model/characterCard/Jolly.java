@@ -3,7 +3,7 @@ package it.polimi.ingsw.model.characterCard;
 import it.polimi.ingsw.exceptions.BagException;
 import it.polimi.ingsw.exceptions.EntranceException;
 import it.polimi.ingsw.exceptions.IllegalChoiceException;
-import it.polimi.ingsw.exceptions.JollyException;
+import it.polimi.ingsw.exceptions.NotEnoughStudentsOnCardException;
 import it.polimi.ingsw.model.Bag;
 import it.polimi.ingsw.model.Dashboard;
 import it.polimi.ingsw.model.House;
@@ -12,8 +12,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static it.polimi.ingsw.model.House.*;
 
 /**
  * Jolly class represents jolly character card.
@@ -45,7 +43,7 @@ public class Jolly extends CharacterCard{
      *
      * @param parameters A map that contains the objects that need to the characterCards and the objects that must be returned
      * @throws IllegalArgumentException when a parameter is missing
-     * @throws JollyException when the number of wanted students is not on the card
+     * @throws NotEnoughStudentsOnCardException when the number of wanted students is not on the card
      * @throws EntranceException when students cannot be added to the dashboard's entrance because it is full (method "move")
      * @throws IllegalChoiceException when students cannot be removed from the entrance
      */
@@ -105,18 +103,18 @@ public class Jolly extends CharacterCard{
      * @param wantedStudents wantedStudents students the player wants to pick from the card
      * @param returnedStudents returnedStudents students the player wants to return to the card
      * @param dashboard dashboard player's dashboard
-     * @throws JollyException when the number of students to swap is greater than 3 or the number of wanted students is different from the number of returned students.
+     * @throws NotEnoughStudentsOnCardException when the number of students to swap is greater than 3 or the number of wanted students is different from the number of returned students.
      * @throws EntranceException when students cannot be added to the dashboard's entrance because it is full
      * @throws IllegalChoiceException when students cannot be removed from the entrance
      */
-    private void move(Map<House, Integer> wantedStudents, Map<House, Integer> returnedStudents, Dashboard dashboard) throws JollyException, EntranceException, IllegalChoiceException {
+    private void move(Map<House, Integer> wantedStudents, Map<House, Integer> returnedStudents, Dashboard dashboard) throws NotEnoughStudentsOnCardException, EntranceException, IllegalChoiceException {
         int numWantedStudents = 0;
         int numReturnedStudents = 0;
 
         // checks
         for (House h : House.values()) {
             if (houseMap.get(h) < wantedStudents.get(h))
-                throw new JollyException("Not enough students of" + h + "house on the card");
+                throw new NotEnoughStudentsOnCardException("Not enough students of" + h + "house on the card");
             numWantedStudents+= wantedStudents.get(h);
             numReturnedStudents+= returnedStudents.get(h);
         }
