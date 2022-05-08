@@ -4,14 +4,24 @@ import it.polimi.ingsw.model.Player;
 
 import java.util.Map;
 
+/**
+ * MagicalMailMan class represents Magical Mailman character card.
+ *
+ * @author Dario Mazzola
+ */
 public class MagicalMailMan extends CharacterCard{
 
+    /**
+     * Class constructor, initializes card with name and initial cost.
+     */
     public MagicalMailMan() {
         super(1, "MagicalMailMan");
     }
 
     /**
      * Modifies the player's maximum number of possible moves, giving the possibility to do up to 2 additional moves.
+     *
+     *  @param parameters A map that contains the objects that need to the characterCards and the objects that must be returned
      */
     @Override
     public void doEffect(Map<String, Object> parameters) throws Exception {

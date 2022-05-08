@@ -6,8 +6,16 @@ import it.polimi.ingsw.model.Player;
 
 import java.util.Map;
 
+/**
+ * Farmer class represents farmer character card.
+ *
+ * @author Dario Mazzola
+ */
 public class Farmer extends CharacterCard {
 
+    /**
+     * Class constructor, initializes card with name and initial cost.
+     */
     public Farmer() {
         super(2, "Farmer");
     }
