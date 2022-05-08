@@ -42,4 +42,10 @@ public class Herald extends CharacterCard {
         parameters.put("Output", player);
 
     }
+
+    @Override
+    public String getDescription() {
+        return "Choose an Island and resolve the Island as if Mother Nature had ended her movement there. " +
+                "Mother Nature will still move and the Island where she ends her movement  will also be resolved.";
+    }
 }

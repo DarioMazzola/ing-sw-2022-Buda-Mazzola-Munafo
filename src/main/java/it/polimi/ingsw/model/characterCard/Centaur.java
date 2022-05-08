@@ -135,4 +135,9 @@ public class Centaur extends CharacterCard {
             }
         }
     }
+
+    @Override
+    public String getDescription() {
+        return "When resolving a Conquering on an Island, Towers do not count towards influce.";
+    }
 }

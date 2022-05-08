@@ -217,4 +217,9 @@ public class MushroomHunter extends CharacterCard{
             }
         }
     }
+
+    @Override
+    public String getDescription() {
+        return "Choose a color of Student: during the influence calculation this, that color adds no influence";
+    }
 }

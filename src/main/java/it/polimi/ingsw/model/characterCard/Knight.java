@@ -206,5 +206,10 @@ public class Knight extends CharacterCard {
             }
         }
     }
+
+    @Override
+    public String getDescription() {
+        return "During the influence calculation this turn, you count as having 2 more influence";
+    }
 }
 
