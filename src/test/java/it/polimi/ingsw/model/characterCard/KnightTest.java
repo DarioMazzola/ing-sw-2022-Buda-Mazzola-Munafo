@@ -65,7 +65,7 @@ class KnightTest {
         try {
             k.doEffect(map);
         } catch (Exception e) {
-            e.printStackTrace();
+            fail();
         }
 
         Player result = k.checkInfluence(island, expertMode, numPlayers, arrayPlayers);
@@ -97,7 +97,7 @@ class KnightTest {
         try {
             k.doEffect(map);
         } catch (Exception e) {
-            e.printStackTrace();
+            fail();
         }
 
         Player result = k.checkInfluence(island, expertMode, numPlayers, arrayPlayers);
@@ -140,7 +140,7 @@ class KnightTest {
         try {
             k.doEffect(map);
         } catch (Exception e) {
-            e.printStackTrace();
+            fail();
         }
 
         Player result = k.checkInfluence(island, expertMode, numPlayers, arrayPlayers);
