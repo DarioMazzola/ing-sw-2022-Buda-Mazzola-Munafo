@@ -1,9 +1,5 @@
 package it.polimi.ingsw.model.characterCard;
 
-import it.polimi.ingsw.exceptions.EntranceException;
-import it.polimi.ingsw.exceptions.IllegalChoiceException;
-import it.polimi.ingsw.exceptions.TowerAreaException;
-import it.polimi.ingsw.exceptions.noEntryTileException;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Island;
 import it.polimi.ingsw.model.Player;
@@ -66,7 +62,7 @@ class MushroomHunterTest {
         try {
             m.doEffect(map);
         } catch (Exception e) {
-            e.printStackTrace();
+            fail();
         }
 
         Player winner = m.checkInfluence(island, expertMode, numPlayers, arrayPlayers);
@@ -121,7 +117,7 @@ class MushroomHunterTest {
         try {
             m.doEffect(map);
         } catch (Exception e) {
-            e.printStackTrace();
+            fail();
         }
 
         Player winner = m.checkInfluence(island, expertMode, numPlayers, arrayPlayers);
@@ -157,7 +153,7 @@ class MushroomHunterTest {
         try {
             m.doEffect(map);
         } catch (Exception e) {
-            e.printStackTrace();
+            fail();
         }
 
         Player result = m.checkInfluence(island, expertMode, numPlayers, arrayPlayers);

@@ -1,9 +1,5 @@
 package it.polimi.ingsw.model.characterCard;
 
-import it.polimi.ingsw.exceptions.EntranceException;
-import it.polimi.ingsw.exceptions.IllegalChoiceException;
-import it.polimi.ingsw.exceptions.TowerAreaException;
-import it.polimi.ingsw.exceptions.noEntryTileException;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Island;
 import it.polimi.ingsw.model.Player;
@@ -50,23 +46,9 @@ class CentaurTest {
         arrayPlayers[0].setDashboard(Color.WHITE);
         arrayPlayers[1].setDashboard(Color.BLACK);
 
-        try {
-            arrayPlayers[0].getDashboard().removeTower();
-        } catch (TowerAreaException e) {
-            e.printStackTrace();
-        }
-        try {
-            arrayPlayers[0].getDashboard().removeTower();
-        } catch (TowerAreaException e) {
-            e.printStackTrace();
-        }
         island.addTowers(2);
+        island.setTowerColor(arrayPlayers[0].getDashboard().getTowerColor());
 
-        try {
-            arrayPlayers[1].getDashboard().removeStudents(GREEN, 1);
-        } catch (IllegalChoiceException e) {
-            e.printStackTrace();
-        }
         island.addStudents(GREEN, 1);
         arrayPlayers[1].getDashboard().addProf(GREEN);
 
@@ -91,23 +73,9 @@ class CentaurTest {
         arrayPlayers[0].setDashboard(Color.WHITE);
         arrayPlayers[1].setDashboard(Color.BLACK);
 
-        try {
-            arrayPlayers[0].getDashboard().removeTower();
-        } catch (TowerAreaException e) {
-            e.printStackTrace();
-        }
-        try {
-            arrayPlayers[0].getDashboard().removeTower();
-        } catch (TowerAreaException e) {
-            e.printStackTrace();
-        }
         island.addTowers(2);
+        island.setTowerColor(arrayPlayers[0].getDashboard().getTowerColor());
 
-        try {
-            arrayPlayers[1].getDashboard().removeStudents(GREEN, 1);
-        } catch (IllegalChoiceException e) {
-            e.printStackTrace();
-        }
         island.addStudents(YELLOW, 1);
         island.addStudents(GREEN, 1);
         arrayPlayers[1].getDashboard().addProf(GREEN);
@@ -141,25 +109,9 @@ class CentaurTest {
         arrayPlayers[2].setDashboard(Color.BLACK);
         arrayPlayers[3].setDashboard(Color.BLACK);
 
-        try {
-            arrayPlayers[2].getDashboard().addStudents(GREEN, 5);
-        } catch (EntranceException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            arrayPlayers[1].getDashboard().removeTower();
-        } catch (TowerAreaException e) {
-            e.printStackTrace();
-        }
         island.addTowers(2);
         island.setTowerColor(arrayPlayers[1].getDashboard().getTowerColor());
 
-        try {
-            arrayPlayers[2].getDashboard().removeStudents(GREEN, 1);
-        } catch (IllegalChoiceException e) {
-            e.printStackTrace();
-        }
         island.addStudents(GREEN, 1);
         island.addStudents(PINK, 1);
 
@@ -204,25 +156,9 @@ class CentaurTest {
         arrayPlayers[2].setDashboard(Color.BLACK);
         arrayPlayers[3].setDashboard(Color.BLACK);
 
-        try {
-            arrayPlayers[1].getDashboard().addStudents(GREEN, 5);
-        } catch (EntranceException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            arrayPlayers[2].getDashboard().removeTower();
-        } catch (TowerAreaException e) {
-            e.printStackTrace();
-        }
         island.addTowers(2);
         island.setTowerColor(arrayPlayers[2].getDashboard().getTowerColor());
 
-        try {
-            arrayPlayers[1].getDashboard().removeStudents(GREEN, 1);
-        } catch (IllegalChoiceException e) {
-            e.printStackTrace();
-        }
         island.addStudents(GREEN, 1);
         island.addStudents(YELLOW, 1);
         arrayPlayers[1].getDashboard().addProf(GREEN);
@@ -251,23 +187,9 @@ class CentaurTest {
 
         island.addNoEntryTile();
 
-        try {
-            arrayPlayers[0].getDashboard().removeTower();
-        } catch (TowerAreaException e) {
-            e.printStackTrace();
-        }
-        try {
-            arrayPlayers[0].getDashboard().removeTower();
-        } catch (TowerAreaException e) {
-            e.printStackTrace();
-        }
         island.addTowers(2);
+        island.setTowerColor(arrayPlayers[0].getDashboard().getTowerColor());
 
-        try {
-            arrayPlayers[1].getDashboard().removeStudents(GREEN, 1);
-        } catch (IllegalChoiceException e) {
-            e.printStackTrace();
-        }
         island.addStudents(GREEN, 1);
 
         arrayPlayers[1].getDashboard().addProf(GREEN);
