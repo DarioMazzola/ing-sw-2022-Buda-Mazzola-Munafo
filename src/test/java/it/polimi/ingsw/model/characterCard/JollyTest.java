@@ -1,9 +1,12 @@
-package it.polimi.ingsw.model;
+package it.polimi.ingsw.model.characterCard;
 
 import it.polimi.ingsw.exceptions.BagException;
 import it.polimi.ingsw.exceptions.EntranceException;
-import it.polimi.ingsw.exceptions.IllegalChoiceException;
-import it.polimi.ingsw.exceptions.JollyException;
+import it.polimi.ingsw.exceptions.NotEnoughStudentsOnCardException;
+import it.polimi.ingsw.model.Bag;
+import it.polimi.ingsw.model.Color;
+import it.polimi.ingsw.model.Dashboard;
+import it.polimi.ingsw.model.House;
 import it.polimi.ingsw.model.characterCard.Jolly;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -331,7 +334,7 @@ public class JollyTest {
     }
 
     /**
-     * Verifies that a JollyException is thrown when "method" parameter in parameters is "move" and there are not enough students of a wanted house on the card.
+     * Verifies that a NotEnoughStudentsOnCard is thrown when "method" parameter in parameters is "move" and there are not enough students of a wanted house on the card.
      */
     @Test
     void doEffectTest_MoveWithNotEnoughStudents_ThrowsJollyException() {
@@ -342,7 +345,7 @@ public class JollyTest {
         parameters.put("wantedStudents", wantedStudents);
         parameters.put("returnedStudents", returnedStudents);
         parameters.put("playerDashboard", playerDashboard);
-        JollyException thrown = Assertions.assertThrows(JollyException.class, () -> jolly.doEffect(parameters));
+        NotEnoughStudentsOnCardException thrown = Assertions.assertThrows(NotEnoughStudentsOnCardException.class, () -> jolly.doEffect(parameters));
         Assertions.assertEquals("Not enough students of" + House.YELLOW + "house on the card", thrown.getMessage());
     }
 
