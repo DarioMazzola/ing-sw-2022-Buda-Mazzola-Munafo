@@ -135,8 +135,8 @@ public class Player {
         return maxMoves;
     }
 
-    public void setGraveyard(Card graveyard) {
-        this.graveyard = graveyard;
+    public void setGraveyard() {
+        this.graveyard = cardInUse;
     }
 
     public Card getGraveyard() {
