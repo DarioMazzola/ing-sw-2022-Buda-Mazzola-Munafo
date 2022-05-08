@@ -102,11 +102,13 @@ public class Player {
         return deck.size();
     }
 
+
     /**
      * Removes card from deck.
      * Updates cardInUse with the given card and maxMoves with the number of moves associated to the card.
      *
      * @param card card to be removed from deck
+     * @throws CardNotInDeckException when the card to be used is not in deck
      */
     public void useCard (Card card) throws CardNotInDeckException {
         if (card == null) {
