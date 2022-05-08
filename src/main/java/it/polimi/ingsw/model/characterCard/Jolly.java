@@ -26,11 +26,10 @@ public class Jolly extends CharacterCard{
     /**
      * Class constructor, initializes card with name, initial cost and required students.
      *
-     * @param cost card's cost for first use
      * @param bag bag from which students are pulled to initialize card
      */
-    public Jolly(int cost, Bag bag) throws BagException {
-        super(cost, "Jolly");
+    public Jolly(Bag bag) throws BagException {
+        super(1, "Jolly");
         houseMap = new HashMap<>();
         for (House h : House.values()){
             houseMap.put(h, 0);

@@ -35,7 +35,7 @@ public class JollyTest {
     @BeforeEach
     void setup() {
         try {
-            jolly = new Jolly(1, new Bag());
+            jolly = new Jolly(new Bag());
         } catch (BagException e) {
             e.printStackTrace();
         }

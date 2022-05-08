@@ -10,8 +10,8 @@ import java.util.Map;
  */
 public class Herald extends CharacterCard {
 
-    public Herald(int cost) {
-        super(cost, "Herald");
+    public Herald() {
+        super(3, "Herald");
     }
 
     /**

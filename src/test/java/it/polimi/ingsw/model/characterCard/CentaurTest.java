@@ -30,7 +30,7 @@ class CentaurTest {
      */
     @BeforeEach
     public void setup() {
-        c = new Centaur(3);
+        c = new Centaur();
     }
 
     /**

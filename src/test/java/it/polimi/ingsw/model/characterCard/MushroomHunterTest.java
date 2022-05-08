@@ -35,7 +35,7 @@ class MushroomHunterTest {
      */
     @BeforeEach
     public void setup() {
-        m = new MushroomHunter(3);
+        m = new MushroomHunter();
     }
 
     /**

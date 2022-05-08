@@ -10,8 +10,8 @@ import it.polimi.ingsw.model.Player;
  */
 public class Centaur extends CharacterCard {
 
-    public Centaur(int cost) {
-        super(cost, "Centaur");
+    public Centaur() {
+        super(3, "Centaur");
     }
 
     /**

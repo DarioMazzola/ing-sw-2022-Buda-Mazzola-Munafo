@@ -36,7 +36,7 @@ class KnightTest {
      */
     @BeforeEach
     public void setup() {
-        k = new Knight(3);
+        k = new Knight();
     }
 
     /**

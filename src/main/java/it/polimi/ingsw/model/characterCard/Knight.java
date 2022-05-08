@@ -15,8 +15,8 @@ public class Knight extends CharacterCard {
 
     private Player currentPlayer = null;
 
-    public Knight(int cost) {
-        super(cost, "Knight");
+    public Knight() {
+        super(2, "Knight");
     }
 
     /**

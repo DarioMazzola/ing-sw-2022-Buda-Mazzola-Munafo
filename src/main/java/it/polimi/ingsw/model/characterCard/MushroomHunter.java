@@ -16,8 +16,8 @@ public class MushroomHunter extends CharacterCard{
 
     private House houseToIgnore = null;
 
-    public MushroomHunter(int cost) {
-        super(cost, "MushroomHunter");
+    public MushroomHunter() {
+        super(3, "MushroomHunter");
     }
 
     /**
