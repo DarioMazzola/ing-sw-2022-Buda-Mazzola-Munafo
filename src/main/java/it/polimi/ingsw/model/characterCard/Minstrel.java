@@ -2,7 +2,6 @@ package it.polimi.ingsw.model.characterCard;
 
 import it.polimi.ingsw.exceptions.EntranceException;
 import it.polimi.ingsw.exceptions.IllegalChoiceException;
-import it.polimi.ingsw.exceptions.JollyException;
 import it.polimi.ingsw.exceptions.StudentsTableException;
 import it.polimi.ingsw.model.Dashboard;
 import it.polimi.ingsw.model.DiningHall;
