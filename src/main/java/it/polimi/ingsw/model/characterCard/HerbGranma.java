@@ -1,8 +1,5 @@
 package it.polimi.ingsw.model.characterCard;
 
-import it.polimi.ingsw.exceptions.EntranceException;
-import it.polimi.ingsw.exceptions.IllegalChoiceException;
-import it.polimi.ingsw.exceptions.JollyException;
 import it.polimi.ingsw.model.Island;
 
 import java.util.Map;
