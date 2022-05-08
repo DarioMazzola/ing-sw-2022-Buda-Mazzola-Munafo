@@ -1,13 +1,8 @@
 package it.polimi.ingsw.model.characterCard;
 
-import it.polimi.ingsw.exceptions.EntranceException;
-import it.polimi.ingsw.exceptions.IllegalChoiceException;
-import it.polimi.ingsw.exceptions.TowerAreaException;
-import it.polimi.ingsw.exceptions.noEntryTileException;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Island;
 import it.polimi.ingsw.model.Player;
-import it.polimi.ingsw.model.characterCard.Knight;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
