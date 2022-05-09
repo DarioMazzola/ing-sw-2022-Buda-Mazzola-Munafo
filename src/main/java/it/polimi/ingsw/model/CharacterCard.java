@@ -1,4 +1,4 @@
-package it.polimi.ingsw.model.characterCard;
+package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.exceptions.IllegalChoiceException;
 import it.polimi.ingsw.exceptions.IslandException;

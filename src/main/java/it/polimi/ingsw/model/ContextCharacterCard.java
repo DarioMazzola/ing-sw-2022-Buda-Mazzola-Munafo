@@ -1,10 +1,6 @@
-package it.polimi.ingsw.model.characterCard;
+package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.exceptions.IllegalChoiceException;
-import it.polimi.ingsw.model.Dashboard;
-import it.polimi.ingsw.model.House;
-import it.polimi.ingsw.model.Island;
-import it.polimi.ingsw.model.Player;
 
 import java.util.Map;
 

@@ -1,12 +1,9 @@
-package it.polimi.ingsw.model.characterCard;
+package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.exceptions.BagException;
 import it.polimi.ingsw.exceptions.EntranceException;
 import it.polimi.ingsw.exceptions.IllegalChoiceException;
 import it.polimi.ingsw.exceptions.NotEnoughStudentsOnCardException;
-import it.polimi.ingsw.model.Bag;
-import it.polimi.ingsw.model.Dashboard;
-import it.polimi.ingsw.model.House;
 
 import java.util.ArrayList;
 import java.util.HashMap;

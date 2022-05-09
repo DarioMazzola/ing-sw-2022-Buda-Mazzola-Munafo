@@ -1,6 +1,4 @@
-package it.polimi.ingsw.model.characterCard;
-
-import it.polimi.ingsw.model.Bag;
+package it.polimi.ingsw.model;
 
 import java.util.Map;
 

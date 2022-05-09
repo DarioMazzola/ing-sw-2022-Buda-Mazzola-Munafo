@@ -1,12 +1,9 @@
-package it.polimi.ingsw.model.characterCard;
+package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.exceptions.BagException;
 import it.polimi.ingsw.exceptions.NotEnoughStudentsOnCardException;
 import it.polimi.ingsw.exceptions.StudentsTableException;
-import it.polimi.ingsw.model.Bag;
-import it.polimi.ingsw.model.Color;
-import it.polimi.ingsw.model.House;
-import it.polimi.ingsw.model.Player;
+import it.polimi.ingsw.model.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

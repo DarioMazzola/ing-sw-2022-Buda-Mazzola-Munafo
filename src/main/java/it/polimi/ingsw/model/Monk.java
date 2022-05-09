@@ -1,17 +1,12 @@
-package it.polimi.ingsw.model.characterCard;
+package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.exceptions.BagException;
 import it.polimi.ingsw.exceptions.NotEnoughStudentsOnCardException;
-import it.polimi.ingsw.model.Bag;
-import it.polimi.ingsw.model.House;
-import it.polimi.ingsw.model.Island;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static it.polimi.ingsw.model.House.*;
 
 public class Monk extends CharacterCard {
     private final Map<House, Integer> houseMap;

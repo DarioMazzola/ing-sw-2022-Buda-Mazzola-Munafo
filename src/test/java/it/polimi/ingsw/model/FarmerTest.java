@@ -1,10 +1,8 @@
-package it.polimi.ingsw.model.characterCard;
+package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.exceptions.EntranceException;
 import it.polimi.ingsw.exceptions.IllegalChoiceException;
-import it.polimi.ingsw.model.Color;
-import it.polimi.ingsw.model.House;
-import it.polimi.ingsw.model.Player;
+import it.polimi.ingsw.model.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

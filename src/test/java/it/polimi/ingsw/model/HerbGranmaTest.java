@@ -1,6 +1,8 @@
-package it.polimi.ingsw.model.characterCard;
+package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.exceptions.noEntryTileException;
+import it.polimi.ingsw.model.CharacterCard;
+import it.polimi.ingsw.model.HerbGranma;
 import it.polimi.ingsw.model.Island;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

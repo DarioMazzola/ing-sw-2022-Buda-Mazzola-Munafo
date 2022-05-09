@@ -1,7 +1,8 @@
-package it.polimi.ingsw.model.characterCard;
+package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Island;
+import it.polimi.ingsw.model.Knight;
 import it.polimi.ingsw.model.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

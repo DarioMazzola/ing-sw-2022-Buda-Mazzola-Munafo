@@ -1,5 +1,6 @@
-package it.polimi.ingsw.model.characterCard;
+package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.model.Centaur;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Island;
 import it.polimi.ingsw.model.Player;

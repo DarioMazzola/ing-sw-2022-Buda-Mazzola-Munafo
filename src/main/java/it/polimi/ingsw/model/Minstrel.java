@@ -1,11 +1,8 @@
-package it.polimi.ingsw.model.characterCard;
+package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.exceptions.EntranceException;
 import it.polimi.ingsw.exceptions.IllegalChoiceException;
 import it.polimi.ingsw.exceptions.StudentsTableException;
-import it.polimi.ingsw.model.Dashboard;
-import it.polimi.ingsw.model.DiningHall;
-import it.polimi.ingsw.model.House;
 
 import java.util.Map;
 

@@ -1,8 +1,4 @@
-package it.polimi.ingsw.model.characterCard;
-
-import it.polimi.ingsw.model.House;
-import it.polimi.ingsw.model.Island;
-import it.polimi.ingsw.model.Player;
+package it.polimi.ingsw.model;
 
 /**
  * Class that represent the Centaur character card

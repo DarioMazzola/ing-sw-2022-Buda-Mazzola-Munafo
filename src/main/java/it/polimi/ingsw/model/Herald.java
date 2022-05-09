@@ -1,7 +1,4 @@
-package it.polimi.ingsw.model.characterCard;
-
-import it.polimi.ingsw.model.Island;
-import it.polimi.ingsw.model.Player;
+package it.polimi.ingsw.model;
 
 import java.util.Map;
 /**
