@@ -197,4 +197,12 @@ class CentaurTest {
         Player result = c.checkInfluence(island, expertMode, numPlayers, arrayPlayers);
         assertNull(result);
     }
+
+    /**
+     * Verifies that getDescription works properly
+     */
+    @Test
+    void getDescriptionTest(){
+        assertEquals(c.getDescription(), "When resolving a Conquering on an Island, Towers do not count towards influce.");
+    }
 }
