@@ -2,10 +2,6 @@ package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.exceptions.BagException;
 import it.polimi.ingsw.exceptions.NotEnoughStudentsOnCardException;
-import it.polimi.ingsw.model.Bag;
-import it.polimi.ingsw.model.House;
-import it.polimi.ingsw.model.Island;
-import it.polimi.ingsw.model.Monk;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;

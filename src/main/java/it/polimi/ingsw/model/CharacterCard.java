@@ -2,7 +2,6 @@ package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.exceptions.IllegalChoiceException;
 import it.polimi.ingsw.exceptions.IslandException;
-import it.polimi.ingsw.model.*;
 
 import java.util.Map;
 

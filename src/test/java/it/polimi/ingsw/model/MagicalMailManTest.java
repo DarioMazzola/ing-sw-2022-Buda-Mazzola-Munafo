@@ -1,8 +1,5 @@
 package it.polimi.ingsw.model;
 
-import it.polimi.ingsw.model.CharacterCard;
-import it.polimi.ingsw.model.MagicalMailMan;
-import it.polimi.ingsw.model.Player;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
