@@ -4,8 +4,21 @@ import it.polimi.ingsw.model.Bag;
 
 import java.util.Map;
 
+/**
+ * CharacterCardFactory class, representation of the characterCard creator class
+ *
+ * @author Dario Mazzola
+ */
+
 public class CharacterCardFactory {
 
+    /**
+     * Creates a characterCard from its name and the elements that card needs to be created
+     * @param cardType the characterCard name
+     * @param parameters all the elements that the card needs to be created
+     * @return the character chard of the type indicated by the parameters
+     * @throws Exception the exception thrown by the character card created
+     */
     public CharacterCard getCharacterCard(String cardType, Map<String, Object> parameters) throws Exception{
 
         CharacterCard c;
