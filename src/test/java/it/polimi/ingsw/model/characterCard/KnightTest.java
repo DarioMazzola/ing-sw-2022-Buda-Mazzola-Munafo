@@ -191,4 +191,12 @@ class KnightTest {
         assertThrows(NullPointerException.class, ()->k.doEffect(map));
     }
 
+    /**
+     * Verifies that getDescription works properly
+     */
+    @Test
+    void getDescriptionTest(){
+        assertEquals(k.getDescription(), "During the influence calculation this turn, you count as having 2 more influence");
+    }
+
 }
