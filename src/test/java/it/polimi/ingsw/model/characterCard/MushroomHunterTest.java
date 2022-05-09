@@ -159,4 +159,12 @@ class MushroomHunterTest {
         Player result = m.checkInfluence(island, expertMode, numPlayers, arrayPlayers);
         assertNull(result);
     }
+
+    /**
+     * Verifies that getDescription works properly
+     */
+    @Test
+    void getDescriptionTest(){
+        assertEquals(m.getDescription(), "Choose a color of Student: during the influence calculation this, that color adds no influence");
+    }
 }
