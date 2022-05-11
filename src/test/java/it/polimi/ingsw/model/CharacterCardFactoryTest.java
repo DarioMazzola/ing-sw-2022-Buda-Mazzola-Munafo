@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
+import static it.polimi.ingsw.model.CharacterCardEnum.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CharacterCardFactoryTest {
@@ -22,7 +23,7 @@ class CharacterCardFactoryTest {
     @Test
     void getCharacterCard_FarmerCreation() {
         try{
-            characterCard = characterCardFactory.getCharacterCard("Farmer", null);
+            characterCard = characterCardFactory.getCharacterCard(FARMER, null);
         }
         catch (Exception e){
             fail();
@@ -39,7 +40,7 @@ class CharacterCardFactoryTest {
     @Test
     void getCharacterCard_MagicalMailManCreation() {
         try{
-            characterCard = characterCardFactory.getCharacterCard("MagicalMailMan", null);
+            characterCard = characterCardFactory.getCharacterCard(MAGICAL_MAILMAN, null);
         }
         catch (Exception e){
             fail();
@@ -56,7 +57,7 @@ class CharacterCardFactoryTest {
     @Test
     void getCharacterCard_HerbGranmaCreation() {
         try{
-            characterCard = characterCardFactory.getCharacterCard("HerbGranma", null);
+            characterCard = characterCardFactory.getCharacterCard(HERB_GRANMA, null);
         }
         catch (Exception e){
             fail();
@@ -74,7 +75,7 @@ class CharacterCardFactoryTest {
     void getCharacterCard_MinstrelCreation() {
 
         try{
-            characterCard = characterCardFactory.getCharacterCard("Minstrel", null);
+            characterCard = characterCardFactory.getCharacterCard(MINSTREL, null);
         }
         catch (Exception e){
             fail();
@@ -108,7 +109,7 @@ class CharacterCardFactoryTest {
         }
 
         try{
-            characterCard = characterCardFactory.getCharacterCard("Monk", parameters);
+            characterCard = characterCardFactory.getCharacterCard(MONK, bag);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -153,7 +154,7 @@ class CharacterCardFactoryTest {
     void getCharacterCard_HeraldCreation() {
 
         try{
-            characterCard = characterCardFactory.getCharacterCard("Herald", null);
+            characterCard = characterCardFactory.getCharacterCard(HERALD, null);
         }
         catch (Exception e){
             fail();
@@ -171,7 +172,7 @@ class CharacterCardFactoryTest {
     void getCharacterCard_CentaurCreation() {
 
         try{
-            characterCard = characterCardFactory.getCharacterCard("Centaur", null);
+            characterCard = characterCardFactory.getCharacterCard(CENTAUR, null);
         }
         catch (Exception e){
             fail();
@@ -204,7 +205,7 @@ class CharacterCardFactoryTest {
         }
 
         try{
-            characterCard = characterCardFactory.getCharacterCard("Jolly", parameters);
+            characterCard = characterCardFactory.getCharacterCard(JOLLY, bag);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -244,7 +245,7 @@ class CharacterCardFactoryTest {
     void getCharacterCard_KnightCreation() {
 
         try{
-            characterCard = characterCardFactory.getCharacterCard("Knight", null);
+            characterCard = characterCardFactory.getCharacterCard(KNIGHT, null);
         }
         catch (Exception e){
             fail();
@@ -262,7 +263,7 @@ class CharacterCardFactoryTest {
     void getCharacterCard_MushroomHunterCreation() {
 
         try{
-            characterCard = characterCardFactory.getCharacterCard("MushroomHunter", null);
+            characterCard = characterCardFactory.getCharacterCard(MUSHROOM_HUNTER, null);
         }
         catch (Exception e){
             fail();
@@ -296,7 +297,7 @@ class CharacterCardFactoryTest {
         }
 
         try{
-            characterCard = characterCardFactory.getCharacterCard("SpoiledPrincess", parameters);
+            characterCard = characterCardFactory.getCharacterCard(SPOILED_PRINCESS, bag);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -335,7 +336,7 @@ class CharacterCardFactoryTest {
     void getCharacterCard_ThiefCreation() {
 
         try{
-            characterCard = characterCardFactory.getCharacterCard("Thief", null);
+            characterCard = characterCardFactory.getCharacterCard(THIEF, null);
         }
         catch (Exception e){
             fail();
@@ -347,13 +348,6 @@ class CharacterCardFactoryTest {
         assertFalse(characterCard.isInUse());
 
         assertTrue(characterCard instanceof Thief);
-    }
-
-    @Test
-    void getCharacterCard_WrongNameGiven_ShouldThrowIllegalArgumentException(){
-
-        assertThrows(IllegalArgumentException.class, ()-> characterCard = characterCardFactory.getCharacterCard("Random", null));
-
     }
 
     @AfterEach

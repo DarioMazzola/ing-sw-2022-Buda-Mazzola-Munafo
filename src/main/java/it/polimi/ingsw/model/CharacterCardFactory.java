@@ -1,7 +1,5 @@
 package it.polimi.ingsw.model;
 
-import java.util.Map;
-
 /**
  * CharacterCardFactory class, representation of the characterCard creator class
  *
@@ -13,49 +11,49 @@ public class CharacterCardFactory {
     /**
      * Creates a characterCard from its name and the elements that card needs to be created
      * @param cardType the characterCard name
-     * @param parameters all the elements that the card needs to be created
+     * @param bag the bag of the match that some cards needs for creation
      * @return the character chard of the type indicated by the parameters
      * @throws Exception the exception thrown by the character card created
      */
-    public CharacterCard getCharacterCard(String cardType, Map<String, Object> parameters) throws Exception{
+    public CharacterCard getCharacterCard(CharacterCardEnum cardType, Bag bag) throws Exception{
 
         CharacterCard c;
 
         switch (cardType) {
-            case "Farmer" :
+            case FARMER :
                 c = new Farmer();
                 break;
-            case "MagicalMailMan" :
+            case MAGICAL_MAILMAN :
                 c = new MagicalMailMan();
                 break;
-            case "HerbGranma" :
+            case HERB_GRANMA :
                 c = new HerbGranma();
                 break;
-            case "Minstrel" :
+            case MINSTREL :
                 c = new Minstrel();
                 break;
-            case "Monk" :
-                c = new Monk((Bag) parameters.get(("Bag")));
+            case MONK :
+                c = new Monk(bag);
                 break;
-            case "Herald" :
+            case HERALD :
                 c = new Herald();
                 break;
-            case "Centaur" :
+            case CENTAUR :
                 c = new Centaur();
                 break;
-            case "Jolly" :
-                c = new Jolly((Bag) parameters.get(("Bag")));
+            case JOLLY :
+                c = new Jolly(bag);
                 break;
-            case "Knight" :
+            case KNIGHT :
                 c = new Knight();
                 break;
-            case "MushroomHunter" :
+            case MUSHROOM_HUNTER :
                 c = new MushroomHunter();
                 break;
-            case "SpoiledPrincess" :
-                c = new SpoiledPrincess((Bag) parameters.get(("Bag")));
+            case SPOILED_PRINCESS :
+                c = new SpoiledPrincess(bag);
                 break;
-            case "Thief" :
+            case THIEF :
                 c = new Thief();
                 break;
             default :
