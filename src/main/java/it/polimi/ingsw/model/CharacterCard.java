@@ -1,8 +1,10 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.exceptions.CardNotInDeckException;
 import it.polimi.ingsw.exceptions.IllegalChoiceException;
 import it.polimi.ingsw.exceptions.IslandException;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -135,9 +137,10 @@ public class CharacterCard {
      * @param island the island where we calculate the influence on
      * @return the player who has the highest influence on the island, null if no one has the highest influence
      */
-    public Player checkInfluence(Island island, Boolean expertMode, int numPlayers, Player[] arrayPlayers) {
+    public Player checkInfluence(Island island, Boolean expertMode, int numPlayers, Player[] arrayPlayers, CharacterCard[] characterCardDeck) throws Exception {
 
         if (expertMode && island.isNoEntryTilePresent()){
+            removeNoEntryTile(island, characterCardDeck);
             return(null);
         }
         int[] influences;
@@ -279,5 +282,27 @@ public class CharacterCard {
                 }
             }
         }
+    }
+
+    void removeNoEntryTile(Island island, CharacterCard[] characterCardDeck) throws Exception{
+        boolean cardPresent = false;
+        HerbGranma herbGranma = null;
+
+        for(CharacterCard c : characterCardDeck){
+            if (c instanceof HerbGranma) {
+                cardPresent = true;
+                herbGranma = (HerbGranma) c;
+                break;
+            }
+        }
+        if(!cardPresent){
+            throw new CardNotInDeckException();
+        }
+
+        Map<String, Object> parameters = new HashMap<>();
+
+        parameters.put("Method", "removeNoEntryTile");
+
+        herbGranma.doEffect(parameters);
     }
 }
