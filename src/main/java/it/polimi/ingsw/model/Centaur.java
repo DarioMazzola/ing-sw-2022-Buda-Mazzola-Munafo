@@ -16,10 +16,11 @@ public class Centaur extends CharacterCard {
      * @param expertMode the mode the game is in
      * @param numPlayers the number of players
      * @param arrayPlayers the array of players
-     * @return the player with highest influence
+     * @param characterCardDeck the array of Character card
+     * @return the player with the highest influence
      */
     @Override
-    public Player checkInfluence(Island island, Boolean expertMode, int numPlayers, Player[] arrayPlayers) {
+    public Player checkInfluence(Island island, Boolean expertMode, int numPlayers, Player[] arrayPlayers, CharacterCard[] characterCardDeck) {
         if (expertMode && island.isNoEntryTilePresent()) {
             return (null);
         }

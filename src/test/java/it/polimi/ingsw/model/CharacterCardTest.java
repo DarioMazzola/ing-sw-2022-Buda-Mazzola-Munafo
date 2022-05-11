@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.exceptions.BagException;
 import it.polimi.ingsw.exceptions.EntranceException;
 import it.polimi.ingsw.exceptions.IllegalChoiceException;
 import org.junit.jupiter.api.AfterEach;
@@ -25,9 +26,10 @@ class CharacterCardTest {
 
     boolean expertMode = false;
     Island island;
+    CharacterCard[] characterCardDeck;
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws BagException {
         characterCard = new CharacterCard(cost, cardName);
 
         currentPlayer = new Player(numPlayers);
@@ -40,6 +42,12 @@ class CharacterCardTest {
 
         players[0] = currentPlayer;
         players[1] = otherPlayer;
+
+        characterCardDeck = new CharacterCard[3];
+
+        characterCardDeck[0] = new Monk(new Bag());
+        characterCardDeck[1] = new Knight();
+        characterCardDeck[2] = new HerbGranma();
 
         island = new Island();
     }
@@ -317,10 +325,9 @@ class CharacterCardTest {
 
         island.addNoEntryTile();
 
-        expertMode = true;
 
         try{
-            winner = characterCard.checkInfluence(island, expertMode, numPlayers, players);
+            winner = characterCard.checkInfluence(island, expertMode, numPlayers, players, characterCardDeck);
         }
         catch (Exception e){
             fail();
@@ -357,7 +364,7 @@ class CharacterCardTest {
         otherPlayer.getDashboard().addProf(House.BLUE);
 
         try{
-            winner = characterCard.checkInfluence(island, expertMode, numPlayers, players);
+            winner = characterCard.checkInfluence(island, expertMode, numPlayers, players, characterCardDeck);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -394,7 +401,7 @@ class CharacterCardTest {
         otherPlayer.getDashboard().addProf(House.BLUE);
 
         try{
-            winner = characterCard.checkInfluence(island, expertMode, numPlayers, players);
+            winner = characterCard.checkInfluence(island, expertMode, numPlayers, players, characterCardDeck);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -425,7 +432,7 @@ class CharacterCardTest {
         otherPlayer.getDashboard().addProf(House.BLUE);
 
         try{
-            winner = characterCard.checkInfluence(island, expertMode, numPlayers, players);
+            winner = characterCard.checkInfluence(island, expertMode, numPlayers, players, characterCardDeck);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -462,7 +469,7 @@ class CharacterCardTest {
         otherPlayer.getDashboard().addProf(House.BLUE);
 
         try{
-            winner = characterCard.checkInfluence(island, expertMode, numPlayers, players);
+            winner = characterCard.checkInfluence(island, expertMode, numPlayers, players, characterCardDeck);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -500,7 +507,7 @@ class CharacterCardTest {
         players[2].getDashboard().addProf(House.BLUE);
 
         try{
-            winner = characterCard.checkInfluence(island, expertMode, 4, players);
+            winner = characterCard.checkInfluence(island, expertMode, 4, players, characterCardDeck);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -537,7 +544,7 @@ class CharacterCardTest {
         players[2].getDashboard().addProf(House.BLUE);
 
         try{
-            winner = characterCard.checkInfluence(island, expertMode, 4, players);
+            winner = characterCard.checkInfluence(island, expertMode, 4, players, characterCardDeck);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -571,7 +578,7 @@ class CharacterCardTest {
         players[3].getDashboard().addProf(House.BLUE);
 
         try{
-            winner = characterCard.checkInfluence(island, expertMode, 4, players);
+            winner = characterCard.checkInfluence(island, expertMode, 4, players, characterCardDeck);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -608,6 +615,8 @@ class CharacterCardTest {
     @AfterEach
     void tearDown() {
         characterCard = null;
+
+        characterCardDeck = null;
 
         currentPlayer = null;
         otherPlayer = null;

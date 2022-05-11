@@ -45,8 +45,9 @@ public class Knight extends CharacterCard {
      * @return the player with highest influence
      */
     @Override
-    public Player checkInfluence(Island island, Boolean expertMode, int numPlayers, Player[] arrayPlayers) {
+    public Player checkInfluence(Island island, Boolean expertMode, int numPlayers, Player[] arrayPlayers, CharacterCard[] characterCardDeck) throws Exception {
         if (expertMode && island.isNoEntryTilePresent()){
+            removeNoEntryTile(island, characterCardDeck);
             return(null);
         }
         int[] influences;

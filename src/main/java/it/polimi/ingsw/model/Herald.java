@@ -33,8 +33,9 @@ public class Herald extends CharacterCard {
         }
         boolean expertMode = (boolean) parameters.get("ExpertMode");
         int numPlayers = (int) parameters.get("NumPlayers");
+        CharacterCard[] characterCardDeck = (CharacterCard[]) parameters.get("CharacterCardDeck");
 
-        Player player = super.checkInfluence(island, expertMode, numPlayers, arrayPlayers);
+        Player player = super.checkInfluence(island, expertMode, numPlayers, arrayPlayers, characterCardDeck);
 
         parameters.put("Output", player);
 

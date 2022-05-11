@@ -42,10 +42,11 @@ public class MushroomHunter extends CharacterCard{
      * @param expertMode the mode the game is in
      * @param numPlayers the number of players
      * @param arrayPlayers the array of players
-     * @return the player with highest influence
+     * @param characterCardDeck the array of Character Card
+     * @return the player with the highest influence
      */
     @Override
-    public Player checkInfluence(Island island, Boolean expertMode, int numPlayers, Player[] arrayPlayers) {
+    public Player checkInfluence(Island island, Boolean expertMode, int numPlayers, Player[] arrayPlayers, CharacterCard[] characterCardDeck) throws Exception {
         boolean useful = false;
         int giveBack = 0;
 
@@ -61,7 +62,7 @@ public class MushroomHunter extends CharacterCard{
             }
         }
 
-        Player player = super.checkInfluence(island, expertMode, numPlayers, arrayPlayers);
+        Player player = super.checkInfluence(island, expertMode, numPlayers, arrayPlayers, characterCardDeck);
 
         if (useful) {
             arrayPlayers[giveBack].getDashboard().addProf(houseToIgnore);

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.model;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static it.polimi.ingsw.model.House.*;
@@ -18,12 +19,25 @@ class CentaurTest {
     private Island island;
     private Player[] arrayPlayers;
     private Centaur c;
+    private CharacterCard[] characterCardDeck;
     /**
      * Setups the centaur card c which will be used in the following tests
      */
     @BeforeEach
     public void setup() {
         c = new Centaur();
+
+        characterCardDeck = new CharacterCard[3];
+
+        characterCardDeck[0] = new Centaur();
+        characterCardDeck[1] = new Knight();
+        characterCardDeck[2] = new Herald();
+    }
+
+    @AfterEach
+    void tearDown() {
+        c = null;
+        characterCardDeck = null;
     }
 
     /**
@@ -49,7 +63,7 @@ class CentaurTest {
         island.addStudents(GREEN, 1);
         arrayPlayers[1].getDashboard().addProf(GREEN);
 
-        Player result = c.checkInfluence(island, expertMode, numPlayers, arrayPlayers);
+        Player result = c.checkInfluence(island, expertMode, numPlayers, arrayPlayers, characterCardDeck);
         assertEquals(arrayPlayers[1], result);
     }
 
@@ -78,7 +92,7 @@ class CentaurTest {
         arrayPlayers[1].getDashboard().addProf(GREEN);
         arrayPlayers[0].getDashboard().addProf(GREEN);
 
-        Player result = c.checkInfluence(island, expertMode, numPlayers, arrayPlayers);
+        Player result = c.checkInfluence(island, expertMode, numPlayers, arrayPlayers, characterCardDeck);
         assertNull(result);
     }
 
@@ -115,7 +129,7 @@ class CentaurTest {
         arrayPlayers[2].getDashboard().addProf(GREEN);
         arrayPlayers[3].getDashboard().addProf(PINK);
 
-        Player result = c.checkInfluence(island, expertMode, numPlayers, arrayPlayers);
+        Player result = c.checkInfluence(island, expertMode, numPlayers, arrayPlayers, characterCardDeck);
         assertEquals(arrayPlayers[2], result);
 
         island.addStudents(YELLOW, 2);
@@ -124,7 +138,7 @@ class CentaurTest {
         arrayPlayers[1].getDashboard().addProf(YELLOW);
         arrayPlayers[0].getDashboard().addProf(BLUE);
 
-        result = c.checkInfluence(island, expertMode, numPlayers, arrayPlayers);
+        result = c.checkInfluence(island, expertMode, numPlayers, arrayPlayers, characterCardDeck);
         assertEquals(arrayPlayers[1], result);
     }
 
@@ -161,7 +175,7 @@ class CentaurTest {
         arrayPlayers[1].getDashboard().addProf(GREEN);
         arrayPlayers[2].getDashboard().addProf(YELLOW);
 
-        Player result = c.checkInfluence(island, expertMode, numPlayers, arrayPlayers);
+        Player result = c.checkInfluence(island, expertMode, numPlayers, arrayPlayers, characterCardDeck);
         assertNull(result);
     }
 
@@ -191,7 +205,7 @@ class CentaurTest {
 
         arrayPlayers[1].getDashboard().addProf(GREEN);
 
-        Player result = c.checkInfluence(island, expertMode, numPlayers, arrayPlayers);
+        Player result = c.checkInfluence(island, expertMode, numPlayers, arrayPlayers, characterCardDeck);
         assertNull(result);
     }
 

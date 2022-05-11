@@ -1,5 +1,7 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.exceptions.BagException;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,6 +23,7 @@ class MushroomHunterTest {
     private Island island;
     private Player[] arrayPlayers;
     private MushroomHunter m;
+    private CharacterCard[] characterCardDeck;
 
     /**
      * Setups the mushroomhunter card which will be used in the following tests
@@ -28,6 +31,18 @@ class MushroomHunterTest {
     @BeforeEach
     public void setup() {
         m = new MushroomHunter();
+
+        characterCardDeck = new CharacterCard[3];
+
+        characterCardDeck[0] = new MushroomHunter();
+        characterCardDeck[1] = new Knight();
+        characterCardDeck[2] = new HerbGranma();
+    }
+
+    @AfterEach
+    void tearDown() {
+        m = null;
+        characterCardDeck = null;
     }
 
     /**
@@ -61,9 +76,16 @@ class MushroomHunterTest {
             fail();
         }
 
-        Player winner = m.checkInfluence(island, expertMode, numPlayers, arrayPlayers);
+        try{
+            Player winner = m.checkInfluence(island, expertMode, numPlayers, arrayPlayers, characterCardDeck);
+            assertEquals(arrayPlayers[1], winner);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            fail();
+        }
 
-        assertEquals(arrayPlayers[1], winner);
+
 
     }
 
@@ -116,9 +138,16 @@ class MushroomHunterTest {
             fail();
         }
 
-        Player winner = m.checkInfluence(island, expertMode, numPlayers, arrayPlayers);
+        try{
+            Player winner = m.checkInfluence(island, expertMode, numPlayers, arrayPlayers, characterCardDeck);
+            assertEquals(arrayPlayers[1], winner);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            fail();
+        }
 
-        assertEquals(arrayPlayers[1], winner);
+
 
     }
 
@@ -152,8 +181,14 @@ class MushroomHunterTest {
             fail();
         }
 
-        Player result = m.checkInfluence(island, expertMode, numPlayers, arrayPlayers);
-        assertNull(result);
+        try{
+            Player result = m.checkInfluence(island, expertMode, numPlayers, arrayPlayers, characterCardDeck);
+            assertNull(result);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            fail();
+        }
     }
 
     /**

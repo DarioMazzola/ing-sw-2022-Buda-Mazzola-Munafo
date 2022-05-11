@@ -1,5 +1,7 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.exceptions.BagException;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,13 +24,25 @@ class KnightTest {
     private Island island;
     private Player[] arrayPlayers;
     private Knight k;
+    private CharacterCard[] characterCardDeck;
 
     /**
      * Setups the knight card k which will be used in the following tests
      */
     @BeforeEach
-    public void setup() {
+    public void setup() throws BagException {
         k = new Knight();
+        characterCardDeck = new CharacterCard[3];
+
+        characterCardDeck[0] = new Monk(new Bag());
+        characterCardDeck[1] = new Knight();
+        characterCardDeck[2] = new HerbGranma();
+    }
+
+    @AfterEach
+    void tearDown() {
+        k = null;
+        characterCardDeck = null;
     }
 
     /**
@@ -60,7 +74,14 @@ class KnightTest {
             fail();
         }
 
-        Player result = k.checkInfluence(island, expertMode, numPlayers, arrayPlayers);
+        Player result = null;
+        try{
+            result = k.checkInfluence(island, expertMode, numPlayers, arrayPlayers, characterCardDeck);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            fail();
+        }
         assertEquals(arrayPlayers[0], result);
     }
 
@@ -92,12 +113,19 @@ class KnightTest {
             fail();
         }
 
-        Player result = k.checkInfluence(island, expertMode, numPlayers, arrayPlayers);
-        assertEquals(arrayPlayers[1], result);
+        Player result;
+        try{
+           result = k.checkInfluence(island, expertMode, numPlayers, arrayPlayers, characterCardDeck);
+            assertEquals(arrayPlayers[1], result);
 
-        island.addStudents(GREEN, 1);
-        result = k.checkInfluence(island, expertMode, numPlayers, arrayPlayers);
-        assertNull(result);
+            island.addStudents(GREEN, 1);
+            result = k.checkInfluence(island, expertMode, numPlayers, arrayPlayers, characterCardDeck);
+            assertNull(result);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            fail();
+        }
     }
 
     /**
@@ -135,16 +163,24 @@ class KnightTest {
             fail();
         }
 
-        Player result = k.checkInfluence(island, expertMode, numPlayers, arrayPlayers);
-        assertEquals(arrayPlayers[1], result);
+        Player result;
+        try{
+            result = k.checkInfluence(island, expertMode, numPlayers, arrayPlayers, characterCardDeck);
+            assertEquals(arrayPlayers[1], result);
 
-        island.addStudents(BLUE, 4);
-        arrayPlayers[3].getDashboard().addProf(BLUE);
-        island.addStudents(YELLOW, 1);
-        arrayPlayers[1].getDashboard().addProf(YELLOW);
+            island.addStudents(BLUE, 4);
+            arrayPlayers[3].getDashboard().addProf(BLUE);
+            island.addStudents(YELLOW, 1);
+            arrayPlayers[1].getDashboard().addProf(YELLOW);
 
-        result = k.checkInfluence(island, expertMode, numPlayers, arrayPlayers);
-        assertEquals(arrayPlayers[2], result);
+            result = k.checkInfluence(island, expertMode, numPlayers, arrayPlayers, characterCardDeck);
+            assertEquals(arrayPlayers[2], result);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            fail();
+        }
+
     }
 
     /**
@@ -173,8 +209,15 @@ class KnightTest {
 
         arrayPlayers[1].getDashboard().addProf(GREEN);
 
-        Player result = k.checkInfluence(island, expertMode, numPlayers, arrayPlayers);
-        assertNull(result);
+        try{
+            Player result = k.checkInfluence(island, expertMode, numPlayers, arrayPlayers, characterCardDeck);
+            assertNull(result);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            fail();
+        }
+
     }
 
     /**
