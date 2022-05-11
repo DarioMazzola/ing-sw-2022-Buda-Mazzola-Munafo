@@ -36,9 +36,9 @@ public class ContextCharacterCard {
     }
 
     /**
-     * @see CharacterCard#checkInfluence(Island islandChosen, Boolean expertMode, int numPlayer, Player[] arrayPlayers)
+     * @see CharacterCard#checkInfluence(Island islandChosen, Boolean expertMode, int numPlayer, Player[] arrayPlayers, CharacterCard[] characterCardDeck)
      */
-    protected Player checkInfluence(Island islandChosen, Boolean expertMode, int numPlayers, Player[] arrayPlayers){
-        return card.checkInfluence(islandChosen, expertMode, numPlayers, arrayPlayers);
+    protected Player checkInfluence(Island islandChosen, Boolean expertMode, int numPlayers, Player[] arrayPlayers, CharacterCard[] characterCardDeck) throws Exception {
+        return card.checkInfluence(islandChosen, expertMode, numPlayers, arrayPlayers, characterCardDeck);
     }
 }
