@@ -62,4 +62,9 @@ public class Minstrel extends CharacterCard{
     public String getDescription() {
         return "You may exchange up to 2 Students between your Entrance and your Dining Room";
     }
+
+    @Override
+    public CharacterCardEnum getType() {
+        return CharacterCardEnum.MINSTREL;
+    }
 }

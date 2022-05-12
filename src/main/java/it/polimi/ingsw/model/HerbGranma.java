@@ -61,4 +61,9 @@ public class HerbGranma extends CharacterCard{
         return "Place a No Entry Tile on Island of your choice. The first time Mother Nature ends her movement there, " +
                     "put the No Entry Tile back onto this card DO NOT calculate influence on that Island, or place any Towers";
     }
+
+    @Override
+    public CharacterCardEnum getType() {
+        return CharacterCardEnum.HERB_GRANMA;
+    }
 }

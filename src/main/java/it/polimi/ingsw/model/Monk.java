@@ -102,4 +102,9 @@ public class Monk extends CharacterCard {
     public String getDescription() {
         return "Take 1 student from this card and place on the island of your choice. Then draw a new Student from the Bag and place it on this card";
     }
+
+    @Override
+    public CharacterCardEnum getType() {
+        return CharacterCardEnum.MONK;
+    }
 }

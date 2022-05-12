@@ -209,5 +209,11 @@ public class Knight extends CharacterCard {
     public String getDescription() {
         return "During the influence calculation this turn, you count as having 2 more influence";
     }
+
+    @Override
+    public CharacterCardEnum getType() {
+        return CharacterCardEnum.KNIGHT;
+    }
+
 }
 

@@ -59,4 +59,9 @@ public class Farmer extends CharacterCard {
         return "During this turn, you take control of any number of Professors even if you have " +
                 "the same number of Students as the player who currently controls them";
     }
+
+    @Override
+    public CharacterCardEnum getType() {
+        return CharacterCardEnum.FARMER;
+    }
 }

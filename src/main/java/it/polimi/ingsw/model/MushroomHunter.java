@@ -74,4 +74,9 @@ public class MushroomHunter extends CharacterCard{
     public String getDescription() {
         return "Choose a color of Student: during the influence calculation this, that color adds no influence";
     }
+
+    @Override
+    public CharacterCardEnum getType() {
+        return CharacterCardEnum.MUSHROOM_HUNTER;
+    }
 }

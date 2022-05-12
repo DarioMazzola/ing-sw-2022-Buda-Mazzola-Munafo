@@ -305,4 +305,8 @@ public class CharacterCard {
 
         herbGranma.doEffect(parameters);
     }
+
+    public CharacterCardEnum getType(){
+        return null;
+    }
 }

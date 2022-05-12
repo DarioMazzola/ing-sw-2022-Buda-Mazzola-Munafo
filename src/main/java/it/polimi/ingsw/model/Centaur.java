@@ -6,7 +6,7 @@ package it.polimi.ingsw.model;
  */
 public class Centaur extends CharacterCard {
 
-    public Centaur() {
+        public Centaur() {
         super(3, "Centaur");
     }
 
@@ -136,5 +136,10 @@ public class Centaur extends CharacterCard {
     @Override
     public String getDescription() {
         return "When resolving a Conquering on an Island, Towers do not count towards influce.";
+    }
+
+    @Override
+    public CharacterCardEnum getType() {
+        return CharacterCardEnum.CENTAUR;
     }
 }

@@ -36,4 +36,9 @@ public class MagicalMailMan extends CharacterCard{
         return "You may move Mother Nature up to 2 additional Islands than is indicated by " +
                     "the Assistant card you've played";
     }
+
+    @Override
+    public CharacterCardEnum getType() {
+        return CharacterCardEnum.MAGICAL_MAILMAN;
+    }
 }

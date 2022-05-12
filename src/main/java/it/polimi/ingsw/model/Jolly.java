@@ -133,4 +133,9 @@ public class Jolly extends CharacterCard{
         return "You may take up to 3 Students from this card and replace them with the same number of Students" +
                 " from your Entrance";
     }
+
+    @Override
+    public CharacterCardEnum getType() {
+        return CharacterCardEnum.JOLLY;
+    }
 }
