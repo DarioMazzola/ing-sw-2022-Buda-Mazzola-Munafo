@@ -84,7 +84,7 @@ public class Island implements StudentAdderInterface {
         }
         this.towerColor = color;}
 
-    public int getNumTower(){
+    public int getNumTowers(){
         return (this.numTowers);
     }
 

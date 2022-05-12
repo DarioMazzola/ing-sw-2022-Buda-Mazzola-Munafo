@@ -175,7 +175,7 @@ class IslandTest {
     void addTowerTest(){
         int numTowers = 10;
         isl.addTowers(numTowers);
-        assertEquals(isl.getNumTower(), numTowers);
+        assertEquals(isl.getNumTowers(), numTowers);
     }
 
 

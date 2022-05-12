@@ -1,5 +1,7 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.exceptions.BagException;
+
 /**
  * CharacterCardFactory class, representation of the characterCard creator class
  *
@@ -13,9 +15,10 @@ public class CharacterCardFactory {
      * @param cardType the characterCard name
      * @param bag the bag of the match that some cards needs for creation
      * @return the character chard of the type indicated by the parameters
-     * @throws Exception the exception thrown by the character card created
+     * @throws BagException when a BagException occurs while creating a card of type Monk, Jolly or SpoiledPrincess
+     * @throws IllegalArgumentException when the given cardType does not correspond to any card
      */
-    public CharacterCard getCharacterCard(CharacterCardEnum cardType, Bag bag) throws Exception{
+    public CharacterCard getCharacterCard(CharacterCardEnum cardType, Bag bag) throws BagException, IllegalArgumentException {
 
         CharacterCard c;
 

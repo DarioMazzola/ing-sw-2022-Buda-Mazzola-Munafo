@@ -66,7 +66,7 @@ public class Knight extends CharacterCard {
                 }
                 try{
                     if ((arrayPlayers[i].getDashboard().getTowerColor()).equals(island.getColorTower())) {
-                        influences[i] = influences[i] + island.getNumTower();
+                        influences[i] = influences[i] + island.getNumTowers();
                     }
                 }
                 catch (IslandException e){
@@ -144,7 +144,7 @@ public class Knight extends CharacterCard {
                         }
                         try {
                             if (!towerAdded && arrayPlayers[teamOne[0]].getDashboard().getTowerColor().equals(island.getColorTower())) {
-                                influences[i] = influences[i] + island.getNumTower();
+                                influences[i] = influences[i] + island.getNumTowers();
                                 towerAdded = true;
                             }
                         }
@@ -167,7 +167,7 @@ public class Knight extends CharacterCard {
                         }
                         try {
                             if (!towerAdded && arrayPlayers[teamTwo[0]].getDashboard().getTowerColor().equals(island.getColorTower())) {
-                                influences[i] = influences[i] + island.getNumTower();
+                                influences[i] = influences[i] + island.getNumTowers();
                                 towerAdded = true;
                             }
                         }
