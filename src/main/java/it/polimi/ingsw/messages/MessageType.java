@@ -2,8 +2,6 @@ package it.polimi.ingsw.messages;
 
 public enum MessageType {
     NEW_GAME,
-    LOGIN,
-    PLAYERS_NUMBER,
     WIN,
     ACK,
     NACK,
