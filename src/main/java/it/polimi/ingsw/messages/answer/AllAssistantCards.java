@@ -4,7 +4,7 @@ import it.polimi.ingsw.messages.MessageType;
 
 import java.util.List;
 
-import static it.polimi.ingsw.messages.MessageType.ALL_ASSISTANT_CARD;
+import static it.polimi.ingsw.messages.MessageType.ALL_ASSISTANT_CARDS;
 
 /**
  * AllAssistantCards class represents AllAssistantCards network message.
@@ -22,7 +22,7 @@ public class AllAssistantCards extends AnswerMessage {
      * @param playersDeck the deck of the player
      */
     public AllAssistantCards(String nickname, List<AllAssistantCards> playersDeck) {
-        super(ALL_ASSISTANT_CARD, nickname);
+        super(ALL_ASSISTANT_CARDS, nickname);
         this.playersDeck = playersDeck;
     }
 

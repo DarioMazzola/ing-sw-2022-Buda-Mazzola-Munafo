@@ -1,6 +1,6 @@
 package it.polimi.ingsw.messages.command;
 
-import static it.polimi.ingsw.messages.MessageType.PLAYERS_NUMBER;
+import static it.polimi.ingsw.messages.MessageType.NUM_PLAYERS;
 
 /**
  * NumPLayers class represents NumPlayers network message.
@@ -19,7 +19,7 @@ public class NumPlayers extends CommandMessage {
      * @param nickname player's nickname
      */
     public NumPlayers(String nickname, int numPlayers) {
-        super(PLAYERS_NUMBER, nickname);
+        super(NUM_PLAYERS, nickname);
         this.numPlayers = numPlayers;
     }
 
