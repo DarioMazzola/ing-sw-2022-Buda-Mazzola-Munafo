@@ -1,6 +1,6 @@
 package it.polimi.ingsw.messages.answer;
 
-import it.polimi.ingsw.messages.MessageType;
+import it.polimi.ingsw.messages.command.AssistantCards;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import static it.polimi.ingsw.messages.MessageType.ALL_ASSISTANT_CARDS;
  * @author Alessio Buda
  */
 public class AllAssistantCards extends AnswerMessage {
-    private final List<AllAssistantCards> playersDeck;
+    private final List<AssistantCards> playersDeck;
 
     /**
      * Class constructor.
@@ -21,12 +21,12 @@ public class AllAssistantCards extends AnswerMessage {
      * @param nickname player's nickname
      * @param playersDeck the deck of the player
      */
-    public AllAssistantCards(String nickname, List<AllAssistantCards> playersDeck) {
+    public AllAssistantCards(String nickname, List<AssistantCards> playersDeck) {
         super(ALL_ASSISTANT_CARDS, nickname);
         this.playersDeck = playersDeck;
     }
 
-    public List<AllAssistantCards> getPlayersDeck() {
+    public List<AssistantCards> getPlayersDeck() {
         return playersDeck;
     }
 }
