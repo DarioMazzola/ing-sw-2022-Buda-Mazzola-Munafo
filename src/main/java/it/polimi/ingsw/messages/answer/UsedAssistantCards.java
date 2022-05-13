@@ -1,6 +1,6 @@
 package it.polimi.ingsw.messages.answer;
 
-import it.polimi.ingsw.messages.command.AssistantCards;
+import it.polimi.ingsw.model.Card;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import static it.polimi.ingsw.messages.MessageType.USED_ASSISTANT_CARDS;
  * @author Alessio Buda
  */
 public class UsedAssistantCards extends AnswerMessage {
-    private final List<AssistantCards> usedCards;
+    private final List<Card> usedCards;
 
     /**
      * Class constructor.
@@ -22,12 +22,12 @@ public class UsedAssistantCards extends AnswerMessage {
      * @param nickname player's nickname
      * @param usedCards cards selected by other players in this turn
      */
-    public UsedAssistantCards(String nickname, List<AssistantCards> usedCards) {
+    public UsedAssistantCards(String nickname, List<Card> usedCards) {
         super(USED_ASSISTANT_CARDS, nickname);
         this.usedCards = usedCards;
     }
 
-    public List<AssistantCards> getUsedCards() {
+    public List<Card> getUsedCards() {
         return usedCards;
     }
 }
