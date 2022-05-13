@@ -2,6 +2,8 @@ package it.polimi.ingsw.model;
 
 import java.util.Map;
 
+import static it.polimi.ingsw.model.CharacterCardEnum.HERB_GRANMA;
+
 /**
  * HerbGranma class represents herb granma character card
  *
@@ -15,7 +17,7 @@ public class HerbGranma extends CharacterCard{
      * Class constructor, initializes card with name and initial cost.
      */
     public HerbGranma() {
-        super(2, "HerbGranma");
+        super(2, "HerbGranma", HERB_GRANMA);
     }
 
     /**
@@ -64,6 +66,6 @@ public class HerbGranma extends CharacterCard{
 
     @Override
     public CharacterCardEnum getType() {
-        return CharacterCardEnum.HERB_GRANMA;
+        return HERB_GRANMA;
     }
 }

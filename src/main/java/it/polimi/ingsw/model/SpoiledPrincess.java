@@ -9,6 +9,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static it.polimi.ingsw.model.CharacterCardEnum.SPOILED_PRINCESS;
+
 public class SpoiledPrincess extends CharacterCard {
     private Map<House, Integer> houseMap;
 
@@ -18,7 +20,7 @@ public class SpoiledPrincess extends CharacterCard {
      * @param bag bag from which students are pulled to initialize card
      */
     public SpoiledPrincess(Bag bag) throws BagException {
-        super(2, "SpoiledPrincess");
+        super(2, "SpoiledPrincess", SPOILED_PRINCESS);
 
         houseMap = new HashMap<>();
         for (House h : House.values()){
@@ -106,6 +108,6 @@ public class SpoiledPrincess extends CharacterCard {
 
     @Override
     public CharacterCardEnum getType() {
-        return CharacterCardEnum.SPOILED_PRINCESS;
+        return SPOILED_PRINCESS;
     }
 }

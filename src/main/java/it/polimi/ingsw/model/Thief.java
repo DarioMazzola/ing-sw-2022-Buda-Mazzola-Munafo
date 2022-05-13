@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static it.polimi.ingsw.model.CharacterCardEnum.THIEF;
+
 public class Thief extends CharacterCard{
 
     /**
@@ -14,7 +16,7 @@ public class Thief extends CharacterCard{
      *
      */
     public Thief() {
-        super(3, "Thief");
+        super(3, "Thief", THIEF);
     }
 
     /**
@@ -80,6 +82,6 @@ public class Thief extends CharacterCard{
 
     @Override
     public CharacterCardEnum getType() {
-        return CharacterCardEnum.THIEF;
+        return THIEF;
     }
 }

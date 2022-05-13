@@ -16,17 +16,19 @@ public class CharacterCard {
     private boolean neverUsed;
     private boolean inUse;
     private final String cardName;
+    private final CharacterCardEnum type;
 
     /**
      * CharacterCard constructor
      * @param cost how much does the card cost on first use
      * @param cardName the name of the CharacterCard
      */
-    public CharacterCard(int cost, String cardName){
+    public CharacterCard(int cost, String cardName, CharacterCardEnum type){
         this.cost = cost;
         neverUsed = true;
         inUse = false;
         this.cardName = cardName;
+        this.type = type;
     }
 
     public int getCost() {
@@ -306,7 +308,7 @@ public class CharacterCard {
         herbGranma.doEffect(parameters);
     }
 
-    public CharacterCardEnum getType(){
-        return null;
+    CharacterCardEnum getType(){
+        return type;
     }
 }

@@ -6,6 +6,8 @@ import it.polimi.ingsw.exceptions.StudentsTableException;
 
 import java.util.Map;
 
+import static it.polimi.ingsw.model.CharacterCardEnum.MINSTREL;
+
 /**
  * Minstrel class represents minstrel character card.
  *
@@ -17,7 +19,7 @@ public class Minstrel extends CharacterCard{
      * Class constructor, initializes card with name and initial cost.
      */
     public Minstrel(){
-        super(1, "Minstrel");
+        super(1, "Minstrel", MINSTREL);
     }
 
     /**
@@ -65,6 +67,6 @@ public class Minstrel extends CharacterCard{
 
     @Override
     public CharacterCardEnum getType() {
-        return CharacterCardEnum.MINSTREL;
+        return MINSTREL;
     }
 }

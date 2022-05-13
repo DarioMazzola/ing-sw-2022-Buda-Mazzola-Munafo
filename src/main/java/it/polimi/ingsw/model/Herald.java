@@ -1,6 +1,9 @@
 package it.polimi.ingsw.model;
 
 import java.util.Map;
+
+import static it.polimi.ingsw.model.CharacterCardEnum.HERALD;
+
 /**
  * Class that represent the Herald character card
  * @author Gabriele Munafò
@@ -8,7 +11,7 @@ import java.util.Map;
 public class Herald extends CharacterCard {
 
     public Herald() {
-        super(3, "Herald");
+        super(3, "Herald", HERALD);
     }
 
     /**
@@ -49,6 +52,6 @@ public class Herald extends CharacterCard {
 
     @Override
     public CharacterCardEnum getType() {
-        return CharacterCardEnum.HERALD;
+        return HERALD;
     }
 }

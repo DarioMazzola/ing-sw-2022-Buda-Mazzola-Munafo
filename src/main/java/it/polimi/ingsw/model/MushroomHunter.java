@@ -4,6 +4,8 @@ import it.polimi.ingsw.exceptions.IllegalChoiceException;
 
 import java.util.Map;
 
+import static it.polimi.ingsw.model.CharacterCardEnum.MUSHROOM_HUNTER;
+
 /**
  * Class that represent the MushroomHunter character card
  * @author Gabriele Munafò
@@ -13,7 +15,7 @@ public class MushroomHunter extends CharacterCard{
     private House houseToIgnore = null;
 
     public MushroomHunter() {
-        super(3, "MushroomHunter");
+        super(3, "MushroomHunter", MUSHROOM_HUNTER);
     }
 
     /**
@@ -77,6 +79,6 @@ public class MushroomHunter extends CharacterCard{
 
     @Override
     public CharacterCardEnum getType() {
-        return CharacterCardEnum.MUSHROOM_HUNTER;
+        return MUSHROOM_HUNTER;
     }
 }

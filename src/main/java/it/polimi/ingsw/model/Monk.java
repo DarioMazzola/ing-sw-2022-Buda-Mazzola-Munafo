@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static it.polimi.ingsw.model.CharacterCardEnum.MONK;
+
 public class Monk extends CharacterCard {
     private final Map<House, Integer> houseMap;
 
@@ -17,7 +19,7 @@ public class Monk extends CharacterCard {
      * @param bag bag from which students are pulled to initialize card
      */
     public Monk(Bag bag) throws BagException {
-        super(1, "Monk");
+        super(1, "Monk", MONK);
 
         houseMap = new HashMap<>();
         for (House h : House.values()){
@@ -105,6 +107,6 @@ public class Monk extends CharacterCard {
 
     @Override
     public CharacterCardEnum getType() {
-        return CharacterCardEnum.MONK;
+        return MONK;
     }
 }

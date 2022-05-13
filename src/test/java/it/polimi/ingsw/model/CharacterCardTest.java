@@ -30,7 +30,7 @@ class CharacterCardTest {
 
     @BeforeEach
     void setUp() throws BagException {
-        characterCard = new CharacterCard(cost, cardName);
+        characterCard = new CharacterCard(cost, cardName, null);
 
         currentPlayer = new Player(numPlayers);
         otherPlayer = new Player(numPlayers);

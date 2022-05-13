@@ -2,6 +2,8 @@ package it.polimi.ingsw.model;
 
 import java.util.Map;
 
+import static it.polimi.ingsw.model.CharacterCardEnum.MAGICAL_MAILMAN;
+
 /**
  * MagicalMailMan class represents Magical Mailman character card.
  *
@@ -13,7 +15,7 @@ public class MagicalMailMan extends CharacterCard{
      * Class constructor, initializes card with name and initial cost.
      */
     public MagicalMailMan() {
-        super(1, "MagicalMailMan");
+        super(1, "MagicalMailMan", MAGICAL_MAILMAN);
     }
 
     /**
@@ -39,6 +41,6 @@ public class MagicalMailMan extends CharacterCard{
 
     @Override
     public CharacterCardEnum getType() {
-        return CharacterCardEnum.MAGICAL_MAILMAN;
+        return MAGICAL_MAILMAN;
     }
 }

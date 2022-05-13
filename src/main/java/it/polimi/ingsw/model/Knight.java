@@ -4,6 +4,8 @@ import it.polimi.ingsw.exceptions.IslandException;
 
 import java.util.Map;
 
+import static it.polimi.ingsw.model.CharacterCardEnum.KNIGHT;
+
 /**
  * Class that represent the Knight character card
  * @author Gabriele Munafò
@@ -13,7 +15,7 @@ public class Knight extends CharacterCard {
     private Player currentPlayer = null;
 
     public Knight() {
-        super(2, "Knight");
+        super(2, "Knight", KNIGHT);
     }
 
     /**
@@ -212,7 +214,7 @@ public class Knight extends CharacterCard {
 
     @Override
     public CharacterCardEnum getType() {
-        return CharacterCardEnum.KNIGHT;
+        return KNIGHT;
     }
 
 }

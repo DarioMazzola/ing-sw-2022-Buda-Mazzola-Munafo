@@ -2,6 +2,8 @@ package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.exceptions.IllegalChoiceException;
 
+import static it.polimi.ingsw.model.CharacterCardEnum.FARMER;
+
 /**
  * Farmer class represents farmer character card.
  *
@@ -13,7 +15,7 @@ public class Farmer extends CharacterCard {
      * Class constructor, initializes card with name and initial cost.
      */
     public Farmer() {
-        super(2, "Farmer");
+        super(2, "Farmer", FARMER);
     }
 
     /**
@@ -62,6 +64,6 @@ public class Farmer extends CharacterCard {
 
     @Override
     public CharacterCardEnum getType() {
-        return CharacterCardEnum.FARMER;
+        return FARMER;
     }
 }

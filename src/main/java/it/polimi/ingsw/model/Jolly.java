@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static it.polimi.ingsw.model.CharacterCardEnum.JOLLY;
+
 /**
  * Jolly class represents jolly character card.
  *
@@ -24,7 +26,7 @@ public class Jolly extends CharacterCard{
      * @param bag bag from which students are pulled to initialize card
      */
     public Jolly(Bag bag) throws BagException {
-        super(1, "Jolly");
+        super(1, "Jolly", JOLLY);
         houseMap = new HashMap<>();
         for (House h : House.values()){
             houseMap.put(h, 0);
@@ -136,6 +138,6 @@ public class Jolly extends CharacterCard{
 
     @Override
     public CharacterCardEnum getType() {
-        return CharacterCardEnum.JOLLY;
+        return JOLLY;
     }
 }

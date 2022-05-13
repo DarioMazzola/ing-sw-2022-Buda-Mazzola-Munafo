@@ -1,5 +1,7 @@
 package it.polimi.ingsw.model;
 
+import static it.polimi.ingsw.model.CharacterCardEnum.CENTAUR;
+
 /**
  * Class that represent the Centaur character card
  * @author Gabriele Munafò
@@ -7,7 +9,7 @@ package it.polimi.ingsw.model;
 public class Centaur extends CharacterCard {
 
         public Centaur() {
-        super(3, "Centaur");
+        super(3, "Centaur", CENTAUR);
     }
 
     /**
@@ -140,6 +142,6 @@ public class Centaur extends CharacterCard {
 
     @Override
     public CharacterCardEnum getType() {
-        return CharacterCardEnum.CENTAUR;
+        return CENTAUR;
     }
 }
