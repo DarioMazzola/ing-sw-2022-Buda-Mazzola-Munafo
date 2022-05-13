@@ -9,7 +9,7 @@ import static it.polimi.ingsw.messages.MessageType.ACK;
  *
  * @author Dario Mazzola
  */
-public class AckClient extends AnswerMessage {
+public class AckClient extends CommandMessage {
 
     /**
      * Message constructor
