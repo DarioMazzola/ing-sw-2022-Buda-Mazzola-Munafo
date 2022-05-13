@@ -1,10 +1,10 @@
 package it.polimi.ingsw.messages.answer;
 
-import it.polimi.ingsw.messages.AnswerMessage;
-import it.polimi.ingsw.messages.MessageType;
 import it.polimi.ingsw.messages.command.AssistantCards;
 
 import java.util.List;
+
+import static it.polimi.ingsw.messages.MessageType.USED_ASSISTANT_CARDS;
 
 /**
  * UsedAssistantCards class represents UsedAssistantCards network message.
@@ -23,7 +23,7 @@ public class UsedAssistantCards extends AnswerMessage {
      * @param usedCards cards selected by other players in this turn
      */
     public UsedAssistantCards(String nickname, List<AssistantCards> usedCards) {
-        super(MessageType.USED_ASSISTANT_CARDS, nickname);
+        super(USED_ASSISTANT_CARDS, nickname);
         this.usedCards = usedCards;
     }
 

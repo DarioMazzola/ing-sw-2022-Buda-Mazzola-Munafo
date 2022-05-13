@@ -1,7 +1,6 @@
 package it.polimi.ingsw.messages.command;
 
-import it.polimi.ingsw.messages.CommandMessage;
-import it.polimi.ingsw.messages.MessageType;
+import static it.polimi.ingsw.messages.MessageType.EXPERT_MODE;
 
 /**
  * ExpertMode class represents ExpertMode network message.
@@ -20,7 +19,7 @@ public class ExpertMode extends CommandMessage {
      * @param nickname player's nickname
      */
     public ExpertMode(String nickname, boolean expertMode) {
-        super(MessageType.EXPERT_MODE, nickname);
+        super(EXPERT_MODE, nickname);
         this.expertMode = expertMode;
     }
 

@@ -1,7 +1,6 @@
 package it.polimi.ingsw.messages.command;
 
-import it.polimi.ingsw.messages.CommandMessage;
-import it.polimi.ingsw.messages.MessageType;
+import static it.polimi.ingsw.messages.MessageType.WIZARD;
 
 /**
  * Wizard class represents Wizards network message.
@@ -19,7 +18,7 @@ public class Wizard extends CommandMessage {
      * @param wizard the player's selected wizard for this game
      */
     public Wizard(String nickname, Wizard wizard) {
-        super(MessageType.WIZARD, nickname);
+        super(WIZARD, nickname);
         this.wizard = wizard;
     }
 

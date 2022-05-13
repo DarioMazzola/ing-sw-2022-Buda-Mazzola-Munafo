@@ -1,7 +1,6 @@
 package it.polimi.ingsw.messages.command;
 
-import it.polimi.ingsw.messages.CommandMessage;
-import it.polimi.ingsw.messages.MessageType;
+import static it.polimi.ingsw.messages.MessageType.NICKNAME;
 
 /**
  * Nickname class represents Nickname network message.
@@ -18,6 +17,6 @@ public class Nickname extends CommandMessage {
      * @param nickname player's chosen nickname
      */
     public Nickname(String nickname) {
-        super(MessageType.NICKNAME, nickname);
+        super(NICKNAME, nickname);
     }
 }

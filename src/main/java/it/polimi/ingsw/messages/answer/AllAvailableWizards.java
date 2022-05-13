@@ -1,10 +1,10 @@
 package it.polimi.ingsw.messages.answer;
 
-import it.polimi.ingsw.messages.AnswerMessage;
-import it.polimi.ingsw.messages.MessageType;
 import it.polimi.ingsw.model.Wizard;
 
 import java.util.List;
+
+import static it.polimi.ingsw.messages.MessageType.ALL_AVAILABLE_WIZARDS;
 
 /**
  * AllAvailableWizards class represents AllAvailableWizard network message.
@@ -23,7 +23,7 @@ public class AllAvailableWizards extends AnswerMessage {
      * @param availableWizards list of all the wizard that have not been selected by other players
      */
     public AllAvailableWizards(String nickname, List<Wizard> availableWizards) {
-        super(MessageType.ALL_AVAILABLE_WIZARDS, nickname);
+        super(ALL_AVAILABLE_WIZARDS, nickname);
         this.availableWizards = availableWizards;
     }
 

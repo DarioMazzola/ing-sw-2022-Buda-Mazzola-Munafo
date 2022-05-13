@@ -1,7 +1,6 @@
 package it.polimi.ingsw.messages.command;
 
-import it.polimi.ingsw.messages.CommandMessage;
-import it.polimi.ingsw.messages.MessageType;
+import static it.polimi.ingsw.messages.MessageType.GET_ASSISTANT_CARDS;
 
 /**
  * GetAssistantCards class represents GetAssistantCards network message.
@@ -18,6 +17,6 @@ public class GetAssistantCards extends CommandMessage {
      * @param nickname player's nickname
      */
     public GetAssistantCards(String nickname) {
-        super(MessageType.GET_ASSISTANT_CARDS, nickname);
+        super(GET_ASSISTANT_CARDS, nickname);
     }
 }

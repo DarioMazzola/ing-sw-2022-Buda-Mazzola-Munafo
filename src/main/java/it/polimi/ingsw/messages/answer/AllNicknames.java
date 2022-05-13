@@ -1,9 +1,10 @@
 package it.polimi.ingsw.messages.answer;
 
-import it.polimi.ingsw.messages.AnswerMessage;
 import it.polimi.ingsw.messages.MessageType;
 
 import java.util.List;
+
+import static it.polimi.ingsw.messages.MessageType.ALL_NICKNAMES;
 
 /**
  * AllNicknames class represents AllNicknames network message.
@@ -22,7 +23,7 @@ public class AllNicknames extends AnswerMessage {
      * @param selectedNicknames list of all nicknames selected by other players
      */
     public AllNicknames(String nickname, List<String> selectedNicknames) {
-        super(MessageType.ALL_NICKNMAES, nickname);
+        super(ALL_NICKNAMES, nickname);
         this.selectedNicknames = selectedNicknames;
     }
 

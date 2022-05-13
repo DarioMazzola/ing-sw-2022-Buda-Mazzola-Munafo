@@ -1,7 +1,8 @@
 package it.polimi.ingsw.messages.answer;
 
-import it.polimi.ingsw.messages.AnswerMessage;
 import it.polimi.ingsw.messages.MessageType;
+
+import static it.polimi.ingsw.messages.MessageType.TEAM_TABLE_UPDATE;
 
 /**
  * TeamTableUpdate class represents TeamTableUpdate network message.
@@ -22,12 +23,16 @@ public class TeamTableUpdate extends AnswerMessage {
      * @param teamChosen the player's chosen team
      */
     public TeamTableUpdate(String nickname, String player_nickname, int teamChosen) {
-        super(MessageType.TEAM_TABLE_UPDATE, nickname);
+        super(TEAM_TABLE_UPDATE, nickname);
         this.player_nickname = player_nickname;
         this.teamChosen = teamChosen;
     }
 
     public String getPlayer_nickname() {
         return player_nickname;
+    }
+
+    public int getTeamChosen() {
+        return teamChosen;
     }
 }

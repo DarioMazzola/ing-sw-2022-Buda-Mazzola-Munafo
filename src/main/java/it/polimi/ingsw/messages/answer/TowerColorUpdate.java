@@ -1,10 +1,10 @@
 package it.polimi.ingsw.messages.answer;
 
-import it.polimi.ingsw.messages.AnswerMessage;
-import it.polimi.ingsw.messages.MessageType;
 import it.polimi.ingsw.model.Color;
 
 import java.util.List;
+
+import static it.polimi.ingsw.messages.MessageType.TOWER_COLOR_UPDATE;
 
 /**
  * TowerColorUpdate class represents TowerColorUpdate network message.
@@ -23,7 +23,7 @@ public class TowerColorUpdate extends AnswerMessage {
      * @param availableColors list of all the tower colors that have not been chosen by other players.
      */
     public TowerColorUpdate(String nickname, List<Color> availableColors) {
-        super(MessageType.TOWER_COLOR_UPDATE, nickname);
+        super(TOWER_COLOR_UPDATE, nickname);
         this.availableColors = availableColors;
     }
 
