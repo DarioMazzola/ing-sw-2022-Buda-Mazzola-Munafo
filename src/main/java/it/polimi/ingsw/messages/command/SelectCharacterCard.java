@@ -1,5 +1,7 @@
 package it.polimi.ingsw.messages.command;
 
+import java.util.Map;
+
 import static it.polimi.ingsw.messages.MessageType.SELECT_CHARACTER_CARD;
 
 /**
@@ -10,6 +12,7 @@ import static it.polimi.ingsw.messages.MessageType.SELECT_CHARACTER_CARD;
 public class SelectCharacterCard extends CommandMessage{
 
     private final int cardIndex;
+    private final Map<String, Object> parametersMap;
 
     /**
      * Message constructor
@@ -17,12 +20,17 @@ public class SelectCharacterCard extends CommandMessage{
      * @param nickname The nickname of the player sending the message
      * @param cardIndex The index of the card selected by the player
      */
-    protected SelectCharacterCard(String nickname, int cardIndex) {
+    protected SelectCharacterCard(String nickname, int cardIndex, Map<String, Object> map) {
         super(SELECT_CHARACTER_CARD, nickname);
         this.cardIndex = cardIndex;
+        this.parametersMap = map;
     }
 
     public int getCardIndex() {
         return cardIndex;
+    }
+
+    public Map<String, Object> getMap() {
+        return parametersMap;
     }
 }
