@@ -41,4 +41,8 @@ public class ContextCharacterCard {
     protected Player checkInfluence(Island islandChosen, Boolean expertMode, int numPlayers, Player[] arrayPlayers, CharacterCard[] characterCardDeck) throws Exception {
         return card.checkInfluence(islandChosen, expertMode, numPlayers, arrayPlayers, characterCardDeck);
     }
+
+    public CharacterCard getCard() {
+        return card;
+    }
 }

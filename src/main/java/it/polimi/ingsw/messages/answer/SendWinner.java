@@ -1,9 +1,12 @@
 package it.polimi.ingsw.messages.answer;
 
-import it.polimi.ingsw.messages.MessageType;
-
 import static it.polimi.ingsw.messages.MessageType.SEND_WINNER;
 
+/**
+ * This message is sent from the server to the client to communicate the winning player
+ *
+ * @author Dario Mazzola
+ */
 public class SendWinner extends AnswerMessage {
 
     String winner;
@@ -13,7 +16,7 @@ public class SendWinner extends AnswerMessage {
      *
      * @param nickname The nickname of the player the message is sent to
      */
-    protected SendWinner(String nickname, String winner) {
+    public SendWinner(String nickname, String winner) {
         super(SEND_WINNER, nickname);
         this.winner = winner;
     }

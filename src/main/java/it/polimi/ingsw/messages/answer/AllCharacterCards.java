@@ -8,6 +8,8 @@ import static it.polimi.ingsw.messages.MessageType.ALL_CHARACTER_CARDS;
 
 /**
  * This message is sent from the server to the client to communicate all the character cards in use in this game.
+ *
+ * @author Dario Mazzola
  */
 public class AllCharacterCards extends AnswerMessage{
 
@@ -18,7 +20,7 @@ public class AllCharacterCards extends AnswerMessage{
      * @param nickname The nickname of the nickname of the player to who is sent the message
      * @param characterCards The list of CharacterCards available for this match
      */
-    protected AllCharacterCards(String nickname, List<CharacterCard> characterCards) {
+    public AllCharacterCards(String nickname, List<CharacterCard> characterCards) {
         super(ALL_CHARACTER_CARDS, nickname);
         this.characterCards = characterCards;
     }
