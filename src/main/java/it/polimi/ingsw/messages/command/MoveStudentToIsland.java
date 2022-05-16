@@ -22,7 +22,7 @@ public class MoveStudentToIsland extends CommandMessage{
      * @param island the island where to add the student
      * @param nickname the nickname of the player sending the message
      */
-    protected MoveStudentToIsland(House house, Island island, String nickname) {
+    public MoveStudentToIsland(House house, Island island, String nickname) {
         super(MOVE_STUDENT_TO_ISLAND, nickname);
         this.house = house;
         this.island = island;

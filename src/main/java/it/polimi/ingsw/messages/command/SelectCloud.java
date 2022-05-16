@@ -19,7 +19,7 @@ public class SelectCloud extends CommandMessage{
      * @param nickname The nickname of the player sending the message
      * @param cloud The cloud selected by the player
      */
-    protected SelectCloud(String nickname, Cloud cloud) {
+    public SelectCloud(String nickname, Cloud cloud) {
         super(SELECT_CLOUD, nickname);
         this.cloud = cloud;
     }

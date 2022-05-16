@@ -20,7 +20,7 @@ public class SelectCharacterCard extends CommandMessage{
      * @param nickname The nickname of the player sending the message
      * @param cardIndex The index of the card selected by the player
      */
-    protected SelectCharacterCard(String nickname, int cardIndex, Map<String, Object> map) {
+    public SelectCharacterCard(String nickname, int cardIndex, Map<String, Object> map) {
         super(SELECT_CHARACTER_CARD, nickname);
         this.cardIndex = cardIndex;
         this.parametersMap = map;

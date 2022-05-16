@@ -19,7 +19,7 @@ public class MoveStudentToDiningHall extends CommandMessage{
      * @param nickname The nickname of the player sending the message
      * @param house the house of the students to move
      */
-    protected MoveStudentToDiningHall(String nickname, House house) {
+    public MoveStudentToDiningHall(String nickname, House house) {
         super(MOVE_STUDENT_TO_DINING_HALL, nickname);
         this.house = house;
     }

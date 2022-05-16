@@ -16,7 +16,7 @@ public class AckClient extends CommandMessage {
      *
      * @param nickname the nickname of the player sending the message
      */
-    protected AckClient(String nickname) {
+    public AckClient(String nickname) {
         super(ACK, nickname);
     }
 }

@@ -18,7 +18,7 @@ public class MoveMother extends CommandMessage{
      * @param nickname The nickname of the player sending the message
      * @param motherMoves The mother nature steps chosen by the player
      */
-    protected MoveMother(String nickname, int motherMoves) {
+    public MoveMother(String nickname, int motherMoves) {
         super(MOVE_MOTHER, nickname);
         this.motherMoves = motherMoves;
     }

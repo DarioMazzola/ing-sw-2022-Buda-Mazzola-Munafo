@@ -17,7 +17,7 @@ public class GetCharacterCard extends CommandMessage{
      * @param nickname The nickname of the player sending the message
      * @param cardIndex The index of the CharacterCard chosen by the player
      */
-    protected GetCharacterCard(String nickname, int cardIndex) {
+    public GetCharacterCard(String nickname, int cardIndex) {
         super(GET_CHARACHTER_CARD, nickname);
         this.cardIndex = cardIndex;
     }

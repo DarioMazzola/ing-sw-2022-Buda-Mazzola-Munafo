@@ -14,7 +14,7 @@ public class NewGame extends CommandMessage{
      *
      * @param nickname The nickname of the player sending the message
      */
-    protected NewGame(String nickname) {
+    public NewGame(String nickname) {
         super(NEW_GAME, nickname);
     }
 

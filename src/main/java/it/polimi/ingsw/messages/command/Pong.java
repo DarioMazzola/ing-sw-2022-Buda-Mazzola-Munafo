@@ -13,7 +13,7 @@ public class Pong extends CommandMessage{
      * Message constructor
      * @param nickname the nickname of the player sending the message
      */
-    protected Pong(String nickname) {
+    public Pong(String nickname) {
         super(PONG, nickname);
     }
 }
