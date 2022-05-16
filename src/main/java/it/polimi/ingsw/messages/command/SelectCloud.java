@@ -11,7 +11,7 @@ import static it.polimi.ingsw.messages.MessageType.SELECT_CLOUD;
  */
 public class SelectCloud extends CommandMessage{
 
-    private final Cloud cloud;
+    private final int cloud;
 
     /**
      * Message constructor
@@ -19,12 +19,12 @@ public class SelectCloud extends CommandMessage{
      * @param nickname The nickname of the player sending the message
      * @param cloud The cloud selected by the player
      */
-    public SelectCloud(String nickname, Cloud cloud) {
+    public SelectCloud(String nickname, int cloud) {
         super(SELECT_CLOUD, nickname);
         this.cloud = cloud;
     }
 
-    public Cloud getCloud() {
+    public int getCloud() {
         return cloud;
     }
 }
