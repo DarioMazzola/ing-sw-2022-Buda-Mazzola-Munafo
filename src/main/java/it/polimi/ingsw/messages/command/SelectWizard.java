@@ -1,5 +1,7 @@
 package it.polimi.ingsw.messages.command;
 
+import it.polimi.ingsw.model.Wizard;
+
 import static it.polimi.ingsw.messages.MessageType.WIZARD;
 
 /**
@@ -8,7 +10,7 @@ import static it.polimi.ingsw.messages.MessageType.WIZARD;
  *
  * @author Alessio Buda
  */
-public class Wizard extends CommandMessage {
+public class SelectWizard extends CommandMessage {
     private final Wizard wizard;
 
     /**
@@ -17,7 +19,7 @@ public class Wizard extends CommandMessage {
      * @param nickname player's nickname
      * @param wizard the player's selected wizard for this game
      */
-    public Wizard(String nickname, Wizard wizard) {
+    public SelectWizard(String nickname, Wizard wizard) {
         super(WIZARD, nickname);
         this.wizard = wizard;
     }
