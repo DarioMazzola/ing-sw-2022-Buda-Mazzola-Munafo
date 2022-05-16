@@ -6,7 +6,7 @@ public enum MessageType {
     ACK,
     NACK,
     ASSISTANT_CARDS,
-    COLOR_TOWER,
+    SELECT_COLOR_TOWER,
     EXPERT_MODE,
     GET_ASSISTANT_CARDS,
     NICKNAME,
