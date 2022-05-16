@@ -1,15 +1,15 @@
 package it.polimi.ingsw.messages.command;
 
-import static it.polimi.ingsw.messages.MessageType.TEAM_SELECTION;
+import static it.polimi.ingsw.messages.MessageType.SELECT_TEAM;
 
 /**
- * TeamSelection class represents TeamSelection network message.
+ * SelectTeam class represents selectTeam network message.
  * This message is sent from the client to the server when there are 4 players.
  * It is used to communicate to the server the player's chosen team if he/she wants to be the team leader.
  *
  * @author Alessio Buda
  */
-public class TeamSelection extends CommandMessage {
+public class SelectTeam extends CommandMessage {
     private final int selectedTeam;
     private final boolean isTeamLeader;
 
@@ -20,8 +20,8 @@ public class TeamSelection extends CommandMessage {
      * @param selectedTeam the team chosen by the player identified by nickname
      * @param isTeamLeader true if the player wants to be team leader, false otherwise
      */
-    public TeamSelection(String nickname, int selectedTeam, boolean isTeamLeader) {
-        super(TEAM_SELECTION, nickname);
+    public SelectTeam(String nickname, int selectedTeam, boolean isTeamLeader) {
+        super(SELECT_TEAM, nickname);
         this.selectedTeam = selectedTeam;
         this.isTeamLeader = isTeamLeader;
     }
