@@ -9,6 +9,11 @@ import java.util.Map;
 
 import static it.polimi.ingsw.model.CharacterCardEnum.THIEF;
 
+/**
+ * Thief class represents thief character card.
+ *
+ * @author Alessio Buda
+ */
 public class Thief extends CharacterCard{
 
     /**
