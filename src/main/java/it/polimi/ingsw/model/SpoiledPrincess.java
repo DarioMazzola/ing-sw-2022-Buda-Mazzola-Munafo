@@ -11,6 +11,11 @@ import java.util.Map;
 
 import static it.polimi.ingsw.model.CharacterCardEnum.SPOILED_PRINCESS;
 
+/**
+ * SpoiledPrincess class represents spoiled princess character card.
+ *
+ * @author Alessio Buda
+ */
 public class SpoiledPrincess extends CharacterCard {
     private Map<House, Integer> houseMap;
 
