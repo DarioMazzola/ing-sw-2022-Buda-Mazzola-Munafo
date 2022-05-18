@@ -10,6 +10,11 @@ import java.util.Map;
 
 import static it.polimi.ingsw.model.CharacterCardEnum.MONK;
 
+/**
+ * Monk class represents monk character card.
+ *
+ * @author Alessio Buda
+ */
 public class Monk extends CharacterCard {
     private final Map<House, Integer> houseMap;
 
