@@ -1,5 +1,9 @@
 package it.polimi.ingsw.messages.answer;
 
+import it.polimi.ingsw.model.Wizard;
+
+import java.util.List;
+
 import static it.polimi.ingsw.messages.MessageType.SELECT_WIZARD;
 
 /**
@@ -9,13 +13,20 @@ import static it.polimi.ingsw.messages.MessageType.SELECT_WIZARD;
  * @author Dario Mazzola
  */
 public class SelectWizard extends AnswerMessage{
+        private final List<Wizard> availableWizards;
 
-    /**
-     * Abstract class representing a message that is sent from the server to the client
-     *
-     * @param nickname The nickname of the player the message is sent to
-     */
-    protected SelectWizard(String nickname) {
-        super(SELECT_WIZARD, nickname);
-    }
+        /**
+         * Class constructor.
+         *
+         * @param nickname player's nickname
+         * @param availableWizards list of all the wizard that have not been selected by other players
+         */
+        public SelectWizard(String nickname, List<Wizard> availableWizards) {
+            super(SELECT_WIZARD, nickname);
+            this.availableWizards = availableWizards;
+        }
+
+        public List<Wizard> getAvailableWizards() {
+            return availableWizards;
+        }
 }
