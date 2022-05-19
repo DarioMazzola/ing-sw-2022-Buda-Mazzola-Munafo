@@ -1,5 +1,7 @@
 package it.polimi.ingsw.messages.command;
 
+import it.polimi.ingsw.model.Card;
+
 import static it.polimi.ingsw.messages.MessageType.ASSISTANT_CARDS;
 
 /**
@@ -9,7 +11,7 @@ import static it.polimi.ingsw.messages.MessageType.ASSISTANT_CARDS;
  * @author Alessio Buda
  */
 public class AssistantCards extends CommandMessage {
-    private final AssistantCards assistantCard;
+    private final Card assistantCard;
 
     /**
      * Class constructor.
@@ -17,12 +19,12 @@ public class AssistantCards extends CommandMessage {
      * @param nickname player's nickname
      * @param assistantCard the assistant card selected by the player
      */
-    public AssistantCards(String nickname, AssistantCards assistantCard) {
+    public AssistantCards(String nickname, Card assistantCard) {
         super(ASSISTANT_CARDS, nickname);
         this.assistantCard = assistantCard;
     }
 
-    public AssistantCards getAssistantCard() {
+    public Card getAssistantCard() {
         return assistantCard;
     }
 }
