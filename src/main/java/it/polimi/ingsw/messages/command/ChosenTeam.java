@@ -9,7 +9,7 @@ import static it.polimi.ingsw.messages.MessageType.SELECT_TEAM;
  *
  * @author Alessio Buda
  */
-public class SelectTeam extends CommandMessage {
+public class ChosenTeam extends CommandMessage {
     private final int selectedTeam;
     private final boolean isTeamLeader;
 
@@ -20,7 +20,7 @@ public class SelectTeam extends CommandMessage {
      * @param selectedTeam the team chosen by the player identified by nickname
      * @param isTeamLeader true if the player wants to be team leader, false otherwise
      */
-    public SelectTeam(String nickname, int selectedTeam, boolean isTeamLeader) {
+    public ChosenTeam(String nickname, int selectedTeam, boolean isTeamLeader) {
         super(SELECT_TEAM, nickname);
         this.selectedTeam = selectedTeam;
         this.isTeamLeader = isTeamLeader;

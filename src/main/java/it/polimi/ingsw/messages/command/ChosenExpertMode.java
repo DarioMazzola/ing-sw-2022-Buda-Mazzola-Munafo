@@ -9,7 +9,7 @@ import static it.polimi.ingsw.messages.MessageType.EXPERT_MODE;
  *
  * @author Alessio Buda
  */
-public class ExpertMode extends CommandMessage {
+public class ChosenExpertMode extends CommandMessage {
     private final boolean expertMode;
 
     /**
@@ -18,7 +18,7 @@ public class ExpertMode extends CommandMessage {
      * @param expertMode true if player wants to play in expert mode, false otherwise
      * @param nickname player's nickname
      */
-    public ExpertMode(String nickname, boolean expertMode) {
+    public ChosenExpertMode(String nickname, boolean expertMode) {
         super(EXPERT_MODE, nickname);
         this.expertMode = expertMode;
     }

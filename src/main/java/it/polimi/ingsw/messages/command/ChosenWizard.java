@@ -10,7 +10,7 @@ import static it.polimi.ingsw.messages.MessageType.WIZARD;
  *
  * @author Alessio Buda
  */
-public class SelectWizard extends CommandMessage {
+public class ChosenWizard extends CommandMessage {
     private final Wizard wizard;
 
     /**
@@ -19,7 +19,7 @@ public class SelectWizard extends CommandMessage {
      * @param nickname player's nickname
      * @param wizard the player's selected wizard for this game
      */
-    public SelectWizard(String nickname, Wizard wizard) {
+    public ChosenWizard(String nickname, Wizard wizard) {
         super(WIZARD, nickname);
         this.wizard = wizard;
     }

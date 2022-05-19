@@ -9,7 +9,7 @@ import static it.polimi.ingsw.messages.MessageType.NUM_PLAYERS;
  *
  * @author Alessio Buda
  */
-public class NumPlayers extends CommandMessage {
+public class ChosenNumPlayers extends CommandMessage {
     private final int numPlayers;
 
     /**
@@ -18,7 +18,7 @@ public class NumPlayers extends CommandMessage {
      * @param numPlayers number of players for this game
      * @param nickname player's nickname
      */
-    public NumPlayers(String nickname, int numPlayers) {
+    public ChosenNumPlayers(String nickname, int numPlayers) {
         super(NUM_PLAYERS, nickname);
         this.numPlayers = numPlayers;
     }

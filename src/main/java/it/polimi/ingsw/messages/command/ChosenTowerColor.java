@@ -10,7 +10,7 @@ import static it.polimi.ingsw.messages.MessageType.SELECT_COLOR_TOWER;
  *
  * @author Alessio Buda
  */
-public class SelectColorTower extends CommandMessage {
+public class ChosenTowerColor extends CommandMessage {
     private final Color towerColor;
 
     /**
@@ -19,7 +19,7 @@ public class SelectColorTower extends CommandMessage {
      * @param nickname player's nickname
      * @param towerColor the tower color selceted by the player
      */
-    public SelectColorTower(String nickname, Color towerColor) {
+    public ChosenTowerColor(String nickname, Color towerColor) {
         super(SELECT_COLOR_TOWER, nickname);
         this.towerColor = towerColor;
     }
