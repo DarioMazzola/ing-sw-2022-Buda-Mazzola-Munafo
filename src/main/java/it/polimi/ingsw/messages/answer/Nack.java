@@ -1,5 +1,7 @@
 package it.polimi.ingsw.messages.answer;
 
+import it.polimi.ingsw.messages.TypeOfError;
+
 import static it.polimi.ingsw.messages.MessageType.NACK;
 
 /**
@@ -10,18 +12,18 @@ import static it.polimi.ingsw.messages.MessageType.NACK;
  */
 public class Nack extends AnswerMessage{
 
-    private final int typeOfError;
+    private final TypeOfError typeOfError;
     /**
      * Message constructor
      *
      * @param nickname The nickname of the player the message is sent to
      */
-    public Nack(String nickname, int typeOfError) {
+    public Nack(String nickname, TypeOfError typeOfError) {
         super(NACK, nickname);
         this.typeOfError = typeOfError;
     }
 
-    public int getTypeOfError() {
+    public TypeOfError getTypeOfError() {
         return typeOfError;
     }
 }
