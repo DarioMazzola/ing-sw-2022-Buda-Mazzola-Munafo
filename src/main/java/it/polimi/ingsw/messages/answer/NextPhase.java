@@ -1,5 +1,7 @@
 package it.polimi.ingsw.messages.answer;
 
+import it.polimi.ingsw.messages.MessageType;
+
 import static it.polimi.ingsw.messages.MessageType.NEXT_PHASE;
 
 /**
@@ -10,12 +12,19 @@ import static it.polimi.ingsw.messages.MessageType.NEXT_PHASE;
  */
 public class NextPhase extends AnswerMessage {
 
+    MessageType nextPhase;
+
     /**
      * Message constructor
      *
      * @param nickname The nickname of the player the message is sent to
      */
-    public NextPhase(String nickname) {
+    public NextPhase(String nickname, MessageType nextPhase) {
         super(NEXT_PHASE, nickname);
+        this.nextPhase = nextPhase;
+    }
+
+    public MessageType getNextPhase() {
+        return nextPhase;
     }
 }
