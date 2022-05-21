@@ -20,6 +20,11 @@ public interface View {
     void showError(String errorMsg);
 
     /**
+     * Notifies that the maximum number of players has been reached and the player will be disconnected.
+     */
+    void notifyGameFull();
+
+    /**
      * Asks a nickname to the player to create a new game and notifies the observers.
      */
     void createNewGame();
@@ -27,24 +32,24 @@ public interface View {
     /**
      * Asks a nickname to the player and notifies the observers.
      */
-    void askNickname();
+    void selectNickname();
 
     /**
      * Asks the desired number of players for this game and notifies the observers.
      */
-    void askNumPlayers();
+    void selectNumPlayers();
 
     /**
      * Asks the player whether he/she wants to play in expert mode and notifies the observers.
      */
-    void askExpertMode();
+    void selectExpertMode();
 
     /**
      * Asks the player to choose a wizard among the ones not selected by other players and notifies the observers.
      *
      * @param availableWizards a list of the available wizards
      */
-    void askWizard(List<Wizard> availableWizards);
+    void selectWizard(List<Wizard> availableWizards);
 
     /**
      * Shows the player already created team and asks to choose a team and whether to be team leader and notifies the observers.
@@ -56,5 +61,5 @@ public interface View {
      *
      * @param availableColors a list of all the tower colors still available
      */
-    void askTowerColor (List<Color> availableColors);
+    void selectTowerColor(List<Color> availableColors);
 }
