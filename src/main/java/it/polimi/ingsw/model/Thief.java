@@ -32,6 +32,9 @@ public class Thief extends CharacterCard{
      */
     @Override
     public void doEffect(Map<String, Object> parameters) throws IllegalArgumentException{
+        try {
+            super.doEffect(null);
+        } catch (Exception ignored) {}
         House wantedHouse;
         Player[] players;
         Bag bag;
