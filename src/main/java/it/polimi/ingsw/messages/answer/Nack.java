@@ -1,7 +1,5 @@
 package it.polimi.ingsw.messages.answer;
 
-import it.polimi.ingsw.messages.TypeOfError;
-
 import static it.polimi.ingsw.messages.MessageType.NACK;
 
 /**
@@ -12,18 +10,18 @@ import static it.polimi.ingsw.messages.MessageType.NACK;
  */
 public class Nack extends AnswerMessage{
 
-    private final TypeOfError typeOfError;
+    private final String typeOfError;
     /**
      * Message constructor
      *
      * @param typeOfError specifies the type of error
      */
-    public Nack(TypeOfError typeOfError) {
+    public Nack(String typeOfError) {
         super(NACK);
         this.typeOfError = typeOfError;
     }
 
-    public TypeOfError getTypeOfError() {
+    public String getTypeOfError() {
         return typeOfError;
     }
 }
