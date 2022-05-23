@@ -47,8 +47,7 @@ public class Jolly extends CharacterCard{
      * @throws IllegalChoiceException when students cannot be removed from the entrance
      */
     @Override
-    public void doEffect(Map<String, Object> parameters) throws Exception {
-        super.doEffect(parameters);
+    public void doEffect(Map<String, Object> parameters) throws IllegalArgumentException, NullPointerException, EntranceException, IllegalChoiceException, NotEnoughStudentsOnCardException {
 
         HashMap<House, Integer> wantedStudents;
         HashMap<House, Integer> returnedStudents;
@@ -69,6 +68,9 @@ public class Jolly extends CharacterCard{
                 parameters.put("studentsOnCard", getStudents());
                 break;
             case "move":
+                try {
+                    super.doEffect(null);
+                } catch (Exception ignored) {}
                 for (String s : moveParameters) {
                     if (!parameters.containsKey(s))
                         throw new IllegalArgumentException("Missing parameter " + s);
