@@ -64,6 +64,9 @@ public class Monk extends CharacterCard {
                 parameters.put("studentsOnCard", studentsOnCard);
                 break;
             case "move":
+                try {
+                    super.doEffect(null);
+                } catch (Exception ignored) {}
                 for (String s : moveParameters) {
                     if (!parameters.containsKey(s))
                         throw new IllegalArgumentException("Missing parameter " + s);
