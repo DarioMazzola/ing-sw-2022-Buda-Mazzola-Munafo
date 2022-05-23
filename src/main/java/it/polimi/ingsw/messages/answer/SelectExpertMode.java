@@ -1,7 +1,5 @@
 package it.polimi.ingsw.messages.answer;
 
-import it.polimi.ingsw.messages.answer.AnswerMessage;
-
 import static it.polimi.ingsw.messages.MessageType.SELECT_EXPERT_MODE;
 
 /**
@@ -16,7 +14,7 @@ public class SelectExpertMode extends AnswerMessage {
      * Class constructor.
      *
      */
-    protected SelectExpertMode(String nickname) {
+    public SelectExpertMode() {
         super(SELECT_EXPERT_MODE);
     }
 }
