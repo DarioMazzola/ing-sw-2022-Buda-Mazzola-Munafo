@@ -1,6 +1,6 @@
 package it.polimi.ingsw.messages.command;
 
-import static it.polimi.ingsw.messages.MessageType.SELECT_TEAM;
+import static it.polimi.ingsw.messages.MessageType.CHOSEN_TEAM;
 
 /**
  * SelectTeam class represents selectTeam network message.
@@ -21,7 +21,7 @@ public class ChosenTeam extends CommandMessage {
      * @param isTeamLeader true if the player wants to be team leader, false otherwise
      */
     public ChosenTeam(String nickname, int selectedTeam, boolean isTeamLeader) {
-        super(SELECT_TEAM, nickname);
+        super(CHOSEN_TEAM, nickname);
         this.selectedTeam = selectedTeam;
         this.isTeamLeader = isTeamLeader;
     }

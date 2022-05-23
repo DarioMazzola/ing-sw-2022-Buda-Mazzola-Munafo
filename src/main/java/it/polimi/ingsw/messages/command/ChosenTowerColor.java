@@ -2,7 +2,7 @@ package it.polimi.ingsw.messages.command;
 
 import it.polimi.ingsw.model.Color;
 
-import static it.polimi.ingsw.messages.MessageType.SELECT_COLOR_TOWER;
+import static it.polimi.ingsw.messages.MessageType.CHOSEN_TOWER_COLOR;
 
 /**
  * SelectColorTower class represents SelectColorTower network message.
@@ -20,7 +20,7 @@ public class ChosenTowerColor extends CommandMessage {
      * @param towerColor the tower color selceted by the player
      */
     public ChosenTowerColor(String nickname, Color towerColor) {
-        super(SELECT_COLOR_TOWER, nickname);
+        super(CHOSEN_TOWER_COLOR, nickname);
         this.towerColor = towerColor;
     }
 

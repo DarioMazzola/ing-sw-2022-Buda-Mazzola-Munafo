@@ -2,7 +2,7 @@ package it.polimi.ingsw.messages.command;
 
 import it.polimi.ingsw.model.Wizard;
 
-import static it.polimi.ingsw.messages.MessageType.WIZARD;
+import static it.polimi.ingsw.messages.MessageType.CHOSEN_WIZARD;
 
 /**
  * Wizard class represents Wizards network message.
@@ -20,7 +20,7 @@ public class ChosenWizard extends CommandMessage {
      * @param wizard the player's selected wizard for this game
      */
     public ChosenWizard(String nickname, Wizard wizard) {
-        super(WIZARD, nickname);
+        super(CHOSEN_WIZARD, nickname);
         this.wizard = wizard;
     }
 
