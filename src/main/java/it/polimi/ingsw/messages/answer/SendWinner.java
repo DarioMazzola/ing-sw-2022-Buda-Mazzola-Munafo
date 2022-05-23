@@ -14,10 +14,9 @@ public class SendWinner extends AnswerMessage {
     /**
      * Message constructor
      *
-     * @param nickname The nickname of the player the message is sent to
      */
-    public SendWinner(String nickname, String winner) {
-        super(SEND_WINNER, nickname);
+    public SendWinner(String winner) {
+        super(SEND_WINNER);
         this.winner = winner;
     }
 

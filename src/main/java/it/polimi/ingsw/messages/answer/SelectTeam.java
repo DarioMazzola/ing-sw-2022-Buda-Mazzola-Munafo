@@ -1,9 +1,7 @@
 package it.polimi.ingsw.messages.answer;
 
 import it.polimi.ingsw.messages.MessageType;
-import it.polimi.ingsw.utils.TeamInfo;
 
-import java.util.List;
 
 /**
  * This message is sent from the server to the client to communicate that the player
@@ -12,19 +10,25 @@ import java.util.List;
  * @author Dario Mazzola
  */
 public class SelectTeam extends AnswerMessage{
-    private final List<TeamInfo> teamInfos;
+    private final String[] teamArray;
+    private final String[] leaderArray;
 
     /**Class constructor.
      *
-     * @param nickname the nickname of the player the message is sent to
-     * @param teamInfos a list containing for every player (identified by his/hers nickname) the selected team and if the player is leader of the team
+     * @param teamArray an array with the nicknames of the players that are not leaders of their team, the number of the team is identified by the index in the array + 1
+     * @param leaderArray an array with the nicknames of the players that are leaders of their team, the number of the team is identified by the index in the array + 1
      */
-    protected SelectTeam(String nickname, List<TeamInfo> teamInfos) {
-        super(MessageType.SELECT_TEAM, nickname);
-        this.teamInfos = teamInfos;
+    protected SelectTeam(String[] teamArray, String[] leaderArray) {
+        super(MessageType.SELECT_TEAM);
+        this.teamArray = teamArray;
+        this.leaderArray = leaderArray;
     }
 
-    public List<TeamInfo> getTeamInfos() {
-        return teamInfos;
+    public String[] getTeamArray() {
+        return teamArray;
+    }
+
+    public String[] getLeaderArray() {
+        return leaderArray;
     }
 }

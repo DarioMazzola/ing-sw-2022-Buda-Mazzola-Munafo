@@ -14,9 +14,8 @@ public class EndGameDisconnection extends AnswerMessage{
     /**
      * Message constructor
      *
-     * @param nickname The nickname of the player the message is sent to
      */
-    public EndGameDisconnection(String nickname) {
-        super(END_GAME_DISCONNECTION, nickname);
+    public EndGameDisconnection() {
+        super(END_GAME_DISCONNECTION);
     }
 }

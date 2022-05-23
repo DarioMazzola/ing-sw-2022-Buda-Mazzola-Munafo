@@ -19,11 +19,10 @@ public class AvailableClouds extends AnswerMessage{
     /**
      * Message constructor
      *
-     * @param nickname The nickname of the player the message is sent to
      * @param cloudList The list of the cloud available for this round
      */
-    public AvailableClouds(String nickname, List<Cloud> cloudList) {
-        super(AVAILABLE_CLOUDS, nickname);
+    public AvailableClouds(List<Cloud> cloudList) {
+        super(AVAILABLE_CLOUDS);
         this.cloudList = cloudList;
     }
 

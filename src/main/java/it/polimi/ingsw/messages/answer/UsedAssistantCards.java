@@ -19,11 +19,10 @@ public class UsedAssistantCards extends AnswerMessage {
     /**
      * Class constructor.
      *
-     * @param nickname player's nickname
      * @param usedCards cards selected by other players in this turn
      */
-    public UsedAssistantCards(String nickname, List<Card> usedCards) {
-        super(USED_ASSISTANT_CARDS, nickname);
+    public UsedAssistantCards(List<Card> usedCards) {
+        super(USED_ASSISTANT_CARDS);
         this.usedCards = usedCards;
     }
 

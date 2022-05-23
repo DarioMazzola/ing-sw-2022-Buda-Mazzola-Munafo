@@ -10,7 +10,7 @@ import static it.polimi.ingsw.messages.MessageType.ASSISTANT_CARDS;
  *
  * @author Alessio Buda
  */
-public class AssistantCards extends CommandMessage {
+public class ChosenAssistantCard extends CommandMessage {
     private final Card assistantCard;
 
     /**
@@ -19,7 +19,7 @@ public class AssistantCards extends CommandMessage {
      * @param nickname player's nickname
      * @param assistantCard the assistant card selected by the player
      */
-    public AssistantCards(String nickname, Card assistantCard) {
+    public ChosenAssistantCard(String nickname, Card assistantCard) {
         super(ASSISTANT_CARDS, nickname);
         this.assistantCard = assistantCard;
     }

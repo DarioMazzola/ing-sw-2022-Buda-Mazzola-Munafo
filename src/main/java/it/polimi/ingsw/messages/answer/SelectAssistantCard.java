@@ -4,7 +4,7 @@ import it.polimi.ingsw.model.Card;
 
 import java.util.List;
 
-import static it.polimi.ingsw.messages.MessageType.ALL_ASSISTANT_CARDS;
+import static it.polimi.ingsw.messages.MessageType.SELECT_ASSISTANT_CARD;
 
 /**
  * AllAssistantCards class represents AllAssistantCards network message.
@@ -12,21 +12,20 @@ import static it.polimi.ingsw.messages.MessageType.ALL_ASSISTANT_CARDS;
  *
  * @author Alessio Buda
  */
-public class AllAssistantCards extends AnswerMessage {
-    private final List<Card> playersDeck;
+public class SelectAssistantCard extends AnswerMessage {
+    private final List<Card> availableAssistantCards;
 
     /**
      * Class constructor.
      *
-     * @param nickname player's nickname
      * @param playersDeck the deck of the player
      */
-    public AllAssistantCards(String nickname, List<Card> playersDeck) {
-        super(ALL_ASSISTANT_CARDS, nickname);
-        this.playersDeck = playersDeck;
+    public SelectAssistantCard(List<Card> playersDeck) {
+        super(SELECT_ASSISTANT_CARD);
+        this.availableAssistantCards = playersDeck;
     }
 
-    public List<Card> getPlayersDeck() {
-        return playersDeck;
+    public List<Card> getAvailableAssistantCards() {
+        return availableAssistantCards;
     }
 }

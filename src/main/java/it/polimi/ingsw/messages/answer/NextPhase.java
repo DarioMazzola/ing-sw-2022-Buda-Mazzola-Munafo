@@ -17,10 +17,9 @@ public class NextPhase extends AnswerMessage {
     /**
      * Message constructor
      *
-     * @param nickname The nickname of the player the message is sent to
      */
-    public NextPhase(String nickname, MessageType nextPhase) {
-        super(NEXT_PHASE, nickname);
+    public NextPhase(MessageType nextPhase) {
+        super(NEXT_PHASE);
         this.nextPhase = nextPhase;
     }
 

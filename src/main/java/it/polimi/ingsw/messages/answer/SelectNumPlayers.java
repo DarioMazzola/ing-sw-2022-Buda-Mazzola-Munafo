@@ -13,9 +13,8 @@ public class SelectNumPlayers extends AnswerMessage {
     /**
      * Class constructor
      *
-     * @param nickname The nickname of the player the message is sent to
      */
-    protected SelectNumPlayers(String nickname) {
-        super(SELECT_NUM_PLAYERS, nickname);
+    protected SelectNumPlayers() {
+        super(SELECT_NUM_PLAYERS);
     }
 }

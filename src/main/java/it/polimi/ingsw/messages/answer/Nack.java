@@ -16,11 +16,10 @@ public class Nack extends AnswerMessage{
     /**
      * Message constructor
      *
-     * @param nickname The nickname of the player the message is sent to
      * @param typeOfError specifies the type of error
      */
-    public Nack(String nickname, TypeOfError typeOfError) {
-        super(NACK, nickname);
+    public Nack(TypeOfError typeOfError) {
+        super(NACK);
         this.typeOfError = typeOfError;
     }
 

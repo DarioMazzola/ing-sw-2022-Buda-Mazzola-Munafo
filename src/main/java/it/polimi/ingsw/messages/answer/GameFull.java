@@ -13,9 +13,8 @@ public class GameFull extends AnswerMessage {
     /**
      * Class constructor.
      *
-     * @param nickname The nickname of the player the message is sent to
      */
-    protected GameFull(String nickname) {
-        super(GAME_FULL, nickname);
+    protected GameFull() {
+        super(GAME_FULL);
     }
 }

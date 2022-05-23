@@ -1,7 +1,7 @@
 package it.polimi.ingsw.messages.command;
 
 import it.polimi.ingsw.messages.MessageType;
-import it.polimi.ingsw.server.ClientHandler;
+/* import it.polimi.ingsw.server.ClientHandler; */
 import it.polimi.ingsw.messages.Message;
 
 import java.io.IOException;
@@ -12,6 +12,7 @@ import java.io.IOException;
  * @author Dario Mazzola
  */
 public abstract class CommandMessage extends Message {
+    private final String nickname;
 
     /**
      *
@@ -19,7 +20,11 @@ public abstract class CommandMessage extends Message {
      * @param nickname The nickname of the player sending the message
      */
     protected CommandMessage(MessageType messageType, String nickname) {
-        super(messageType, nickname);
+        super(messageType);
+        this.nickname = nickname;
     }
 
+    public String getNickname() {
+        return nickname;
+    }
 }

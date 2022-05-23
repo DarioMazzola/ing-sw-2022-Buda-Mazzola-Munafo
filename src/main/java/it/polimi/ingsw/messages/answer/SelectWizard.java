@@ -18,11 +18,10 @@ public class SelectWizard extends AnswerMessage{
         /**
          * Class constructor.
          *
-         * @param nickname player's nickname
          * @param availableWizards list of all the wizard that have not been selected by other players
          */
-        public SelectWizard(String nickname, List<Wizard> availableWizards) {
-            super(SELECT_WIZARD, nickname);
+        public SelectWizard(List<Wizard> availableWizards) {
+            super(SELECT_WIZARD);
             this.availableWizards = availableWizards;
         }
 

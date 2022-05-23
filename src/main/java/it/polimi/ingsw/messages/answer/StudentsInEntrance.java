@@ -19,11 +19,10 @@ public class StudentsInEntrance extends AnswerMessage{
     /**
      * Message constructor
      *
-     * @param nickname The nickname og the player who sends the message
      * @param studentsInEntrance His/her students in the entrance
      */
-    public StudentsInEntrance(String nickname, Map<House, Integer> studentsInEntrance) {
-        super(STUDENTS_IN_ENTRANCE, nickname);
+    public StudentsInEntrance(Map<House, Integer> studentsInEntrance) {
+        super(STUDENTS_IN_ENTRANCE);
         houseMap = new HashMap<>(studentsInEntrance);
     }
 

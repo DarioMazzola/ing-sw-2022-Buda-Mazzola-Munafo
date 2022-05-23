@@ -17,11 +17,10 @@ public class AllCharacterCards extends AnswerMessage{
     /**
      * Message constructor
      *
-     * @param nickname The nickname of the nickname of the player to who is sent the message
      * @param characterCards The list of CharacterCards available for this match
      */
-    public AllCharacterCards(String nickname, List<CharacterCard> characterCards) {
-        super(ALL_CHARACTER_CARDS, nickname);
+    public AllCharacterCards(List<CharacterCard> characterCards) {
+        super(ALL_CHARACTER_CARDS);
         this.characterCards = characterCards;
     }
 

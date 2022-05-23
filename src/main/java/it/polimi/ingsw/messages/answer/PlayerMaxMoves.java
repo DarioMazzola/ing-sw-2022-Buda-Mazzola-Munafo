@@ -14,10 +14,9 @@ public class PlayerMaxMoves extends AnswerMessage{
     /**
      * Message constructor
      *
-     * @param nickname The nickname of the player the message is sent to
      */
-    public PlayerMaxMoves(String nickname, int maxMoves) {
-        super(PLAYER_MAX_MOVES, nickname);
+    public PlayerMaxMoves(int maxMoves) {
+        super(PLAYER_MAX_MOVES);
         this.maxMoves = maxMoves;
     }
 

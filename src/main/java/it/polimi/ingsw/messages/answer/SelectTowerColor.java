@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * This message is sent from the server to the client to communicate that the player
- * has to select his/her color of the tower for this match
+ * has to select his/her color of the tower for this match.
  *
  * @author Dario Mazzola
  */
@@ -17,11 +17,10 @@ public class SelectTowerColor extends AnswerMessage{
     /**
      * Class constructor.
      *
-     * @param nickname    the nickname of the player the message is sent to
      * @param availableColors the tower colors not chosen by other players
      */
-    protected SelectTowerColor(String nickname, List<Color> availableColors) {
-        super(MessageType.SELECT_COLOR_TOWER, nickname);
+    protected SelectTowerColor(List<Color> availableColors) {
+        super(MessageType.SELECT_COLOR_TOWER);
         this.availableColors = availableColors;
     }
 

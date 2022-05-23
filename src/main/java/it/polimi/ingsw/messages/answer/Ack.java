@@ -17,7 +17,7 @@ public class Ack extends AnswerMessage{
      * @param nickname The nickname of the nickname of the player to who is sent the message
      */
     public Ack(String nickname, int typeOfACK) {
-        super(ACK, nickname);
+        super(ACK);
         this.typeOfACK = typeOfACK;
     }
 
