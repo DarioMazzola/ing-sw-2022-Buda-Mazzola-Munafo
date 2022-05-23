@@ -54,7 +54,7 @@ public interface View {
     /**
      * Shows the player already created team and asks to choose a team and whether to be team leader and notifies the observers.
      */
-    void showTeamSelection(List<TeamInfo> teams);
+    void selectTeam(String[] teamArray, String[] leaderArray);
 
     /**
      * Asks the player to choose a color for his/hers towers among the ones still available and notifies the observers.
