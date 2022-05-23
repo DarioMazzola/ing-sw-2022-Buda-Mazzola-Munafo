@@ -17,7 +17,7 @@ import static it.polimi.ingsw.model.CharacterCardEnum.SPOILED_PRINCESS;
  * @author Alessio Buda
  */
 public class SpoiledPrincess extends CharacterCard {
-    private Map<House, Integer> houseMap;
+    private final Map<House, Integer> houseMap;
 
     /**
      * Class constructor, initializes card with name, initial cost and required students.
@@ -66,6 +66,9 @@ public class SpoiledPrincess extends CharacterCard {
                 parameters.put("studentsOnCard", studentsOnCard);
                 break;
             case "move":
+                try {
+                    super.doEffect(null);
+                } catch (Exception ignored) {}
                 for (String s : moveParameters) {
                     if (!parameters.containsKey(s))
                         throw new IllegalArgumentException("Missing parameter " + s);
