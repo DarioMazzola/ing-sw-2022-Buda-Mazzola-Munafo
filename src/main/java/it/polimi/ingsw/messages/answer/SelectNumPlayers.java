@@ -14,7 +14,7 @@ public class SelectNumPlayers extends AnswerMessage {
      * Class constructor
      *
      */
-    protected SelectNumPlayers() {
+    public SelectNumPlayers() {
         super(SELECT_NUM_PLAYERS);
     }
 }
