@@ -1,5 +1,6 @@
 package it.polimi.ingsw.observer;
 
+import it.polimi.ingsw.model.Card;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Wizard;
 
@@ -72,4 +73,17 @@ public interface ViewObserver {
      * @param towerColor the tower color chosen.
      */
     void onUpdateTowerColor(Color towerColor);
+
+    /**
+     * Method used to specify the tower color that the player wants to use the assistant
+     * card specified as a parameters.
+     *
+     * @param chosenCard the assistant card chosen.
+     */
+    void onUpdateAssistantCard(Card chosenCard);
+
+    /**
+     * Method used to disconnect a client.
+     */
+    void onDisconnection();
 }
