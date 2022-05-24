@@ -4,7 +4,7 @@ import it.polimi.ingsw.model.Cloud;
 
 import java.util.List;
 
-import static it.polimi.ingsw.messages.MessageType.AVAILABLE_CLOUDS;
+import static it.polimi.ingsw.messages.MessageType.SELECT_CLOUD;
 
 /**
  * This message is sent from the server to the client to communicate the available clouds and the students on
@@ -12,21 +12,21 @@ import static it.polimi.ingsw.messages.MessageType.AVAILABLE_CLOUDS;
  *
  * @author Dario Mazzola
  */
-public class AvailableClouds extends AnswerMessage{
+public class SelectCloud extends AnswerMessage{
 
-    private final List<Cloud> cloudList;
+    private final List<Integer> cloudList;
 
     /**
      * Message constructor
      *
      * @param cloudList The list of the cloud available for this round
      */
-    public AvailableClouds(List<Cloud> cloudList) {
-        super(AVAILABLE_CLOUDS);
+    public SelectCloud(List<Integer> cloudList) {
+        super(SELECT_CLOUD);
         this.cloudList = cloudList;
     }
 
-    public List<Cloud> getCloudList() {
+    public List<Integer> getCloudList() {
         return cloudList;
     }
 }
