@@ -35,11 +35,38 @@ public class AnswerSerializer {
         String gsonMessage = gson.toJson(msg);
 
         switch (messageType) {
+            case ACTION_PHASE:
+                list.add(ACTION_PHASE.toString());
+                break;
+            case END_GAME_DISCONNECTION:
+                list.add(END_GAME_DISCONNECTION.toString());
+                break;
+            case GAME_FULL:
+                list.add(GAME_FULL.toString());
+                break;
+            case GO_TO_WAITING_ROOM:
+                list.add(GO_TO_WAITING_ROOM.toString());
+                break;
             case NACK:
                 list.add(NACK.toString());
                 break;
             case PING:
                 list.add(PING.toString());
+                break;
+            case SELECT_ASSISTANT_CARD:
+                list.add(SELECT_ASSISTANT_CARD.toString());
+                break;
+            case SELECT_CHARACTER_CARD:
+                list.add(SELECT_CHARACTER_CARD.toString());
+                break;
+            case SELECT_CLOUD:
+                list.add(SELECT_CLOUD.toString());
+                break;
+            case SELECT_COLOR_TOWER:
+                list.add(SELECT_COLOR_TOWER.toString());
+                break;
+            case SELECT_EXPERT_MODE:
+                list.add(SELECT_EXPERT_MODE.toString());
                 break;
             case SELECT_NICKNAME:
                 list.add(SELECT_NICKNAME.toString());
@@ -47,18 +74,14 @@ public class AnswerSerializer {
             case SELECT_NUM_PLAYERS:
                 list.add(SELECT_NUM_PLAYERS.toString());
                 break;
-            case SELECT_EXPERT_MODE:
-                list.add(SELECT_EXPERT_MODE.toString());
+            case SELECT_TEAM:
+                list.add(SELECT_TEAM.toString());
                 break;
             case SELECT_WIZARD:
                 list.add(SELECT_WIZARD.toString());
                 break;
-            case SELECT_COLOR_TOWER:
-                list.add(SELECT_COLOR_TOWER.toString());
-                break;
-            case SELECT_TEAM:
-                list.add(SELECT_TEAM.toString());
-                break;
+            case SEND_WINNER:
+                list.add(SEND_WINNER.toString());
             default:
                 throw new IllegalArgumentException("Message is not an answer message");
         }
@@ -89,11 +112,38 @@ public class AnswerSerializer {
         String gsonMessage = msg.get(1);
 
         switch (messageType) {
+            case ACTION_PHASE:
+                answer = gson.fromJson(gsonMessage, ActionPhase.class);
+                break;
+            case END_GAME_DISCONNECTION:
+                answer = gson.fromJson(gsonMessage, EndGameDisconnection.class);
+                break;
+            case GAME_FULL:
+                answer = gson.fromJson(gsonMessage, GameFull.class);
+                break;
+            case GO_TO_WAITING_ROOM:
+                answer = gson.fromJson(gsonMessage, GoToWaitingRoom.class);
+                break;
             case NACK:
                 answer = gson.fromJson(gsonMessage, Nack.class);
                 break;
             case PING:
                 answer = gson.fromJson(gsonMessage, Ping.class);
+                break;
+            case SELECT_ASSISTANT_CARD:
+                answer = gson.fromJson(gsonMessage, SelectAssistantCard.class);
+                break;
+            case SELECT_CHARACTER_CARD:
+                answer = gson.fromJson(gsonMessage, SelectCharacterCard.class);
+                break;
+            case SELECT_CLOUD:
+                answer = gson.fromJson(gsonMessage, SelectCloud.class);
+                break;
+            case SELECT_COLOR_TOWER:
+                answer = gson.fromJson(gsonMessage, SelectColorTower.class);
+                break;
+            case SELECT_EXPERT_MODE:
+                answer = gson.fromJson(gsonMessage, SelectExpertMode.class);
                 break;
             case SELECT_NICKNAME:
                 answer = gson.fromJson(gsonMessage, SelectNickname.class);
@@ -101,19 +151,15 @@ public class AnswerSerializer {
             case SELECT_NUM_PLAYERS:
                 answer = gson.fromJson(gsonMessage, SelectNumPlayers.class);
                 break;
-            case SELECT_EXPERT_MODE:
-                answer = gson.fromJson(gsonMessage, SelectExpertMode.class);
+            case SELECT_TEAM:
+                answer = gson.fromJson(gsonMessage, SelectTeam.class);
                 break;
             case SELECT_WIZARD:
                 answer = gson.fromJson(gsonMessage, SelectWizard.class);
                 break;
-            case SELECT_COLOR_TOWER:
-                answer = gson.fromJson(gsonMessage, SelectColorTower.class);
+            case SEND_WINNER:
+                answer = gson.fromJson(gsonMessage, SendWinner.class);
                 break;
-            case SELECT_TEAM:
-                answer = gson.fromJson(gsonMessage, SelectTeam.class);
-                break;
-
             default:
                 throw new IllegalArgumentException("Message is not an answer message");
         }

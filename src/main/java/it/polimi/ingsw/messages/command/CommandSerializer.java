@@ -35,8 +35,20 @@ public class CommandSerializer {
         String gsonMessage = gson.toJson(msg);
 
         switch (messageType) {
-            case PONG:
-                list.add(PONG.toString());
+            case CHOSEN_ASSISTANT_CARD:
+                list.add(CHOSEN_ASSISTANT_CARD.toString());
+                break;
+            case CHOSEN_CHARACTER_CARD:
+                list.add(CHOSEN_CHARACTER_CARD.toString());
+                break;
+            case CHOSEN_CLOUD:
+                list.add(CHOSEN_CLOUD.toString());
+                break;
+            case CHOSEN_TEAM:
+                list.add(CHOSEN_TEAM.toString());
+                break;
+            case CHOSEN_TOWER_COLOR:
+                list.add(CHOSEN_TOWER_COLOR.toString());
                 break;
             case NEW_GAME:
                 list.add(NEW_GAME.toString());
@@ -53,11 +65,8 @@ public class CommandSerializer {
             case CHOSEN_WIZARD:
                 list.add(MessageType.CHOSEN_WIZARD.toString());
                 break;
-            case CHOSEN_TOWER_COLOR:
-                list.add(CHOSEN_TOWER_COLOR.toString());
-                break;
-            case CHOSEN_TEAM:
-                list.add(CHOSEN_TEAM.toString());
+            case PONG:
+                list.add(PONG.toString());
                 break;
 
             default:
