@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Dario Mazzola
  */
-public class SelectTowerColor extends AnswerMessage{
+public class SelectColorTower extends AnswerMessage{
     private final List<Color> availableColors;
 
     /**
@@ -19,7 +19,7 @@ public class SelectTowerColor extends AnswerMessage{
      *
      * @param availableColors the tower colors not chosen by other players
      */
-    protected SelectTowerColor(List<Color> availableColors) {
+    public SelectColorTower(List<Color> availableColors) {
         super(MessageType.SELECT_COLOR_TOWER);
         this.availableColors = availableColors;
     }

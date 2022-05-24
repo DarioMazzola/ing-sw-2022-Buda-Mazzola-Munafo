@@ -14,7 +14,7 @@ public class GameFull extends AnswerMessage {
      * Class constructor.
      *
      */
-    protected GameFull() {
+    public GameFull() {
         super(GAME_FULL);
     }
 }

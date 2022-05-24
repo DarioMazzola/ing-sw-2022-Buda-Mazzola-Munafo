@@ -2,7 +2,7 @@ package it.polimi.ingsw.messages.command;
 
 import it.polimi.ingsw.model.Card;
 
-import static it.polimi.ingsw.messages.MessageType.ASSISTANT_CARDS;
+import static it.polimi.ingsw.messages.MessageType.CHOSEN_ASSISTANT_CARD;
 
 /**
  * AssistantCards class represents AssistantCards network message.
@@ -20,7 +20,7 @@ public class ChosenAssistantCard extends CommandMessage {
      * @param assistantCard the assistant card selected by the player
      */
     public ChosenAssistantCard(String nickname, Card assistantCard) {
-        super(ASSISTANT_CARDS, nickname);
+        super(CHOSEN_ASSISTANT_CARD, nickname);
         this.assistantCard = assistantCard;
     }
 
