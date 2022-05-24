@@ -18,11 +18,11 @@ public class SelectAssistantCard extends AnswerMessage {
     /**
      * Class constructor.
      *
-     * @param playersDeck the deck of the player
+     * @param availableAssistantCard the deck of the player
      */
-    public SelectAssistantCard(List<Card> playersDeck) {
+    public SelectAssistantCard(List<Card> availableAssistantCard) {
         super(SELECT_ASSISTANT_CARD);
-        this.availableAssistantCards = playersDeck;
+        this.availableAssistantCards = availableAssistantCard;
     }
 
     public List<Card> getAvailableAssistantCards() {
