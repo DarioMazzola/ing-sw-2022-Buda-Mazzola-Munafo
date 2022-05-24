@@ -18,7 +18,7 @@ public class SelectTeam extends AnswerMessage{
      * @param teamArray an array with the nicknames of the players that are not leaders of their team, the number of the team is identified by the index in the array + 1
      * @param leaderArray an array with the nicknames of the players that are leaders of their team, the number of the team is identified by the index in the array + 1
      */
-    protected SelectTeam(String[] teamArray, String[] leaderArray) {
+    public SelectTeam(String[] teamArray, String[] leaderArray) {
         super(MessageType.SELECT_TEAM);
         this.teamArray = teamArray;
         this.leaderArray = leaderArray;
