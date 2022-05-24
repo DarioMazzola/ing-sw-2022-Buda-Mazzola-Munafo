@@ -9,6 +9,7 @@ public enum TypeOfError {
         WIZARD_TAKEN("The wizard selected has already been selected by another player! Please select an available wizard"),
         COLOR_TOWER_TAKEN("The tower color chosen has already been selected by another player! Please select an available tower color"),
         NICKNAME_TAKEN("The nickname selected has already been taken by another player! Please choose another nickname"),
+        EMPTY_NICKNAME("Empty nickname given!"),
         LEADER_TAKEN ("The leader position for this team has already been taken by another player! You can apply to this same team as a team member"),
         TEAM_TAKEN ("The team member position for this team has already been taken by another player! You can apply to this same team as team leader"),
         MAX_STUDENTS_MOVED("You have already moved the maximum number of students! Please select another action"),
@@ -16,7 +17,9 @@ public enum TypeOfError {
         INVALID_STUDENT("The selected student is not available! Please select another one"),
         INVALID_STUDENT_OR_ISLAND("The selected island or student is not available! Please select other ones"),
         ALREADY_USED_CHARACTER_CARD("You have already used a character card! PLease choose another action"),
-        INVALID_CLOUD("This cloud is not available! Please select another cloud");
+        INVALID_CLOUD("This cloud is not available! Please select another cloud"),
+        GAME_ALREADY_STARTED("The game is already started. You cannot join now!");
+
 
         private final String description;
 
