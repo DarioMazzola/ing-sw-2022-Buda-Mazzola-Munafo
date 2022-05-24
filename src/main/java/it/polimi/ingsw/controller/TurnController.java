@@ -84,11 +84,11 @@ public class TurnController {
 
             case START:
                 System.out.println("siamo in start");
-                startController.doAction(message, phase, clientHandler);
+                startController.doAction(message, phase);
                 break;
 
             case PLANNING:
-                planningController.doAction(message, phase);
+                planningController.doAction(message);
                 break;
 
             case ACTION:

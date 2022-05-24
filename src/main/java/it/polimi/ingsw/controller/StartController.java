@@ -13,8 +13,11 @@ import static it.polimi.ingsw.controller.GamePhase.*;
 import static it.polimi.ingsw.controller.GameState.*;
 import static it.polimi.ingsw.messages.TypeOfError.*;
 
+/**
+ * Class representing the start controller
+ * @author Gabriele Munafo'
+ */
 public class StartController {
-
     private final GameModel gm;
     private final TurnController tc;
     private final String[] teamArray;
