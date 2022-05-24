@@ -1,6 +1,6 @@
 package it.polimi.ingsw.view;
 
-import it.polimi.ingsw.utils.TeamInfo;
+import it.polimi.ingsw.model.Card;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Wizard;
 
@@ -62,4 +62,37 @@ public interface View {
      * @param availableColors a list of all the tower colors still available
      */
     void selectTowerColor(List<Color> availableColors);
+
+    /**
+     * Asks the player to choose the assistant among the ones still available and notifies the observers.
+     *
+     * @param availableAssistantCard the assistant card available
+     */
+    void selectAssistantCard(List<Card> availableAssistantCard);
+
+    /**
+     * Shows all the available actions that the player can do.
+     *
+     * @param availableActions all the available actions
+     */
+    void actionPhase(List<String> availableActions);
+
+    /**
+     * Shows the player who won the match
+     *
+     * @param winner the player who won the match
+     */
+    void sendWinner(String winner);
+
+    /**
+     * Asks the player to choose a cloud among the ones still available and notifies the observers.
+     *
+     * @param availableClouds all the available clouds
+     */
+    void selectCloud(List<Integer> availableClouds);
+
+    /**
+     * Puts the player in the waiting room.
+     */
+    void goToWaitingRoom();
 }

@@ -4,8 +4,7 @@ public enum MessageType {
 
     /*--Answer Messages--*/
     ACK,
-    ALL_CHARACTER_CARDS,
-    AVAILABLE_CLOUDS,
+    ACTION_PHASE,
     END_GAME_DISCONNECTION,
     GAME_FULL,
     GO_TO_WAITING_ROOM,
@@ -13,6 +12,8 @@ public enum MessageType {
     PING,
     PLAYER_MAX_MOVES,
     SELECT_ASSISTANT_CARD,
+    SELECT_CHARACTER_CARD,
+    SELECT_CLOUD,
     SELECT_COLOR_TOWER,
     SELECT_EXPERT_MODE,
     SELECT_NICKNAME,
@@ -24,7 +25,6 @@ public enum MessageType {
     USED_ASSISTANT_CARDS,
 
     /*--Command Messages--*/
-    ACTION_PHASE,
     CHOSEN_ASSISTANT_CARD,
     CHOSEN_CHARACTER_CARD,
     CHOSEN_CLOUD,
