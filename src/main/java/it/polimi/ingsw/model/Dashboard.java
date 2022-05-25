@@ -220,4 +220,12 @@ public class Dashboard implements StudentModifierInterface {
     public int getNumMaxStudents() {
         return numMaxStudents;
     }
+
+    public Map<House, Boolean> getProfMap(){
+        return profMap;
+    }
+
+    public int getNumMaxTowers(){
+        return numMaxTowers;
+    }
 }
