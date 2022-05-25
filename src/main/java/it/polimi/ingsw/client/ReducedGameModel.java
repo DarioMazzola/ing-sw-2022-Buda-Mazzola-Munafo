@@ -3,6 +3,7 @@ package it.polimi.ingsw.client;
 import it.polimi.ingsw.model.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -98,6 +99,12 @@ public class ReducedGameModel {
 
     public ReducedPlayer getCurrentPlayer(){
         return currentPlayer;
+    }
+
+    public ReducedPlayer getPlayerByNickname(String nickname){
+        return Arrays.stream(getArrayPlayers()).
+                filter((x)-> x.getNickname().equals(nickname)).
+                findFirst().orElse(null);
     }
 
     public int getNumPlayers(){
