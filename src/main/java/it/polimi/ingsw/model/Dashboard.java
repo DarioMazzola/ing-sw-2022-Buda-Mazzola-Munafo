@@ -16,7 +16,7 @@ import static it.polimi.ingsw.model.House.*;
 public class Dashboard implements StudentModifierInterface {
 
     private final Map<House, Integer> houseMap;
-    private final Map<House, Boolean> profMap = new HashMap<>();
+    private final Map<House, Boolean> profMap;
     private final Color towerColor;
     private final int numMaxStudents;
     private int numStudentsIn;
@@ -40,6 +40,8 @@ public class Dashboard implements StudentModifierInterface {
             throw new NullPointerException("The tower color given is null");
 
         houseMap = new HashMap<>();
+
+        profMap = new HashMap<>();
 
         for(House h : values()) {
             houseMap.put(h, 0);
