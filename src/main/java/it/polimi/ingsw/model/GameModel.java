@@ -361,17 +361,18 @@ public class GameModel extends Observable {
             dashboard.removeTower();
         }
 
-        island.addTowers(numTowers);
-
         try {
-            island.getColorTower();
+            Color color = island.getColorTower();
+            if (!color.equals(dashboard.getTowerColor())){
+                island.setTowerColor(dashboard.getTowerColor());
+            }
         } catch (IslandException e){
             island.setTowerColor(dashboard.getTowerColor());
+            island.addTowers(numTowers);
         }
 
         for (int i = 0; i < getNumIslands(); i++) {
             if (islandList.get(i).equals(island)) {
-
                 try {
                     if (i < getNumIslands() - 1 && islandList.get(i).getColorTower().equals(islandList.get(i + 1).getColorTower())) { // coperto
                         merge(i, i + 1);
