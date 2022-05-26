@@ -14,15 +14,15 @@ import static it.polimi.ingsw.messages.MessageType.MOVE_STUDENT_TO_ISLAND;
 public class MoveStudentToIsland extends CommandMessage{
 
     private final House house;
-    private final Island island;
+    private final int island;
     /**
      * Message constructor
      *
      * @param house the house of the students to move
-     * @param island the island where to add the student
+     * @param island the index island where to add the student
      * @param nickname the nickname of the player sending the message
      */
-    public MoveStudentToIsland(House house, Island island, String nickname) {
+    public MoveStudentToIsland(String nickname, House house, int island) {
         super(MOVE_STUDENT_TO_ISLAND, nickname);
         this.house = house;
         this.island = island;
@@ -32,7 +32,7 @@ public class MoveStudentToIsland extends CommandMessage{
         return house;
     }
 
-    public Island getIsland() {
+    public int getIsland() {
         return island;
     }
 }
