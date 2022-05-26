@@ -12,10 +12,13 @@ import java.util.Map;
  */
 public class ReducedDiningHall {
     private final Map<House, Integer> tableOccupation;
+    private final String nickname;
 
     public ReducedDiningHall(DiningHall d){
         tableOccupation = new HashMap<>();
         tableOccupation.putAll(d.getStudents());
+
+        nickname = d.getOwner();
     }
 
     public int getHouseStudents(House house){
@@ -24,5 +27,9 @@ public class ReducedDiningHall {
 
     public Map<House, Integer> getStudents() {
         return tableOccupation;
+    }
+
+    public String getNickname() {
+        return nickname;
     }
 }

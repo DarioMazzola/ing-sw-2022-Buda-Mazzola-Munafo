@@ -21,6 +21,7 @@ public class ReducedDashboard {
     private final int numMaxTowers;
     private final int numTowersIn;
     private ReducedDiningHall diningHall;
+    private final String nickname;
 
     public ReducedDashboard(Dashboard d){
         houseMap = new HashMap<>();
@@ -40,6 +41,8 @@ public class ReducedDashboard {
         numTowersIn = d.getNumTowers();
 
         diningHall = new ReducedDiningHall(d.getDiningHall());
+
+        nickname = d.getOwner();
     }
 
     public Map<House, Integer> getStudents(){
@@ -93,5 +96,9 @@ public class ReducedDashboard {
 
     public void setDiningHall(ReducedDiningHall d){
         diningHall = d;
+    }
+
+    public String getNickname() {
+        return nickname;
     }
 }
