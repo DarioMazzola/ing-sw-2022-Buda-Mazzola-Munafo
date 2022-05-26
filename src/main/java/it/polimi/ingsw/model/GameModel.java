@@ -1,8 +1,14 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.client.ReducedGameModel;
+import it.polimi.ingsw.client.ReducedIsland;
 import it.polimi.ingsw.exceptions.*;
+import it.polimi.ingsw.messages.answer.UpdateCharacterCard;
+import it.polimi.ingsw.messages.answer.UpdateGameModel;
+import it.polimi.ingsw.messages.answer.UpdateIsland;
 import it.polimi.ingsw.model.interfaces.StudentAdderInterface;
 import it.polimi.ingsw.model.interfaces.StudentModifierInterface;
+import it.polimi.ingsw.observer.Observable;
 
 import java.util.*;
 
@@ -12,7 +18,7 @@ import static it.polimi.ingsw.model.House.*;
  * Class that represents the GameModel
  * @author Gabriele Munafo'
  */
-public class GameModel {
+public class GameModel extends Observable {
     private int motherIsland;
     private final int numPlayers;
     private final boolean expertMode;
@@ -21,7 +27,7 @@ public class GameModel {
     private final Bag bag;
     private final Player[] arrayPlayers;
     private final Cloud[] arrayClouds;
-    private int totalCoins = 0;
+    private int totalCoins;
     private Player currentPlayer;
     private ContextCharacterCard context;
 
@@ -34,6 +40,7 @@ public class GameModel {
         this.numPlayers = numPlayers;
         this.expertMode = expertMode;
         this.motherIsland = 0;
+        this.totalCoins = 0;
         islandList = new ArrayList<>();
         int numIsland = 12;
         for (int i = 0; i < numIsland; i++) islandList.add(new Island());
@@ -97,6 +104,8 @@ public class GameModel {
         }
 
         context = new ContextCharacterCard(new CharacterCard(0, "Base", null));
+
+        notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
     }
 
     /**
@@ -120,6 +129,8 @@ public class GameModel {
         for (int j=0; j<numRep; j++) {
             player.getDashboard().addStudents(bag.pull(), 1);
         }
+
+        notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
     }
 
     /**
@@ -148,6 +159,8 @@ public class GameModel {
         context = new ContextCharacterCard(characterCardDeck[card]);
 
         context.doEffect(map);
+
+        notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
     }
 
     /**
@@ -155,6 +168,8 @@ public class GameModel {
      */
     public void setBaseContext(){
         context = new ContextCharacterCard(new CharacterCard(0, "Base", null));
+
+        notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
     }
 
     /**
@@ -163,6 +178,8 @@ public class GameModel {
      */
     public void checkProf(House house) throws IllegalChoiceException{
         context.checkProf(arrayPlayers, currentPlayer, house);
+
+        notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
     }
 
     /**
@@ -178,6 +195,8 @@ public class GameModel {
             throw new TotalCoinsException("Cannot add so many coins");
         }
         this.totalCoins = this.totalCoins + numCoins;
+
+        notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
     }
 
     /**
@@ -190,6 +209,8 @@ public class GameModel {
             throw new TotalCoinsException("There aren't enough coins available");
         }
         this.totalCoins = this.totalCoins - numCoins;
+
+        notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
     }
 
     /**
@@ -213,6 +234,8 @@ public class GameModel {
             from.addStudents(house, numStudents);
             throw new Exception();
         }
+
+        notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
     }
 
     /**
@@ -250,6 +273,8 @@ public class GameModel {
             e.printStackTrace();
         }
         checkProf(house);
+
+        notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
     }
 
     /**
@@ -272,6 +297,8 @@ public class GameModel {
                 e.printStackTrace();
             }
         }
+
+        notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
     }
 
     /**
@@ -293,6 +320,8 @@ public class GameModel {
                 e.printStackTrace();
             }
         }
+
+        notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
     }
 
     /**
@@ -311,6 +340,8 @@ public class GameModel {
                 moveStudents(cloud, currentPlayer.getDashboard(), house, numStud);
             }
         }
+
+        notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
     }
 
     /**
@@ -361,6 +392,8 @@ public class GameModel {
                 break;
             }
         }
+
+        notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
     }
 
     /**
@@ -382,6 +415,8 @@ public class GameModel {
             }
         }
         islandList.remove(island2);
+
+        notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
     }
 
     /**
@@ -395,6 +430,8 @@ public class GameModel {
         for (int i=0; i<numPlayers; i++){
             moveStudents(bag, arrayClouds[i], numCloud);
         }
+
+        notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
     }
 
     /**
@@ -406,6 +443,8 @@ public class GameModel {
             throw new IllegalArgumentException("You can't move mother nature in this way!");
         }
         this.motherIsland = (this.getMotherIsland()+moves)%this.getNumIslands();
+
+        notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
     }
 
     /**
@@ -430,6 +469,8 @@ public class GameModel {
             throw new IllegalArgumentException("This player does not exit!");
         }
         currentPlayer = arrayPlayers[player];
+
+        notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
     }
 
     public ContextCharacterCard getContext(){

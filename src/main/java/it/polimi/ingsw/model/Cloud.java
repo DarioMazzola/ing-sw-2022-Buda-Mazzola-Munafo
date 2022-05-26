@@ -1,7 +1,12 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.client.ReducedCloud;
+import it.polimi.ingsw.client.ReducedDiningHall;
 import it.polimi.ingsw.exceptions.CloudException;
+import it.polimi.ingsw.messages.answer.UpdateCloud;
+import it.polimi.ingsw.messages.answer.UpdateDiningHall;
 import it.polimi.ingsw.model.interfaces.StudentModifierInterface;
+import it.polimi.ingsw.observer.Observable;
 
 
 import java.util.HashMap;
@@ -13,7 +18,7 @@ import static it.polimi.ingsw.model.House.*;
  * Class that represents a cloud
  * @author Gabriele Munafo'
  */
-public class Cloud implements StudentModifierInterface {
+public class Cloud extends Observable implements StudentModifierInterface {
 
     private final Map<House,Integer> houseMap;
     private final int numMaxStud;
@@ -36,6 +41,8 @@ public class Cloud implements StudentModifierInterface {
         else {
             numMaxStud = 4;}
         full = false;
+
+        notifyObserver(new UpdateCloud(new ReducedCloud(this)));
     }
 
     /**
@@ -78,6 +85,8 @@ public class Cloud implements StudentModifierInterface {
         if (sum == numMaxStud) {
             full = true;
         }
+
+        notifyObserver(new UpdateCloud(new ReducedCloud(this)));
     }
 
     /**
@@ -105,9 +114,20 @@ public class Cloud implements StudentModifierInterface {
         }
         houseMap.replace(house, houseMap.get(house) - numStudents);
         full = false;
+
+        notifyObserver(new UpdateCloud(new ReducedCloud(this)));
     }
 
     public boolean isFull(){
         return(full);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder string = new StringBuilder("Students on the cloud: ");
+        for (House h : House.values()) {
+            string.append("\n").append(h).append(": ").append(getHouseStudents(h));
+        }
+        return string.toString();
     }
 }

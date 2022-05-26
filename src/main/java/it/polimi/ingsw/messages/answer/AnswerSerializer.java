@@ -82,6 +82,29 @@ public class AnswerSerializer {
                 break;
             case SEND_WINNER:
                 list.add(SEND_WINNER.toString());
+                break;
+            case UPDATE_CHARACTER_CARD:
+                list.add(UPDATE_CHARACTER_CARD.toString());
+                break;
+            case UPDATE_CLOUD:
+                list.add(UPDATE_CLOUD.toString());
+                break;
+            case UPDATE_DASHBOARD:
+                list.add(UPDATE_DASHBOARD.toString());
+                break;
+            case UPDATE_DINING_HALL:
+                list.add(UPDATE_DINING_HALL.toString());
+                break;
+            case UPDATE_GAME_MODEL:
+                list.add(UPDATE_GAME_MODEL.toString());
+                break;
+            case UPDATE_ISLAND:
+                list.add(UPDATE_ISLAND.toString());
+                break;
+            case UPDATE_PLAYER:
+                list.add(UPDATE_PLAYER.toString());
+                break;
+
             default:
                 throw new IllegalArgumentException("Message is not an answer message");
         }
@@ -160,6 +183,28 @@ public class AnswerSerializer {
             case SEND_WINNER:
                 answer = gson.fromJson(gsonMessage, SendWinner.class);
                 break;
+            case UPDATE_CHARACTER_CARD:
+                answer = gson.fromJson(gsonMessage, UpdateCharacterCard.class);
+                break;
+            case UPDATE_CLOUD:
+                answer = gson.fromJson(gsonMessage, UpdateCloud.class);
+                break;
+            case UPDATE_DASHBOARD:
+                answer = gson.fromJson(gsonMessage, UpdateDashboard.class);
+                break;
+            case UPDATE_DINING_HALL:
+                answer = gson.fromJson(gsonMessage, UpdateDiningHall.class);
+                break;
+            case UPDATE_GAME_MODEL:
+                answer = gson.fromJson(gsonMessage, UpdateGameModel.class);
+                break;
+            case UPDATE_ISLAND:
+                answer = gson.fromJson(gsonMessage, UpdateIsland.class);
+                break;
+            case UPDATE_PLAYER:
+                answer = gson.fromJson(gsonMessage, UpdatePlayer.class);
+                break;
+
             default:
                 throw new IllegalArgumentException("Message is not an answer message");
         }
