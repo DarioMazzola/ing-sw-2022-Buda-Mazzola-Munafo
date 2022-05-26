@@ -36,11 +36,6 @@ public class VirtualView implements View {
         return clientHandler;
     }
 
-    @Override
-    public void createNewGame() {
-
-    }
-
     /**
      *  Sends a message from the server to the client to notify that the player
      *  has to choose whether the match will be played in expert mode.
