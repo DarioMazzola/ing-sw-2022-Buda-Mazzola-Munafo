@@ -110,4 +110,13 @@ public class Cloud implements StudentModifierInterface {
     public boolean isFull(){
         return(full);
     }
+
+    @Override
+    public String toString() {
+        StringBuilder string = new StringBuilder("Students on the cloud: ");
+        for (House h : House.values()) {
+            string.append("\n").append(h).append(": ").append(getHouseStudents(h));
+        }
+        return string.toString();
+    }
 }
