@@ -51,7 +51,7 @@ public class ReducedPlayer {
         return wizard;
     }
 
-    public boolean isTeamLeader() {
+    public Boolean isTeamLeader() {
         return teamLeader;
     }
 

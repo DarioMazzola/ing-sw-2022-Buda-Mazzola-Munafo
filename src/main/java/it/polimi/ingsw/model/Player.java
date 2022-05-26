@@ -1,6 +1,10 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.client.ReducedPlayer;
 import it.polimi.ingsw.exceptions.CardNotInDeckException;
+import it.polimi.ingsw.messages.answer.UpdatePlayer;
+import it.polimi.ingsw.observer.Observable;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,7 +14,7 @@ import java.util.List;
  *
  * @author Alessio Buda
  */
-public class Player {
+public class Player extends Observable {
     private String nickname;
     private Wizard wizard;
     private Boolean teamLeader;
@@ -53,6 +57,8 @@ public class Player {
         if (nickname == null)
             throw new NullPointerException("Player nickname cannot be null");
         this.nickname = this.nickname == null ? nickname : this.nickname;
+
+        notifyObserver(new UpdatePlayer(new ReducedPlayer(this)));
     }
 
     public String getNickname() {
@@ -69,6 +75,8 @@ public class Player {
         if (wizard == null)
             throw new NullPointerException("Player wizard cannot be null");
         this.wizard = this.wizard == null ? wizard : this.wizard;
+
+        notifyObserver(new UpdatePlayer(new ReducedPlayer(this)));
     }
 
     public Wizard getWizard() {
@@ -83,9 +91,11 @@ public class Player {
      */
     public void setTeamLeader(boolean teamLeader) {
         this.teamLeader = this.teamLeader == null ? teamLeader : this.teamLeader;
+
+        notifyObserver(new UpdatePlayer(new ReducedPlayer(this)));
     }
 
-    public boolean isTeamLeader() {
+    public Boolean isTeamLeader() {
         return teamLeader;
     }
 
@@ -121,6 +131,8 @@ public class Player {
         } else {
             throw new CardNotInDeckException();
         }
+
+        notifyObserver(new UpdatePlayer(new ReducedPlayer(this)));
     }
 
     public Card getCardInUse() {
@@ -129,6 +141,8 @@ public class Player {
 
     public void setMaxMoves(int maxMoves) {
         this.maxMoves = maxMoves;
+
+        notifyObserver(new UpdatePlayer(new ReducedPlayer(this)));
     }
 
     public int getMaxMoves() {
@@ -137,6 +151,8 @@ public class Player {
 
     public void setGraveyard() {
         this.graveyard = cardInUse;
+
+        notifyObserver(new UpdatePlayer(new ReducedPlayer(this)));
     }
 
     public Card getGraveyard() {
@@ -156,6 +172,8 @@ public class Player {
             throw new IllegalArgumentException("Number of coins cannot be negative");
         }
         coins+= numCoins;
+
+        notifyObserver(new UpdatePlayer(new ReducedPlayer(this)));
     }
 
     /** Decrements the player's number of coins
@@ -167,6 +185,8 @@ public class Player {
             throw new IllegalArgumentException("Number of coins cannot be negative");
         }
         coins-= numCoins;
+
+        notifyObserver(new UpdatePlayer(new ReducedPlayer(this)));
     }
 
     /**Sets player's dashboard
@@ -197,6 +217,8 @@ public class Player {
         }
 
         this.dashboard = new Dashboard(towerColor, numMaxStudents, numMaxTowers);
+
+        notifyObserver(new UpdatePlayer(new ReducedPlayer(this)));
     }
 
     public Dashboard getDashboard () {
