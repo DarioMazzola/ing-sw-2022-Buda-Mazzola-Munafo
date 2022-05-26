@@ -1,9 +1,14 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.client.ReducedDashboard;
+import it.polimi.ingsw.client.ReducedPlayer;
 import it.polimi.ingsw.exceptions.EntranceException;
 import it.polimi.ingsw.exceptions.IllegalChoiceException;
 import it.polimi.ingsw.exceptions.TowerAreaException;
+import it.polimi.ingsw.messages.answer.UpdateDashboard;
+import it.polimi.ingsw.messages.answer.UpdatePlayer;
 import it.polimi.ingsw.model.interfaces.StudentModifierInterface;
+import it.polimi.ingsw.observer.Observable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +18,7 @@ import static it.polimi.ingsw.model.House.*;
 /**Describes the Dashboard
  * @author Dario Mazzola
  */
-public class Dashboard implements StudentModifierInterface {
+public class Dashboard extends Observable implements StudentModifierInterface {
 
     private final Map<House, Integer> houseMap;
     private final Map<House, Boolean> profMap;
@@ -56,6 +61,8 @@ public class Dashboard implements StudentModifierInterface {
         this.towerColor = towerColor;
 
         this.diningHall = new DiningHall();
+
+        notifyObserver(new UpdateDashboard(new ReducedDashboard(this)));
     }
 
     /**
@@ -105,6 +112,9 @@ public class Dashboard implements StudentModifierInterface {
 
         houseMap.replace(house, houseMap.get(house) + numStudents);
         numStudentsIn += numStudents;
+
+        notifyObserver(new UpdateDashboard(new ReducedDashboard(this)));
+
     }
 
     /**
@@ -132,6 +142,8 @@ public class Dashboard implements StudentModifierInterface {
         houseMap.replace(house, houseMap.get(house) - numStudents);
 
         numStudentsIn -= numStudents;
+
+        notifyObserver(new UpdateDashboard(new ReducedDashboard(this)));
     }
 
     public int getNumTowers() {
@@ -148,6 +160,8 @@ public class Dashboard implements StudentModifierInterface {
             throw new TowerAreaException("You cannot add a tower to your Towers' Area, it is already full");
 
         numTowersIn++;
+
+        notifyObserver(new UpdateDashboard(new ReducedDashboard(this)));
     }
 
     /**
@@ -159,6 +173,8 @@ public class Dashboard implements StudentModifierInterface {
         if(numTowersIn == 0)
             throw new TowerAreaException("You cannot remove a tower from your Towers' Area, it is already empty");
         numTowersIn--;
+
+        notifyObserver(new UpdateDashboard(new ReducedDashboard(this)));
     }
 
     /**
@@ -190,6 +206,8 @@ public class Dashboard implements StudentModifierInterface {
             throw new NullPointerException("The house given is null");
         if(!profMap.get(house))
             profMap.replace(house, true);
+
+        notifyObserver(new UpdateDashboard(new ReducedDashboard(this)));
     }
 
     /**
@@ -208,6 +226,8 @@ public class Dashboard implements StudentModifierInterface {
         else{
             profMap.replace(house, false);
         }
+
+        notifyObserver(new UpdateDashboard(new ReducedDashboard(this)));
     }
 
     /**
