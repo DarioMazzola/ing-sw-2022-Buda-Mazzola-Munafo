@@ -4,14 +4,19 @@
 
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.client.ReducedDashboard;
+import it.polimi.ingsw.client.ReducedDiningHall;
 import it.polimi.ingsw.exceptions.StudentsTableException;
+import it.polimi.ingsw.messages.answer.UpdateDashboard;
+import it.polimi.ingsw.messages.answer.UpdateDiningHall;
 import it.polimi.ingsw.model.interfaces.StudentModifierInterface;
+import it.polimi.ingsw.observer.Observable;
 
 import java.util.HashMap;
 import java.util.Map;
 import static it.polimi.ingsw.model.House.*;
 
-public class DiningHall  implements StudentModifierInterface {
+public class DiningHall extends Observable implements StudentModifierInterface {
 
     private final Map<House, Integer> tableOccupation;
 
@@ -24,6 +29,7 @@ public class DiningHall  implements StudentModifierInterface {
         for(House h : values())
             tableOccupation.put(h, 0);
 
+        notifyObserver(new UpdateDiningHall(new ReducedDiningHall(this)));
     }
 
     public int getHouseStudents(House house){
@@ -54,6 +60,8 @@ public class DiningHall  implements StudentModifierInterface {
             throw new StudentsTableException("The table of the house where you want to add a student is already full");
         }
         tableOccupation.replace(house, tableOccupation.get(house) + numStudents);
+
+        notifyObserver(new UpdateDiningHall(new ReducedDiningHall(this)));
     }
 
     /**
@@ -74,5 +82,7 @@ public class DiningHall  implements StudentModifierInterface {
             throw new StudentsTableException("The table of the house where you want to remove a student is already empty");
 
         tableOccupation.replace(house, tableOccupation.get(house) - numStudents);
+
+        notifyObserver(new UpdateDiningHall(new ReducedDiningHall(this)));
     }
 }
