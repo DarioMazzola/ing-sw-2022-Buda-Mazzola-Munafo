@@ -53,6 +53,7 @@ public class TurnController {
                 System.out.println("doAction::setupController");
                 setupController.doAction(message, phase, clientHandler);
                 System.out.println("1");
+
                 if (gameState == START) {
                     System.out.println("1.1");
                     int limit = queue.size();
@@ -69,17 +70,11 @@ public class TurnController {
                             virtualViewMap.get(queue.get(i)).notifyGameFull();
                             virtualViewMap.remove(queue.get(i));
                         }
+                        setIsGameStarted(true);
+                        sendAllSelectWizard(Arrays.asList(Wizard.values()));
                     }
                 }
                 System.out.println("2");
-                if (phase == WIZARD) {
-
-                    System.out.println("2.1");
-                    System.out.println("mando select wizard");
-                    setIsGameStarted(true);
-                    sendAllSelectWizard(Arrays.asList(Wizard.values()));
-                }
-                System.out.println("3");
 
                 break;
 
@@ -285,6 +280,14 @@ public class TurnController {
             } catch (BagException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    public void checkIfFull(){
+        if (virtualViewMap.size() == gm.getNumPlayers()) {
+            System.out.println("2.1");
+            setIsGameStarted(true);
+            sendAllSelectWizard(Arrays.asList(Wizard.values()));
         }
     }
 }

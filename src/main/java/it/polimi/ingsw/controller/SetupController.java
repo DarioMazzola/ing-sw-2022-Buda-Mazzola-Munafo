@@ -63,7 +63,6 @@ public class SetupController{
                     e.printStackTrace();
                 }
                 tc.next_State(START);
-                tc.next_Phase(WIZARD);
                 break;
         }
     }
