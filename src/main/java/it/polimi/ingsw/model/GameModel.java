@@ -21,7 +21,7 @@ public class GameModel {
     private final Bag bag;
     private final Player[] arrayPlayers;
     private final Cloud[] arrayClouds;
-    private int totalCoins = 0;
+    private int totalCoins;
     private Player currentPlayer;
     private ContextCharacterCard context;
 
@@ -34,6 +34,7 @@ public class GameModel {
         this.numPlayers = numPlayers;
         this.expertMode = expertMode;
         this.motherIsland = 0;
+        this.totalCoins = 0;
         islandList = new ArrayList<>();
         int numIsland = 12;
         for (int i = 0; i < numIsland; i++) islandList.add(new Island());
