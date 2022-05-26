@@ -1,13 +1,7 @@
-/** Describes the DiningHall
- * @author Dario Mazzola
- */
-
 package it.polimi.ingsw.model;
 
-import it.polimi.ingsw.client.ReducedDashboard;
 import it.polimi.ingsw.client.ReducedDiningHall;
 import it.polimi.ingsw.exceptions.StudentsTableException;
-import it.polimi.ingsw.messages.answer.UpdateDashboard;
 import it.polimi.ingsw.messages.answer.UpdateDiningHall;
 import it.polimi.ingsw.model.interfaces.StudentModifierInterface;
 import it.polimi.ingsw.observer.Observable;
@@ -16,9 +10,14 @@ import java.util.HashMap;
 import java.util.Map;
 import static it.polimi.ingsw.model.House.*;
 
+/** Describes the DiningHall
+ *
+ * @author Dario Mazzola
+ */
 public class DiningHall extends Observable implements StudentModifierInterface {
 
     private final Map<House, Integer> tableOccupation;
+    private String owner;
 
     /**
      * Dining hall class constructor: initializes the students' number from each house to zero
@@ -84,5 +83,13 @@ public class DiningHall extends Observable implements StudentModifierInterface {
         tableOccupation.replace(house, tableOccupation.get(house) - numStudents);
 
         notifyObserver(new UpdateDiningHall(new ReducedDiningHall(this)));
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public String getOwner() {
+        return owner;
     }
 }

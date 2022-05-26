@@ -16,6 +16,7 @@ import java.util.Map;
 import static it.polimi.ingsw.model.House.*;
 
 /**Describes the Dashboard
+ *
  * @author Dario Mazzola
  */
 public class Dashboard extends Observable implements StudentModifierInterface {
@@ -27,6 +28,7 @@ public class Dashboard extends Observable implements StudentModifierInterface {
     private int numStudentsIn;
     private final int numMaxTowers;
     private int numTowersIn;
+    private String owner;
 
     private final DiningHall diningHall;
 
@@ -260,5 +262,13 @@ public class Dashboard extends Observable implements StudentModifierInterface {
             string.append("\n").append(h).append(": ").append(getDiningHall().getHouseStudents(h));
         }
         return string.toString();
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public String getOwner() {
+        return owner;
     }
 }
