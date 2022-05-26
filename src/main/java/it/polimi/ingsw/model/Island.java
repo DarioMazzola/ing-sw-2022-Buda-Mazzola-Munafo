@@ -1,8 +1,13 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.client.ReducedCloud;
+import it.polimi.ingsw.client.ReducedIsland;
 import it.polimi.ingsw.exceptions.IslandException;
 import it.polimi.ingsw.exceptions.noEntryTileException;
+import it.polimi.ingsw.messages.answer.UpdateCloud;
+import it.polimi.ingsw.messages.answer.UpdateIsland;
 import it.polimi.ingsw.model.interfaces.StudentAdderInterface;
+import it.polimi.ingsw.observer.Observable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +18,7 @@ import static it.polimi.ingsw.model.House.*;
  * Class that represents an Island
  * @author Gabriele Munafo'
  */
-public class Island implements StudentAdderInterface {
+public class Island extends Observable implements StudentAdderInterface {
     private final Map<House,Integer> houseMap;
     private Color towerColor;
     private int numTowers;
@@ -32,6 +37,8 @@ public class Island implements StudentAdderInterface {
         towerColor = null;
         numTowers = 0;
         noEntryTile = 0;
+
+        notifyObserver(new UpdateIsland(new ReducedIsland(this)));
     }
 
     /**
@@ -49,6 +56,8 @@ public class Island implements StudentAdderInterface {
         int value = houseMap.get(house);
         value = value + numStudents;
         houseMap.replace(house, value);
+
+        notifyObserver(new UpdateIsland(new ReducedIsland(this)));
     }
 
     /**
@@ -82,7 +91,10 @@ public class Island implements StudentAdderInterface {
         if (color == null){
             throw new NullPointerException("color = null can't be used as a parameter");
         }
-        this.towerColor = color;}
+        this.towerColor = color;
+
+        notifyObserver(new UpdateIsland(new ReducedIsland(this)));
+    }
 
     public int getNumTowers(){
         return (this.numTowers);
@@ -94,6 +106,8 @@ public class Island implements StudentAdderInterface {
      */
     public void addTowers(int TowersNumber){
         this.numTowers = this.numTowers + TowersNumber;
+
+        notifyObserver(new UpdateIsland(new ReducedIsland(this)));
     }
 
     public boolean isNoEntryTilePresent(){
@@ -105,6 +119,8 @@ public class Island implements StudentAdderInterface {
      */
     public void addNoEntryTile(){
         this.noEntryTile += 1;
+
+        notifyObserver(new UpdateIsland(new ReducedIsland(this)));
     }
 
     /**
@@ -114,6 +130,8 @@ public class Island implements StudentAdderInterface {
     public void removeNoEntryTile() throws noEntryTileException{
         if (this.noEntryTile < 1){throw new noEntryTileException("There aren't noEntryTiles on this island");}
         this.noEntryTile -= 1;
+
+        notifyObserver(new UpdateIsland(new ReducedIsland(this)));
     }
 
     public int getNoEntryTile(){
