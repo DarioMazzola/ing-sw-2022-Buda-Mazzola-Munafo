@@ -130,4 +130,8 @@ public class Cloud extends Observable implements StudentModifierInterface {
         }
         return string.toString();
     }
+
+    public int getNumMaxStud(){
+        return numMaxStud;
+    }
 }
