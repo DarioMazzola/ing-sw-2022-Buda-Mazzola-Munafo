@@ -1,8 +1,10 @@
 package it.polimi.ingsw.view;
 
+import it.polimi.ingsw.messages.Message;
 import it.polimi.ingsw.messages.answer.*;
 import it.polimi.ingsw.messages.answer.ActionPhase;
 import it.polimi.ingsw.model.*;
+import it.polimi.ingsw.observer.Observer;
 import it.polimi.ingsw.server.ClientHandler;
 
 import java.util.List;
@@ -14,7 +16,7 @@ import java.util.List;
  *
  * @author Dario Mazzola
  */
-public class VirtualView implements View {
+public class VirtualView implements View, Observer{
 
     private final ClientHandler clientHandler;
 
@@ -157,6 +159,19 @@ public class VirtualView implements View {
         clientHandler.sendAnswerMessage(new GoToWaitingRoom());
     }
 
+
+
+    /*------------------ Model - View interaction ----------------------------------*/
+
+    /**
+     * Sends a message from the server to the client notifying that there has been a change in the model
+     *
+     * @param message the message to send
+     */
+    @Override
+    public void update(Message message) {
+        clientHandler.sendAnswerMessage((AnswerMessage) message);
+    }
 
 }
 
