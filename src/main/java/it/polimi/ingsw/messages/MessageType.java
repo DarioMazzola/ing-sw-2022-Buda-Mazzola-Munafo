@@ -30,6 +30,8 @@ public enum MessageType {
     UPDATE_ISLAND,
     UPDATE_PLAYER,
     USED_ASSISTANT_CARDS,
+    UPDATE_MOTHER_ISLAND,
+    UPDATE_CURRENT_PLAYER,
 
     /*--Command Messages--*/
     CHOSEN_ASSISTANT_CARD,
