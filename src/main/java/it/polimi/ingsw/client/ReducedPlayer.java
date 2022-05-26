@@ -39,8 +39,10 @@ public class ReducedPlayer {
         graveyard = p.getGraveyard();
 
         coins = p.getCoins();
-
-        dashboard = new ReducedDashboard(p.getDashboard());
+        if (p.getDashboard() != null) {
+            dashboard = new ReducedDashboard(p.getDashboard());
+        }
+        else dashboard = null;
     }
 
     public String getNickname() {
