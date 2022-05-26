@@ -74,8 +74,6 @@ public class TurnController {
                 System.out.println("2");
                 if (phase == WIZARD) {
 
-                    addObservers();
-
                     System.out.println("2.1");
                     System.out.println("mando select wizard");
                     setIsGameStarted(true);
@@ -88,6 +86,10 @@ public class TurnController {
             case START:
                 System.out.println("siamo in start");
                 startController.doAction(message, phase);
+                if (gameState == PLANNING){
+                    initializePlayers();
+                    addObservers();
+                }
                 break;
 
             case PLANNING:
@@ -116,7 +118,6 @@ public class TurnController {
 
         initializeClouds();
         initializeIslands();
-        initializePlayers();
 
         startController = new StartController(gm, this);
         actionController = new ActionController(gm, this);
