@@ -45,7 +45,7 @@ public class JollyTest {
         for (House h : House.values()) {
             returnedStudents.put(h, 0);
         }
-        playerDashboard = new Dashboard(towerColor, numMaxStudents, numMaxTowers);
+        playerDashboard = new Dashboard(towerColor, numMaxStudents, numMaxTowers, "nickname");
     }
 
     /**

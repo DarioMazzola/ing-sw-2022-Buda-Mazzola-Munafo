@@ -32,7 +32,7 @@ public class ThiefTest {
         players = new Player[]{new Player(2), new Player(2)};
         int i = 0;
         for (Player p : players) {
-            p.setDashboard(Color.values()[i]);
+            p.setDashboard(Color.values()[i], "p");
             i++;
         }
         bag = new Bag();

@@ -116,7 +116,7 @@ public class GameModel extends Observable {
      * @throws EntranceException when the dashboard is already full
      */
     public void initializeDashboard(Player player, Color towerColor) throws BagException, EntranceException {
-        player.setDashboard(towerColor);
+        player.setDashboard(towerColor, player.getNickname());
 
         int numRep;
         if (numPlayers == 2 || numPlayers == 4){

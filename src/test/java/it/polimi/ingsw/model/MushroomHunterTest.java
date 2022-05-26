@@ -59,8 +59,8 @@ class MushroomHunterTest {
             arrayPlayers[i] = new Player(numPlayers);
         }
 
-        arrayPlayers[0].setDashboard(Color.WHITE);
-        arrayPlayers[1].setDashboard(Color.BLACK);
+        arrayPlayers[0].setDashboard(Color.WHITE, "po");
+        arrayPlayers[1].setDashboard(Color.BLACK, "p1");
 
         island.addStudents(GREEN, 2);
         island.addStudents(BLUE, 1);
@@ -119,10 +119,10 @@ class MushroomHunterTest {
         arrayPlayers[2].setTeamLeader(true);
         arrayPlayers[3].setTeamLeader(false);
 
-        arrayPlayers[0].setDashboard(Color.WHITE);
-        arrayPlayers[1].setDashboard(Color.WHITE);
-        arrayPlayers[2].setDashboard(Color.BLACK);
-        arrayPlayers[3].setDashboard(Color.BLACK);
+        arrayPlayers[0].setDashboard(Color.WHITE, "p0");
+        arrayPlayers[1].setDashboard(Color.WHITE, "p1");
+        arrayPlayers[2].setDashboard(Color.BLACK, "p2");
+        arrayPlayers[3].setDashboard(Color.BLACK, "p3");
 
         island.addStudents(GREEN, 2);
         island.addStudents(BLUE, 1);
@@ -164,8 +164,8 @@ class MushroomHunterTest {
         for (int i=0; i<numPlayers; i++){
             arrayPlayers[i] = new Player(numPlayers);
         }
-        arrayPlayers[0].setDashboard(Color.WHITE);
-        arrayPlayers[1].setDashboard(Color.BLACK);
+        arrayPlayers[0].setDashboard(Color.WHITE, "p0");
+        arrayPlayers[1].setDashboard(Color.BLACK, "p1");
 
         island.addNoEntryTile();
 

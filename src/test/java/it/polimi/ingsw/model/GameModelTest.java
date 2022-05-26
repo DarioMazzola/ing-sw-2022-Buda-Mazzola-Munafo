@@ -74,8 +74,8 @@ class GameModelTest {
      */
     @Test
     void moveStudents_Test() {
-        gm.getArrayPlayers()[0].setDashboard(Color.WHITE);
-        gm.getArrayPlayers()[1].setDashboard(Color.BLACK);
+        gm.getArrayPlayers()[0].setDashboard(Color.WHITE, "p0");
+        gm.getArrayPlayers()[1].setDashboard(Color.BLACK, "p1");
 
         try {
             gm.getArrayPlayers()[0].getDashboard().addStudents(House.YELLOW,1);
@@ -98,8 +98,8 @@ class GameModelTest {
      */
     @Test
     void moveStudents_DashboardToDiningHall_Test() {
-        gm.getArrayPlayers()[0].setDashboard(Color.WHITE);
-        gm.getArrayPlayers()[1].setDashboard(Color.BLACK);
+        gm.getArrayPlayers()[0].setDashboard(Color.WHITE, "p0");
+        gm.getArrayPlayers()[1].setDashboard(Color.BLACK, "p1");
 
         try {
             gm.getArrayPlayers()[0].getDashboard().addStudents(House.YELLOW,3);
@@ -144,8 +144,8 @@ class GameModelTest {
     @Test
     void MoveStudents2_Test() {
         Island to = new Island();
-        gm.getArrayPlayers()[0].setDashboard(Color.WHITE);
-        gm.getArrayPlayers()[1].setDashboard(Color.BLACK);
+        gm.getArrayPlayers()[0].setDashboard(Color.WHITE, "p0");
+        gm.getArrayPlayers()[1].setDashboard(Color.BLACK, "p1");
 
         try {
             gm.getArrayPlayers()[0].getDashboard().addStudents(House.YELLOW, 1);
@@ -186,8 +186,8 @@ class GameModelTest {
     @Test
     void MoveStudents3_Test() {
         Bag from = new Bag();
-        gm.getArrayPlayers()[0].setDashboard(Color.WHITE);
-        gm.getArrayPlayers()[1].setDashboard(Color.BLACK);
+        gm.getArrayPlayers()[0].setDashboard(Color.WHITE, "p0");
+        gm.getArrayPlayers()[1].setDashboard(Color.BLACK, "p1");
 
         for (int i=0; i<120; i++){
             try {
@@ -279,8 +279,8 @@ class GameModelTest {
     @Test
     void refillFromCloud_Test() {
         Cloud c = new Cloud(numPlayers);
-        gm.getArrayPlayers()[0].setDashboard(Color.WHITE);
-        gm.getArrayPlayers()[1].setDashboard(Color.BLACK);
+        gm.getArrayPlayers()[0].setDashboard(Color.WHITE, "p0");
+        gm.getArrayPlayers()[1].setDashboard(Color.BLACK, "p1");
         gm.setCurrentPlayer(0);
 
         try {
@@ -333,7 +333,7 @@ class GameModelTest {
         Player player = new Player(numPlayers);
         Island island = new Island();
 
-        player.setDashboard(towerColor);
+        player.setDashboard(towerColor, "nickname");
         int oldNumTowersPlayer = player.getDashboard().getNumTowers();
         int oldNumTowerIsland = island.getNumTowers();
         try {
@@ -353,7 +353,7 @@ class GameModelTest {
      */
     @Test
     void moveTowersTest_merge10() { // copre ramo 1
-        gm.getArrayPlayers()[0].setDashboard(towerColor);
+        gm.getArrayPlayers()[0].setDashboard(towerColor, "p0");
 
         int oldNumIsland = gm.getNumIslands();
         Map<House, Integer> oldHouseMap0 = new HashMap<>();
@@ -389,7 +389,7 @@ class GameModelTest {
      */
     @Test
     void moveTowersTest_merge10_WithNoEntryTile() { // copre ramo 1
-        gm.getArrayPlayers()[0].setDashboard(towerColor);
+        gm.getArrayPlayers()[0].setDashboard(towerColor, "p0");
 
         int oldNumIsland = gm.getNumIslands();
         Map<House, Integer> oldHouseMap0 = new HashMap<>();
@@ -429,7 +429,7 @@ class GameModelTest {
      */
     @Test
     void moveTowersTest_merge011() { // copre ramo 2
-        gm.getArrayPlayers()[0].setDashboard(towerColor);
+        gm.getArrayPlayers()[0].setDashboard(towerColor, "p0");
 
         int oldNumIsland = gm.getNumIslands();
         Map<House, Integer> oldHouseMap0 = new HashMap<>();
@@ -467,7 +467,7 @@ class GameModelTest {
      */
     @Test
     void moveTowersTest_merge01() { // copre ramo 3
-        gm.getArrayPlayers()[0].setDashboard(towerColor);
+        gm.getArrayPlayers()[0].setDashboard(towerColor, "p0");
 
         int oldNumIsland = gm.getNumIslands(); // per controllare che dopo merge si sia ridotto di 1
         Map<House, Integer> oldHouseMap0 = new HashMap<>();
@@ -506,7 +506,7 @@ class GameModelTest {
      */
     @Test
     void moveTowersTest_merge110() { // copre ramo 4
-        gm.getArrayPlayers()[0].setDashboard(towerColor);
+        gm.getArrayPlayers()[0].setDashboard(towerColor, "p0");
 
         int oldNumIsland = gm.getNumIslands();
         Map<House, Integer> oldHouseMap0 = new HashMap<>();
@@ -553,7 +553,7 @@ class GameModelTest {
      */
     @Test
     void moveTowersTest_NullIslandGiven_ThrowsNullPointerException() {
-        Dashboard dashboard = new Dashboard(towerColor, 7, 8);
+        Dashboard dashboard = new Dashboard(towerColor, 7, 8, "nickname");
         Island island = null;
         NullPointerException thrown = Assertions.assertThrows(NullPointerException.class, () -> gm.moveTowers(dashboard, island, numTowersToMove));
 
@@ -564,7 +564,7 @@ class GameModelTest {
      */
     @Test
     void moveTowersTest_NotEnoughTowersInDashboard_ThrowsEntranceException() {
-        Dashboard dashboard = new Dashboard(towerColor, 7, 8);
+        Dashboard dashboard = new Dashboard(towerColor, 7, 8, "p0");
         Island island = new Island();
 
         TowerAreaException thrown = Assertions.assertThrows(TowerAreaException.class, () -> gm.moveTowers(dashboard, island, 9));
@@ -731,8 +731,8 @@ class GameModelTest {
 
         expertMode = true;
 
-        gm.getArrayPlayers()[0].setDashboard(Color.BLACK);
-        gm.getArrayPlayers()[1].setDashboard(Color.GRAY);
+        gm.getArrayPlayers()[0].setDashboard(Color.BLACK, "p0");
+        gm.getArrayPlayers()[1].setDashboard(Color.GRAY, "p1");
 
         gm.setCurrentPlayer(0);
 
@@ -768,8 +768,8 @@ class GameModelTest {
 
         expertMode = true;
 
-        gm.getArrayPlayers()[0].setDashboard(Color.BLACK);
-        gm.getArrayPlayers()[1].setDashboard(Color.GRAY);
+        gm.getArrayPlayers()[0].setDashboard(Color.BLACK, "p0");
+        gm.getArrayPlayers()[1].setDashboard(Color.GRAY, "p1");
 
         gm.setCurrentPlayer(0);
 
@@ -784,8 +784,8 @@ class GameModelTest {
 
         expertMode = true;
 
-        gm.getArrayPlayers()[0].setDashboard(Color.BLACK);
-        gm.getArrayPlayers()[1].setDashboard(Color.GRAY);
+        gm.getArrayPlayers()[0].setDashboard(Color.BLACK, "p0");
+        gm.getArrayPlayers()[1].setDashboard(Color.GRAY, "p1");
 
         gm.setCurrentPlayer(0);
 
@@ -811,8 +811,8 @@ class GameModelTest {
 
         expertMode = true;
 
-        gm.getArrayPlayers()[0].setDashboard(Color.BLACK);
-        gm.getArrayPlayers()[1].setDashboard(Color.GRAY);
+        gm.getArrayPlayers()[0].setDashboard(Color.BLACK, "p0");
+        gm.getArrayPlayers()[1].setDashboard(Color.GRAY, "p1");
 
         gm.setCurrentPlayer(0);
 
@@ -838,8 +838,8 @@ class GameModelTest {
 
         expertMode = true;
 
-        gm.getArrayPlayers()[0].setDashboard(Color.BLACK);
-        gm.getArrayPlayers()[1].setDashboard(Color.GRAY);
+        gm.getArrayPlayers()[0].setDashboard(Color.BLACK, "p0");
+        gm.getArrayPlayers()[1].setDashboard(Color.GRAY, "p1");
 
         gm.setCurrentPlayer(0);
 
@@ -882,8 +882,8 @@ class GameModelTest {
 
         expertMode = true;
 
-        gm.getArrayPlayers()[0].setDashboard(Color.BLACK);
-        gm.getArrayPlayers()[1].setDashboard(Color.GRAY);
+        gm.getArrayPlayers()[0].setDashboard(Color.BLACK, "p0");
+        gm.getArrayPlayers()[1].setDashboard(Color.GRAY, "p1");
 
         gm.setCurrentPlayer(0);
 
@@ -895,8 +895,8 @@ class GameModelTest {
 
         expertMode = true;
 
-        gm.getArrayPlayers()[0].setDashboard(Color.BLACK);
-        gm.getArrayPlayers()[1].setDashboard(Color.GRAY);
+        gm.getArrayPlayers()[0].setDashboard(Color.BLACK, "p0");
+        gm.getArrayPlayers()[1].setDashboard(Color.GRAY, "p1");
 
         gm.setCurrentPlayer(0);
 
@@ -918,8 +918,8 @@ class GameModelTest {
 
         expertMode = true;
 
-        gm.getArrayPlayers()[0].setDashboard(Color.BLACK);
-        gm.getArrayPlayers()[1].setDashboard(Color.GRAY);
+        gm.getArrayPlayers()[0].setDashboard(Color.BLACK, "p0");
+        gm.getArrayPlayers()[1].setDashboard(Color.GRAY, "p1");
 
         gm.setCurrentPlayer(0);
 
@@ -942,8 +942,8 @@ class GameModelTest {
 
         expertMode = true;
 
-        gm.getArrayPlayers()[0].setDashboard(Color.BLACK);
-        gm.getArrayPlayers()[1].setDashboard(Color.GRAY);
+        gm.getArrayPlayers()[0].setDashboard(Color.BLACK, "p0");
+        gm.getArrayPlayers()[1].setDashboard(Color.GRAY, "p1");
 
         gm.setCurrentPlayer(0);
         assertThrows(TotalCoinsException.class, () ->gm.removeCoins(50));
@@ -955,8 +955,8 @@ class GameModelTest {
 
         expertMode = true;
 
-        gm.getArrayPlayers()[0].setDashboard(Color.BLACK);
-        gm.getArrayPlayers()[1].setDashboard(Color.GRAY);
+        gm.getArrayPlayers()[0].setDashboard(Color.BLACK, "p0");
+        gm.getArrayPlayers()[1].setDashboard(Color.GRAY, "p1");
 
         gm.setCurrentPlayer(0);
 
@@ -978,8 +978,8 @@ class GameModelTest {
 
         expertMode = true;
 
-        gm.getArrayPlayers()[0].setDashboard(Color.BLACK);
-        gm.getArrayPlayers()[1].setDashboard(Color.GRAY);
+        gm.getArrayPlayers()[0].setDashboard(Color.BLACK, "p0");
+        gm.getArrayPlayers()[1].setDashboard(Color.GRAY, "p1");
 
         gm.setCurrentPlayer(0);
 

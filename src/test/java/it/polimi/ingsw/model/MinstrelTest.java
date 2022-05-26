@@ -23,7 +23,7 @@ class MinstrelTest {
 
         minstrel = new Minstrel();
         currentPlayer = new Player(2);
-        currentPlayer.setDashboard(Color.BLACK);
+        currentPlayer.setDashboard(Color.BLACK, "currentPlayer");
 
         fromDashboardMap = new HashMap<>();
         fromDiningHallMap = new HashMap<>();

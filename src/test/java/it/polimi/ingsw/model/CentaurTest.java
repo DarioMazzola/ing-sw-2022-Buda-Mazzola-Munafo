@@ -54,8 +54,8 @@ class CentaurTest {
             arrayPlayers[i] = new Player(numPlayers);
         }
 
-        arrayPlayers[0].setDashboard(Color.WHITE);
-        arrayPlayers[1].setDashboard(Color.BLACK);
+        arrayPlayers[0].setDashboard(Color.WHITE, "p0");
+        arrayPlayers[1].setDashboard(Color.BLACK, "p1");
 
         island.addTowers(2);
         island.setTowerColor(arrayPlayers[0].getDashboard().getTowerColor());
@@ -81,8 +81,8 @@ class CentaurTest {
             arrayPlayers[i] = new Player(numPlayers);
         }
 
-        arrayPlayers[0].setDashboard(Color.WHITE);
-        arrayPlayers[1].setDashboard(Color.BLACK);
+        arrayPlayers[0].setDashboard(Color.WHITE, "p0");
+        arrayPlayers[1].setDashboard(Color.BLACK, "p1");
 
         island.addTowers(2);
         island.setTowerColor(arrayPlayers[0].getDashboard().getTowerColor());
@@ -115,10 +115,10 @@ class CentaurTest {
         arrayPlayers[2].setTeamLeader(true);
         arrayPlayers[3].setTeamLeader(false);
 
-        arrayPlayers[0].setDashboard(Color.WHITE);
-        arrayPlayers[1].setDashboard(Color.WHITE);
-        arrayPlayers[2].setDashboard(Color.BLACK);
-        arrayPlayers[3].setDashboard(Color.BLACK);
+        arrayPlayers[0].setDashboard(Color.WHITE, "p0");
+        arrayPlayers[1].setDashboard(Color.WHITE, "p1");
+        arrayPlayers[2].setDashboard(Color.BLACK, "p2");
+        arrayPlayers[3].setDashboard(Color.BLACK, "p3");
 
         island.addTowers(2);
         island.setTowerColor(arrayPlayers[1].getDashboard().getTowerColor());
@@ -162,10 +162,10 @@ class CentaurTest {
         arrayPlayers[2].setTeamLeader(true);
         arrayPlayers[3].setTeamLeader(false);
 
-        arrayPlayers[0].setDashboard(Color.WHITE);
-        arrayPlayers[1].setDashboard(Color.WHITE);
-        arrayPlayers[2].setDashboard(Color.BLACK);
-        arrayPlayers[3].setDashboard(Color.BLACK);
+        arrayPlayers[0].setDashboard(Color.WHITE, "p0");
+        arrayPlayers[1].setDashboard(Color.WHITE, "p1");
+        arrayPlayers[2].setDashboard(Color.BLACK, "p2");
+        arrayPlayers[3].setDashboard(Color.BLACK, "p3");
 
         island.addTowers(2);
         island.setTowerColor(arrayPlayers[2].getDashboard().getTowerColor());
@@ -193,8 +193,8 @@ class CentaurTest {
             arrayPlayers[i] = new Player(numPlayers);
         }
 
-        arrayPlayers[0].setDashboard(Color.WHITE);
-        arrayPlayers[1].setDashboard(Color.BLACK);
+        arrayPlayers[0].setDashboard(Color.WHITE, "p0");
+        arrayPlayers[1].setDashboard(Color.BLACK, "p1");
 
         island.addNoEntryTile();
 

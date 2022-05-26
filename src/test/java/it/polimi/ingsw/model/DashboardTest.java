@@ -21,7 +21,7 @@ class DashboardTest {
 
     @BeforeEach
     public void setup(){
-        dashboard = new Dashboard(Color.BLACK, 7, 5);
+        dashboard = new Dashboard(Color.BLACK, 7, 5, "nickname");
     }
 
     /**

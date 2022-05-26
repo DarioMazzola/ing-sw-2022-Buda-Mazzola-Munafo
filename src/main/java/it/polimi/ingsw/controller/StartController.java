@@ -2,8 +2,6 @@ package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.messages.command.*;
 import it.polimi.ingsw.model.*;
-import it.polimi.ingsw.server.ClientHandler;
-import it.polimi.ingsw.view.VirtualView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -133,14 +131,14 @@ public class StartController {
                 } else {
                     if (gm.getNumPlayers() == 4) {
                         if (leaderArray[0].equals(messageReceived.getNickname())) {
-                            gm.getPlayerByNickname(leaderArray[0]).setDashboard(colorTower);
-                            gm.getPlayerByNickname(teamArray[0]).setDashboard(colorTower);
+                            gm.getPlayerByNickname(leaderArray[0]).setDashboard(colorTower, leaderArray[0]);
+                            gm.getPlayerByNickname(teamArray[0]).setDashboard(colorTower, teamArray[0]);
                         } else {
-                            gm.getPlayerByNickname(leaderArray[1]).setDashboard(colorTower);
-                            gm.getPlayerByNickname(teamArray[1]).setDashboard(colorTower);
+                            gm.getPlayerByNickname(leaderArray[1]).setDashboard(colorTower, leaderArray[1]);
+                            gm.getPlayerByNickname(teamArray[1]).setDashboard(colorTower, teamArray[1]);
                         }
                     } else {
-                        gm.getPlayerByNickname(messageReceived.getNickname()).setDashboard(colorTower);
+                        gm.getPlayerByNickname(messageReceived.getNickname()).setDashboard(colorTower, messageReceived.getNickname());
                     }
                     availableTowers.remove(colorTower);
                 }

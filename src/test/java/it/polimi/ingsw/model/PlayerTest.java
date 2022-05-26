@@ -211,21 +211,21 @@ class PlayerTest {
     void setDashboardTest () {
         player = new Player(2);
         player.setTeamLeader(false);
-        player.setDashboard(color);
+        player.setDashboard(color, "p");
         assertEquals(color, player.getDashboard().getTowerColor());
         assertEquals(7, player.getDashboard().getNumMaxStudents());
         assertEquals(8, player.getDashboard().getNumTowers());
 
         player = new Player(3);
         player.setTeamLeader(false);
-        player.setDashboard(color);
+        player.setDashboard(color, "p");
         assertEquals(color, player.getDashboard().getTowerColor());
         assertEquals(9, player.getDashboard().getNumMaxStudents());
         assertEquals(6, player.getDashboard().getNumTowers());
 
         player = new Player(4);
         player.setTeamLeader(true);
-        player.setDashboard(color);
+        player.setDashboard(color, "p");
         assertEquals(color, player.getDashboard().getTowerColor());
         assertEquals(7, player.getDashboard().getNumMaxStudents());
         assertEquals(8, player.getDashboard().getNumTowers());
@@ -234,7 +234,7 @@ class PlayerTest {
 
         player = new Player(4);
         player.setTeamLeader(false);
-        player.setDashboard(color);
+        player.setDashboard(color, "p");
         assertEquals(color, player.getDashboard().getTowerColor());
         assertEquals(7, player.getDashboard().getNumMaxStudents());
         assertEquals(0, player.getDashboard().getNumTowers());

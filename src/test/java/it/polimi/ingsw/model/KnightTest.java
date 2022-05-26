@@ -59,8 +59,8 @@ class KnightTest {
             arrayPlayers[i] = new Player(numPlayers);
         }
 
-        arrayPlayers[0].setDashboard(Color.WHITE);
-        arrayPlayers[1].setDashboard(Color.BLACK);
+        arrayPlayers[0].setDashboard(Color.WHITE, "p0");
+        arrayPlayers[1].setDashboard(Color.BLACK, "p1");
 
         island.addStudents(GREEN, 1);
         arrayPlayers[1].getDashboard().addProf(GREEN);
@@ -99,8 +99,8 @@ class KnightTest {
             arrayPlayers[i] = new Player(numPlayers);
         }
 
-        arrayPlayers[0].setDashboard(Color.WHITE);
-        arrayPlayers[1].setDashboard(Color.BLACK);
+        arrayPlayers[0].setDashboard(Color.WHITE, "p0");
+        arrayPlayers[1].setDashboard(Color.BLACK, "p1");
 
         island.addStudents(GREEN, 1);
         arrayPlayers[0].getDashboard().addProf(GREEN);
@@ -147,10 +147,10 @@ class KnightTest {
         arrayPlayers[2].setTeamLeader(true);
         arrayPlayers[3].setTeamLeader(false);
 
-        arrayPlayers[0].setDashboard(Color.WHITE);
-        arrayPlayers[1].setDashboard(Color.WHITE);
-        arrayPlayers[2].setDashboard(Color.BLACK);
-        arrayPlayers[3].setDashboard(Color.BLACK);
+        arrayPlayers[0].setDashboard(Color.WHITE, "p0");
+        arrayPlayers[1].setDashboard(Color.WHITE, "p1");
+        arrayPlayers[2].setDashboard(Color.BLACK, "p2");
+        arrayPlayers[3].setDashboard(Color.BLACK, "p3");
 
         island.addStudents(GREEN, 1);
         arrayPlayers[2].getDashboard().addProf(GREEN);
@@ -197,8 +197,8 @@ class KnightTest {
             arrayPlayers[i] = new Player(numPlayers);
         }
 
-        arrayPlayers[0].setDashboard(Color.WHITE);
-        arrayPlayers[1].setDashboard(Color.BLACK);
+        arrayPlayers[0].setDashboard(Color.WHITE, "p0");
+        arrayPlayers[1].setDashboard(Color.BLACK, "p1");
 
         island.addNoEntryTile();
 

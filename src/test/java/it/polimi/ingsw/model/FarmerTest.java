@@ -27,8 +27,8 @@ class FarmerTest {
         currentPlayer = new Player(numPlayers);
         otherPlayer = new Player(numPlayers);
 
-        currentPlayer.setDashboard(Color.BLACK);
-        otherPlayer.setDashboard(Color.GRAY);
+        currentPlayer.setDashboard(Color.BLACK, "currentPlayer");
+        otherPlayer.setDashboard(Color.GRAY, "otherPlayeer");
 
         players = new Player[2];
 

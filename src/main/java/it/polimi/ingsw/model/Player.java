@@ -195,7 +195,7 @@ public class Player extends Observable {
      *
      * @param towerColor player's tower color
      */
-    public void setDashboard(Color towerColor) {
+    public void setDashboard(Color towerColor, String nickname) {
         if (this.dashboard != null) {
             return;
         }
@@ -218,7 +218,7 @@ public class Player extends Observable {
                      numMaxTowers = 0; }
         }
 
-        this.dashboard = new Dashboard(towerColor, numMaxStudents, numMaxTowers);
+        this.dashboard = new Dashboard(towerColor, numMaxStudents, numMaxTowers, nickname);
 
         notifyObserver(new UpdatePlayer(new ReducedPlayer(this)));
     }

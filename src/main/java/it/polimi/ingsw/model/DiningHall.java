@@ -22,7 +22,9 @@ public class DiningHall extends Observable implements StudentModifierInterface {
     /**
      * Dining hall class constructor: initializes the students' number from each house to zero
      */
-    public DiningHall(){
+    public DiningHall(String nickname){
+
+        this.owner = nickname;
         tableOccupation = new HashMap<>();
 
         for(House h : values())

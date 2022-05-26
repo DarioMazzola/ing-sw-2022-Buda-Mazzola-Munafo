@@ -41,7 +41,7 @@ public class Dashboard extends Observable implements StudentModifierInterface {
      * @param numMaxTowers Maximum number of towers present at the Tower Area
      * @throws NullPointerException If the color of the towers given as parameter is a null value
      */
-    public Dashboard(Color towerColor, int numMaxStudents, int numMaxTowers) throws NullPointerException{
+    public Dashboard(Color towerColor, int numMaxStudents, int numMaxTowers, String nickname) throws NullPointerException{
 
         if(towerColor == null)
             throw new NullPointerException("The tower color given is null");
@@ -62,7 +62,8 @@ public class Dashboard extends Observable implements StudentModifierInterface {
         numTowersIn = numMaxTowers;
         this.towerColor = towerColor;
 
-        this.diningHall = new DiningHall();
+        this.diningHall = new DiningHall(nickname);
+        this.owner = nickname;
 
         notifyObserver(new UpdateDashboard(new ReducedDashboard(this)));
     }

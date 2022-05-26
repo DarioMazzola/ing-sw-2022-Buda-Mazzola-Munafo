@@ -39,7 +39,7 @@ public class SpoiledPrincessTest {
             fail();
         }
         currentPlayer = new Player(numPlayers);
-        currentPlayer.setDashboard(Color.WHITE);
+        currentPlayer.setDashboard(Color.WHITE, "currentPlayer");
     }
 
     /**

@@ -35,8 +35,8 @@ class CharacterCardTest {
         currentPlayer = new Player(numPlayers);
         otherPlayer = new Player(numPlayers);
 
-        currentPlayer.setDashboard(Color.BLACK);
-        otherPlayer.setDashboard(Color.GRAY);
+        currentPlayer.setDashboard(Color.BLACK, "currentPlayer");
+        otherPlayer.setDashboard(Color.GRAY, "otherPlayer");
 
         players = new Player[2];
 
@@ -279,8 +279,8 @@ class CharacterCardTest {
      */
     @Test
     void moveProfTest() {
-        Dashboard from = new Dashboard(Color.BLACK, 5, 7);
-        Dashboard to = new Dashboard(Color.BLACK, 5, 7);
+        Dashboard from = new Dashboard(Color.BLACK, 5, 7, "from");
+        Dashboard to = new Dashboard(Color.BLACK, 5, 7, "to");
 
         from.addProf(houseColor);
 
@@ -606,10 +606,10 @@ class CharacterCardTest {
         players[2] = p2;
         players[3] = p3;
 
-        p0.setDashboard(Color.BLACK);
-        p1.setDashboard(Color.BLACK);
-        p2.setDashboard(Color.GRAY);
-        p3.setDashboard(Color.GRAY);
+        p0.setDashboard(Color.BLACK, "p0");
+        p1.setDashboard(Color.BLACK, "p1");
+        p2.setDashboard(Color.GRAY, "p2");
+        p3.setDashboard(Color.GRAY, "p3");
     }
 
     @AfterEach

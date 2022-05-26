@@ -14,7 +14,7 @@ class DiningHallTest {
 
     @BeforeEach
     void setup(){
-        diningHall = new DiningHall();
+        diningHall = new DiningHall("Nickname");
     }
 
     @Test
