@@ -73,6 +73,9 @@ public class TurnController {
                 }
                 System.out.println("2");
                 if (phase == WIZARD) {
+
+                    addObservers();
+
                     System.out.println("2.1");
                     System.out.println("mando select wizard");
                     setIsGameStarted(true);
@@ -108,6 +111,7 @@ public class TurnController {
      */
     public void init() throws EntranceException, BagException {
         gm = new GameModel(setupController.getNumPlayer(), setupController.isExpertMode());
+
         gm.getArrayPlayers()[0].setNickname(setupController.getNickname());
 
         startController = new StartController(gm, this);
@@ -142,6 +146,8 @@ public class TurnController {
 
         virtualViewMap.put(nickname, virtualView);
         queue.add(nickname);
+
+        gm.addObserver(virtualView);
     }
 
     public boolean isGameStarted() {
@@ -227,6 +233,24 @@ public class TurnController {
 
     public boolean gameModelExists(){
         return gm != null;
+    }
+
+    private void addObservers(){
+        for(String nickname : virtualViewMap.keySet()){
+            VirtualView vv = virtualViewMap.get(nickname);
+
+            for(Cloud c : gm.getArrayClouds())
+                c.addObserver(vv);
+
+            for(Player p : gm.getArrayPlayers()) {
+                p.addObserver(vv);
+                p.getDashboard().addObserver(vv);
+                p.getDashboard().getDiningHall().addObserver(vv);
+            }
+
+            for(Island i : gm.getIslandList())
+                i.addObserver(vv);
+        }
     }
 }
 
