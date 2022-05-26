@@ -25,11 +25,6 @@ public interface View {
     void notifyGameFull();
 
     /**
-     * Asks a nickname to the player to create a new game and notifies the observers.
-     */
-    void createNewGame();
-
-    /**
      * Asks a nickname to the player and notifies the observers.
      */
     void selectNickname();
