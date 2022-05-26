@@ -45,6 +45,8 @@ public class Player extends Observable {
         if (numPlayers<2 || numPlayers>4)
             throw new IllegalArgumentException("Number of players must between 2 and 4");
         this.numPlayers = numPlayers;
+
+        notifyObserver(new UpdatePlayer(new ReducedPlayer(this)));
     }
 
     /**
