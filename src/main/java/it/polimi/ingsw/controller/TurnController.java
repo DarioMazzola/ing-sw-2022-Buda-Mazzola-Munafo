@@ -114,6 +114,10 @@ public class TurnController {
 
         gm.getArrayPlayers()[0].setNickname(setupController.getNickname());
 
+        initializeClouds();
+        initializeIslands();
+        initializePlayers();
+
         startController = new StartController(gm, this);
         actionController = new ActionController(gm, this);
         planningController = new PlanningController(gm, this);
@@ -250,6 +254,36 @@ public class TurnController {
 
             for(Island i : gm.getIslandList())
                 i.addObserver(vv);
+        }
+    }
+
+    private void initializeIslands(){
+        for (Island i : gm.getIslandList()){
+            try {
+                gm.moveStudents(gm.getBag(), i, 1);
+            } catch (BagException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void initializeClouds(){
+        for (Cloud c : gm.getArrayClouds()){
+            try {
+                gm.moveStudents(gm.getBag(), c, c.getNumMaxStud());
+            } catch (BagException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void initializePlayers(){
+        for (Player p : gm.getArrayPlayers()){
+            try {
+                gm.moveStudents(gm.getBag(), p.getDashboard(), p.getDashboard().getNumMaxStudents());
+            } catch (BagException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
