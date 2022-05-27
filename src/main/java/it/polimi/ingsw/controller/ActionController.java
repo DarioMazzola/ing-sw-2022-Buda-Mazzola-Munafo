@@ -126,7 +126,7 @@ public class ActionController {
                 }
 
                 tc.next_State(END_TURN);
-                tc.getVirtualViewMap().get(messageReceived.getNickname()).selectCloud(tc.getAvailableClouds());
+                tc.getVirtualViewMap().get(messageReceived.getNickname()).selectCloud();
                 break;
         }
     }

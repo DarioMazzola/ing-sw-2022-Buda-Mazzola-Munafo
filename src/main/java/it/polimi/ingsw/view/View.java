@@ -82,9 +82,8 @@ public interface View {
     /**
      * Asks the player to choose a cloud among the ones still available and notifies the observers.
      *
-     * @param availableClouds all the available clouds
      */
-    void selectCloud(List<Integer> availableClouds);
+    void selectCloud();
 
     /**
      * Puts the player in the waiting room.

@@ -146,8 +146,8 @@ public class VirtualView implements View, Observer{
      *
      * @param availableClouds the available cloud.
      */
-    public void selectCloud(List<Integer> availableClouds){
-        clientHandler.sendAnswerMessage(new SelectCloud(availableClouds));
+    public void selectCloud(){
+        clientHandler.sendAnswerMessage(new SelectCloud());
     }
 
     /**
