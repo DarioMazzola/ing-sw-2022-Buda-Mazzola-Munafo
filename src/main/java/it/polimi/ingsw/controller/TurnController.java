@@ -111,7 +111,6 @@ public class TurnController {
 
         gm.getArrayPlayers()[0].setNickname(setupController.getNickname());
 
-        initializeClouds();
         initializeIslands();
 
         startController = new StartController(gm, this);
@@ -263,16 +262,6 @@ public class TurnController {
         }
     }
 
-    private void initializeClouds(){
-        for (Cloud c : gm.getArrayClouds()){
-            try {
-                gm.moveStudents(gm.getBag(), c, c.getNumMaxStud());
-            } catch (BagException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
     private void initializePlayers(){
         for (Player p : gm.getArrayPlayers()){
             try {
@@ -286,6 +275,10 @@ public class TurnController {
     public void checkIfFull(){
         if (virtualViewMap.size() == gm.getNumPlayers()) {
             System.out.println("2.1");
+            while (freeSpots != 0){
+                gm.getArrayPlayers()[gm.getNumPlayers() - freeSpots].setNickname(queue.get(gm.getNumPlayers() - freeSpots));
+                freeSpots--;
+            }
             setIsGameStarted(true);
             sendAllSelectWizard(Arrays.asList(Wizard.values()));
         }
