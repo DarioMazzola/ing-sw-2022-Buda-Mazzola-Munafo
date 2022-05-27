@@ -20,7 +20,7 @@ public class ReducedPlayer {
     private final int maxMoves;
     private final Card graveyard;
     private final int coins;
-    private final ReducedDashboard dashboard;
+    private ReducedDashboard dashboard;
 
     public ReducedPlayer(Player p){
         nickname = p.getNickname();
@@ -83,5 +83,9 @@ public class ReducedPlayer {
 
     public ReducedDashboard getDashboard () {
         return dashboard;
+    }
+
+    public void setDashboard(ReducedDashboard dashboard) {
+        this.dashboard = dashboard;
     }
 }
