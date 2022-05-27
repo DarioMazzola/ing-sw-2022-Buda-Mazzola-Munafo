@@ -38,7 +38,6 @@ public class Island extends Observable implements StudentAdderInterface {
         numTowers = 0;
         noEntryTile = 0;
 
-        notifyObserver(new UpdateIsland(new ReducedIsland(this)));
     }
 
     /**
@@ -57,7 +56,6 @@ public class Island extends Observable implements StudentAdderInterface {
         value = value + numStudents;
         houseMap.replace(house, value);
 
-        notifyObserver(new UpdateIsland(new ReducedIsland(this)));
     }
 
     /**
@@ -93,7 +91,6 @@ public class Island extends Observable implements StudentAdderInterface {
         }
         this.towerColor = color;
 
-        notifyObserver(new UpdateIsland(new ReducedIsland(this)));
     }
 
     public int getNumTowers(){
@@ -107,7 +104,6 @@ public class Island extends Observable implements StudentAdderInterface {
     public void addTowers(int TowersNumber){
         this.numTowers = this.numTowers + TowersNumber;
 
-        notifyObserver(new UpdateIsland(new ReducedIsland(this)));
     }
 
     public boolean isNoEntryTilePresent(){
@@ -119,8 +115,6 @@ public class Island extends Observable implements StudentAdderInterface {
      */
     public void addNoEntryTile(){
         this.noEntryTile += 1;
-
-        notifyObserver(new UpdateIsland(new ReducedIsland(this)));
     }
 
     /**
@@ -130,8 +124,6 @@ public class Island extends Observable implements StudentAdderInterface {
     public void removeNoEntryTile() throws noEntryTileException{
         if (this.noEntryTile < 1){throw new noEntryTileException("There aren't noEntryTiles on this island");}
         this.noEntryTile -= 1;
-
-        notifyObserver(new UpdateIsland(new ReducedIsland(this)));
     }
 
     public int getNoEntryTile(){
