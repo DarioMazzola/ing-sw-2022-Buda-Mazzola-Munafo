@@ -41,7 +41,7 @@ public class EndTurnController{
             }
         } else {
             tc.getVirtualViewMap().get(messageReceived.getNickname()).showError(INVALID_CLOUD.toString());
-            tc.getVirtualViewMap().get(messageReceived.getNickname()).selectCloud(tc.getAvailableClouds());
+            tc.getVirtualViewMap().get(messageReceived.getNickname()).selectCloud();
             return;
         }
 

@@ -42,7 +42,6 @@ public class Cloud extends Observable implements StudentModifierInterface {
             numMaxStud = 4;}
         full = false;
 
-        notifyObserver(new UpdateCloud(new ReducedCloud(this)));
     }
 
     /**
@@ -85,8 +84,6 @@ public class Cloud extends Observable implements StudentModifierInterface {
         if (sum == numMaxStud) {
             full = true;
         }
-
-        notifyObserver(new UpdateCloud(new ReducedCloud(this)));
     }
 
     /**
@@ -115,7 +112,6 @@ public class Cloud extends Observable implements StudentModifierInterface {
         houseMap.replace(house, houseMap.get(house) - numStudents);
         full = false;
 
-        notifyObserver(new UpdateCloud(new ReducedCloud(this)));
     }
 
     public boolean isFull(){

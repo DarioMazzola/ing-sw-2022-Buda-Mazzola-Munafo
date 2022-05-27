@@ -144,10 +144,9 @@ public class VirtualView implements View, Observer{
      * Sends a message from the server to the client to notify that
      * the player has to select a cloud.
      *
-     * @param availableClouds the available cloud.
      */
-    public void selectCloud(List<Integer> availableClouds){
-        clientHandler.sendAnswerMessage(new SelectCloud(availableClouds));
+    public void selectCloud(){
+        clientHandler.sendAnswerMessage(new SelectCloud());
     }
 
     /**

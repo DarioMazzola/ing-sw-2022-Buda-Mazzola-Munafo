@@ -2,6 +2,8 @@ package it.polimi.ingsw.messages.answer;
 
 import it.polimi.ingsw.client.ReducedCloud;
 
+import java.util.List;
+
 import static it.polimi.ingsw.messages.MessageType.UPDATE_CLOUD;
 
 /**
@@ -11,19 +13,19 @@ import static it.polimi.ingsw.messages.MessageType.UPDATE_CLOUD;
  */
 public class UpdateCloud extends AnswerMessage{
 
-    private final ReducedCloud cloud;
+    private final ReducedCloud[] clouds;
 
     /**
      * Class constructor.
      *
-     * @param cloud the cloud to send
+     * @param clouds the cloud to send
      */
-    public UpdateCloud(ReducedCloud cloud) {
+    public UpdateCloud(ReducedCloud[] clouds) {
         super(UPDATE_CLOUD);
-        this.cloud = cloud;
+        this.clouds = clouds;
     }
 
-    public ReducedCloud getCloud() {
-        return cloud;
+    public ReducedCloud[] getClouds() {
+        return clouds;
     }
 }

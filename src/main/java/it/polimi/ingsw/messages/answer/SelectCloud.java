@@ -14,19 +14,11 @@ import static it.polimi.ingsw.messages.MessageType.SELECT_CLOUD;
  */
 public class SelectCloud extends AnswerMessage{
 
-    private final List<Integer> cloudList;
-
     /**
      * Message constructor
-     *
-     * @param cloudList The list of the cloud available for this round
      */
-    public SelectCloud(List<Integer> cloudList) {
+    public SelectCloud() {
         super(SELECT_CLOUD);
-        this.cloudList = cloudList;
     }
 
-    public List<Integer> getCloudList() {
-        return cloudList;
-    }
 }
