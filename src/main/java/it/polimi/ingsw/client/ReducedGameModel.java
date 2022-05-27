@@ -61,8 +61,8 @@ public class ReducedGameModel {
         motherIsland = value;
     }
 
-    public void setPlayer (int position, ReducedPlayer p){
-        arrayPlayers[position] = p;
+    public void setPlayer (int index, ReducedPlayer p){
+        arrayPlayers[index] = p;
     }
 
     public void setIslandList (List<ReducedIsland> islands){
