@@ -1,11 +1,7 @@
 package it.polimi.ingsw.view;
 
-import it.polimi.ingsw.client.ReducedCharacterCard;
-import it.polimi.ingsw.client.ReducedCloud;
-import it.polimi.ingsw.client.ReducedIsland;
-import it.polimi.ingsw.client.ReducedPlayer;
+import it.polimi.ingsw.client.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 public interface UI extends View{
@@ -23,13 +19,6 @@ public interface UI extends View{
     void updateIslands(List<ReducedIsland> islands);
 
     /**
-     * Updates the given character card with an updated version.
-     *
-     * @param characterCard the updated version of the character card
-     */
-    void updateCharacterCard(ReducedCharacterCard characterCard);
-
-    /**
      * Updates the given player with an updated version.
      *
      * @param player the updated version of the player
@@ -41,7 +30,7 @@ public interface UI extends View{
      *
      * @param clouds the updated version of the array of clouds
      */
-    void updateCloud (ReducedCloud[] clouds);
+    void updateClouds(ReducedCloud[] clouds);
 
     /**
      * Updates the total number of coins in the game model.
@@ -60,7 +49,28 @@ public interface UI extends View{
     /**
      * Updates current player in game model.
      *
-     * @param player the updated current player
+     * @param currentPlayer the updated current player
      */
-    void updateCurrentPlayer(ReducedPlayer player);
+    void updateCurrentPlayer(ReducedPlayer currentPlayer);
+
+    /**
+     * Updates the dining hall of the player identified by the nickname (attribute of dining hall).
+     *
+     * @param diningHall the updated version of the dining hall
+     */
+    void updateDiningHall(ReducedDiningHall diningHall);
+
+    /**
+     * Updates the dashboard of the player identified by the nickname (attribute of dashboard).
+     *
+     * @param dashboard the updated version of the dining hall
+     */
+    void updateDashboard(ReducedDashboard dashboard);
+
+    /**
+     * Updates the game model.
+     *
+     * @param gameModel the updated version of the game model
+     */
+    void updateGameModel(ReducedGameModel gameModel);
 }
