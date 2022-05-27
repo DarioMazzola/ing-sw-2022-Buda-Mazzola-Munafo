@@ -146,7 +146,6 @@ public class TurnController {
         virtualViewMap.put(nickname, virtualView);
         queue.add(nickname);
 
-        gm.addObserver(virtualView);
     }
 
     public boolean isGameStarted() {
@@ -222,7 +221,7 @@ public class TurnController {
             view.selectNickname();
             return false;
         }
-         else if (queue.contains(nickname)) {
+        else if (queue.contains(nickname)) {
             view.showError(NICKNAME_TAKEN.toString());
             view.selectNickname();
             return false;
@@ -249,6 +248,8 @@ public class TurnController {
 
             for(Island i : gm.getIslandList())
                 i.addObserver(vv);
+
+            gm.addObserver(vv);
         }
     }
 
