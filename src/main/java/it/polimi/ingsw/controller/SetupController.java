@@ -65,6 +65,9 @@ public class SetupController{
                 tc.next_State(START);
                 tc.next_Phase(WIZARD);
                 break;
+
+            default:
+                System.err.println("Error in SetupController switch");
         }
     }
 
