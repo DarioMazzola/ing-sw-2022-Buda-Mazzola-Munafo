@@ -17,7 +17,7 @@ import static it.polimi.ingsw.messages.TypeOfError.*;
 
 /**
  * Class representing the action controller
- * @author Gabriele Munafo'
+ * @author Gabriele Munafo' & Dario Mazzola
  */
 public class ActionController {
     private final GameModel gm;
@@ -94,7 +94,8 @@ public class ActionController {
                     tc.getVirtualViewMap().get(messageReceived.getNickname()).actionPhase(availableActions);
                     break;
                 }
-                //selectCharacterCardHandler(messageReceived);
+
+                selectCharacterCardHandler(messageReceived);
 
                 usedCharacterCard = true;
                 availableActions.remove("SelectCharacterCard");
@@ -108,7 +109,7 @@ public class ActionController {
                 }
                 moveMotherHandler(messageReceived);
 
-                //reinizializzo variabili di controllo
+                //initialize variables for next turn
                 resetActions();
                 usedCharacterCard = false;
                 studentsMoved = 0;
@@ -128,13 +129,31 @@ public class ActionController {
                 tc.next_State(END_TURN);
                 tc.getVirtualViewMap().get(messageReceived.getNickname()).selectCloud();
                 break;
+
+            default:
+                System.err.println("Error in ActionController switch");
         }
     }
 
-    //todo rivedere tutte le funzioni
 
     public String toString(){
         return "Action Controller";
+    }
+
+    private void selectCharacterCardHandler(CommandMessage message){
+
+        Map<String, Object> map = ((ChosenCharacterCard)message).getMap();
+
+        int numCCard = ((ChosenCharacterCard)message).getCardIndex();
+        CharacterCard card = gm.getCharacterCardDeck()[numCCard];
+
+        Map<String, Object> parameters = chooseCharacterCard(card, map);
+
+        try {
+            gm.useCharacterCard(numCCard, parameters);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -142,9 +161,8 @@ public class ActionController {
      * @param card the character card used
      * @param map the map containing parameters useful for the character card
      */
-    private void chooseCharacterCard(CharacterCard card, Map<String, Object> map){
+    private Map<String, Object> chooseCharacterCard(CharacterCard card, Map<String, Object> map){
         Map<String, Object> parameters = new HashMap<>();
-
         CharacterCardEnum cardType = card.getType();
 
         switch (cardType) {
@@ -154,7 +172,7 @@ public class ActionController {
                 if((Integer)map.get("method") == 1){
                     parameters.put("method", "getStudents");
                 }
-                else {
+                else if((Integer)map.get("method") == 2){
                     if(map.get("wantedHouse") == null)
                         throw new IllegalArgumentException("Wanted house not indicated");
                     if(map.get("destinationIsland") == null)
@@ -164,7 +182,10 @@ public class ActionController {
                     parameters.put("destinationIsland", map.get("island"));
                     parameters.put("bag", gm.getBag());
                 }
+                else
+                    throw new IllegalArgumentException("Not valid method given");
                 break;
+
             case HERALD:
                 if(map.get("island") == null)
                     throw new IllegalArgumentException("Island in which to calculate the influence not indicated");
@@ -174,18 +195,29 @@ public class ActionController {
                 parameters.put("NumPlayers", gm.getNumPlayers());
                 parameters.put("CharacterCardDeck", gm.getCharacterCardDeck());
                 break;
+
             case HERB_GRANMA:
                 if(map.get("island") == null)
                     throw new IllegalArgumentException("Island in which to place the NoEntryTile not indicated");
+                if((Integer)map.get("method") == 1)
+                    parameters.put("method", "addNoEntryTile");
+                else if((Integer)map.get("method") == 2)
+                    parameters.put("method", "removeNoEntryTile");
+                else if((Integer)map.get("method") == 3)
+                    parameters.put("method", "getNoEntryTileNumber");
+                else
+                    throw new IllegalArgumentException("Not valid method given");
+
                 parameters.put("Island", map.get("island"));
                 break;
+
             case JOLLY:
                 if(map.get("method") == null)
                     throw new IllegalArgumentException("Method to use not indicated");
                 if((Integer)map.get("method") == 1){
                     parameters.put("method", "getStudents");
                 }
-                else {
+                else if((Integer)map.get("method") == 2){
                     if(map.get("wantedStudents") == null)
                         throw new IllegalArgumentException("Wanted house not indicated");
                     if(map.get("returnedStudents") == null)
@@ -196,12 +228,18 @@ public class ActionController {
                     parameters.put("returnedStudents", map.get("returnedStudents"));
                     parameters.put("playerDashboard", gm.getCurrentPlayer().getDashboard());
                 }
+                else
+                    throw new IllegalArgumentException("Not valid method given");
+                break;
+
             case KNIGHT:
                 parameters.put("CurrentPlayer", gm.getCurrentPlayer());
                 break;
+
             case MAGICAL_MAILMAN:
                 parameters.put("currentPlayer", gm.getCurrentPlayer());
                 break;
+
             case MINSTREL:
                 if(map.get("fromDashboard") == null)
                     throw new IllegalArgumentException("Students from Dashboard not indicated");
@@ -212,18 +250,21 @@ public class ActionController {
                 parameters.put("fromDashboard", map.get("fromDashboard"));
                 parameters.put("fromDiningHall", map.get("fromDiningHall"));
                 break;
+
             case MUSHROOM_HUNTER:
                 if(map.get("house") == null)
                     throw new IllegalArgumentException("House not indicated");
                 parameters.put("House", map.get("house"));
                 break;
+
             case SPOILED_PRINCESS:
                 if(map.get("method") == null)
                     throw new IllegalArgumentException("Method to use not indicated");
                 if((Integer)map.get("method") == 1){
                     parameters.put("method", "getStudents");
                 }
-                else {
+                else if((Integer)map.get("method") == 2){
+                    parameters.put("method", "move");
                     if(map.get("wantedStudents") == null)
                         throw new IllegalArgumentException("Wanted students not indicated");
 
@@ -232,8 +273,11 @@ public class ActionController {
                     parameters.put("currentPlayer", gm.getCurrentPlayer());
                     parameters.put("bag", gm.getBag());
                 }
-            case THIEF:
+                else
+                    throw new IllegalArgumentException("Not valid method given");
+                break;
 
+            case THIEF:
                 if(map.get("wantedHouse") == null)
                     throw new IllegalArgumentException("Wanted house not indicated");
 
@@ -242,7 +286,11 @@ public class ActionController {
                 parameters.put("bag", gm.getBag());
                 break;
 
+            default:
+                System.err.println("Error in chooseCharacterCard of ActionController switch");
         }
+
+        return (parameters);
     }
 
     /**
@@ -253,19 +301,19 @@ public class ActionController {
         int island = ((MoveStudentToIsland)message).getIsland();
         House house = ((MoveStudentToIsland)message).getHouse();
 
-        if (house == null || island < 0 || island >= gm.getNumIslands()){
+        if (house == null || island >= gm.getNumIslands()){
             tc.getVirtualViewMap().get(message.getNickname()).showError(INVALID_STUDENT_OR_ISLAND.toString());
-            //tc.getVirtualViewMap().get(message.getNickname()).actionPhase(availableActions);
+            tc.getVirtualViewMap().get(message.getNickname()).actionPhase(availableActions);
+            return;
         }
 
         try {
-            gm.moveStudents(gm.getCurrentPlayer().getDashboard(), gm.getIslandList().get(island), house, 1);
+            gm.moveStudents(gm.getCurrentPlayer().getDashboard(), gm.getIslandList().get(island) , house, 1);
         } catch (Exception e) {
             e.printStackTrace();
-
+            tc.getVirtualViewMap().get(message.getNickname()).showError(INVALID_STUDENT_OR_ISLAND.toString());
+            tc.getVirtualViewMap().get(message.getNickname()).actionPhase(availableActions);
         }
-        //todo l'eccezione va lanciata?
-
     }
 
     /**
@@ -273,46 +321,45 @@ public class ActionController {
      * @param message received from the client
      */
     private void moveStudentsToDiningHallHandler(CommandMessage message){
-
         House house = ((MoveStudentToIsland)message).getHouse();
 
-        if(house == null){
+        if (house == null){
             tc.getVirtualViewMap().get(message.getNickname()).showError(INVALID_STUDENT.toString());
-            //tc.getVirtualViewMap().get(message.getNickname()).actionPhase(availableActions);
+            tc.getVirtualViewMap().get(message.getNickname()).actionPhase(availableActions);
+            return;
         }
+
         try {
             gm.moveStudents(gm.getCurrentPlayer().getDashboard(), gm.getCurrentPlayer().getDashboard().getDiningHall(), house, 1);
         } catch (Exception e) {
             e.printStackTrace();
+            tc.getVirtualViewMap().get(message.getNickname()).showError(INVALID_STUDENT.toString());
+            tc.getVirtualViewMap().get(message.getNickname()).actionPhase(availableActions);
         }
     }
-
-//    private void selectCharacterCardHandler(CommandMessage message){
-//        todo sto get map non esiste
-//        Map<String, Object> map = ((ChosenCharacterCard)message).getMap();
-//
-//        int numCCard = ((ChosenCharacterCard)message).getCardIndex();
-//        CharacterCard card = gm.getCharacterCardDeck()[numCCard];
-//
-//        chooseCharacterCard(card, map);
-//        try {
-//            gm.useCharacterCard(numCCard, map);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     /**
      * Moves the mother nature
      * @param message received from the client
      */
     private void moveMotherHandler(CommandMessage message){
-        gm.setMotherIsland(((MoveMother)message).getMotherMoves());
+        int motherMoves = (((MoveMother)message).getMotherMoves());
+        gm.setMotherIsland(motherMoves);
+
+        Player p = null;
         try {
-            gm.moveTowers(gm.checkInfluence(gm.getIslandList().get(gm.getMotherIsland())).getDashboard(), gm.getIslandList().get(gm.getMotherIsland()), 1);
+            p = gm.checkInfluence(gm.getIslandList().get(gm.getMotherIsland()));
         } catch (Exception e) {
             e.printStackTrace();
         }
+        if (p != null) { //pensare se mettere un messaggio che annuncia chi a vinto
+            try {
+                gm.moveTowers(p.getDashboard(), gm.getIslandList().get(gm.getMotherIsland()), 1);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        //pensare se mettere un messaggio che annuncia che c'è stato un pareggio (in else)
     }
 
     private void resetActions(){
@@ -337,15 +384,22 @@ public class ActionController {
     /**
      * Checks if the game is ended due to the low number of island
      */
-    private void GameEnded_Island(){ //todo ricontrollare
+    private void GameEnded_Island(){
         if (gm.getNumIslands() < 4) {
             isEnded = true;
+
             List<Integer> numTowersOfPlayer = new ArrayList<>();
+
             for (int i = 0; i < gm.getNumPlayers(); i++) {
                 numTowersOfPlayer.add(gm.getArrayPlayers()[i].getDashboard().getNumTowers());
             }
 
-            int min = numTowersOfPlayer.stream().max((a,b)-> a<b ? a : b).get();
+            Integer min = numTowersOfPlayer.stream().reduce((a,b)-> a < b ? a : b).orElse(null);
+
+            if (min == null){
+                winner = null;
+                return;
+            }
 
             int numMinValues = 0;
             for (int i : numTowersOfPlayer) {
@@ -362,7 +416,7 @@ public class ActionController {
     /**
      * Checks if the game is ended due to finishing the towers
      */
-    private void GameEnded_Towers (){ //todo ricontrollare
+    private void GameEnded_Towers (){
         boolean tie = false;
 
         for (int i=0; i<gm.getNumPlayers(); i++){
@@ -383,8 +437,10 @@ public class ActionController {
     /**
      * Checks if there is a winner, when the game is ended
      */
-    private void GameEnded_OtherCriteria(){ //todo ricontrollare
+    private void GameEnded_OtherCriteria(){
+
         List<Integer> numProfOfPlayer = new ArrayList<>();
+
         int numProf;
         for (int i = 0; i < gm.getNumPlayers(); i++) {
             numProf = 0;
@@ -397,7 +453,11 @@ public class ActionController {
             numProfOfPlayer.add(numProf);
         }
 
-        int max = numProfOfPlayer.stream().max((a,b)-> a<b ? b : a).get();
+        Integer max = numProfOfPlayer.stream().reduce((a,b)-> a > b ? a : b).orElse(null);
+
+        if (max == null){
+            winner = null;
+        }
 
         int numMaxValues = 0;
         for (int i : numProfOfPlayer) {
