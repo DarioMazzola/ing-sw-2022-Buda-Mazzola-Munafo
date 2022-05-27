@@ -1,8 +1,7 @@
 package it.polimi.ingsw.observer;
 
-import it.polimi.ingsw.model.Card;
-import it.polimi.ingsw.model.Color;
-import it.polimi.ingsw.model.Wizard;
+import it.polimi.ingsw.client.ReducedIsland;
+import it.polimi.ingsw.model.*;
 
 /**
  * Class representing the observer for view elements.
@@ -81,6 +80,35 @@ public interface ViewObserver {
      * @param chosenCard the assistant card chosen.
      */
     void onUpdateAssistantCard(Card chosenCard);
+
+    /**
+     * Method used to send the house of student the player wants to move from his/hers dashboard to his/hers dining hall.
+     *
+     * @param chosenHouse the house of the student to move
+     */
+    void onMoveStudentsToDiningHall(House chosenHouse);
+
+    /**
+     * Method used send the house of the student the player wants to move from his/hers dashboard to an island and the desired island.
+     *
+     * @param chosenHouse the house of the student to move
+     * @param chosenIsland an index identifying the island where the student should be placed
+     */
+    void onMoveStudentsToIsland(House chosenHouse, int chosenIsland);
+
+    /**
+     * Method used to send the number of which mother nature should be moved.
+     *
+     * @param moves the number of moves of which mother nature should be moved
+     */
+    void onMoveMotherNature(int moves);
+
+    /**
+     * Method used to send the cloud from which the player wants to refill his/hers entrance.
+     *
+     * @param chosenCloud an index identifying the chosen cloud
+     */
+    void onUpdateCloud(int chosenCloud);
 
     /**
      * Method used to disconnect a client.
