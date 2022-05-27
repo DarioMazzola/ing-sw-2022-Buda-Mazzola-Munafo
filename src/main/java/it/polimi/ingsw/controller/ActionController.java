@@ -42,6 +42,7 @@ public class ActionController {
             this.maxStudMoved = 4;
         }
         this.availableActions = new ArrayList<>();
+
         resetActions();
 
         this.usedCharacterCard = false;
@@ -365,7 +366,9 @@ public class ActionController {
     private void resetActions(){
         availableActions.clear();
         availableActions.add("Move");
-        availableActions.add("SelectCharacterCard");
+        if (gm.isExpertMode()) {
+            availableActions.add("SelectCharacterCard");
+        }
     }
 
     /**

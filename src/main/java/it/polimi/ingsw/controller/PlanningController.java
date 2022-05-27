@@ -82,7 +82,9 @@ public class PlanningController {
 
             List<String> availableActions = new ArrayList<>();
             availableActions.add("Move");
-            availableActions.add("SelectCharacterCard");
+            if (gm.isExpertMode()) {
+                availableActions.add("SelectCharacterCard");
+            }
 
             tc.getVirtualViewMap().get(gm.getArrayPlayers()[ranking[0]].getNickname()).actionPhase(availableActions);
         }
