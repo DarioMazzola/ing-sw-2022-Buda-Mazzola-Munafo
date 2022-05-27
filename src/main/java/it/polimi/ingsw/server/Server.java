@@ -49,13 +49,10 @@ public class Server {
                 clientHandlerMap.put(message.getNickname(), clientHandler);
                 turnController.selectMainPhase(message, clientHandler);
             } else if (turnController.checkLoginNickname(message.getNickname(), virtualView)) {
-                if (!turnController.gameModelExists()){
-                    turnController.loginHandler(message.getNickname(), clientHandler);
-                    virtualView.goToWaitingRoom();
-                }
-                else{
-                    turnController.selectMainPhase(message, clientHandler);
-                }
+                turnController.loginHandler(message.getNickname(), clientHandler);
+                virtualView.goToWaitingRoom();
+                if(turnController.gameModelExists())
+                    turnController.checkIfFull();
             }
 
         }
