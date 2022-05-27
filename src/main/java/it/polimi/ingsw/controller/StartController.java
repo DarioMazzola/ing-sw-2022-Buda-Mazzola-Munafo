@@ -153,6 +153,9 @@ public class StartController {
                     tc.getVirtualViewMap().get(gm.getArrayPlayers()[0].getNickname()).selectAssistantCard(Arrays.asList(Card.values()));
                 }
                 break;
+
+            default:
+                System.err.println("Error in StartController switch");
         }
     }
 
