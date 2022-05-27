@@ -26,12 +26,13 @@ public class PlanningController {
     private int selected;
     private int position;
 
+
     public PlanningController (GameModel gm, TurnController turnController){
-        this.position = 0;
         this.selected = 0;
         this.firstPlanner = 0;
         this.gm = gm;
         this.tc = turnController;
+        position = 1;
 
         this.cardList = new ArrayList<>();
 
@@ -57,6 +58,7 @@ public class PlanningController {
                 }
             }
         }
+
         try {
             gm.getPlayerByNickname(messageReceived.getNickname()).useCard(card);
         } catch (CardNotInDeckException e) {
@@ -65,22 +67,24 @@ public class PlanningController {
             tc.getVirtualViewMap().get(messageReceived.getNickname()).selectAssistantCard(availableAssistantCards);
             return;
         }
+
         cardList.add(card);
         availableAssistantCards.remove(card);
         selected++;
-        position = 0;
 
         if(selected == gm.getNumPlayers()){
             selected = 0;
-            UpdateRanking();
             resetCards();
+
+            UpdateRanking();
+
             tc.next_State(ACTION);
 
             List<String> availableActions = new ArrayList<>();
             availableActions.add("Move");
             availableActions.add("SelectCharacterCard");
 
-            tc.getVirtualViewMap().get(gm.getArrayPlayers()[ranking[position]].getNickname()).actionPhase(availableActions);
+            tc.getVirtualViewMap().get(gm.getArrayPlayers()[ranking[0]].getNickname()).actionPhase(availableActions);
         }
     }
 
@@ -100,13 +104,13 @@ public class PlanningController {
      * @param cardList parameters on which the ranking is based on
      * @param numPlayers the number of players
      */
-    private int[] createRanking (List<Card> cardList, int numPlayers){ //todo da ricontrollare
+    private int[] createRanking (List<Card> cardList, int numPlayers){
 
         Map<Card, Integer> map = new HashMap<>();
 
-        Card[] cardArray = (Card[]) cardList.toArray();
+        Card[] cardArray = cardList.toArray(new Card[cardList.size()]);
 
-        for (int i=0; i<numPlayers; i++){
+        for (int i = 0; i < numPlayers; i++) {
             map.put(cardArray[i], i);
         }
 
@@ -125,10 +129,54 @@ public class PlanningController {
             cardArray[i] = tmp;
         }
 
+        List<Card> duplicates = null;
+
+        for (int i = 0; i < numPlayers - 1; i++) {
+            if (cardArray[i].getValue() == cardArray[i + 1].getValue()) {
+                if (duplicates == null) {
+                    duplicates = new ArrayList<>();
+                }
+                duplicates.add(cardArray[i]);
+            }
+        }
+
+        if (duplicates != null) {
+            duplicates = duplicates.stream().distinct().collect(Collectors.toList());
+        }
+
         int[] ranking = new int[numPlayers];
 
-        for (int i=0; i<numPlayers; i++){
-            ranking[i] = (map.get(cardArray[i])+firstPlanner)%numPlayers;
+        if (duplicates == null) {
+            for (int i = 0; i < numPlayers; i++) {
+                ranking[i] = (map.get(cardArray[i]) + firstPlanner) % numPlayers;
+            }
+        } else {
+            for (int i = 0; i < numPlayers; i++) {
+                Card same = null;
+                for (Card duplicate : duplicates) {
+                    if (duplicate.equals(cardArray[i])) {
+                        same = cardArray[i];
+                        break;
+                    }
+                }
+
+                if (same == null) {
+                    ranking[i] = (map.get(cardArray[i]) + firstPlanner) % numPlayers;
+                } else {
+                    int times = 0;
+                    for (int q = i; q < numPlayers; q++) {
+                        if (cardArray[q].equals(cardArray[i])) {
+                            times++;
+                        }
+                    }
+                    for (int q = i; q < i + times; q++) {
+                        int position = cardList.indexOf(cardArray[q]);
+                        cardList.set(position, null);
+                        ranking[q] = (position + firstPlanner) % numPlayers;
+                    }
+                    i = i + times - 1;
+                }
+            }
         }
         return(ranking);
     }
@@ -155,16 +203,16 @@ public class PlanningController {
         availableAssistantCards.addAll(Arrays.asList(Card.values()));
     }
 
-    public int getPosition(){
-        return position;
-    }
-
-    public void setPosition(int newValue){
-        position = newValue;
-    }
-
     public int getFirstPlanner(){
         return firstPlanner;
+    }
+
+    public void setPosition(int value){
+        position = value;
+    }
+
+    public int getPosition(){
+        return position;
     }
 }
 
