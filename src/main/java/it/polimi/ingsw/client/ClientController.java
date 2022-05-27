@@ -128,6 +128,8 @@ public class ClientController implements ViewObserver, Observer {
     public void update(Message message) {
 
         switch (message.getType()) {
+            case PING:
+                break;
             case GAME_FULL:
                 taskQueue.execute(view::notifyGameFull);
                 break;
