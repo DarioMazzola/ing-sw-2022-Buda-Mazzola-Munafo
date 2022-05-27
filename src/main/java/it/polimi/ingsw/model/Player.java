@@ -219,8 +219,6 @@ public class Player extends Observable {
         }
 
         this.dashboard = new Dashboard(towerColor, numMaxStudents, numMaxTowers, nickname);
-
-        notifyObserver(new UpdatePlayer(new ReducedPlayer(this)));
     }
 
     public Dashboard getDashboard () {
