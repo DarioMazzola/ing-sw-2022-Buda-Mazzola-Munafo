@@ -1,8 +1,11 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.client.ReducedDashboard;
 import it.polimi.ingsw.exceptions.CardNotInDeckException;
 import it.polimi.ingsw.exceptions.IllegalChoiceException;
 import it.polimi.ingsw.exceptions.IslandException;
+import it.polimi.ingsw.messages.answer.UpdateDashboard;
+import it.polimi.ingsw.observer.Observable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +13,7 @@ import java.util.Map;
 /**
  * @author Dario Mazzola & Gabriele Munafo'
  */
-public class CharacterCard {
+public class CharacterCard extends Observable {
 
     private int cost;
     private boolean neverUsed;
@@ -132,6 +135,9 @@ public class CharacterCard {
     protected void moveProf(Dashboard from, Dashboard to, House house) throws IllegalChoiceException{
         from.removeProf(house);
         to.addProf(house);
+
+        notifyObserver(new UpdateDashboard(new ReducedDashboard(from)));
+        notifyObserver(new UpdateDashboard(new ReducedDashboard(to)));
     }
 
     /**
