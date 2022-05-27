@@ -378,10 +378,10 @@ public class Cli extends ViewObservable implements UI {
             case "See the current stat of clouds":
                 focusOnClouds();
                 break;
-            case "move":
+            case "Move":
                 moveStudents();
                 break;
-            case "move Mother Nature":
+            case "Move Mother Nature":
                 moveMotherNature();
                 break;
             case "Use character card":

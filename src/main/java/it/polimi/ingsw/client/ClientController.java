@@ -179,8 +179,8 @@ public class ClientController implements ViewObserver, Observer {
                 defaultActions.add("Use character card");
 
                 availableActions.addAll(defaultActions);
-                if (!availableActions.contains("move"))
-                    availableActions.add("move Mother Nature");
+                if (!availableActions.contains("Move"))
+                    availableActions.add("Move Mother Nature");
                 taskQueue.execute(() -> view.actionPhase(availableActions));
                 break;
             case GO_TO_WAITING_ROOM:
