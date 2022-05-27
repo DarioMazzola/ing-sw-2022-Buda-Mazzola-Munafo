@@ -1,7 +1,9 @@
 package it.polimi.ingsw.controller;
 
+import it.polimi.ingsw.client.ReducedGameModel;
 import it.polimi.ingsw.exceptions.BagException;
 import it.polimi.ingsw.exceptions.EntranceException;
+import it.polimi.ingsw.messages.answer.UpdateGameModel;
 import it.polimi.ingsw.messages.command.CommandMessage;
 import it.polimi.ingsw.model.*;
 import it.polimi.ingsw.server.ClientHandler;
@@ -98,9 +100,6 @@ public class TurnController {
             case END_TURN:
                 endTurnController.doAction(message);
                 break;
-
-            default:
-                System.err.println("Error in TurnController switch");
         }
     }
 
@@ -195,15 +194,21 @@ public class TurnController {
         }
     }
 
-//    public List<Integer> getAvailableClouds() {
-//        List<Integer> result = new ArrayList<>();
-//        for (int i = 0; i < gm.getArrayClouds().length; i++) {
-//            if (gm.getArrayClouds()[i].isFull()) {
-//                result.add(i);
-//            }
-//        }
-//        return result;
-//    }
+    public void sendAllModel(){
+        for(String nickname : virtualViewMap.keySet()){
+            virtualViewMap.get(nickname).update(new UpdateGameModel(new ReducedGameModel(gm)));
+        }
+    }
+
+    public List<Integer> getAvailableClouds() {
+        List<Integer> result = new ArrayList<>();
+        for (int i = 0; i < gm.getArrayClouds().length; i++) {
+            if (gm.getArrayClouds()[i].isFull()) {
+                result.add(i);
+            }
+        }
+        return result;
+    }
 
     public boolean isThereNextPlayer() {
         return (!(planningController.getPosition() == planningController.getRanking().length));
