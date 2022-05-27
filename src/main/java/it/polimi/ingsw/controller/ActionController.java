@@ -250,16 +250,16 @@ public class ActionController {
      * @param message received from the client
      */
     private void moveStudentsToIslandHandler(CommandMessage message) {
-        Island island = ((MoveStudentToIsland)message).getIsland();
+        int island = ((MoveStudentToIsland)message).getIsland();
         House house = ((MoveStudentToIsland)message).getHouse();
 
-        if (island == null || house == null || !gm.getIslandList().contains(island)){
+        if (house == null || island < 0 || island >= gm.getNumIslands()){
             tc.getVirtualViewMap().get(message.getNickname()).showError(INVALID_STUDENT_OR_ISLAND.toString());
             //tc.getVirtualViewMap().get(message.getNickname()).actionPhase(availableActions);
         }
 
         try {
-            gm.moveStudents(gm.getCurrentPlayer().getDashboard(), island, house, 1);
+            gm.moveStudents(gm.getCurrentPlayer().getDashboard(), gm.getIslandList().get(island), house, 1);
         } catch (Exception e) {
             e.printStackTrace();
 
