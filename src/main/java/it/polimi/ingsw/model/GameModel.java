@@ -337,7 +337,12 @@ public class GameModel extends Observable {
             }
         }
 
-        notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
+        List<ReducedIsland> reducedIslands = new ArrayList<>();
+
+        for(Island i : islandList)
+            reducedIslands.add(new ReducedIsland(i));
+
+        notifyObserver(new UpdateIsland(reducedIslands));
     }
 
     /**
@@ -389,7 +394,14 @@ public class GameModel extends Observable {
             }
         }
 
-        notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
+        notifyObserver(new UpdateDashboard(new ReducedDashboard(dashboard)));
+
+        List<ReducedIsland> reducedIslands = new ArrayList<>();
+
+        for(Island i : islandList)
+            reducedIslands.add(new ReducedIsland(i));
+
+        notifyObserver(new UpdateIsland(reducedIslands));
     }
 
     /**
@@ -412,7 +424,13 @@ public class GameModel extends Observable {
         }
         islandList.remove(island2);
 
-        notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
+        List<ReducedIsland> reducedIslands = new ArrayList<>();
+
+        for(Island i : islandList)
+            reducedIslands.add(new ReducedIsland(i));
+
+        notifyObserver(new UpdateIsland(reducedIslands));
+        notifyObserver(new UpdateMotherIsland(motherIsland));
     }
 
     /**
@@ -427,7 +445,12 @@ public class GameModel extends Observable {
             moveStudents(bag, arrayClouds[i], numCloud);
         }
 
-        notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
+        List<ReducedIsland> reducedIslands = new ArrayList<>();
+
+        for(Island i : islandList)
+            reducedIslands.add(new ReducedIsland(i));
+
+        notifyObserver(new UpdateIsland(reducedIslands));
     }
 
     /**
@@ -440,7 +463,7 @@ public class GameModel extends Observable {
         }
         this.motherIsland = (this.getMotherIsland()+moves)%this.getNumIslands();
 
-        notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
+        notifyObserver(new UpdateMotherIsland(motherIsland));
     }
 
     /**
@@ -466,7 +489,7 @@ public class GameModel extends Observable {
         }
         currentPlayer = arrayPlayers[player];
 
-        notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
+        notifyObserver(new UpdateCurrentPlayer(new ReducedPlayer(currentPlayer)));
     }
 
     public ContextCharacterCard getContext(){
