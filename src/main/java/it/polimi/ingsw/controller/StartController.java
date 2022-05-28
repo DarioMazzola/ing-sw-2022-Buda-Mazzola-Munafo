@@ -118,6 +118,9 @@ public class StartController {
                     tc.getVirtualViewMap().get(leaderArray[0]).selectTowerColor(availableTowers);
                     tc.getVirtualViewMap().get(leaderArray[1]).selectTowerColor(availableTowers);
                 }
+                else {
+                    tc.getVirtualViewMap().get(messageReceived.getNickname()).goToWaitingRoom();
+                }
                 break;
 
             case SELECT_COLOR_TOWER:
@@ -151,6 +154,8 @@ public class StartController {
                         e.printStackTrace();
                     }
                     tc.getVirtualViewMap().get(gm.getArrayPlayers()[0].getNickname()).selectAssistantCard(Arrays.asList(Card.values()));
+                } else {
+                    tc.getVirtualViewMap().get(messageReceived.getNickname()).goToWaitingRoom();
                 }
                 break;
 
