@@ -40,4 +40,13 @@ public class ReducedCloud {
     public int getNumMaxStud(){
         return numMaxStud;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder string = new StringBuilder("Students on the cloud: ");
+        for (House h : House.values()) {
+            string.append("\n").append(h).append(": ").append(getHouseStudents(h));
+        }
+        return string.toString();
+    }
 }
