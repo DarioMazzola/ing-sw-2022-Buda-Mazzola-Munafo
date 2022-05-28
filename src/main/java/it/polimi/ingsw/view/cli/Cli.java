@@ -347,47 +347,52 @@ public class Cli extends ViewObservable implements UI {
 
     @Override
     public void actionPhase(List<String> availableActions) {
-        System.out.println("Here's a list of all the available actions:");
-        int i = 1;
-        for (String s : availableActions) {
-            System.out.println(i + ") " + s);
-            i++;
-        }
-        boolean isValidInput;
-        int chosenAction = 0;
+        boolean stop = false;
         do {
-            isValidInput = true;
-            try {
-                chosenAction = Integer.parseInt(scanner.nextLine());
-                if (!(chosenAction >= 1 && chosenAction <= i)) {
-                    isValidInput = false;
-                    System.out.println("Please, enter a number between 1 and " + i + " :");
-                }
-            } catch (NumberFormatException e) {
-                isValidInput = false;
-                System.out.println("Invalid input, please enter a number:");
+            System.out.println("Here's a list of all the available actions:");
+            int i = 1;
+            for (String s : availableActions) {
+                System.out.println(i + ") " + s);
+                i++;
             }
-        } while (!isValidInput);
-        switch (availableActions.get(chosenAction - 1)) {
-            case "See the details of an Island":
-                focusOnIsland();
-                break;
-            case "See the details of a Player's dashboard":
-                focusOnDashboard();
-                break;
-            case "See the current stat of clouds":
-                focusOnClouds();
-                break;
-            case "Move":
-                moveStudents();
-                break;
-            case "Move Mother Nature":
-                moveMotherNature();
-                break;
-            case "Use character card":
-                useCharacterCard();
-                break;
-        }
+            boolean isValidInput;
+            int chosenAction = 0;
+            do {
+                isValidInput = true;
+                try {
+                    chosenAction = Integer.parseInt(scanner.nextLine());
+                    if (!(chosenAction >= 1 && chosenAction <= i)) {
+                        isValidInput = false;
+                        System.out.println("Please, enter a number between 1 and " + i + " :");
+                    }
+                } catch (NumberFormatException e) {
+                    isValidInput = false;
+                    System.out.println("Invalid input, please enter a number:");
+                }
+            } while (!isValidInput);
+            switch (availableActions.get(chosenAction - 1)) {
+                case "See the details of an Island":
+                    focusOnIsland();
+                    break;
+                case "See the details of a Player's dashboard":
+                    focusOnDashboard();
+                    break;
+                case "See the current stat of clouds":
+                    focusOnClouds();
+                    break;
+                case "Move":
+                    moveStudents();
+                    stop = true;
+                    break;
+                case "Move Mother Nature":
+                    moveMotherNature();
+                    stop = true;
+                    break;
+                case "Use character card":
+                    useCharacterCard();
+                    break;
+            }
+        } while (!stop);
     }
 
     /**
