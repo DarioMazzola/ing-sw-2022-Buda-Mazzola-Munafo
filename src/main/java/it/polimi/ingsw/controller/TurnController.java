@@ -245,14 +245,11 @@ public class TurnController {
         for(String nickname : virtualViewMap.keySet()){
             VirtualView vv = virtualViewMap.get(nickname);
 
-            for(Cloud c : gm.getArrayClouds())
-                c.addObserver(vv);
 
-            for(Player p : gm.getArrayPlayers()) {
-                p.addObserver(vv);
-                p.getDashboard().addObserver(vv);
-                p.getDashboard().getDiningHall().addObserver(vv);
-            }
+            gm.getPlayerByNickname(nickname).addObserver(vv);
+            gm.getPlayerByNickname(nickname).getDashboard().addObserver(vv);
+            gm.getPlayerByNickname(nickname).getDashboard().getDiningHall().addObserver(vv);
+
 
             for(Island i : gm.getIslandList())
                 i.addObserver(vv);
