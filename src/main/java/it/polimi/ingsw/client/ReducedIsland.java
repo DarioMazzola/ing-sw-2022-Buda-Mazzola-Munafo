@@ -8,8 +8,6 @@ import it.polimi.ingsw.model.Island;
 import java.util.HashMap;
 import java.util.Map;
 
-import static it.polimi.ingsw.model.House.*;
-
 /**
  * Class that represents the ReducedIsland
  * @author Gabriele Munafo'
@@ -26,7 +24,6 @@ public class ReducedIsland {
         try {
             towerColor = i.getColorTower();
         } catch (IslandException e) {
-            e.printStackTrace();
             towerColor = null;
         }
         numTowers = i.getNumTowers();

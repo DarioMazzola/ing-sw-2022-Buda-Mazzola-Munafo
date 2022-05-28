@@ -30,7 +30,6 @@ public class DiningHall extends Observable implements StudentModifierInterface {
         for(House h : values())
             tableOccupation.put(h, 0);
 
-        notifyObserver(new UpdateDiningHall(new ReducedDiningHall(this)));
     }
 
     public int getHouseStudents(House house){

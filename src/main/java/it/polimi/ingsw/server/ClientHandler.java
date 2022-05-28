@@ -22,14 +22,14 @@ import java.util.concurrent.TimeUnit;
  * @author Dario Mazzola
  */
 public class ClientHandler implements Runnable {
-    private final Socket client;
-    private final SocketServer socketServer;
+    private transient final Socket client;
+    private transient final SocketServer socketServer;
 
-    private boolean connected;
-    private final ScheduledExecutorService pingHandler = Executors.newSingleThreadScheduledExecutor();
+    private transient boolean connected;
+    private transient final ScheduledExecutorService pingHandler = Executors.newSingleThreadScheduledExecutor();
 
-    private ObjectOutputStream output;
-    private ObjectInputStream input;
+    private transient ObjectOutputStream output;
+    private transient ObjectInputStream input;
 
     /**
      * Class constructor.

@@ -36,7 +36,7 @@ public class TurnController {
     public TurnController() {
         freeSpots = 0;
         isGameStarted = false;
-        setupController = new SetupController(this);
+        setupController = new SetupController();
         gameState = SETUP;
         phase = CREATE_GAME;
         queue = new ArrayList<>();
@@ -46,14 +46,15 @@ public class TurnController {
 
     /**
      * Gets called to manage the messages from the client
-     * @param message received from the client
+     *
+     * @param message       received from the client
      * @param clientHandler related to the client
      */
     public void selectMainPhase(CommandMessage message, ClientHandler clientHandler) {
         switch (gameState) {
             case SETUP:
                 System.out.println("doAction::setupController");
-                setupController.doAction(message, phase, clientHandler);
+                setupController.doAction(message, phase, clientHandler, this);
                 System.out.println("1");
 
                 if (gameState == START) {
@@ -82,31 +83,32 @@ public class TurnController {
 
             case START:
                 System.out.println("siamo in start");
-                startController.doAction(message, phase);
-                if (gameState == PLANNING){
+                startController.doAction(message, phase, this);
+                if (gameState == PLANNING) {
                     initializePlayers();
                     addObservers();
                 }
                 break;
 
             case PLANNING:
-                planningController.doAction(message);
+                planningController.doAction(message, this);
                 break;
 
             case ACTION:
-                actionController.doAction(message);
+                actionController.doAction(message, this);
                 break;
 
             case END_TURN:
-                endTurnController.doAction(message);
+                endTurnController.doAction(message, this);
                 break;
         }
     }
 
     /**
      * Initialize the game model, start controller, the action controller, the planning controller and the end turn controller
+     *
      * @throws EntranceException thrown by the constructor of the game model
-     * @throws BagException thrown by the constructor of the game model
+     * @throws BagException      thrown by the constructor of the game model
      */
     public void init() throws EntranceException, BagException {
         gm = new GameModel(setupController.getNumPlayer(), setupController.isExpertMode());
@@ -115,14 +117,15 @@ public class TurnController {
 
         initializeIslands();
 
-        startController = new StartController(gm, this);
-        actionController = new ActionController(gm, this);
-        planningController = new PlanningController(gm, this);
-        endTurnController = new EndTurnController(gm, this);
+        startController = new StartController(gm);
+        actionController = new ActionController(gm);
+        planningController = new PlanningController(gm);
+        endTurnController = new EndTurnController(gm);
     }
 
     /**
      * Sets the game state
+     *
      * @param nextState the game state which is set
      */
     public void next_State(GameState nextState) {
@@ -131,6 +134,7 @@ public class TurnController {
 
     /**
      * Sets the game phase
+     *
      * @param nextPhase the game phase which is set
      */
     public void next_Phase(GamePhase nextPhase) {
@@ -139,7 +143,8 @@ public class TurnController {
 
     /**
      * Links the client handler to the nickname in a virtualViewMap
-     * @param nickname of the client connecting to the server
+     *
+     * @param nickname      of the client connecting to the server
      * @param clientHandler of the client connecting to the server
      */
     public void loginHandler(String nickname, ClientHandler clientHandler) {
@@ -194,8 +199,8 @@ public class TurnController {
         }
     }
 
-    public void sendAllModel(){
-        for(String nickname : virtualViewMap.keySet()){
+    public void sendAllModel() {
+        for (String nickname : virtualViewMap.keySet()) {
             virtualViewMap.get(nickname).update(new UpdateGameModel(new ReducedGameModel(gm)));
         }
     }
@@ -216,7 +221,7 @@ public class TurnController {
 
     public int getNextPlanner() {
         planningController.setPosition(planningController.getPosition() + 1);
-        return (planningController.getRanking()[planningController.getPosition()]);
+        return (planningController.getRanking()[planningController.getPosition() - 1]);
     }
 
     public int getFirstPlanner() {
@@ -228,8 +233,7 @@ public class TurnController {
             view.showError(EMPTY_NICKNAME.toString());
             view.selectNickname();
             return false;
-        }
-        else if (queue.contains(nickname)) {
+        } else if (queue.contains(nickname)) {
             view.showError(NICKNAME_TAKEN.toString());
             view.selectNickname();
             return false;
@@ -237,32 +241,29 @@ public class TurnController {
         return true;
     }
 
-    public boolean gameModelExists(){
+    public boolean gameModelExists() {
         return gm != null;
     }
 
-    private void addObservers(){
-        for(String nickname : virtualViewMap.keySet()){
+    private void addObservers() {
+        for (String nickname : virtualViewMap.keySet()) {
             VirtualView vv = virtualViewMap.get(nickname);
 
-            for(Cloud c : gm.getArrayClouds())
-                c.addObserver(vv);
 
-            for(Player p : gm.getArrayPlayers()) {
-                p.addObserver(vv);
-                p.getDashboard().addObserver(vv);
-                p.getDashboard().getDiningHall().addObserver(vv);
-            }
+            gm.getPlayerByNickname(nickname).addObserver(vv);
+            gm.getPlayerByNickname(nickname).getDashboard().addObserver(vv);
+            gm.getPlayerByNickname(nickname).getDashboard().getDiningHall().addObserver(vv);
 
-            for(Island i : gm.getIslandList())
+
+            for (Island i : gm.getIslandList())
                 i.addObserver(vv);
 
             gm.addObserver(vv);
         }
     }
 
-    private void initializeIslands(){
-        for (Island i : gm.getIslandList()){
+    private void initializeIslands() {
+        for (Island i : gm.getIslandList()) {
             try {
                 gm.moveStudents(gm.getBag(), i, 1);
             } catch (BagException e) {
@@ -271,8 +272,8 @@ public class TurnController {
         }
     }
 
-    private void initializePlayers(){
-        for (Player p : gm.getArrayPlayers()){
+    private void initializePlayers() {
+        for (Player p : gm.getArrayPlayers()) {
             try {
                 gm.moveStudents(gm.getBag(), p.getDashboard(), p.getDashboard().getNumMaxStudents());
             } catch (BagException e) {
@@ -281,10 +282,10 @@ public class TurnController {
         }
     }
 
-    public void checkIfFull(){
+    public void checkIfFull() {
         if (virtualViewMap.size() == gm.getNumPlayers()) {
             System.out.println("2.1");
-            while (freeSpots != 0){
+            while (freeSpots != 0) {
                 gm.getArrayPlayers()[gm.getNumPlayers() - freeSpots].setNickname(queue.get(gm.getNumPlayers() - freeSpots));
                 freeSpots--;
             }

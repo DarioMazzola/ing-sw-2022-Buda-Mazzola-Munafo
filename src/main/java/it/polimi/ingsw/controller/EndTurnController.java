@@ -17,18 +17,16 @@ import static it.polimi.ingsw.messages.TypeOfError.*;
  */
 public class EndTurnController{
     private final GameModel gm;
-    private final TurnController tc;
 
-    public EndTurnController(GameModel gm, TurnController turnController){
+    public EndTurnController(GameModel gm){
         this.gm = gm;
-        this.tc = turnController;
     }
 
     /**
      * Gets called to manage the messages from the client
      * @param messageReceived received from the client
      */
-    public void doAction(CommandMessage messageReceived) {
+    public void doAction(CommandMessage messageReceived, TurnController tc) {
         System.out.println(messageReceived.getNickname() + "is in end turn state");
 
         int numCloud = ((ChosenCloud)messageReceived).getCloud();
@@ -48,7 +46,7 @@ public class EndTurnController{
         if (tc.isThereNextPlayer()){
             tc.next_State(GameState.ACTION);
 
-            List<String> availableActions = new ArrayList<String>();
+            List<String> availableActions = new ArrayList<>();
             availableActions.add("Move");
             availableActions.add("SelectCharacterCard");
 

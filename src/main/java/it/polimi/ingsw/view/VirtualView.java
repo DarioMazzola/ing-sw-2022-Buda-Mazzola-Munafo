@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class VirtualView implements View, Observer{
 
-    private final ClientHandler clientHandler;
+    private transient final ClientHandler clientHandler;
 
     /**
      * Class constructor.

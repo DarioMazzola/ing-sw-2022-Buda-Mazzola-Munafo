@@ -1,12 +1,10 @@
 package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.client.ReducedDashboard;
-import it.polimi.ingsw.client.ReducedPlayer;
 import it.polimi.ingsw.exceptions.EntranceException;
 import it.polimi.ingsw.exceptions.IllegalChoiceException;
 import it.polimi.ingsw.exceptions.TowerAreaException;
 import it.polimi.ingsw.messages.answer.UpdateDashboard;
-import it.polimi.ingsw.messages.answer.UpdatePlayer;
 import it.polimi.ingsw.model.interfaces.StudentModifierInterface;
 import it.polimi.ingsw.observer.Observable;
 
@@ -65,7 +63,6 @@ public class Dashboard extends Observable implements StudentModifierInterface {
         this.diningHall = new DiningHall(nickname);
         this.owner = nickname;
 
-        notifyObserver(new UpdateDashboard(new ReducedDashboard(this)));
     }
 
     /**

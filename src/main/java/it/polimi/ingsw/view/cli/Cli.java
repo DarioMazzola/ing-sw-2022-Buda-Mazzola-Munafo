@@ -347,47 +347,52 @@ public class Cli extends ViewObservable implements UI {
 
     @Override
     public void actionPhase(List<String> availableActions) {
-        System.out.println("Here's a list of all the available actions:");
-        int i = 1;
-        for (String s : availableActions) {
-            System.out.println(i + ") " + s);
-            i++;
-        }
-        boolean isValidInput;
-        int chosenAction = 0;
+        boolean stop = false;
         do {
-            isValidInput = true;
-            try {
-                chosenAction = Integer.parseInt(scanner.nextLine());
-                if (!(chosenAction >= 1 && chosenAction <= i)) {
-                    isValidInput = false;
-                    System.out.println("Please, enter a number between 1 and " + i + " :");
-                }
-            } catch (NumberFormatException e) {
-                isValidInput = false;
-                System.out.println("Invalid input, please enter a number:");
+            System.out.println("Here's a list of all the available actions:");
+            int i = 1;
+            for (String s : availableActions) {
+                System.out.println(i + ") " + s);
+                i++;
             }
-        } while (!isValidInput);
-        switch (availableActions.get(chosenAction - 1)) {
-            case "See the details of an Island":
-                focusOnIsland();
-                break;
-            case "See the details of a Player's dashboard":
-                focusOnDashboard();
-                break;
-            case "See the current stat of clouds":
-                focusOnClouds();
-                break;
-            case "Move":
-                moveStudents();
-                break;
-            case "Move Mother Nature":
-                moveMotherNature();
-                break;
-            case "Use character card":
-                useCharacterCard();
-                break;
-        }
+            boolean isValidInput;
+            int chosenAction = 0;
+            do {
+                isValidInput = true;
+                try {
+                    chosenAction = Integer.parseInt(scanner.nextLine());
+                    if (!(chosenAction >= 1 && chosenAction <= i)) {
+                        isValidInput = false;
+                        System.out.println("Please, enter a number between 1 and " + i + " :");
+                    }
+                } catch (NumberFormatException e) {
+                    isValidInput = false;
+                    System.out.println("Invalid input, please enter a number:");
+                }
+            } while (!isValidInput);
+            switch (availableActions.get(chosenAction - 1)) {
+                case "See the details of an Island":
+                    focusOnIsland();
+                    break;
+                case "See the details of a Player's dashboard":
+                    focusOnDashboard();
+                    break;
+                case "See the current stat of clouds":
+                    focusOnClouds();
+                    break;
+                case "Move":
+                    moveStudents();
+                    stop = true;
+                    break;
+                case "Move Mother Nature":
+                    moveMotherNature();
+                    stop = true;
+                    break;
+                case "Use character card":
+                    useCharacterCard();
+                    break;
+            }
+        } while (!stop);
     }
 
     /**
@@ -424,6 +429,7 @@ public class Cli extends ViewObservable implements UI {
         int i = 1;
         for (ReducedPlayer p : gm.getArrayPlayers()) {
             System.out.println(i + " ) " + ((p.equals(gm.getCurrentPlayer())) ? "YOU" : p.getNickname()));
+            i++;
         }
         int player = 0;
         do {
@@ -460,7 +466,6 @@ public class Cli extends ViewObservable implements UI {
      * Manages the selection of students to move from the player's dashboard to his/hers dining hall or an island.
      */
     private void moveStudents() {
-        for (int i = 0; i < 3; i++) {
             System.out.println("Do you want to move students to your dining hall (1) or to an island (2)?");
             int chosen = 0;
             boolean isValidInput;
@@ -485,7 +490,7 @@ public class Cli extends ViewObservable implements UI {
                     moveStudentsToIsland();
                     break;
             }
-        }
+
     }
 
     /**
@@ -504,6 +509,7 @@ public class Cli extends ViewObservable implements UI {
             return;
         }
 
+        System.out.println("This is your dashboard: \n" + gm.getCurrentPlayer().getDashboard());
         // receiving and checking input
         System.out.println("Enter the house of the student you want to move:");
         boolean isValidInput;
@@ -522,11 +528,11 @@ public class Cli extends ViewObservable implements UI {
                 System.out.println("Invalid input! Please enter an existing house:");
             } else if (gm.getCurrentPlayer().getDashboard().getHouseStudents(chosenHouse) <= 0) {
                 isValidInput = false;
-                System.out.println("You don't have any students of the " + chosenHouse + " house, please chose another house:");
+                System.out.println("You don't have any students of the " + chosenHouse + " house, please choose another house:");
             }
             else if (gm.getCurrentPlayer().getDashboard().getDiningHall().getHouseStudents(chosenHouse) >= 10) {
                 isValidInput = false;
-                System.out.println("Your dining hall for the house " + chosenHouse + " is full, please chose another house: ");
+                System.out.println("Your dining hall for the house " + chosenHouse + " is full, please choose another house: ");
             }
         } while (!isValidInput);
         House finalChosenHouse = chosenHouse;

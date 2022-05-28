@@ -46,7 +46,6 @@ public class Player extends Observable {
             throw new IllegalArgumentException("Number of players must between 2 and 4");
         this.numPlayers = numPlayers;
 
-        notifyObserver(new UpdatePlayer(new ReducedPlayer(this)));
     }
 
     /**
@@ -60,7 +59,6 @@ public class Player extends Observable {
             throw new NullPointerException("Player nickname cannot be null");
         this.nickname = this.nickname == null ? nickname : this.nickname;
 
-        notifyObserver(new UpdatePlayer(new ReducedPlayer(this)));
     }
 
     public String getNickname() {
@@ -78,7 +76,6 @@ public class Player extends Observable {
             throw new NullPointerException("Player wizard cannot be null");
         this.wizard = this.wizard == null ? wizard : this.wizard;
 
-        notifyObserver(new UpdatePlayer(new ReducedPlayer(this)));
     }
 
     public Wizard getWizard() {
@@ -94,7 +91,6 @@ public class Player extends Observable {
     public void setTeamLeader(boolean teamLeader) {
         this.teamLeader = this.teamLeader == null ? teamLeader : this.teamLeader;
 
-        notifyObserver(new UpdatePlayer(new ReducedPlayer(this)));
     }
 
     public Boolean isTeamLeader() {

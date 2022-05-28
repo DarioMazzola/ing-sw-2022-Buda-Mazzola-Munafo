@@ -104,9 +104,14 @@ public class AnswerSerializer {
             case UPDATE_PLAYER:
                 list.add(UPDATE_PLAYER.toString());
                 break;
-
+            case UPDATE_CURRENT_PLAYER:
+                list.add(UPDATE_CURRENT_PLAYER.toString());
+                break;
+            case UPDATE_MOTHER_ISLAND:
+                list.add(UPDATE_MOTHER_ISLAND.toString());
+                break;
             default:
-                throw new IllegalArgumentException("Message is not an answer message");
+                throw new IllegalArgumentException("Message (+" + messageType + ") is not an answer message");
         }
 
         list.add(gsonMessage);
@@ -204,9 +209,15 @@ public class AnswerSerializer {
             case UPDATE_PLAYER:
                 answer = gson.fromJson(gsonMessage, UpdatePlayer.class);
                 break;
+            case UPDATE_CURRENT_PLAYER:
+                answer = gson.fromJson(gsonMessage, UpdateCurrentPlayer.class);
+                break;
+            case UPDATE_MOTHER_ISLAND:
+                answer = gson.fromJson(gsonMessage, UpdateMotherIsland.class);
+                break;
 
             default:
-                throw new IllegalArgumentException("Message is not an answer message");
+                throw new IllegalArgumentException("Message (" + messageType + ") is not an answer message");
         }
 
         return answer;

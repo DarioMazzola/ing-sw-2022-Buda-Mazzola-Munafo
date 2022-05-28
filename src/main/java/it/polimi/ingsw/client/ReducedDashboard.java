@@ -101,4 +101,17 @@ public class ReducedDashboard {
     public String getNickname() {
         return nickname;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder string = new StringBuilder("Player's dashboard:\nENTRANCE:");
+        for (House h : House.values()) {
+            string.append("\n").append(h).append(": ").append(getHouseStudents(h));
+        }
+        string.append("\nDININGHALL:");
+        for (House h : House.values()) {
+            string.append("\n").append(h).append(": ").append(getDiningHall().getHouseStudents(h));
+        }
+        return string.toString();
+    }
 }

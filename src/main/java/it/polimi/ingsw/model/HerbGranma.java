@@ -28,10 +28,9 @@ public class HerbGranma extends CharacterCard{
     @Override
     public void doEffect(Map<String, Object> parameters) throws Exception {
 
-        super.doEffect(null);
-
         if(parameters.get("Method").equals("addNoEntryTile")){
             addNoEntryTile((Island)parameters.get("Island"));
+            super.doEffect(null);
         }
         else if(parameters.get("Method").equals("removeNoEntryTile")){
             removeNoEntryTile();

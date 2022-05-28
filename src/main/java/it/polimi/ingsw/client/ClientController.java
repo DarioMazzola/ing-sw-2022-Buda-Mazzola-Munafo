@@ -231,6 +231,10 @@ public class ClientController implements ViewObserver, Observer {
                 ReducedGameModel gameModel = updateGameModel.getGameModel();
                 taskQueue.execute(() -> view.updateGameModel(gameModel));
                 break;
+            case SELECT_CLOUD:
+                SelectCloud selectCloud = (SelectCloud) message;
+                taskQueue.execute(view::selectCloud);
+                break;
             default:
                 throw new IllegalStateException("Unexpected value: " + message.getType());
         }

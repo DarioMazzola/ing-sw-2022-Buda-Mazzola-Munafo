@@ -17,11 +17,9 @@ public class SetupController{
     private int numPlayer;
     private boolean expertMode;
     private String nickname;
-    private final TurnController tc;
 
 
-    public SetupController(TurnController turnController){
-        this.tc = turnController;
+    public SetupController(){
         this.expertMode = false; //valori di default
         this.numPlayer = 2; //valori di default
     }
@@ -32,7 +30,7 @@ public class SetupController{
      * @param phase which selects the right case of the switch
      * @param clientHandler related to the client
      */
-    public void doAction(CommandMessage messageReceived, GamePhase phase, ClientHandler clientHandler) {
+    public void doAction(CommandMessage messageReceived, GamePhase phase, ClientHandler clientHandler, TurnController tc) {
         System.out.println(messageReceived.getNickname() + "is in setup state");
 
         switch (phase) {
