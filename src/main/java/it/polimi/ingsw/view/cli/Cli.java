@@ -424,6 +424,7 @@ public class Cli extends ViewObservable implements UI {
         int i = 1;
         for (ReducedPlayer p : gm.getArrayPlayers()) {
             System.out.println(i + " ) " + ((p.equals(gm.getCurrentPlayer())) ? "YOU" : p.getNickname()));
+            i++;
         }
         int player = 0;
         do {
@@ -522,11 +523,11 @@ public class Cli extends ViewObservable implements UI {
                 System.out.println("Invalid input! Please enter an existing house:");
             } else if (gm.getCurrentPlayer().getDashboard().getHouseStudents(chosenHouse) <= 0) {
                 isValidInput = false;
-                System.out.println("You don't have any students of the " + chosenHouse + " house, please chose another house:");
+                System.out.println("You don't have any students of the " + chosenHouse + " house, please choose another house:");
             }
             else if (gm.getCurrentPlayer().getDashboard().getDiningHall().getHouseStudents(chosenHouse) >= 10) {
                 isValidInput = false;
-                System.out.println("Your dining hall for the house " + chosenHouse + " is full, please chose another house: ");
+                System.out.println("Your dining hall for the house " + chosenHouse + " is full, please choose another house: ");
             }
         } while (!isValidInput);
         House finalChosenHouse = chosenHouse;
