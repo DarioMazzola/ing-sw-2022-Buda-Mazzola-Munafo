@@ -65,12 +65,20 @@ public class CommandSerializer {
             case CHOSEN_WIZARD:
                 list.add(MessageType.CHOSEN_WIZARD.toString());
                 break;
+            case MOVE_STUDENT_TO_DINING_HALL:
+                list.add(MOVE_STUDENT_TO_DINING_HALL.toString());
+                break;
+            case MOVE_STUDENT_TO_ISLAND:
+                list.add(MOVE_STUDENT_TO_ISLAND.toString());
+                break;
             case PONG:
                 list.add(PONG.toString());
                 break;
-
+            case MOVE_MOTHER:
+                list.add(MOVE_MOTHER.toString());
+                break;
             default:
-                throw new IllegalArgumentException("Message received is not a command message");
+                throw new IllegalArgumentException("Message received (" + messageType +") is not a command message");
         }
 
         list.add(gsonMessage);
@@ -124,9 +132,20 @@ public class CommandSerializer {
             case CHOSEN_TOWER_COLOR:
                 command = gson.fromJson(messageContent, ChosenTowerColor.class);
                 break;
-
+            case CHOSEN_ASSISTANT_CARD:
+                command = gson.fromJson(messageContent, ChosenAssistantCard.class);
+                break;
+            case MOVE_STUDENT_TO_DINING_HALL:
+                command = gson.fromJson(messageContent, MoveStudentToDiningHall.class);
+                break;
+            case MOVE_STUDENT_TO_ISLAND:
+                command = gson.fromJson(messageContent, MoveStudentToIsland.class);
+                break;
+            case MOVE_MOTHER:
+                command = gson.fromJson(messageContent, MoveMother.class);
+                break;
             default:
-                throw new IllegalArgumentException("Message received is not a command message");
+                throw new IllegalArgumentException("Message received (" + messageType + ") is not a command message");
         }
 
         return command;
