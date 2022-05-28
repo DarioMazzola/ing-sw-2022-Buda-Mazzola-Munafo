@@ -1,6 +1,8 @@
 package it.polimi.ingsw.controller;
 
+import it.polimi.ingsw.client.ReducedPlayer;
 import it.polimi.ingsw.exceptions.CardNotInDeckException;
+import it.polimi.ingsw.messages.answer.UpdateCurrentPlayer;
 import it.polimi.ingsw.messages.command.ChosenAssistantCard;
 import it.polimi.ingsw.messages.command.CommandMessage;
 import it.polimi.ingsw.model.Card;
@@ -86,7 +88,17 @@ public class PlanningController {
                 availableActions.add("SelectCharacterCard");
             }
 
+            tc.getVirtualViewMap().get(gm.getArrayPlayers()[ranking[0]].getNickname()).update(new UpdateCurrentPlayer(new ReducedPlayer(gm.getArrayPlayers()[ranking[0]])));
             tc.getVirtualViewMap().get(gm.getArrayPlayers()[ranking[0]].getNickname()).actionPhase(availableActions);
+        }
+        else {
+            int i;
+            for (i=0; i<gm.getNumPlayers(); i++){
+                if (gm.getArrayPlayers()[i].getNickname().equals(messageReceived.getNickname())){
+                    break;
+                }
+            }
+            tc.getVirtualViewMap().get(gm.getArrayPlayers()[i + 1].getNickname()).selectAssistantCard(availableAssistantCards);
         }
     }
 
