@@ -1,11 +1,11 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.client.ReducedDashboard;
 import it.polimi.ingsw.client.ReducedGameModel;
 import it.polimi.ingsw.client.ReducedIsland;
+import it.polimi.ingsw.client.ReducedPlayer;
 import it.polimi.ingsw.exceptions.*;
-import it.polimi.ingsw.messages.answer.UpdateCharacterCard;
-import it.polimi.ingsw.messages.answer.UpdateGameModel;
-import it.polimi.ingsw.messages.answer.UpdateIsland;
+import it.polimi.ingsw.messages.answer.*;
 import it.polimi.ingsw.model.interfaces.StudentAdderInterface;
 import it.polimi.ingsw.model.interfaces.StudentModifierInterface;
 import it.polimi.ingsw.observer.Observable;
@@ -104,8 +104,6 @@ public class GameModel extends Observable {
         }
 
         context = new ContextCharacterCard(new CharacterCard(0, "Base", null));
-
-        notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
     }
 
     /**
@@ -129,8 +127,6 @@ public class GameModel extends Observable {
         for (int j=0; j<numRep; j++) {
             player.getDashboard().addStudents(bag.pull(), 1);
         }
-
-        notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
     }
 
     /**
@@ -178,8 +174,6 @@ public class GameModel extends Observable {
      */
     public void checkProf(House house) throws IllegalChoiceException{
         context.checkProf(arrayPlayers, currentPlayer, house);
-
-        notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
     }
 
     /**
