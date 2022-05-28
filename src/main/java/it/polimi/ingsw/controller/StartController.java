@@ -17,14 +17,13 @@ import static it.polimi.ingsw.messages.TypeOfError.*;
  */
 public class StartController {
     private final GameModel gm;
-    private final TurnController tc;
     private final String[] teamArray;
     private final String[] leaderArray;
     private final List<Wizard> availableWizards;
     private final List<Color> availableTowers;
 
 
-    public StartController(GameModel gm, TurnController turnController) {
+    public StartController(GameModel gm) {
         this.teamArray = new String[2];
         this.leaderArray = new String[2];
         for (int i = 0; i < 2; i++) {
@@ -36,8 +35,6 @@ public class StartController {
 
         this.availableTowers = new ArrayList<>();
         availableTowers.addAll(Arrays.asList(Color.values()));
-
-        this.tc = turnController;
         this.gm = gm;
 
     }
@@ -47,7 +44,7 @@ public class StartController {
      * @param messageReceived received from the client
      * @param phase which selects the right case of the switch
      */
-    public void doAction(CommandMessage messageReceived, GamePhase phase) {
+    public void doAction(CommandMessage messageReceived, GamePhase phase, TurnController tc) {
         System.out.println(messageReceived.getNickname() + " is in start state");
         Player p;
 

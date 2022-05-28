@@ -24,16 +24,14 @@ public class PlanningController {
     int[] ranking;
     private final GameModel gm;
     private final List<Card> availableAssistantCards;
-    private final TurnController tc;
     private int selected;
     private int position;
 
 
-    public PlanningController (GameModel gm, TurnController turnController){
+    public PlanningController (GameModel gm){
         this.selected = 0;
         this.firstPlanner = 0;
         this.gm = gm;
-        this.tc = turnController;
         position = 1;
 
         this.cardList = new ArrayList<>();
@@ -46,7 +44,7 @@ public class PlanningController {
      * Gets called to manage the messages from the client
      * @param messageReceived received from the client
      */
-    public void doAction(CommandMessage messageReceived) {
+    public void doAction(CommandMessage messageReceived, TurnController tc) {
         System.out.println(messageReceived.getNickname() + "is in planning state");
 
         Card card = ((ChosenAssistantCard) messageReceived).getAssistantCard();

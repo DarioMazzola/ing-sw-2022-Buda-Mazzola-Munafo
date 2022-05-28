@@ -3,6 +3,7 @@ package it.polimi.ingsw.controller;
 import it.polimi.ingsw.messages.MessageType;
 import it.polimi.ingsw.messages.command.*;
 import it.polimi.ingsw.model.*;
+import it.polimi.ingsw.utils.Persistence;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,7 +19,7 @@ import static it.polimi.ingsw.messages.TypeOfError.*;
  */
 public class ActionController {
     private final GameModel gm;
-    private final TurnController tc;
+    private transient final Persistence persistence;
     private int studentsMoved;
     private final int maxStudMoved;
     private final List<String> availableActions;
@@ -26,11 +27,11 @@ public class ActionController {
     private Player winner;
     private boolean isEnded;
 
-    public ActionController(GameModel gm, TurnController turnController){
+    public ActionController(GameModel gm){
+        persistence = new Persistence();
         this.isEnded = false;
         this.winner = null;
         this.gm = gm;
-        this.tc = turnController;
         this.studentsMoved = 0;
         if (gm.getNumPlayers() == 2 || gm.getNumPlayers() == 4){
             this.maxStudMoved = 3;
@@ -49,7 +50,7 @@ public class ActionController {
      * Gets called to manage the messages from the client
      * @param messageReceived received from the client
      */
-    public void doAction(CommandMessage messageReceived) {
+    public void doAction(CommandMessage messageReceived, TurnController tc) {
         MessageType type = messageReceived.getType();
 
         switch (type) {
@@ -59,7 +60,7 @@ public class ActionController {
                     tc.getVirtualViewMap().get(messageReceived.getNickname()).actionPhase(availableActions);
                     break;
                 }
-                moveStudentsToIslandHandler(messageReceived);
+                moveStudentsToIslandHandler(messageReceived, tc);
 
                 studentsMoved++;
 
@@ -76,7 +77,7 @@ public class ActionController {
                     break;
                 }
 
-                moveStudentsToDiningHallHandler(messageReceived);
+                moveStudentsToDiningHallHandler(messageReceived, tc);
 
                 studentsMoved++;
 
@@ -295,7 +296,7 @@ public class ActionController {
      * Moves the students from the entrance to the island
      * @param message received from the client
      */
-    private void moveStudentsToIslandHandler(CommandMessage message) {
+    private void moveStudentsToIslandHandler(CommandMessage message, TurnController tc) {
         int island = ((MoveStudentToIsland)message).getIsland();
         House house = ((MoveStudentToIsland)message).getHouse();
 
@@ -318,7 +319,7 @@ public class ActionController {
      * Moves the students from the entrance to the dining hall
      * @param message received from the client
      */
-    private void moveStudentsToDiningHallHandler(CommandMessage message){
+    private void moveStudentsToDiningHallHandler(CommandMessage message, TurnController tc){
         House house = ((MoveStudentToDiningHall)message).getHouse();
 
         if (house == null){
