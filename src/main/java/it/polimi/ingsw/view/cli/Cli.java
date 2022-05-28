@@ -466,7 +466,6 @@ public class Cli extends ViewObservable implements UI {
      * Manages the selection of students to move from the player's dashboard to his/hers dining hall or an island.
      */
     private void moveStudents() {
-        for (int i = 0; i < 3; i++) {
             System.out.println("Do you want to move students to your dining hall (1) or to an island (2)?");
             int chosen = 0;
             boolean isValidInput;
@@ -491,7 +490,7 @@ public class Cli extends ViewObservable implements UI {
                     moveStudentsToIsland();
                     break;
             }
-        }
+
     }
 
     /**
