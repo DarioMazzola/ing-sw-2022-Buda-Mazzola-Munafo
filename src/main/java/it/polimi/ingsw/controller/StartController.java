@@ -150,6 +150,8 @@ public class StartController {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+
+                    tc.sendAllModel();
                     tc.getVirtualViewMap().get(gm.getArrayPlayers()[0].getNickname()).selectAssistantCard(Arrays.asList(Card.values()));
                 }
                 break;
