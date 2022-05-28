@@ -1,10 +1,7 @@
 package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.messages.MessageType;
-import it.polimi.ingsw.messages.command.ChosenCharacterCard;
-import it.polimi.ingsw.messages.command.CommandMessage;
-import it.polimi.ingsw.messages.command.MoveMother;
-import it.polimi.ingsw.messages.command.MoveStudentToIsland;
+import it.polimi.ingsw.messages.command.*;
 import it.polimi.ingsw.model.*;
 
 import java.util.ArrayList;
@@ -322,7 +319,7 @@ public class ActionController {
      * @param message received from the client
      */
     private void moveStudentsToDiningHallHandler(CommandMessage message){
-        House house = ((MoveStudentToIsland)message).getHouse();
+        House house = ((MoveStudentToDiningHall)message).getHouse();
 
         if (house == null){
             tc.getVirtualViewMap().get(message.getNickname()).showError(INVALID_STUDENT.toString());
