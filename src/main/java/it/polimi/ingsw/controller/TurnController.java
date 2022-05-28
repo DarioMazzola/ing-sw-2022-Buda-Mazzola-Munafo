@@ -216,7 +216,7 @@ public class TurnController {
 
     public int getNextPlanner() {
         planningController.setPosition(planningController.getPosition() + 1);
-        return (planningController.getRanking()[planningController.getPosition()]);
+        return (planningController.getRanking()[planningController.getPosition()-1]);
     }
 
     public int getFirstPlanner() {
