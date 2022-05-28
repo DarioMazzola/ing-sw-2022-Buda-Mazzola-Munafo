@@ -103,6 +103,8 @@ public class GameModel extends Observable {
             characterCardDeck = null;
         }
 
+        currentPlayer = arrayPlayers[0];
+
         context = new ContextCharacterCard(new CharacterCard(0, "Base", null));
     }
 
