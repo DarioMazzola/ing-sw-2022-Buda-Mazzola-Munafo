@@ -509,6 +509,7 @@ public class Cli extends ViewObservable implements UI {
             return;
         }
 
+        System.out.println("This is your dashboard: \n" + gm.getCurrentPlayer().getDashboard());
         // receiving and checking input
         System.out.println("Enter the house of the student you want to move:");
         boolean isValidInput;
