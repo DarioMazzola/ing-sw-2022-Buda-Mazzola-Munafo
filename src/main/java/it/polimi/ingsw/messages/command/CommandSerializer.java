@@ -144,6 +144,9 @@ public class CommandSerializer {
             case MOVE_MOTHER:
                 command = gson.fromJson(messageContent, MoveMother.class);
                 break;
+            case CHOSEN_CLOUD:
+                command = gson.fromJson(messageContent, ChosenCloud.class);
+                break;
             default:
                 throw new IllegalArgumentException("Message received (" + messageType + ") is not a command message");
         }
