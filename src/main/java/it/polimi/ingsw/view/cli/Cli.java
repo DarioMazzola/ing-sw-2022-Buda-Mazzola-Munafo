@@ -720,6 +720,16 @@ public class Cli extends ViewObservable implements UI {
         this.gm = gameModel;
     }
 
+    // <--------- Utility methods --------->
+
+    private <T> void printList (List<T> listToPrint) {
+        int i = 1;
+        for (T t : listToPrint) {
+            System.out.println(i + " - " + t.toString());
+            i++;
+        }
+    }
+
     /**
      * Checks that the given ip address is a valid ip address.
      *
