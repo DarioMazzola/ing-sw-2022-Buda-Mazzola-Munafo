@@ -658,28 +658,42 @@ public class Cli extends ViewObservable implements UI {
 
     @Override
     public void updateIslands(List<ReducedIsland> islands) {
+        System.out.println("Received updateIslands:");
+        for (ReducedIsland i : islands) {
+            System.out.println(i);
+        }
         gm.setIslandList(islands);
 
     }
 
     @Override
     public void updateDiningHall(ReducedDiningHall diningHall) {
+        System.out.println("Received updateDiningHall");
+        System.out.println(diningHall);
         gm.getPlayerByNickname(diningHall.getNickname()).getDashboard().setDiningHall(diningHall);
     }
 
     @Override
     public void updateDashboard(ReducedDashboard dashboard) {
+        System.out.println("Received updateDashboard");
+        System.out.println(dashboard);
         gm.getPlayerByNickname(dashboard.getNickname()).setDashboard(dashboard);
     }
 
     @Override
     public void updatePlayer(ReducedPlayer player) {
+        System.out.println(("Received updatePlayer"));
+        System.out.println(player.getNickname());
         int index = Arrays.asList(gm.getArrayPlayers()).indexOf(gm.getPlayerByNickname(player.getNickname()));
         gm.setPlayer(index, player);
     }
 
     @Override
     public void updateClouds(ReducedCloud[] clouds) {
+        System.out.println("Received updateClouds");
+        for (ReducedCloud c : clouds) {
+            System.out.println(c);
+        }
         gm.setArrayClouds(clouds);
     }
 
@@ -690,16 +704,22 @@ public class Cli extends ViewObservable implements UI {
 
     @Override
     public void updateMotherNature(int motherIsland) {
+        System.out.println("Received updateMotherNature");
+        System.out.println(motherIsland);
         gm.setMotherIsland(motherIsland);
     }
 
     @Override
     public void updateCurrentPlayer(ReducedPlayer currentPlayer) {
+        System.out.println("Received updateCurrentPlayer");
+        System.out.println(currentPlayer);
         gm.setCurrentPlayer(currentPlayer);
     }
 
     @Override
     public void updateGameModel(ReducedGameModel gameModel) {
+        System.out.println("Received updateGameModel");
+        System.out.println(gameModel);
         this.gm = gameModel;
     }
 
