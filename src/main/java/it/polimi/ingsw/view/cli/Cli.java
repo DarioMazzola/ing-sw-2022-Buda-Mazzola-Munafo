@@ -307,22 +307,21 @@ public class Cli extends ViewObservable implements UI {
 
     @Override
     public void selectAssistantCard(List<Card> availableCards) {
-
         List<Card> playersDeck = gm.getCurrentPlayer().getDeck();
 
         Set<Card> result = availableCards.stream().distinct().filter(gm.getPlayerByNickname(gm.getCurrentPlayer().getNickname()).
                 getDeck()::contains).collect(Collectors.toSet());
 
-        System.out.println("It's your turn, chose an assistant card for this round!");
-        System.out.println("Here's a list of the cards in your deck, the cards marked with an 'X' have already been chosen by another player. If you have other cards in your deck you can't use them in this round.");
+        System.out.println("It's your turn, choose an assistant card for this round!");
+        System.out.println("Here's a list of the cards in your deck, the cards marked with an 'X' have already been chosen by another player.\nIf you have other cards in your deck, you can't use them in this round.");
         int i = 1;
         for (Card c : playersDeck) {
-            System.out.println(i + ") " + c + (!result.contains(c) ? " X" : ""));
+            System.out.println(i + " - " + c + (!result.contains(c) ? " X" : ""));
             i++;
         }
         boolean isValidInput;
         int chosenCard = 0;
-        System.out.println("Chose a card by entering a number between 1 and " + i);
+        System.out.println("Chose a card by entering a number between 1 and " + (i-1));
         do {
             isValidInput = true;
             try {
@@ -331,7 +330,7 @@ public class Cli extends ViewObservable implements UI {
                     isValidInput = false;
                     System.out.println("Please, enter a number between 1 and " + i + " :");
                 } else {
-                    if (!result.contains(playersDeck.get(chosenCard)) && result.size() > 0) {
+                    if (!result.contains(playersDeck.get(chosenCard-1)) && result.size() > 0) {
                         isValidInput = false;
                         System.out.println("You can't chose this card, it has already been chosen by another player!\nChose another card: ");
                     }
@@ -342,7 +341,7 @@ public class Cli extends ViewObservable implements UI {
             }
         } while (!isValidInput);
         int finalChosenCard = chosenCard;
-        notifyObserver(observers -> observers.onUpdateAssistantCard(playersDeck.get(finalChosenCard)));
+        notifyObserver(observers -> observers.onUpdateAssistantCard(playersDeck.get(finalChosenCard-1)));
     }
 
     @Override
@@ -378,7 +377,7 @@ public class Cli extends ViewObservable implements UI {
                     focusOnDashboard();
                     break;
                 case "See the current stat of clouds":
-                    focusOnClouds();
+                    focusOnClouds(true);
                     break;
                 case "Move":
                     moveStudents();
@@ -453,12 +452,19 @@ public class Cli extends ViewObservable implements UI {
     /**
      * Shows the current state of the clouds.
      */
-    private void focusOnClouds() {
+    private void focusOnClouds(boolean showChosenClouds) {
         System.out.println("Current state of clouds:");
         int i = 1;
         for (ReducedCloud c : gm.getArrayClouds()) {
-            System.out.println( i + " )" + c.toString());
-            i++;
+            if (!c.isFull()) {
+                if (showChosenClouds) {
+                    System.out.println(i + ") " + c);
+                    i++;
+                }
+            } else {
+                System.out.println(i + ") " + c);
+                i++;
+            }
         }
     }
 
@@ -589,7 +595,7 @@ public class Cli extends ViewObservable implements UI {
      * Asks the player of how many steps he/she wants to move mother nature.
      */
     private void moveMotherNature() {
-        System.out.println("How many steps you want to move mother nature of? (0 - " + gm.getCurrentPlayer().getMaxMoves() + " )");
+        System.out.println("How many steps you want to move mother nature of? (1" + (gm.getCurrentPlayer().getMaxMoves() == 1 ? ")" : " - " + gm.getCurrentPlayer().getMaxMoves() + ")"));
         boolean isValidInput;
         int chosenMoves = -1;
         do {
@@ -619,7 +625,7 @@ public class Cli extends ViewObservable implements UI {
     @Override
     public void selectCloud() {
         System.out.println("You should now select a cloud...");
-        focusOnClouds();
+        focusOnClouds(false);
         boolean isValidInput;
         int chosenCloud = 0;
         do {
