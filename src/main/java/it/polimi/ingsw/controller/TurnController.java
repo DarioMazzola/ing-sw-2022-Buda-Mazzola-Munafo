@@ -216,12 +216,13 @@ public class TurnController {
     }
 
     public boolean isThereNextPlayer() {
-        return (!(planningController.getPosition() == planningController.getRanking().length));
+        return (!(planningController.getPosition() + 1 == gm.getNumPlayers()));
     }
 
     public int getNextPlanner() {
         planningController.setPosition(planningController.getPosition() + 1);
-        return (planningController.getRanking()[planningController.getPosition() - 1]);
+        System.out.println("la posizione nel ranking è " + planningController.getPosition());
+        return (planningController.getRanking()[planningController.getPosition()]);
     }
 
     public int getFirstPlanner() {

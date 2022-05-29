@@ -54,7 +54,9 @@ public class EndTurnController{
             availableActions.add("Move");
             availableActions.add("SelectCharacterCard");
 
-            tc.getVirtualViewMap().get(gm.getArrayPlayers()[tc.getNextPlanner()].getNickname()).actionPhase(availableActions);
+            System.out.println("andiamo avanti");
+
+            tc.getVirtualViewMap().get(gm.getCurrentPlayer().getNickname()).actionPhase(availableActions);
         }
         else {
             tc.next_State(GameState.PLANNING);

@@ -87,7 +87,7 @@ public class PlanningController {
             if (gm.isExpertMode()) {
                 availableActions.add("SelectCharacterCard");
             }
-
+            setPosition(0);
             gm.setCurrentPlayer(ranking[0]);
             persistence.saveData(tc);
             tc.getVirtualViewMap().get(gm.getArrayPlayers()[ranking[0]].getNickname()).actionPhase(availableActions);
