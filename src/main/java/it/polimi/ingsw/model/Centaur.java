@@ -24,6 +24,11 @@ public class Centaur extends CharacterCard {
     @Override
     public Player checkInfluence(Island island, Boolean expertMode, int numPlayers, Player[] arrayPlayers, CharacterCard[] characterCardDeck) {
         if (expertMode && island.isNoEntryTilePresent()) {
+            try {
+                super.removeNoEntryTile(island, characterCardDeck);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return (null);
         }
         int[] influences;
