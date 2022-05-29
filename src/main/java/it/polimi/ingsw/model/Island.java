@@ -132,7 +132,7 @@ public class Island extends Observable implements StudentAdderInterface {
         this.noEntryTile -= 1;
     }
 
-    public int getNoEntryTile(){
+    public Integer getNoEntryTile(){
         return(noEntryTile);
     }
 
