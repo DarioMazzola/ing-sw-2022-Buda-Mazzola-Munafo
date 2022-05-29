@@ -191,7 +191,6 @@ public class ActionController {
                     throw new IllegalArgumentException("Island in which to calculate the influence not indicated");
                 parameters.put("Island", gm.getIslandList().get((int)map.get("island")));
                 parameters.put("ArrayPlayers", gm.getArrayPlayers());
-                parameters.put("ExpertMode", gm.isExpertMode());
                 parameters.put("NumPlayers", gm.getNumPlayers());
                 parameters.put("CharacterCardDeck", gm.getCharacterCardDeck());
                 break;
