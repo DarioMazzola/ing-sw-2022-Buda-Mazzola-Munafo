@@ -7,10 +7,7 @@ import it.polimi.ingsw.observer.ViewObservable;
 import it.polimi.ingsw.observer.ViewObserver;
 import it.polimi.ingsw.view.UI;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -625,17 +622,18 @@ public class Cli extends ViewObservable implements UI {
     @Override
     public void selectCloud() {
         System.out.println("You should now select a cloud...");
-        focusOnClouds(false);
+        List<ReducedCloud> availableClouds = Arrays.stream(gm.getArrayClouds()).filter(ReducedCloud::isFull).collect(Collectors.toList());
+        printList(availableClouds);
         boolean isValidInput;
         int chosenCloud = 0;
         do {
             isValidInput = true;
             try {
                 chosenCloud = Integer.parseInt(scanner.nextLine());
-                if (!(chosenCloud >= 1 && chosenCloud <= gm.getArrayClouds().length)) {
+                if (!(chosenCloud >= 1 && chosenCloud <= availableClouds.size())) {
                     isValidInput = false;
-                    System.out.println("Please, enter a number between 1 and " + gm.getArrayClouds().length + " :");
-                } else if (!gm.getArrayClouds()[chosenCloud-1].isFull()) {
+                    System.out.println("Please, enter a number between 1 and " + availableClouds.size() + " :");
+                } else if (!availableClouds.get(chosenCloud-1).isFull()) {
                     isValidInput = false;
                     System.out.println("The cloud you have selected has already been chosen by another player! Please select another one:");
                 }
@@ -645,8 +643,7 @@ public class Cli extends ViewObservable implements UI {
             }
         } while (!isValidInput);
         int finalChosenCloud = chosenCloud;
-        notifyObserver(observers -> observers.onUpdateCloud(finalChosenCloud));
-
+        notifyObserver(observers -> observers.onUpdateCloud(Arrays.asList(gm.getArrayClouds()).indexOf(availableClouds.get(finalChosenCloud -1))));
     }
 
     @Override
@@ -721,6 +718,22 @@ public class Cli extends ViewObservable implements UI {
         System.out.println("Received updateGameModel");
         System.out.println(gameModel);
         this.gm = gameModel;
+    }
+
+    // <--------- Utility methods --------->
+
+    /**
+     * Prints the given list adding, before each element, an index from 1 to the size of the list.
+     *
+     * @param listToPrint the list to print
+     * @param <T> the type of the list elements
+     */
+    private <T> void printList (List<T> listToPrint) {
+        int i = 1;
+        for (T t : listToPrint) {
+            System.out.println(i + " - " + t.toString());
+            i++;
+        }
     }
 
     /**

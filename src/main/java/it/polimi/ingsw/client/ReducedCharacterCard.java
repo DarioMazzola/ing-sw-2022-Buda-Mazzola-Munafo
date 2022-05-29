@@ -88,4 +88,18 @@ public class ReducedCharacterCard {
     public Map<House, Integer> getHouseMap(){
         return houseMap;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder string = new StringBuilder(cardName + "\n" + cost + "\n" + description + "\n");
+        if (houseMap != null) {
+            for (House h : House.values()) {
+                string.append(h).append(": ").append(houseMap.get(h));
+            }
+        }
+        if (noEntryTile != null) {
+            string.append("NO ENTRY TILES: ").append(noEntryTile);
+        }
+        return string.toString();
+    }
 }
