@@ -37,7 +37,8 @@ class HeraldTest {
         characterCardDeck[1] = new Knight();
         characterCardDeck[2] = new HerbGranma();
 
-        Island island = new Island();
+        boolean expertMode = true;
+        Island island = new Island(expertMode);
         parameters.put("Island", island);
         parameters.put("ArrayPlayers", players);
         parameters.put("ExpertMode", true);

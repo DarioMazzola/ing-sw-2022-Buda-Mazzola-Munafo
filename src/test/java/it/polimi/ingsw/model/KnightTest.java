@@ -52,7 +52,7 @@ class KnightTest {
     void checkInfluenceTest_2Players() {
         numPlayers = 2;
         expertMode = false;
-        island = new Island();
+        island = new Island(expertMode);
 
         arrayPlayers = new Player[numPlayers];
         for (int i=0; i<numPlayers; i++){
@@ -92,7 +92,7 @@ class KnightTest {
     void checkInfluenceTest_2Players_Tie() {
         numPlayers = 2;
         expertMode = false;
-        island = new Island();
+        island = new Island(expertMode);
 
         arrayPlayers = new Player[numPlayers];
         for (int i=0; i<numPlayers; i++){
@@ -135,7 +135,7 @@ class KnightTest {
     void checkInfluenceTest_4Players() {
         numPlayers = 4;
         expertMode = false;
-        island = new Island();
+        island = new Island(expertMode);
 
         arrayPlayers = new Player[numPlayers];
         for (int i=0; i<numPlayers; i++){
@@ -190,7 +190,7 @@ class KnightTest {
     void checkInfluenceTest_NoEntryTile() {
         numPlayers = 2;
         expertMode = true;
-        island = new Island();
+        island = new Island(expertMode);
 
         arrayPlayers = new Player[numPlayers];
         for (int i=0; i<numPlayers; i++){

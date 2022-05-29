@@ -128,7 +128,7 @@ class GameModelTest {
     @Test
     void moveStudents_Exceptions(){
         Player p = new Player(numPlayers);
-        Island i = new Island();
+        Island i = new Island(expertMode);
         Island b = null;
         Dashboard a = null;
         House c = null;
@@ -143,7 +143,7 @@ class GameModelTest {
      */
     @Test
     void MoveStudents2_Test() {
-        Island to = new Island();
+        Island to = new Island(expertMode);
         gm.getArrayPlayers()[0].setDashboard(Color.WHITE, "p0");
         gm.getArrayPlayers()[1].setDashboard(Color.BLACK, "p1");
 
@@ -234,7 +234,7 @@ class GameModelTest {
     @Test
     void MoveStudents4_Test() {
         Bag from = new Bag();
-        Island to = new Island();
+        Island to = new Island(expertMode);
 
         for (int i=0; i<120; i++){
             try {
@@ -265,7 +265,7 @@ class GameModelTest {
     @Test
     void moveStudents4_Exceptions(){
         Bag p = new Bag();
-        Island q = new Island();
+        Island q = new Island(expertMode);
         Island b = null;
         Bag a = null;
         assertThrows(NullPointerException.class, ()->gm.moveStudents(a, q, 1));
@@ -331,7 +331,7 @@ class GameModelTest {
     @Test
     void moveTowersTest() {
         Player player = new Player(numPlayers);
-        Island island = new Island();
+        Island island = new Island(expertMode);
 
         player.setDashboard(towerColor, "nickname");
         int oldNumTowersPlayer = player.getDashboard().getNumTowers();
@@ -543,7 +543,7 @@ class GameModelTest {
     @Test
     void moveTowersTest_NullDashboardGiven_ThrowsNullPointerException() {
         Dashboard dashboard = null;
-        Island island = new Island();
+        Island island = new Island(expertMode);
         NullPointerException thrown = Assertions.assertThrows(NullPointerException.class, () -> gm.moveTowers(dashboard, island, numTowersToMove));
 
     }
@@ -565,7 +565,7 @@ class GameModelTest {
     @Test
     void moveTowersTest_NotEnoughTowersInDashboard_ThrowsEntranceException() {
         Dashboard dashboard = new Dashboard(towerColor, 7, 8, "p0");
-        Island island = new Island();
+        Island island = new Island(expertMode);
 
         TowerAreaException thrown = Assertions.assertThrows(TowerAreaException.class, () -> gm.moveTowers(dashboard, island, 9));
         Assertions.assertEquals("There are not enough towers in the dashboard", thrown.getMessage());
@@ -727,7 +727,7 @@ class GameModelTest {
      */
     @Test
     void checkInfluenceTest(){
-        island = new Island();
+        island = new Island(expertMode);
 
         expertMode = true;
 
@@ -764,7 +764,7 @@ class GameModelTest {
 
     @Test
     void useCharacterCardTest_playerWithNotEnoughCoins_ShouldThrowsIllegalArgumentException(){
-        island = new Island();
+        island = new Island(expertMode);
 
         expertMode = true;
 
@@ -780,7 +780,7 @@ class GameModelTest {
 
     @Test
     void useCharacterCardTest_playerWithEnoughCoins(){
-        island = new Island();
+        island = new Island(expertMode);
 
         expertMode = true;
 
@@ -808,7 +808,7 @@ class GameModelTest {
 
     @Test
     void setBaseContextTest(){
-        island = new Island();
+        island = new Island(expertMode);
 
         expertMode = true;
 
@@ -835,7 +835,7 @@ class GameModelTest {
      */
     @Test
     void checkProfTest_1() {
-        island = new Island();
+        island = new Island(expertMode);
 
         expertMode = true;
 
@@ -879,7 +879,7 @@ class GameModelTest {
 
     @Test
     void addCoinsTest_ToManyCoinsAdded_ShouldThrowTotalCoinsException(){
-        island = new Island();
+        island = new Island(expertMode);
 
         expertMode = true;
 
@@ -892,7 +892,7 @@ class GameModelTest {
     }
 
     @Test
-    void addCoinsTest_WalletAlreadyFull_AddedAnotherCoin_ShouldThrowTotalCoinsException(){island = new Island();
+    void addCoinsTest_WalletAlreadyFull_AddedAnotherCoin_ShouldThrowTotalCoinsException(){island = new Island(expertMode);
 
         expertMode = true;
 
@@ -915,7 +915,7 @@ class GameModelTest {
 
     @Test
     void addCoinsTest(){
-        island = new Island();
+        island = new Island(expertMode);
 
         expertMode = true;
 
@@ -939,7 +939,7 @@ class GameModelTest {
 
     @Test
     void removeCoinsTest_ToManyCoinsRemoved_ShouldThrowTotalCoinsException(){
-        island = new Island();
+        island = new Island(expertMode);
 
         expertMode = true;
 
@@ -952,7 +952,7 @@ class GameModelTest {
 
     @Test
     void removeCoinsTest(){
-        island = new Island();
+        island = new Island(expertMode);
 
         expertMode = true;
 
@@ -975,7 +975,7 @@ class GameModelTest {
     }
 
     private void prepareContext(){
-        island = new Island();
+        island = new Island(expertMode);
 
         expertMode = true;
 

@@ -11,6 +11,7 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
 class HerbGranmaTest {
+    private final boolean expertMode = true;
 
     CharacterCard herbGranma;
 
@@ -23,7 +24,7 @@ class HerbGranmaTest {
     void doEffectTest_addNoEntryTile() {
         Map<String, Object> parameters = new HashMap<>();
 
-        Island noEntryIsland = new Island();
+        Island noEntryIsland = new Island(expertMode);
         int noEntryTileNumberBefore;
 
         parameters.put("Method", "getNoEntryTileNumber");
@@ -65,7 +66,7 @@ class HerbGranmaTest {
 
         Map<String, Object> parameters = new HashMap<>();
 
-        Island noEntryIsland = new Island();
+        Island noEntryIsland = new Island(expertMode);
 
         try{
 

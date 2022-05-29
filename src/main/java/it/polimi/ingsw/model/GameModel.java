@@ -43,7 +43,7 @@ public class GameModel extends Observable {
         this.totalCoins = 0;
         islandList = new ArrayList<>();
         int numIsland = 12;
-        for (int i = 0; i < numIsland; i++) islandList.add(new Island());
+        for (int i = 0; i < numIsland; i++) islandList.add(new Island(expertMode));
         HashMap<House,Integer> houseMap = new HashMap<>();
         houseMap.put(YELLOW, 2);
         houseMap.put(BLUE, 2);
