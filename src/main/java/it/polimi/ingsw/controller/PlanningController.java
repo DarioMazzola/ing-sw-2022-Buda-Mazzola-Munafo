@@ -88,8 +88,8 @@ public class PlanningController {
                 availableActions.add("SelectCharacterCard");
             }
 
+            gm.setCurrentPlayer(ranking[0]);
             persistence.saveData(tc);
-            tc.getVirtualViewMap().get(gm.getArrayPlayers()[ranking[0]].getNickname()).update(new UpdateCurrentPlayer(new ReducedPlayer(gm.getArrayPlayers()[ranking[0]])));
             tc.getVirtualViewMap().get(gm.getArrayPlayers()[ranking[0]].getNickname()).actionPhase(availableActions);
         }
         else {

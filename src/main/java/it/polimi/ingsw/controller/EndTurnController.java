@@ -1,5 +1,7 @@
 package it.polimi.ingsw.controller;
 
+import it.polimi.ingsw.client.ReducedPlayer;
+import it.polimi.ingsw.messages.answer.UpdateCurrentPlayer;
 import it.polimi.ingsw.messages.command.CommandMessage;
 import it.polimi.ingsw.messages.command.ChosenCloud;
 import it.polimi.ingsw.model.Card;
@@ -45,6 +47,8 @@ public class EndTurnController{
 
         if (tc.isThereNextPlayer()){
             tc.next_State(GameState.ACTION);
+
+            gm.setCurrentPlayer(tc.getNextPlanner());
 
             List<String> availableActions = new ArrayList<>();
             availableActions.add("Move");
