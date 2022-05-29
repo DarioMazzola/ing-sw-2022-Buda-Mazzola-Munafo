@@ -644,9 +644,9 @@ public class Cli extends ViewObservable implements UI {
                 System.out.println("Invalid input, please enter a number:");
             }
         } while (!isValidInput);
+        List<ReducedCloud> availableClouds = Arrays.stream(gm.getArrayClouds()).filter(ReducedCloud::isFull).collect(Collectors.toList());
         int finalChosenCloud = chosenCloud;
-        notifyObserver(observers -> observers.onUpdateCloud(finalChosenCloud));
-
+        notifyObserver(observers -> observers.onUpdateCloud(Arrays.asList(gm.getArrayClouds()).indexOf(availableClouds.get(finalChosenCloud -1))));
     }
 
     @Override
