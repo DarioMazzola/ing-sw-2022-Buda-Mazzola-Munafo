@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * GameModelTest class tests GameModel class
  *
- * @author Gabriele Munafo'
+ * @author Gabriele Munafo', Alessio Buda & Dario Mazzola
  * @see GameModel
  */
 class GameModelTest {
@@ -352,7 +352,7 @@ class GameModelTest {
      *
      */
     @Test
-    void moveTowersTest_merge10() { // copre ramo 1
+    void moveTowersTest_merge10() {
         gm.getArrayPlayers()[0].setDashboard(towerColor, "p0");
 
         int oldNumIsland = gm.getNumIslands();
@@ -362,15 +362,15 @@ class GameModelTest {
             oldHouseMap0.put(h, gm.getIslandList().get(0).getHouseStudents(h));
             oldHouseMap11.put(h, gm.getIslandList().get(1).getHouseStudents(h));
         }
-        gm.getIslandList().get(1).setTowerColor(towerColor); // setto lo stesso colore delle torri di player
-        try { // metto una torre sull'isola
+
+        try {
             gm.moveTowers(gm.getArrayPlayers()[0].getDashboard(), gm.getIslandList().get(1), numTowersToMove);
         } catch (TowerAreaException e) {
             e.printStackTrace();
             fail();
         }
-        gm.getIslandList().get(0).setTowerColor(towerColor);
-        try { // metto una torre su isola successiva, dovrebbero mergarsi
+
+        try {
             gm.moveTowers(gm.getArrayPlayers()[0].getDashboard(), gm.getIslandList().get(0), numTowersToMove);
         } catch (TowerAreaException e) {
             e.printStackTrace();
@@ -381,14 +381,14 @@ class GameModelTest {
         for (House h : House.values()) {
             assertEquals(oldHouseMap0.get(h) + oldHouseMap11.get(h), gm.getIslandList().get(0).getHouseStudents(h));
         }
-        assertFalse(gm.getIslandList().get(0).isNoEntryTilePresent());
+      assertFalse(gm.getIslandList().get(0).isNoEntryTilePresent());
     }
 
     /**
      *
      */
     @Test
-    void moveTowersTest_merge10_WithNoEntryTile() { // copre ramo 1
+    void moveTowersTest_merge10_WithNoEntryTile() {
         gm.getArrayPlayers()[0].setDashboard(towerColor, "p0");
 
         int oldNumIsland = gm.getNumIslands();
@@ -398,17 +398,17 @@ class GameModelTest {
             oldHouseMap0.put(h, gm.getIslandList().get(0).getHouseStudents(h));
             oldHouseMap11.put(h, gm.getIslandList().get(1).getHouseStudents(h));
         }
-        gm.getIslandList().get(1).setTowerColor(towerColor); // setto lo stesso colore delle torri di player
-        try { // metto una torre sull'isola
+
+        try {
             gm.moveTowers(gm.getArrayPlayers()[0].getDashboard(), gm.getIslandList().get(1), numTowersToMove);
         } catch (TowerAreaException e) {
             e.printStackTrace();
             fail();
         }
-        gm.getIslandList().get(0).setTowerColor(towerColor);
+
         gm.getIslandList().get(1).addNoEntryTile();
 
-        try { // metto una torre su isola successiva, dovrebbero mergarsi
+        try {
             gm.moveTowers(gm.getArrayPlayers()[0].getDashboard(), gm.getIslandList().get(0), numTowersToMove);
         } catch (TowerAreaException e) {
             e.printStackTrace();
@@ -428,7 +428,7 @@ class GameModelTest {
      *
      */
     @Test
-    void moveTowersTest_merge011() { // copre ramo 2
+    void moveTowersTest_merge011() {
         gm.getArrayPlayers()[0].setDashboard(towerColor, "p0");
 
         int oldNumIsland = gm.getNumIslands();
@@ -438,15 +438,15 @@ class GameModelTest {
             oldHouseMap0.put(h, gm.getIslandList().get(0).getHouseStudents(h));
             oldHouseMap11.put(h, gm.getIslandList().get(11).getHouseStudents(h));
         }
-        gm.getIslandList().get(0).setTowerColor(towerColor); // setto lo stesso colore delle torri di player
-        try { // metto una torre sull'isola
+
+        try {
             gm.moveTowers(gm.getArrayPlayers()[0].getDashboard(), gm.getIslandList().get(0), numTowersToMove);
         } catch (TowerAreaException e) {
             e.printStackTrace();
             fail();
         }
-        gm.getIslandList().get(11).setTowerColor(towerColor);
-        try { // metto una torre su isola successiva, dovrebbero mergarsi
+
+        try {
             gm.moveTowers(gm.getArrayPlayers()[0].getDashboard(), gm.getIslandList().get(11), numTowersToMove);
         } catch (TowerAreaException e) {
             e.printStackTrace();
@@ -466,25 +466,25 @@ class GameModelTest {
      *
      */
     @Test
-    void moveTowersTest_merge01() { // copre ramo 3
+    void moveTowersTest_merge01() {
         gm.getArrayPlayers()[0].setDashboard(towerColor, "p0");
 
-        int oldNumIsland = gm.getNumIslands(); // per controllare che dopo merge si sia ridotto di 1
+        int oldNumIsland = gm.getNumIslands();
         Map<House, Integer> oldHouseMap0 = new HashMap<>();
         Map<House, Integer> oldHouseMap1 = new HashMap<>();
         for (House h : House.values()) {
             oldHouseMap0.put(h, gm.getIslandList().get(0).getHouseStudents(h));
             oldHouseMap1.put(h, gm.getIslandList().get(1).getHouseStudents(h));
         }
-        gm.getIslandList().get(0).setTowerColor(towerColor); // setto lo stesso colore delle torri di player
-        try { // metto una torre sull'isola
+
+        try {
             gm.moveTowers(gm.getArrayPlayers()[0].getDashboard(), gm.getIslandList().get(0), numTowersToMove);
         } catch (TowerAreaException e) {
             e.printStackTrace();
             fail();
         }
-        gm.getIslandList().get(1).setTowerColor(towerColor);
-        try { // metto una torre su isola successiva, dovrebbero mergarsi
+
+        try {
             gm.moveTowers(gm.getArrayPlayers()[0].getDashboard(), gm.getIslandList().get(1), numTowersToMove);
         } catch (TowerAreaException e) {
             e.printStackTrace();
@@ -505,7 +505,7 @@ class GameModelTest {
      *
      */
     @Test
-    void moveTowersTest_merge110() { // copre ramo 4
+    void moveTowersTest_merge110() {
         gm.getArrayPlayers()[0].setDashboard(towerColor, "p0");
 
         int oldNumIsland = gm.getNumIslands();
@@ -515,15 +515,15 @@ class GameModelTest {
             oldHouseMap0.put(h, gm.getIslandList().get(0).getHouseStudents(h));
             oldHouseMap11.put(h, gm.getIslandList().get(11).getHouseStudents(h));
         }
-        gm.getIslandList().get(11).setTowerColor(towerColor); // setto lo stesso colore delle torri di player
-        try { // metto una torre sull'isola
+
+        try {
             gm.moveTowers(gm.getArrayPlayers()[0].getDashboard(), gm.getIslandList().get(11), numTowersToMove);
         } catch (TowerAreaException e) {
             e.printStackTrace();
             fail();
         }
-        gm.getIslandList().get(0).setTowerColor(towerColor);
-        try { // metto una torre su isola successiva, dovrebbero mergarsi
+
+        try {
             gm.moveTowers(gm.getArrayPlayers()[0].getDashboard(), gm.getIslandList().get(0), numTowersToMove);
         } catch (TowerAreaException e) {
             e.printStackTrace();
@@ -803,6 +803,7 @@ class GameModelTest {
             e.printStackTrace();
             fail();
         }
+        assertEquals(coinsBefore, gm.getCurrentPlayer().getCoins() + characterCard.getCost() - 1);
     }
 
     @Test
@@ -985,102 +986,153 @@ class GameModelTest {
 
         CharacterCard characterCard = gm.getCharacterCardDeck()[0];
 
-        if(characterCard.getType().equals(MONK)) {
-            int numIslandBefore = island.getStudents().size();
-            parameters.put("method", "move");
-            parameters.put("wantedHouse", YELLOW);
-            parameters.put("destinationIsland", island);
-            parameters.put("bag", gm.getBag());
-        }
-        else if(characterCard.getType().equals(HERALD)){
-            parameters.put("Island", island);
-            parameters.put("ArrayPlayers", gm.getArrayPlayers());
-            parameters.put("ExpertMode", gm.isExpertMode());
-            parameters.put("NumPlayers", gm.getNumPlayers());
-            parameters.put("CharacterCardDeck", gm.getCharacterCardDeck());
-        }
-        else if(characterCard.getType().equals(HERB_GRANMA)){
-            parameters.put("Method", "addNoEntryTile");
-            parameters.put("Island", island);
-        }
-        else if(characterCard.getType().equals(JOLLY)){
-            parameters.put("method", "getStudents");
+        switch (characterCard.getType()) {
+            case MONK: {
 
-            try{
-                characterCard.doEffect(parameters);
-            }
-            catch (Exception e){
-                e.printStackTrace();
-                fail();
-            }
+                parameters.put("method", "getStudents");
 
-            Map<House, Integer> studentsOnCard = (Map<House, Integer>)parameters.get("studentsOnCard");
-            Map<House, Integer> wantedStudents = new HashMap<>();
-            int i = 0;
-            while (wantedStudents.size() != 3){
-                for (House h : House.values()){
-                    if (studentsOnCard.get(h) > 0 && wantedStudents.size() < 3){
-                        wantedStudents.put(h, 1);
+                try {
+                    characterCard.doEffect(parameters);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    fail();
+                }
 
+                Map<House, Integer> studentsOnCard = (Map<House, Integer>) parameters.get("studentsOnCard");
+                House wantedStudent = null;
+                for (House h : House.values()) {
+                    if (studentsOnCard.get(h) != 0) {
+                        wantedStudent = h;
+                        break;
                     }
                 }
+
+                parameters.put("method", "move");
+                parameters.put("wantedHouse", wantedStudent);
+                parameters.put("destinationIsland", island);
+                parameters.put("bag", gm.getBag());
+                break;
             }
+            case HERALD:
+                parameters.put("Island", island);
+                parameters.put("ArrayPlayers", gm.getArrayPlayers());
+                parameters.put("ExpertMode", gm.isExpertMode());
+                parameters.put("NumPlayers", gm.getNumPlayers());
+                parameters.put("CharacterCardDeck", gm.getCharacterCardDeck());
+                break;
+            case HERB_GRANMA:
+                parameters.put("Method", "addNoEntryTile");
+                parameters.put("Island", island);
+                break;
+            case JOLLY: {
+                parameters.put("method", "getStudents");
 
-            parameters.put("method", "move");
+                try {
+                    characterCard.doEffect(parameters);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    fail();
+                }
 
-            Map<House, Integer> returnedStudents = new HashMap<>();
+                Map<House, Integer> studentsOnCard = (Map<House, Integer>) parameters.get("studentsOnCard");
+                Map<House, Integer> wantedStudents = new HashMap<>();
+                House house = null;
+                int i = 0;
+                for (House h : House.values()) {
+                    if (studentsOnCard.get(h) > 0) {
+                        house = h;
+                        break;
+                    }
+                }
 
-            try{
-                gm.getCurrentPlayer().getDashboard().addStudents(PINK, 3);
+                parameters.put("method", "move");
+
+                Map<House, Integer> returnedStudents = new HashMap<>();
+
+                try {
+                    gm.getCurrentPlayer().getDashboard().addStudents(house, 1);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    fail();
+                }
+                for (House h : House.values()) {
+                    returnedStudents.put(h, 0);
+                    wantedStudents.put(h, 0);
+                }
+                returnedStudents.put(house, 1);
+                wantedStudents.put(house, 1);
+                parameters.put("wantedStudents", wantedStudents);
+                parameters.put("returnedStudents", returnedStudents);
+                parameters.put("playerDashboard", gm.getCurrentPlayer().getDashboard());
+                break;
             }
-            catch (Exception e){
-                e.printStackTrace();
-                fail();
-            }
-            returnedStudents.put(PINK, 3);
-            parameters.put("wantedStudents",wantedStudents);
-            parameters.put("returnedStudents",returnedStudents);
-            parameters.put("playerDashboard", gm.getCurrentPlayer().getDashboard());
-        }
-        else if(characterCard.getType().equals(KNIGHT)){
-            parameters.put("CurrentPlayer", gm.getCurrentPlayer());
-        }
-        else if(characterCard.getType().equals(MAGICAL_MAILMAN)){
-            parameters.put("CurrentPlayer", gm.getCurrentPlayer());
-        }
-        else if(characterCard.getType().equals(MINSTREL)){
-            parameters.put("Dashboard", gm.getCurrentPlayer().getDashboard());
-            parameters.put("DiningHall", gm.getCurrentPlayer().getDashboard().getDiningHall());
-            Map<House, Integer> fromDashboard = new HashMap<>();
-            Map<House, Integer> fromDiningHall = new HashMap<>();
+            case KNIGHT:
+                parameters.put("CurrentPlayer", gm.getCurrentPlayer());
+                break;
+            case MAGICAL_MAILMAN:
+                parameters.put("currentPlayer", gm.getCurrentPlayer());
+                break;
+            case MINSTREL:
+                parameters.put("Dashboard", gm.getCurrentPlayer().getDashboard());
+                parameters.put("DiningHall", gm.getCurrentPlayer().getDashboard().getDiningHall());
+                House[] fromDashboard = {YELLOW, YELLOW, YELLOW};
+                House[] fromDiningHall = {PINK, PINK, PINK};
+                try {
+                    gm.getCurrentPlayer().getDashboard().addStudents(YELLOW, 3);
+                    gm.getCurrentPlayer().getDashboard().getDiningHall().addStudents(PINK, 3);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    fail();
+                }
 
-            try {
-                gm.getCurrentPlayer().getDashboard().addStudents(YELLOW, 3);
-                gm.getCurrentPlayer().getDashboard().getDiningHall().addStudents(PINK, 3);
-            }catch (Exception e){
-                e.printStackTrace();
-                fail();
-            }
-            fromDashboard.put(YELLOW, 3);
-            fromDiningHall.put(PINK, 3);
-            parameters.put("fromDashboard", fromDashboard);
-            parameters.put("fromDiningHall", fromDiningHall);
-        }
-        else if(characterCard.getType().equals(MUSHROOM_HUNTER)){
-            parameters.put("House", YELLOW);
-        }
-        else if(characterCard.getType().equals(SPOILED_PRINCESS)){
-            parameters.put("method", "move");
-            parameters.put("wantedHouse", YELLOW);
-            parameters.put("currentPlayer", gm.getCurrentPlayer());
-            parameters.put("bag", gm.getBag());
-        }
-        else if(characterCard.getType().equals(THIEF)){
+                parameters.put("fromDashboard", fromDashboard);
+                parameters.put("fromDiningHall", fromDiningHall);
+                break;
+            case MUSHROOM_HUNTER:
+                parameters.put("House", YELLOW);
+                break;
+            case SPOILED_PRINCESS:
 
-            parameters.put("wantedHouse", YELLOW);
-            parameters.put("players", gm.getArrayPlayers());
-            parameters.put("bag", gm.getBag());
+                parameters.put("method", "getStudents");
 
+                try {
+                    characterCard.doEffect(parameters);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    fail();
+                }
+
+                Map<House, Integer> studentsOnCard = (Map<House, Integer>) parameters.get("studentsOnCard");
+                House house = null;
+                int i = 0;
+                for (House h : House.values()) {
+                    if (studentsOnCard.get(h) > 0) {
+                        house = h;
+                        break;
+                    }
+                }
+
+                parameters.put("method", "move");
+
+                try {
+                    gm.getCurrentPlayer().getDashboard().addStudents(house, 1);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    fail();
+                }
+
+                parameters.put("method", "move");
+                parameters.put("wantedHouse", house);
+                parameters.put("currentPlayer", gm.getCurrentPlayer());
+                parameters.put("bag", gm.getBag());
+                break;
+            case THIEF:
+
+                parameters.put("wantedHouse", YELLOW);
+                parameters.put("players", gm.getArrayPlayers());
+                parameters.put("bag", gm.getBag());
+
+                break;
         }
     }
 

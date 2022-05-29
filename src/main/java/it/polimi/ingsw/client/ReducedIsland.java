@@ -16,7 +16,7 @@ public class ReducedIsland {
     private final Map<House,Integer> houseMap;
     private Color towerColor;
     private final int numTowers;
-    private final int noEntryTile;
+    private final Integer noEntryTile;
 
     public ReducedIsland(Island i){
         houseMap = new HashMap<>();
@@ -39,7 +39,7 @@ public class ReducedIsland {
 
     public Map<House, Integer> getStudents() {return (houseMap);}
 
-    public int getNoEntryTile(){
+    public Integer getNoEntryTile(){
         return(noEntryTile);
     }
 
