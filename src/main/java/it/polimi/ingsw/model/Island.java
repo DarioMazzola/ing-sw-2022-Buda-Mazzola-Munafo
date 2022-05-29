@@ -22,12 +22,12 @@ public class Island extends Observable implements StudentAdderInterface {
     private final Map<House,Integer> houseMap;
     private Color towerColor;
     private int numTowers;
-    private int noEntryTile;
+    private Integer noEntryTile;
 
     /**
      * Class constructor, initializes the Island
      */
-    public Island () {
+    public Island (boolean expertMode) {
         houseMap = new HashMap<>();
         houseMap.put(YELLOW, 0);
         houseMap.put(BLUE, 0);
@@ -36,8 +36,10 @@ public class Island extends Observable implements StudentAdderInterface {
         houseMap.put(PINK, 0);
         towerColor = null;
         numTowers = 0;
-        noEntryTile = 0;
-
+        if (expertMode)
+            noEntryTile = 0;
+        else
+            noEntryTile = null;
     }
 
     /**
@@ -107,6 +109,8 @@ public class Island extends Observable implements StudentAdderInterface {
     }
 
     public boolean isNoEntryTilePresent(){
+        if(noEntryTile == null)
+            return false;
         return this.noEntryTile > 0;
     }
 
@@ -114,6 +118,8 @@ public class Island extends Observable implements StudentAdderInterface {
      * Adds the noEntryTile from the island
      */
     public void addNoEntryTile(){
+        if (noEntryTile == null)
+            noEntryTile = 0;
         this.noEntryTile += 1;
     }
 

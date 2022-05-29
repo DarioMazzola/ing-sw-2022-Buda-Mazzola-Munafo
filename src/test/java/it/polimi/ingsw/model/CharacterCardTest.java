@@ -49,7 +49,7 @@ class CharacterCardTest {
         characterCardDeck[1] = new Knight();
         characterCardDeck[2] = new HerbGranma();
 
-        island = new Island();
+        island = new Island(expertMode);
     }
 
     @Test

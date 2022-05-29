@@ -27,7 +27,8 @@ class IslandTest {
      */
     @BeforeEach
     public void setup() {
-        isl = new Island();
+        boolean expertMode = true;
+        isl = new Island(expertMode);
     }
 
     /**

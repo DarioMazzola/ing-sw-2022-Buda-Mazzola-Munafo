@@ -36,7 +36,8 @@ public class MonkTest {
             e.printStackTrace();
             fail();
         }
-        destinationIsland = new Island();
+        boolean expertMode = true;
+        destinationIsland = new Island(expertMode);
     }
 
     /**

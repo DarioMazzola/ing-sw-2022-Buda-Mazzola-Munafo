@@ -7,6 +7,7 @@ import it.polimi.ingsw.messages.command.ChosenAssistantCard;
 import it.polimi.ingsw.messages.command.CommandMessage;
 import it.polimi.ingsw.model.Card;
 import it.polimi.ingsw.model.GameModel;
+import it.polimi.ingsw.utils.Persistence;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -21,14 +22,15 @@ import static it.polimi.ingsw.messages.TypeOfError.*;
 public class PlanningController {
     private int firstPlanner;
     private final List<Card> cardList;
-    int[] ranking;
+    private int[] ranking;
     private final GameModel gm;
     private final List<Card> availableAssistantCards;
     private int selected;
     private int position;
-
+    private transient final Persistence persistence;
 
     public PlanningController (GameModel gm){
+        persistence = new Persistence();
         this.selected = 0;
         this.firstPlanner = 0;
         this.gm = gm;
@@ -86,6 +88,7 @@ public class PlanningController {
                 availableActions.add("SelectCharacterCard");
             }
 
+            persistence.saveData(tc);
             tc.getVirtualViewMap().get(gm.getArrayPlayers()[ranking[0]].getNickname()).update(new UpdateCurrentPlayer(new ReducedPlayer(gm.getArrayPlayers()[ranking[0]])));
             tc.getVirtualViewMap().get(gm.getArrayPlayers()[ranking[0]].getNickname()).actionPhase(availableActions);
         }

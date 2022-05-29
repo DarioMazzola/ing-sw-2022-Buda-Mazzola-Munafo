@@ -43,7 +43,7 @@ public class GameModel extends Observable {
         this.totalCoins = 0;
         islandList = new ArrayList<>();
         int numIsland = 12;
-        for (int i = 0; i < numIsland; i++) islandList.add(new Island());
+        for (int i = 0; i < numIsland; i++) islandList.add(new Island(expertMode));
         HashMap<House,Integer> houseMap = new HashMap<>();
         houseMap.put(YELLOW, 2);
         houseMap.put(BLUE, 2);
@@ -375,16 +375,16 @@ public class GameModel extends Observable {
         for (int i = 0; i < getNumIslands(); i++) {
             if (islandList.get(i).equals(island)) {
                 try {
-                    if (i < getNumIslands() - 1 && islandList.get(i).getColorTower().equals(islandList.get(i + 1).getColorTower())) { // coperto
+                    if (i < getNumIslands() - 1 && islandList.get(i).getColorTower().equals(islandList.get(i + 1).getColorTower())) {
                         merge(i, i + 1);
-                    } else if (i == getNumIslands() - 1 && islandList.get(i).getColorTower().equals(islandList.get(0).getColorTower())) { // coperto
+                    } else if (i == getNumIslands() - 1 && islandList.get(i).getColorTower().equals(islandList.get(0).getColorTower())) {
                         merge(0, i);
-                        i--;
+                        i = 0;
                     }
                 } catch (IslandException ignored) {}
 
                 try {
-                    if (i > 0 && islandList.get(i).getColorTower().equals(islandList.get(i - 1).getColorTower())) { // coperto
+                    if (i > 0 && islandList.get(i).getColorTower().equals(islandList.get(i - 1).getColorTower())) {
                         merge(i - 1, i);
                     } else if (i == 0 && islandList.get(i).getColorTower().equals(islandList.get(getNumIslands() - 1).getColorTower())) {
                         merge(i, getNumIslands() - 1);

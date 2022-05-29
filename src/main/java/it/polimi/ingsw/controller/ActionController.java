@@ -132,6 +132,7 @@ public class ActionController {
             default:
                 System.err.println("Error in ActionController switch");
         }
+        persistence.saveData(tc);
     }
 
 
