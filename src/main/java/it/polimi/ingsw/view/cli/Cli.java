@@ -722,6 +722,12 @@ public class Cli extends ViewObservable implements UI {
 
     // <--------- Utility methods --------->
 
+    /**
+     * Prints the given list adding, before each element, an index from 1 to the size of the list.
+     *
+     * @param listToPrint the list to print
+     * @param <T> the type of the list elements
+     */
     private <T> void printList (List<T> listToPrint) {
         int i = 1;
         for (T t : listToPrint) {
