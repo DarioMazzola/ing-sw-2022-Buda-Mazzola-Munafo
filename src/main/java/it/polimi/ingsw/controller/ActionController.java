@@ -179,7 +179,7 @@ public class ActionController {
                         throw new IllegalArgumentException("Destination island not indicated");
                     parameters.put("method", "move");
                     parameters.put("wantedHouse", map.get("wantedHouse"));
-                    parameters.put("destinationIsland", map.get("island"));
+                    parameters.put("destinationIsland", gm.getIslandList().get((int) map.get("island")));
                     parameters.put("bag", gm.getBag());
                 }
                 else
@@ -189,7 +189,7 @@ public class ActionController {
             case HERALD:
                 if(map.get("island") == null)
                     throw new IllegalArgumentException("Island in which to calculate the influence not indicated");
-                parameters.put("Island", map.get("island"));
+                parameters.put("Island", gm.getIslandList().get((int)map.get("island")));
                 parameters.put("ArrayPlayers", gm.getArrayPlayers());
                 parameters.put("ExpertMode", gm.isExpertMode());
                 parameters.put("NumPlayers", gm.getNumPlayers());
@@ -208,7 +208,7 @@ public class ActionController {
                 else
                     throw new IllegalArgumentException("Not valid method given");
 
-                parameters.put("Island", map.get("island"));
+                parameters.put("Island", gm.getIslandList().get((int) map.get("island")));
                 break;
 
             case JOLLY:
@@ -247,8 +247,8 @@ public class ActionController {
                     throw new IllegalArgumentException("Students from Dining Hall not indicated");
                 parameters.put("Dashboard", gm.getCurrentPlayer().getDashboard());
                 parameters.put("DiningHall", gm.getCurrentPlayer().getDashboard().getDiningHall());
-                parameters.put("fromDashboard", map.get("fromDashboard"));
-                parameters.put("fromDiningHall", map.get("fromDiningHall"));
+                parameters.put("fromDashboard", gm.getArrayPlayers()[(int) map.get("fromDashboard")].getDashboard());
+                parameters.put("fromDiningHall", gm.getArrayPlayers()[(int) map.get("fromDiningHall")].getDashboard().getDiningHall());
                 break;
 
             case MUSHROOM_HUNTER:
