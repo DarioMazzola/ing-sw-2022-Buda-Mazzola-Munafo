@@ -31,7 +31,7 @@ class CentaurTest {
 
         characterCardDeck[0] = new Centaur();
         characterCardDeck[1] = new Knight();
-        characterCardDeck[2] = new Herald();
+        characterCardDeck[2] = new HerbGranma();
     }
 
     @AfterEach
