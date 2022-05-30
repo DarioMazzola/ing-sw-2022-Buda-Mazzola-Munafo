@@ -607,9 +607,196 @@ public class Cli extends ViewObservable implements UI {
     /**
      * Asks the player to select a character card to use and the parameters required by that card.
      */
-    private void useCharacterCard() {
-        // to be implemented
+    private void useCharacterCard() { // TODO: e se uso MagicalMailman prima di aver settato maxMoves in player?
+        // Proposta: il controller le setta a 0 all'inizio di ogni turno,
+        // in modo che quando queste vengono settate dalla carta assistente si fa maxMoves+= card.getMoves().
+        // Se la character card le aveva aumentate prima non si perde aumento
+
+        System.out.println("Here's a list of the character cards available in this game!");
+        printList(Arrays.asList(gm.getCharacterCardDeck()));
+
+        System.out.println("Enter a number between 1 and " + gm.getCharacterCardDeck().length + " to select a card:");
+        boolean isValidInput;
+        int chosenCard = 0;
+        do { // TODO: estrarne metodo per prendere input in un intervallo di valori
+            isValidInput = true;
+            try {
+                chosenCard = Integer.parseInt(scanner.nextLine());
+                if (!(chosenCard >= 1 && chosenCard <= gm.getCharacterCardDeck().length)) {
+                    isValidInput = false;
+                    System.out.println("Invalid input! Please enter a number between 1 and " + gm.getCharacterCardDeck().length);
+                } else if (gm.getCurrentPlayer().getCoins() < gm.getCharacterCardDeck()[chosenCard-1].getCost()) {
+                    isValidInput = false;
+                    System.out.println("You haven't got enough money to use the selected card, choose another card");
+                }
+            } catch (NumberFormatException e) {
+                isValidInput = false;
+                System.out.println("Invalid input! Please enter a number:");
+            }
+        } while (!isValidInput);
+
+        // adding the parameters to be sent to the server
+        Map<String, Object> parameters = new HashMap<>();
+        int chosenIsland;
+        House chosenHouse;
+        switch (gm.getCharacterCardDeck()[chosenCard - 1].getType()) {
+            case MONK: // needed: - wantedHouse, - destinationIsland
+                // wantedHouse
+                do {
+                    isValidInput = true;
+                    chosenHouse = selectHouse();
+                    if (gm.getCharacterCardDeck()[chosenCard - 1].getHouseMap().get(chosenHouse) <= 0) {
+                        isValidInput = false;
+                        System.out.println("There are no students of " + chosenCard + " house on the card");
+                    }
+                } while (!isValidInput);
+                parameters.put("wantedHouse", chosenHouse);
+
+                // destinationIsland
+                chosenIsland = selectIsland();
+                parameters.put("destinationIsland", chosenIsland);
+
+                break;
+
+            case HERALD: // needed: - Island
+            case HERB_GRANMA: // needed: - island
+                chosenIsland = selectIsland();
+                parameters.put("island", chosenIsland);
+
+                break;
+
+            case JOLLY: // needed: - wantedStudents, - returnedStudents
+                Map<House, Integer> wantedStudents = new HashMap<>();
+                for (House h : House.values()) {
+                    wantedStudents.put(h, 0);
+                }
+                for (int i = 0; i < 3; i++) {
+                    do {
+                        isValidInput = true;
+                        chosenHouse = selectHouse();
+                        if (gm.getCharacterCardDeck()[chosenCard - 1].getHouseMap().get(chosenHouse) <= 0) {
+                            isValidInput = false;
+                            System.out.println("There are no students of the " + chosenHouse + " house on the card");
+                        }
+                    } while (!isValidInput);
+                    wantedStudents.replace(chosenHouse, wantedStudents.get(chosenHouse)+1);
+
+                    if (i != 2) {
+                        System.out.println("Do you want to move another student? ('Y'/'N'):");
+                        if (!YNInput("you want move another student"))
+                            break;
+                    }
+                }
+
+                Map<House, Integer> returnedStudents = new HashMap<>();
+                for (House h : House.values()) {
+                    returnedStudents.put(h, 0);
+                }
+                for (int i = 0; i < 3; i++) {
+                    do {
+                        isValidInput = true;
+                        chosenHouse = selectHouse();
+                        if (gm.getCharacterCardDeck()[chosenCard - 1].getHouseMap().get(chosenHouse) <= 0) {
+                            isValidInput = false;
+                            System.out.println("There are no students of the " + chosenHouse + " house on the card");
+                        }
+                    } while (!isValidInput);
+                    returnedStudents.replace(chosenHouse, wantedStudents.get(chosenHouse)+1);
+
+                    if (i != 2) {
+                        System.out.println("Do you want to move another student? ('Y'/'N'):");
+                        if (!YNInput("you want move another student"))
+                            break;
+                    }
+                }
+
+                parameters.put("wantedStudents", wantedStudents);
+                parameters.put("returnedStudents", returnedStudents);
+                break;
+
+            case MINSTREL: // needed: -fromDashboard, - fromDiningHall
+                House[] fromDashboard = new House[2];
+                for (int i = 0; i < 2; i++) {
+                    do {
+                        isValidInput = true;
+                        chosenHouse = selectHouse();
+                        if (gm.getCurrentPlayer().getDashboard().getHouseStudents(chosenHouse) <= 0) {
+                            isValidInput = false;
+                            System.out.println("There are no students of the " + chosenHouse + " house in your entrance! Select another house:");
+                        }
+                    } while (!isValidInput);
+                    fromDashboard[i] = chosenHouse;
+
+                    if (i != 1) {
+                        System.out.println("Do you want to move another student? ('Y'/'N'):");
+                        if (!YNInput("you want move another student"))
+                            break;
+                    }
+                }
+
+                House[] fromDiningHall = new House[2];
+                for (int i = 0; i < 2; i++) {
+                    do {
+                        isValidInput = true;
+                        chosenHouse = selectHouse();
+                        if (gm.getCurrentPlayer().getDashboard().getDiningHall().getHouseStudents(chosenHouse) <= 0) {
+                            isValidInput = false;
+                            System.out.println("There are no students of the " + chosenHouse + " house in your dining hall! Select another house:");
+                        }
+                    } while (!isValidInput);
+                    fromDiningHall[i] = chosenHouse;
+
+                    if (i != 1) {
+                        System.out.println("Do you want to move another student? ('Y'/'N'):");
+                        if (!YNInput("you want move another student"))
+                            break;
+                    }
+                }
+
+                parameters.put("fromDashboard", fromDashboard);
+                parameters.put("fromDiningHall", fromDiningHall);
+                break;
+
+            case MUSHROOM_HUNTER:
+                System.out.println("Choose the house you want not be considered during the evaluation of influence:");
+                chosenHouse = selectHouse();
+                parameters.put("house", chosenHouse);
+                break;
+
+            case SPOILED_PRINCESS:
+                System.out.println("Choose the house of the student you want to take from the card:");
+                do {
+                    isValidInput = true;
+                    chosenHouse = selectHouse();
+                    if (gm.getCharacterCardDeck()[chosenCard - 1].getHouseMap().get(chosenHouse) <= 0) {
+                        isValidInput = false;
+                        System.out.println("There are no students of the " + chosenHouse + " house on the card");
+                    }
+                } while (!isValidInput);
+                parameters.put("wantedHouse", chosenHouse);
+                break;
+
+            case THIEF:
+                System.out.println("Select the house of the students you want to removed from player's dashboards:");
+                chosenHouse = selectHouse();
+                parameters.put("house", chosenHouse);
+                break;
+
+            case KNIGHT:
+            case MAGICAL_MAILMAN:
+            case FARMER:
+            case CENTAUR:
+                break;
+
+            default:
+                throw new IllegalStateException("Unexpected value: " + gm.getCharacterCardDeck()[chosenCard - 1].getType());
+        }
+
+        int finalChosenCard = chosenCard;
+        notifyObserver(observers -> observers.onUpdateCharacterCard(finalChosenCard-1, parameters));
     }
+
+
 
     @Override
     public void selectCloud() {
