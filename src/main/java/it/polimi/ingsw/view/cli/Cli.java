@@ -425,11 +425,22 @@ public class Cli extends ViewObservable implements UI {
     private void useCharacterCard() {
         System.out.println("Here's a list of the character cards available in this game!");
         printList(Arrays.asList(gm.getCharacterCardDeck()));
+        boolean poorPlayer = true;
+        for (ReducedCharacterCard c : gm.getCharacterCardDeck()) {
+            if (c.getCost() <= gm.getCurrentPlayer().getCoins()) {
+                poorPlayer = false;
+                break;
+            }
+        }
+        if (poorPlayer) {
+            System.out.println("You don't have enough money to use any of this cards!");
+            return;
+        }
 
-        System.out.println("Enter a number between 1 and " + gm.getCharacterCardDeck().length + " to select a card:");
+        System.out.println("Enter a number between 1 and " + gm.getCharacterCardDeck().length + " to select a card (0 to go back):");
         boolean isValidInput;
-        int chosenCard = 0;
-        do { // TODO: estrarne metodo per prendere input in un intervallo di valori
+        int chosenCard;
+        do {
             isValidInput = true;
             chosenCard = inputInRange(0, gm.getCharacterCardDeck().length, "select a valid card");
             if (chosenCard == 0)
@@ -459,14 +470,24 @@ public class Cli extends ViewObservable implements UI {
                 parameters.put("wantedHouse", chosenHouse);
 
                 // destinationIsland
-                System.out.println("Select the island where you want to put the selected student");
+                for (ReducedIsland i : gm.getIslandList()) {
+                    System.out.println(i);
+                }
+                System.out.println("\nSelect the island where you want to put the selected student");
                 chosenIsland = selectIsland();
                 parameters.put("destinationIsland", chosenIsland);
 
                 break;
 
             case HERALD: // needed: - Island
+                System.out.println("You should now choose an island to resolve as if Mother Nature had ended her movement there");
+                chosenIsland = selectIsland();
+                parameters.put("island", chosenIsland);
+
+                break;
+
             case HERB_GRANMA: // needed: - island
+                System.out.println("You should now choose an island where to put a no entry tile");
                 chosenIsland = selectIsland();
                 parameters.put("island", chosenIsland);
 
@@ -477,6 +498,8 @@ public class Cli extends ViewObservable implements UI {
                 for (House h : House.values()) {
                     wantedStudents.put(h, 0);
                 }
+
+                // wantedStudents
                 System.out.println("Select the houses of the students you want to take from the card:");
                 for (int i = 0; i < 3; i++) {
                     do {
@@ -496,6 +519,7 @@ public class Cli extends ViewObservable implements UI {
                     }
                 }
 
+                // returnedStudents
                 System.out.println("Select the houses of the students you want to return from your Entrance:");
                 Map<House, Integer> returnedStudents = new HashMap<>();
                 for (House h : House.values()) {
@@ -521,9 +545,13 @@ public class Cli extends ViewObservable implements UI {
 
                 parameters.put("wantedStudents", wantedStudents);
                 parameters.put("returnedStudents", returnedStudents);
+
                 break;
 
             case MINSTREL: // needed: -fromDashboard, - fromDiningHall
+
+                // fromDashboard
+                System.out.println("Select up to two students to move from your Entrance");
                 House[] fromDashboard = new House[2];
                 for (int i = 0; i < 2; i++) {
                     do {
@@ -543,6 +571,8 @@ public class Cli extends ViewObservable implements UI {
                     }
                 }
 
+                // fromDiningHall
+                System.out.println("Select up to two students to move from your dining hall");
                 House[] fromDiningHall = new House[2];
                 for (int i = 0; i < 2; i++) {
                     do {
@@ -564,6 +594,7 @@ public class Cli extends ViewObservable implements UI {
 
                 parameters.put("fromDashboard", fromDashboard);
                 parameters.put("fromDiningHall", fromDiningHall);
+
                 break;
 
             case MUSHROOM_HUNTER:
@@ -583,18 +614,35 @@ public class Cli extends ViewObservable implements UI {
                     }
                 } while (!isValidInput);
                 parameters.put("wantedHouse", chosenHouse);
+
                 break;
 
             case THIEF:
                 System.out.println("Select the house of the students you want to removed from player's dashboards:");
                 chosenHouse = selectHouse();
                 parameters.put("house", chosenHouse);
+
                 break;
 
             case KNIGHT:
+                System.out.println("You have selected " + CharacterCardEnum.KNIGHT + ", during the influence calculation this turn, you count as having 2 more influence");
+
+                break;
+
             case MAGICAL_MAILMAN:
+                System.out.println("You have selected " + CharacterCardEnum.MAGICAL_MAILMAN + ", you'll be able to move Mother Nature up to 2 additional Islands");
+
+                break;
+
             case FARMER:
+                System.out.println("You have selected " + CharacterCardEnum.FARMER + ", during this turn, you take control of any number of Professors even if you have " +
+                "the same number of Students as the player who currently controls them");
+
+                break;
+
             case CENTAUR:
+                System.out.println("You have selected " + CharacterCardEnum.CENTAUR + ", when resolving a Conquering on an Island, Towers will not count towards influence.");
+
                 break;
 
             default:
