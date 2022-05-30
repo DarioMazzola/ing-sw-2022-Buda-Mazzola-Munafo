@@ -120,6 +120,9 @@ public class CommandSerializer {
             case NICKNAME:
                 command = gson.fromJson(messageContent, Nickname.class);
                 break;
+            case CHOSEN_CHARACTER_CARD:
+                command = gson.fromJson(messageContent, ChosenCharacterCard.class);
+                break;
             case CHOSEN_NUM_PLAYERS:
                 command = gson.fromJson(messageContent, ChosenNumPlayers.class);
                 break;
