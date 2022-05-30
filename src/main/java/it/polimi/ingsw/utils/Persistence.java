@@ -101,4 +101,14 @@ public class Persistence {
 
         return turnController;
     }
+
+    /**
+     * Returns true if there is a match saved on the server
+     */
+    public boolean matchExists(){
+        File f = new File("savedData.json");
+
+        // Checking if the specified file exists or not
+        return f.exists();
+    }
 }
