@@ -782,6 +782,26 @@ public class Cli extends ViewObservable implements UI {
     }
 
     /**
+     * Manages input of the type Y/N (Yes or No)
+     *
+     * @param action a string describing the action to perform if the player selects 'Y'
+     * @return true if the player selects 'Y', false otherwise
+     */
+    private boolean YNInput (String action) {
+        boolean isValidInput;
+        String input;
+        do {
+            isValidInput = true;
+            input = scanner.nextLine();
+            if (!(input.equalsIgnoreCase("Y") || input.equalsIgnoreCase("N"))) {
+                isValidInput = false;
+                System.out.println("The given input is not valid.\nPlease, enter 'Y' if " + action + ", 'N' otherwise: ");
+            }
+        } while (!isValidInput);
+        return input.equalsIgnoreCase("Y");
+    }
+
+    /**
      * Checks that the given ip address is a valid ip address.
      *
      * @param ip the ip address to validate
