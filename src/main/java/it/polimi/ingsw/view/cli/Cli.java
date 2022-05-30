@@ -763,7 +763,12 @@ public class Cli extends ViewObservable implements UI {
     private <T> void printList (List<T> listToPrint) {
         int i = 1;
         for (T t : listToPrint) {
-            System.out.println(i + " - " + t.toString());
+            if (t instanceof House)
+                System.out.println(i + " - " + ((House) t).getColouredHouse());
+            else if (t instanceof ReducedPlayer) {
+                System.out.println(i + " - " + ((ReducedPlayer) t).getNickname());
+            } else
+                System.out.println(i + " - " + t.toString());
             i++;
         }
     }
