@@ -80,8 +80,6 @@ public class PlanningController {
 
             UpdateRanking();
 
-            tc.next_State(ACTION);
-
             List<String> availableActions = new ArrayList<>();
             availableActions.add("Move students to dining hall or to island");
             if (gm.isExpertMode()) {
@@ -90,6 +88,7 @@ public class PlanningController {
             setPosition(0);
             gm.setCurrentPlayer(ranking[0]);
             persistence.saveData(tc);
+            tc.next_State(ACTION);
             tc.getVirtualViewMap().get(gm.getArrayPlayers()[ranking[0]].getNickname()).actionPhase(availableActions);
         }
         else {
