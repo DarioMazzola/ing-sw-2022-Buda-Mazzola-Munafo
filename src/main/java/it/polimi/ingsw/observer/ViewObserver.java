@@ -3,6 +3,8 @@ package it.polimi.ingsw.observer;
 import it.polimi.ingsw.client.ReducedIsland;
 import it.polimi.ingsw.model.*;
 
+import java.util.Map;
+
 /**
  * Class representing the observer for view elements.
  *
@@ -114,4 +116,6 @@ public interface ViewObserver {
      * Method used to disconnect a client.
      */
     void onDisconnection();
+
+    void onUpdateCharacterCard(int cardIndex, Map<String, Object> parameters);
 }

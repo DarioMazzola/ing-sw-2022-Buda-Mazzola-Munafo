@@ -91,14 +91,18 @@ public class ReducedCharacterCard {
 
     @Override
     public String toString() {
-        StringBuilder string = new StringBuilder(cardName + "\n" + cost + "\n" + description + "\n");
+        StringBuilder string = new StringBuilder(cardName + "\nCOST: " + cost + "\n" + description + "\n");
         if (houseMap != null) {
             for (House h : House.values()) {
-                string.append(h).append(": ").append(houseMap.get(h));
+                string.append(h.getColouredHouse()).append(": ").append(houseMap.get(h));
+                if (h != House.values()[House.values().length-1])
+                    string.append(", ");
+                else
+                    string.append(".\n");
             }
         }
         if (noEntryTile != null) {
-            string.append("NO ENTRY TILES: ").append(noEntryTile);
+            string.append("NO ENTRY TILES: ").append(noEntryTile).append("\n");
         }
         return string.toString();
     }

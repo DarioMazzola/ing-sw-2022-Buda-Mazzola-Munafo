@@ -106,11 +106,11 @@ public class ReducedDashboard {
     public String toString() {
         StringBuilder string = new StringBuilder("ENTRANCE:");
         for (House h : House.values()) {
-            string.append("\n").append(h).append(": ").append(getHouseStudents(h));
+            string.append("\n").append(h.getColouredHouse()).append(": ").append(getHouseStudents(h));
         }
         string.append("\nDININGHALL:");
         for (House h : House.values()) {
-            string.append("\n").append(h).append(": ").append(getDiningHall().getHouseStudents(h));
+            string.append("\n").append(h.getColouredHouse()).append(": ").append(getDiningHall().getHouseStudents(h));
         }
         return string.toString();
     }

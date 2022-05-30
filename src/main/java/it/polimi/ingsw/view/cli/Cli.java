@@ -299,7 +299,7 @@ public class Cli extends ViewObservable implements UI {
 
     @Override
     public void goToWaitingRoom() {
-        System.out.println("You are now in the lobby! Waiting for other players ...");
+        System.out.println("Waiting for other players ...");
     }
 
     @Override
@@ -374,7 +374,7 @@ public class Cli extends ViewObservable implements UI {
                     focusOnDashboard();
                     break;
                 case "See the current stat of clouds":
-                    focusOnClouds(true);
+                    focusOnClouds();
                     break;
                 case "Move":
                     moveStudents();
@@ -449,19 +449,12 @@ public class Cli extends ViewObservable implements UI {
     /**
      * Shows the current state of the clouds.
      */
-    private void focusOnClouds(boolean showChosenClouds) {
+    private void focusOnClouds() {
         System.out.println("Current state of clouds:");
         int i = 1;
         for (ReducedCloud c : gm.getArrayClouds()) {
-            if (!c.isFull()) {
-                if (showChosenClouds) {
-                    System.out.println(i + ") " + c);
+                    System.out.println(i + " - " + c);
                     i++;
-                }
-            } else {
-                System.out.println(i + ") " + c);
-                i++;
-            }
         }
     }
 
@@ -584,8 +577,7 @@ public class Cli extends ViewObservable implements UI {
         } while (!isValidInput);
         House finalChosenHouse = chosenHouse;
         int finalChosenIsland = chosenIsland;
-        int finalChosenIsland1 = chosenIsland;
-        notifyObserver(observers -> observers.onMoveStudentsToIsland(finalChosenHouse, finalChosenIsland1 - 1));
+        notifyObserver(observers -> observers.onMoveStudentsToIsland(finalChosenHouse, finalChosenIsland - 1));
     }
 
     /**
@@ -615,9 +607,196 @@ public class Cli extends ViewObservable implements UI {
     /**
      * Asks the player to select a character card to use and the parameters required by that card.
      */
-    private void useCharacterCard() {
-        // to be implemented
+    private void useCharacterCard() { // TODO: e se uso MagicalMailman prima di aver settato maxMoves in player?
+        // Proposta: il controller le setta a 0 all'inizio di ogni turno,
+        // in modo che quando queste vengono settate dalla carta assistente si fa maxMoves+= card.getMoves().
+        // Se la character card le aveva aumentate prima non si perde aumento
+
+        System.out.println("Here's a list of the character cards available in this game!");
+        printList(Arrays.asList(gm.getCharacterCardDeck()));
+
+        System.out.println("Enter a number between 1 and " + gm.getCharacterCardDeck().length + " to select a card:");
+        boolean isValidInput;
+        int chosenCard = 0;
+        do { // TODO: estrarne metodo per prendere input in un intervallo di valori
+            isValidInput = true;
+            try {
+                chosenCard = Integer.parseInt(scanner.nextLine());
+                if (!(chosenCard >= 1 && chosenCard <= gm.getCharacterCardDeck().length)) {
+                    isValidInput = false;
+                    System.out.println("Invalid input! Please enter a number between 1 and " + gm.getCharacterCardDeck().length);
+                } else if (gm.getCurrentPlayer().getCoins() < gm.getCharacterCardDeck()[chosenCard-1].getCost()) {
+                    isValidInput = false;
+                    System.out.println("You haven't got enough money to use the selected card, choose another card");
+                }
+            } catch (NumberFormatException e) {
+                isValidInput = false;
+                System.out.println("Invalid input! Please enter a number:");
+            }
+        } while (!isValidInput);
+
+        // adding the parameters to be sent to the server
+        Map<String, Object> parameters = new HashMap<>();
+        int chosenIsland;
+        House chosenHouse;
+        switch (gm.getCharacterCardDeck()[chosenCard - 1].getType()) {
+            case MONK: // needed: - wantedHouse, - destinationIsland
+                // wantedHouse
+                do {
+                    isValidInput = true;
+                    chosenHouse = selectHouse();
+                    if (gm.getCharacterCardDeck()[chosenCard - 1].getHouseMap().get(chosenHouse) <= 0) {
+                        isValidInput = false;
+                        System.out.println("There are no students of " + chosenCard + " house on the card");
+                    }
+                } while (!isValidInput);
+                parameters.put("wantedHouse", chosenHouse);
+
+                // destinationIsland
+                chosenIsland = selectIsland();
+                parameters.put("destinationIsland", chosenIsland);
+
+                break;
+
+            case HERALD: // needed: - Island
+            case HERB_GRANMA: // needed: - island
+                chosenIsland = selectIsland();
+                parameters.put("island", chosenIsland);
+
+                break;
+
+            case JOLLY: // needed: - wantedStudents, - returnedStudents
+                Map<House, Integer> wantedStudents = new HashMap<>();
+                for (House h : House.values()) {
+                    wantedStudents.put(h, 0);
+                }
+                for (int i = 0; i < 3; i++) {
+                    do {
+                        isValidInput = true;
+                        chosenHouse = selectHouse();
+                        if (gm.getCharacterCardDeck()[chosenCard - 1].getHouseMap().get(chosenHouse) <= 0) {
+                            isValidInput = false;
+                            System.out.println("There are no students of the " + chosenHouse + " house on the card");
+                        }
+                    } while (!isValidInput);
+                    wantedStudents.replace(chosenHouse, wantedStudents.get(chosenHouse)+1);
+
+                    if (i != 2) {
+                        System.out.println("Do you want to move another student? ('Y'/'N'):");
+                        if (!YNInput("you want move another student"))
+                            break;
+                    }
+                }
+
+                Map<House, Integer> returnedStudents = new HashMap<>();
+                for (House h : House.values()) {
+                    returnedStudents.put(h, 0);
+                }
+                for (int i = 0; i < 3; i++) {
+                    do {
+                        isValidInput = true;
+                        chosenHouse = selectHouse();
+                        if (gm.getCharacterCardDeck()[chosenCard - 1].getHouseMap().get(chosenHouse) <= 0) {
+                            isValidInput = false;
+                            System.out.println("There are no students of the " + chosenHouse + " house on the card");
+                        }
+                    } while (!isValidInput);
+                    returnedStudents.replace(chosenHouse, wantedStudents.get(chosenHouse)+1);
+
+                    if (i != 2) {
+                        System.out.println("Do you want to move another student? ('Y'/'N'):");
+                        if (!YNInput("you want move another student"))
+                            break;
+                    }
+                }
+
+                parameters.put("wantedStudents", wantedStudents);
+                parameters.put("returnedStudents", returnedStudents);
+                break;
+
+            case MINSTREL: // needed: -fromDashboard, - fromDiningHall
+                House[] fromDashboard = new House[2];
+                for (int i = 0; i < 2; i++) {
+                    do {
+                        isValidInput = true;
+                        chosenHouse = selectHouse();
+                        if (gm.getCurrentPlayer().getDashboard().getHouseStudents(chosenHouse) <= 0) {
+                            isValidInput = false;
+                            System.out.println("There are no students of the " + chosenHouse + " house in your entrance! Select another house:");
+                        }
+                    } while (!isValidInput);
+                    fromDashboard[i] = chosenHouse;
+
+                    if (i != 1) {
+                        System.out.println("Do you want to move another student? ('Y'/'N'):");
+                        if (!YNInput("you want move another student"))
+                            break;
+                    }
+                }
+
+                House[] fromDiningHall = new House[2];
+                for (int i = 0; i < 2; i++) {
+                    do {
+                        isValidInput = true;
+                        chosenHouse = selectHouse();
+                        if (gm.getCurrentPlayer().getDashboard().getDiningHall().getHouseStudents(chosenHouse) <= 0) {
+                            isValidInput = false;
+                            System.out.println("There are no students of the " + chosenHouse + " house in your dining hall! Select another house:");
+                        }
+                    } while (!isValidInput);
+                    fromDiningHall[i] = chosenHouse;
+
+                    if (i != 1) {
+                        System.out.println("Do you want to move another student? ('Y'/'N'):");
+                        if (!YNInput("you want move another student"))
+                            break;
+                    }
+                }
+
+                parameters.put("fromDashboard", fromDashboard);
+                parameters.put("fromDiningHall", fromDiningHall);
+                break;
+
+            case MUSHROOM_HUNTER:
+                System.out.println("Choose the house you want not be considered during the evaluation of influence:");
+                chosenHouse = selectHouse();
+                parameters.put("house", chosenHouse);
+                break;
+
+            case SPOILED_PRINCESS:
+                System.out.println("Choose the house of the student you want to take from the card:");
+                do {
+                    isValidInput = true;
+                    chosenHouse = selectHouse();
+                    if (gm.getCharacterCardDeck()[chosenCard - 1].getHouseMap().get(chosenHouse) <= 0) {
+                        isValidInput = false;
+                        System.out.println("There are no students of the " + chosenHouse + " house on the card");
+                    }
+                } while (!isValidInput);
+                parameters.put("wantedHouse", chosenHouse);
+                break;
+
+            case THIEF:
+                System.out.println("Select the house of the students you want to removed from player's dashboards:");
+                chosenHouse = selectHouse();
+                parameters.put("house", chosenHouse);
+                break;
+
+            case KNIGHT:
+            case MAGICAL_MAILMAN:
+            case FARMER:
+            case CENTAUR:
+                break;
+
+            default:
+                throw new IllegalStateException("Unexpected value: " + gm.getCharacterCardDeck()[chosenCard - 1].getType());
+        }
+
+        int finalChosenCard = chosenCard;
+        notifyObserver(observers -> observers.onUpdateCharacterCard(finalChosenCard-1, parameters));
     }
+
+
 
     @Override
     public void selectCloud() {
@@ -734,6 +913,79 @@ public class Cli extends ViewObservable implements UI {
             System.out.println(i + " - " + t.toString());
             i++;
         }
+    }
+
+    /**
+     * Asks the player to select a house and checks the validity of the input.
+     *
+     * @return the house selected by the player
+     */
+    private House selectHouse () {
+        System.out.println("Houses:");
+        printList(Arrays.asList(House.values()));
+        System.out.println("Select an house by entering a number between 1 and " + House.values().length + ":");
+        boolean isValidInput;
+        int chosenHouse = 0;
+        do {
+            isValidInput = true;
+            try {
+                chosenHouse = Integer.parseInt(scanner.nextLine());
+                if (!(chosenHouse > 0 && chosenHouse <= House.values().length)) {
+                    isValidInput = false;
+                    System.out.println("Invalid input! Please enter a number between 1 and " + House.values().length);
+                }
+            } catch (NumberFormatException e) {
+                isValidInput = false;
+                System.out.println("Invalid input! Please enter a number:");
+            }
+        } while (!isValidInput);
+        return House.values()[chosenHouse-1];
+    }
+
+    /**
+     * Asks the player to select an island and checks the validity of the input.
+     *
+     * @return the index of the island selected by the player
+     */
+    private int selectIsland() {
+        System.out.println("Select an island (1 - " + gm.getIslandList().size() + "):");
+        printList(gm.getIslandList());
+        int chosenIsland = 0;
+        boolean isValidInput;
+        do {
+            isValidInput = true;
+            try {
+                chosenIsland = Integer.parseInt(scanner.nextLine());
+                if (!(chosenIsland > 0 && chosenIsland <= gm.getIslandList().size())) {
+                    isValidInput = false;
+                    System.out.println("The island you have selected does not exist! Please select an existing island:");
+                }
+            } catch (NumberFormatException e) {
+                isValidInput = false;
+                System.out.println("Invalid input! Please enter a number:");
+            }
+        } while (!isValidInput);
+        return chosenIsland;
+    }
+
+    /**
+     * Manages input of the type Y/N (Yes or No)
+     *
+     * @param action a string describing the action to perform if the player selects 'Y'
+     * @return true if the player selects 'Y', false otherwise
+     */
+    private boolean YNInput (String action) {
+        boolean isValidInput;
+        String input;
+        do {
+            isValidInput = true;
+            input = scanner.nextLine();
+            if (!(input.equalsIgnoreCase("Y") || input.equalsIgnoreCase("N"))) {
+                isValidInput = false;
+                System.out.println("The given input is not valid.\nPlease, enter 'Y' if " + action + ", 'N' otherwise: ");
+            }
+        } while (!isValidInput);
+        return input.equalsIgnoreCase("Y");
     }
 
     /**

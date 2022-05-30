@@ -45,7 +45,7 @@ public class ReducedCloud {
     public String toString() {
         StringBuilder string = new StringBuilder("Students on the cloud: ");
         for (House h : House.values()) {
-            string.append("\n").append(h).append(": ").append(getHouseStudents(h));
+            string.append("\n").append(h.getColouredHouse()).append(": ").append(getHouseStudents(h));
         }
         return string.toString();
     }

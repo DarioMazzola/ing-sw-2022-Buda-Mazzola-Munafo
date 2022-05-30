@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.lang.String;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -117,6 +118,10 @@ public class ClientController implements ViewObserver, Observer {
         client.sendMessage(new ChosenCloud(this.nickname, chosenCloud));
     }
 
+    @Override
+    public void onUpdateCharacterCard(int cardIndex, Map<String, Object> parameters) {
+        client.sendMessage(new ChosenCharacterCard(this.nickname, cardIndex, parameters));
+    }
 
     @Override
     public void onDisconnection() {
