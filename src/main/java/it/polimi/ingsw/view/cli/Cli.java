@@ -374,7 +374,7 @@ public class Cli extends ViewObservable implements UI {
                     focusOnDashboard();
                     break;
                 case "See the current stat of clouds":
-                    focusOnClouds(true);
+                    focusOnClouds();
                     break;
                 case "Move":
                     moveStudents();
@@ -449,19 +449,12 @@ public class Cli extends ViewObservable implements UI {
     /**
      * Shows the current state of the clouds.
      */
-    private void focusOnClouds(boolean showChosenClouds) {
+    private void focusOnClouds() {
         System.out.println("Current state of clouds:");
         int i = 1;
         for (ReducedCloud c : gm.getArrayClouds()) {
-            if (!c.isFull()) {
-                if (showChosenClouds) {
-                    System.out.println(i + ") " + c);
+                    System.out.println(i + " - " + c);
                     i++;
-                }
-            } else {
-                System.out.println(i + ") " + c);
-                i++;
-            }
         }
     }
 
