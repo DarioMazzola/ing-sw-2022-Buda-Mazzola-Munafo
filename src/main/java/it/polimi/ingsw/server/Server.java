@@ -43,20 +43,22 @@ public class Server {
         VirtualView virtualView = new VirtualView(clientHandler);
 
         if(! turnController.isGameStarted()) {
-            //if the client is the first logged in
-            if (clientHandlerMap.isEmpty() || firstHandler.equals(clientHandler)) {
+            if (clientHandlerMap.isEmpty() || firstHandler.equals(clientHandler)) { //if the client is the first logged in
                 firstHandler = clientHandler;
                 clientHandlerMap.put(message.getNickname(), clientHandler);
                 turnController.selectMainPhase(message, clientHandler);
             } else if (turnController.checkLoginNickname(message.getNickname(), virtualView)) {
                 turnController.loginHandler(message.getNickname(), clientHandler);
-                virtualView.goToWaitingRoom();
-                if(turnController.gameModelExists())
-                    turnController.checkIfFull();
-            }
 
+                if (!turnController.gameModelExists() || !(turnController.getVirtualViewMap().size() == turnController.getNumPlayers())) {
+                    virtualView.goToWaitingRoom();
+                }
+                if(turnController.gameModelExists()) {
+                    turnController.checkIfFull();
+                }
+            }
         }
-        else{
+        else {
             virtualView.showError(GAME_ALREADY_STARTED.toString());
         }
     }
