@@ -998,6 +998,32 @@ public class Cli extends ViewObservable implements UI {
     }
 
     /**
+     * Reads as input from the user a number between min and max, uses the message to print a specific error message.
+     *
+     * @param min the minimum accepted value
+     * @param max the maximum accepted value
+     * @param message a message used to print a specific error message
+     * @return the value entered by the user
+     */
+    private int inputInRange (int min, int max, String message) {
+        boolean isValidInput;
+        int input = 0;
+        do {
+            try {
+                isValidInput = true;
+                input = Integer.parseInt(scanner.nextLine());
+                if (!(input >= min && input <= max))
+                    isValidInput = false;
+            } catch (NumberFormatException e) {
+                isValidInput = false;
+            }
+            if (!isValidInput)
+                System.out.println("Invalid input! Insert " + (min == max ? min + ":" : "a number between " + min + " and " + max + ", to " + message + ":"));
+        } while (!isValidInput);
+        return input;
+    }
+
+    /**
      * Checks that the given ip address is a valid ip address.
      *
      * @param ip the ip address to validate
