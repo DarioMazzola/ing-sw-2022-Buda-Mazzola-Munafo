@@ -470,4 +470,16 @@ public class ActionController {
         else
             winner = gm.getArrayPlayers()[numProfOfPlayer.indexOf(max)];
     }
+
+    public int getStudentsMoved(){
+        return studentsMoved;
+    }
+
+    public boolean isUsedCharacterCard(){
+        return usedCharacterCard;
+    }
+
+    public int getMaxStudMoved(){
+        return maxStudMoved;
+    }
 }
