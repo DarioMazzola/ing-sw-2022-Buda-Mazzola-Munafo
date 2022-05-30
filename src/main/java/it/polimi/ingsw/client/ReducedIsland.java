@@ -55,7 +55,7 @@ public class ReducedIsland {
         }
         string.append("\nSTUDENTS: ");
         for (House h : House.values()) {
-            string.append("\n").append(h).append(": ").append(getStudents().get(h));
+            string.append("\n").append(h.getColouredHouse()).append(": ").append(getStudents().get(h));
         }
         return string.toString();
     }

@@ -94,7 +94,7 @@ public class ReducedCharacterCard {
         StringBuilder string = new StringBuilder(cardName + "\nCOST: " + cost + "\n" + description + "\n");
         if (houseMap != null) {
             for (House h : House.values()) {
-                string.append(h).append(": ").append(houseMap.get(h));
+                string.append(h.getColouredHouse()).append(": ").append(houseMap.get(h));
                 if (h != House.values()[House.values().length-1])
                     string.append(", ");
                 else
