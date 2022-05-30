@@ -44,35 +44,30 @@ public class GameModel extends Observable {
         islandList = new ArrayList<>();
         int numIsland = 12;
         for (int i = 0; i < numIsland; i++) islandList.add(new Island(expertMode));
-        HashMap<House,Integer> houseMap = new HashMap<>();
+
+        Map<House,Integer> houseMap = new HashMap<>();
         houseMap.put(YELLOW, 2);
         houseMap.put(BLUE, 2);
         houseMap.put(GREEN, 2);
         houseMap.put(RED, 2);
         houseMap.put(PINK, 2);
 
-        for (int i=0; i<numIsland; i++) {
-            if (i==0 || i==6){
-                i++;
+        for (int i=1; i<numIsland; i++) {
+            if (i!=6) {
+                Random rand = new Random();
+                int value;
+                House chosen;
+                ArrayList<House> houses = new ArrayList<>(Arrays.asList(values()));
+
+                do {
+                    value = rand.nextInt(houses.toArray().length);
+                    chosen = houses.remove(value);
+                } while (houseMap.get(chosen) == 0);
+
+                houseMap.replace(chosen, houseMap.get(chosen) - 1);
+
+                islandList.get(i).addStudents(chosen, 1);
             }
-            Random rand = new Random();
-            int value;
-            House chosen;
-            ArrayList<House> houses = new ArrayList<>();
-
-            houses.add(YELLOW);
-            houses.add(BLUE);
-            houses.add(GREEN);
-            houses.add(RED);
-            houses.add(PINK);
-
-            do {value = rand.nextInt(houses.toArray().length);
-                chosen = houses.remove(value);
-            } while (houseMap.get(chosen) == 0);
-
-            houseMap.replace(chosen, houseMap.get(chosen) - 1);
-
-            islandList.get(i).addStudents(chosen, 1);
         }
         bag = new Bag();
         arrayClouds = new Cloud[numPlayers];
