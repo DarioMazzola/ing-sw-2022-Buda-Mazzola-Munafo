@@ -20,6 +20,7 @@ public class ReducedGameModel {
     private ReducedPlayer currentPlayer;
     private final int numPlayers;
     private int totalCoins;
+    private final boolean expertMode;
 
     public ReducedGameModel(GameModel gm){
         totalCoins = gm.getTotalCoins();
@@ -55,6 +56,8 @@ public class ReducedGameModel {
         else {
             characterCardDeck = null;
         }
+
+        expertMode = gm.isExpertMode();
     }
 
     public void setMotherIsland(int value){
@@ -121,5 +124,8 @@ public class ReducedGameModel {
 
     public void setTotalCoins(int value){
         totalCoins = value;
+    }
+    public boolean isExpertMode() {
+        return expertMode;
     }
 }
