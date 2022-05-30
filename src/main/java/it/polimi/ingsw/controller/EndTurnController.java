@@ -6,6 +6,7 @@ import it.polimi.ingsw.messages.command.CommandMessage;
 import it.polimi.ingsw.messages.command.ChosenCloud;
 import it.polimi.ingsw.model.Card;
 import it.polimi.ingsw.model.GameModel;
+import it.polimi.ingsw.utils.Persistence;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,8 +20,10 @@ import static it.polimi.ingsw.messages.TypeOfError.*;
  */
 public class EndTurnController{
     private final GameModel gm;
+    private transient final Persistence persistence;
 
     public EndTurnController(GameModel gm){
+        persistence = new Persistence();
         this.gm = gm;
     }
 
@@ -62,6 +65,8 @@ public class EndTurnController{
             tc.next_State(GameState.PLANNING);
             tc.getVirtualViewMap().get(gm.getArrayPlayers()[tc.getFirstPlanner()].getNickname()).selectAssistantCard(Arrays.asList(Card.values()));
         }
+
+        persistence.saveData(tc);
     }
 
     public String toString(){
