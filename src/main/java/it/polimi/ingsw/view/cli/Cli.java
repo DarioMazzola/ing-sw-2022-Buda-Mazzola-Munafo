@@ -756,6 +756,32 @@ public class Cli extends ViewObservable implements UI {
     }
 
     /**
+     * Asks the player to select an island and checks the validity of the input.
+     *
+     * @return the index of the island selected by the player
+     */
+    private int selectIsland() {
+        System.out.println("Select an island (1 - " + gm.getIslandList().size() + "):");
+        printList(gm.getIslandList());
+        int chosenIsland = 0;
+        boolean isValidInput;
+        do {
+            isValidInput = true;
+            try {
+                chosenIsland = Integer.parseInt(scanner.nextLine());
+                if (!(chosenIsland > 0 && chosenIsland <= gm.getIslandList().size())) {
+                    isValidInput = false;
+                    System.out.println("The island you have selected does not exist! Please select an existing island:");
+                }
+            } catch (NumberFormatException e) {
+                isValidInput = false;
+                System.out.println("Invalid input! Please enter a number:");
+            }
+        } while (!isValidInput);
+        return chosenIsland;
+    }
+
+    /**
      * Checks that the given ip address is a valid ip address.
      *
      * @param ip the ip address to validate
