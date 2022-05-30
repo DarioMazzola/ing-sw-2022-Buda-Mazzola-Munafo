@@ -62,6 +62,9 @@ public class CommandSerializer {
             case CHOSEN_EXPERT_MODE:
                 list.add(CHOSEN_EXPERT_MODE.toString());
                 break;
+            case CHOSEN_RESTORE_GAME:
+                list.add(CHOSEN_RESTORE_GAME.toString());
+                break;
             case CHOSEN_WIZARD:
                 list.add(MessageType.CHOSEN_WIZARD.toString());
                 break;
@@ -122,6 +125,9 @@ public class CommandSerializer {
                 break;
             case CHOSEN_EXPERT_MODE:
                 command = gson.fromJson(messageContent, ChosenExpertMode.class);
+                break;
+            case CHOSEN_RESTORE_GAME:
+                command = gson.fromJson(messageContent, ChosenRestoreGame.class);
                 break;
             case CHOSEN_WIZARD:
                 command = gson.fromJson(messageContent, ChosenWizard.class);
