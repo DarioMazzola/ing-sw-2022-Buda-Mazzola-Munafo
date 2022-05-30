@@ -83,9 +83,9 @@ public class PlanningController {
             tc.next_State(ACTION);
 
             List<String> availableActions = new ArrayList<>();
-            availableActions.add("Move");
+            availableActions.add("Move students to dining hall or to island");
             if (gm.isExpertMode()) {
-                availableActions.add("SelectCharacterCard");
+                availableActions.add("Select character card");
             }
             setPosition(0);
             gm.setCurrentPlayer(ranking[0]);

@@ -65,7 +65,7 @@ public class ActionController {
                 studentsMoved++;
 
                 if(studentsMoved == maxStudMoved){
-                    availableActions.remove("Move");
+                    availableActions.remove("Move students to dining hall or to island");
                 }
                 tc.getVirtualViewMap().get(messageReceived.getNickname()).actionPhase(availableActions);
                 break;
@@ -82,7 +82,7 @@ public class ActionController {
                 studentsMoved++;
 
                 if(studentsMoved == maxStudMoved){
-                    availableActions.remove("Move");
+                    availableActions.remove("Move students to dining hall or to island");
                 }
                 tc.getVirtualViewMap().get(messageReceived.getNickname()).actionPhase(availableActions);
                 break;
@@ -97,7 +97,7 @@ public class ActionController {
                 selectCharacterCardHandler(messageReceived);
 
                 usedCharacterCard = true;
-                availableActions.remove("SelectCharacterCard");
+                availableActions.remove("Select character card");
                 tc.getVirtualViewMap().get(messageReceived.getNickname()).actionPhase(availableActions);
                 break;
 
@@ -363,9 +363,9 @@ public class ActionController {
 
     private void resetActions(){
         availableActions.clear();
-        availableActions.add("Move");
+        availableActions.add("Move students to dining hall or to island");
         if (gm.isExpertMode()) {
-            availableActions.add("SelectCharacterCard");
+            availableActions.add("Select character card");
         }
     }
 

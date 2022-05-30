@@ -51,8 +51,8 @@ public class EndTurnController{
             gm.setCurrentPlayer(tc.getNextPlanner());
 
             List<String> availableActions = new ArrayList<>();
-            availableActions.add("Move");
-            availableActions.add("SelectCharacterCard");
+            availableActions.add("Move students to dining hall or to island");
+            availableActions.add("Select character card");
 
             System.out.println("andiamo avanti");
 
