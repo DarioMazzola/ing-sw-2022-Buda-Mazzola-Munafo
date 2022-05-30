@@ -294,12 +294,14 @@ public class Cli extends ViewObservable implements UI {
                     focusOnClouds();
                     break;
                 case "Move students to dining hall or to island":
-                    moveStudents();
-                    stop = true;
+                    boolean movedStudents = moveStudents();
+                    if (movedStudents)
+                        stop = true;
                     break;
                 case "Move Mother Nature":
-                    moveMotherNature();
-                    stop = true;
+                    boolean movedMother = moveMotherNature();
+                    if (movedMother)
+                        stop = true;
                     break;
                 case "Select character card":
                     useCharacterCard();
@@ -312,23 +314,10 @@ public class Cli extends ViewObservable implements UI {
      * Asks the player to select an island and shows the details (students, towers, no entry tiles) of the chosen island.
      */
     private void focusOnIsland() {
-        boolean isValidInput;
-        int numIsland = 0;
-        System.out.println("Enter the number of the island you want to see (between 1 and " + gm.getIslandList().size() + " ):");
-        do {
-            isValidInput = true;
-            try {
-                numIsland = Integer.parseInt(scanner.nextLine());
-                if (!(numIsland >= 1 && numIsland <= gm.getIslandList().size())) {
-                    isValidInput = false;
-                    System.out.println("Invalid input! Enter a number between 1 and " + gm.getIslandList().size());
-                }
-            } catch (NumberFormatException e) {
-                isValidInput = false;
-                System.out.println("Invalid input! Please insert a number:");
-            }
-        }
-        while (!isValidInput);
+        System.out.println("Enter the number of the island you want to see (between 1 and " + gm.getIslandList().size() + ", 0 to go back):");
+        int numIsland = inputInRange(0, gm.getIslandList().size(),"select a valid island" );
+        if (numIsland == 0)
+            return;
         System.out.println("Showing details of Island " + numIsland + "...");
         System.out.println(gm.getIslandList().get(numIsland - 1));
     }
@@ -337,28 +326,11 @@ public class Cli extends ViewObservable implements UI {
      * Asks the player to select a player and shows the details of his/hers dashboard.
      */
     private void focusOnDashboard() {
-        boolean isValidInput;
-        System.out.println("Which player do you want to see the dashboard of?");
-        int i = 1;
-        for (ReducedPlayer p : gm.getArrayPlayers()) {
-            System.out.println(i + " ) " + ((p.equals(gm.getCurrentPlayer())) ? "YOU" : p.getNickname()));
-            i++;
-        }
-        int player = 0;
-        do {
-            isValidInput = true;
-            try {
-                player = Integer.parseInt(scanner.nextLine());
-                if (!(player >= 1 && player <= gm.getArrayPlayers().length)) {
-                    isValidInput = false;
-                    System.out.println("Invalid input! Enter a number between 1 and " + gm.getArrayPlayers().length);
-                }
-            } catch (NumberFormatException e) {
-                isValidInput = false;
-                System.out.println("Invalid input! Please insert a number:");
-            }
-        }
-        while (!isValidInput);
+        System.out.println("Which player do you want to see the dashboard of? (0 to go back)");
+        printList(Arrays.asList(gm.getArrayPlayers()));
+        int player = inputInRange(0, gm.getNumPlayers(), "select an existing player");
+        if (player == 0)
+            return;
         System.out.println("Showing details of " + gm.getArrayPlayers()[player - 1].getNickname() + "'s dashboard...");
         System.out.println(gm.getArrayPlayers()[player - 1].getDashboard());
     }
@@ -374,23 +346,11 @@ public class Cli extends ViewObservable implements UI {
     /**
      * Manages the selection of students to move from the player's dashboard to his/hers dining hall or an island.
      */
-    private void moveStudents() {
-            System.out.println("Do you want to move students to your dining hall (1) or to an island (2)?");
-            int chosen = 0;
-            boolean isValidInput;
-            do {
-                isValidInput = true;
-                try {
-                    chosen = Integer.parseInt(scanner.nextLine());
-                    if (!(chosen == 1 || chosen == 2)) {
-                        isValidInput = false;
-                        System.out.println("Invalid input! Please enter '1' or '2':");
-                    }
-                } catch (NumberFormatException e) {
-                    isValidInput = false;
-                    System.out.println("Invalid input! Please enter a number:");
-                }
-            } while (!isValidInput);
+    private boolean moveStudents() {
+            System.out.println("Do you want to move students to your dining hall (1) or to an island (2) (0 to go back)?");
+            int chosen = inputInRange(0, 2, "select a valid action");
+            if (chosen == 0)
+                return false;
             switch (chosen) {
                 case 1:
                     moveStudentsToDiningHall();
@@ -399,7 +359,7 @@ public class Cli extends ViewObservable implements UI {
                     moveStudentsToIsland();
                     break;
             }
-
+            return true;
     }
 
     /**
@@ -450,25 +410,13 @@ public class Cli extends ViewObservable implements UI {
     /**
      * Asks the player of how many steps he/she wants to move mother nature.
      */
-    private void moveMotherNature() {
-        System.out.println("How many steps you want to move mother nature of? (1" + (gm.getCurrentPlayer().getMaxMoves() == 1 ? ")" : " - " + gm.getCurrentPlayer().getMaxMoves() + ")"));
-        boolean isValidInput;
-        int chosenMoves = -1;
-        do {
-            isValidInput = true;
-            try {
-                chosenMoves = Integer.parseInt(scanner.nextLine());
-                if (!(chosenMoves >= 0 && chosenMoves <= gm.getCurrentPlayer().getMaxMoves())) {
-                    isValidInput = false;
-                    System.out.println("Invalid input! Please enter a number between 0 and " +  gm.getCurrentPlayer().getMaxMoves() + " :");
-                }
-            } catch (NumberFormatException e) {
-                isValidInput = false;
-                System.out.println("Invalid input! Please insert a number:");
-            }
-        } while (!isValidInput);
-        int finalChosenMoves = chosenMoves;
-        notifyObserver(observers -> observers.onMoveMotherNature(finalChosenMoves) );
+    private boolean moveMotherNature() {
+        System.out.println("How many steps you want to move mother nature of? (1" + (gm.getCurrentPlayer().getMaxMoves() == 1 ? ")" : " - " + gm.getCurrentPlayer().getMaxMoves() + ", 0 to go back)"));
+        int chosenMoves = inputInRange(0, gm.getCurrentPlayer().getMaxMoves(), "select a valid a number of moves");
+        if (chosenMoves == 0)
+            return false;
+        notifyObserver(observers -> observers.onMoveMotherNature(chosenMoves));
+        return true;
     }
 
     /**
