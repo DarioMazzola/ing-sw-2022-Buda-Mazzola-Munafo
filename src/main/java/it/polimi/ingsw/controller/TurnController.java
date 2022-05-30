@@ -298,5 +298,37 @@ public class TurnController {
             sendAllSelectWizard(Arrays.asList(Wizard.values()));
         }
     }
+
+    public void restore(){
+        switch (gameState){
+            case PLANNING:
+                if (planningController.getSelected() == gm.getNumPlayers()) {
+                    List<String> availableActions = new ArrayList<>();
+                    availableActions.add("Move students to dining hall or to island");
+                    if (gm.isExpertMode()) {
+                        availableActions.add("Select character card");
+                    }
+                    next_State(ACTION);
+                    virtualViewMap.get(gm.getArrayPlayers()[getFirstPlanner()].getNickname()).actionPhase(availableActions);
+                    break;
+                }
+                else {
+                    virtualViewMap.get(gm.getArrayPlayers()[getFirstPlanner()].getNickname()).selectAssistantCard(Arrays.asList(Card.values()));
+                }
+
+            case ACTION:
+                List<String> availableActions = new ArrayList<>();
+                if (!(actionController.getStudentsMoved() == actionController.getMaxStudMoved())){
+                    availableActions.add("Move students to dining hall or to island");
+                }
+                if (gm.isExpertMode() && actionController.isUsedCharacterCard()){
+                    availableActions.add("Select character card");
+                }
+                virtualViewMap.get(gm.getCurrentPlayer().getNickname()).actionPhase(availableActions);
+
+            case END_TURN:
+                virtualViewMap.get(gm.getCurrentPlayer().getNickname()).selectCloud();
+        }
+    }
 }
 
