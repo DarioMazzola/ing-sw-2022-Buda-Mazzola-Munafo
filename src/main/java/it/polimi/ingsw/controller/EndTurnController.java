@@ -55,7 +55,10 @@ public class EndTurnController{
 
             List<String> availableActions = new ArrayList<>();
             availableActions.add("Move students to dining hall or to island");
-            availableActions.add("Select character card");
+
+            if (gm.isExpertMode()) {
+                availableActions.add("Select character card");
+            }
 
             System.out.println("andiamo avanti");
 
