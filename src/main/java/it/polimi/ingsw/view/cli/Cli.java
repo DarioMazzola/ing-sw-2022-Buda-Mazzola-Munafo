@@ -642,6 +642,7 @@ public class Cli extends ViewObservable implements UI {
         switch (gm.getCharacterCardDeck()[chosenCard - 1].getType()) {
             case MONK: // needed: - wantedHouse, - destinationIsland
                 // wantedHouse
+                System.out.println("Select the house of the student you want to take from this card");
                 do {
                     isValidInput = true;
                     chosenHouse = selectHouse();
@@ -653,6 +654,7 @@ public class Cli extends ViewObservable implements UI {
                 parameters.put("wantedHouse", chosenHouse);
 
                 // destinationIsland
+                System.out.println("Select the island where you want to put the selected student");
                 chosenIsland = selectIsland();
                 parameters.put("destinationIsland", chosenIsland);
 
@@ -670,11 +672,12 @@ public class Cli extends ViewObservable implements UI {
                 for (House h : House.values()) {
                     wantedStudents.put(h, 0);
                 }
+                System.out.println("Select the houses of the students you want to take from the card:");
                 for (int i = 0; i < 3; i++) {
                     do {
                         isValidInput = true;
                         chosenHouse = selectHouse();
-                        if (gm.getCharacterCardDeck()[chosenCard - 1].getHouseMap().get(chosenHouse) <= 0) {
+                        if (gm.getCharacterCardDeck()[chosenCard - 1].getHouseMap().get(chosenHouse) - wantedStudents.get(chosenHouse) <= 0) {
                             isValidInput = false;
                             System.out.println("There are no students of the " + chosenHouse + " house on the card");
                         }
@@ -688,6 +691,7 @@ public class Cli extends ViewObservable implements UI {
                     }
                 }
 
+                System.out.println("Select the houses of the students you want to return from your Entrance:");
                 Map<House, Integer> returnedStudents = new HashMap<>();
                 for (House h : House.values()) {
                     returnedStudents.put(h, 0);
@@ -696,9 +700,9 @@ public class Cli extends ViewObservable implements UI {
                     do {
                         isValidInput = true;
                         chosenHouse = selectHouse();
-                        if (gm.getCharacterCardDeck()[chosenCard - 1].getHouseMap().get(chosenHouse) <= 0) {
+                        if (gm.getCharacterCardDeck()[chosenCard - 1].getHouseMap().get(chosenHouse) - returnedStudents.get(chosenHouse) <= 0) {
                             isValidInput = false;
-                            System.out.println("There are no students of the " + chosenHouse + " house on the card");
+                            System.out.println("There are no students of the " + chosenHouse + " house in your Entrance");
                         }
                     } while (!isValidInput);
                     returnedStudents.replace(chosenHouse, wantedStudents.get(chosenHouse)+1);
