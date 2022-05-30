@@ -8,6 +8,7 @@ import it.polimi.ingsw.messages.command.CommandMessage;
 import it.polimi.ingsw.model.Card;
 import it.polimi.ingsw.model.GameModel;
 import it.polimi.ingsw.utils.Persistence;
+import it.polimi.ingsw.view.VirtualView;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -89,9 +90,18 @@ public class PlanningController {
             gm.setCurrentPlayer(ranking[0]);
             persistence.saveData(tc);
             tc.next_State(ACTION);
+
+            for (int i=0; i<gm.getNumPlayers(); i++){
+                if (!gm.getArrayPlayers()[i].equals(gm.getCurrentPlayer())){
+                    tc.getVirtualViewMap().get(gm.getArrayPlayers()[i].getNickname()).goToWaitingRoom();
+                }
+            }
+
             tc.getVirtualViewMap().get(gm.getArrayPlayers()[ranking[0]].getNickname()).actionPhase(availableActions);
         }
         else {
+            tc.getVirtualViewMap().get(messageReceived.getNickname()).goToWaitingRoom();
+
             int i;
             for (i=0; i<gm.getNumPlayers(); i++){
                 if (gm.getArrayPlayers()[i].getNickname().equals(messageReceived.getNickname())){

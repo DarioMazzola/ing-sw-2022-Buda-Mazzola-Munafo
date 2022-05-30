@@ -49,6 +49,8 @@ public class EndTurnController{
         }
 
         if (tc.isThereNextPlayer()){
+            tc.getVirtualViewMap().get(messageReceived.getNickname()).goToWaitingRoom();
+
             tc.next_State(GameState.ACTION);
 
             gm.setCurrentPlayer(tc.getNextPlanner());

@@ -75,6 +75,8 @@ public class TurnController {
                         }
                         setIsGameStarted(true);
                         sendAllSelectWizard(Arrays.asList(Wizard.values()));
+                    } else {
+                        virtualViewMap.get(message.getNickname()).goToWaitingRoom();
                     }
                 }
                 System.out.println("2");
@@ -329,6 +331,10 @@ public class TurnController {
             case END_TURN:
                 virtualViewMap.get(gm.getCurrentPlayer().getNickname()).selectCloud();
         }
+    }
+
+    public int getNumPlayers(){
+        return gm.getNumPlayers();
     }
 }
 
