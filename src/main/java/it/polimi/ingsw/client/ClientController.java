@@ -239,6 +239,10 @@ public class ClientController implements ViewObserver, Observer {
                 SelectCloud selectCloud = (SelectCloud) message;
                 taskQueue.execute(view::selectCloud);
                 break;
+            case GO_TO_LOBBY:
+                GoToLobby goToLobby = (GoToLobby) message;
+                taskQueue.execute(view::goToLobby);
+                break;
             default:
                 throw new IllegalStateException("Unexpected value: " + message.getType());
         }

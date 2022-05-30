@@ -304,7 +304,7 @@ public class Cli extends ViewObservable implements UI {
 
     @Override
     public void goToLobby() {
-        //to be implemented
+        System.out.println("You're now in the lobby! Waiting for other players to join ...");
     }
 
     @Override
