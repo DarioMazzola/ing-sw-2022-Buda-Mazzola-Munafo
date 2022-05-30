@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class VirtualView implements View, Observer{
 
-    private transient final ClientHandler clientHandler;
+                private transient final ClientHandler clientHandler;
 
     /**
      * Class constructor.
@@ -156,6 +156,11 @@ public class VirtualView implements View, Observer{
     @Override
     public void goToWaitingRoom() {
         clientHandler.sendAnswerMessage(new GoToWaitingRoom());
+    }
+
+    @Override
+    public void goToLobby() {
+        clientHandler.sendAnswerMessage(new GoToLobby());
     }
 
 

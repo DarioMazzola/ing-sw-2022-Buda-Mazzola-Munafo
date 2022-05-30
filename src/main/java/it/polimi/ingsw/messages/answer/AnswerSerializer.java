@@ -47,6 +47,9 @@ public class AnswerSerializer {
             case GO_TO_WAITING_ROOM:
                 list.add(GO_TO_WAITING_ROOM.toString());
                 break;
+            case GO_TO_LOBBY:
+                list.add(GO_TO_LOBBY.toString());
+                break;
             case NACK:
                 list.add(NACK.toString());
                 break;
@@ -151,6 +154,9 @@ public class AnswerSerializer {
                 break;
             case GO_TO_WAITING_ROOM:
                 answer = gson.fromJson(gsonMessage, GoToWaitingRoom.class);
+                break;
+            case GO_TO_LOBBY:
+                answer = gson.fromJson(gsonMessage, GoToLobby.class);
                 break;
             case NACK:
                 answer = gson.fromJson(gsonMessage, Nack.class);
