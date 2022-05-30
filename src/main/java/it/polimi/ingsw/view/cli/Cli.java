@@ -129,24 +129,9 @@ public class Cli extends ViewObservable implements UI {
 
     @Override
     public void selectNumPlayers() {
-
-        boolean isValidInput;
-        int numPlayers = 0;
-        System.out.println("How many players want to play? (enter a number between 2 and 4): ");
-        do {
-            try {
-                isValidInput = true;
-                numPlayers = Integer.parseInt(scanner.nextLine());
-                if (numPlayers < 2 || numPlayers > 4)
-                    isValidInput = false;
-            } catch (NumberFormatException e) {
-                isValidInput = false;
-            }
-            if (!isValidInput)
-                System.out.println("The given number of players is not valid. Please, enter a number between 2 and 4. \nNumber of players: ");
-        } while (!isValidInput);
-        int finalNumPlayers = numPlayers;
-        notifyObserver(observers -> observers.onUpdateNumPlayers(finalNumPlayers));
+        System.out.println("How many players want to play? (enter a number between 2 and 4):");
+        int numPlayers = inputInRange(2, 4, "select a valid number of player for the game");
+        notifyObserver(observers -> observers.onUpdateNumPlayers(numPlayers));
     }
 
     @Override
