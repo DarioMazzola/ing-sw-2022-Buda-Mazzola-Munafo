@@ -51,7 +51,7 @@ public class ReducedIsland {
         StringBuilder string = new StringBuilder("ISLAND:");
         string.append("\nTOWER COLOR: ").append(towerColor).append(" (").append(numTowers).append(" towers)");
         if (getNoEntryTile() != null) {
-            string.append("NO ENTRY TILE: ").append(getNoEntryTile() > 0 ? "Yes" : "No");
+            string.append("\nNO ENTRY TILE: ").append(getNoEntryTile() > 0 ? "Yes" : "No");
         }
         string.append("\nSTUDENTS: ");
         for (House h : House.values()) {
