@@ -117,6 +117,10 @@ public class ClientController implements ViewObserver, Observer {
         client.sendMessage(new ChosenCloud(this.nickname, chosenCloud));
     }
 
+    @Override
+    public void onUpdateCharacterCard(int cardIndex, Map<String, Object> parameters) {
+        client.sendMessage(new ChosenCharacterCard(this.nickname, cardIndex, parameters));
+    }
 
     @Override
     public void onDisconnection() {
