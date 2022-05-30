@@ -229,5 +229,9 @@ public class PlanningController {
     public int getPosition(){
         return position;
     }
+
+    public int getSelected(){
+        return selected;
+    }
 }
 
