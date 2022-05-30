@@ -729,6 +729,33 @@ public class Cli extends ViewObservable implements UI {
     }
 
     /**
+     * Asks the player to select a house and checks the validity of the input.
+     *
+     * @return the house selected by the player
+     */
+    private House selectHouse () {
+        System.out.println("Houses:");
+        printList(Arrays.asList(House.values()));
+        System.out.println("Select an house by entering a number between 1 and " + House.values().length + ":");
+        boolean isValidInput;
+        int chosenHouse = 0;
+        do {
+            isValidInput = true;
+            try {
+                chosenHouse = Integer.parseInt(scanner.nextLine());
+                if (!(chosenHouse > 0 && chosenHouse <= House.values().length)) {
+                    isValidInput = false;
+                    System.out.println("Invalid input! Please enter a number between 1 and " + House.values().length);
+                }
+            } catch (NumberFormatException e) {
+                isValidInput = false;
+                System.out.println("Invalid input! Please enter a number:");
+            }
+        } while (!isValidInput);
+        return House.values()[chosenHouse-1];
+    }
+
+    /**
      * Checks that the given ip address is a valid ip address.
      *
      * @param ip the ip address to validate
