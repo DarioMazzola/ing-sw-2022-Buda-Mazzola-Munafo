@@ -181,10 +181,9 @@ public class ClientController implements ViewObserver, Observer {
                 defaultActions.add("See the details of an Island");
                 defaultActions.add("See the details of a Player's dashboard");
                 defaultActions.add("See the current state of clouds");
-                defaultActions.add("Use character card");
 
                 availableActions.addAll(defaultActions);
-                if (!availableActions.contains("Move"))
+                if (!availableActions.contains("Move students to dining hall or to island"))
                     availableActions.add("Move Mother Nature");
                 taskQueue.execute(() -> view.actionPhase(availableActions));
                 break;

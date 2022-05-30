@@ -378,10 +378,10 @@ public class Cli extends ViewObservable implements UI {
                 case "See the details of a Player's dashboard":
                     focusOnDashboard();
                     break;
-                case "See the current stat of clouds":
+                case "See the current state of clouds":
                     focusOnClouds();
                     break;
-                case "Move":
+                case "Move students to dining hall or to island":
                     moveStudents();
                     stop = true;
                     break;
@@ -389,7 +389,7 @@ public class Cli extends ViewObservable implements UI {
                     moveMotherNature();
                     stop = true;
                     break;
-                case "Use character card":
+                case "Select character card":
                     useCharacterCard();
                     break;
             }
