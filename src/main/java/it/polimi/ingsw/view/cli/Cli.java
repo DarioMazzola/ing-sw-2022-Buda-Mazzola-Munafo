@@ -577,8 +577,7 @@ public class Cli extends ViewObservable implements UI {
         } while (!isValidInput);
         House finalChosenHouse = chosenHouse;
         int finalChosenIsland = chosenIsland;
-        int finalChosenIsland1 = chosenIsland;
-        notifyObserver(observers -> observers.onMoveStudentsToIsland(finalChosenHouse, finalChosenIsland1 - 1));
+        notifyObserver(observers -> observers.onMoveStudentsToIsland(finalChosenHouse, finalChosenIsland - 1));
     }
 
     /**
