@@ -89,4 +89,9 @@ public interface View {
      * Puts the player in the waiting room.
      */
     void goToWaitingRoom();
+
+    /**
+     * Puts the player in the lobby.
+     */
+    void goToLobby();
 }

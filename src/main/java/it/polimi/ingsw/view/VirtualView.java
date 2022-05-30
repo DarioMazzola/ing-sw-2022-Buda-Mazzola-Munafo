@@ -155,7 +155,12 @@ public class VirtualView implements View, Observer{
      */
     @Override
     public void goToWaitingRoom() {
-        clientHandler.sendAnswerMessage(new GoToWaitingRoom());
+        clientHandler.sendAnswerMessage(new GoToLobby());
+    }
+
+    @Override
+    public void goToLobby() {
+
     }
 
 

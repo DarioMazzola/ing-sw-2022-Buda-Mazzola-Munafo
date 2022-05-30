@@ -303,6 +303,11 @@ public class Cli extends ViewObservable implements UI {
     }
 
     @Override
+    public void goToLobby() {
+        //to be implemented
+    }
+
+    @Override
     public void selectAssistantCard(List<Card> availableCards) {
         List<Card> playersDeck = gm.getCurrentPlayer().getDeck();
 
