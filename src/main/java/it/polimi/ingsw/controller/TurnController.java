@@ -28,7 +28,7 @@ public class TurnController {
     private GameState gameState;
     private GamePhase phase;
     private final List<String> queue;
-    private final Map<String, VirtualView> virtualViewMap;
+    private Map<String, VirtualView> virtualViewMap;
     private GameModel gm;
     private boolean isGameStarted;
     private int freeSpots;
@@ -153,6 +153,10 @@ public class TurnController {
         virtualViewMap.put(nickname, virtualView);
         queue.add(nickname);
 
+    }
+
+    public void initializeVirtualViewMap(){
+        virtualViewMap = new HashMap<>();
     }
 
     public boolean isGameStarted() {
