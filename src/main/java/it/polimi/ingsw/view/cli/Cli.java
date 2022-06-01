@@ -708,7 +708,6 @@ public class Cli extends ViewObservable implements UI {
     @Override
     public void updateDashboard(ReducedDashboard dashboard) {
         System.out.println("Received updateDashboard");
-        System.out.println(dashboard);
         gm.getPlayerByNickname(dashboard.getNickname()).setDashboard(dashboard);
     }
 

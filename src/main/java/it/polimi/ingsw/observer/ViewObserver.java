@@ -117,6 +117,12 @@ public interface ViewObserver {
      */
     void onDisconnection();
 
+    /**
+     * Method used to send the server the character card the player has chosen to use and the required parameters.
+     *
+     * @param cardIndex index of the chosen character card in the deck
+     * @param parameters the parameters needed to use the card
+     */
     void onUpdateCharacterCard(int cardIndex, Map<String, Object> parameters);
 
     /**
