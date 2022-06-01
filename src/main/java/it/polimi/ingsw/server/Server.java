@@ -1,13 +1,13 @@
 package it.polimi.ingsw.server;
 
 import it.polimi.ingsw.controller.TurnController;
-import it.polimi.ingsw.messages.answer.GoToWaitingRoom;
+import it.polimi.ingsw.messages.answer.SelectRestoreGame;
+import it.polimi.ingsw.messages.command.ChosenRestoreGame;
 import it.polimi.ingsw.messages.command.CommandMessage;
+import it.polimi.ingsw.utils.Persistence;
 import it.polimi.ingsw.view.VirtualView;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static it.polimi.ingsw.messages.TypeOfError.*;
 
@@ -19,18 +19,22 @@ import static it.polimi.ingsw.messages.TypeOfError.*;
  */
 public class Server {
 
-    private final TurnController turnController;
+    private TurnController turnController;
     private ClientHandler firstHandler;
+    private boolean restored = false;
+    private final Object lock;
 
     private final Map<String, ClientHandler> clientHandlerMap;
 
     /**
      * Class constructor.
+     *
      * @param turnController the controller of the game.
      */
     public Server(TurnController turnController) {
         this.turnController = turnController;
         this.clientHandlerMap = Collections.synchronizedMap(new HashMap<>());
+        lock = new Object();
     }
 
     /**
@@ -42,24 +46,57 @@ public class Server {
     public void addClient(CommandMessage message, ClientHandler clientHandler) {
         VirtualView virtualView = new VirtualView(clientHandler);
 
-        if(! turnController.isGameStarted()) {
-            if (clientHandlerMap.isEmpty() || firstHandler.equals(clientHandler)) { //if the client is the first logged in
-                if (message.getNickname().isEmpty()){
-                    virtualView.showError(EMPTY_NICKNAME.toString());
-                    virtualView.selectNickname();
-                    return;
+        List<String> restoredQueue = new ArrayList<>();
+
+        Persistence persistence = new Persistence();
+        synchronized (lock) {
+            System.out.println("clientHandlerMap: " + clientHandlerMap.isEmpty());
+            if (clientHandlerMap.isEmpty()) { //there is no player connected
+                System.out.println("persistence.matchExists: " + persistence.matchExists());
+                if (persistence.matchExists()) { //if there is a match saved on server
+                    turnController = persistence.restoreData();
+                    //virtualViewMap = turnController.getVirtualViewMap();
+                    restoredQueue = turnController.getQueue();
+                    turnController.initializeVirtualViewMap();
+                    restored = true;
+                } else { //creates a new game
+                    turnController = new TurnController();
                 }
+            }
+        }
+        System.out.println("turnController.isGameStarted(): " + turnController.isGameStarted());
+        System.out.println("restored: " + restored);
+        if (! turnController.isGameStarted() || restored) {
+            //if the client is the first logged in
+            System.out.println("clientHandlerMap.isEmpty(): " + clientHandlerMap.isEmpty());
+            System.out.println("firstHandler.equals(clientHandler): " + (firstHandler != null ? firstHandler.equals(clientHandler) : ""));
+            if (clientHandlerMap.isEmpty() || (firstHandler != null && firstHandler.equals(clientHandler))) {
+                if (firstHandler == null) {
+                    clientHandlerMap.put(message.getNickname(), clientHandler);
+                }
+                if(! turnController.checkLoginNickname(message.getNickname(), virtualView))
+                    return;
                 firstHandler = clientHandler;
-                clientHandlerMap.put(message.getNickname(), clientHandler);
-                turnController.selectMainPhase(message, clientHandler);
+                System.out.println("!turnController.getQueue().contains(message.getNickname()): " + !turnController.getQueue().contains(message.getNickname()));
+                if (!restored || !restoredQueue.contains(message.getNickname())){
+                    turnController.selectMainPhase(message, clientHandler);
+                    persistence.delete();
+                }
+                else{
+                    //sends a message to the client to notify that there is
+                    //a match saved on server. Asks if the player wants to restore the game or create a new one.
+                    turnController.loginHandler(message.getNickname(), clientHandler);
+                    virtualView.selectRestoreGame();
+                }
             } else if (turnController.checkLoginNickname(message.getNickname(), virtualView)) {
                 turnController.loginHandler(message.getNickname(), clientHandler);
-
+                //restore
                 if (!turnController.gameModelExists() || !(turnController.getVirtualViewMap().size() == turnController.getNumPlayers())) {
-                    virtualView.goToWaitingRoom();
+                    virtualView.goToLobby();
                 }
-                if(turnController.gameModelExists()) {
-                    turnController.checkIfFull();
+
+                if (turnController.gameModelExists()){
+                    turnController.checkIfFull(restored);
                 }
             }
         }
@@ -90,6 +127,17 @@ public class Server {
                 .map(Map.Entry::getKey)
                 .findFirst()
                 .orElse(null);
+    }
+
+    public void restoreGame(CommandMessage message, ClientHandler clientHandler){
+        if(! ((ChosenRestoreGame)message).getToRestore()) {
+            turnController = new TurnController();
+            turnController.selectMainPhase(message, clientHandler);
+        }
+        else {
+            VirtualView virtualView = new VirtualView(clientHandler);
+            virtualView.goToLobby();
+        }
     }
 }
 
