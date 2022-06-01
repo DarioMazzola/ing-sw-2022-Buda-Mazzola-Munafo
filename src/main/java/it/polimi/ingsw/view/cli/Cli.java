@@ -429,7 +429,7 @@ public class Cli extends ViewObservable implements UI {
      * Asks the player of how many steps he/she wants to move mother nature.
      */
     private boolean moveMotherNature() {
-        System.out.println("How many steps you want to move mother nature of? (1" + (gm.getCurrentPlayer().getMaxMoves() == 1 ? ")" : " - " + gm.getCurrentPlayer().getMaxMoves() + ", 0 to go back)"));
+        System.out.println("How many steps you want to move mother nature of? (1" + (gm.getCurrentPlayer().getMaxMoves() == 1 ? ", 0 to go back)" : " - " + gm.getCurrentPlayer().getMaxMoves() + ", 0 to go back)"));
         int chosenMoves = inputInRange(0, gm.getCurrentPlayer().getMaxMoves(), "select a valid a number of moves");
         if (chosenMoves == 0)
             return false;
