@@ -61,6 +61,10 @@ public class SocketServer implements Runnable {
         server.addClient(message, clientHandler);
     }
 
+    public void restoreGame(CommandMessage message, ClientHandler clientHandler) {
+        server.restoreGame(message, clientHandler);
+    }
+
     /**
      * Forwards a received message from the client to the Server.
      *
