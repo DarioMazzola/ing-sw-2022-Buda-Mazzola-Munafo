@@ -2,6 +2,7 @@ package it.polimi.ingsw.client;
 
 import it.polimi.ingsw.messages.answer.AnswerMessage;
 import it.polimi.ingsw.messages.answer.AnswerSerializer;
+import it.polimi.ingsw.messages.answer.EndGameDisconnection;
 import it.polimi.ingsw.messages.command.CommandMessage;
 import it.polimi.ingsw.messages.command.CommandSerializer;
 import it.polimi.ingsw.messages.command.Pong;
@@ -68,7 +69,7 @@ public class ServerHandler extends Observable {
                     messageReceived = AnswerSerializer.deserialize((String) input.readObject());
 
                     //notifies all the observer of the ServerHandler
-                    if (messageReceived != null && ! messageReceived.getType().equals(PONG)) {
+                    if (messageReceived != null && ! messageReceived.getType().equals(PING)) {
                             notifyObserver(messageReceived);
                     }
                 } catch (IOException | ClassNotFoundException e) {
