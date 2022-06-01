@@ -1,6 +1,8 @@
 package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.client.ReducedPlayer;
+import it.polimi.ingsw.exceptions.BagException;
+import it.polimi.ingsw.exceptions.IllegalChoiceException;
 import it.polimi.ingsw.messages.answer.UpdateCurrentPlayer;
 import it.polimi.ingsw.messages.command.CommandMessage;
 import it.polimi.ingsw.messages.command.ChosenCloud;
@@ -68,6 +70,11 @@ public class EndTurnController{
         }
         else {
             tc.next_State(GameState.PLANNING);
+            try {
+                gm.refillClouds();
+            } catch (IllegalChoiceException | BagException e) {
+                e.printStackTrace();
+            }
             tc.getVirtualViewMap().get(gm.getArrayPlayers()[tc.getFirstPlanner()].getNickname()).selectAssistantCard(Arrays.asList(Card.values()));
         }
 
