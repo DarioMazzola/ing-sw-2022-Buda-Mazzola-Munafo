@@ -86,6 +86,9 @@ public class AnswerSerializer {
             case SEND_WINNER:
                 list.add(SEND_WINNER.toString());
                 break;
+            case SELECT_RESTORE_GAME:
+                list.add(SELECT_RESTORE_GAME.toString());
+                break;
             case UPDATE_CHARACTER_CARD:
                 list.add(UPDATE_CHARACTER_CARD.toString());
                 break;
@@ -184,6 +187,9 @@ public class AnswerSerializer {
                 break;
             case SELECT_NUM_PLAYERS:
                 answer = gson.fromJson(gsonMessage, SelectNumPlayers.class);
+                break;
+            case SELECT_RESTORE_GAME:
+                answer = gson.fromJson(gsonMessage, SelectRestoreGame.class);
                 break;
             case SELECT_TEAM:
                 answer = gson.fromJson(gsonMessage, SelectTeam.class);
