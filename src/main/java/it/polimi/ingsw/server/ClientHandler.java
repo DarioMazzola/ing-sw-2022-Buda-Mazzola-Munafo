@@ -86,7 +86,11 @@ public class ClientHandler implements Runnable {
 
                     if (message.getType() == MessageType.NEW_GAME || message.getType() == MessageType.NICKNAME) {
                         socketServer.addClient(message, this);
-                    } else {
+                    }
+                    else if(message.getType() == MessageType.CHOSEN_RESTORE_GAME){
+                        socketServer.restoreGame(message, this);
+                    }
+                    else {
                         socketServer.receiveMessage(message);
                     }
                 }
