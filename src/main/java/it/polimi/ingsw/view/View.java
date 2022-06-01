@@ -94,4 +94,9 @@ public interface View {
      * Puts the player in the lobby.
      */
     void goToLobby();
+
+    /**
+     * Asks the player whether he/she wants to restore a previously saved game.
+     */
+    void selectRestoreGame();
 }

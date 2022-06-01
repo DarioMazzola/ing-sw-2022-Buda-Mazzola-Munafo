@@ -124,6 +124,11 @@ public class ClientController implements ViewObserver, Observer {
     }
 
     @Override
+    public void onRestoreGame(boolean toRestore) {
+        client.sendMessage(new ChosenRestoreGame(this.nickname, toRestore));
+    }
+
+    @Override
     public void onDisconnection() {
         client.disconnect();
         System.exit(-1);
@@ -243,6 +248,8 @@ public class ClientController implements ViewObserver, Observer {
                 GoToLobby goToLobby = (GoToLobby) message;
                 taskQueue.execute(view::goToLobby);
                 break;
+            case SELECT_RESTORE_GAME:
+                taskQueue.execute(view::selectRestoreGame);
             default:
                 throw new IllegalStateException("Unexpected value: " + message.getType());
         }
