@@ -27,8 +27,8 @@ public class TurnController {
     private final SetupController setupController;
     private GameState gameState;
     private GamePhase phase;
-    private final List<String> queue;
-    private Map<String, VirtualView> virtualViewMap;
+    private List<String> queue;
+    private transient Map<String, VirtualView> virtualViewMap;
     private GameModel gm;
     private boolean isGameStarted;
     private int freeSpots;
@@ -160,6 +160,7 @@ public class TurnController {
 
     public void initializeVirtualViewMap(){
         virtualViewMap = new HashMap<>();
+        queue = new ArrayList<>();
     }
 
     public boolean isGameStarted() {
@@ -258,11 +259,9 @@ public class TurnController {
         for (String nickname : virtualViewMap.keySet()) {
             VirtualView vv = virtualViewMap.get(nickname);
 
-
             gm.getPlayerByNickname(nickname).addObserver(vv);
             gm.getPlayerByNickname(nickname).getDashboard().addObserver(vv);
             gm.getPlayerByNickname(nickname).getDashboard().getDiningHall().addObserver(vv);
-
 
             for (Island i : gm.getIslandList())
                 i.addObserver(vv);
@@ -302,6 +301,10 @@ public class TurnController {
     }
 
     public void restore(){
+
+        addObservers();
+
+        sendAllModel();
         switch (gameState){
             case PLANNING:
                 if (planningController.getSelected() == gm.getNumPlayers()) {
