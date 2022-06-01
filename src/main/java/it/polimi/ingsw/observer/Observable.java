@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class Observable {
 
-    private final List<Observer> observers = new ArrayList<>();
+    private transient final List<Observer> observers = new ArrayList<>();
 
     /**
      * Adds an observer to the observers' list.
