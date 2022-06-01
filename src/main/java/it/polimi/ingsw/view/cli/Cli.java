@@ -121,6 +121,13 @@ public class Cli extends ViewObservable implements UI {
     }
 
     @Override
+    public void selectRestoreGame() {
+        System.out.println("There's a game saved on the server. Do you want to restore the game ('Y') or start a new one ('N')?");
+        boolean toRestore = YNInput("restore the game");
+        notifyObserver(observers -> observers.onRestoreGame(toRestore));
+    }
+
+    @Override
     public void selectNickname() {
         System.out.print("Please, enter your nickname: ");
         String nickname = scanner.nextLine();

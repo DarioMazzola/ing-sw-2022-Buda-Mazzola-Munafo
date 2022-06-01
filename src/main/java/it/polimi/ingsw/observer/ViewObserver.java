@@ -118,4 +118,11 @@ public interface ViewObserver {
     void onDisconnection();
 
     void onUpdateCharacterCard(int cardIndex, Map<String, Object> parameters);
+
+    /**
+     * Method used to signal the server whether the player wants to restore a saved game or start a new one.
+     *
+     * @param toRestore true if the player wants to restore the game, false otherwise
+     */
+    void onRestoreGame(boolean toRestore);
 }
