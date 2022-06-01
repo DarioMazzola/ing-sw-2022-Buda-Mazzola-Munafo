@@ -289,16 +289,24 @@ public class TurnController {
         }
     }
 
-    public void checkIfFull() {
-        if (virtualViewMap.size() == gm.getNumPlayers()) {
-            System.out.println("2.1");
-            while (freeSpots != 0) {
-                gm.getArrayPlayers()[gm.getNumPlayers() - freeSpots].setNickname(queue.get(gm.getNumPlayers() - freeSpots));
-                freeSpots--;
+    public void checkIfFull(boolean restore) {
+
+        if(! restore) {
+            if (queue.size() == gm.getNumPlayers()) {
+                System.out.println("2.1");
+                while (freeSpots != 0) {
+                    gm.getArrayPlayers()[gm.getNumPlayers() - freeSpots].setNickname(queue.get(gm.getNumPlayers() - freeSpots));
+                    freeSpots--;
+                }
+                setIsGameStarted(true);
+                sendAllSelectWizard(Arrays.asList(Wizard.values()));
             }
-            setIsGameStarted(true);
-            sendAllSelectWizard(Arrays.asList(Wizard.values()));
         }
+        else {
+            if (queue.size() == gm.getNumPlayers())
+                restore();
+        }
+
     }
 
     public void restore(){
@@ -335,6 +343,10 @@ public class TurnController {
 
     public int getNumPlayers(){
         return gm.getNumPlayers();
+    }
+
+    public List<String> getQueue(){
+        return queue;
     }
 }
 
