@@ -73,6 +73,9 @@ public class TurnController {
                             virtualViewMap.get(queue.get(i)).notifyGameFull();
                             virtualViewMap.remove(queue.get(i));
                         }
+                        for (int i = gm.getNumPlayers(); i < queue.size(); i++) {
+                            queue.remove(i);
+                        }
                         setIsGameStarted(true);
                         sendAllSelectWizard(Arrays.asList(Wizard.values()));
                     } else {
@@ -209,15 +212,16 @@ public class TurnController {
         }
     }
 
-    public List<Integer> getAvailableClouds() {
-        List<Integer> result = new ArrayList<>();
-        for (int i = 0; i < gm.getArrayClouds().length; i++) {
-            if (gm.getArrayClouds()[i].isFull()) {
-                result.add(i);
-            }
-        }
-        return result;
-    }
+    //non serve più
+//    public List<Integer> getAvailableClouds() {
+//        List<Integer> result = new ArrayList<>();
+//        for (int i = 0; i < gm.getArrayClouds().length; i++) {
+//            if (gm.getArrayClouds()[i].isFull()) {
+//                result.add(i);
+//            }
+//        }
+//        return result;
+//    }
 
     public boolean isThereNextPlayer() {
         return (!(planningController.getPosition() + 1 == gm.getNumPlayers()));
