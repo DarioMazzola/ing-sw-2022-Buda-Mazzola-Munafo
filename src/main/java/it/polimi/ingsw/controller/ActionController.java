@@ -19,7 +19,6 @@ import static it.polimi.ingsw.messages.TypeOfError.*;
  */
 public class ActionController {
     private final GameModel gm;
-    private transient final Persistence persistence;
     private int studentsMoved;
     private final int maxStudMoved;
     private final List<String> availableActions;
@@ -28,7 +27,6 @@ public class ActionController {
     private boolean isEnded;
 
     public ActionController(GameModel gm){
-        persistence = new Persistence();
         this.isEnded = false;
         this.winner = null;
         this.gm = gm;
@@ -52,6 +50,8 @@ public class ActionController {
      */
     public void doAction(CommandMessage messageReceived, TurnController tc) {
         MessageType type = messageReceived.getType();
+
+        Persistence persistence = new Persistence();
 
         switch (type) {
             case MOVE_STUDENT_TO_ISLAND:
