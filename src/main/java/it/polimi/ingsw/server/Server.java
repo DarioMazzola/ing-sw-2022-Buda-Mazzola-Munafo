@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import static it.polimi.ingsw.messages.TypeOfError.GAME_ALREADY_STARTED;
+import static it.polimi.ingsw.messages.TypeOfError.*;
 
 /**
  * Class representing the server. It manages the connection of new players and
@@ -44,6 +44,11 @@ public class Server {
 
         if(! turnController.isGameStarted()) {
             if (clientHandlerMap.isEmpty() || firstHandler.equals(clientHandler)) { //if the client is the first logged in
+                if (message.getNickname().isEmpty()){
+                    virtualView.showError(EMPTY_NICKNAME.toString());
+                    virtualView.selectNickname();
+                    return;
+                }
                 firstHandler = clientHandler;
                 clientHandlerMap.put(message.getNickname(), clientHandler);
                 turnController.selectMainPhase(message, clientHandler);

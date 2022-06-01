@@ -129,67 +129,25 @@ public class Cli extends ViewObservable implements UI {
 
     @Override
     public void selectNumPlayers() {
-
-        boolean isValidInput;
-        int numPlayers = 0;
-        System.out.println("How many players want to play? (enter a number between 2 and 4): ");
-        do {
-            try {
-                isValidInput = true;
-                numPlayers = Integer.parseInt(scanner.nextLine());
-                if (numPlayers < 2 || numPlayers > 4)
-                    isValidInput = false;
-            } catch (NumberFormatException e) {
-                isValidInput = false;
-            }
-            if (!isValidInput)
-                System.out.println("The given number of players is not valid. Please, enter a number between 2 and 4. \nNumber of players: ");
-        } while (!isValidInput);
-        int finalNumPlayers = numPlayers;
-        notifyObserver(observers -> observers.onUpdateNumPlayers(finalNumPlayers));
+        System.out.println("How many players want to play? (enter a number between 2 and 4):");
+        int numPlayers = inputInRange(2, 4, "select a valid number of player for the game");
+        notifyObserver(observers -> observers.onUpdateNumPlayers(numPlayers));
     }
 
     @Override
     public void selectExpertMode() {
         clearCli();
-        boolean isValidInput;
-        String input;
         System.out.println("Do you want to play in expert mode? (Y/N)");
-        do {
-            isValidInput = true;
-            input = scanner.nextLine();
-            if (!(input.equalsIgnoreCase("Y") || input.equalsIgnoreCase("N"))) {
-                isValidInput = false;
-                System.out.println("The given input is not valid.\nPlease, enter 'Y' if you want to play in expert mode, 'N' otherwise: ");
-            }
-        } while (!isValidInput);
-        boolean expertMode;
-        expertMode = input.equalsIgnoreCase("Y");
+        boolean expertMode = YNInput("you want to play in expert mode");
         notifyObserver(observers -> observers.onUpdateExpertMode(expertMode));
     }
 
+    @Override
     public void selectWizard(List<Wizard> availableWizards) {
         clearCli();
-        System.out.println("Now select your wizard for this game!\nHere's a list of available wizards: ");
-        int i = 1;
-        for (Wizard w : availableWizards) {
-            System.out.println(i + " - " + w.toString());
-            i++;
-        }
-        boolean isValidInput;
-        int wizard = 0;
-        do {
-            try {
-                isValidInput = true;
-                wizard = Integer.parseInt(scanner.nextLine());
-                if (wizard < 1 || wizard > i)
-                    isValidInput = false;
-            } catch (NumberFormatException e) {
-                isValidInput = false;
-            }
-            if (!isValidInput)
-                System.out.println("The given input is not valid.\nPlease enter a number between 1 and " + i + " to select a valid wizard:");
-        } while (!isValidInput);
+        System.out.println("Now select your wizard for this game!\nHere's a list of available wizards:");
+        printList(availableWizards);
+        int wizard = inputInRange(1, Wizard.values().length, "select a valid wizard");
         Wizard selectedWizard = availableWizards.get(wizard - 1);
         notifyObserver(observers -> observers.onUpdateWizard(selectedWizard));
     }
@@ -272,27 +230,9 @@ public class Cli extends ViewObservable implements UI {
 
     @Override
     public void selectTowerColor(List<Color> colorTowersAvailable) {
-
-        System.out.println("Now select the color of the towers in your dashboard!\nHere's a list of available colors: ");
-        int i = 1;
-        for (Color c : colorTowersAvailable) {
-            System.out.println(i + " - " + c.toString());
-            i++;
-        }
-        boolean isValidInput;
-        int color = 0;
-        do {
-            try {
-                isValidInput = true;
-                color = Integer.parseInt(scanner.nextLine());
-                if (color < 1 || color > i)
-                    isValidInput = false;
-            } catch (NumberFormatException e) {
-                isValidInput = false;
-            }
-            if (!isValidInput)
-                System.out.println("The given input is not valid.\nPlease enter a number between 1 and " + i + " to select a valid color:");
-        } while (!isValidInput);
+        System.out.println("Select the color of the towers in your dashboard!\nHere's a list of available colors: ");
+        printList(colorTowersAvailable);
+        int color = inputInRange(1, colorTowersAvailable.size(), "select a valid tower color");
         Color selectedColor = colorTowersAvailable.get(color - 1);
         notifyObserver(observers -> observers.onUpdateTowerColor(selectedColor));
     }
@@ -322,24 +262,14 @@ public class Cli extends ViewObservable implements UI {
             i++;
         }
         boolean isValidInput;
-        int chosenCard = 0;
+        int chosenCard;
         System.out.println("Chose a card by entering a number between 1 and " + (i-1));
         do {
             isValidInput = true;
-            try {
-                chosenCard = Integer.parseInt(scanner.nextLine());
-                if (!(chosenCard >= 1 && chosenCard <= i)) {
-                    isValidInput = false;
-                    System.out.println("Please, enter a number between 1 and " + i + " :");
-                } else {
-                    if (!result.contains(playersDeck.get(chosenCard-1)) && result.size() > 0) {
-                        isValidInput = false;
-                        System.out.println("You can't chose this card, it has already been chosen by another player!\nChose another card: ");
-                    }
-                }
-            } catch (NumberFormatException e) {
+            chosenCard = inputInRange(1, i-1, "to select a valid card");
+            if (!result.contains(playersDeck.get(chosenCard-1)) && result.size() > 0) {
                 isValidInput = false;
-                System.out.println("Invalid input, please enter a number:");
+                System.out.println("You can't chose this card, it has already been chosen by another player!\nChose another card: ");
             }
         } while (!isValidInput);
         int finalChosenCard = chosenCard;
@@ -351,26 +281,8 @@ public class Cli extends ViewObservable implements UI {
         boolean stop = false;
         do {
             System.out.println("Here's a list of all the available actions:");
-            int i = 1;
-            for (String s : availableActions) {
-                System.out.println(i + ") " + s);
-                i++;
-            }
-            boolean isValidInput;
-            int chosenAction = 0;
-            do {
-                isValidInput = true;
-                try {
-                    chosenAction = Integer.parseInt(scanner.nextLine());
-                    if (!(chosenAction >= 1 && chosenAction <= i)) {
-                        isValidInput = false;
-                        System.out.println("Please, enter a number between 1 and " + i + " :");
-                    }
-                } catch (NumberFormatException e) {
-                    isValidInput = false;
-                    System.out.println("Invalid input, please enter a number:");
-                }
-            } while (!isValidInput);
+            printList(availableActions);
+            int chosenAction = inputInRange(1, availableActions.size(), "to select a valid action");
             switch (availableActions.get(chosenAction - 1)) {
                 case "See the details of an Island":
                     focusOnIsland();
@@ -382,12 +294,14 @@ public class Cli extends ViewObservable implements UI {
                     focusOnClouds();
                     break;
                 case "Move students to dining hall or to island":
-                    moveStudents();
-                    stop = true;
+                    boolean movedStudents = moveStudents();
+                    if (movedStudents)
+                        stop = true;
                     break;
                 case "Move Mother Nature":
-                    moveMotherNature();
-                    stop = true;
+                    boolean movedMother = moveMotherNature();
+                    if (movedMother)
+                        stop = true;
                     break;
                 case "Select character card":
                     useCharacterCard();
@@ -400,23 +314,10 @@ public class Cli extends ViewObservable implements UI {
      * Asks the player to select an island and shows the details (students, towers, no entry tiles) of the chosen island.
      */
     private void focusOnIsland() {
-        boolean isValidInput;
-        int numIsland = 0;
-        System.out.println("Enter the number of the island you want to see (between 1 and " + gm.getIslandList().size() + " ):");
-        do {
-            isValidInput = true;
-            try {
-                numIsland = Integer.parseInt(scanner.nextLine());
-                if (!(numIsland >= 1 && numIsland <= gm.getIslandList().size())) {
-                    isValidInput = false;
-                    System.out.println("Invalid input! Enter a number between 1 and " + gm.getIslandList().size());
-                }
-            } catch (NumberFormatException e) {
-                isValidInput = false;
-                System.out.println("Invalid input! Please insert a number:");
-            }
-        }
-        while (!isValidInput);
+        System.out.println("Enter the number of the island you want to see (between 1 and " + gm.getIslandList().size() + ", 0 to go back):");
+        int numIsland = inputInRange(0, gm.getIslandList().size(),"select a valid island" );
+        if (numIsland == 0)
+            return;
         System.out.println("Showing details of Island " + numIsland + "...");
         System.out.println(gm.getIslandList().get(numIsland - 1));
     }
@@ -425,28 +326,11 @@ public class Cli extends ViewObservable implements UI {
      * Asks the player to select a player and shows the details of his/hers dashboard.
      */
     private void focusOnDashboard() {
-        boolean isValidInput;
-        System.out.println("Which player do you want to see the dashboard of?");
-        int i = 1;
-        for (ReducedPlayer p : gm.getArrayPlayers()) {
-            System.out.println(i + " ) " + ((p.equals(gm.getCurrentPlayer())) ? "YOU" : p.getNickname()));
-            i++;
-        }
-        int player = 0;
-        do {
-            isValidInput = true;
-            try {
-                player = Integer.parseInt(scanner.nextLine());
-                if (!(player >= 1 && player <= gm.getArrayPlayers().length)) {
-                    isValidInput = false;
-                    System.out.println("Invalid input! Enter a number between 1 and " + gm.getArrayPlayers().length);
-                }
-            } catch (NumberFormatException e) {
-                isValidInput = false;
-                System.out.println("Invalid input! Please insert a number:");
-            }
-        }
-        while (!isValidInput);
+        System.out.println("Which player do you want to see the dashboard of? (0 to go back)");
+        printList(Arrays.asList(gm.getArrayPlayers()));
+        int player = inputInRange(0, gm.getNumPlayers(), "select an existing player");
+        if (player == 0)
+            return;
         System.out.println("Showing details of " + gm.getArrayPlayers()[player - 1].getNickname() + "'s dashboard...");
         System.out.println(gm.getArrayPlayers()[player - 1].getDashboard());
     }
@@ -456,33 +340,17 @@ public class Cli extends ViewObservable implements UI {
      */
     private void focusOnClouds() {
         System.out.println("Current state of clouds:");
-        int i = 1;
-        for (ReducedCloud c : gm.getArrayClouds()) {
-                    System.out.println(i + " - " + c);
-                    i++;
-        }
+        printList(Arrays.asList(gm.getArrayClouds()));
     }
 
     /**
      * Manages the selection of students to move from the player's dashboard to his/hers dining hall or an island.
      */
-    private void moveStudents() {
-            System.out.println("Do you want to move students to your dining hall (1) or to an island (2)?");
-            int chosen = 0;
-            boolean isValidInput;
-            do {
-                isValidInput = true;
-                try {
-                    chosen = Integer.parseInt(scanner.nextLine());
-                    if (!(chosen == 1 || chosen == 2)) {
-                        isValidInput = false;
-                        System.out.println("Invalid input! Please enter '1' or '2':");
-                    }
-                } catch (NumberFormatException e) {
-                    isValidInput = false;
-                    System.out.println("Invalid input! Please enter a number:");
-                }
-            } while (!isValidInput);
+    private boolean moveStudents() {
+            System.out.println("Do you want to move students to your dining hall (1) or to an island (2) (0 to go back)?");
+            int chosen = inputInRange(0, 2, "select a valid action");
+            if (chosen == 0)
+                return false;
             switch (chosen) {
                 case 1:
                     moveStudentsToDiningHall();
@@ -491,7 +359,7 @@ public class Cli extends ViewObservable implements UI {
                     moveStudentsToIsland();
                     break;
             }
-
+            return true;
     }
 
     /**
@@ -513,31 +381,8 @@ public class Cli extends ViewObservable implements UI {
         System.out.println("This is your dashboard: \n" + gm.getCurrentPlayer().getDashboard());
         // receiving and checking input
         System.out.println("Enter the house of the student you want to move:");
-        boolean isValidInput;
-        House chosenHouse = null;
-        do {
-            isValidInput = true;
-            String input = scanner.nextLine();
-            for (House h : House.values()) {
-                if (input.equalsIgnoreCase(h.toString())) {
-                    chosenHouse = h;
-                    break;
-                }
-            }
-            if (chosenHouse == null) {
-                isValidInput = false;
-                System.out.println("Invalid input! Please enter an existing house:");
-            } else if (gm.getCurrentPlayer().getDashboard().getHouseStudents(chosenHouse) <= 0) {
-                isValidInput = false;
-                System.out.println("You don't have any students of the " + chosenHouse + " house, please choose another house:");
-            }
-            else if (gm.getCurrentPlayer().getDashboard().getDiningHall().getHouseStudents(chosenHouse) >= 10) {
-                isValidInput = false;
-                System.out.println("Your dining hall for the house " + chosenHouse + " is full, please choose another house: ");
-            }
-        } while (!isValidInput);
-        House finalChosenHouse = chosenHouse;
-        notifyObserver(observers -> observers.onMoveStudentsToDiningHall(finalChosenHouse));
+        House chosenHouse = selectHouse();
+        notifyObserver(observers -> observers.onMoveStudentsToDiningHall(chosenHouse));
     }
 
     /**
@@ -546,97 +391,63 @@ public class Cli extends ViewObservable implements UI {
     private void moveStudentsToIsland() {
         System.out.println("Enter the house of the student you want to move:");
         boolean isValidInput;
-        House chosenHouse = null;
+        House chosenHouse;
         do {
             isValidInput = true;
-            String input = scanner.nextLine();
-            for (House h : House.values()) {
-                if (input.equalsIgnoreCase(h.toString())) {
-                    chosenHouse = h;
-                    break;
-                }
-            }
-            if (chosenHouse == null) {
-                isValidInput = false;
-                System.out.println("Invalid input! Please enter an existing house:");
-            } else if (gm.getCurrentPlayer().getDashboard().getHouseStudents(chosenHouse) <= 0) {
+            chosenHouse = selectHouse();
+            if (gm.getCurrentPlayer().getDashboard().getHouseStudents(chosenHouse) <= 0) {
                 isValidInput = false;
                 System.out.println("You don't have any students of the " + chosenHouse + " house, please chose another house:");
             }
         } while (!isValidInput);
 
-        System.out.println("Enter the island where you want to move the student (1 - " + gm.getIslandList().size() + " :");
-        int chosenIsland = 0;
-        do {
-            isValidInput = true;
-            try {
-                chosenIsland = Integer.parseInt(scanner.nextLine());
-                if (!(chosenIsland >= 1 && chosenIsland <= gm.getIslandList().size())) {
-                    isValidInput = false;
-                    System.out.println("The island you chose does not exist! Please enter a number between 1 and " + gm.getIslandList().size());
-                }
-            } catch (NumberFormatException e) {
-                isValidInput = false;
-                System.out.println("Invalid input! Please enter a number:");
-            }
-        } while (!isValidInput);
+        System.out.println("Enter the island where you want to move the student (1 - " + gm.getIslandList().size() + "):");
+        int chosenIsland = selectIsland();
         House finalChosenHouse = chosenHouse;
-        int finalChosenIsland = chosenIsland;
-        notifyObserver(observers -> observers.onMoveStudentsToIsland(finalChosenHouse, finalChosenIsland - 1));
+        notifyObserver(observers -> observers.onMoveStudentsToIsland(finalChosenHouse, chosenIsland - 1));
     }
 
     /**
      * Asks the player of how many steps he/she wants to move mother nature.
      */
-    private void moveMotherNature() {
-        System.out.println("How many steps you want to move mother nature of? (1" + (gm.getCurrentPlayer().getMaxMoves() == 1 ? ")" : " - " + gm.getCurrentPlayer().getMaxMoves() + ")"));
-        boolean isValidInput;
-        int chosenMoves = -1;
-        do {
-            isValidInput = true;
-            try {
-                chosenMoves = Integer.parseInt(scanner.nextLine());
-                if (!(chosenMoves >= 0 && chosenMoves <= gm.getCurrentPlayer().getMaxMoves())) {
-                    isValidInput = false;
-                    System.out.println("Invalid input! Please enter a number between 0 and " +  gm.getCurrentPlayer().getMaxMoves() + " :");
-                }
-            } catch (NumberFormatException e) {
-                isValidInput = false;
-                System.out.println("Invalid input! Please insert a number:");
-            }
-        } while (!isValidInput);
-        int finalChosenMoves = chosenMoves;
-        notifyObserver(observers -> observers.onMoveMotherNature(finalChosenMoves) );
+    private boolean moveMotherNature() {
+        System.out.println("How many steps you want to move mother nature of? (1" + (gm.getCurrentPlayer().getMaxMoves() == 1 ? ")" : " - " + gm.getCurrentPlayer().getMaxMoves() + ", 0 to go back)"));
+        int chosenMoves = inputInRange(0, gm.getCurrentPlayer().getMaxMoves(), "select a valid a number of moves");
+        if (chosenMoves == 0)
+            return false;
+        notifyObserver(observers -> observers.onMoveMotherNature(chosenMoves));
+        return true;
     }
 
     /**
      * Asks the player to select a character card to use and the parameters required by that card.
      */
-    private void useCharacterCard() { // TODO: e se uso MagicalMailman prima di aver settato maxMoves in player?
-        // Proposta: il controller le setta a 0 all'inizio di ogni turno,
-        // in modo che quando queste vengono settate dalla carta assistente si fa maxMoves+= card.getMoves().
-        // Se la character card le aveva aumentate prima non si perde aumento
-
+    private void useCharacterCard() {
         System.out.println("Here's a list of the character cards available in this game!");
         printList(Arrays.asList(gm.getCharacterCardDeck()));
+        boolean poorPlayer = true;
+        for (ReducedCharacterCard c : gm.getCharacterCardDeck()) {
+            if (c.getCost() <= gm.getCurrentPlayer().getCoins()) {
+                poorPlayer = false;
+                break;
+            }
+        }
+        if (poorPlayer) {
+            System.out.println("You don't have enough money to use any of this cards!");
+            return;
+        }
 
-        System.out.println("Enter a number between 1 and " + gm.getCharacterCardDeck().length + " to select a card:");
+        System.out.println("Enter a number between 1 and " + gm.getCharacterCardDeck().length + " to select a card (0 to go back):");
         boolean isValidInput;
-        int chosenCard = 0;
-        do { // TODO: estrarne metodo per prendere input in un intervallo di valori
+        int chosenCard;
+        do {
             isValidInput = true;
-            try {
-                chosenCard = Integer.parseInt(scanner.nextLine());
-                if (!(chosenCard >= 1 && chosenCard <= gm.getCharacterCardDeck().length)) {
-                    isValidInput = false;
-                    System.out.println("Invalid input! Please enter a number between 1 and " + gm.getCharacterCardDeck().length);
-                } else if (gm.getCurrentPlayer().getCoins() < gm.getCharacterCardDeck()[chosenCard-1].getCost()) {
-                    isValidInput = false;
-                    System.out.println("You haven't got enough money to use the selected card, choose another card");
-                }
-            } catch (NumberFormatException e) {
+            chosenCard = inputInRange(0, gm.getCharacterCardDeck().length, "select a valid card");
+            if (chosenCard == 0)
+                return;
+            if (gm.getCurrentPlayer().getCoins() < gm.getCharacterCardDeck()[chosenCard-1].getCost()) {
                 isValidInput = false;
-                System.out.println("Invalid input! Please enter a number:");
+                System.out.println("You haven't got enough money to use the selected card, choose another card");
             }
         } while (!isValidInput);
 
@@ -659,14 +470,24 @@ public class Cli extends ViewObservable implements UI {
                 parameters.put("wantedHouse", chosenHouse);
 
                 // destinationIsland
-                System.out.println("Select the island where you want to put the selected student");
+                for (ReducedIsland i : gm.getIslandList()) {
+                    System.out.println(i);
+                }
+                System.out.println("\nSelect the island where you want to put the selected student");
                 chosenIsland = selectIsland();
                 parameters.put("destinationIsland", chosenIsland);
 
                 break;
 
             case HERALD: // needed: - Island
+                System.out.println("You should now choose an island to resolve as if Mother Nature had ended her movement there");
+                chosenIsland = selectIsland();
+                parameters.put("island", chosenIsland);
+
+                break;
+
             case HERB_GRANMA: // needed: - island
+                System.out.println("You should now choose an island where to put a no entry tile");
                 chosenIsland = selectIsland();
                 parameters.put("island", chosenIsland);
 
@@ -677,6 +498,8 @@ public class Cli extends ViewObservable implements UI {
                 for (House h : House.values()) {
                     wantedStudents.put(h, 0);
                 }
+
+                // wantedStudents
                 System.out.println("Select the houses of the students you want to take from the card:");
                 for (int i = 0; i < 3; i++) {
                     do {
@@ -696,6 +519,7 @@ public class Cli extends ViewObservable implements UI {
                     }
                 }
 
+                // returnedStudents
                 System.out.println("Select the houses of the students you want to return from your Entrance:");
                 Map<House, Integer> returnedStudents = new HashMap<>();
                 for (House h : House.values()) {
@@ -721,9 +545,13 @@ public class Cli extends ViewObservable implements UI {
 
                 parameters.put("wantedStudents", wantedStudents);
                 parameters.put("returnedStudents", returnedStudents);
+
                 break;
 
             case MINSTREL: // needed: -fromDashboard, - fromDiningHall
+
+                // fromDashboard
+                System.out.println("Select up to two students to move from your Entrance");
                 House[] fromDashboard = new House[2];
                 for (int i = 0; i < 2; i++) {
                     do {
@@ -743,6 +571,8 @@ public class Cli extends ViewObservable implements UI {
                     }
                 }
 
+                // fromDiningHall
+                System.out.println("Select up to two students to move from your dining hall");
                 House[] fromDiningHall = new House[2];
                 for (int i = 0; i < 2; i++) {
                     do {
@@ -764,6 +594,7 @@ public class Cli extends ViewObservable implements UI {
 
                 parameters.put("fromDashboard", fromDashboard);
                 parameters.put("fromDiningHall", fromDiningHall);
+
                 break;
 
             case MUSHROOM_HUNTER:
@@ -783,18 +614,35 @@ public class Cli extends ViewObservable implements UI {
                     }
                 } while (!isValidInput);
                 parameters.put("wantedHouse", chosenHouse);
+
                 break;
 
             case THIEF:
                 System.out.println("Select the house of the students you want to removed from player's dashboards:");
                 chosenHouse = selectHouse();
                 parameters.put("house", chosenHouse);
+
                 break;
 
             case KNIGHT:
+                System.out.println("You have selected " + CharacterCardEnum.KNIGHT + ", during the influence calculation this turn, you count as having 2 more influence");
+
+                break;
+
             case MAGICAL_MAILMAN:
+                System.out.println("You have selected " + CharacterCardEnum.MAGICAL_MAILMAN + ", you'll be able to move Mother Nature up to 2 additional Islands");
+
+                break;
+
             case FARMER:
+                System.out.println("You have selected " + CharacterCardEnum.FARMER + ", during this turn, you take control of any number of Professors even if you have " +
+                "the same number of Students as the player who currently controls them");
+
+                break;
+
             case CENTAUR:
+                System.out.println("You have selected " + CharacterCardEnum.CENTAUR + ", when resolving a Conquering on an Island, Towers will not count towards influence.");
+
                 break;
 
             default:
@@ -813,22 +661,14 @@ public class Cli extends ViewObservable implements UI {
         List<ReducedCloud> availableClouds = Arrays.stream(gm.getArrayClouds()).filter(ReducedCloud::isFull).collect(Collectors.toList());
         printList(availableClouds);
         boolean isValidInput;
-        int chosenCloud = 0;
+        int chosenCloud;
         do {
             isValidInput = true;
-            try {
-                chosenCloud = Integer.parseInt(scanner.nextLine());
-                if (!(chosenCloud >= 1 && chosenCloud <= availableClouds.size())) {
-                    isValidInput = false;
-                    System.out.println("Please, enter a number between 1 and " + availableClouds.size() + " :");
-                } else if (!availableClouds.get(chosenCloud-1).isFull()) {
+                chosenCloud = inputInRange(1, availableClouds.size(), "select a valid cloud");
+                if (!availableClouds.get(chosenCloud-1).isFull()) {
                     isValidInput = false;
                     System.out.println("The cloud you have selected has already been chosen by another player! Please select another one:");
                 }
-            } catch (NumberFormatException e) {
-                isValidInput = false;
-                System.out.println("Invalid input, please enter a number:");
-            }
         } while (!isValidInput);
         int finalChosenCloud = chosenCloud;
         notifyObserver(observers -> observers.onUpdateCloud(Arrays.asList(gm.getArrayClouds()).indexOf(availableClouds.get(finalChosenCloud -1))));
@@ -919,7 +759,12 @@ public class Cli extends ViewObservable implements UI {
     private <T> void printList (List<T> listToPrint) {
         int i = 1;
         for (T t : listToPrint) {
-            System.out.println(i + " - " + t.toString());
+            if (t instanceof House)
+                System.out.println(i + " - " + ((House) t).getColouredHouse());
+            else if (t instanceof ReducedPlayer) {
+                System.out.println(i + " - " + ((ReducedPlayer) t).getNickname());
+            } else
+                System.out.println(i + " - " + t.toString());
             i++;
         }
     }
@@ -933,21 +778,7 @@ public class Cli extends ViewObservable implements UI {
         System.out.println("Houses:");
         printList(Arrays.asList(House.values()));
         System.out.println("Select an house by entering a number between 1 and " + House.values().length + ":");
-        boolean isValidInput;
-        int chosenHouse = 0;
-        do {
-            isValidInput = true;
-            try {
-                chosenHouse = Integer.parseInt(scanner.nextLine());
-                if (!(chosenHouse > 0 && chosenHouse <= House.values().length)) {
-                    isValidInput = false;
-                    System.out.println("Invalid input! Please enter a number between 1 and " + House.values().length);
-                }
-            } catch (NumberFormatException e) {
-                isValidInput = false;
-                System.out.println("Invalid input! Please enter a number:");
-            }
-        } while (!isValidInput);
+        int chosenHouse = inputInRange(1, House.values().length, "select a valid house");
         return House.values()[chosenHouse-1];
     }
 
@@ -959,22 +790,7 @@ public class Cli extends ViewObservable implements UI {
     private int selectIsland() {
         System.out.println("Select an island (1 - " + gm.getIslandList().size() + "):");
         printList(gm.getIslandList());
-        int chosenIsland = 0;
-        boolean isValidInput;
-        do {
-            isValidInput = true;
-            try {
-                chosenIsland = Integer.parseInt(scanner.nextLine());
-                if (!(chosenIsland > 0 && chosenIsland <= gm.getIslandList().size())) {
-                    isValidInput = false;
-                    System.out.println("The island you have selected does not exist! Please select an existing island:");
-                }
-            } catch (NumberFormatException e) {
-                isValidInput = false;
-                System.out.println("Invalid input! Please enter a number:");
-            }
-        } while (!isValidInput);
-        return chosenIsland;
+        return inputInRange(1, gm.getIslandList().size(), "select a valid island");
     }
 
     /**
@@ -995,6 +811,32 @@ public class Cli extends ViewObservable implements UI {
             }
         } while (!isValidInput);
         return input.equalsIgnoreCase("Y");
+    }
+
+    /**
+     * Reads as input from the user a number between min and max, uses the message to print a specific error message.
+     *
+     * @param min the minimum accepted value
+     * @param max the maximum accepted value
+     * @param message a message used to print a specific error message
+     * @return the value entered by the user
+     */
+    private int inputInRange (int min, int max, String message) {
+        boolean isValidInput;
+        int input = 0;
+        do {
+            try {
+                isValidInput = true;
+                input = Integer.parseInt(scanner.nextLine());
+                if (!(input >= min && input <= max))
+                    isValidInput = false;
+            } catch (NumberFormatException e) {
+                isValidInput = false;
+            }
+            if (!isValidInput)
+                System.out.println("Invalid input! Insert " + (min == max ? min + ":" : "a number between " + min + " and " + max + ", to " + message + ":"));
+        } while (!isValidInput);
+        return input;
     }
 
     /**

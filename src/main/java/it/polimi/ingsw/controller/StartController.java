@@ -152,6 +152,11 @@ public class StartController {
                     }
 
                     tc.sendAllModel();
+
+                    for (int i=1; i<gm.getNumPlayers(); i++){
+                        tc.getVirtualViewMap().get(gm.getArrayPlayers()[i].getNickname()).goToWaitingRoom();
+                    }
+
                     tc.getVirtualViewMap().get(gm.getArrayPlayers()[0].getNickname()).selectAssistantCard(Arrays.asList(Card.values()));
                 } else {
                     tc.getVirtualViewMap().get(messageReceived.getNickname()).goToWaitingRoom();

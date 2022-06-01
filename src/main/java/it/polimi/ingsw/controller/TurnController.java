@@ -87,8 +87,8 @@ public class TurnController {
                 System.out.println("siamo in start");
                 startController.doAction(message, phase, this);
                 if (gameState == PLANNING) {
-                    initializePlayers();
                     addObservers();
+                    initializePlayers();
                 }
                 break;
 
@@ -116,8 +116,6 @@ public class TurnController {
         gm = new GameModel(setupController.getNumPlayer(), setupController.isExpertMode());
 
         gm.getArrayPlayers()[0].setNickname(setupController.getNickname());
-
-        initializeIslands();
 
         startController = new StartController(gm);
         actionController = new ActionController(gm);
@@ -266,16 +264,6 @@ public class TurnController {
                 i.addObserver(vv);
 
             gm.addObserver(vv);
-        }
-    }
-
-    private void initializeIslands() {
-        for (Island i : gm.getIslandList()) {
-            try {
-                gm.moveStudents(gm.getBag(), i, 1);
-            } catch (BagException e) {
-                e.printStackTrace();
-            }
         }
     }
 
