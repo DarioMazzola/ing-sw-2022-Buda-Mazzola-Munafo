@@ -72,25 +72,27 @@ public class Persistence {
      */
     public TurnController restoreData() {
 
-        FileInputStream fileReader;
+        FileReader fileReader;
+        StringBuilder controllerGson = new StringBuilder();
+        // Passing the path to the file as a parameter
         try {
-            fileReader = new FileInputStream("savedData.json");
-        } catch (FileNotFoundException e) {
-            System.err.println("Error while searching the storage files!");
+            fileReader = new FileReader("savedData.json");
+        } catch (IOException e){
+            e.printStackTrace();
+            return null;
+        }
+        // Declaring loop variable
+        int i;
+        // Holds true till there is nothing to read
+        try {
+            while ((i = fileReader.read()) != -1)
+                controllerGson.append((char) i);
+        } catch (IOException e){
             e.printStackTrace();
             return null;
         }
 
-        String controllerGson;
-        try {
-            controllerGson = Arrays.toString(fileReader.readAllBytes());
-        } catch (IOException e) {
-            System.err.println("Error while parsing the input!");
-            e.printStackTrace();
-            return null;
-        }
-
-        TurnController turnController = gson.fromJson(controllerGson, TurnController.class);
+        TurnController turnController = gson.fromJson(controllerGson.toString(), TurnController.class);
 
         try {
             fileReader.close();
@@ -110,5 +112,11 @@ public class Persistence {
 
         // Checking if the specified file exists or not
         return f.exists();
+    }
+
+    public void delete() {
+        File myObj = new File("savedData.json");
+        if(myObj.delete())
+            System.out.println("File deleted");
     }
 }
