@@ -22,10 +22,9 @@ import static it.polimi.ingsw.messages.TypeOfError.*;
  */
 public class EndTurnController{
     private final GameModel gm;
-    private transient final Persistence persistence;
 
     public EndTurnController(GameModel gm){
-        persistence = new Persistence();
+
         this.gm = gm;
     }
 
@@ -34,6 +33,7 @@ public class EndTurnController{
      * @param messageReceived received from the client
      */
     public void doAction(CommandMessage messageReceived, TurnController tc) {
+        Persistence persistence = new Persistence();
         System.out.println(messageReceived.getNickname() + "is in end turn state");
 
         int numCloud = ((ChosenCloud)messageReceived).getCloud();
