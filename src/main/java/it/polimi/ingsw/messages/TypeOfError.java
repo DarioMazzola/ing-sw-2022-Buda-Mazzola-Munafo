@@ -18,8 +18,9 @@ public enum TypeOfError {
         INVALID_STUDENT_OR_ISLAND("The selected island or student is not available! Please select other ones"),
         ALREADY_USED_CHARACTER_CARD("You have already used a character card! PLease choose another action"),
         INVALID_CLOUD("This cloud is not available! Please select another cloud"),
-        GAME_ALREADY_STARTED("The game is already started. You cannot join now!");
-
+        GAME_ALREADY_STARTED("The game is already started. You cannot join now!"),
+        GAME_RESTORED_NICKNAME_NOT_PRESENT("There is a game saved on the server that a player has decided to resume. Your nickname is not part of the game. " +
+                "Please, if you want to play, wait for the game to end or change your nickname.");
 
         private final String description;
 
