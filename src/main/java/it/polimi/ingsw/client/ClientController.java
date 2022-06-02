@@ -160,6 +160,7 @@ public class ClientController extends Observer implements ViewObserver {
             case SELECT_WIZARD:
                 SelectWizard selectWizard = (SelectWizard) message;
                 List<Wizard> availableWizards = selectWizard.getAvailableWizards();
+                taskQueue.execute(() -> view.setNickname(this.nickname));
                 taskQueue.execute(() -> view.selectWizard(availableWizards));
                 break;
             case SELECT_TEAM:

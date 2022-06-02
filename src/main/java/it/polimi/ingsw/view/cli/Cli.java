@@ -23,6 +23,7 @@ public class Cli extends ViewObservable implements UI {
     private final Scanner scanner;
     private ReducedGameModel gm;
     private static final int defaultPort = 1234;
+    private String nickname;
 
     /**
      * Class constructor.
@@ -34,6 +35,10 @@ public class Cli extends ViewObservable implements UI {
 
     public void setGm(ReducedGameModel gm) {
         this.gm = gm;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     /**
