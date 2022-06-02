@@ -428,7 +428,6 @@ public class Cli extends ViewObservable implements UI {
             }
         } while (!isValidInput);
 
-        System.out.println("Enter the island where you want to move the student (1 - " + gm.getIslandList().size() + "):");
         int chosenIsland = selectIsland();
         House finalChosenHouse = chosenHouse;
         notifyObserver(observers -> observers.onMoveStudentsToIsland(finalChosenHouse, chosenIsland - 1));
@@ -844,8 +843,9 @@ public class Cli extends ViewObservable implements UI {
      * @return the index of the island selected by the player
      */
     private int selectIsland() {
-        System.out.println("Select an island (1 - " + gm.getIslandList().size() + "):");
+        System.out.println(("Islands:"));
         printList(gm.getIslandList());
+        System.out.println("Select an island (1 - " + gm.getIslandList().size() + "):");
         return inputInRange(1, gm.getIslandList().size(), "select a valid island");
     }
 
