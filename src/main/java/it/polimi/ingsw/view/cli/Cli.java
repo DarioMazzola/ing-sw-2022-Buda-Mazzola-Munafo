@@ -121,8 +121,18 @@ public class Cli extends ViewObservable implements UI {
     @Override
     public void createNewGame() {
         System.out.println("Enter your nickname to start a new game: ");
-        String nickname = scanner.nextLine();
-        notifyObserver(observers -> observers.onCreateNewGame(nickname));
+        boolean isValidInput;
+        String nickname;
+        do {
+            isValidInput = true;
+            nickname = scanner.nextLine();
+            if (nickname.equals("")) {
+                isValidInput = false;
+                System.out.println("Empty nickname! Please insert a nickname that is at least 1 character long:");
+            }
+        } while (!isValidInput);
+        String finalNickname = nickname;
+        notifyObserver(observers -> observers.onCreateNewGame(finalNickname));
     }
 
     @Override
@@ -135,8 +145,18 @@ public class Cli extends ViewObservable implements UI {
     @Override
     public void selectNickname() {
         System.out.print("Please, enter your nickname: ");
-        String nickname = scanner.nextLine();
-        notifyObserver(observers -> observers.onUpdateNickname(nickname));
+        boolean isValidInput;
+        String nickname;
+        do {
+            isValidInput = true;
+            nickname = scanner.nextLine();
+            if (nickname.equals("")) {
+                isValidInput = false;
+                System.out.println("Empty nickname! Please insert a nickname that is at least 1 character long:");
+            }
+        } while (!isValidInput);
+        String finalNickname = nickname;
+        notifyObserver(observers -> observers.onUpdateNickname(finalNickname));
     }
 
     @Override
