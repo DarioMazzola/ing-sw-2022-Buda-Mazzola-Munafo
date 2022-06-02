@@ -716,6 +716,7 @@ public class Cli extends ViewObservable implements UI {
         System.out.println("You should now select a cloud...");
         List<ReducedCloud> availableClouds = Arrays.stream(gm.getArrayClouds()).filter(ReducedCloud::isFull).collect(Collectors.toList());
         printList(availableClouds);
+        System.out.println("Select a cloud (1 - " + availableClouds.size() + "):");
         boolean isValidInput;
         int chosenCloud;
         do {
