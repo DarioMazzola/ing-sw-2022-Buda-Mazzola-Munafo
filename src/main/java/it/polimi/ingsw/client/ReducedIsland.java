@@ -48,14 +48,16 @@ public class ReducedIsland {
     }
 
     public String toString() {
-        StringBuilder string = new StringBuilder("ISLAND:");
-        string.append("\nTOWER COLOR: ").append(towerColor).append(" (").append(numTowers).append(" towers)");
+        StringBuilder string = new StringBuilder();
+        string.append("TOWER COLOR: ").append(towerColor == null ? "-" : towerColor).append(" (").append(numTowers).append(" towers)");
         if (getNoEntryTile() != null) {
             string.append("\nNO ENTRY TILE: ").append(getNoEntryTile() > 0 ? "Yes" : "No");
         }
-        string.append("\nSTUDENTS: ");
+        string.append("\nSTUDENTS:");
         for (House h : House.values()) {
-            string.append("\n").append(h.getColouredHouse()).append(": ").append(getStudents().get(h));
+            string.append(" ").append(h.getColouredHouse()).append(": ").append(getStudents().get(h));
+            if (!h.equals(House.values()[House.values().length-1]))
+                string.append(",");
         }
         return string.toString();
     }
