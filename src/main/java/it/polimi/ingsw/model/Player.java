@@ -149,6 +149,7 @@ public class Player extends Observable {
 
     public void setGraveyard() {
         this.graveyard = cardInUse;
+        cardInUse = null;
 
         notifyObserver(new UpdatePlayer(new ReducedPlayer(this)));
     }

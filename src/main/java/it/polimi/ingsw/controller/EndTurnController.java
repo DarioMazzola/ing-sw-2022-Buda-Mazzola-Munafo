@@ -8,6 +8,7 @@ import it.polimi.ingsw.messages.command.CommandMessage;
 import it.polimi.ingsw.messages.command.ChosenCloud;
 import it.polimi.ingsw.model.Card;
 import it.polimi.ingsw.model.GameModel;
+import it.polimi.ingsw.model.Player;
 import it.polimi.ingsw.utils.Persistence;
 
 import java.util.ArrayList;
@@ -70,6 +71,7 @@ public class EndTurnController{
         }
         else {
             tc.next_State(GameState.PLANNING);
+            setAllGraveyard();
             try {
                 gm.refillClouds();
             } catch (IllegalChoiceException | BagException e) {
@@ -83,5 +85,11 @@ public class EndTurnController{
 
     public String toString(){
         return "End Turn Controller";
+    }
+
+    private void setAllGraveyard(){
+        for (Player p : gm.getArrayPlayers()){
+            p.setGraveyard();
+        }
     }
 }
