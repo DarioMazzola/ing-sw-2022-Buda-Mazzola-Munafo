@@ -81,9 +81,10 @@ public class PlanningController {
 
         if(selected == gm.getNumPlayers()){
             selected = 0;
-            resetCards();
 
-            UpdateRanking(); //todo da ricontrollare
+            UpdateRanking();
+
+            resetCards();
 
             List<String> availableActions = new ArrayList<>();
             availableActions.add("Move students to dining hall or to island");
@@ -112,7 +113,7 @@ public class PlanningController {
                     break;
                 }
             }
-            tc.getVirtualViewMap().get(gm.getArrayPlayers()[i + 1].getNickname()).selectAssistantCard(availableAssistantCards);
+            tc.getVirtualViewMap().get(gm.getArrayPlayers()[(i + 1)% gm.getNumPlayers()].getNickname()).selectAssistantCard(availableAssistantCards);
         }
     }
 
@@ -233,6 +234,7 @@ public class PlanningController {
     private void resetCards(){
         this.availableAssistantCards.clear();
         availableAssistantCards.addAll(Arrays.asList(Card.values()));
+        this.cardList.clear();
     }
 
     public int getFirstPlanner(){
