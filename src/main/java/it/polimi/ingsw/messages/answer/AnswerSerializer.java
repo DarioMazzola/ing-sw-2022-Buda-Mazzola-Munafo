@@ -116,6 +116,9 @@ public class AnswerSerializer {
             case UPDATE_MOTHER_ISLAND:
                 list.add(UPDATE_MOTHER_ISLAND.toString());
                 break;
+            case REMEMBER_NICKNAME:
+                list.add(REMEMBER_NICKNAME.toString());
+                break;
             default:
                 throw new IllegalArgumentException("Message (+" + messageType + ") is not an answer message");
         }
@@ -227,7 +230,9 @@ public class AnswerSerializer {
             case UPDATE_MOTHER_ISLAND:
                 answer = gson.fromJson(gsonMessage, UpdateMotherIsland.class);
                 break;
-
+            case REMEMBER_NICKNAME:
+                answer = gson.fromJson(gsonMessage, RememberNickname.class);
+                break;
             default:
                 throw new IllegalArgumentException("Message (" + messageType + ") is not an answer message");
         }

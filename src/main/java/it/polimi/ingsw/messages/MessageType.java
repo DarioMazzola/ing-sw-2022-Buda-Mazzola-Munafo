@@ -34,6 +34,7 @@ public enum MessageType {
     USED_ASSISTANT_CARDS,
     UPDATE_MOTHER_ISLAND,
     UPDATE_CURRENT_PLAYER,
+    REMEMBER_NICKNAME,
 
     /*--Command Messages--*/
     CHOSEN_ASSISTANT_CARD,
