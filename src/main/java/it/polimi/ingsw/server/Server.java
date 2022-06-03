@@ -69,6 +69,7 @@ public class Server {
                     virtualView.selectRestoreGame();
                 }
                 else {
+                    clientHandlerMap.put(message.getNickname(), clientHandler);
                     turnController.loginHandler(message.getNickname(), clientHandler);
                     if(!turnController.checkIfFull(restored)){
                         if(selectedRestore)
@@ -137,15 +138,22 @@ public class Server {
 
     public void restoreGame(CommandMessage message, ClientHandler clientHandler){
         if(! ((ChosenRestoreGame)message).getToRestore()) {
+
+            synchronized (lock) {
+                restored = false;
+            }
             turnController = new TurnController();
+
             for(String n : clientHandlerMap.keySet()){
                 if(! n.equals(message.getNickname()))
                     turnController.loginHandler(n, clientHandlerMap.get(n));
             }
+            System.out.println("ClientHandler: " + clientHandlerMap);
+            System.out.println("Mappa: " + turnController.getVirtualViewMap());
+
             turnController.selectMainPhase(message, clientHandler);
-            synchronized (lock) {
-                restored = false;
-            }
+
+
         }
         else {
             synchronized (lock) {
