@@ -28,10 +28,9 @@ public class PlanningController {
     private final List<Card> availableAssistantCards;
     private int selected;
     private int position;
-    private transient final Persistence persistence;
 
     public PlanningController (GameModel gm){
-        persistence = new Persistence();
+
         this.selected = 0;
         this.firstPlanner = 0;
         this.gm = gm;
@@ -48,6 +47,7 @@ public class PlanningController {
      * @param messageReceived received from the client
      */
     public void doAction(CommandMessage messageReceived, TurnController tc) {
+        Persistence persistence = new Persistence();
         System.out.println(messageReceived.getNickname() + "is in planning state");
 
         Card card = ((ChosenAssistantCard) messageReceived).getAssistantCard();
