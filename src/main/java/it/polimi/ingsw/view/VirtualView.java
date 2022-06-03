@@ -168,6 +168,10 @@ public class VirtualView extends Observer implements View{
         clientHandler.sendAnswerMessage(new SelectRestoreGame());
     }
 
+    @Override
+    public void rememberNickname(String nickname) {
+        clientHandler.sendAnswerMessage(new RememberNickname(nickname));
+    }
 
 
     /*------------------ Model - View interaction ----------------------------------*/
