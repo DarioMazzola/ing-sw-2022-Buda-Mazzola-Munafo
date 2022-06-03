@@ -115,6 +115,13 @@ public class ActionController {
 
                 GameEnded();
 
+                if (FinishedCards() || FinishedBag()){
+                    GameEnded_finished();
+                    if (winner == null){
+                        GameEnded_OtherCriteria();
+                    }
+                }
+
                 if (isEnded){
                     if (winner != null){
                         tc.sendAllWinner(winner.getNickname());
@@ -484,5 +491,45 @@ public class ActionController {
 
     public int getMaxStudMoved(){
         return maxStudMoved;
+    }
+
+    private boolean FinishedCards(){
+        for (int i = 0; i < gm.getNumPlayers(); i++) {
+            if (gm.getArrayPlayers()[i].getDeck().size() == 0){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean FinishedBag(){
+        return gm.getBag().isEmpty();
+    }
+
+    private void GameEnded_finished(){
+        isEnded = true;
+
+        List<Integer> numTowersOfPlayer = new ArrayList<>();
+
+        for (int i = 0; i < gm.getNumPlayers(); i++) {
+            numTowersOfPlayer.add(gm.getArrayPlayers()[i].getDashboard().getNumTowers());
+        }
+
+        Integer min = numTowersOfPlayer.stream().reduce((a,b)-> a < b ? a : b).orElse(null);
+
+        if (min == null){
+            winner = null;
+            return;
+        }
+
+        int numMinValues = 0;
+        for (int i : numTowersOfPlayer) {
+            if (i == min)
+                numMinValues++;
+        }
+        if (numMinValues > 1)
+            winner = null;
+        else
+            winner = gm.getArrayPlayers()[numTowersOfPlayer.indexOf(min)];
     }
 }
