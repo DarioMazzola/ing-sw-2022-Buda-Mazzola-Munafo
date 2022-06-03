@@ -126,6 +126,13 @@ public class TurnController {
         endTurnController = new EndTurnController(gm);
     }
 
+    public void setGameModel() {
+        startController.setGameModel(gm);
+        actionController.setGameModel(gm);
+        planningController.setGameModel(gm);
+        endTurnController.setGameModel(gm);
+    }
+
     /**
      * Sets the game state
      *
