@@ -312,11 +312,21 @@ public class TurnController {
 
     public void restore(){
 
+        for (int i=0; i< gm.getNumPlayers(); i++) {
+            if (gm.getArrayPlayers()[i].getNickname().equals(gm.getCurrentPlayer().getNickname())) {
+                gm.setCurrentPlayer(i);
+                break;
+            }
+        }
+
         setGameModel();
 
         addObservers();
 
         sendAllModel();
+
+        sendAllRememberNickname();
+
         switch (gameState){
             case PLANNING:
                 if (planningController.getSelected() == gm.getNumPlayers()) {
@@ -357,6 +367,12 @@ public class TurnController {
 
     public List<String> getQueue(){
         return queue;
+    }
+
+    private void sendAllRememberNickname(){
+        for (String nick : virtualViewMap.keySet()){
+            virtualViewMap.get(nick).rememberNickname(nick);
+        }
     }
 }
 
