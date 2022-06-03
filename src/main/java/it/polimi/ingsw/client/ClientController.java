@@ -187,6 +187,7 @@ public class ClientController extends Observer implements ViewObserver {
                 defaultActions.add("See the details of an Island");
                 defaultActions.add("See the details of a Player's dashboard");
                 defaultActions.add("See the current state of clouds");
+                defaultActions.add("See Mother Nature position");
 
                 availableActions.addAll(defaultActions);
                 if (!availableActions.contains("Move students to dining hall or to island"))

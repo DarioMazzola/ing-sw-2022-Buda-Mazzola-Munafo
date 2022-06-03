@@ -343,6 +343,11 @@ public class Cli extends ViewObservable implements UI {
                 case "Select character card":
                     useCharacterCard();
                     break;
+                case "See Mother Nature position":
+                    System.out.println("Mother nature is currently on island " + gm.getMotherIsland());
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + availableActions.get(chosenAction - 1));
             }
         } while (!stop);
     }
@@ -806,8 +811,7 @@ public class Cli extends ViewObservable implements UI {
 
     @Override
     public void updateMotherNature(int motherIsland) {
-        System.out.println("Received updateMotherNature");
-        System.out.println(motherIsland);
+        System.out.println("Mother Nature has been moved to island " + motherIsland);
         gm.setMotherIsland(motherIsland);
     }
 
