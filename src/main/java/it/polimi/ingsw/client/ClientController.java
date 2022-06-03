@@ -160,7 +160,7 @@ public class ClientController extends Observer implements ViewObserver {
             case SELECT_WIZARD:
                 SelectWizard selectWizard = (SelectWizard) message;
                 List<Wizard> availableWizards = selectWizard.getAvailableWizards();
-                taskQueue.execute(() -> view.setNickname(this.nickname));
+                taskQueue.execute(() -> view.rememberNickname(this.nickname));
                 taskQueue.execute(() -> view.selectWizard(availableWizards));
                 break;
             case SELECT_TEAM:
@@ -251,6 +251,11 @@ public class ClientController extends Observer implements ViewObserver {
                 break;
             case SELECT_RESTORE_GAME:
                 taskQueue.execute(view::selectRestoreGame);
+                break;
+            case REMEMBER_NICKNAME:
+                RememberNickname rememberNickname = (RememberNickname) message;
+                String nickname = rememberNickname.getNickname();
+                taskQueue.execute(() -> view.rememberNickname(nickname));
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + message.getType());
