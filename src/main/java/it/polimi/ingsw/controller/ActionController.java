@@ -18,7 +18,7 @@ import static it.polimi.ingsw.messages.TypeOfError.*;
  * @author Gabriele Munafo' & Dario Mazzola
  */
 public class ActionController {
-    private final GameModel gm;
+    private GameModel gm;
     private int studentsMoved;
     private final int maxStudMoved;
     private final List<String> availableActions;
@@ -135,6 +135,9 @@ public class ActionController {
         persistence.saveData(tc);
     }
 
+    public void setGameModel(GameModel gm){
+        this.gm = gm;
+    }
 
     public String toString(){
         return "Action Controller";

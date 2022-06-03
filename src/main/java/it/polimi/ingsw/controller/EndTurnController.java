@@ -21,7 +21,7 @@ import static it.polimi.ingsw.messages.TypeOfError.*;
  * @author Gabriele Munafo'
  */
 public class EndTurnController{
-    private final GameModel gm;
+    private GameModel gm;
 
     public EndTurnController(GameModel gm){
 
@@ -79,6 +79,10 @@ public class EndTurnController{
         }
 
         persistence.saveData(tc);
+    }
+
+    public void setGameModel(GameModel gm){
+        this.gm = gm;
     }
 
     public String toString(){

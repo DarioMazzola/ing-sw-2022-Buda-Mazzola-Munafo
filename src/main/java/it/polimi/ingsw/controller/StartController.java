@@ -16,7 +16,7 @@ import static it.polimi.ingsw.messages.TypeOfError.*;
  * @author Gabriele Munafo'
  */
 public class StartController {
-    private final GameModel gm;
+    private GameModel gm;
     private final String[] teamArray;
     private final String[] leaderArray;
     private final List<Wizard> availableWizards;
@@ -183,6 +183,10 @@ public class StartController {
             }
         }
         return false;
+    }
+
+    public void setGameModel(GameModel gm){
+        this.gm = gm;
     }
 
     /**
