@@ -22,6 +22,7 @@ public class Server {
     private TurnController turnController;
     private ClientHandler firstHandler;
     private boolean restored = false;
+    private boolean selectedRestore = false;
     private final Object lock;
     private List<String> restoredQueue;
 
@@ -69,11 +70,14 @@ public class Server {
                 }
                 else {
                     turnController.loginHandler(message.getNickname(), clientHandler);
-                    if(!turnController.checkIfFull(restored))
-                        virtualView.goToWaitingRoom();
+                    if(!turnController.checkIfFull(restored)){
+                        if(selectedRestore)
+                            turnController.restore();
+                        else
+                            virtualView.goToLobby();
+                    }
                 }
             }
-
             else { //non era presente nella partita, gli dico che non può giocare
                 virtualView.showError(GAME_RESTORED_NICKNAME_NOT_PRESENT.toString());
             }
@@ -81,8 +85,10 @@ public class Server {
 
         else if (! turnController.isGameStarted()) { //se la partita ancora non è iniziata accetto giocatori.
             if (clientHandlerMap.isEmpty() || (firstHandler != null && firstHandler.equals(clientHandler))) { //se non c'è ancora nessuno o sono il primo
-                if(firstHandler == null)
+                if(firstHandler == null) {
                     clientHandlerMap.put(message.getNickname(), clientHandler);
+                    firstHandler = clientHandler;
+                }
                 if (!turnController.checkLoginNickname(message.getNickname(), virtualView))
                     return;
                 turnController.selectMainPhase(message, clientHandler);
@@ -132,14 +138,25 @@ public class Server {
     public void restoreGame(CommandMessage message, ClientHandler clientHandler){
         if(! ((ChosenRestoreGame)message).getToRestore()) {
             turnController = new TurnController();
+            for(String n : clientHandlerMap.keySet()){
+                if(! n.equals(message.getNickname()))
+                    turnController.loginHandler(n, clientHandlerMap.get(n));
+            }
             turnController.selectMainPhase(message, clientHandler);
             synchronized (lock) {
                 restored = false;
             }
         }
         else {
+            synchronized (lock) {
+                selectedRestore = true;
+            }
             VirtualView virtualView = new VirtualView(clientHandler);
-            virtualView.goToLobby();
+            if(turnController.checkIfFull(restored)){
+                turnController.restore();
+            }
+            else
+                virtualView.goToLobby();
         }
     }
 }
