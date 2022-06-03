@@ -5,7 +5,9 @@ import it.polimi.ingsw.model.Dashboard;
 
 import it.polimi.ingsw.model.House;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -104,14 +106,34 @@ public class ReducedDashboard {
 
     @Override
     public String toString() {
-        StringBuilder string = new StringBuilder("ENTRANCE:");
+        StringBuilder string = new StringBuilder();
+        string.append("ENTRANCE:");
         for (House h : House.values()) {
             string.append("\n").append(h.getColouredHouse()).append(": ").append(getHouseStudents(h));
         }
+
         string.append("\nDININGHALL:");
         for (House h : House.values()) {
             string.append("\n").append(h.getColouredHouse()).append(": ").append(getDiningHall().getHouseStudents(h));
         }
+
+        string.append("\nPROFESSORS: ");
+        boolean profPresent = false;
+        List<House> presentHouses = new ArrayList<>();
+        for (House h : House.values()) {
+            if (profMap.get(h)) {
+                presentHouses.add(h);
+                profPresent = true;
+            }
+        }
+        for (House h : presentHouses) {
+            string.append(h.getColouredHouse());
+            if (!h.equals(presentHouses.get(presentHouses.size()-1))) {
+                string.append(", ");
+            }
+        }
+        if (!profPresent)
+            string.append("the player does not control any professor");
         return string.toString();
     }
 }
