@@ -791,8 +791,8 @@ public class Cli extends ViewObservable implements UI {
     @Override
     public void updateGameModel(ReducedGameModel gameModel) {
         System.out.println("Received updateGameModel");
-        System.out.println(gameModel);
         this.gm = gameModel;
+        gm.getPlayerByNickname(gm.getCurrentPlayer().getNickname()).setDashboard(gm.getCurrentPlayer().getDashboard());
     }
 
     // <--------- Utility methods --------->
