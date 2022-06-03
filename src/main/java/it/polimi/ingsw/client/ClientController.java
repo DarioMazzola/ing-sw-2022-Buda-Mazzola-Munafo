@@ -251,6 +251,7 @@ public class ClientController extends Observer implements ViewObserver {
                 break;
             case SELECT_RESTORE_GAME:
                 taskQueue.execute(view::selectRestoreGame);
+                break;
             default:
                 throw new IllegalStateException("Unexpected value: " + message.getType());
         }
