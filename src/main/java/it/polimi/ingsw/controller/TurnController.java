@@ -60,6 +60,7 @@ public class TurnController {
                 if (gameState == START) {
                     System.out.println("1.1");
                     int limit = queue.size();
+                    System.out.println("limit: " + limit);
                     if (queue.size() >= gm.getNumPlayers()) {
                         limit = gm.getNumPlayers();
                     } else {
@@ -301,12 +302,7 @@ public class TurnController {
                 return true;
             }
         }
-        else {
-            if (queue.size() == gm.getNumPlayers()){
-                restore();
-            }
-            return true;
-        }
+        else return queue.size() == gm.getNumPlayers();
         return false;
     }
 
