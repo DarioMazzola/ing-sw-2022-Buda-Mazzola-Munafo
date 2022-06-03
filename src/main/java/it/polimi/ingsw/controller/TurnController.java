@@ -287,7 +287,7 @@ public class TurnController {
         }
     }
 
-    public void checkIfFull(boolean restore) {
+    public boolean checkIfFull(boolean restore) {
 
         if(! restore) {
             if (queue.size() == gm.getNumPlayers()) {
@@ -298,13 +298,16 @@ public class TurnController {
                 }
                 setIsGameStarted(true);
                 sendAllSelectWizard(Arrays.asList(Wizard.values()));
+                return true;
             }
         }
         else {
-            if (queue.size() == gm.getNumPlayers())
+            if (queue.size() == gm.getNumPlayers()){
                 restore();
+            }
+            return true;
         }
-
+        return false;
     }
 
     public void restore(){
