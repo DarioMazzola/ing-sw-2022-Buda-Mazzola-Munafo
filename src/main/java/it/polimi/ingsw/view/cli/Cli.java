@@ -37,10 +37,6 @@ public class Cli extends ViewObservable implements UI {
         this.gm = gm;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
     /**
      * Initiates the communication with the server.
      */
@@ -143,6 +139,11 @@ public class Cli extends ViewObservable implements UI {
     }
 
     @Override
+    public void rememberNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    @Override
     public void selectNickname() {
         System.out.print("Please, enter your nickname: ");
         boolean isValidInput;
@@ -185,7 +186,7 @@ public class Cli extends ViewObservable implements UI {
     }
 
     @Override
-    public void selectTeam(String[] teamArray, String[] leaderArray) {
+    public void selectTeam(String[] teamArray, String[] leaderArray) { // TODO: modificare e testare
         int numPlayersTeam1 = (teamArray[0] == null ? 0 : 1) + (leaderArray[0] == null ? 0 : 1);
         int numPlayersTeam2 = (teamArray[1] == null ? 0 : 1) + (leaderArray[1] == null ? 0 : 1);
         boolean hasLeader1 = (leaderArray[0] != null);
@@ -784,7 +785,7 @@ public class Cli extends ViewObservable implements UI {
     @Override
     public void updatePlayer(ReducedPlayer player) {
         System.out.println(("Received updatePlayer"));
-        System.out.println(player.getNickname());
+        System.out.println(player.getNickname() + ": " + player.getDeck());
         int index = Arrays.asList(gm.getArrayPlayers()).indexOf(gm.getPlayerByNickname(player.getNickname()));
         gm.setPlayer(index, player);
     }
@@ -821,7 +822,7 @@ public class Cli extends ViewObservable implements UI {
     public void updateGameModel(ReducedGameModel gameModel) {
         System.out.println("Received updateGameModel");
         this.gm = gameModel;
-        gm.getPlayerByNickname(gm.getCurrentPlayer().getNickname()).setDashboard(gm.getCurrentPlayer().getDashboard());
+        //gm.getPlayerByNickname(gm.getCurrentPlayer().getNickname()).setDashboard(gm.getCurrentPlayer().getDashboard());
     }
 
     // <--------- Utility methods --------->

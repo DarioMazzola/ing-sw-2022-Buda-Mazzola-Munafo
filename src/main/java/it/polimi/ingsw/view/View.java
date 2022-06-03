@@ -99,4 +99,6 @@ public interface View {
      * Asks the player whether he/she wants to restore a previously saved game.
      */
     void selectRestoreGame();
+
+    void rememberNickname(String nickname);
 }

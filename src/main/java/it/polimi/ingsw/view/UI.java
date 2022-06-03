@@ -73,11 +73,4 @@ public interface UI extends View{
      * @param gameModel the updated version of the game model
      */
     void updateGameModel(ReducedGameModel gameModel);
-
-    /**
-     * Sets player's nickname in Cli or Gui
-     * 
-     * @param nickname the nickname of the player
-     */
-    void setNickname(String nickname);
 }
