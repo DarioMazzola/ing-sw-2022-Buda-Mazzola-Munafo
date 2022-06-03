@@ -52,12 +52,16 @@ public class PlanningController {
 
         Card card = ((ChosenAssistantCard) messageReceived).getAssistantCard();
 
+        System.out.println(card.toString());
+
         for (int i = 0; i < gm.getNumPlayers(); i++) {
             if (gm.getArrayPlayers()[i].getCardInUse() != null && card.equals(gm.getArrayPlayers()[i].getCardInUse())) {
                 if (!notOtherCards(messageReceived)) {
                     tc.getVirtualViewMap().get(messageReceived.getNickname()).showError(ASSISTANT_CARD_TAKEN.toString());
                     tc.getVirtualViewMap().get(messageReceived.getNickname()).selectAssistantCard(availableAssistantCards);
                     return;
+                } else {
+                    break;
                 }
             }
         }
@@ -79,7 +83,7 @@ public class PlanningController {
             selected = 0;
             resetCards();
 
-            UpdateRanking();
+            UpdateRanking(); //todo da ricontrollare
 
             List<String> availableActions = new ArrayList<>();
             availableActions.add("Move students to dining hall or to island");
@@ -128,7 +132,7 @@ public class PlanningController {
      * @param cardList parameters on which the ranking is based on
      * @param numPlayers the number of players
      */
-    private int[] createRanking (List<Card> cardList, int numPlayers){
+    private int[] createRanking (List<Card> cardList, int numPlayers){ //todo non funziona????
 
         Map<Card, Integer> map = new HashMap<>();
 

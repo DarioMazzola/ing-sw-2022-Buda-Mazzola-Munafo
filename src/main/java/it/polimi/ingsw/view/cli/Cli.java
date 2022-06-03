@@ -23,6 +23,7 @@ public class Cli extends ViewObservable implements UI {
     private final Scanner scanner;
     private ReducedGameModel gm;
     private static final int defaultPort = 1234;
+    private String nickname;
 
     /**
      * Class constructor.
@@ -34,6 +35,10 @@ public class Cli extends ViewObservable implements UI {
 
     public void setGm(ReducedGameModel gm) {
         this.gm = gm;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     /**
@@ -116,8 +121,18 @@ public class Cli extends ViewObservable implements UI {
     @Override
     public void createNewGame() {
         System.out.println("Enter your nickname to start a new game: ");
-        String nickname = scanner.nextLine();
-        notifyObserver(observers -> observers.onCreateNewGame(nickname));
+        boolean isValidInput;
+        String nickname;
+        do {
+            isValidInput = true;
+            nickname = scanner.nextLine();
+            if (nickname.equals("")) {
+                isValidInput = false;
+                System.out.println("Empty nickname! Please insert a nickname that is at least 1 character long:");
+            }
+        } while (!isValidInput);
+        String finalNickname = nickname;
+        notifyObserver(observers -> observers.onCreateNewGame(finalNickname));
     }
 
     @Override
@@ -130,8 +145,18 @@ public class Cli extends ViewObservable implements UI {
     @Override
     public void selectNickname() {
         System.out.print("Please, enter your nickname: ");
-        String nickname = scanner.nextLine();
-        notifyObserver(observers -> observers.onUpdateNickname(nickname));
+        boolean isValidInput;
+        String nickname;
+        do {
+            isValidInput = true;
+            nickname = scanner.nextLine();
+            if (nickname.equals("")) {
+                isValidInput = false;
+                System.out.println("Empty nickname! Please insert a nickname that is at least 1 character long:");
+            }
+        } while (!isValidInput);
+        String finalNickname = nickname;
+        notifyObserver(observers -> observers.onUpdateNickname(finalNickname));
     }
 
     @Override
@@ -256,11 +281,14 @@ public class Cli extends ViewObservable implements UI {
 
     @Override
     public void selectAssistantCard(List<Card> availableCards) {
-        List<Card> playersDeck = gm.getCurrentPlayer().getDeck();
+        List<Card> playersDeck = gm.getPlayerByNickname(this.nickname).getDeck();
 
-        Set<Card> result = availableCards.stream().distinct().filter(gm.getPlayerByNickname(gm.getCurrentPlayer().getNickname()).
+        System.out.println(gm.getPlayerByNickname(this.nickname).getNickname() + "'s deck:" + gm.getPlayerByNickname(this.nickname).getDeck());
+
+        Set<Card> result = availableCards.stream().distinct().filter(gm.getPlayerByNickname(this.nickname).
                 getDeck()::contains).collect(Collectors.toSet());
-
+        System.out.println("\nAvailable cards: " + availableCards);
+        System.out.println("\nResult: " + result);
         System.out.println("It's your turn, choose an assistant card for this round!");
         System.out.println("Here's a list of the cards in your deck, the cards marked with an 'X' have already been chosen by another player.\nIf you have other cards in your deck, you can't use them in this round.");
         int i = 1;
@@ -273,13 +301,14 @@ public class Cli extends ViewObservable implements UI {
         System.out.println("Chose a card by entering a number between 1 and " + (i-1));
         do {
             isValidInput = true;
-            chosenCard = inputInRange(1, i-1, "to select a valid card");
+            chosenCard = inputInRange(1, playersDeck.size(), "to select a valid card");
             if (!result.contains(playersDeck.get(chosenCard-1)) && result.size() > 0) {
                 isValidInput = false;
                 System.out.println("You can't chose this card, it has already been chosen by another player!\nChose another card: ");
             }
         } while (!isValidInput);
         int finalChosenCard = chosenCard;
+        System.out.println("Chosen card: " + playersDeck.get(finalChosenCard-1));
         notifyObserver(observers -> observers.onUpdateAssistantCard(playersDeck.get(finalChosenCard-1)));
     }
 
@@ -419,7 +448,6 @@ public class Cli extends ViewObservable implements UI {
             }
         } while (!isValidInput);
 
-        System.out.println("Enter the island where you want to move the student (1 - " + gm.getIslandList().size() + "):");
         int chosenIsland = selectIsland();
         House finalChosenHouse = chosenHouse;
         notifyObserver(observers -> observers.onMoveStudentsToIsland(finalChosenHouse, chosenIsland - 1));
@@ -708,6 +736,7 @@ public class Cli extends ViewObservable implements UI {
         System.out.println("You should now select a cloud...");
         List<ReducedCloud> availableClouds = Arrays.stream(gm.getArrayClouds()).filter(ReducedCloud::isFull).collect(Collectors.toList());
         printList(availableClouds);
+        System.out.println("Select a cloud (1" + (availableClouds.size() == 1 ? ")" : "-" + availableClouds.size() + "):"));
         boolean isValidInput;
         int chosenCloud;
         do {
@@ -835,8 +864,9 @@ public class Cli extends ViewObservable implements UI {
      * @return the index of the island selected by the player
      */
     private int selectIsland() {
-        System.out.println("Select an island (1 - " + gm.getIslandList().size() + "):");
+        System.out.println(("Islands:"));
         printList(gm.getIslandList());
+        System.out.println("Select an island (1 - " + gm.getIslandList().size() + "):");
         return inputInRange(1, gm.getIslandList().size(), "select a valid island");
     }
 
