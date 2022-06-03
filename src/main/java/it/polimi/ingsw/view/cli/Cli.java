@@ -811,8 +811,7 @@ public class Cli extends ViewObservable implements UI {
 
     @Override
     public void updateMotherNature(int motherIsland) {
-        System.out.println("Received updateMotherNature");
-        System.out.println(motherIsland);
+        System.out.println("Mother Nature has been moved to island " + motherIsland);
         gm.setMotherIsland(motherIsland);
     }
 
