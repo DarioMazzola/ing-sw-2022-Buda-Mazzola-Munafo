@@ -312,6 +312,8 @@ public class TurnController {
 
     public void restore(){
 
+        setGameModel();
+
         addObservers();
 
         sendAllModel();
@@ -330,19 +332,22 @@ public class TurnController {
                 else {
                     virtualViewMap.get(gm.getArrayPlayers()[getFirstPlanner()].getNickname()).selectAssistantCard(Arrays.asList(Card.values()));
                 }
+                break;
 
             case ACTION:
                 List<String> availableActions = new ArrayList<>();
-                if (!(actionController.getStudentsMoved() == actionController.getMaxStudMoved())){
+                if (actionController.getStudentsMoved() < actionController.getMaxStudMoved()){
                     availableActions.add("Move students to dining hall or to island");
                 }
-                if (gm.isExpertMode() && actionController.isUsedCharacterCard()){
+                if (gm.isExpertMode() && ! actionController.isUsedCharacterCard()){
                     availableActions.add("Select character card");
                 }
                 virtualViewMap.get(gm.getCurrentPlayer().getNickname()).actionPhase(availableActions);
+                break;
 
             case END_TURN:
                 virtualViewMap.get(gm.getCurrentPlayer().getNickname()).selectCloud();
+                break;
         }
     }
 
