@@ -30,13 +30,15 @@ public class GameModel extends Observable {
     private int totalCoins;
     private Player currentPlayer;
     private ContextCharacterCard context;
+    private final Boolean chat;
 
     /**
      * Class constructor, initializes the GameModel based on the number of players and the mode chosen
      * @param numPlayers the number of players chosen
      * @param expertMode specifies the mode chosen
      */
-    public GameModel(int numPlayers, boolean expertMode) throws EntranceException, BagException {
+    public GameModel(int numPlayers, boolean expertMode, Boolean chat) throws EntranceException, BagException {
+        this.chat = chat;
         this.numPlayers = numPlayers;
         this.expertMode = expertMode;
         this.motherIsland = 0;
@@ -541,5 +543,9 @@ public class GameModel extends Observable {
         return Arrays.stream(getArrayPlayers()).
                 filter((x)-> x.getNickname().equals(nickname)).
                 findFirst().orElse(null);
+    }
+
+    public Boolean getChat(){
+        return chat;
     }
 }

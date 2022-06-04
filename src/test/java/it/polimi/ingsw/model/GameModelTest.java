@@ -34,7 +34,7 @@ class GameModelTest {
     @BeforeEach
     void setup(){
         try {
-            gm = new GameModel(numPlayers, expertMode);
+            gm = new GameModel(numPlayers, expertMode, null);
         } catch (Exception e) {
             e.printStackTrace();
             fail();
@@ -609,7 +609,7 @@ class GameModelTest {
     @Test
     void refillCloudsTest_ThreePlayers() {
         try {
-            gm = new GameModel(3, expertMode);
+            gm = new GameModel(3, expertMode, null);
         } catch (EntranceException | BagException e) {
             e.printStackTrace();
             fail();
