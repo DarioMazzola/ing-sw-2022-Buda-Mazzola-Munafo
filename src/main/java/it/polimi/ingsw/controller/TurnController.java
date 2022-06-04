@@ -32,6 +32,7 @@ public class TurnController {
     private GameModel gm;
     private boolean isGameStarted;
     private int freeSpots;
+    private boolean restoreDecisionTaken = false;
 
     public TurnController() {
         freeSpots = 0;
@@ -302,7 +303,7 @@ public class TurnController {
                 return true;
             }
         }
-        else return queue.size() == gm.getNumPlayers();
+        else return queue.size() == gm.getNumPlayers() && restoreDecisionTaken;
         return false;
     }
 
@@ -355,6 +356,10 @@ public class TurnController {
                 virtualViewMap.get(gm.getCurrentPlayer().getNickname()).selectCloud();
                 break;
         }
+    }
+
+    public void setRestoreDecisionTaken() {
+        this.restoreDecisionTaken = true;
     }
 
     public int getNumPlayers(){
