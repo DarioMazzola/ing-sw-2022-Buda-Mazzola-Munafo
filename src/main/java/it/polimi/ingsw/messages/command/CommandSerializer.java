@@ -82,7 +82,8 @@ public class CommandSerializer {
                 break;
             case CHOSEN_CHAT:
                 list.add(CHOSEN_CHAT.toString());
-
+            case CHAT_MESSAGE_CLIENT_SERVER:
+                list.add(CHAT_MESSAGE_CLIENT_SERVER.toString());
                 break;
             default:
                 throw new IllegalArgumentException("Message received (" + messageType +") is not a command message");
@@ -162,6 +163,9 @@ public class CommandSerializer {
                 break;
             case CHOSEN_CHAT:
                 command = gson.fromJson(messageContent, ChosenChat.class);
+                break;
+            case CHAT_MESSAGE_CLIENT_SERVER:
+                command = gson.fromJson(messageContent, ChatMessageClientServer.class);
                 break;
             default:
                 throw new IllegalArgumentException("Message received (" + messageType + ") is not a command message");
