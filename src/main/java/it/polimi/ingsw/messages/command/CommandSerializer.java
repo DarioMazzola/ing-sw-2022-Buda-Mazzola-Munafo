@@ -80,6 +80,10 @@ public class CommandSerializer {
             case MOVE_MOTHER:
                 list.add(MOVE_MOTHER.toString());
                 break;
+            case CHOSEN_CHAT:
+                list.add(CHOSEN_CHAT.toString());
+
+                break;
             default:
                 throw new IllegalArgumentException("Message received (" + messageType +") is not a command message");
         }
@@ -155,6 +159,9 @@ public class CommandSerializer {
                 break;
             case CHOSEN_CLOUD:
                 command = gson.fromJson(messageContent, ChosenCloud.class);
+                break;
+            case CHOSEN_CHAT:
+                command = gson.fromJson(messageContent, ChosenChat.class);
                 break;
             default:
                 throw new IllegalArgumentException("Message received (" + messageType + ") is not a command message");
