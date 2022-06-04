@@ -170,7 +170,7 @@ public class Cli extends ViewObservable implements UI {
     @Override
     public void selectChat() {
         System.out.println("Do you want team members to communicate with each other? (Y/N)");
-        boolean chat = YNInput("allow communication between team members");
+        boolean chat = YNInput("you want to allow communication between team members");
         notifyObserver(observers -> observers.onUpdateChat(chat));
     }
 
