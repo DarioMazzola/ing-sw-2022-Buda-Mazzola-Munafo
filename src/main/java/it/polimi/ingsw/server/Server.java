@@ -1,7 +1,6 @@
 package it.polimi.ingsw.server;
 
 import it.polimi.ingsw.controller.TurnController;
-import it.polimi.ingsw.messages.answer.SelectRestoreGame;
 import it.polimi.ingsw.messages.command.ChosenRestoreGame;
 import it.polimi.ingsw.messages.command.CommandMessage;
 import it.polimi.ingsw.utils.Persistence;
@@ -72,10 +71,14 @@ public class Server {
                     clientHandlerMap.put(message.getNickname(), clientHandler);
                     turnController.loginHandler(message.getNickname(), clientHandler);
                     if(!turnController.checkIfFull(restored)){
-                        if(selectedRestore)
-                            turnController.restore();
-                        else
-                            virtualView.goToLobby();
+                        synchronized (lock) {
+                            if (selectedRestore) {
+                                turnController.restore();
+                            }
+                            else {
+                                virtualView.goToLobby();
+                            }
+                        }
                     }
                 }
             }
@@ -137,6 +140,7 @@ public class Server {
     }
 
     public void restoreGame(CommandMessage message, ClientHandler clientHandler){
+        turnController.setRestoreDecisionTaken();
         if(! ((ChosenRestoreGame)message).getToRestore()) {
 
             synchronized (lock) {
@@ -152,8 +156,6 @@ public class Server {
             System.out.println("Mappa: " + turnController.getVirtualViewMap());
 
             turnController.selectMainPhase(message, clientHandler);
-
-
         }
         else {
             synchronized (lock) {
