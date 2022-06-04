@@ -118,7 +118,7 @@ public class TurnController {
      * @throws BagException      thrown by the constructor of the game model
      */
     public void init() throws EntranceException, BagException {
-        gm = new GameModel(setupController.getNumPlayer(), setupController.isExpertMode());
+        gm = new GameModel(setupController.getNumPlayer(), setupController.isExpertMode(), setupController.getChat());
 
         gm.getArrayPlayers()[0].setNickname(setupController.getNickname());
 
@@ -374,6 +374,10 @@ public class TurnController {
         for (String nick : virtualViewMap.keySet()){
             virtualViewMap.get(nick).rememberNickname(nick);
         }
+    }
+
+    public Boolean getChat(){
+        return gm.getChat();
     }
 }
 
