@@ -106,4 +106,6 @@ public interface View {
     void selectRestoreGame();
 
     void rememberNickname(String nickname);
+
+    void onMessageReceived(String message);
 }

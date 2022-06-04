@@ -144,6 +144,11 @@ public class Cli extends ViewObservable implements UI {
     }
 
     @Override
+    public void onMessageReceived(String message) {
+        // to be implemented
+    }
+
+    @Override
     public void selectNickname() {
         System.out.print("Please, enter your nickname: ");
         boolean isValidInput;

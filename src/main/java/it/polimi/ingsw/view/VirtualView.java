@@ -178,6 +178,11 @@ public class VirtualView extends Observer implements View{
         clientHandler.sendAnswerMessage(new RememberNickname(nickname));
     }
 
+    @Override
+    public void onMessageReceived(String message) {
+        clientHandler.sendAnswerMessage(new ChatMessageServerClient(message));
+    }
+
 
     /*------------------ Model - View interaction ----------------------------------*/
 
