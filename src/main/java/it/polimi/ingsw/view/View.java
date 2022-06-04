@@ -35,6 +35,11 @@ public interface View {
     void selectNumPlayers();
 
     /**
+     * Asks the player whether he wants team members to communicate with each other and notifies the observers.
+     */
+    void selectChat ();
+
+    /**
      * Asks the player whether he/she wants to play in expert mode and notifies the observers.
      */
     void selectExpertMode();

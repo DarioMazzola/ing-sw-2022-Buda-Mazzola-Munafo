@@ -168,6 +168,13 @@ public class Cli extends ViewObservable implements UI {
     }
 
     @Override
+    public void selectChat() {
+        System.out.println("Do you want team members to communicate with each other? (Y/N)");
+        boolean chat = YNInput("allow communication between team members");
+        notifyObserver(observers -> observers.onUpdateChat(chat));
+    }
+
+    @Override
     public void selectExpertMode() {
         clearCli();
         System.out.println("Do you want to play in expert mode? (Y/N)");

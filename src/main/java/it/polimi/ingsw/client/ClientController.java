@@ -74,6 +74,11 @@ public class ClientController extends Observer implements ViewObserver {
     }
 
     @Override
+    public void onUpdateChat(boolean chat) {
+        client.sendMessage(new ChosenChat(this.nickname, chat));
+    }
+
+    @Override
     public void onUpdateWizard(Wizard wizard) {
         client.sendMessage(new ChosenWizard(this.nickname, wizard));
     }
@@ -153,6 +158,9 @@ public class ClientController extends Observer implements ViewObserver {
                 break;
             case SELECT_NUM_PLAYERS:
                 taskQueue.execute(view::selectNumPlayers);
+                break;
+            case SELECT_CHAT:
+                taskQueue.execute(view::selectChat);
                 break;
             case SELECT_EXPERT_MODE:
                 taskQueue.execute(view::selectExpertMode);

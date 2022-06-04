@@ -45,6 +45,13 @@ public interface ViewObserver {
     void onUpdateNumPlayers(int numPlayers);
 
     /**
+     * Method that represents the sending of the player preference for communication between team members.
+     *
+     * @param chat true if the player wants to allow communication between team members
+     */
+    void onUpdateChat (boolean chat);
+
+    /**
      * Method that represents the sending of the wizard that the player wants to use in this game.
      *
      * @param wizard the wizard chosen by the player.
