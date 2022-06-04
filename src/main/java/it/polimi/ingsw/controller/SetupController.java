@@ -16,10 +16,12 @@ import static it.polimi.ingsw.messages.TypeOfError.*;
 public class SetupController{
     private int numPlayer;
     private boolean expertMode;
+    private Boolean chat;
     private String nickname;
 
 
     public SetupController(){
+        this.chat = null;
         this.expertMode = false; //valori di default
         this.numPlayer = 2; //valori di default
     }
@@ -49,6 +51,16 @@ public class SetupController{
                     break;
                 }
                 this.numPlayer = num;
+                if (num == 4){
+                    tc.next_Phase(CHAT);
+                    tc.getVirtualViewMap().get(nickname).selectChat();
+                }
+                tc.next_Phase(EXPERT_MODE);
+                tc.getVirtualViewMap().get(nickname).selectExpertMode();
+                break;
+
+            case CHAT:
+                this.chat = ((ChosenChat)messageReceived).isChat();
                 tc.next_Phase(EXPERT_MODE);
                 tc.getVirtualViewMap().get(nickname).selectExpertMode();
                 break;
@@ -79,5 +91,9 @@ public class SetupController{
 
     public String getNickname(){
         return nickname;
+    }
+
+    public Boolean getChat(){
+        return chat;
     }
 }
