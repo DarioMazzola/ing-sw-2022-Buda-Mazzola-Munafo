@@ -5,6 +5,7 @@ public enum GamePhase {
     NUM_PLAYERS,
     NICKNAME,
     SELECT_TEAM,
+    CHAT,
     EXPERT_MODE,
     WIZARD,
     SELECT_COLOR_TOWER,
