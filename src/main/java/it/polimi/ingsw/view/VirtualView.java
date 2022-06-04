@@ -74,6 +74,11 @@ public class VirtualView extends Observer implements View{
         clientHandler.sendAnswerMessage(new SelectNumPlayers());
     }
 
+    @Override
+    public void selectChat() {
+        clientHandler.sendAnswerMessage(new SelectChat());
+    }
+
     /**
      * Sends a message from the server to the client to notify that the player
      * has to select the wizard for this match.
