@@ -179,7 +179,7 @@ public class VirtualView extends Observer implements View{
     }
 
     @Override
-    public void onMessageReceived(String message) {
+    public void onChatMessageReceived(String message) {
         clientHandler.sendAnswerMessage(new ChatMessageServerClient(message));
     }
 

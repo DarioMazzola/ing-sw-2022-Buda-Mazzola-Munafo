@@ -144,7 +144,7 @@ public class Cli extends ViewObservable implements UI {
     }
 
     @Override
-    public void onMessageReceived(String message) {
+    public void onChatMessageReceived(String message) {
         // to be implemented
     }
 

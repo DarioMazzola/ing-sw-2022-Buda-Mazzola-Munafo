@@ -107,5 +107,5 @@ public interface View {
 
     void rememberNickname(String nickname);
 
-    void onMessageReceived(String message);
+    void onChatMessageReceived(String message);
 }
