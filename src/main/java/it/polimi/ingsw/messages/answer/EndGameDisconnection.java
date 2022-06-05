@@ -11,11 +11,19 @@ import static it.polimi.ingsw.messages.MessageType.END_GAME_DISCONNECTION;
  * @author Dario Mazzola
  */
 public class EndGameDisconnection extends AnswerMessage{
+
+    private final String errorCause;
     /**
      * Message constructor
      *
+     * @param errorCause the message explaining why there was a disconnection
      */
-    public EndGameDisconnection() {
+    public EndGameDisconnection(String errorCause) {
         super(END_GAME_DISCONNECTION);
+        this.errorCause = errorCause;
+    }
+
+    public String getErrorCause() {
+        return errorCause;
     }
 }
