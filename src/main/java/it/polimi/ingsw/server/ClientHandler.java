@@ -90,6 +90,9 @@ public class ClientHandler implements Runnable {
                     else if(message.getType() == MessageType.CHOSEN_RESTORE_GAME){
                         socketServer.restoreGame(message, this);
                     }
+                    else if(message.getType() == MessageType.CHAT_MESSAGE_CLIENT_SERVER){
+                        socketServer.chat(message, this);
+                    }
                     else {
                         socketServer.receiveMessage(message);
                     }
