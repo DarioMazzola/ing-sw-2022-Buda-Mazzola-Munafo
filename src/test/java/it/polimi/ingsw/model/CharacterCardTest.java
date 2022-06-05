@@ -3,6 +3,7 @@ package it.polimi.ingsw.model;
 import it.polimi.ingsw.exceptions.BagException;
 import it.polimi.ingsw.exceptions.EntranceException;
 import it.polimi.ingsw.exceptions.IllegalChoiceException;
+import it.polimi.ingsw.exceptions.StudentsTableException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -103,12 +104,12 @@ class CharacterCardTest {
 
         //adding the same number of students to the players' dashboard
         try{
-            currentPlayer.getDashboard().addStudents(houseColor, 3);
-            otherPlayer.getDashboard().addStudents(houseColor, 3);
+            currentPlayer.getDashboard().getDiningHall().addStudents(houseColor, 3);
+            otherPlayer.getDashboard().getDiningHall().addStudents(houseColor, 3);
             //otherPlayer owns the professor
             otherPlayer.getDashboard().addProf(houseColor);
-        }
-        catch (EntranceException e){
+        } catch (StudentsTableException e) {
+            e.printStackTrace();
             fail();
         }
 
@@ -145,11 +146,12 @@ class CharacterCardTest {
 
         //adding more students to the currentPlayer's dashboard
         try{
-            currentPlayer.getDashboard().addStudents(houseColor, 1);
-            otherPlayer.getDashboard().addStudents(houseColor, 0);
+            currentPlayer.getDashboard().getDiningHall().addStudents(houseColor, 1);
+            otherPlayer.getDashboard().getDiningHall().addStudents(houseColor, 0);
 
         }
-        catch (EntranceException e) {
+        catch (StudentsTableException e) {
+            e.printStackTrace();
             fail();
         }
 
@@ -193,12 +195,12 @@ class CharacterCardTest {
 
         //adding more students to the currentPlayer's dashboard
         try{
-            currentPlayer.getDashboard().addStudents(houseColor, 4);
-            otherPlayer.getDashboard().addStudents(houseColor, 3);
+            currentPlayer.getDashboard().getDiningHall().addStudents(houseColor, 4);
+            otherPlayer.getDashboard().getDiningHall().addStudents(houseColor, 3);
             //otherPlayer owns the professor
             otherPlayer.getDashboard().addProf(houseColor);
-        }
-        catch (EntranceException e) {
+        } catch (StudentsTableException e) {
+            e.printStackTrace();
             fail();
         }
 
@@ -240,11 +242,11 @@ class CharacterCardTest {
     void checkProfTest_OtherPlayerWithMoreStudents_OtherPlayerOwnsStudents_NothingChanges(){
         //adding more students to the currentPlayer's dashboard
         try{
-            currentPlayer.getDashboard().addStudents(houseColor, 3);
-            otherPlayer.getDashboard().addStudents(houseColor, 4);
+            currentPlayer.getDashboard().getDiningHall().addStudents(houseColor, 3);
+            otherPlayer.getDashboard().getDiningHall().addStudents(houseColor, 4);
 
-        }
-        catch (EntranceException e) {
+        } catch (StudentsTableException e) {
+            e.printStackTrace();
             fail();
         }
 

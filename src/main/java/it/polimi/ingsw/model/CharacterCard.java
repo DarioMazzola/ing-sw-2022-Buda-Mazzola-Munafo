@@ -99,28 +99,43 @@ public class CharacterCard extends Observable {
     protected void checkProf(Player[] players, Player currentPlayer, House house) throws IllegalChoiceException {
 
         Player owner = null;
-        Player playerWithMostStudents = null;
+        Player playerWithMostStudents;
         int numPlayerI;
-        int maxStudentsNumber = 0;
+        int maxStudentsNumber;
+
+        for(Player p : players){
+            if (p.getDashboard().isProfPresent(house)) {
+                owner = p;
+                break;
+            }
+        }
+        maxStudentsNumber = (owner == null) ? 0 : owner.getDashboard().getHouseStudents(house);
+        playerWithMostStudents = owner;
 
         for (Player p : players) {
-            numPlayerI = p.getDashboard().getHouseStudents(house);
+            if(! p.equals(owner)) {
+                numPlayerI = p.getDashboard().getDiningHall().getHouseStudents(house);
 
-            if (numPlayerI > maxStudentsNumber) {
-                playerWithMostStudents = p;
-                maxStudentsNumber = numPlayerI;
+                if (numPlayerI > maxStudentsNumber) {
+                    playerWithMostStudents = p;
+                    maxStudentsNumber = numPlayerI;
+                }
             }
-            if (p.getDashboard().isProfPresent(house))
-                owner = p;
         }
 
         if(maxStudentsNumber > 0 && playerWithMostStudents.equals(currentPlayer)) {
+
             if(owner == null){
                 currentPlayer.getDashboard().addProf(house);
             }
             else if(!owner.equals(playerWithMostStudents) &&
-                        currentPlayer.getDashboard().getHouseStudents(house) > owner.getDashboard().getHouseStudents(house))
+                        currentPlayer.getDashboard().getDiningHall().getHouseStudents(house) > owner.getDashboard().getDiningHall().getHouseStudents(house)) {
+                System.out.println("owner: " + owner.getNickname());
+                System.out.println("owner.equals(playerWithMostStudents): " + owner.equals(playerWithMostStudents));
+                System.out.println("currentPlayer.getDashboard().getHouseStudents(house) > owner.getDashboard().getHouseStudents(house): " + (currentPlayer.getDashboard().getHouseStudents(house) > owner.getDashboard().getHouseStudents(house)));
                 moveProf(owner.getDashboard(), currentPlayer.getDashboard(), house);
+                System.out.println("Faccio move prof");
+            }
         }
 
     }
