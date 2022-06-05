@@ -1,5 +1,6 @@
 package it.polimi.ingsw.server;
 
+import it.polimi.ingsw.controller.GamePhase;
 import it.polimi.ingsw.controller.TurnController;
 import it.polimi.ingsw.messages.command.ChatMessageClientServer;
 import it.polimi.ingsw.messages.command.ChosenRestoreGame;
@@ -96,6 +97,8 @@ public class Server {
                 }
                 if (!turnController.checkLoginNickname(message.getNickname(), virtualView))
                     return;
+                if(turnController.getPhase() == GamePhase.CREATE_GAME)
+                    turnController.loginHandler(message.getNickname(), clientHandler);
                 turnController.selectMainPhase(message, clientHandler);
             }
 
@@ -149,6 +152,8 @@ public class Server {
                 restored = false;
             }
             turnController = new TurnController();
+
+            turnController.loginHandler(message.getNickname(), clientHandler);
 
             for(String n : clientHandlerMap.keySet()){
                 if(! n.equals(message.getNickname()))

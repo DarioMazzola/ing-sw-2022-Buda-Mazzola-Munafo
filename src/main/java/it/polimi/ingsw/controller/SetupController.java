@@ -38,7 +38,6 @@ public class SetupController{
         switch (phase) {
             case CREATE_GAME:
                 this.nickname = messageReceived.getNickname();
-                tc.loginHandler(nickname, clientHandler);
                 tc.next_Phase(NUM_PLAYERS);
                 tc.getVirtualViewMap().get(nickname).selectNumPlayers();
                 break;
