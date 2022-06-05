@@ -91,6 +91,9 @@ public class PlanningController {
             if (gm.isExpertMode()) {
                 availableActions.add("Select character card");
             }
+            if(gm.getChat()) {
+                availableActions.add("Send a message to your team mate");
+            }
             setPosition(0);
             gm.setCurrentPlayer(ranking[0]);
             persistence.saveData(tc);
