@@ -54,6 +54,7 @@ public class SetupController{
                 if (num == 4){
                     tc.next_Phase(CHAT);
                     tc.getVirtualViewMap().get(nickname).selectChat();
+                    break;
                 }
                 tc.next_Phase(EXPERT_MODE);
                 tc.getVirtualViewMap().get(nickname).selectExpertMode();
