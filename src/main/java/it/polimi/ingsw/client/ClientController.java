@@ -207,6 +207,11 @@ public class ClientController extends Observer implements ViewObserver {
                     availableActions.add("Move Mother Nature");
                 taskQueue.execute(() -> view.actionPhase(availableActions));
                 break;
+            case CHAT_MESSAGE_SERVER_CLIENT:
+                ChatMessageServerClient chatMessageServerClient = (ChatMessageServerClient) message;
+                String chatMessage = chatMessageServerClient.getMessage();
+                taskQueue.execute(() -> view.onChatMessageReceived(chatMessage));
+                break;
             case GO_TO_WAITING_ROOM:
                 taskQueue.execute(view::goToWaitingRoom);
                 break;
