@@ -1,6 +1,7 @@
 package it.polimi.ingsw.server;
 
 import it.polimi.ingsw.controller.TurnController;
+import it.polimi.ingsw.messages.command.ChatMessageClientServer;
 import it.polimi.ingsw.messages.command.ChosenRestoreGame;
 import it.polimi.ingsw.messages.command.CommandMessage;
 import it.polimi.ingsw.utils.Persistence;
@@ -168,6 +169,15 @@ public class Server {
             else
                 virtualView.goToLobby();
         }
+    }
+
+    public void chat(CommandMessage message, ClientHandler clientHandler){
+        String teamMate = turnController.getTeamMate(message.getNickname());
+
+        VirtualView virtualView = new VirtualView(clientHandler);
+
+        virtualView.onChatMessageReceived(((ChatMessageClientServer)message).getMessage());
+
     }
 }
 
