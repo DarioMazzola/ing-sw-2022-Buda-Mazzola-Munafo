@@ -379,5 +379,16 @@ public class TurnController {
     public Boolean getChat(){
         return gm.getChat();
     }
+
+    public String getTeamMate(String nickname) {
+        Player sender = gm.getPlayerByNickname(nickname);
+
+        for(Player p : gm.getArrayPlayers()){
+            if((! p.equals(sender)) && p.getDashboard().getTowerColor().equals(sender.getDashboard().getTowerColor())){
+                return p.getNickname();
+            }
+        }
+        return null;
+    }
 }
 
