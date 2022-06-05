@@ -13,8 +13,7 @@ import java.lang.String;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 /**
  * ClientController class represents the controller of the client.
@@ -49,9 +48,8 @@ public class ClientController extends Observer implements ViewObserver {
             client.sendPong();
             taskQueue.execute(view::createNewGame);
         } catch (IOException e) {
-            e.printStackTrace();
-            taskQueue.execute(() -> view.showError(null)); //definire un tipo di errore per il messaggio di disconnessione
-            client.disconnect();
+            taskQueue.execute(() -> view.showError("\u001b[31m" + "A connection with the server could not be opened! Please try again"));
+            System.exit(-1);
         }
     }
 
@@ -141,7 +139,8 @@ public class ClientController extends Observer implements ViewObserver {
     @Override
     public void onDisconnection() {
         client.disconnect();
-        System.exit(-1);
+        taskQueue.shutdown();
+        System.exit(-12);
     }
 
     @Override
@@ -270,6 +269,10 @@ public class ClientController extends Observer implements ViewObserver {
                 break;
             case SELECT_RESTORE_GAME:
                 taskQueue.execute(view::selectRestoreGame);
+                break;
+            case END_GAME_DISCONNECTION:
+                EndGameDisconnection endGameDisconnection = (EndGameDisconnection) message;
+                taskQueue.execute(() -> view.endGameDisconnection(endGameDisconnection.getErrorCause()));
                 break;
             case REMEMBER_NICKNAME:
                 RememberNickname rememberNickname = (RememberNickname) message;
