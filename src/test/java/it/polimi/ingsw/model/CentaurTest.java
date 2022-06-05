@@ -214,6 +214,6 @@ class CentaurTest {
      */
     @Test
     void getDescriptionTest(){
-        assertEquals(c.getDescription(), "When resolving a Conquering on an Island, Towers do not count towards influce.");
+        assertEquals(c.getDescription(), "When resolving a Conquering on an Island, Towers do not count towards influence.");
     }
 }
