@@ -101,6 +101,7 @@ public class Server {
 
             else if(turnController.checkLoginNickname(message.getNickname(), virtualView)){
                 turnController.loginHandler(message.getNickname(), clientHandler);
+                clientHandlerMap.put(message.getNickname(), clientHandler);
 
                 if (! turnController.gameModelExists() || !(turnController.getVirtualViewMap().size() == turnController.getNumPlayers())) {
                     virtualView.goToLobby();
@@ -153,9 +154,6 @@ public class Server {
                 if(! n.equals(message.getNickname()))
                     turnController.loginHandler(n, clientHandlerMap.get(n));
             }
-            System.out.println("ClientHandler: " + clientHandlerMap);
-            System.out.println("Mappa: " + turnController.getVirtualViewMap());
-
             turnController.selectMainPhase(message, clientHandler);
         }
         else {
@@ -174,7 +172,7 @@ public class Server {
     public void chat(CommandMessage message, ClientHandler clientHandler){
         String teamMate = turnController.getTeamMate(message.getNickname());
 
-        VirtualView virtualView = new VirtualView(clientHandler);
+        VirtualView virtualView = new VirtualView(clientHandlerMap.get(teamMate));
 
         virtualView.onChatMessageReceived(((ChatMessageClientServer)message).getMessage());
 
