@@ -148,7 +148,7 @@ public class Cli extends ViewObservable implements UI {
         Color towerColor = gm.getPlayerByNickname(this.nickname).getDashboard().getTowerColor();
         ReducedPlayer teamMate = null;
         for (ReducedPlayer p : gm.getArrayPlayers()) {
-            if (p.getDashboard().getTowerColor().equals(towerColor)) {
+            if (p.getDashboard().getTowerColor().equals(towerColor) && !p.getNickname().equals(this.nickname)) {
                 teamMate = p;
                 break;
             }
