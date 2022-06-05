@@ -134,6 +134,11 @@ public class ClientController extends Observer implements ViewObserver {
     }
 
     @Override
+    public void onSendMessage(String message) {
+        client.sendMessage(new ChatMessageClientServer(this.nickname, message));
+    }
+
+    @Override
     public void onDisconnection() {
         client.disconnect();
         System.exit(-1);
