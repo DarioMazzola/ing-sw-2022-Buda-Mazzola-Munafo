@@ -138,4 +138,11 @@ public interface ViewObserver {
      * @param toRestore true if the player wants to restore the game, false otherwise
      */
     void onRestoreGame(boolean toRestore);
+
+    /**
+     * Method used to send a chat message to the server.
+     *
+     * @param message the message to be sent
+     */
+    void onSendMessage(String message);
 }
