@@ -123,7 +123,7 @@ public class AnswerSerializer {
                 list.add(SELECT_CHAT.toString());
                 break;
             case CHAT_MESSAGE_SERVER_CLIENT:
-                list.add(SELECT_CHAT.toString());
+                list.add(CHAT_MESSAGE_SERVER_CLIENT.toString());
                 break;
             default:
                 throw new IllegalArgumentException("Message (+" + messageType + ") is not an answer message");
@@ -243,7 +243,7 @@ public class AnswerSerializer {
                 answer = gson.fromJson(gsonMessage, SelectChat.class);
                 break;
             case CHAT_MESSAGE_SERVER_CLIENT:
-                answer = gson.fromJson(gsonMessage, SelectChat.class);
+                answer = gson.fromJson(gsonMessage, ChatMessageServerClient.class);
                 break;
             default:
                 throw new IllegalArgumentException("Message (" + messageType + ") is not an answer message");
