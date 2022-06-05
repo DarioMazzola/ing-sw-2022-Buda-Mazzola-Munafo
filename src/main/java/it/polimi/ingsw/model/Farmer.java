@@ -25,31 +25,40 @@ public class Farmer extends CharacterCard {
      * If the professor does not belong to anyone and the current player has at least one player,
      * then the professor is assigned to the current player
      */
-    @Override
     protected void checkProf(Player[] players, Player currentPlayer, House house) throws IllegalChoiceException {
+
         Player owner = null;
-        Player playerWithMostStudents = null;
+        Player playerWithMostStudents;
         int numPlayerI;
-        int maxStudentsNumber = 0;
+        int maxStudentsNumber;
 
-        //finds the player with the most students for that given house as a parameter
-        for (Player p : players) {
-            numPlayerI = p.getDashboard().getHouseStudents(house);
-
-            if (numPlayerI > maxStudentsNumber) {
-                playerWithMostStudents = p;
-                maxStudentsNumber = numPlayerI;
-            }
-            if (p.getDashboard().isProfPresent(house))
+        for(Player p : players){
+            if (p.getDashboard().isProfPresent(house)) {
                 owner = p;
+                break;
+            }
+        }
+        maxStudentsNumber = (owner == null) ? 0 : owner.getDashboard().getHouseStudents(house);
+        playerWithMostStudents = owner;
+
+        for (Player p : players) {
+            if(! p.equals(owner)) {
+                numPlayerI = p.getDashboard().getDiningHall().getHouseStudents(house);
+
+                if (numPlayerI > maxStudentsNumber) {
+                    playerWithMostStudents = p;
+                    maxStudentsNumber = numPlayerI;
+                }
+            }
         }
 
         if(maxStudentsNumber > 0 && playerWithMostStudents.equals(currentPlayer)) {
+
             if(owner == null){
                 currentPlayer.getDashboard().addProf(house);
             }
-            else if(!owner.equals(currentPlayer) &&
-                    currentPlayer.getDashboard().getHouseStudents(house) >= playerWithMostStudents.getDashboard().getHouseStudents(house)) {
+            else if(!owner.equals(playerWithMostStudents) &&
+                    currentPlayer.getDashboard().getDiningHall().getHouseStudents(house) >= owner.getDashboard().getDiningHall().getHouseStudents(house)) {
                 moveProf(owner.getDashboard(), currentPlayer.getDashboard(), house);
             }
         }

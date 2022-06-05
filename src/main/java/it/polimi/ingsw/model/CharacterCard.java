@@ -130,11 +130,8 @@ public class CharacterCard extends Observable {
             }
             else if(!owner.equals(playerWithMostStudents) &&
                         currentPlayer.getDashboard().getDiningHall().getHouseStudents(house) > owner.getDashboard().getDiningHall().getHouseStudents(house)) {
-                System.out.println("owner: " + owner.getNickname());
-                System.out.println("owner.equals(playerWithMostStudents): " + owner.equals(playerWithMostStudents));
-                System.out.println("currentPlayer.getDashboard().getHouseStudents(house) > owner.getDashboard().getHouseStudents(house): " + (currentPlayer.getDashboard().getHouseStudents(house) > owner.getDashboard().getHouseStudents(house)));
                 moveProf(owner.getDashboard(), currentPlayer.getDashboard(), house);
-                System.out.println("Faccio move prof");
+
             }
         }
 
