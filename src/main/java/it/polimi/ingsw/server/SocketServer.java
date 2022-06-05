@@ -65,6 +65,10 @@ public class SocketServer implements Runnable {
         server.restoreGame(message, clientHandler);
     }
 
+    public void chat(CommandMessage message, ClientHandler clientHandler) {
+        server.chat(message, clientHandler);
+    }
+
     /**
      * Forwards a received message from the client to the Server.
      *
