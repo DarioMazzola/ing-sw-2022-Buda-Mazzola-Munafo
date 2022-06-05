@@ -63,6 +63,7 @@ public class ClientHandler implements Runnable {
             System.err.println("Client " + client.getInetAddress() + " connection dropped, client handler");
             e.printStackTrace();
             disconnect();
+            System.exit(0);
         }
     }
 
@@ -100,7 +101,6 @@ public class ClientHandler implements Runnable {
 
             }
         } catch (ClassCastException | ClassNotFoundException e) {
-            e.printStackTrace();
             System.err.println("Invalid stream from client");
             disconnect();
         }
@@ -159,6 +159,7 @@ public class ClientHandler implements Runnable {
                 output.writeObject(message);
             } catch (IOException e) {
                 e.printStackTrace();
+                System.exit(-1);
             }
         }, 0, 3, TimeUnit.SECONDS);
     }
