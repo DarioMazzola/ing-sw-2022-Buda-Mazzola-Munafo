@@ -11,7 +11,6 @@ import it.polimi.ingsw.observer.Observable;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.concurrent.*;
 
@@ -40,8 +39,14 @@ public class ServerHandler extends Observable {
      * @throws IOException if there is an exception while reading from output and input buffer
      */
     public ServerHandler(String address, int port) throws IOException {
-        this.socket = new Socket();
-        this.socket.connect(new InetSocketAddress(address, port));
+
+        try{
+            this.socket = new Socket(address, port);
+        }
+        catch (IOException e){
+            disconnect();
+            throw e;
+        }
 
         //sets a timeout for the socket on client
         socket.setSoTimeout(10000);
@@ -73,8 +78,8 @@ public class ServerHandler extends Observable {
                             notifyObserver(messageReceived);
                     }
                 } catch (IOException | ClassNotFoundException e) {
-                    e.printStackTrace();
                     disconnect();
+                    notifyObserver(new EndGameDisconnection("The server is no longer reachable. Please try playing again later"));
                     readTask.shutdownNow();
                 }
 
@@ -95,7 +100,8 @@ public class ServerHandler extends Observable {
             output.reset();
         } catch (IOException e) {
             disconnect();
-            e.printStackTrace();
+            notifyObserver(new EndGameDisconnection("The server is no longer reachable. Please try playing again later"));
+            readTask.shutdownNow();
         }
     }
 
@@ -104,7 +110,7 @@ public class ServerHandler extends Observable {
      */
     public void disconnect() {
         try {
-            if (!socket.isClosed()) {
+            if (socket != null && !socket.isClosed()) {
                 readTask.shutdownNow();
                 pingHandler.shutdownNow();
                 socket.close();
