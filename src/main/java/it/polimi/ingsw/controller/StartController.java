@@ -88,6 +88,7 @@ public class StartController {
                 if (isTeamLeader) {
                     if (this.leaderArray[team] == null) {
                         this.leaderArray[team] = messageReceived.getNickname();
+                        gm.getPlayerByNickname(messageReceived.getNickname()).setTeamLeader(true);
                     } else if (this.teamArray[team] == null) {
                         tc.getVirtualViewMap().get(messageReceived.getNickname()).showError(LEADER_TAKEN.toString());
                         tc.getVirtualViewMap().get(messageReceived.getNickname()).selectTeam(teamArray, leaderArray);
@@ -100,6 +101,7 @@ public class StartController {
                 } else {
                     if (this.teamArray[team] == null) {
                         this.teamArray[team] = messageReceived.getNickname();
+                        gm.getPlayerByNickname(messageReceived.getNickname()).setTeamLeader(false);
                     } else if (this.leaderArray[team] == null) {
                         tc.getVirtualViewMap().get(messageReceived.getNickname()).showError(TEAM_TAKEN.toString());
                         tc.getVirtualViewMap().get(messageReceived.getNickname()).selectTeam(teamArray, leaderArray);
