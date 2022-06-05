@@ -108,4 +108,6 @@ public interface View {
     void rememberNickname(String nickname);
 
     void onChatMessageReceived(String message);
+
+    void endGameDisconnection(String errorCause);
 }

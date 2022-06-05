@@ -183,6 +183,11 @@ public class VirtualView extends Observer implements View{
         clientHandler.sendAnswerMessage(new ChatMessageServerClient(message));
     }
 
+    @Override
+    public void endGameDisconnection(String errorCause) {
+        clientHandler.sendAnswerMessage(new EndGameDisconnection(errorCause));
+    }
+
 
     /*------------------ Model - View interaction ----------------------------------*/
 

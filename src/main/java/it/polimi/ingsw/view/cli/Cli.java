@@ -165,6 +165,12 @@ public class Cli extends ViewObservable implements UI {
     }
 
     @Override
+    public void endGameDisconnection(String errorCause) {
+        System.err.println(errorCause);
+        notifyObserver(ViewObserver::onDisconnection);
+    }
+
+    @Override
     public void selectNickname() {
         System.out.print("Please, enter your nickname: ");
         boolean isValidInput;
