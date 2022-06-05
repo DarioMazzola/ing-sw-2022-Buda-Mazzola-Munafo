@@ -390,5 +390,9 @@ public class TurnController {
         }
         return null;
     }
+
+    public GamePhase getPhase() {
+        return phase;
+    }
 }
 
