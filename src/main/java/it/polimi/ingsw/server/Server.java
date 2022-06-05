@@ -72,7 +72,7 @@ public class Server {
                 else {
                     clientHandlerMap.put(message.getNickname(), clientHandler);
                     turnController.loginHandler(message.getNickname(), clientHandler);
-                    if(!turnController.checkIfFull(restored)){
+                    if(turnController.checkIfFull(restored)){
                         synchronized (lock) {
                             if (selectedRestore) {
                                 turnController.restore();
