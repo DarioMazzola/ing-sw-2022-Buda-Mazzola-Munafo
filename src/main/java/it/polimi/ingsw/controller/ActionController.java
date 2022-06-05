@@ -377,7 +377,7 @@ public class ActionController {
         if (gm.isExpertMode()) {
             availableActions.add("Select character card");
         }
-        if(gm.getChat() == null || gm.getChat()) {
+        if(gm.getChat() != null && gm.getChat()) {
             availableActions.add("Send a message to your team mate");
         }
         System.out.println(availableActions);
