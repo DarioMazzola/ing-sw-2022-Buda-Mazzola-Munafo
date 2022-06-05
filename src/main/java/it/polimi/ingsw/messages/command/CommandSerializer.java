@@ -82,6 +82,7 @@ public class CommandSerializer {
                 break;
             case CHOSEN_CHAT:
                 list.add(CHOSEN_CHAT.toString());
+                break;
             case CHAT_MESSAGE_CLIENT_SERVER:
                 list.add(CHAT_MESSAGE_CLIENT_SERVER.toString());
                 break;
