@@ -22,7 +22,7 @@ import static it.polimi.ingsw.messages.TypeOfError.*;
  * @author Gabriele Munafo'
  */
 public class EndTurnController{
-    private GameModel gm;
+    private transient GameModel gm;
 
     public EndTurnController(GameModel gm){
 

@@ -16,7 +16,7 @@ import static it.polimi.ingsw.messages.TypeOfError.*;
  * @author Gabriele Munafo'
  */
 public class StartController {
-    private GameModel gm;
+    private transient GameModel gm;
     private final String[] teamArray;
     private final String[] leaderArray;
     private final List<Wizard> availableWizards;

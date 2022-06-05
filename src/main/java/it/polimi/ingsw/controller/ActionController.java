@@ -18,7 +18,7 @@ import static it.polimi.ingsw.messages.TypeOfError.*;
  * @author Gabriele Munafo' & Dario Mazzola
  */
 public class ActionController {
-    private GameModel gm;
+    private transient GameModel gm;
     private int studentsMoved;
     private final int maxStudMoved;
     private final List<String> availableActions;

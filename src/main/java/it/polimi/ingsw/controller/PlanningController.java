@@ -24,7 +24,7 @@ public class PlanningController {
     private int firstPlanner;
     private final List<Card> cardList;
     private int[] ranking;
-    private GameModel gm;
+    private transient GameModel gm;
     private final List<Card> availableAssistantCards;
     private int selected;
     private int position;
