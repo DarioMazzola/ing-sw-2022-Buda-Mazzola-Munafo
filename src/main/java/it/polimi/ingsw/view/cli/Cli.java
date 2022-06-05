@@ -374,6 +374,8 @@ public class Cli extends ViewObservable implements UI {
                 case "See Mother Nature position":
                     System.out.println("Mother nature is currently on island " + gm.getMotherIsland());
                     break;
+                case "Send a message to your team mate":
+                    sendMessage();
                 default:
                     throw new IllegalStateException("Unexpected value: " + availableActions.get(chosenAction - 1));
             }
@@ -763,8 +765,6 @@ public class Cli extends ViewObservable implements UI {
         notifyObserver(observers -> observers.onUpdateCharacterCard(finalChosenCard-1, parameters));
     }
 
-
-
     @Override
     public void selectCloud() {
         System.out.println("You should now select a cloud...");
@@ -785,6 +785,24 @@ public class Cli extends ViewObservable implements UI {
         notifyObserver(observers -> observers.onUpdateCloud(Arrays.asList(gm.getArrayClouds()).indexOf(availableClouds.get(finalChosenCloud -1))));
     }
 
+    private void sendMessage() {
+        System.out.println("Enter the message you want to send to your teammate (0 to go back):");
+        boolean isValidInput;
+        String message;
+        do {
+            isValidInput = true;
+            message = scanner.nextLine();
+            if (message.isEmpty()) {
+                isValidInput = false;
+                System.out.println("You should write something ...\nWrite your message here:");
+            }
+        } while (!isValidInput);
+
+        if (message.equals("0"))
+            return;
+        String finalMessage = message;
+        notifyObserver(observers -> observers.onSendMessage(finalMessage));
+    }
     @Override
     public void sendWinner(String winner) {
         System.out.println("GAME ENDED! " + winner + " won the game! Thank you for playing!");
