@@ -2,7 +2,6 @@ package it.polimi.ingsw.server;
 
 import it.polimi.ingsw.controller.GamePhase;
 import it.polimi.ingsw.controller.TurnController;
-import it.polimi.ingsw.messages.command.ChatMessageClientServer;
 import it.polimi.ingsw.messages.command.ChosenRestoreGame;
 import it.polimi.ingsw.messages.command.CommandMessage;
 import it.polimi.ingsw.utils.Persistence;
@@ -41,19 +40,28 @@ public class Server {
     }
 
     /**
-     * Adds a client to be managed by the server.
+     * Adds a client to the game.
+     * If the game was saved on the server, the player must be part of the saved game otherwise
+     * he/she will be asked to wait for the saved game to finish or to reconnect with the nickname he had
+     * previously chosen. The first player who connects, if he was part of the saved game, is asked if he/she
+     * wants to restore the game or start a new one.
+     * If, on the other hand, the client is not the first, then the player will be placed in a queue in which
+     * he/she will wait for the decisions made by the first player about the initialization of the game or
+     * on resuming the game or not.
      *
      * @param message the message sent by the client.
      * @param clientHandler the ClientHandler associated with the client.
      */
     public void addClient(CommandMessage message, ClientHandler clientHandler) {
         VirtualView virtualView = new VirtualView(clientHandler);
+        String sender = message.getNickname();
 
         Persistence persistence = new Persistence();
+        //if the player is the first, tries to restore the game
         synchronized (lock) {
-            if(clientHandlerMap.isEmpty()) { //non c'è nessuno connesso, sono il primo
-                if(persistence.matchExists()) {  //se c'è una partita salvata
-                    turnController = persistence.restoreData(); //riprende il tc del json
+            if(clientHandlerMap.isEmpty()) {
+                if(persistence.matchExists()) {
+                    turnController = persistence.restoreData();
                     restoredQueue = turnController.getQueue();
                     turnController.initializeVirtualViewMap();
                     restored = true;
@@ -62,18 +70,21 @@ public class Server {
                     turnController = new TurnController();  //se non c'è nessuna partita salvata
             }
         }
-        if (restored) { //se la partita è stata ripristinata
-            if (restoredQueue.contains(message.getNickname())) { // se lo contiene
-                if (clientHandlerMap.isEmpty()) { //se non c'è ancora nessuno o sono il primo
-                    clientHandlerMap.put(message.getNickname(), clientHandler);
-                    turnController.loginHandler(message.getNickname(), clientHandler); //lo aggiungo alla partita
+        if (restored) { //if the game has been restored
+            if (restoredQueue.contains(sender)) { //if the player belongs to the previous game
+                if (clientHandlerMap.isEmpty()) { //if the player is the first
+                    clientHandlerMap.put(sender, clientHandler);
+                    turnController.loginHandler(sender, clientHandler);
+                    //asks the player whether to restore the game
                     virtualView.selectRestoreGame();
                 }
-                else {
-                    clientHandlerMap.put(message.getNickname(), clientHandler);
-                    turnController.loginHandler(message.getNickname(), clientHandler);
+                else { //if the player is not the first
+                    clientHandlerMap.put(sender, clientHandler);
+                    turnController.loginHandler(sender, clientHandler);
+                    //if the player is the last
                     if(turnController.checkIfFull(restored)){
                         synchronized (lock) {
+                            //if the first player wants to resume the game or not
                             if (selectedRestore) {
                                 turnController.restore();
                             }
@@ -82,35 +93,40 @@ public class Server {
                             }
                         }
                     }
+                    else
+                        virtualView.goToLobby();
                 }
             }
-            else { //non era presente nella partita, gli dico che non può giocare
+            else { // the player was not present in the saved game, he/she cannot play
                 virtualView.showError(GAME_RESTORED_NICKNAME_NOT_PRESENT.toString());
             }
         }
 
-        else if (! turnController.isGameStarted()) { //se la partita ancora non è iniziata accetto giocatori.
-            if (clientHandlerMap.isEmpty() || (firstHandler != null && firstHandler.equals(clientHandler))) { //se non c'è ancora nessuno o sono il primo
+        // if the game has not already started
+        else if (! turnController.isGameStarted()) {
+            // if he/she is the first player
+            if (clientHandlerMap.isEmpty() || (firstHandler != null && firstHandler.equals(clientHandler))) {
                 if(firstHandler == null) {
-                    clientHandlerMap.put(message.getNickname(), clientHandler);
+                    clientHandlerMap.put(sender, clientHandler);
                     firstHandler = clientHandler;
                 }
-                if (!turnController.checkLoginNickname(message.getNickname(), virtualView))
+                if (!turnController.checkLoginNickname(sender, virtualView))
                     return;
                 if(turnController.getPhase() == GamePhase.CREATE_GAME)
-                    turnController.loginHandler(message.getNickname(), clientHandler);
+                    turnController.loginHandler(sender, clientHandler);
                 turnController.selectMainPhase(message, clientHandler);
             }
+            // if he/she is not the first player
+            else if(turnController.checkLoginNickname(sender, virtualView)){
+                turnController.loginHandler(sender, clientHandler);
+                clientHandlerMap.put(sender, clientHandler);
 
-            else if(turnController.checkLoginNickname(message.getNickname(), virtualView)){
-                turnController.loginHandler(message.getNickname(), clientHandler);
-                clientHandlerMap.put(message.getNickname(), clientHandler);
-
+                // if the game model has not been created or the maximum number of players has not been reached
                 if (! turnController.gameModelExists() || !(turnController.getVirtualViewMap().size() == turnController.getNumPlayers())) {
                     virtualView.goToLobby();
                 }
-
-                if (turnController.gameModelExists()) {
+                // if the game model has been created
+                else if (turnController.gameModelExists()) {
                     turnController.checkIfFull(restored);
                 }
             }
@@ -144,8 +160,18 @@ public class Server {
                 .orElse(null);
     }
 
+    /**
+     * Manages the first player's decision if there is a game saved on the server memory.
+     * If the player has decided not to resume the saved game then a new one will be created,
+     * otherwise the game will resume where it left off.
+     * @param message the message sent by the client that represents his/her decision.
+     * @param clientHandler the client handler associated to the client
+     */
     public void restoreGame(CommandMessage message, ClientHandler clientHandler){
-        turnController.setRestoreDecisionTaken();
+        synchronized (lock){
+            turnController.setRestoreDecisionTaken();
+        }
+        String sender = message.getNickname();
         //if the player does not want to restore the game
         if(! ((ChosenRestoreGame)message).getToRestore()) {
 
@@ -156,10 +182,10 @@ public class Server {
             }
             turnController = new TurnController();
 
-            turnController.loginHandler(message.getNickname(), clientHandler);
+            turnController.loginHandler(sender, clientHandler);
 
             for(String n : clientHandlerMap.keySet()){
-                if(! n.equals(message.getNickname()))
+                if(! n.equals(sender))
                     turnController.loginHandler(n, clientHandlerMap.get(n));
             }
             turnController.selectMainPhase(message, clientHandler);
@@ -168,13 +194,13 @@ public class Server {
         else {
             synchronized (lock) {
                 selectedRestore = true;
+
+                VirtualView virtualView = new VirtualView(clientHandler);
+                if (turnController.checkIfFull(restored)) {
+                    turnController.restore();
+                } else
+                    virtualView.goToLobby();
             }
-            VirtualView virtualView = new VirtualView(clientHandler);
-            if(turnController.checkIfFull(restored)){
-                turnController.restore();
-            }
-            else
-                virtualView.goToLobby();
         }
     }
 
