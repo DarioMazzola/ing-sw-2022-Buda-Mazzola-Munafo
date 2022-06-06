@@ -146,8 +146,11 @@ public class Server {
 
     public void restoreGame(CommandMessage message, ClientHandler clientHandler){
         turnController.setRestoreDecisionTaken();
+        //if the player does not want to restore the game
         if(! ((ChosenRestoreGame)message).getToRestore()) {
 
+            Persistence persistence = new Persistence();
+            persistence.delete();
             synchronized (lock) {
                 restored = false;
             }
@@ -161,6 +164,7 @@ public class Server {
             }
             turnController.selectMainPhase(message, clientHandler);
         }
+        //if the player wants to restore the game
         else {
             synchronized (lock) {
                 selectedRestore = true;
