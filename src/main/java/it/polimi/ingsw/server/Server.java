@@ -182,5 +182,17 @@ public class Server {
         virtualView.onChatMessageReceived(((ChatMessageClientServer)message).getMessage());
 
     }
+
+    public void onDisconnection(ClientHandler clientHandler){
+        String playerDisconnected = getNicknameFromClientHandler(clientHandler);
+        for(String nickname : clientHandlerMap.keySet()) {
+            if(! nickname.equals(playerDisconnected)) {
+                VirtualView virtualView = new VirtualView(clientHandlerMap.get(nickname));
+                String interruptedBy = playerDisconnected + " has disconnected. The game will be stopped and saved on the server. " +
+                        "The server will be interrupted but you will be able to resume the game at a later time";
+                virtualView.endGameDisconnection(interruptedBy);
+            }
+        }
+    }
 }
 
