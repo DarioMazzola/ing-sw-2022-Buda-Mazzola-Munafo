@@ -204,13 +204,8 @@ public class Server {
         }
     }
 
-    public void chat(CommandMessage message, ClientHandler clientHandler){
-        String teamMate = turnController.getTeamMate(message.getNickname());
-
-        VirtualView virtualView = new VirtualView(clientHandlerMap.get(teamMate));
-
-        virtualView.onChatMessageReceived(((ChatMessageClientServer)message).getMessage());
-
+    public void chat(CommandMessage message){
+        turnController.chat(message);
     }
 
     public void onDisconnection(ClientHandler clientHandler){
