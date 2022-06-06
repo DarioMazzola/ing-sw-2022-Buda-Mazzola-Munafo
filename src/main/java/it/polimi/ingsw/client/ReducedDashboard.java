@@ -107,7 +107,8 @@ public class ReducedDashboard {
     @Override
     public String toString() {
         StringBuilder string = new StringBuilder();
-        string.append("ENTRANCE:");
+        string.append("TOWERS: ").append(numTowersIn);
+        string.append("\nENTRANCE:");
         for (House h : House.values()) {
             string.append("\n").append(h.getColouredHouse()).append(": ").append(getHouseStudents(h));
         }
