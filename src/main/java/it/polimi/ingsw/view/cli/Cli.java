@@ -228,12 +228,12 @@ public class Cli extends ViewObservable implements UI {
 
         System.out.println("There are 4 players connected, these are the teams now: ");
         for (int i = 0; i < min(teamArray.length, leaderArray.length); i++) {
-            System.out.println("TEAM " + (i + 1) + " :" + "Team leader: " + (leaderArray[i] != null ? leaderArray[i] : "this team does not have a leader yet! ") + "Other member: " + (teamArray[i] != null ? teamArray[i] : "this team has no other members!"));
+            System.out.println("TEAM " + (i + 1) + " :" + "\nTeam leader: " + (leaderArray[i] != null ? leaderArray[i] : "this team does not have a leader yet!") + "\nOther member: " + (teamArray[i] != null ? teamArray[i] : "this team has no other members!"));
         }
 
         boolean isValidInput;
         int numTeam = 0;
-        System.out.println("Select a team (" + (numPlayersTeam1 >= 2 ? "" : "1") + (numPlayersTeam2 >= 2 ? "" : "/2") + "): ");
+        System.out.println("Select a team (" + (numPlayersTeam1 >= 2 ? "" : "1") + ((numPlayersTeam1 >= 2 || numPlayersTeam2 >=2) ? "" : "/")  + (numPlayersTeam2 >= 2 ? "" : "2") + "): ");
         do {
             isValidInput = true;
             try {
@@ -247,6 +247,7 @@ public class Cli extends ViewObservable implements UI {
                     System.out.println("The given input is not valid. The team you have selected is already full\nPlease, select another team: ");
                 }
             } catch (NumberFormatException e) {
+                isValidInput = false;
                 System.out.println("Please insert a number!\nSelect a team (" + (numPlayersTeam1 >= 2 ? "" : "1") + (numPlayersTeam2 >= 2 ? "" : "/2") + "): ");
             }
         } while (!isValidInput);
