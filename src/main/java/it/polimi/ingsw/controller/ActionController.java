@@ -434,16 +434,28 @@ public class ActionController {
     private void GameEnded_Towers (){
         boolean tie = false;
 
-        for (int i=0; i<gm.getNumPlayers(); i++){
-            if (gm.getArrayPlayers()[i].getDashboard().getNumTowers()<1) {
-                if (winner != null) {
-                    tie = true;
+        for (int i = 0; i < gm.getNumPlayers(); i++) {
+            if (gm.getNumPlayers() == 4) {
+                if (gm.getArrayPlayers()[i].getDashboard().getNumTowers() < 1 && gm.getArrayPlayers()[i].isTeamLeader()) {
+                    if (winner != null) {
+                        tie = true;
+                    }
+                    winner = gm.getArrayPlayers()[i];
+                    isEnded = true;
+                    System.out.println("Game ended towers!");
                 }
-                winner = gm.getArrayPlayers()[i];
-                isEnded = true;
+            } else {
+                if (gm.getArrayPlayers()[i].getDashboard().getNumTowers() < 1) {
+                    if (winner != null) {
+                        tie = true;
+                    }
+                    winner = gm.getArrayPlayers()[i];
+                    isEnded = true;
+                    System.out.println("Game ended towers!");
+                }
             }
         }
-        if (tie){
+        if (tie) {
             winner = null;
             isEnded = true;
         }
