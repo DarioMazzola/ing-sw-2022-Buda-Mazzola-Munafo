@@ -65,8 +65,8 @@ public class SocketServer implements Runnable { //potrebbe non essere runnable
         server.restoreGame(message, clientHandler);
     }
 
-    public void chat(CommandMessage message, ClientHandler clientHandler) {
-        server.chat(message, clientHandler);
+    public void chat(CommandMessage message) {
+        server.chat(message);
     }
 
     public void onDisconnection(ClientHandler clientHandler){
