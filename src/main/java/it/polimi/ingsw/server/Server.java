@@ -5,7 +5,6 @@ import it.polimi.ingsw.controller.TurnController;
 import it.polimi.ingsw.messages.command.ChosenRestoreGame;
 import it.polimi.ingsw.messages.command.CommandMessage;
 import it.polimi.ingsw.utils.Persistence;
-import it.polimi.ingsw.view.VirtualView;
 
 import java.util.*;
 
@@ -53,7 +52,6 @@ public class Server {
      * @param clientHandler the ClientHandler associated with the client.
      */
     public void addClient(CommandMessage message, ClientHandler clientHandler) {
-        VirtualView virtualView = new VirtualView(clientHandler);
         String sender = message.getNickname();
 
         Persistence persistence = new Persistence();
@@ -76,7 +74,7 @@ public class Server {
                     clientHandlerMap.put(sender, clientHandler);
                     turnController.loginHandler(sender, clientHandler);
                     //asks the player whether to restore the game
-                    virtualView.selectRestoreGame();
+                    turnController.selectRestore(sender);
                 }
                 else { //if the player is not the first
                     clientHandlerMap.put(sender, clientHandler);
@@ -89,16 +87,16 @@ public class Server {
                                 turnController.restore();
                             }
                             else {
-                                virtualView.goToLobby();
+                                turnController.goToLobby(sender);
                             }
                         }
                     }
                     else
-                        virtualView.goToLobby();
+                        turnController.goToLobby(sender);
                 }
             }
             else { // the player was not present in the saved game, he/she cannot play
-                virtualView.showError(GAME_RESTORED_NICKNAME_NOT_PRESENT.toString());
+                turnController.showError(sender, GAME_RESTORED_NICKNAME_NOT_PRESENT.toString());
             }
         }
 
@@ -110,20 +108,20 @@ public class Server {
                     clientHandlerMap.put(sender, clientHandler);
                     firstHandler = clientHandler;
                 }
-                if (!turnController.checkLoginNickname(sender, virtualView))
+                if (!turnController.checkLoginNickname(sender))
                     return;
                 if(turnController.getPhase() == GamePhase.CREATE_GAME)
                     turnController.loginHandler(sender, clientHandler);
                 turnController.selectMainPhase(message, clientHandler);
             }
             // if he/she is not the first player
-            else if(turnController.checkLoginNickname(sender, virtualView)){
+            else if(turnController.checkLoginNickname(sender)){
                 turnController.loginHandler(sender, clientHandler);
                 clientHandlerMap.put(sender, clientHandler);
 
                 // if the game model has not been created or the maximum number of players has not been reached
                 if (! turnController.gameModelExists() || !(turnController.getVirtualViewMap().size() == turnController.getNumPlayers())) {
-                    virtualView.goToLobby();
+                    turnController.goToLobby(sender);
                 }
                 // if the game model has been created
                 else if (turnController.gameModelExists()) {
@@ -132,7 +130,7 @@ public class Server {
             }
         }
         else {
-            virtualView.showError(GAME_ALREADY_STARTED.toString());
+            turnController.showError(sender, GAME_ALREADY_STARTED.toString());
         }
     }
 
@@ -194,12 +192,10 @@ public class Server {
         else {
             synchronized (lock) {
                 selectedRestore = true;
-
-                VirtualView virtualView = new VirtualView(clientHandler);
                 if (turnController.checkIfFull(restored)) {
                     turnController.restore();
                 } else
-                    virtualView.goToLobby();
+                    turnController.goToLobby(sender);
             }
         }
     }
@@ -212,10 +208,9 @@ public class Server {
         String playerDisconnected = getNicknameFromClientHandler(clientHandler);
         for(String nickname : clientHandlerMap.keySet()) {
             if(! nickname.equals(playerDisconnected)) {
-                VirtualView virtualView = new VirtualView(clientHandlerMap.get(nickname));
                 String interruptedBy = playerDisconnected + " has disconnected. The game will be stopped and saved on the server. " +
                         "The server will be interrupted but you will be able to resume the game at a later time";
-                virtualView.endGameDisconnection(interruptedBy);
+                turnController.endGameDisconnection(nickname, interruptedBy);
             }
         }
     }
