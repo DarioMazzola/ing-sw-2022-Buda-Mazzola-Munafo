@@ -237,7 +237,8 @@ public class TurnController {
         return planningController.getFirstPlanner();
     }
 
-    public boolean checkLoginNickname(String nickname, VirtualView view) {
+    public boolean checkLoginNickname(String nickname) {
+        VirtualView view = virtualViewMap.get(nickname);
         if (nickname.isEmpty()) {
             view.showError(EMPTY_NICKNAME.toString());
             view.selectNickname();
@@ -401,6 +402,36 @@ public class TurnController {
      */
     public void goToLobby(String nickname){
         virtualViewMap.get(nickname).goToLobby();
+    }
+
+    /**
+     * Asks the first player whether to restore the game
+     *
+     * @param nickname the nickname of the player to send the message to
+     */
+    public void selectRestore(String nickname) {
+        virtualViewMap.get(nickname). selectRestoreGame();
+    }
+
+    /**
+     * Notifies an error to the player identified by the nickname given as a parameter
+     *
+     * @param nickname the nickname of the player to send the message to
+     * @param error the error that occurred
+     */
+    public void showError(String nickname, String error) {
+        virtualViewMap.get(nickname).showError(error);
+    }
+
+    /**
+     * Notifies to the player identified by the nickname given as a parameter that
+     * the game will be interrupted due to a client disconnection
+     *
+     * @param nickname the nickname of the player to send the message to
+     * @param interruptedBy the player who caused the game to stop
+     */
+    public void endGameDisconnection(String nickname, String interruptedBy){
+        virtualViewMap.get(nickname).endGameDisconnection(interruptedBy);
     }
 }
 
