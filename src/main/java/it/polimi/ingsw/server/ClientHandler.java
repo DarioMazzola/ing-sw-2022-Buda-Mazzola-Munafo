@@ -92,7 +92,7 @@ public class ClientHandler implements Runnable {
                         socketServer.restoreGame(message, this);
                     }
                     else if(message.getType() == MessageType.CHAT_MESSAGE_CLIENT_SERVER){
-                        socketServer.chat(message, this);
+                        socketServer.chat(message);
                     }
                     else {
                         socketServer.receiveMessage(message);
