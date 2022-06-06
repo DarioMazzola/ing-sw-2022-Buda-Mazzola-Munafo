@@ -123,6 +123,7 @@ public class ClientHandler implements Runnable {
             connected = false;
             Thread.currentThread().interrupt();
         }
+        socketServer.onDisconnection(this);
     }
 
     /**

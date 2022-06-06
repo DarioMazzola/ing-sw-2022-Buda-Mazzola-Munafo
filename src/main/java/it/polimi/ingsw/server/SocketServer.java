@@ -11,7 +11,7 @@ import java.net.Socket;
  *
  * @author Dario Mazzola
  */
-public class SocketServer implements Runnable {
+public class SocketServer implements Runnable { //potrebbe non essere runnable
     private final Server server;
     private final int port;
 
@@ -67,6 +67,10 @@ public class SocketServer implements Runnable {
 
     public void chat(CommandMessage message, ClientHandler clientHandler) {
         server.chat(message, clientHandler);
+    }
+
+    public void onDisconnection(ClientHandler clientHandler){
+        server.onDisconnection(clientHandler);
     }
 
     /**
