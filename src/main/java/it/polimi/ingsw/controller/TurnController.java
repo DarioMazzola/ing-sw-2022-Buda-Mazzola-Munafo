@@ -4,6 +4,7 @@ import it.polimi.ingsw.client.ReducedGameModel;
 import it.polimi.ingsw.exceptions.BagException;
 import it.polimi.ingsw.exceptions.EntranceException;
 import it.polimi.ingsw.messages.answer.UpdateGameModel;
+import it.polimi.ingsw.messages.command.ChatMessageClientServer;
 import it.polimi.ingsw.messages.command.CommandMessage;
 import it.polimi.ingsw.model.*;
 import it.polimi.ingsw.server.ClientHandler;
@@ -17,7 +18,7 @@ import static it.polimi.ingsw.messages.TypeOfError.*;
 
 /**
  * Class representing the turn controller
- * @author Gabriele Munafo'
+ * @author Gabriele Munafo' & Dario Mazzola
  */
 public class TurnController {
     private StartController startController;
@@ -222,17 +223,6 @@ public class TurnController {
         }
     }
 
-    //non serve più
-//    public List<Integer> getAvailableClouds() {
-//        List<Integer> result = new ArrayList<>();
-//        for (int i = 0; i < gm.getArrayClouds().length; i++) {
-//            if (gm.getArrayClouds()[i].isFull()) {
-//                result.add(i);
-//            }
-//        }
-//        return result;
-//    }
-
     public boolean isThereNextPlayer() {
         return (!(planningController.getPosition() + 1 == gm.getNumPlayers()));
     }
@@ -393,6 +383,24 @@ public class TurnController {
 
     public GamePhase getPhase() {
         return phase;
+    }
+
+    /**
+     * Handles a chat message. The message will only be sent to the teammate if the first player
+     * has decided to enable chat for this match
+     * @param message the message to sent to client teammate
+     */
+    public void chat(CommandMessage message){
+        String teamMate = getTeamMate(message.getNickname());
+        virtualViewMap.get(message.getNickname()).onChatMessageReceived(((ChatMessageClientServer)message).getMessage());
+    }
+
+    /**
+     * Send the player identified by the nickname given as a parameter to the lobby because the game has not started yet
+     * @param nickname the nickname that identifies the player
+     */
+    public void goToLobby(String nickname){
+        virtualViewMap.get(nickname).goToLobby();
     }
 }
 
