@@ -237,8 +237,10 @@ public class TurnController {
         return planningController.getFirstPlanner();
     }
 
-    public boolean checkLoginNickname(String nickname) {
+    public boolean checkLoginNickname(String nickname, ClientHandler clientHandler) {
         VirtualView view = virtualViewMap.get(nickname);
+        if(view == null)
+            view = new VirtualView(clientHandler);
         if (nickname.isEmpty()) {
             view.showError(EMPTY_NICKNAME.toString());
             view.selectNickname();

@@ -108,14 +108,14 @@ public class Server {
                     clientHandlerMap.put(sender, clientHandler);
                     firstHandler = clientHandler;
                 }
-                if (!turnController.checkLoginNickname(sender))
+                if (!turnController.checkLoginNickname(sender, clientHandler))
                     return;
                 if(turnController.getPhase() == GamePhase.CREATE_GAME)
                     turnController.loginHandler(sender, clientHandler);
                 turnController.selectMainPhase(message, clientHandler);
             }
             // if he/she is not the first player
-            else if(turnController.checkLoginNickname(sender)){
+            else if(turnController.checkLoginNickname(sender, clientHandler)){
                 turnController.loginHandler(sender, clientHandler);
                 clientHandlerMap.put(sender, clientHandler);
 
