@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="1080.0" maxWidth="1920.0" minHeight="1080.0" minWidth="1920.0" prefHeight="1080.0"
+            prefWidth="1920.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="it.polimi.ingsw.view.gui.scenes.SelectTowerColorSceneController">
+   <ImageView fitHeight="300.0" fitWidth="300.0" layoutX="335.0" layoutY="382.0" onMousePressed="#grayClicked"
+              pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/towers/grey_tower.png"/>
+   </ImageView>
+   <ImageView fitHeight="300.0" fitWidth="300.0" layoutX="1307.0" layoutY="382.0" onMousePressed="#blackClicked"
+              pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/towers/black_tower.png"/>
+   </ImageView>
+   <ImageView fitHeight="300.0" fitWidth="300.0" layoutX="818.0" layoutY="382.0" onMousePressed="#whiteClicked"
+              pickOnBounds="true" preserveRatio="true">
+      <Image url="@../images/towers/white_tower.png"/>
+   </ImageView>
+   <RadioButton fx:id="grayButton" layoutX="461.0" layoutY="622.0" mnemonicParsing="false" opacity="0.0"
+                prefHeight="0.0" prefWidth="88.0" text="gray">
+      <toggleGroup>
+         <ToggleGroup fx:id="towersButton"/>
+      </toggleGroup>
+   </RadioButton>
+   <Button fx:id="selectButton" disable="true" layoutX="929.0" layoutY="798.0" mnemonicParsing="false"
+           onAction="#onSelect" text="Select">
+      <font>
+         <Font size="24.0"/>
+      </font>
+   </Button>
+   <RadioButton fx:id="whiteButton" layoutX="932.0" layoutY="651.0" mnemonicParsing="false" opacity="0.0"
+                prefHeight="0.0" prefWidth="88.0" text="white" toggleGroup="$towersButton"/>
+   <RadioButton fx:id="blackButton" layoutX="1425.0" layoutY="636.0" mnemonicParsing="false" opacity="0.0"
+                prefHeight="0.0" prefWidth="88.0" text="black" toggleGroup="$towersButton"/>
+</AnchorPane>
