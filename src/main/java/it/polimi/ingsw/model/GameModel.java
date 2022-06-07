@@ -23,7 +23,7 @@ public class GameModel extends Observable {
     private final int numPlayers;
     private final boolean expertMode;
     private final List<Island> islandList;
-    private final CharacterCard[] characterCardDeck;
+    private CharacterCard[] characterCardDeck;
     private final Bag bag;
     private final Player[] arrayPlayers;
     private final Cloud[] arrayClouds;
@@ -547,5 +547,9 @@ public class GameModel extends Observable {
 
     public Boolean getChat(){
         return chat;
+    }
+
+    public void setCharacterCardDeck(CharacterCard deck[]){
+        this.characterCardDeck = deck;
     }
 }
