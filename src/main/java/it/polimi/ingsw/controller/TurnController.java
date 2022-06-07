@@ -435,5 +435,9 @@ public class TurnController {
     public void endGameDisconnection(String nickname, String interruptedBy){
         virtualViewMap.get(nickname).endGameDisconnection(interruptedBy);
     }
+
+    public GameModel getGameModel() {
+        return gm;
+    }
 }
 
