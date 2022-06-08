@@ -23,8 +23,7 @@ public class MenuController extends ViewObservable implements SceneInterface{
         if(alert.showAndWait().orElse(null) == ButtonType.OK) {
             stage = (Stage) scenePane.getScene().getWindow();
             stage.close();
-        } stage = (Stage) scenePane.getScene().getWindow();
-        stage.close(); //per chiudere l’app
+        }
     }
 
     public void play(ActionEvent event) {
