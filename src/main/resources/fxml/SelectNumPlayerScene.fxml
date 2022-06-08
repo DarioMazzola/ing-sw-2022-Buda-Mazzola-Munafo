@@ -4,35 +4,36 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-            prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="it.polimi.ingsw.view.gui.scenes.SelectNumPlayersController">
-   <RadioButton fx:id="players2" layoutX="248.0" layoutY="116.0" mnemonicParsing="false" text="2 players">
-      <font>
-         <Font size="18.0"/>
-      </font>
-      <toggleGroup>
-         <ToggleGroup fx:id="playerButton"/>
-      </toggleGroup>
-   </RadioButton>
-   <RadioButton fx:id="players3" layoutX="248.0" layoutY="186.0" mnemonicParsing="false" text="3 players"
-                toggleGroup="$playerButton">
-      <font>
-         <Font size="18.0"/>
-      </font>
-   </RadioButton>
-   <RadioButton fx:id="players4" layoutX="248.0" layoutY="262.0" mnemonicParsing="false" text="4 players"
-                toggleGroup="$playerButton">
-      <font>
-         <Font size="18.0"/>
-      </font>
-   </RadioButton>
-   <Button fx:id="selectNumPlayers" layoutX="272.0" layoutY="321.0" mnemonicParsing="false" onAction="#selectNumPlayers"
-           text="Select">
-      <font>
-         <Font size="14.0"/>
-      </font>
-   </Button>
-</AnchorPane>
+
+<StackPane prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.view.gui.scenes.SelectNumPlayersController">
+   <children>
+      <AnchorPane>
+         <RadioButton fx:id="players2" layoutX="731.6" layoutY="240.0" mnemonicParsing="false" text="2 players">
+            <font>
+               <Font size="24.0" />
+            </font>
+            <toggleGroup>
+               <ToggleGroup fx:id="playerButton" />
+            </toggleGroup>
+         </RadioButton>
+         <RadioButton fx:id="players3" layoutX="731.6" layoutY="325.0" mnemonicParsing="false" text="3 players" toggleGroup="$playerButton">
+            <font>
+               <Font size="24.0" />
+            </font>
+         </RadioButton>
+         <RadioButton fx:id="players4" layoutX="731.6" layoutY="424.0" mnemonicParsing="false" text="4 players" toggleGroup="$playerButton">
+            <font>
+               <Font size="24.0" />
+            </font>
+         </RadioButton>
+         <Button fx:id="selectNumPlayers" layoutX="752.5" layoutY="537.0" mnemonicParsing="false" onAction="#selectNumPlayers" text="Select">
+            <font>
+               <Font size="24.0" />
+            </font>
+         </Button>
+      </AnchorPane>
+   </children>
+</StackPane>
