@@ -150,6 +150,10 @@ public class ActionController {
         return "Action Controller";
     }
 
+    /**
+     * Handles the selection of a character card by the player
+     * @param message the message passed
+     */
     private void selectCharacterCardHandler(CommandMessage message){
 
         Map<String, Object> map = ((ChosenCharacterCard)message).getMap();
@@ -371,6 +375,9 @@ public class ActionController {
         //pensare se mettere un messaggio che annuncia che c'è stato un pareggio (in else)
     }
 
+    /**
+     * Restores all the action in available actions
+     */
     private void resetActions(){
         availableActions.clear();
         availableActions.add("Move students to dining hall or to island");
@@ -397,7 +404,7 @@ public class ActionController {
     }
 
     /**
-     * Checks if the game is ended due to the low number of island
+     * Checks if the game has finished due to lack of towers
      */
     private void GameEnded_Island(){
         if (gm.getNumIslands() < 4) {
@@ -493,7 +500,7 @@ public class ActionController {
         }
         if (numMaxValues > 1)
             winner = null;
-        else
+        else {
             winner = gm.getArrayPlayers()[numProfOfPlayer.indexOf(max)];
     }
 
@@ -509,6 +516,9 @@ public class ActionController {
         return maxStudMoved;
     }
 
+    /**
+     * Checks if the game has ended due to lack of cards
+     */
     private boolean FinishedCards(){
         for (int i = 0; i < gm.getNumPlayers(); i++) {
             if (gm.getArrayPlayers()[i].getDeck().size() == 0){
@@ -518,6 +528,9 @@ public class ActionController {
         return false;
     }
 
+    /**
+     * Checks if the game has ended due to lack of students in the bag
+     */
     private boolean FinishedBag(){
         return gm.getBag().isEmpty();
     }
