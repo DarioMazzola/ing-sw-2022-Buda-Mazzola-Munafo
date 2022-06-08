@@ -404,17 +404,6 @@ public class TurnController {
         return gm.getChat();
     }
 
-    public String getTeamMate(String nickname) {
-        Player sender = gm.getPlayerByNickname(nickname);
-
-        for(Player p : gm.getArrayPlayers()){
-            if((! p.equals(sender)) && p.getDashboard().getTowerColor().equals(sender.getDashboard().getTowerColor())){
-                return p.getNickname();
-            }
-        }
-        return null;
-    }
-
     public GamePhase getPhase() {
         return phase;
     }
@@ -425,7 +414,7 @@ public class TurnController {
      * @param message the message to sent to client teammate
      */
     public void chat(CommandMessage message){
-        String teamMate = getTeamMate(message.getNickname());
+        String teamMate = gm.getTeamMate(message.getNickname());
         virtualViewMap.get(message.getNickname()).onChatMessageReceived(((ChatMessageClientServer)message).getMessage());
     }
 
@@ -469,6 +458,10 @@ public class TurnController {
 
     public GameModel getGameModel() {
         return gm;
+    }
+
+    public void resendActionPhase(String nickname){
+        virtualViewMap.get(nickname).actionPhase(actionController.getActions());
     }
 }
 
