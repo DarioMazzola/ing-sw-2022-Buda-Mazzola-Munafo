@@ -535,30 +535,7 @@ public class ActionController {
         return gm.getBag().isEmpty();
     }
 
-    private void GameEnded_finished(){
-        isEnded = true;
-
-        List<Integer> numTowersOfPlayer = new ArrayList<>();
-
-        for (int i = 0; i < gm.getNumPlayers(); i++) {
-            numTowersOfPlayer.add(gm.getArrayPlayers()[i].getDashboard().getNumTowers());
-        }
-
-        Integer min = numTowersOfPlayer.stream().reduce((a,b)-> a < b ? a : b).orElse(null);
-
-        if (min == null){
-            winner = null;
-            return;
-        }
-
-        int numMinValues = 0;
-        for (int i : numTowersOfPlayer) {
-            if (i == min)
-                numMinValues++;
-        }
-        if (numMinValues > 1)
-            winner = null;
-        else
-            winner = gm.getArrayPlayers()[numTowersOfPlayer.indexOf(min)];
+    public List<String> getActions(){
+        return availableActions;
     }
 }
