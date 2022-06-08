@@ -129,6 +129,9 @@ public class TurnController {
         endTurnController = new EndTurnController(gm);
     }
 
+    /**
+     * Sets the game model in every controller
+     */
     public void setGameModel() {
         startController.setGameModel(gm);
         actionController.setGameModel(gm);
@@ -168,6 +171,9 @@ public class TurnController {
 
     }
 
+    /**
+     * Creates a new virtual view map
+     */
     public void initializeVirtualViewMap(){
         virtualViewMap = new HashMap<>();
         queue = new ArrayList<>();
@@ -193,40 +199,61 @@ public class TurnController {
         freeSpots = newValue;
     }
 
+    /**
+     * Sends all players a select wizard message
+     */
     public void sendAllSelectWizard(List<Wizard> availableWizards) {
         for (String nickname : virtualViewMap.keySet()) {
             virtualViewMap.get(nickname).selectWizard(availableWizards);
         }
     }
 
+    /**
+     * Sends all players a select team message
+     */
     public void sendAllSelectTeam(String[] teamArray, String[] leaderArray) {
         for (String nickname : virtualViewMap.keySet()) {
             virtualViewMap.get(nickname).selectTeam(teamArray, leaderArray);
         }
     }
 
+    /**
+     * Sends all players a select tower color message
+     */
     public void sendAllSelectTowerColor(List<Color> availableTowers) {
         for (String nickname : virtualViewMap.keySet()) {
             virtualViewMap.get(nickname).selectTowerColor(availableTowers);
         }
     }
 
+    /**
+     * Sends all players a send nickname message
+     */
     public void sendAllWinner(String winner) {
         for (String nickname : virtualViewMap.keySet()) {
             virtualViewMap.get(nickname).sendWinner(winner);
         }
     }
 
+    /**
+     * Sends all players an update message containing the model
+     */
     public void sendAllModel() {
         for (String nickname : virtualViewMap.keySet()) {
             virtualViewMap.get(nickname).update(new UpdateGameModel(new ReducedGameModel(gm)));
         }
     }
 
+    /**
+     * Checks if the action phase is ended
+     */
     public boolean isThereNextPlayer() {
         return (!(planningController.getPosition() + 1 == gm.getNumPlayers()));
     }
 
+    /**
+     * Sets the new current planner and returns it
+     */
     public int getNextPlanner() {
         planningController.setPosition(planningController.getPosition() + 1);
         System.out.println("la posizione nel ranking è " + planningController.getPosition());
@@ -236,6 +263,7 @@ public class TurnController {
     public int getFirstPlanner() {
         return planningController.getFirstPlanner();
     }
+
 
     public boolean checkLoginNickname(String nickname, ClientHandler clientHandler) {
         VirtualView view = virtualViewMap.get(nickname);
@@ -363,6 +391,9 @@ public class TurnController {
         return queue;
     }
 
+    /**
+     * Sends all players a remember nickname message
+     */
     private void sendAllRememberNickname(){
         for (String nick : virtualViewMap.keySet()){
             virtualViewMap.get(nick).rememberNickname(nick);
