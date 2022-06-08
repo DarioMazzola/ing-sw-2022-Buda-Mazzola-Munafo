@@ -56,6 +56,7 @@ public enum MessageType {
     NEW_GAME,
     NICKNAME,
     PONG,
-    CHAT_MESSAGE_CLIENT_SERVER
+    CHAT_MESSAGE_CLIENT_SERVER,
+    RELOAD_MESSAGES
 
 }
