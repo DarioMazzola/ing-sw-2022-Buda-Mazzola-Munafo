@@ -384,6 +384,9 @@ public class Cli extends ViewObservable implements UI {
                 case "Send a message to your team mate":
                     sendMessage();
                     break;
+                case "See received messages":
+                    stop = true;
+                    break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + availableActions.get(chosenAction - 1));
             }
