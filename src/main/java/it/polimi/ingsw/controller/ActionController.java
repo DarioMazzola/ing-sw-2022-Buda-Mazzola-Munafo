@@ -396,9 +396,11 @@ public class ActionController {
     private void GameEnded(){
         GameEnded_Towers();
         if (!isEnded || winner == null) {
-            GameEnded_Island();
-            if (isEnded && winner == null){
-                GameEnded_OtherCriteria();
+            if (gm.getNumIslands() < 4) {
+                GameEnded_finished();
+                if (isEnded && winner == null) {
+                    GameEnded_OtherCriteria();
+                }
             }
         }
     }
@@ -406,33 +408,35 @@ public class ActionController {
     /**
      * Checks if the game has finished due to lack of towers
      */
-    private void GameEnded_Island(){
-        if (gm.getNumIslands() < 4) {
-            isEnded = true;
+    private void GameEnded_finished(){
+        isEnded = true;
 
-            List<Integer> numTowersOfPlayer = new ArrayList<>();
+        List<Integer> numTowersOfPlayer = new ArrayList<>();
 
-            for (int i = 0; i < gm.getNumPlayers(); i++) {
+        for (int i = 0; i < gm.getNumPlayers(); i++) {
+            if (gm.getNumPlayers() == 4 && gm.getArrayPlayers()[i].isTeamLeader()) {
+                numTowersOfPlayer.add(gm.getArrayPlayers()[i].getDashboard().getNumTowers());
+            } else if (gm.getNumPlayers() < 4){
                 numTowersOfPlayer.add(gm.getArrayPlayers()[i].getDashboard().getNumTowers());
             }
-
-            Integer min = numTowersOfPlayer.stream().reduce((a,b)-> a < b ? a : b).orElse(null);
-
-            if (min == null){
-                winner = null;
-                return;
-            }
-
-            int numMinValues = 0;
-            for (int i : numTowersOfPlayer) {
-                if (i == min)
-                    numMinValues++;
-            }
-            if (numMinValues > 1)
-                winner = null;
-            else
-                winner = gm.getArrayPlayers()[numTowersOfPlayer.indexOf(min)];
         }
+
+        Integer min = numTowersOfPlayer.stream().reduce((a, b) -> a < b ? a : b).orElse(null);
+
+        if (min == null) {
+            winner = null;
+            return;
+        }
+
+        int numMinValues = 0;
+        for (int i : numTowersOfPlayer) {
+            if (i == min)
+                numMinValues++;
+        }
+        if (numMinValues > 1)
+            winner = null;
+        else
+            winner = gm.getArrayPlayers()[numTowersOfPlayer.indexOf(min)];
     }
 
     /**
@@ -472,15 +476,26 @@ public class ActionController {
      * Checks if there is a winner, when the game is ended
      */
     private void GameEnded_OtherCriteria(){
+        if (gm.getNumPlayers() == 4){
+            GameEnded_OtherCriteria_4Players();
+        } else {
+            GameEnded_OtherCriteria_2or3Players();
+        }
+    }
+
+    /**
+     * Checks who has more professors for 2 or 3 players games
+     */
+    private void GameEnded_OtherCriteria_2or3Players(){
 
         List<Integer> numProfOfPlayer = new ArrayList<>();
 
         int numProf;
+
         for (int i = 0; i < gm.getNumPlayers(); i++) {
             numProf = 0;
-            for (House h : House.values())
-            {
-                if (gm.getArrayPlayers()[i].getDashboard().isProfPresent(h)){
+            for (House h : House.values()) {
+                if (gm.getArrayPlayers()[i].getDashboard().isProfPresent(h)) {
                     numProf++;
                 }
             }
@@ -502,6 +517,78 @@ public class ActionController {
             winner = null;
         else {
             winner = gm.getArrayPlayers()[numProfOfPlayer.indexOf(max)];
+        }
+    }
+
+    /**
+     * Checks who has more professors for 4 players games
+     */
+    private void GameEnded_OtherCriteria_4Players(){
+
+        List<Integer> numProfOfPlayer = new ArrayList<>();
+
+        int numProf;
+
+        for (int i = 0; i < gm.getNumPlayers(); i++) {
+            if (gm.getArrayPlayers()[i].isTeamLeader()) {
+                numProf = 0;
+
+                for (House h : House.values()) {
+                    if (gm.getArrayPlayers()[i].getDashboard().isProfPresent(h)) {
+                        numProf++;
+                    }
+                    if (gm.getPlayerByNickname(gm.getTeamMate(gm.getArrayPlayers()[i].getNickname())).getDashboard().isProfPresent(h)){
+                        numProf++;
+                    }
+                }
+                numProfOfPlayer.add(numProf);
+            }
+        }
+
+        Integer max = numProfOfPlayer.stream().reduce((a,b)-> a > b ? a : b).orElse(null);
+
+        int team = 0;
+
+        for (int i=0; i<numProfOfPlayer.size(); i++){
+            if (numProfOfPlayer.get(i) == max){
+                team = i;
+                break;
+            }
+        }
+
+        if (max == null){
+            winner = null;
+        }
+
+        int numMaxValues = 0;
+        for (int i : numProfOfPlayer) {
+            if (i == max)
+                numMaxValues++;
+        }
+        if (numMaxValues > 1)
+            winner = null;
+        else {
+            if (team == 0) {
+                for (int i = 0; i < gm.getNumPlayers(); i++) {
+                    if (gm.getArrayPlayers()[i].isTeamLeader()) {
+                        winner = gm.getArrayPlayers()[i];
+                        return;
+                    }
+                }
+            } else {
+                boolean first = false;
+                for (int i = 0; i < gm.getNumPlayers(); i++) {
+                    if (gm.getArrayPlayers()[i].isTeamLeader()) {
+                        if (!first){
+                            first = true;
+                        } else {
+                            winner = gm.getArrayPlayers()[i];
+                            return;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public int getStudentsMoved(){
