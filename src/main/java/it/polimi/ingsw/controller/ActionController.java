@@ -386,6 +386,7 @@ public class ActionController {
         }
         if(gm.getChat() != null && gm.getChat()) {
             availableActions.add("Send a message to your team mate");
+            availableActions.add("See received messages");
         }
         System.out.println(availableActions);
     }
