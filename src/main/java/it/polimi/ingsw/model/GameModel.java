@@ -552,4 +552,15 @@ public class GameModel extends Observable {
     public void setCharacterCardDeck(CharacterCard deck[]){
         this.characterCardDeck = deck;
     }
+    public String getTeamMate(String nickname) {
+        Player sender = getPlayerByNickname(nickname);
+
+        for(Player p : getArrayPlayers()){
+            if((! p.equals(sender)) && p.getDashboard().getTowerColor().equals(sender.getDashboard().getTowerColor())){
+                return p.getNickname();
+            }
+        }
+        return null;
+    }
+
 }
