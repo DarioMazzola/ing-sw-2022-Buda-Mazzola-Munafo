@@ -23,73 +23,8 @@ public class Gui extends ViewObservable implements UI {
     }
 
     @Override
-    public void updateIslands(List<ReducedIsland> islands) {
-
-    }
-
-    @Override
-    public void updatePlayer(ReducedPlayer player) {
-
-    }
-
-    @Override
-    public void updateClouds(ReducedCloud[] clouds) {
-
-    }
-
-    @Override
-    public void updateTotalCoins(int totCoins) {
-
-    }
-
-    @Override
-    public void updateMotherNature(int motherIsland) {
-
-    }
-
-    @Override
-    public void updateCurrentPlayer(ReducedPlayer currentPlayer) {
-
-    }
-
-    @Override
-    public void updateDiningHall(ReducedDiningHall diningHall) {
-
-    }
-
-    @Override
-    public void updateDashboard(ReducedDashboard dashboard) {
-
-    }
-
-    @Override
-    public void updateGameModel(ReducedGameModel gameModel) {
-
-    }
-
-    @Override
-    public void showError(String errorMsg) {
-        System.out.println(errorMsg);
-    }
-
-    @Override
-    public void notifyGameFull() {
-
-    }
-
-    @Override
-    public void selectNickname() {
-
-    }
-
-    @Override
     public void selectNumPlayers() {
         Platform.runLater(() -> SceneController.changeRootPane(observers, "SelectNumPlayerScene.fxml"));
-    }
-
-    @Override
-    public void selectChat() {
-
     }
 
     @Override
@@ -99,6 +34,16 @@ public class Gui extends ViewObservable implements UI {
 
     @Override
     public void selectWizard(List<Wizard> availableWizards) {
+        Platform.runLater(() -> SceneController.changeRootPane(observers, "SelectWizardScene.fxml"));
+    }
+
+    @Override
+    public void selectNickname() {
+
+    }
+
+    @Override
+    public void selectChat() {
 
     }
 
@@ -161,4 +106,60 @@ public class Gui extends ViewObservable implements UI {
     public void endGameDisconnection(String errorCause) {
 
     }
+
+    @Override
+    public void updateIslands(List<ReducedIsland> islands) {
+
+    }
+
+    @Override
+    public void updatePlayer(ReducedPlayer player) {
+
+    }
+
+    @Override
+    public void updateClouds(ReducedCloud[] clouds) {
+
+    }
+
+    @Override
+    public void updateTotalCoins(int totCoins) {
+
+    }
+
+    @Override
+    public void updateMotherNature(int motherIsland) {
+
+    }
+
+    @Override
+    public void updateCurrentPlayer(ReducedPlayer currentPlayer) {
+
+    }
+
+    @Override
+    public void updateDiningHall(ReducedDiningHall diningHall) {
+
+    }
+
+    @Override
+    public void updateDashboard(ReducedDashboard dashboard) {
+
+    }
+
+    @Override
+    public void updateGameModel(ReducedGameModel gameModel) {
+
+    }
+
+    @Override
+    public void showError(String errorMsg) {
+        System.out.println(errorMsg);
+    }
+
+    @Override
+    public void notifyGameFull() {
+
+    }
+
 }
