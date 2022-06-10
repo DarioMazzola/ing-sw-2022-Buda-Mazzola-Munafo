@@ -1,0 +1,398 @@
+{
+  "startController": {
+    "teamArray": [
+      null,
+      null
+    ],
+    "leaderArray": [
+      null,
+      null
+    ],
+    "availableWizards": [
+      "THIRD",
+      "FOURTH"
+    ],
+    "availableTowers": [
+      "WHITE"
+    ]
+  },
+  "actionController": {
+    "studentsMoved": 0,
+    "maxStudMoved": 3,
+    "availableActions": [
+      "Move students to dining hall or to island",
+      "Select character card"
+    ],
+    "usedCharacterCard": false,
+    "isEnded": false
+  },
+  "planningController": {
+    "firstPlanner": 0,
+    "cardList": [],
+    "ranking": [
+      0,
+      1
+    ],
+    "availableAssistantCards": [
+      "CARD1",
+      "CARD2",
+      "CARD3",
+      "CARD4",
+      "CARD5",
+      "CARD6",
+      "CARD7",
+      "CARD8",
+      "CARD9",
+      "CARD10"
+    ],
+    "selected": 0,
+    "position": 0
+  },
+  "endTurnController": {},
+  "setupController": {
+    "numPlayer": 2,
+    "expertMode": true,
+    "nickname": "pippo"
+  },
+  "gameState": "PLANNING",
+  "phase": "SELECT_COLOR_TOWER",
+  "queue": [
+    "pippo",
+    "pluto"
+  ],
+  "gm": {
+    "motherIsland": 0,
+    "numPlayers": 2,
+    "expertMode": true,
+    "islandList": [
+      {
+        "houseMap": {
+          "RED": 10,
+          "GREEN": 0,
+          "YELLOW": 0,
+          "BLUE": 0,
+          "PINK": 0
+        },
+        "numTowers": 0,
+        "noEntryTile": 0,
+        "observers": [
+          {},
+          {}
+        ]
+      },
+      {
+        "houseMap": {
+          "RED": 1,
+          "GREEN": 0,
+          "YELLOW": 0,
+          "BLUE": 0,
+          "PINK": 0
+        },
+        "numTowers": 0,
+        "noEntryTile": 0,
+        "observers": [
+          {},
+          {}
+        ]
+      },
+      {
+        "houseMap": {
+          "RED": 0,
+          "GREEN": 0,
+          "YELLOW": 0,
+          "BLUE": 0,
+          "PINK": 1
+        },
+        "numTowers": 0,
+        "noEntryTile": 0,
+        "observers": [
+          {},
+          {}
+        ]
+      },
+      {
+        "houseMap": {
+          "RED": 0,
+          "GREEN": 0,
+          "YELLOW": 1,
+          "BLUE": 0,
+          "PINK": 0
+        },
+        "numTowers": 0,
+        "noEntryTile": 0,
+        "observers": [
+          {},
+          {}
+        ]
+      },
+    ],
+    "characterCardDeck": [
+      {
+        "cost": 1,
+        "neverUsed": true,
+        "inUse": false,
+        "cardName": "MagicalMailMan",
+        "type": "MAGICAL_MAILMAN",
+        "observers": []
+      },
+      {
+        "houseMap": {
+          "RED": 1,
+          "GREEN": 1,
+          "YELLOW": 0,
+          "BLUE": 2,
+          "PINK": 0
+        },
+        "cost": 2,
+        "neverUsed": true,
+        "inUse": false,
+        "cardName": "SpoiledPrincess",
+        "type": "SPOILED_PRINCESS",
+        "observers": []
+      },
+      {
+        "cost": 3,
+        "neverUsed": true,
+        "inUse": false,
+        "cardName": "Herald",
+        "type": "HERALD",
+        "observers": []
+      }
+    ],
+    "bag": {
+      "houseMap": {
+        "RED": 19,
+        "GREEN": 20,
+        "YELLOW": 24,
+        "BLUE": 16,
+        "PINK": 17
+      },
+      "totalStudentsNumber": 96
+    },
+    "arrayPlayers": [
+      {
+        "nickname": "pippo",
+        "wizard": "FIRST",
+        "deck": [
+          "CARD1",
+          "CARD2",
+          "CARD3",
+          "CARD5",
+          "CARD6",
+          "CARD7",
+          "CARD8",
+          "CARD9",
+          "CARD10"
+        ],
+        "maxMoves": 2,
+        "graveyard": "CARD4",
+        "coins": 1,
+        "dashboard": {
+          "houseMap": {
+            "RED": 3,
+            "GREEN": 1,
+            "YELLOW": 0,
+            "BLUE": 2,
+            "PINK": 1
+          },
+          "profMap": {
+            "RED": false,
+            "GREEN": false,
+            "YELLOW": false,
+            "BLUE": false,
+            "PINK": false
+          },
+          "towerColor": "GRAY",
+          "numMaxStudents": 7,
+          "numStudentsIn": 7,
+          "numMaxTowers": 8,
+          "numTowersIn": 8,
+          "owner": "pippo",
+          "diningHall": {
+            "tableOccupation": {
+              "RED": 0,
+              "GREEN": 0,
+              "YELLOW": 0,
+              "BLUE": 0,
+              "PINK": 0
+            },
+            "owner": "pippo",
+            "observers": [
+              {}
+            ]
+          },
+          "observers": [
+            {}
+          ]
+        },
+        "numPlayers": 2,
+        "observers": [
+          {}
+        ]
+      },
+      {
+        "nickname": "pluto",
+        "wizard": "SECOND",
+        "deck": [
+          "CARD1",
+          "CARD2",
+          "CARD3",
+          "CARD4",
+          "CARD5",
+          "CARD6",
+          "CARD8",
+          "CARD9",
+          "CARD10"
+        ],
+        "maxMoves": 4,
+        "graveyard": "CARD7",
+        "coins": 1,
+        "dashboard": {
+          "houseMap": {
+            "RED": 0,
+            "GREEN": 2,
+            "YELLOW": 0,
+            "BLUE": 1,
+            "PINK": 4
+          },
+          "profMap": {
+            "RED": false,
+            "GREEN": false,
+            "YELLOW": false,
+            "BLUE": false,
+            "PINK": false
+          },
+          "towerColor": "BLACK",
+          "numMaxStudents": 7,
+          "numStudentsIn": 7,
+          "numMaxTowers": 8,
+          "numTowersIn": 8,
+          "owner": "pluto",
+          "diningHall": {
+            "tableOccupation": {
+              "RED": 0,
+              "GREEN": 0,
+              "YELLOW": 0,
+              "BLUE": 0,
+              "PINK": 0
+            },
+            "owner": "pluto",
+            "observers": [
+              {}
+            ]
+          },
+          "observers": [
+            {}
+          ]
+        },
+        "numPlayers": 2,
+        "observers": [
+          {}
+        ]
+      }
+    ],
+    "arrayClouds": [
+      {
+        "houseMap": {
+          "RED": 0,
+          "GREEN": 0,
+          "YELLOW": 0,
+          "BLUE": 1,
+          "PINK": 2
+        },
+        "numMaxStud": 3,
+        "full": true,
+        "observers": []
+      },
+      {
+        "houseMap": {
+          "RED": 1,
+          "GREEN": 0,
+          "YELLOW": 0,
+          "BLUE": 2,
+          "PINK": 0
+        },
+        "numMaxStud": 3,
+        "full": true,
+        "observers": []
+      }
+    ],
+    "totalCoins": 18,
+    "currentPlayer": {
+      "nickname": "pippo",
+      "wizard": "FIRST",
+      "deck": [
+        "CARD1",
+        "CARD2",
+        "CARD3",
+        "CARD5",
+        "CARD6",
+        "CARD7",
+        "CARD8",
+        "CARD9",
+        "CARD10"
+      ],
+      "maxMoves": 2,
+      "graveyard": "CARD4",
+      "coins": 1,
+      "dashboard": {
+        "houseMap": {
+          "RED": 3,
+          "GREEN": 1,
+          "YELLOW": 0,
+          "BLUE": 2,
+          "PINK": 1
+        },
+        "profMap": {
+          "RED": false,
+          "GREEN": false,
+          "YELLOW": false,
+          "BLUE": false,
+          "PINK": false
+        },
+        "towerColor": "GRAY",
+        "numMaxStudents": 7,
+        "numStudentsIn": 7,
+        "numMaxTowers": 8,
+        "numTowersIn": 8,
+        "owner": "pippo",
+        "diningHall": {
+          "tableOccupation": {
+            "RED": 0,
+            "GREEN": 0,
+            "YELLOW": 0,
+            "BLUE": 0,
+            "PINK": 0
+          },
+          "owner": "pippo",
+          "observers": [
+            {}
+          ]
+        },
+        "observers": [
+          {}
+        ]
+      },
+      "numPlayers": 2,
+      "observers": [
+        {}
+      ]
+    },
+    "context": {
+      "card": {
+        "cost": 0,
+        "neverUsed": true,
+        "inUse": false,
+        "cardName": "Base",
+        "observers": []
+      }
+    },
+    "observers": [
+      {},
+      {}
+    ]
+  },
+  "isGameStarted": true,
+  "freeSpots": 0,
+  "restoreDecisionTaken": false
+}
