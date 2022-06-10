@@ -1,0 +1,1647 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane style="-fx-background-color: LIGHTSKYBLUE;">
+         <children>
+            <Pane layoutX="1506.0" layoutY="717.0" prefHeight="347.0" prefWidth="400.0" style="-fx-background-color: #1F91AD;">
+               <children>
+                  <Text fill="WHITE" layoutX="164.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chat" textAlignment="CENTER" wrappingWidth="72.003173828125">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Text>
+                  <TextArea layoutX="25.0" layoutY="185.0" prefHeight="100.0" prefWidth="350.0" />
+                  <Button layoutX="137.0" layoutY="296.0" mnemonicParsing="false" style="-fx-background-color: #FFB703;" text="Send message" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
+                  <Pane layoutX="25.0" layoutY="90.0" prefHeight="84.0" prefWidth="350.0" />
+                  <Text fill="WHITE" layoutX="99.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Searching for new messages ...">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane id="IslandsPlacement" layoutX="565.0" layoutY="42.0" prefHeight="626.0" prefWidth="1317.0" />
+            <Pane id="CharacterCardsPlacement" layoutX="1018.0" layoutY="748.0" prefHeight="317.0" prefWidth="427.0">
+               <children>
+                  <Text id="NumOfCoins" fill="#463333" layoutX="230.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                     <font>
+                        <Font name="Baskerville Old Face" size="36.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#463333" layoutX="204.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
+                     <font>
+                        <Font name="Baskerville Old Face" size="26.0" />
+                     </font>
+                  </Text>
+                  <Pane id="CharacterCard1" layoutX="26.0" layoutY="24.0" prefHeight="150.0" prefWidth="103.0">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/assistant/Assistente_2.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane id="CharacterCard2" layoutX="162.0" layoutY="24.0" prefHeight="150.0" prefWidth="103.0">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/assistant/Assistente_2.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane id="CharacterCard3" layoutX="297.0" layoutY="24.0" prefHeight="150.0" prefWidth="103.0">
+                     <children>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/assistant/Assistente_2.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <ImageView fitHeight="127.0" fitWidth="115.0" layoutX="93.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Moneta_base.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane id="Dashboard1" layoutX="13.0" layoutY="55.0" prefHeight="174.0" prefWidth="465.0">
+               <children>
+                  <Pane layoutX="388.0" layoutY="62.0" prefHeight="150.0" prefWidth="103.0" scaleX="0.5" scaleY="0.5" scaleZ="0.5">
+                     <children>
+                        <ImageView id="GraveyardDashboard1" fitHeight="150.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/assistant/Assistente_2.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane id="CardInUse1" layoutX="388.0" layoutY="-37.0" prefHeight="150.0" prefWidth="103.0" scaleX="0.5" scaleY="0.5" scaleZ="0.5">
+                     <children>
+                        <ImageView id="CardInUseDashboard1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/assistant/Assistente_2.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <ImageView fitHeight="205.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Plancia_DEF2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudDashboard1Stud1" fitHeight="19.0" fitWidth="19.0" layoutX="37.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudDashboard1Stud2" fitHeight="19.0" fitWidth="19.0" layoutX="37.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudDashboard1Stud4" fitHeight="19.0" fitWidth="19.0" layoutX="37.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudDashboard1Stud6" fitHeight="18.0" fitWidth="19.0" layoutX="37.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudDashboard1Stud8" fitHeight="19.0" fitWidth="19.0" layoutX="37.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudDashboard1Stud3" fitHeight="19.0" fitWidth="18.0" layoutX="13.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudDashboard1Stud5" fitHeight="18.0" fitWidth="19.0" layoutX="13.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudDashboard1Stud7" fitHeight="18.0" fitWidth="19.0" layoutX="13.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudDashboard1Stud9" fitHeight="19.0" fitWidth="19.0" layoutX="13.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd1Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="74.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd2Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="93.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd3Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="112.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd4Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="131.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd5Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="150.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd6Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="169.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd7Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="188.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd8Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="207.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd9Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="226.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd10Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="245.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd1Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="74.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd2Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="93.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd3Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="112.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd4Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="131.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd5Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="150.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd6Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="169.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd7Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="188.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd8Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="207.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd9Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="226.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd10Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="245.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd1Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="75.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd2Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="94.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd3Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="113.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd4Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="132.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd5Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="151.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd6Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="170.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd7Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="189.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd8Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="208.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd9Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="227.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd10Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="246.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd1Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="74.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd2Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="93.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd3Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="112.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd4Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="131.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd5Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="150.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd6Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="169.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd7Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="188.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd8Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="207.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd9Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="226.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd10Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="245.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd6Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="169.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd7Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="188.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd8Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="207.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd9Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="226.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd10Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="245.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd1Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="75.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd2Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="94.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd3Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="113.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd4Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="132.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd5Dashboard1" fitHeight="18.0" fitWidth="18.0" layoutX="151.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="ProfGreenDashboard1" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/professors/teacher_blue.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="ProfRedDashboard1" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/professors/teacher_blue.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="ProfYellowDashboard1" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/professors/teacher_blue.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="ProfPinkDashboard1" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/professors/teacher_blue.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="ProfBlueDashboard1" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/professors/teacher_blue.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Tower1Dashboard1" fitHeight="23.0" fitWidth="27.0" layoutX="322.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image></ImageView>
+                  <ImageView id="Tower2Dashboard1" fitHeight="23.0" fitWidth="27.0" layoutX="352.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image></ImageView>
+                  <ImageView id="Tower4Dashboard1" fitHeight="27.0" fitWidth="27.0" layoutX="352.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image></ImageView>
+                  <ImageView id="Tower3Dashboard1" fitHeight="28.0" fitWidth="27.0" layoutX="322.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image></ImageView>
+                  <ImageView id="Tower5Dashboard1" fitHeight="30.0" fitWidth="27.0" layoutX="322.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image></ImageView>
+                  <ImageView id="Tower6Dashboard1" fitHeight="23.0" fitWidth="27.0" layoutX="352.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image></ImageView>
+                  <ImageView id="Tower7Dashboard1" fitHeight="23.0" fitWidth="27.0" layoutX="322.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image></ImageView>
+                  <ImageView id="Tower8Dashboard1" fitHeight="28.0" fitWidth="27.0" layoutX="353.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image></ImageView>
+               </children>
+            </Pane>
+            <ImageView id="EntranceStudMain1" fitHeight="36.0" fitWidth="37.0" layoutX="87.0" layoutY="760.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView id="EntranceStudMain2" fitHeight="36.0" fitWidth="37.0" layoutX="86.0" layoutY="817.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView id="EntranceStudMain4" fitHeight="36.0" fitWidth="37.0" layoutX="87.0" layoutY="873.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView id="EntranceStudMain6" fitHeight="36.0" fitWidth="37.0" layoutX="87.0" layoutY="930.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView id="EntranceStudMain8" fitHeight="36.0" fitWidth="37.0" layoutX="86.0" layoutY="987.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView id="EntranceStudMain9" fitHeight="36.0" fitWidth="37.0" layoutX="38.0" layoutY="987.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView id="EntranceStudMain7" fitHeight="36.0" fitWidth="37.0" layoutX="38.0" layoutY="930.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView id="EntranceStudMain5" fitHeight="36.0" fitWidth="37.0" layoutX="38.0" layoutY="873.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView id="EntranceStudMain3" fitHeight="36.0" fitWidth="37.0" layoutX="38.0" layoutY="817.0" pickOnBounds="true" preserveRatio="true" />
+            <Pane id="Dashboard2" layoutX="13.0" layoutY="274.0" prefHeight="174.0" prefWidth="465.0">
+               <children>
+                  <Pane layoutX="388.0" layoutY="62.0" prefHeight="150.0" prefWidth="103.0" scaleX="0.5" scaleY="0.5" scaleZ="0.5">
+                     <children>
+                        <ImageView id="GraveyardDashboard2" fitHeight="150.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/assistant/Assistente_2.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane id="CardInUse1" layoutX="388.0" layoutY="-37.0" prefHeight="150.0" prefWidth="103.0" scaleX="0.5" scaleY="0.5" scaleZ="0.5">
+                     <children>
+                        <ImageView id="CardInUseDashboard2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/assistant/Assistente_2.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <ImageView fitHeight="205.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Plancia_DEF2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudDashboard2Stud1" fitHeight="19.0" fitWidth="19.0" layoutX="37.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudDashboard2Stud2" fitHeight="19.0" fitWidth="19.0" layoutX="37.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudDashboard2Stud4" fitHeight="19.0" fitWidth="19.0" layoutX="37.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudDashboard2Stud6" fitHeight="18.0" fitWidth="19.0" layoutX="37.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudDashboard2Stud8" fitHeight="19.0" fitWidth="19.0" layoutX="37.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudDashboard2Stud3" fitHeight="19.0" fitWidth="18.0" layoutX="13.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudDashboard2Stud5" fitHeight="18.0" fitWidth="19.0" layoutX="13.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudDashboard2Stud7" fitHeight="18.0" fitWidth="19.0" layoutX="13.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudDashboard2Stud9" fitHeight="19.0" fitWidth="19.0" layoutX="13.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd1Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="74.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd2Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="93.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd3Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="112.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd4Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="131.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd5Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="150.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd6Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="169.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd7Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="188.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd8Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="207.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd9Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="226.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd10Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="245.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd1Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="74.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd2Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="93.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd3Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="112.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd4Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="131.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd5Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="150.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd6Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="169.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd7Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="188.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd8Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="207.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd9Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="226.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd10Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="245.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd1Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="75.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd2Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="94.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd3Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="113.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd4Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="132.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd5Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="151.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd6Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="170.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd7Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="189.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd8Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="208.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd9Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="227.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd10Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="246.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd1Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="74.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd2Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="93.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd3Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="112.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd4Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="131.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd5Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="150.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd6Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="169.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd7Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="188.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd8Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="207.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd9Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="226.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd10Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="245.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd6Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="169.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd7Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="188.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd8Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="207.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd9Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="226.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd10Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="245.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd1Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="75.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd2Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="94.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd3Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="113.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd4Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="132.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd5Dashboard2" fitHeight="18.0" fitWidth="18.0" layoutX="151.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="ProfGreenDashboard2" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/professors/teacher_blue.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="ProfRedDashboard2" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/professors/teacher_blue.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="ProfYellowDashboard2" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/professors/teacher_blue.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="ProfPinkDashboard2" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/professors/teacher_blue.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="ProfBlueDashboard2" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/professors/teacher_blue.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Tower1Dashboard2" fitHeight="23.0" fitWidth="27.0" layoutX="322.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Tower2Dashboard2" fitHeight="23.0" fitWidth="27.0" layoutX="352.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Tower4Dashboard2" fitHeight="23.0" fitWidth="27.0" layoutX="352.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Tower3Dashboard2" fitHeight="28.0" fitWidth="27.0" layoutX="322.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Tower5Dashboard2" fitHeight="30.0" fitWidth="27.0" layoutX="322.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Tower6Dashboard2" fitHeight="23.0" fitWidth="27.0" layoutX="352.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Tower7Dashboard2" fitHeight="23.0" fitWidth="27.0" layoutX="322.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Tower8Dashboard2" fitHeight="28.0" fitWidth="27.0" layoutX="353.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane id="Dashboard3" layoutX="13.0" layoutY="493.0" prefHeight="174.0" prefWidth="465.0">
+               <children>
+                  <Pane layoutX="388.0" layoutY="62.0" prefHeight="150.0" prefWidth="103.0" scaleX="0.5" scaleY="0.5" scaleZ="0.5">
+                     <children>
+                        <ImageView id="GraveyardDashboard3" fitHeight="150.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/assistant/Assistente_2.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane id="CardInUse1" layoutX="388.0" layoutY="-37.0" prefHeight="150.0" prefWidth="103.0" scaleX="0.5" scaleY="0.5" scaleZ="0.5">
+                     <children>
+                        <ImageView id="CardInUseDashboard3" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/assistant/Assistente_2.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <ImageView fitHeight="205.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Plancia_DEF2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudDashboard3Stud1" fitHeight="19.0" fitWidth="19.0" layoutX="37.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudDashboard3Stud2" fitHeight="19.0" fitWidth="19.0" layoutX="37.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudDashboard3Stud4" fitHeight="19.0" fitWidth="19.0" layoutX="37.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudDashboard3Stud6" fitHeight="18.0" fitWidth="19.0" layoutX="37.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudDashboard3Stud8" fitHeight="19.0" fitWidth="19.0" layoutX="37.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudDashboard3Stud3" fitHeight="19.0" fitWidth="18.0" layoutX="13.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudDashboard3Stud5" fitHeight="18.0" fitWidth="19.0" layoutX="13.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudDashboard3Stud7" fitHeight="18.0" fitWidth="19.0" layoutX="13.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudDashboard3Stud9" fitHeight="19.0" fitWidth="19.0" layoutX="13.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd1Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="74.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd2Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="93.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd3Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="112.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd4Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="131.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd5Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="150.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd6Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="169.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd7Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="188.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd8Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="207.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd9Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="226.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd10Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="245.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd1Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="74.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd2Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="93.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd3Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="112.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd4Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="131.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd5Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="150.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd6Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="169.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd7Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="188.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd8Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="207.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd9Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="226.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd10Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="245.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd1Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="75.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd2Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="94.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd3Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="113.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd4Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="132.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd5Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="151.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd6Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="170.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd7Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="189.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd8Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="208.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd9Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="227.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd10Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="246.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd1Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="74.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd2Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="93.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd3Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="112.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd4Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="131.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd5Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="150.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd6Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="169.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd7Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="188.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd8Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="207.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd9Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="226.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd10Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="245.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd6Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="169.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd7Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="188.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd8Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="207.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd9Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="226.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd10Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="245.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd1Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="75.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd2Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="94.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd3Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="113.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd4Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="132.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd5Dashboard3" fitHeight="18.0" fitWidth="18.0" layoutX="151.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="ProfGreenDashboard3" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/professors/teacher_blue.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="ProfRedDashboard3" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/professors/teacher_blue.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="ProfYellowDashboard3" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/professors/teacher_blue.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="ProfPinkDashboard3" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/professors/teacher_blue.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="ProfBlueDashboard3" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/professors/teacher_blue.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Tower1Dashboard3" fitHeight="23.0" fitWidth="27.0" layoutX="322.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Tower2Dashboard3" fitHeight="23.0" fitWidth="27.0" layoutX="352.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Tower4Dashboard3" fitHeight="22.0" fitWidth="27.0" layoutX="353.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Tower3Dashboard3" fitHeight="28.0" fitWidth="27.0" layoutX="322.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Tower5Dashboard3" fitHeight="30.0" fitWidth="27.0" layoutX="322.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Tower6Dashboard3" fitHeight="23.0" fitWidth="27.0" layoutX="352.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Tower7Dashboard3" fitHeight="23.0" fitWidth="27.0" layoutX="322.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Tower8Dashboard3" fitHeight="28.0" fitWidth="27.0" layoutX="353.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane id="Dashboard3" layoutX="247.0" layoutY="803.0" prefHeight="174.0" prefWidth="465.0" scaleX="2.0" scaleY="2.0" scaleZ="2.0">
+               <children>
+                  <Pane layoutX="388.0" layoutY="50.0" prefHeight="150.0" prefWidth="103.0" scaleX="0.5" scaleY="0.5" scaleZ="0.5">
+                     <children>
+                        <ImageView id="GraveyardDashboard3" fitHeight="150.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/assistant/Assistente_2.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane id="CardInUse1" layoutX="388.0" layoutY="-37.0" prefHeight="150.0" prefWidth="103.0" scaleX="0.5" scaleY="0.5" scaleZ="0.5">
+                     <children>
+                        <ImageView id="CardInUseDashboard3" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/assistant/Assistente_2.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <ImageView fitHeight="205.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/Plancia_DEF2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudMain1" fitHeight="19.0" fitWidth="19.0" layoutX="37.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudMain2" fitHeight="19.0" fitWidth="19.0" layoutX="37.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudMain4" fitHeight="19.0" fitWidth="19.0" layoutX="37.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudMain6" fitHeight="18.0" fitWidth="19.0" layoutX="37.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudMain8" fitHeight="19.0" fitWidth="19.0" layoutX="37.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudMain3" fitHeight="19.0" fitWidth="18.0" layoutX="13.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudMain5" fitHeight="18.0" fitWidth="19.0" layoutX="13.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudMain7" fitHeight="18.0" fitWidth="19.0" layoutX="13.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="EntranceStudMain9" fitHeight="19.0" fitWidth="19.0" layoutX="13.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd1Main" fitHeight="18.0" fitWidth="18.0" layoutX="74.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd2Main" fitHeight="18.0" fitWidth="18.0" layoutX="93.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd3Main" fitHeight="18.0" fitWidth="18.0" layoutX="112.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd4Main" fitHeight="18.0" fitWidth="18.0" layoutX="131.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd5Main" fitHeight="18.0" fitWidth="18.0" layoutX="150.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd6Main" fitHeight="18.0" fitWidth="18.0" layoutX="169.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd7Main" fitHeight="18.0" fitWidth="18.0" layoutX="188.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd8Main" fitHeight="18.0" fitWidth="18.0" layoutX="207.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd9Main" fitHeight="18.0" fitWidth="18.0" layoutX="226.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningGreenStd10Main" fitHeight="18.0" fitWidth="18.0" layoutX="245.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd1Main" fitHeight="18.0" fitWidth="18.0" layoutX="74.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd2Main" fitHeight="18.0" fitWidth="18.0" layoutX="93.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd3Main" fitHeight="18.0" fitWidth="18.0" layoutX="112.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd4Main" fitHeight="18.0" fitWidth="18.0" layoutX="131.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd5Main" fitHeight="18.0" fitWidth="18.0" layoutX="150.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd6Main" fitHeight="18.0" fitWidth="18.0" layoutX="169.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd7Main" fitHeight="18.0" fitWidth="18.0" layoutX="188.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd8Main" fitHeight="18.0" fitWidth="18.0" layoutX="207.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd9Main" fitHeight="18.0" fitWidth="18.0" layoutX="226.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningRedStd10Main" fitHeight="18.0" fitWidth="18.0" layoutX="245.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd1Main" fitHeight="18.0" fitWidth="18.0" layoutX="75.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd2Main" fitHeight="18.0" fitWidth="18.0" layoutX="94.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd3Main" fitHeight="18.0" fitWidth="18.0" layoutX="113.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd4Main" fitHeight="18.0" fitWidth="18.0" layoutX="132.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd5Main" fitHeight="18.0" fitWidth="18.0" layoutX="151.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd6Main" fitHeight="18.0" fitWidth="18.0" layoutX="170.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd7Main" fitHeight="18.0" fitWidth="18.0" layoutX="189.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd8Main" fitHeight="18.0" fitWidth="18.0" layoutX="208.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd9Main" fitHeight="18.0" fitWidth="18.0" layoutX="227.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningYellowStd10Main" fitHeight="18.0" fitWidth="18.0" layoutX="246.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd1Main" fitHeight="18.0" fitWidth="18.0" layoutX="74.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd2Main" fitHeight="18.0" fitWidth="18.0" layoutX="93.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd3Main" fitHeight="18.0" fitWidth="18.0" layoutX="112.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd4Main" fitHeight="18.0" fitWidth="18.0" layoutX="131.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd5Main" fitHeight="18.0" fitWidth="18.0" layoutX="150.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd6Main" fitHeight="18.0" fitWidth="18.0" layoutX="169.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd7Main" fitHeight="18.0" fitWidth="18.0" layoutX="188.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd8Main" fitHeight="18.0" fitWidth="18.0" layoutX="207.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd9Main" fitHeight="18.0" fitWidth="18.0" layoutX="226.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningPinkStd10Main" fitHeight="18.0" fitWidth="18.0" layoutX="245.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd6Main" fitHeight="18.0" fitWidth="18.0" layoutX="169.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd7Main" fitHeight="18.0" fitWidth="18.0" layoutX="188.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd8Main" fitHeight="18.0" fitWidth="18.0" layoutX="207.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd9Main" fitHeight="18.0" fitWidth="18.0" layoutX="226.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd10Main" fitHeight="18.0" fitWidth="18.0" layoutX="245.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd1Main" fitHeight="18.0" fitWidth="18.0" layoutX="75.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd2Main" fitHeight="18.0" fitWidth="18.0" layoutX="94.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd3Main" fitHeight="18.0" fitWidth="18.0" layoutX="113.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd4Main" fitHeight="18.0" fitWidth="18.0" layoutX="132.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="DiningBlueStd5Main" fitHeight="18.0" fitWidth="18.0" layoutX="151.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_red.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="ProfGreenMain" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/professors/teacher_blue.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="ProfRedMain" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/professors/teacher_blue.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="ProfYellowMain" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/professors/teacher_blue.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="ProfPinkMain" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/professors/teacher_blue.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="ProfBlueMain" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/professors/teacher_blue.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Tower1Main" fitHeight="23.0" fitWidth="27.0" layoutX="322.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Tower2Main" fitHeight="23.0" fitWidth="27.0" layoutX="352.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Tower4Main" fitHeight="22.0" fitWidth="27.0" layoutX="353.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Tower3Main" fitHeight="28.0" fitWidth="27.0" layoutX="322.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Tower5Main" fitHeight="30.0" fitWidth="27.0" layoutX="322.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Tower6Main" fitHeight="23.0" fitWidth="27.0" layoutX="352.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Tower7Main" fitHeight="23.0" fitWidth="27.0" layoutX="322.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Tower8Main" fitHeight="28.0" fitWidth="27.0" layoutX="353.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/towers/torre_nera.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="#463333" layoutX="421.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Graveyard">
+                     <font>
+                        <Font name="Baskerville Old Face" size="9.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#463333" layoutX="420.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card in use">
+                     <font>
+                        <Font name="Baskerville Old Face" size="9.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
