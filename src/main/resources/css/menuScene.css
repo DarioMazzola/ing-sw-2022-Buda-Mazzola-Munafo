@@ -1,0 +1,5 @@
+.menuBackground {
+    -fx-background-image:url('../images/Eriantys.png');
+    -fx-background-size: stretch;
+    -fx-position: relative;
+}

@@ -1,0 +1,29 @@
+.image1 {
+    -fx-background-image:url('../images/randomImages/image_1.png');
+    -fx-background-size: stretch;
+    -fx-position: relative;
+}
+
+.image2 {
+    -fx-background-image:url('../images/randomImages/image_2.png');
+    -fx-background-size: stretch;
+    -fx-position: relative;
+}
+
+.image3 {
+    -fx-background-image:url('../images/randomImages/image_3.png');
+    -fx-background-size: stretch;
+    -fx-position: relative;
+}
+
+.image4 {
+    -fx-background-image:url('../images/randomImages/image_4.png');
+    -fx-background-size: stretch;
+    -fx-position: relative;
+}
+
+.image5 {
+    -fx-background-image:url('../images/randomImages/image_5.png');
+    -fx-background-size: stretch;
+    -fx-position: relative;
+}
