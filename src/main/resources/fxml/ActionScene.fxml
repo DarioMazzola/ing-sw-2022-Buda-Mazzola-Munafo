@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.view.gui.scenes.AssistantCardController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.view.gui.scenes.ActionSceneController">
    <children>
       <AnchorPane style="-fx-background-color: LIGHTSKYBLUE;">
          <children>
@@ -294,33 +294,33 @@
                               <Image url="@../images/islands/isola_1.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="TowerIsland02111" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
-                        <Text fx:id="TowerNumberIsland02111" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                        <ImageView fx:id="TowerIsland5" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
+                        <Text fx:id="TowerNumberIsland5" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
-                        <ImageView fx:id="StudRedIsland02111" fitHeight="44.0" fitWidth="41.0" layoutX="79.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudRedIsland5" fitHeight="44.0" fitWidth="41.0" layoutX="79.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_red.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="StudBlueIsland02111" fitHeight="44.0" fitWidth="41.0" layoutX="31.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudBlueIsland5" fitHeight="44.0" fitWidth="41.0" layoutX="31.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_blue.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="StudGreenIsland02111" fitHeight="44.0" fitWidth="41.0" layoutX="127.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudGreenIsland5" fitHeight="44.0" fitWidth="41.0" layoutX="127.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_green.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="StudYellowIsland02111" fitHeight="44.0" fitWidth="41.0" layoutX="44.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudYellowIsland5" fitHeight="44.0" fitWidth="41.0" layoutX="44.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_yellow.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="StudPinkIsland02111" fitHeight="44.0" fitWidth="41.0" layoutX="116.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudPinkIsland5" fitHeight="44.0" fitWidth="41.0" layoutX="116.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_pink.png" />
                            </image>
@@ -344,33 +344,33 @@
                               <Image url="@../images/islands/isola_1.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="TowerIsland021111" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
-                        <Text fx:id="TowerNumberIsland021111" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                        <ImageView fx:id="TowerIsland6" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
+                        <Text fx:id="TowerNumberIsland6" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
-                        <ImageView fx:id="StudRedIsland021111" fitHeight="44.0" fitWidth="41.0" layoutX="79.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudRedIsland6" fitHeight="44.0" fitWidth="41.0" layoutX="79.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_red.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="StudBlueIsland021111" fitHeight="44.0" fitWidth="41.0" layoutX="31.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudBlueIsland6" fitHeight="44.0" fitWidth="41.0" layoutX="31.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_blue.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="StudGreenIsland021111" fitHeight="44.0" fitWidth="41.0" layoutX="127.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudGreenIsland6" fitHeight="44.0" fitWidth="41.0" layoutX="127.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_green.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="StudYellowIsland021111" fitHeight="44.0" fitWidth="41.0" layoutX="44.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudYellowIsland6" fitHeight="44.0" fitWidth="41.0" layoutX="44.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_yellow.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="StudPinkIsland021111" fitHeight="44.0" fitWidth="41.0" layoutX="116.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudPinkIsland6" fitHeight="44.0" fitWidth="41.0" layoutX="116.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_pink.png" />
                            </image>
@@ -394,33 +394,33 @@
                               <Image url="@../images/islands/isola_1.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="TowerIsland0211111" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
-                        <Text fx:id="TowerNumberIsland0211111" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                        <ImageView fx:id="TowerIsland7" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
+                        <Text fx:id="TowerNumberIsland7" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
-                        <ImageView fx:id="StudRedIsland0211111" fitHeight="44.0" fitWidth="41.0" layoutX="79.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudRedIsland7" fitHeight="44.0" fitWidth="41.0" layoutX="79.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_red.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="StudBlueIsland0211111" fitHeight="44.0" fitWidth="41.0" layoutX="31.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudBlueIsland7" fitHeight="44.0" fitWidth="41.0" layoutX="31.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_blue.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="StudGreenIsland0211111" fitHeight="44.0" fitWidth="41.0" layoutX="127.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudGreenIsland7" fitHeight="44.0" fitWidth="41.0" layoutX="127.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_green.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="StudYellowIsland0211111" fitHeight="44.0" fitWidth="41.0" layoutX="44.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudYellowIsland7" fitHeight="44.0" fitWidth="41.0" layoutX="44.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_yellow.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="StudPinkIsland0211111" fitHeight="44.0" fitWidth="41.0" layoutX="116.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudPinkIsland7" fitHeight="44.0" fitWidth="41.0" layoutX="116.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_pink.png" />
                            </image>
@@ -444,33 +444,33 @@
                               <Image url="@../images/islands/isola_1.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="TowerIsland02111111" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
-                        <Text fx:id="TowerNumberIsland02111111" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                        <ImageView fx:id="TowerIsland9" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
+                        <Text fx:id="TowerNumberIsland9" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
-                        <ImageView fx:id="StudRedIsland02111111" fitHeight="44.0" fitWidth="41.0" layoutX="79.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudRedIsland9" fitHeight="44.0" fitWidth="41.0" layoutX="79.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_red.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="StudBlueIsland02111111" fitHeight="44.0" fitWidth="41.0" layoutX="31.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudBlueIsland9" fitHeight="44.0" fitWidth="41.0" layoutX="31.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_blue.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="StudGreenIsland02111111" fitHeight="44.0" fitWidth="41.0" layoutX="127.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudGreenIsland9" fitHeight="44.0" fitWidth="41.0" layoutX="127.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_green.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="StudYellowIsland02111111" fitHeight="44.0" fitWidth="41.0" layoutX="44.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudYellowIsland9" fitHeight="44.0" fitWidth="41.0" layoutX="44.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_yellow.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="StudPinkIsland02111111" fitHeight="44.0" fitWidth="41.0" layoutX="116.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudPinkIsland9" fitHeight="44.0" fitWidth="41.0" layoutX="116.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_pink.png" />
                            </image>
@@ -494,33 +494,33 @@
                               <Image url="@../images/islands/isola_1.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="TowerIsland02111112" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
-                        <Text fx:id="TowerNumberIsland02111112" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                        <ImageView fx:id="TowerIsland8" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
+                        <Text fx:id="TowerNumberIsland8" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
-                        <ImageView fx:id="StudRedIsland02111112" fitHeight="44.0" fitWidth="41.0" layoutX="79.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudRedIsland8" fitHeight="44.0" fitWidth="41.0" layoutX="79.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_red.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="StudBlueIsland02111112" fitHeight="44.0" fitWidth="41.0" layoutX="31.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudBlueIsland8" fitHeight="44.0" fitWidth="41.0" layoutX="31.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_blue.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="StudGreenIsland02111112" fitHeight="44.0" fitWidth="41.0" layoutX="127.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudGreenIsland8" fitHeight="44.0" fitWidth="41.0" layoutX="127.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_green.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="StudYellowIsland02111112" fitHeight="44.0" fitWidth="41.0" layoutX="44.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudYellowIsland8" fitHeight="44.0" fitWidth="41.0" layoutX="44.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_yellow.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="StudPinkIsland02111112" fitHeight="44.0" fitWidth="41.0" layoutX="116.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudPinkIsland8" fitHeight="44.0" fitWidth="41.0" layoutX="116.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_pink.png" />
                            </image>
@@ -544,33 +544,33 @@
                               <Image url="@../images/islands/isola_1.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="TowerIsland021111111" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
-                        <Text fx:id="TowerNumberIsland021111111" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                        <ImageView fx:id="TowerIsland10" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
+                        <Text fx:id="TowerNumberIsland10" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
-                        <ImageView fx:id="StudRedIsland021111111" fitHeight="44.0" fitWidth="41.0" layoutX="79.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudRedIsland10" fitHeight="44.0" fitWidth="41.0" layoutX="79.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_red.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="StudBlueIsland021111111" fitHeight="44.0" fitWidth="41.0" layoutX="31.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudBlueIsland10" fitHeight="44.0" fitWidth="41.0" layoutX="31.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_blue.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="StudGreenIsland021111111" fitHeight="44.0" fitWidth="41.0" layoutX="127.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudGreenIsland10" fitHeight="44.0" fitWidth="41.0" layoutX="127.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_green.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="StudYellowIsland021111111" fitHeight="44.0" fitWidth="41.0" layoutX="44.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudYellowIsland10" fitHeight="44.0" fitWidth="41.0" layoutX="44.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_yellow.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="StudPinkIsland021111111" fitHeight="44.0" fitWidth="41.0" layoutX="116.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudPinkIsland10" fitHeight="44.0" fitWidth="41.0" layoutX="116.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_pink.png" />
                            </image>
@@ -594,33 +594,33 @@
                               <Image url="@../images/islands/isola_1.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="TowerIsland0211111111" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
-                        <Text fx:id="TowerNumberIsland0211111111" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                        <ImageView fx:id="TowerIsland11" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
+                        <Text fx:id="TowerNumberIsland11" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
-                        <ImageView fx:id="StudRedIsland0211111111" fitHeight="44.0" fitWidth="41.0" layoutX="79.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudRedIsland11" fitHeight="44.0" fitWidth="41.0" layoutX="79.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_red.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="StudBlueIsland0211111111" fitHeight="44.0" fitWidth="41.0" layoutX="31.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudBlueIsland11" fitHeight="44.0" fitWidth="41.0" layoutX="31.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_blue.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="StudGreenIsland0211111111" fitHeight="44.0" fitWidth="41.0" layoutX="127.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudGreenIsland11" fitHeight="44.0" fitWidth="41.0" layoutX="127.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_green.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="StudYellowIsland0211111111" fitHeight="44.0" fitWidth="41.0" layoutX="44.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudYellowIsland11" fitHeight="44.0" fitWidth="41.0" layoutX="44.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_yellow.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="StudPinkIsland0211111111" fitHeight="44.0" fitWidth="41.0" layoutX="116.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="StudPinkIsland11" fitHeight="44.0" fitWidth="41.0" layoutX="116.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/students/student_pink.png" />
                            </image>

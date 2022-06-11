@@ -2,21 +2,24 @@ package it.polimi.ingsw.view.gui.scenes;
 
 import it.polimi.ingsw.client.ReducedGameModel;
 import it.polimi.ingsw.client.ReducedPlayer;
+import it.polimi.ingsw.exceptions.IslandException;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.House;
 import it.polimi.ingsw.observer.ViewObservable;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
-public class AssistantCardController extends ViewObservable implements SceneInterface {
+import static it.polimi.ingsw.model.Color.*;
+import static it.polimi.ingsw.model.House.*;
+
+public class ActionSceneController extends ViewObservable implements SceneInterface {
     @FXML
     private ImageView GraveyardMain;
     @FXML
@@ -57,6 +60,312 @@ public class AssistantCardController extends ViewObservable implements SceneInte
     private Text CostCharacterCard2;
     @FXML
     private Text CostCharacterCard3;
+
+    @FXML
+    private Pane Cloud4Num1;
+    @FXML
+    private Pane Cloud4Num2;
+    @FXML
+    private Pane Cloud4Num3;
+    @FXML
+    private Pane Cloud3Num1;
+    @FXML
+    private Pane Cloud3Num2;
+    @FXML
+    private Pane Cloud3Num3;
+    @FXML
+    private Pane Cloud3Num4;
+    @FXML
+    private ImageView Stud1Cloud4Num1;
+    @FXML
+    private ImageView Stud2Cloud4Num1;
+    @FXML
+    private ImageView Stud3Cloud4Num1;
+    @FXML
+    private ImageView Stud4Cloud4Num1;
+    @FXML
+    private ImageView Stud1Cloud4Num2;
+    @FXML
+    private ImageView Stud2Cloud4Num2;
+    @FXML
+    private ImageView Stud3Cloud4Num2;
+    @FXML
+    private ImageView Stud4Cloud4Num2;
+    @FXML
+    private ImageView Stud1Cloud4Num3;
+    @FXML
+    private ImageView Stud2Cloud4Num3;
+    @FXML
+    private ImageView Stud3Cloud4Num3;
+    @FXML
+    private ImageView Stud4Cloud4Num3;
+    @FXML
+    private ImageView Stud1Cloud3Num1;
+    @FXML
+    private ImageView Stud2Cloud3Num1;
+    @FXML
+    private ImageView Stud3Cloud3Num1;
+    @FXML
+    private ImageView Stud1Cloud3Num2;
+    @FXML
+    private ImageView Stud2Cloud3Num2;
+    @FXML
+    private ImageView Stud3Cloud3Num2;
+    @FXML
+    private ImageView Stud1Cloud3Num3;
+    @FXML
+    private ImageView Stud2Cloud3Num3;
+    @FXML
+    private ImageView Stud3Cloud3Num3;
+    @FXML
+    private ImageView Stud1Cloud3Num4;
+    @FXML
+    private ImageView Stud2Cloud3Num4;
+    @FXML
+    private ImageView Stud3Cloud3Num4;
+
+    @FXML
+    private Pane Island0;
+    @FXML
+    private ImageView StudYellowIsland0;
+    @FXML
+    private ImageView StudRedIsland0;
+    @FXML
+    private ImageView StudBlueIsland0;
+    @FXML
+    private ImageView StudPinkIsland0;
+    @FXML
+    private ImageView StudGreenIsland0;
+    @FXML
+    private ImageView TowerIsland0;
+    @FXML
+    private Text TowerNumberIsland0;
+    @FXML
+    private Pane Island1;
+    @FXML
+    private ImageView StudYellowIsland1;
+    @FXML
+    private ImageView StudRedIsland1;
+    @FXML
+    private ImageView StudBlueIsland1;
+    @FXML
+    private ImageView StudPinkIsland1;
+    @FXML
+    private ImageView StudGreenIsland1;
+    @FXML
+    private ImageView TowerIsland1;
+    @FXML
+    private Text TowerNumberIsland1;
+    @FXML
+    private Pane Island2;
+    @FXML
+    private ImageView StudYellowIsland2;
+    @FXML
+    private ImageView StudRedIsland2;
+    @FXML
+    private ImageView StudBlueIsland2;
+    @FXML
+    private ImageView StudPinkIsland2;
+    @FXML
+    private ImageView StudGreenIsland2;
+    @FXML
+    private ImageView TowerIsland2;
+    @FXML
+    private Text TowerNumberIsland2;
+    @FXML
+    private Pane Island3;
+    @FXML
+    private ImageView StudYellowIsland3;
+    @FXML
+    private ImageView StudRedIsland3;
+    @FXML
+    private ImageView StudBlueIsland3;
+    @FXML
+    private ImageView StudPinkIsland3;
+    @FXML
+    private ImageView StudGreenIsland3;
+    @FXML
+    private ImageView TowerIsland3;
+    @FXML
+    private Text TowerNumberIsland3;
+    @FXML
+    private Pane Island4;
+    @FXML
+    private ImageView StudYellowIsland4;
+    @FXML
+    private ImageView StudRedIsland4;
+    @FXML
+    private ImageView StudBlueIsland4;
+    @FXML
+    private ImageView StudPinkIsland4;
+    @FXML
+    private ImageView StudGreenIsland4;
+    @FXML
+    private ImageView TowerIsland4;
+    @FXML
+    private Text TowerNumberIsland4;
+    @FXML
+    private Pane Island5;
+    @FXML
+    private ImageView StudYellowIsland5;
+    @FXML
+    private ImageView StudRedIsland5;
+    @FXML
+    private ImageView StudBlueIsland5;
+    @FXML
+    private ImageView StudPinkIsland5;
+    @FXML
+    private ImageView StudGreenIsland5;
+    @FXML
+    private ImageView TowerIsland5;
+    @FXML
+    private Text TowerNumberIsland5;
+    @FXML
+    private Pane Island6;
+    @FXML
+    private ImageView StudYellowIsland6;
+    @FXML
+    private ImageView StudRedIsland6;
+    @FXML
+    private ImageView StudBlueIsland6;
+    @FXML
+    private ImageView StudPinkIsland6;
+    @FXML
+    private ImageView StudGreenIsland6;
+    @FXML
+    private ImageView TowerIsland6;
+    @FXML
+    private Text TowerNumberIsland6;
+    @FXML
+    private Pane Island7;
+    @FXML
+    private ImageView StudYellowIsland7;
+    @FXML
+    private ImageView StudRedIsland7;
+    @FXML
+    private ImageView StudBlueIsland7;
+    @FXML
+    private ImageView StudPinkIsland7;
+    @FXML
+    private ImageView StudGreenIsland7;
+    @FXML
+    private ImageView TowerIsland7;
+    @FXML
+    private Text TowerNumberIsland7;
+    @FXML
+    private Pane Island8;
+    @FXML
+    private ImageView StudYellowIsland8;
+    @FXML
+    private ImageView StudRedIsland8;
+    @FXML
+    private ImageView StudBlueIsland8;
+    @FXML
+    private ImageView StudPinkIsland8;
+    @FXML
+    private ImageView StudGreenIsland8;
+    @FXML
+    private ImageView TowerIsland8;
+    @FXML
+    private Text TowerNumberIsland8;
+    @FXML
+    private Pane Island9;
+    @FXML
+    private ImageView StudYellowIsland9;
+    @FXML
+    private ImageView StudRedIsland9;
+    @FXML
+    private ImageView StudBlueIsland9;
+    @FXML
+    private ImageView StudPinkIsland9;
+    @FXML
+    private ImageView StudGreenIsland9;
+    @FXML
+    private ImageView TowerIsland9;
+    @FXML
+    private Text TowerNumberIsland9;
+    @FXML
+    private Pane Island10;
+    @FXML
+    private ImageView StudYellowIsland10;
+    @FXML
+    private ImageView StudRedIsland10;
+    @FXML
+    private ImageView StudBlueIsland10;
+    @FXML
+    private ImageView StudPinkIsland10;
+    @FXML
+    private ImageView StudGreenIsland10;
+    @FXML
+    private ImageView TowerIsland10;
+    @FXML
+    private Text TowerNumberIsland10;
+    @FXML
+    private Pane Island11;
+    @FXML
+    private ImageView StudYellowIsland11;
+    @FXML
+    private ImageView StudRedIsland11;
+    @FXML
+    private ImageView StudBlueIsland11;
+    @FXML
+    private ImageView StudPinkIsland11;
+    @FXML
+    private ImageView StudGreenIsland11;
+    @FXML
+    private ImageView TowerIsland11;
+    @FXML
+    private Text TowerNumberIsland11;
+    @FXML
+    private ImageView NoEntryTileIsland0;
+    @FXML
+    private ImageView NoEntryTileIsland1;
+    @FXML
+    private ImageView NoEntryTileIsland2;
+    @FXML
+    private ImageView NoEntryTileIsland3;
+    @FXML
+    private ImageView NoEntryTileIsland4;
+    @FXML
+    private ImageView NoEntryTileIsland5;
+    @FXML
+    private ImageView NoEntryTileIsland6;
+    @FXML
+    private ImageView NoEntryTileIsland7;
+    @FXML
+    private ImageView NoEntryTileIsland8;
+    @FXML
+    private ImageView NoEntryTileIsland9;
+    @FXML
+    private ImageView NoEntryTileIsland10;
+    @FXML
+    private ImageView NoEntryTileIsland11;
+    @FXML
+    private ImageView MotherIsland0;
+    @FXML
+    private ImageView MotherIsland1;
+    @FXML
+    private ImageView MotherIsland2;
+    @FXML
+    private ImageView MotherIsland3;
+    @FXML
+    private ImageView MotherIsland4;
+    @FXML
+    private ImageView MotherIsland5;
+    @FXML
+    private ImageView MotherIsland6;
+    @FXML
+    private ImageView MotherIsland7;
+    @FXML
+    private ImageView MotherIsland8;
+    @FXML
+    private ImageView MotherIsland9;
+    @FXML
+    private ImageView MotherIsland10;
+    @FXML
+    private ImageView MotherIsland11;
+
+
 
 
     @FXML
@@ -642,21 +951,20 @@ public class AssistantCardController extends ViewObservable implements SceneInte
     @FXML
     private ImageView Tower8Dashboard3;
 
-    private ReducedGameModel gm;
-    private String nickname;
+    private final ReducedGameModel gm;
+    private final String nickname;
 
-    public AssistantCardController(ReducedGameModel gm, String nickname){
+    public ActionSceneController(ReducedGameModel gm, String nickname){
         this.gm = gm;
         this.nickname = nickname;
-        initialize();
     }
 
     public void initialize(){
 
         int numMain = Arrays.asList(gm.getArrayPlayers()).indexOf(gm.getPlayerByNickname(nickname));
 
-        Map<House, Integer> houseMap = new HashMap<>();
-        Map<House, Boolean> profMap = new HashMap<>();
+        Map<House, Integer> houseMap;
+        Map<House, Boolean> profMap;
 
         int numStudents = 6;
         if (gm.getNumPlayers() == 3){
@@ -697,12 +1005,12 @@ public class AssistantCardController extends ViewObservable implements SceneInte
             houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
             i--;
         }
-        while (houseMap.get(House.YELLOW)!= 0){
+        while (houseMap.get(YELLOW)!= 0){
             file = new File("images/students_yellow.png");
             image = new Image(file.toURI().toString());
             EntranceMain[i].setImage(image);
             EntranceMain[i].setVisible(true);
-            houseMap.replace(House.YELLOW, houseMap.get(House.YELLOW) - 1);
+            houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
             i--;
         }
         while (houseMap.get(House.RED)!= 0){
@@ -782,12 +1090,12 @@ public class AssistantCardController extends ViewObservable implements SceneInte
             i++;
         }
         i = 0;
-        while (houseMap.get(House.YELLOW)!= 0){
+        while (houseMap.get(YELLOW)!= 0){
             file = new File("images/students/student_yellow.png");
             image = new Image(file.toURI().toString());
             DiningMainYellow[i].setImage(image);
             DiningMainYellow[i].setVisible(true);
-            houseMap.replace(House.YELLOW, houseMap.get(House.YELLOW) - 1);
+            houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
             i++;
         }
         while(i<10){
@@ -828,7 +1136,7 @@ public class AssistantCardController extends ViewObservable implements SceneInte
         else {
             ProfGreenMain.setVisible(false);
         }
-        if (profMap.get(House.YELLOW)){
+        if (profMap.get(YELLOW)){
             file = new File("images/professors/teacher_yellow.png");
             image = new Image(file.toURI().toString());
             ProfYellowMain.setImage(image);
@@ -863,7 +1171,7 @@ public class AssistantCardController extends ViewObservable implements SceneInte
         Color colorTower = gm.getArrayPlayers()[numMain].getDashboard().getTowerColor();
         i = numTowers;
 
-        if (colorTower == Color.BLACK){
+        if (colorTower == BLACK){
             file = new File("images/students/torre_nera.png");
         } else if (colorTower == Color.GRAY){
             file = new File("images/students/torre_grigia.png");
@@ -909,12 +1217,12 @@ public class AssistantCardController extends ViewObservable implements SceneInte
             houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
             i--;
         }
-        while (houseMap.get(House.YELLOW)!= 0){
+        while (houseMap.get(YELLOW)!= 0){
             file = new File("images/students_yellow.png");
             image = new Image(file.toURI().toString());
             EntranceDashboard1[i].setImage(image);
             EntranceDashboard1[i].setVisible(true);
-            houseMap.replace(House.YELLOW, houseMap.get(House.YELLOW) - 1);
+            houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
             i--;
         }
         while (houseMap.get(House.RED)!= 0){
@@ -994,12 +1302,12 @@ public class AssistantCardController extends ViewObservable implements SceneInte
             i++;
         }
         i = 0;
-        while (houseMap.get(House.YELLOW)!= 0){
+        while (houseMap.get(YELLOW)!= 0){
             file = new File("images/students/student_yellow.png");
             image = new Image(file.toURI().toString());
             DiningDashboard1Yellow[i].setImage(image);
             DiningDashboard1Yellow[i].setVisible(true);
-            houseMap.replace(House.YELLOW, houseMap.get(House.YELLOW) - 1);
+            houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
             i++;
         }
         while(i<10){
@@ -1040,7 +1348,7 @@ public class AssistantCardController extends ViewObservable implements SceneInte
         else {
             ProfGreenDashboard1.setVisible(false);
         }
-        if (profMap.get(House.YELLOW)){
+        if (profMap.get(YELLOW)){
             file = new File("images/professors/teacher_yellow.png");
             image = new Image(file.toURI().toString());
             ProfYellowDashboard1.setImage(image);
@@ -1075,7 +1383,7 @@ public class AssistantCardController extends ViewObservable implements SceneInte
         colorTower = gm.getArrayPlayers()[(numMain+1)%gm.getNumPlayers()].getDashboard().getTowerColor();
         i = numTowers;
 
-        if (colorTower == Color.BLACK){
+        if (colorTower == BLACK){
             file = new File("images/students/torre_nera.png");
         } else if (colorTower == Color.GRAY){
             file = new File("images/students/torre_grigia.png");
@@ -1124,12 +1432,12 @@ public class AssistantCardController extends ViewObservable implements SceneInte
                 houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
                 i--;
             }
-            while (houseMap.get(House.YELLOW)!= 0){
+            while (houseMap.get(YELLOW)!= 0){
                 file = new File("images/students_yellow.png");
                 image = new Image(file.toURI().toString());
                 EntranceDashboard2[i].setImage(image);
                 EntranceDashboard2[i].setVisible(true);
-                houseMap.replace(House.YELLOW, houseMap.get(House.YELLOW) - 1);
+                houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
                 i--;
             }
             while (houseMap.get(House.RED)!= 0){
@@ -1209,12 +1517,12 @@ public class AssistantCardController extends ViewObservable implements SceneInte
                 i++;
             }
             i = 0;
-            while (houseMap.get(House.YELLOW)!= 0){
+            while (houseMap.get(YELLOW)!= 0){
                 file = new File("images/students/student_yellow.png");
                 image = new Image(file.toURI().toString());
                 DiningDashboard2Yellow[i].setImage(image);
                 DiningDashboard2Yellow[i].setVisible(true);
-                houseMap.replace(House.YELLOW, houseMap.get(House.YELLOW) - 1);
+                houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
                 i++;
             }
             while(i<10){
@@ -1255,7 +1563,7 @@ public class AssistantCardController extends ViewObservable implements SceneInte
             else {
                 ProfGreenDashboard2.setVisible(false);
             }
-            if (profMap.get(House.YELLOW)){
+            if (profMap.get(YELLOW)){
                 file = new File("images/professors/teacher_yellow.png");
                 image = new Image(file.toURI().toString());
                 ProfYellowDashboard2.setImage(image);
@@ -1290,7 +1598,7 @@ public class AssistantCardController extends ViewObservable implements SceneInte
             colorTower = gm.getArrayPlayers()[(numMain+2)%gm.getNumPlayers()].getDashboard().getTowerColor();
             i = numTowers;
 
-            if (colorTower == Color.BLACK){
+            if (colorTower == BLACK){
                 file = new File("images/students/torre_nera.png");
             } else if (colorTower == Color.GRAY){
                 file = new File("images/students/torre_grigia.png");
@@ -1337,12 +1645,12 @@ public class AssistantCardController extends ViewObservable implements SceneInte
                     houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
                     i--;
                 }
-                while (houseMap.get(House.YELLOW)!= 0){
+                while (houseMap.get(YELLOW)!= 0){
                     file = new File("images/students_yellow.png");
                     image = new Image(file.toURI().toString());
                     EntranceDashboard3[i].setImage(image);
                     EntranceDashboard3[i].setVisible(true);
-                    houseMap.replace(House.YELLOW, houseMap.get(House.YELLOW) - 1);
+                    houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
                     i--;
                 }
                 while (houseMap.get(House.RED)!= 0){
@@ -1422,12 +1730,12 @@ public class AssistantCardController extends ViewObservable implements SceneInte
                     i++;
                 }
                 i = 0;
-                while (houseMap.get(House.YELLOW)!= 0){
+                while (houseMap.get(YELLOW)!= 0){
                     file = new File("images/students/student_yellow.png");
                     image = new Image(file.toURI().toString());
                     DiningDashboard3Yellow[i].setImage(image);
                     DiningDashboard3Yellow[i].setVisible(true);
-                    houseMap.replace(House.YELLOW, houseMap.get(House.YELLOW) - 1);
+                    houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
                     i++;
                 }
                 while(i<10){
@@ -1468,7 +1776,7 @@ public class AssistantCardController extends ViewObservable implements SceneInte
                 else {
                     ProfGreenDashboard3.setVisible(false);
                 }
-                if (profMap.get(House.YELLOW)){
+                if (profMap.get(YELLOW)){
                     file = new File("images/professors/teacher_yellow.png");
                     image = new Image(file.toURI().toString());
                     ProfYellowDashboard3.setImage(image);
@@ -1503,7 +1811,7 @@ public class AssistantCardController extends ViewObservable implements SceneInte
                 colorTower = gm.getArrayPlayers()[(numMain+3)%gm.getNumPlayers()].getDashboard().getTowerColor();
                 i = numTowers;
 
-                if (colorTower == Color.BLACK){
+                if (colorTower == BLACK){
                     file = new File("images/students/torre_nera.png");
                 } else if (colorTower == Color.GRAY){
                     file = new File("images/students/torre_grigia.png");
@@ -1527,7 +1835,6 @@ public class AssistantCardController extends ViewObservable implements SceneInte
                 Dashboard3.setVisible(false);
             }
         }
-
         if (!gm.isExpertMode()){
             CharacterCardsPlacement.setVisible(false);
         } else {
@@ -1660,6 +1967,567 @@ public class AssistantCardController extends ViewObservable implements SceneInte
             image = new Image(file.toURI().toString());
             CharacterCard3.setImage(image);
         }
+        if (gm.getNumPlayers()==3){
+            Cloud3Num1.setVisible(false);
+            Cloud3Num2.setVisible(false);
+            Cloud3Num3.setVisible(false);
+            Cloud3Num4.setVisible(false);
+
+            ImageView[] Cloud1 = new ImageView[4];
+            FillCloud4(Cloud1, Stud1Cloud4Num1, Stud2Cloud4Num1, Stud3Cloud4Num1, Stud4Cloud4Num1);
+
+            ImageView[] Cloud2 = new ImageView[4];
+            FillCloud4(Cloud2, Stud1Cloud4Num2, Stud2Cloud4Num2, Stud3Cloud4Num2, Stud4Cloud4Num2);
+
+            ImageView[] Cloud3 = new ImageView[4];
+            FillCloud4(Cloud3, Stud1Cloud4Num3, Stud2Cloud4Num3, Stud3Cloud4Num3, Stud4Cloud4Num3);
+
+            houseMap = gm.getArrayClouds()[0].getStudents();
+
+            i=0;
+            while (houseMap.get(House.PINK)!= 0){
+                file = new File("images/students/student_pink.png");
+                image = new Image(file.toURI().toString());
+                Cloud1[i].setImage(image);
+                Cloud1[i].setVisible(true);
+                houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
+                i++;
+            }
+            while (houseMap.get(House.GREEN)!= 0){
+                file = new File("images/students/student_green.png");
+                image = new Image(file.toURI().toString());
+                Cloud1[i].setImage(image);
+                Cloud1[i].setVisible(true);
+                houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
+                i++;
+            }
+            while (houseMap.get(YELLOW)!= 0){
+                file = new File("images/students/student_yellow.png");
+                image = new Image(file.toURI().toString());
+                Cloud1[i].setImage(image);
+                Cloud1[i].setVisible(true);
+                houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
+                i++;
+            }
+            while (houseMap.get(House.RED)!= 0){
+                file = new File("images/students/student_red.png");
+                image = new Image(file.toURI().toString());
+                Cloud1[i].setImage(image);
+                Cloud1[i].setVisible(true);
+                houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
+                i++;
+            }
+            while (houseMap.get(House.BLUE)!= 0){
+                file = new File("images/students/student_blue.png");
+                image = new Image(file.toURI().toString());
+                Cloud1[i].setImage(image);
+                Cloud1[i].setVisible(true);
+                houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
+                i++;
+            }
+
+            houseMap = gm.getArrayClouds()[1].getStudents();
+
+            i=0;
+            while (houseMap.get(House.PINK)!= 0){
+                file = new File("images/students/student_pink.png");
+                image = new Image(file.toURI().toString());
+                Cloud2[i].setImage(image);
+                Cloud2[i].setVisible(true);
+                houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
+                i++;
+            }
+            while (houseMap.get(House.GREEN)!= 0){
+                file = new File("images/students/student_green.png");
+                image = new Image(file.toURI().toString());
+                Cloud2[i].setImage(image);
+                Cloud2[i].setVisible(true);
+                houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
+                i++;
+            }
+            while (houseMap.get(YELLOW)!= 0){
+                file = new File("images/students/student_yellow.png");
+                image = new Image(file.toURI().toString());
+                Cloud2[i].setImage(image);
+                Cloud2[i].setVisible(true);
+                houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
+                i++;
+            }
+            while (houseMap.get(House.RED)!= 0){
+                file = new File("images/students/student_red.png");
+                image = new Image(file.toURI().toString());
+                Cloud2[i].setImage(image);
+                Cloud2[i].setVisible(true);
+                houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
+                i++;
+            }
+            while (houseMap.get(House.BLUE)!= 0){
+                file = new File("images/students/student_blue.png");
+                image = new Image(file.toURI().toString());
+                Cloud2[i].setImage(image);
+                Cloud2[i].setVisible(true);
+                houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
+                i++;
+            }
+
+            houseMap = gm.getArrayClouds()[2].getStudents();
+
+            i=0;
+            while (houseMap.get(House.PINK)!= 0){
+                file = new File("images/students/student_pink.png");
+                image = new Image(file.toURI().toString());
+                Cloud3[i].setImage(image);
+                Cloud3[i].setVisible(true);
+                houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
+                i++;
+            }
+            while (houseMap.get(House.GREEN)!= 0){
+                file = new File("images/students/student_green.png");
+                image = new Image(file.toURI().toString());
+                Cloud3[i].setImage(image);
+                Cloud3[i].setVisible(true);
+                houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
+                i++;
+            }
+            while (houseMap.get(YELLOW)!= 0){
+                file = new File("images/students/student_yellow.png");
+                image = new Image(file.toURI().toString());
+                Cloud3[i].setImage(image);
+                Cloud3[i].setVisible(true);
+                houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
+                i++;
+            }
+            while (houseMap.get(House.RED)!= 0){
+                file = new File("images/students/student_red.png");
+                image = new Image(file.toURI().toString());
+                Cloud3[i].setImage(image);
+                Cloud3[i].setVisible(true);
+                houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
+                i++;
+            }
+            while (houseMap.get(House.BLUE)!= 0){
+                file = new File("images/students/student_blue.png");
+                image = new Image(file.toURI().toString());
+                Cloud3[i].setImage(image);
+                Cloud3[i].setVisible(true);
+                houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
+                i++;
+            }
+        } else {
+            Cloud4Num1.setVisible(false);
+            Cloud4Num2.setVisible(false);
+            Cloud4Num3.setVisible(false);
+
+            ImageView[] Cloud1 = new ImageView[3];
+            FillCloud3(Cloud1, Stud1Cloud3Num1, Stud2Cloud3Num1, Stud3Cloud3Num1);
+
+            ImageView[] Cloud2 = new ImageView[3];
+            FillCloud3(Cloud2, Stud1Cloud3Num2, Stud2Cloud3Num2, Stud3Cloud3Num2);
+
+            houseMap = gm.getArrayClouds()[0].getStudents();
+
+            i=0;
+            while (houseMap.get(House.PINK)!= 0){
+                file = new File("images/students/student_pink.png");
+                image = new Image(file.toURI().toString());
+                Cloud1[i].setImage(image);
+                Cloud1[i].setVisible(true);
+                houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
+                i++;
+            }
+            while (houseMap.get(House.GREEN)!= 0){
+                file = new File("images/students/student_green.png");
+                image = new Image(file.toURI().toString());
+                Cloud1[i].setImage(image);
+                Cloud1[i].setVisible(true);
+                houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
+                i++;
+            }
+            while (houseMap.get(YELLOW)!= 0){
+                file = new File("images/students/student_yellow.png");
+                image = new Image(file.toURI().toString());
+                Cloud1[i].setImage(image);
+                Cloud1[i].setVisible(true);
+                houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
+                i++;
+            }
+            while (houseMap.get(House.RED)!= 0){
+                file = new File("images/students/student_red.png");
+                image = new Image(file.toURI().toString());
+                Cloud1[i].setImage(image);
+                Cloud1[i].setVisible(true);
+                houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
+                i++;
+            }
+            while (houseMap.get(House.BLUE)!= 0){
+                file = new File("images/students/student_blue.png");
+                image = new Image(file.toURI().toString());
+                Cloud1[i].setImage(image);
+                Cloud1[i].setVisible(true);
+                houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
+                i++;
+            }
+
+            houseMap = gm.getArrayClouds()[1].getStudents();
+
+            i=0;
+            while (houseMap.get(House.PINK)!= 0){
+                file = new File("images/students/student_pink.png");
+                image = new Image(file.toURI().toString());
+                Cloud2[i].setImage(image);
+                Cloud2[i].setVisible(true);
+                houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
+                i++;
+            }
+            while (houseMap.get(House.GREEN)!= 0){
+                file = new File("images/students/student_green.png");
+                image = new Image(file.toURI().toString());
+                Cloud2[i].setImage(image);
+                Cloud2[i].setVisible(true);
+                houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
+                i++;
+            }
+            while (houseMap.get(YELLOW)!= 0){
+                file = new File("images/students/student_yellow.png");
+                image = new Image(file.toURI().toString());
+                Cloud2[i].setImage(image);
+                Cloud2[i].setVisible(true);
+                houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
+                i++;
+            }
+            while (houseMap.get(House.RED)!= 0){
+                file = new File("images/students/student_red.png");
+                image = new Image(file.toURI().toString());
+                Cloud2[i].setImage(image);
+                Cloud2[i].setVisible(true);
+                houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
+                i++;
+            }
+            while (houseMap.get(House.BLUE)!= 0){
+                file = new File("images/students/student_blue.png");
+                image = new Image(file.toURI().toString());
+                Cloud2[i].setImage(image);
+                Cloud2[i].setVisible(true);
+                houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
+                i++;
+            }
+
+            if (gm.getNumPlayers() == 4) {
+                ImageView[] Cloud3 = new ImageView[3];
+                FillCloud3(Cloud3, Stud1Cloud3Num3, Stud2Cloud3Num3, Stud3Cloud3Num3);
+
+                ImageView[] Cloud4 = new ImageView[3];
+                FillCloud3(Cloud4, Stud1Cloud3Num4, Stud2Cloud3Num4, Stud3Cloud3Num4);
+
+                houseMap = gm.getArrayClouds()[2].getStudents();
+
+                i=0;
+                while (houseMap.get(House.PINK)!= 0){
+                    file = new File("images/students/student_pink.png");
+                    image = new Image(file.toURI().toString());
+                    Cloud3[i].setImage(image);
+                    Cloud3[i].setVisible(true);
+                    houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
+                    i++;
+                }
+                while (houseMap.get(House.GREEN)!= 0){
+                    file = new File("images/students/student_green.png");
+                    image = new Image(file.toURI().toString());
+                    Cloud3[i].setImage(image);
+                    Cloud3[i].setVisible(true);
+                    houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
+                    i++;
+                }
+                while (houseMap.get(YELLOW)!= 0){
+                    file = new File("images/students/student_yellow.png");
+                    image = new Image(file.toURI().toString());
+                    Cloud3[i].setImage(image);
+                    Cloud3[i].setVisible(true);
+                    houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
+                    i++;
+                }
+                while (houseMap.get(House.RED)!= 0){
+                    file = new File("images/students/student_red.png");
+                    image = new Image(file.toURI().toString());
+                    Cloud3[i].setImage(image);
+                    Cloud3[i].setVisible(true);
+                    houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
+                    i++;
+                }
+                while (houseMap.get(House.BLUE)!= 0){
+                    file = new File("images/students/student_blue.png");
+                    image = new Image(file.toURI().toString());
+                    Cloud3[i].setImage(image);
+                    Cloud3[i].setVisible(true);
+                    houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
+                    i++;
+                }
+
+                houseMap = gm.getArrayClouds()[3].getStudents();
+
+                i=0;
+                while (houseMap.get(House.PINK)!= 0){
+                    file = new File("images/students/student_pink.png");
+                    image = new Image(file.toURI().toString());
+                    Cloud4[i].setImage(image);
+                    Cloud4[i].setVisible(true);
+                    houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
+                    i++;
+                }
+                while (houseMap.get(House.GREEN)!= 0){
+                    file = new File("images/students/student_green.png");
+                    image = new Image(file.toURI().toString());
+                    Cloud4[i].setImage(image);
+                    Cloud4[i].setVisible(true);
+                    houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
+                    i++;
+                }
+                while (houseMap.get(YELLOW)!= 0){
+                    file = new File("images/students/student_yellow.png");
+                    image = new Image(file.toURI().toString());
+                    Cloud4[i].setImage(image);
+                    Cloud4[i].setVisible(true);
+                    houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
+                    i++;
+                }
+                while (houseMap.get(House.RED)!= 0){
+                    file = new File("images/students/student_red.png");
+                    image = new Image(file.toURI().toString());
+                    Cloud4[i].setImage(image);
+                    Cloud4[i].setVisible(true);
+                    houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
+                    i++;
+                }
+                while (houseMap.get(House.BLUE)!= 0){
+                    file = new File("images/students/student_blue.png");
+                    image = new Image(file.toURI().toString());
+                    Cloud4[i].setImage(image);
+                    Cloud4[i].setVisible(true);
+                    houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
+                    i++;
+                }
+            }
+
+        }
+
+        List<Map<String, Node>> islandList = new ArrayList<>();
+        for (i=0; i<12; i++){
+            islandList.add(new HashMap<>());
+        }
+        islandList.get(0).put("Pane", Island0);
+        islandList.get(0).put("Yellow", StudYellowIsland0);
+        islandList.get(0).put("Red", StudRedIsland0);
+        islandList.get(0).put("Blue", StudBlueIsland0);
+        islandList.get(0).put("Pink", StudPinkIsland0);
+        islandList.get(0).put("Green", StudGreenIsland0);
+        islandList.get(0).put("Tower", TowerIsland0);
+        islandList.get(0).put("TowerNumber", TowerNumberIsland0);
+        islandList.get(0).put("NoEntryTile", NoEntryTileIsland0);
+        islandList.get(0).put("Mother", MotherIsland0);
+
+        islandList.get(1).put("Pane", Island1);
+        islandList.get(1).put("Yellow", StudYellowIsland1);
+        islandList.get(1).put("Red", StudRedIsland1);
+        islandList.get(1).put("Blue", StudBlueIsland1);
+        islandList.get(1).put("Pink", StudPinkIsland1);
+        islandList.get(1).put("Green", StudGreenIsland1);
+        islandList.get(1).put("Tower", TowerIsland1);
+        islandList.get(1).put("TowerNumber", TowerNumberIsland1);
+        islandList.get(1).put("NoEntryTile", NoEntryTileIsland1);
+        islandList.get(1).put("Mother", MotherIsland1);
+
+        islandList.get(2).put("Pane", Island2);
+        islandList.get(2).put("Yellow", StudYellowIsland2);
+        islandList.get(2).put("Red", StudRedIsland2);
+        islandList.get(2).put("Blue", StudBlueIsland2);
+        islandList.get(2).put("Pink", StudPinkIsland2);
+        islandList.get(2).put("Green", StudGreenIsland2);
+        islandList.get(2).put("Tower", TowerIsland2);
+        islandList.get(2).put("TowerNumber", TowerNumberIsland2);
+        islandList.get(2).put("NoEntryTile", NoEntryTileIsland2);
+        islandList.get(2).put("Mother", MotherIsland2);
+
+        islandList.get(3).put("Pane", Island3);
+        islandList.get(3).put("Yellow", StudYellowIsland3);
+        islandList.get(3).put("Red", StudRedIsland3);
+        islandList.get(3).put("Blue", StudBlueIsland3);
+        islandList.get(3).put("Pink", StudPinkIsland3);
+        islandList.get(3).put("Green", StudGreenIsland3);
+        islandList.get(3).put("Tower", TowerIsland3);
+        islandList.get(3).put("TowerNumber", TowerNumberIsland3);
+        islandList.get(3).put("NoEntryTile", NoEntryTileIsland3);
+        islandList.get(3).put("Mother", MotherIsland3);
+
+        islandList.get(4).put("Pane", Island4);
+        islandList.get(4).put("Yellow", StudYellowIsland4);
+        islandList.get(4).put("Red", StudRedIsland4);
+        islandList.get(4).put("Blue", StudBlueIsland4);
+        islandList.get(4).put("Pink", StudPinkIsland4);
+        islandList.get(4).put("Green", StudGreenIsland4);
+        islandList.get(4).put("Tower", TowerIsland4);
+        islandList.get(4).put("TowerNumber", TowerNumberIsland4);
+        islandList.get(4).put("NoEntryTile", NoEntryTileIsland4);
+        islandList.get(4).put("Mother", MotherIsland4);
+
+        islandList.get(5).put("Pane", Island5);
+        islandList.get(5).put("Yellow", StudYellowIsland5);
+        islandList.get(5).put("Red", StudRedIsland5);
+        islandList.get(5).put("Blue", StudBlueIsland5);
+        islandList.get(5).put("Pink", StudPinkIsland5);
+        islandList.get(5).put("Green", StudGreenIsland5);
+        islandList.get(5).put("Tower", TowerIsland5);
+        islandList.get(5).put("TowerNumber", TowerNumberIsland5);
+        islandList.get(5).put("NoEntryTile", NoEntryTileIsland5);
+        islandList.get(5).put("Mother", MotherIsland5);
+
+        islandList.get(6).put("Pane", Island6);
+        islandList.get(6).put("Yellow", StudYellowIsland6);
+        islandList.get(6).put("Red", StudRedIsland6);
+        islandList.get(6).put("Blue", StudBlueIsland6);
+        islandList.get(6).put("Pink", StudPinkIsland6);
+        islandList.get(6).put("Green", StudGreenIsland6);
+        islandList.get(6).put("Tower", TowerIsland6);
+        islandList.get(6).put("TowerNumber", TowerNumberIsland6);
+        islandList.get(6).put("NoEntryTile", NoEntryTileIsland6);
+        islandList.get(6).put("Mother", MotherIsland6);
+
+        islandList.get(7).put("Pane", Island7);
+        islandList.get(7).put("Yellow", StudYellowIsland7);
+        islandList.get(7).put("Red", StudRedIsland7);
+        islandList.get(7).put("Blue", StudBlueIsland7);
+        islandList.get(7).put("Pink", StudPinkIsland7);
+        islandList.get(7).put("Green", StudGreenIsland7);
+        islandList.get(7).put("Tower", TowerIsland7);
+        islandList.get(7).put("TowerNumber", TowerNumberIsland7);
+        islandList.get(7).put("NoEntryTile", NoEntryTileIsland7);
+        islandList.get(7).put("Mother", MotherIsland7);
+
+        islandList.get(8).put("Pane", Island8);
+        islandList.get(8).put("Yellow", StudYellowIsland8);
+        islandList.get(8).put("Red", StudRedIsland8);
+        islandList.get(8).put("Blue", StudBlueIsland8);
+        islandList.get(8).put("Pink", StudPinkIsland8);
+        islandList.get(8).put("Green", StudGreenIsland8);
+        islandList.get(8).put("Tower", TowerIsland8);
+        islandList.get(8).put("TowerNumber", TowerNumberIsland8);
+        islandList.get(8).put("NoEntryTile", NoEntryTileIsland8);
+        islandList.get(8).put("Mother", MotherIsland8);
+
+        islandList.get(9).put("Pane", Island9);
+        islandList.get(9).put("Yellow", StudYellowIsland9);
+        islandList.get(9).put("Red", StudRedIsland9);
+        islandList.get(9).put("Blue", StudBlueIsland9);
+        islandList.get(9).put("Pink", StudPinkIsland9);
+        islandList.get(9).put("Green", StudGreenIsland9);
+        islandList.get(9).put("Tower", TowerIsland9);
+        islandList.get(9).put("TowerNumber", TowerNumberIsland9);
+        islandList.get(9).put("NoEntryTile", NoEntryTileIsland9);
+        islandList.get(9).put("Mother", MotherIsland9);
+
+        islandList.get(10).put("Pane", Island10);
+        islandList.get(10).put("Yellow", StudYellowIsland10);
+        islandList.get(10).put("Red", StudRedIsland10);
+        islandList.get(10).put("Blue", StudBlueIsland10);
+        islandList.get(10).put("Pink", StudPinkIsland10);
+        islandList.get(10).put("Green", StudGreenIsland10);
+        islandList.get(10).put("Tower", TowerIsland10);
+        islandList.get(10).put("TowerNumber", TowerNumberIsland10);
+        islandList.get(10).put("NoEntryTile", NoEntryTileIsland10);
+        islandList.get(10).put("Mother", MotherIsland10);
+
+        islandList.get(11).put("Pane", Island11);
+        islandList.get(11).put("Yellow", StudYellowIsland11);
+        islandList.get(11).put("Red", StudRedIsland11);
+        islandList.get(11).put("Blue", StudBlueIsland11);
+        islandList.get(11).put("Pink", StudPinkIsland11);
+        islandList.get(11).put("Green", StudGreenIsland11);
+        islandList.get(11).put("Tower", TowerIsland11);
+        islandList.get(11).put("TowerNumber", TowerNumberIsland11);
+        islandList.get(11).put("NoEntryTile", NoEntryTileIsland11);
+        islandList.get(11).put("Mother", MotherIsland11);
+
+        i = gm.getIslandList().size();
+        while(i<12) {
+            islandList.get(i).get("Pane").setVisible(false);
+            islandList.get(i).get("Pane").setDisable(true);
+            i++;
+        }
+        i=0;
+        while(i<gm.getIslandList().size()){
+            houseMap = gm.getIslandList().get(i).getStudents();
+
+            if (houseMap.get(YELLOW) == 0){
+                islandList.get(i).get("Yellow").setVisible(false);
+            }
+            if (houseMap.get(RED) == 0){
+                islandList.get(i).get("Red").setVisible(false);
+            }
+            if (houseMap.get(BLUE) == 0){
+                islandList.get(i).get("Blue").setVisible(false);
+            }
+            if (houseMap.get(GREEN) == 0){
+                islandList.get(i).get("Green").setVisible(false);
+            }
+            if (houseMap.get(PINK) == 0){
+                islandList.get(i).get("Pink").setVisible(false);
+            }
+
+            try {
+                if (gm.getIslandList().get(i).getColorTower() != null){
+                    Text towerNumber = (Text) islandList.get(i).get("TowerNumber");
+                    ImageView tower = (ImageView) islandList.get(i).get("Tower");
+                    towerNumber.setText(Integer.toString(gm.getIslandList().get(i).getNumTowers()));
+
+                    if (gm.getIslandList().get(i).getColorTower() == BLACK){
+                        file = new File("images/towers/black_tower.png");
+                        image = new Image(file.toURI().toString());
+                        tower.setImage(image);
+                    }
+                    if (gm.getIslandList().get(i).getColorTower() == GRAY){
+                        file = new File("images/towers/gray_tower.png");
+                        image = new Image(file.toURI().toString());
+                        tower.setImage(image);
+                    }
+                    if (gm.getIslandList().get(i).getColorTower() == WHITE){
+                        file = new File("images/towers/white_tower.png");
+                        image = new Image(file.toURI().toString());
+                        tower.setImage(image);
+                        towerNumber.setStyle("-fx-text-fill: #463333;");
+                    }
+                }
+            } catch (IslandException e) {
+                e.printStackTrace();
+            }
+
+            if (gm.isExpertMode()){
+                ImageView noEntryTile = (ImageView) islandList.get(i).get("NoEntryTile");
+                if (gm.getIslandList().get(i).getNoEntryTile() == 0){
+                    noEntryTile.setVisible(false);
+                }
+            }
+
+            if (gm.getMotherIsland() != i){
+                ImageView mother = (ImageView) islandList.get(i).get("Mother");
+                mother.setVisible(false);
+            }
+        }
+
+        Dashboard1.setDisable(true);
+        Dashboard2.setDisable(true);
+        Dashboard3.setDisable(true);
+    }
+
+    private void FillCloud4(ImageView[] cloud1, ImageView stud1Cloud4Num1, ImageView stud2Cloud4Num1, ImageView stud3Cloud4Num1, ImageView stud4Cloud4Num1) {
+        cloud1[0] = stud1Cloud4Num1;
+        cloud1[1] = stud2Cloud4Num1;
+        cloud1[2] = stud3Cloud4Num1;
+        cloud1[3] = stud4Cloud4Num1;
+    }
+
+    private void FillCloud3(ImageView[] cloud1, ImageView stud1Cloud3Num1, ImageView stud2Cloud3Num1, ImageView stud3Cloud3Num1) {
+        cloud1[0] = stud1Cloud3Num1;
+        cloud1[1] = stud2Cloud3Num1;
+        cloud1[2] = stud3Cloud3Num1;
     }
 
     private void FillTowers(ImageView[] TowersMain, ImageView Tower1Main, ImageView Tower2Main, ImageView Tower3Main, ImageView Tower4Main, ImageView Tower5Main, ImageView Tower6Main, ImageView Tower7Main, ImageView Tower8Main){
@@ -1705,61 +2573,61 @@ public class AssistantCardController extends ViewObservable implements SceneInte
 
         switch(p.getGraveyard()){
             case CARD1:
-                file = new File("/images/assistant/Assistente_1.jpg");
+                file = new File("/images/Graveyards/Assistente_1.jpg");
                 image = new Image(file.toURI().toString());
                 imgview.setImage(image);
                 break;
 
             case CARD2:
-                file = new File("/images/assistant/Assistente_2.jpg");
+                file = new File("/images/Graveyards/Assistente_2.jpg");
                 image = new Image(file.toURI().toString());
                 imgview.setImage(image);
                 break;
 
             case CARD3:
-                file = new File("/images/assistant/Assistente_3.jpg");
+                file = new File("/images/Graveyards/Assistente_3.jpg");
                 image = new Image(file.toURI().toString());
                 imgview.setImage(image);
                 break;
 
             case CARD4:
-                file = new File("/images/assistant/Assistente_4.jpg");
+                file = new File("/images/Graveyards/Assistente_4.jpg");
                 image = new Image(file.toURI().toString());
                 imgview.setImage(image);
                 break;
 
             case CARD5:
-                file = new File("/images/assistant/Assistente_5.jpg");
+                file = new File("/images/Graveyards/Assistente_5.jpg");
                 image = new Image(file.toURI().toString());
                 imgview.setImage(image);
                 break;
 
             case CARD6:
-                file = new File("/images/assistant/Assistente_6.jpg");
+                file = new File("/images/Graveyards/Assistente_6.jpg");
                 image = new Image(file.toURI().toString());
                 imgview.setImage(image);
                 break;
 
             case CARD7:
-                file = new File("/images/assistant/Assistente_7.jpg");
+                file = new File("/images/Graveyards/Assistente_7.jpg");
                 image = new Image(file.toURI().toString());
                 imgview.setImage(image);
                 break;
 
             case CARD8:
-                file = new File("/images/assistant/Assistente_8.jpg");
+                file = new File("/images/Graveyards/Assistente_8.jpg");
                 image = new Image(file.toURI().toString());
                 imgview.setImage(image);
                 break;
 
             case CARD9:
-                file = new File("/images/assistant/Assistente_9.jpg");
+                file = new File("/images/Graveyards/Assistente_9.jpg");
                 image = new Image(file.toURI().toString());
                 imgview.setImage(image);
                 break;
 
             case CARD10:
-                file = new File("/images/assistant/Assistente_10.jpg");
+                file = new File("/images/Graveyards/Assistente_10.jpg");
                 image = new Image(file.toURI().toString());
                 imgview.setImage(image);
                 break;
@@ -1833,7 +2701,6 @@ public class AssistantCardController extends ViewObservable implements SceneInte
                 imgview.setImage(image);
                 break;
         }
-
     }
 
     private void setCoins(Text t, ReducedPlayer p){
