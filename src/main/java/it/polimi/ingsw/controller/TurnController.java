@@ -415,7 +415,7 @@ public class TurnController {
      */
     public void chat(CommandMessage message){
         String teamMate = gm.getTeamMate(message.getNickname());
-        virtualViewMap.get(message.getNickname()).onChatMessageReceived(((ChatMessageClientServer)message).getMessage());
+        virtualViewMap.get(teamMate).onChatMessageReceived(((ChatMessageClientServer)message).getMessage());
     }
 
     /**
