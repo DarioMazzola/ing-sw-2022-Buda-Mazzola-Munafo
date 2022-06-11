@@ -86,6 +86,9 @@ public class CommandSerializer {
             case CHAT_MESSAGE_CLIENT_SERVER:
                 list.add(CHAT_MESSAGE_CLIENT_SERVER.toString());
                 break;
+            case RELOAD_MESSAGES:
+                list.add(RELOAD_MESSAGES.toString());
+                break;
             default:
                 throw new IllegalArgumentException("Message received (" + messageType +") is not a command message");
         }
@@ -167,6 +170,9 @@ public class CommandSerializer {
                 break;
             case CHAT_MESSAGE_CLIENT_SERVER:
                 command = gson.fromJson(messageContent, ChatMessageClientServer.class);
+                break;
+            case RELOAD_MESSAGES:
+                command = gson.fromJson(messageContent, ReloadMessages.class);
                 break;
             default:
                 throw new IllegalArgumentException("Message received (" + messageType + ") is not a command message");
