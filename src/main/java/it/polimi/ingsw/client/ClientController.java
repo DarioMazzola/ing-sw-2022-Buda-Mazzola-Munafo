@@ -144,6 +144,11 @@ public class ClientController extends Observer implements ViewObserver {
     }
 
     @Override
+    public void waitForMessage(){
+        client.sendMessage(new ReloadMessages(this.nickname));
+    }
+
+    @Override
     public void update(Message message) {
 
         switch (message.getType()) {

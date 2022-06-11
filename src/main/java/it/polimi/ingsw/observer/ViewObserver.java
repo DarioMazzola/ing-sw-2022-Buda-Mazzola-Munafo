@@ -145,4 +145,6 @@ public interface ViewObserver {
      * @param message the message to be sent
      */
     void onSendMessage(String message);
+
+    void waitForMessage();
 }

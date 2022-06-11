@@ -386,6 +386,7 @@ public class Cli extends ViewObservable implements UI {
                     break;
                 case "See received messages":
                     stop = true;
+                    notifyObserver(ViewObserver::waitForMessage);
                     break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + availableActions.get(chosenAction - 1));
