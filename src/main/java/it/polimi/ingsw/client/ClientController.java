@@ -25,7 +25,8 @@ import java.util.concurrent.*;
 public class ClientController extends Observer implements ViewObserver {
     private ServerHandler client;
     private String nickname;
-    private final ExecutorService taskQueue ;
+    private final ExecutorService showTaskQueue;
+    private final ExecutorService updateTaskQueue;
     private final UI view;
 
     /**
@@ -35,7 +36,8 @@ public class ClientController extends Observer implements ViewObserver {
      */
     public ClientController(UI view) {
         this.view = view;
-        taskQueue = Executors.newSingleThreadExecutor();
+        showTaskQueue = Executors.newSingleThreadExecutor();
+        updateTaskQueue = Executors.newSingleThreadExecutor();
     }
 
     @Override
@@ -46,9 +48,9 @@ public class ClientController extends Observer implements ViewObserver {
             client.addObserver(this);
             client.readMessage(); // Starts an asynchronous reading from the server.
             client.sendPong();
-            taskQueue.execute(view::createNewGame);
+            showTaskQueue.execute(view::createNewGame);
         } catch (IOException e) {
-            taskQueue.execute(() -> view.showError("\u001b[31m" + "A connection with the server could not be opened! Please try again"));
+            showTaskQueue.execute(() -> view.showError("\u001b[31m" + "A connection with the server could not be opened! Please try again"));
             System.exit(-1);
         }
     }
@@ -155,46 +157,47 @@ public class ClientController extends Observer implements ViewObserver {
             case PING:
                 break;
             case GAME_FULL:
-                taskQueue.execute(view::notifyGameFull);
+                showTaskQueue.execute(view::notifyGameFull);
                 break;
             case NACK:
                 Nack nack = (Nack) message;
                 String error = nack.getTypeOfError();
-                taskQueue.execute(() -> view.showError(error));
+                showTaskQueue.execute(() -> view.showError(error));
                 break;
             case SELECT_NICKNAME:
-                taskQueue.execute(view::selectNickname);
+                showTaskQueue.execute(view::selectNickname);
                 break;
             case SELECT_NUM_PLAYERS:
-                taskQueue.execute(view::selectNumPlayers);
+                showTaskQueue.execute(view::selectNumPlayers);
                 break;
             case SELECT_CHAT:
-                taskQueue.execute(view::selectChat);
+                showTaskQueue.execute(view::selectChat);
                 break;
             case SELECT_EXPERT_MODE:
-                taskQueue.execute(view::selectExpertMode);
+                showTaskQueue.execute(view::selectExpertMode);
                 break;
             case SELECT_WIZARD:
                 SelectWizard selectWizard = (SelectWizard) message;
                 List<Wizard> availableWizards = selectWizard.getAvailableWizards();
-                taskQueue.execute(() -> view.rememberNickname(this.nickname));
-                taskQueue.execute(() -> view.selectWizard(availableWizards));
+                showTaskQueue.execute(() -> view.rememberNickname(this.nickname));
+                showTaskQueue.execute(() -> view.selectWizard(availableWizards));
                 break;
             case SELECT_TEAM:
                 SelectTeam selectTeam = (SelectTeam) message;
                 String[] teamArray = selectTeam.getTeamArray();
                 String[] leaderArray = selectTeam.getLeaderArray();
-                taskQueue.execute(() -> view.selectTeam(teamArray, leaderArray));
+                showTaskQueue.execute(() -> view.selectTeam(teamArray, leaderArray));
                 break;
             case SELECT_COLOR_TOWER:
                 SelectColorTower selectColorTower = (SelectColorTower) message;
                 List<Color> availableColors = selectColorTower.getAvailableColors();
-                taskQueue.execute(() -> view.selectTowerColor(availableColors));
+                showTaskQueue.execute(() -> view.selectTowerColor(availableColors));
                 break;
             case SELECT_ASSISTANT_CARD:
                 SelectAssistantCard selectAssistantCard = (SelectAssistantCard) message;
                 List<Card> availableAssistantCards = selectAssistantCard.getAvailableAssistantCards();
-                taskQueue.execute(() -> view.selectAssistantCard(availableAssistantCards));
+                view.setStop(true);
+                showTaskQueue.execute(() -> view.selectAssistantCard(availableAssistantCards));
                 break;
             case ACTION_PHASE:
                 ActionPhase actionPhase = (ActionPhase) message;
@@ -209,40 +212,42 @@ public class ClientController extends Observer implements ViewObserver {
                 availableActions.addAll(defaultActions);
                 if (!availableActions.contains("Move students to dining hall or to island"))
                     availableActions.add("Move Mother Nature");
-                taskQueue.execute(() -> view.actionPhase(availableActions));
+                view.setStop(true);
+                showTaskQueue.execute(() -> view.actionPhase(availableActions));
                 break;
             case CHAT_MESSAGE_SERVER_CLIENT:
                 ChatMessageServerClient chatMessageServerClient = (ChatMessageServerClient) message;
                 String chatMessage = chatMessageServerClient.getMessage();
-                taskQueue.execute(() -> view.onChatMessageReceived(chatMessage));
+                showTaskQueue.execute(() -> view.onChatMessageReceived(chatMessage));
                 break;
             case GO_TO_WAITING_ROOM:
-                taskQueue.execute(view::goToWaitingRoom);
+                showTaskQueue.execute(view::goToWaitingRoom);
                 break;
             case SEND_WINNER:
                 SendWinner sendWinner = (SendWinner) message;
                 String winner = sendWinner.getWinner();
-                taskQueue.execute(() -> view.sendWinner(winner));
+                view.setStop(true);
+                showTaskQueue.execute(() -> view.sendWinner(winner));
                 break;
             case UPDATE_ISLAND:
                 UpdateIsland updateIsland = (UpdateIsland) message;
                 List<ReducedIsland> islands = updateIsland.getIsland();
-                taskQueue.execute(() -> view.updateIslands(islands));
+                updateTaskQueue.execute(() -> view.updateIslands(islands));
                 break;
             case UPDATE_DINING_HALL:
                 UpdateDiningHall updateDiningHall = (UpdateDiningHall) message;
                 ReducedDiningHall diningHall = updateDiningHall.getDiningHall();
-                taskQueue.execute(() -> view.updateDiningHall(diningHall));
+                updateTaskQueue.execute(() -> view.updateDiningHall(diningHall));
                 break;
             case UPDATE_DASHBOARD:
                 UpdateDashboard updateDashboard = (UpdateDashboard) message;
                 ReducedDashboard dashboard = updateDashboard.getDashboard();
-                taskQueue.execute(() -> view.updateDashboard(dashboard));
+                updateTaskQueue.execute(() -> view.updateDashboard(dashboard));
                 break;
             case UPDATE_CLOUD:
                 UpdateCloud updateCloud = (UpdateCloud) message;
                 ReducedCloud[] clouds = updateCloud.getClouds();
-                taskQueue.execute(() -> view.updateClouds(clouds));
+                updateTaskQueue.execute(() -> view.updateClouds(clouds));
                 break;
             case UPDATE_MOTHER_ISLAND:
                 UpdateMotherIsland updateMotherIsland = (UpdateMotherIsland) message;
@@ -252,37 +257,36 @@ public class ClientController extends Observer implements ViewObserver {
             case UPDATE_CURRENT_PLAYER:
                 UpdateCurrentPlayer updateCurrentPlayer = (UpdateCurrentPlayer) message;
                 ReducedPlayer currentPlayer = updateCurrentPlayer.getCurrentPlayer();
-                taskQueue.execute(() -> view.updateCurrentPlayer(currentPlayer));
+                updateTaskQueue.execute(() -> view.updateCurrentPlayer(currentPlayer));
                 break;
             case UPDATE_PLAYER:
                 UpdatePlayer updatePlayer = (UpdatePlayer) message;
                 ReducedPlayer player = updatePlayer.getPlayer();
-                taskQueue.execute(() -> view.updatePlayer(player));
+                updateTaskQueue.execute(() -> view.updatePlayer(player));
                 break;
             case UPDATE_GAME_MODEL:
                 UpdateGameModel updateGameModel = (UpdateGameModel) message;
                 ReducedGameModel gameModel = updateGameModel.getGameModel();
-                taskQueue.execute(() -> view.updateGameModel(gameModel));
+                updateTaskQueue.execute(() -> view.updateGameModel(gameModel));
                 break;
             case SELECT_CLOUD:
-                SelectCloud selectCloud = (SelectCloud) message;
-                taskQueue.execute(view::selectCloud);
+                view.setStop(true);
+                showTaskQueue.execute(view::selectCloud);
                 break;
             case GO_TO_LOBBY:
-                GoToLobby goToLobby = (GoToLobby) message;
-                taskQueue.execute(view::goToLobby);
+                showTaskQueue.execute(view::goToLobby);
                 break;
             case SELECT_RESTORE_GAME:
-                taskQueue.execute(view::selectRestoreGame);
+                showTaskQueue.execute(view::selectRestoreGame);
                 break;
             case END_GAME_DISCONNECTION:
                 EndGameDisconnection endGameDisconnection = (EndGameDisconnection) message;
-                taskQueue.execute(() -> view.endGameDisconnection(endGameDisconnection.getErrorCause()));
+                showTaskQueue.execute(() -> view.endGameDisconnection(endGameDisconnection.getErrorCause()));
                 break;
             case REMEMBER_NICKNAME:
                 RememberNickname rememberNickname = (RememberNickname) message;
                 String nickname = rememberNickname.getNickname();
-                taskQueue.execute(() -> view.rememberNickname(nickname));
+                showTaskQueue.execute(() -> view.rememberNickname(nickname));
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + message.getType());

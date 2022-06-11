@@ -24,17 +24,18 @@ public class Cli extends ViewObservable implements UI {
     private ReducedGameModel gm;
     private static final int defaultPort = 1234;
     private String nickname;
+    private boolean stop;
 
     /**
      * Class constructor.
      */
     public Cli() {
         scanner = new Scanner(System.in);
+        stop = false;
     }
 
-
-    public void setGm(ReducedGameModel gm) {
-        this.gm = gm;
+    public void setStop(boolean stop) {
+        this.stop = stop;
     }
 
     /**
@@ -307,7 +308,43 @@ public class Cli extends ViewObservable implements UI {
 
     @Override
     public void goToWaitingRoom() {
-        System.out.println("Waiting for other players ...");
+        if (gm != null) {
+            List<String> defaultActions = new ArrayList<>();
+            defaultActions.add("See if the other player has finished his/hers turn");
+            defaultActions.add("See the details of an Island");
+            defaultActions.add("See the details of a Player's dashboard");
+            defaultActions.add("See the current state of clouds");
+            defaultActions.add("See Mother Nature position");
+            clearCli();
+            System.out.println("Waiting for other players ...");
+            while (!stop) {
+                System.out.println("\nWhile you're waiting, here's a list of available actions:");
+                printList(defaultActions);
+                int action = inputInRange(1, defaultActions.size(), "select a valid action");
+                switch (defaultActions.get(action - 1)) {
+                    case "See if the other player has finished his/hers turn":
+                        break;
+                    case "See the details of an Island":
+                        focusOnIsland();
+                        break;
+                    case "See the details of a Player's dashboard":
+                        focusOnDashboard();
+                        break;
+                    case "See the current state of clouds":
+                        focusOnClouds();
+                        break;
+                    case "See Mother Nature position":
+                        focusOnMotherNature();
+                        break;
+                    default:
+                        throw new IllegalStateException("Unexpected value: " + defaultActions.get(action));
+                }
+                if (stop)
+                    System.out.println("\nThe other player has finished his/hers turn!");
+                else
+                    System.out.println("\nThe other player hasn't finished his/hers turn, you need to be patient ...");
+            }
+        }
     }
 
     @Override
@@ -317,6 +354,7 @@ public class Cli extends ViewObservable implements UI {
 
     @Override
     public void selectAssistantCard(List<Card> availableCards) {
+        stop = false;
         List<Card> playersDeck = gm.getPlayerByNickname(this.nickname).getDeck();
 
         System.out.println(gm.getPlayerByNickname(this.nickname).getNickname() + "'s deck:" + gm.getPlayerByNickname(this.nickname).getDeck());
@@ -779,6 +817,7 @@ public class Cli extends ViewObservable implements UI {
 
     @Override
     public void selectCloud() {
+        stop = false;
         System.out.println("You should now select a cloud...");
         List<ReducedCloud> availableClouds = Arrays.stream(gm.getArrayClouds()).filter(ReducedCloud::isFull).collect(Collectors.toList());
         printList(availableClouds);
