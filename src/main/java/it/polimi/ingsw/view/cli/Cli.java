@@ -415,7 +415,7 @@ public class Cli extends ViewObservable implements UI {
                     useCharacterCard();
                     break;
                 case "See Mother Nature position":
-                    System.out.println("Mother nature is currently on island " + gm.getMotherIsland());
+                    focusOnMotherNature();
                     break;
                 case "Send a message to your team mate":
                     sendMessage();
@@ -811,6 +811,10 @@ public class Cli extends ViewObservable implements UI {
 
         int finalChosenCard = chosenCard;
         notifyObserver(observers -> observers.onUpdateCharacterCard(finalChosenCard-1, parameters));
+    }
+
+    private void focusOnMotherNature () {
+        System.out.println("Mother nature is currently on island " + gm.getMotherIsland());
     }
 
     @Override
