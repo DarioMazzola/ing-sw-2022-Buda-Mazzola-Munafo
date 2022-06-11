@@ -82,7 +82,7 @@ public class TurnController {
                         setIsGameStarted(true);
                         sendAllSelectWizard(Arrays.asList(Wizard.values()));
                     } else {
-                        virtualViewMap.get(message.getNickname()).goToWaitingRoom();
+                        virtualViewMap.get(message.getNickname()).goToLobby();
                     }
                 }
                 System.out.println("2");
