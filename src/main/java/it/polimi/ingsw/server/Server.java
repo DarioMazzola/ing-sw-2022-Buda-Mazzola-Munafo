@@ -214,5 +214,9 @@ public class Server {
             }
         }
     }
+
+    public void resendAvailableActions(String nickname){
+        turnController.resendActionPhase(nickname);
+    }
 }
 

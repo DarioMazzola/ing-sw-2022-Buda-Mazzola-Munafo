@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -31,6 +32,11 @@ public class ClientHandler implements Runnable {
     private transient ObjectOutputStream output;
     private transient ObjectInputStream input;
 
+    private transient int timer;
+    private transient boolean enableTimer;
+    private transient final Object lock;
+    private transient String nickname;
+
     /**
      * Class constructor.
      *
@@ -41,6 +47,8 @@ public class ClientHandler implements Runnable {
         this.socketServer = socketServer;
         this.client = client;
         this.connected = true;
+
+        this.lock = new Object();
 
         try {
             this.output = new ObjectOutputStream(client.getOutputStream());
@@ -94,14 +102,27 @@ public class ClientHandler implements Runnable {
                     else if(message.getType() == MessageType.CHAT_MESSAGE_CLIENT_SERVER){
                         socketServer.chat(message);
                     }
+                    else if(message.getType() == MessageType.RELOAD_MESSAGES) {
+                        synchronized (lock) {
+                            enableTimer = true;
+                            timer = 0;
+                        }
+                    }
                     else {
                         socketServer.receiveMessage(message);
+                        if(nickname == null)
+                            nickname = message.getNickname();
                     }
                 }
 
             }
         } catch (ClassCastException | ClassNotFoundException e) {
+            e.printStackTrace();
             System.err.println("Invalid stream from client");
+            disconnect();
+        }
+        catch (SocketException e) {
+            System.err.println("Client disconnected");
             disconnect();
         }
         client.close();
@@ -112,18 +133,21 @@ public class ClientHandler implements Runnable {
      * Closes the client connection and interrupts the thread associated.
      */
     public void disconnect() {
+
+        pingHandler.shutdownNow();
         if (connected) {
             try {
                 if (!client.isClosed()) {
                     client.close();
                 }
             } catch (IOException e) {
-                System.err.println(e.getMessage());
+                System.out.println("Client disconnected");
             }
             connected = false;
             Thread.currentThread().interrupt();
         }
         socketServer.onDisconnection(this);
+        System.exit(-124);
     }
 
     /**
@@ -161,6 +185,14 @@ public class ClientHandler implements Runnable {
             } catch (IOException e) {
                 e.printStackTrace();
                 System.exit(-1);
+            }
+            synchronized (lock) {
+                if (enableTimer)
+                    timer++;
+                if (timer > 3) {
+                    socketServer.resendAvailableActions(nickname);
+                    timer = 0;
+                }
             }
         }, 0, 3, TimeUnit.SECONDS);
     }

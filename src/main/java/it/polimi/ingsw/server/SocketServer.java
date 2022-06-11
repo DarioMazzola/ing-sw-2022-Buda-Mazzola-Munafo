@@ -81,4 +81,8 @@ public class SocketServer implements Runnable { //potrebbe non essere runnable
     public void receiveMessage(CommandMessage message) {
        server.receiveMessage(message);
     }
+
+    public void resendAvailableActions(String nickname){
+        server.resendAvailableActions(nickname);
+    }
 }
