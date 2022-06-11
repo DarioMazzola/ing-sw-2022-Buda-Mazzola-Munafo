@@ -141,7 +141,7 @@ public class ClientController extends Observer implements ViewObserver {
     @Override
     public void onDisconnection() {
         client.disconnect();
-        taskQueue.shutdown();
+        showTaskQueue.shutdown();
         System.exit(-12);
     }
 
@@ -252,7 +252,7 @@ public class ClientController extends Observer implements ViewObserver {
             case UPDATE_MOTHER_ISLAND:
                 UpdateMotherIsland updateMotherIsland = (UpdateMotherIsland) message;
                 int motherIsland = updateMotherIsland.getMotherIsland();
-                taskQueue.execute(() -> view.updateMotherNature(motherIsland));
+                showTaskQueue.execute(() -> view.updateMotherNature(motherIsland));
                 break;
             case UPDATE_CURRENT_PLAYER:
                 UpdateCurrentPlayer updateCurrentPlayer = (UpdateCurrentPlayer) message;
