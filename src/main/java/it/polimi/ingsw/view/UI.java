@@ -73,4 +73,10 @@ public interface UI extends View{
      * @param gameModel the updated version of the game model
      */
     void updateGameModel(ReducedGameModel gameModel);
+
+    /**
+     * Sets stop attribute. It is used to manage player's actions while in waiting room.
+     * @param stop true if the player should exit from the waiting room, false otherwise
+     */
+    void setStop(boolean stop);
 }

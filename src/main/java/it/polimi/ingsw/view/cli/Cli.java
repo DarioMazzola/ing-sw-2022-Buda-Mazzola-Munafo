@@ -24,23 +24,25 @@ public class Cli extends ViewObservable implements UI {
     private ReducedGameModel gm;
     private static final int defaultPort = 1234;
     private String nickname;
+    private boolean stop;
 
     /**
      * Class constructor.
      */
     public Cli() {
         scanner = new Scanner(System.in);
+        stop = false;
     }
 
-
-    public void setGm(ReducedGameModel gm) {
-        this.gm = gm;
+    public void setStop(boolean stop) {
+        this.stop = stop;
     }
 
     /**
      * Initiates the communication with the server.
      */
     public void start() {
+        clearCli();
 
         System.out.println(" " +
                 " /$$$$$$$$           /$$                       /$$                        \n" +
@@ -62,7 +64,7 @@ public class Cli extends ViewObservable implements UI {
         int serverPort = 0;
 
         do {
-            System.out.println("IP address of the server? [default: localhost]");
+            System.out.println("\nIP address of the server? [default: localhost]");
             ipAddress = scanner.nextLine();
 
             if(ipAddress != null && ipAddress.equals("")){
@@ -203,7 +205,6 @@ public class Cli extends ViewObservable implements UI {
 
     @Override
     public void selectExpertMode() {
-        clearCli();
         System.out.println("Do you want to play in expert mode? (Y/N)");
         boolean expertMode = YNInput("you want to play in expert mode");
         notifyObserver(observers -> observers.onUpdateExpertMode(expertMode));
@@ -307,7 +308,43 @@ public class Cli extends ViewObservable implements UI {
 
     @Override
     public void goToWaitingRoom() {
-        System.out.println("Waiting for other players ...");
+        if (gm != null) {
+            List<String> defaultActions = new ArrayList<>();
+            defaultActions.add("See if the other player has finished his/hers turn");
+            defaultActions.add("See the details of an Island");
+            defaultActions.add("See the details of a Player's dashboard");
+            defaultActions.add("See the current state of clouds");
+            defaultActions.add("See Mother Nature position");
+            clearCli();
+            System.out.println("Waiting for other players ...");
+            while (!stop) {
+                System.out.println("\nWhile you're waiting, here's a list of available actions:");
+                printList(defaultActions);
+                int action = inputInRange(1, defaultActions.size(), "select a valid action");
+                switch (defaultActions.get(action - 1)) {
+                    case "See if the other player has finished his/hers turn":
+                        break;
+                    case "See the details of an Island":
+                        focusOnIsland();
+                        break;
+                    case "See the details of a Player's dashboard":
+                        focusOnDashboard();
+                        break;
+                    case "See the current state of clouds":
+                        focusOnClouds();
+                        break;
+                    case "See Mother Nature position":
+                        focusOnMotherNature();
+                        break;
+                    default:
+                        throw new IllegalStateException("Unexpected value: " + defaultActions.get(action));
+                }
+                if (stop)
+                    System.out.println("\nThe other player has finished his/hers turn!");
+                else
+                    System.out.println("\nThe other player hasn't finished his/hers turn, you need to be patient ...");
+            }
+        }
     }
 
     @Override
@@ -317,14 +354,12 @@ public class Cli extends ViewObservable implements UI {
 
     @Override
     public void selectAssistantCard(List<Card> availableCards) {
+        stop = false;
         List<Card> playersDeck = gm.getPlayerByNickname(this.nickname).getDeck();
 
-        System.out.println(gm.getPlayerByNickname(this.nickname).getNickname() + "'s deck:" + gm.getPlayerByNickname(this.nickname).getDeck());
 
         Set<Card> result = availableCards.stream().distinct().filter(gm.getPlayerByNickname(this.nickname).
                 getDeck()::contains).collect(Collectors.toSet());
-        System.out.println("\nAvailable cards: " + availableCards);
-        System.out.println("\nResult: " + result);
         System.out.println("It's your turn, choose an assistant card for this round!");
         System.out.println("Here's a list of the cards in your deck, the cards marked with an 'X' have already been chosen by another player.\nIf you have other cards in your deck, you can't use them in this round.");
         int i = 1;
@@ -351,8 +386,9 @@ public class Cli extends ViewObservable implements UI {
     @Override
     public void actionPhase(List<String> availableActions) {
         boolean stop = false;
+        clearCli();
         do {
-            System.out.println("Here's a list of all the available actions:");
+            System.out.println("It's up to you! Here's a list of all the available actions:");
             printList(availableActions);
             int chosenAction = inputInRange(1, availableActions.size(), "to select a valid action");
             switch (availableActions.get(chosenAction - 1)) {
@@ -379,7 +415,7 @@ public class Cli extends ViewObservable implements UI {
                     useCharacterCard();
                     break;
                 case "See Mother Nature position":
-                    System.out.println("Mother nature is currently on island " + gm.getMotherIsland());
+                    focusOnMotherNature();
                     break;
                 case "Send a message to your team mate":
                     sendMessage();
@@ -777,8 +813,13 @@ public class Cli extends ViewObservable implements UI {
         notifyObserver(observers -> observers.onUpdateCharacterCard(finalChosenCard-1, parameters));
     }
 
+    private void focusOnMotherNature () {
+        System.out.println("Mother nature is currently on island " + gm.getMotherIsland());
+    }
+
     @Override
     public void selectCloud() {
+        stop = false;
         System.out.println("You should now select a cloud...");
         List<ReducedCloud> availableClouds = Arrays.stream(gm.getArrayClouds()).filter(ReducedCloud::isFull).collect(Collectors.toList());
         printList(availableClouds);
@@ -824,41 +865,28 @@ public class Cli extends ViewObservable implements UI {
 
     @Override
     public void updateIslands(List<ReducedIsland> islands) {
-        System.out.println("Received updateIslands:");
-        for (ReducedIsland i : islands) {
-            System.out.println(i);
-        }
         gm.setIslandList(islands);
 
     }
 
     @Override
     public void updateDiningHall(ReducedDiningHall diningHall) {
-        System.out.println("Received updateDiningHall");
-        System.out.println(diningHall);
         gm.getPlayerByNickname(diningHall.getNickname()).getDashboard().setDiningHall(diningHall);
     }
 
     @Override
     public void updateDashboard(ReducedDashboard dashboard) {
-        System.out.println("Received updateDashboard");
         gm.getPlayerByNickname(dashboard.getNickname()).setDashboard(dashboard);
     }
 
     @Override
     public void updatePlayer(ReducedPlayer player) {
-        System.out.println(("Received updatePlayer"));
-        System.out.println(player.getNickname() + ": " + player.getDeck());
         int index = Arrays.asList(gm.getArrayPlayers()).indexOf(gm.getPlayerByNickname(player.getNickname()));
         gm.setPlayer(index, player);
     }
 
     @Override
     public void updateClouds(ReducedCloud[] clouds) {
-        System.out.println("Received updateClouds");
-        for (ReducedCloud c : clouds) {
-            System.out.println(c);
-        }
         gm.setArrayClouds(clouds);
     }
 
@@ -869,22 +897,17 @@ public class Cli extends ViewObservable implements UI {
 
     @Override
     public void updateMotherNature(int motherIsland) {
-        System.out.println("Mother Nature has been moved to island " + motherIsland);
         gm.setMotherIsland(motherIsland);
     }
 
     @Override
     public void updateCurrentPlayer(ReducedPlayer currentPlayer) {
-        System.out.println("Received updateCurrentPlayer");
-        System.out.println(currentPlayer);
         gm.setCurrentPlayer(currentPlayer);
     }
 
     @Override
     public void updateGameModel(ReducedGameModel gameModel) {
-        System.out.println("Received updateGameModel");
         this.gm = gameModel;
-        //gm.getPlayerByNickname(gm.getCurrentPlayer().getNickname()).setDashboard(gm.getCurrentPlayer().getDashboard());
     }
 
     // <--------- Utility methods --------->
