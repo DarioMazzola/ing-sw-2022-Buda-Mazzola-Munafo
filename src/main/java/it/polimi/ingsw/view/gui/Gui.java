@@ -153,6 +153,11 @@ public class Gui extends ViewObservable implements UI {
     }
 
     @Override
+    public void setStop(boolean stop) {
+
+    }
+
+    @Override
     public void showError(String errorMsg) {
         System.out.println(errorMsg);
     }
