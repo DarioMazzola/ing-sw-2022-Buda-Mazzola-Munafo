@@ -36,6 +36,14 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     private ImageView CardInUseDashboard2;
     @FXML
     private ImageView CardInUseDashboard3;
+    @FXML
+    private ImageView CharacterCardAlternative;
+    @FXML
+    private ImageView ChatAlternative;
+    @FXML
+    private ImageView TwoDashboardAlternative;
+    @FXML
+    private ImageView OneDashboardAlternative;
 
 
     @FXML
@@ -60,6 +68,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     private Text CostCharacterCard2;
     @FXML
     private Text CostCharacterCard3;
+    @FXML
+    private Pane Chat;
 
     @FXML
     private Pane Cloud4Num1;
@@ -1406,6 +1416,10 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         if (gm.getNumPlayers() == 2){ //show of hid dashboards
             Dashboard2.setVisible(false);
             Dashboard3.setVisible(false);
+            Chat.setVisible(false);
+            Chat.setDisable(true);
+            ChatAlternative.setVisible(true);
+            TwoDashboardAlternative.setVisible(true);
         } else if (gm.getNumPlayers() > 2){
             //third player
             ImageView[] EntranceDashboard2 = new ImageView[9];
@@ -1620,6 +1634,11 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
 
             if (gm.getNumPlayers() == 4) {
+                if (!gm.isChat()){
+                    Chat.setVisible(false);
+                    Chat.setDisable(true);
+                    ChatAlternative.setVisible(true);
+                }
                 //fourth player
                 ImageView[] EntranceDashboard3 = new ImageView[9];
                 FillEntrance(EntranceDashboard3, EntranceStudDashboard3Stud1, EntranceStudDashboard3Stud2, EntranceStudDashboard3Stud3, EntranceStudDashboard3Stud4, EntranceStudDashboard3Stud5, EntranceStudDashboard3Stud6, EntranceStudDashboard3Stud7, EntranceStudDashboard3Stud8, EntranceStudDashboard3Stud9);
@@ -1833,10 +1852,15 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             }
             else {
                 Dashboard3.setVisible(false);
+                Chat.setDisable(true);
+                Chat.setVisible(false);
+                ChatAlternative.setVisible(true);
+                OneDashboardAlternative.setVisible(true);
             }
         }
         if (!gm.isExpertMode()){
             CharacterCardsPlacement.setVisible(false);
+            CharacterCardAlternative.setVisible(true);
         } else {
             CharacterCardsPlacement.setVisible(true);
             setCoins(NumOfCoins, gm.getArrayPlayers()[numMain]);

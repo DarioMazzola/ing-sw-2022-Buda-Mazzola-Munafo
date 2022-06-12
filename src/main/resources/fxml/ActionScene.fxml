@@ -1168,6 +1168,26 @@
                   </Text>
                </children>
             </Pane>
+            <ImageView fx:id="ChatAlternative" disable="true" fitHeight="318.0" fitWidth="611.0" layoutX="1308.0" layoutY="762.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../images/randomImages/image_3.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="CharacterCardAlternative" disable="true" fitHeight="277.0" fitWidth="409.0" layoutX="943.0" layoutY="780.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../images/randomImages/image_5.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="OneDashboardAlternative" disable="true" fitHeight="256.0" fitWidth="499.0" layoutX="32.0" layoutY="462.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../images/randomImages/image_1.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="TwoDashboardAlternative" disable="true" fitHeight="433.0" fitWidth="640.0" layoutX="4.0" layoutY="255.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../images/randomImages/image_2.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

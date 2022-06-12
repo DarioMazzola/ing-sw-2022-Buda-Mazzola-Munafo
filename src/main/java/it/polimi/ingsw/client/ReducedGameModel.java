@@ -21,8 +21,11 @@ public class ReducedGameModel {
     private final int numPlayers;
     private int totalCoins;
     private final boolean expertMode;
+    private final Boolean chat;
 
     public ReducedGameModel(GameModel gm){
+        chat = gm.getChat();
+
         totalCoins = gm.getTotalCoins();
 
         motherIsland = gm.getMotherIsland();
@@ -125,7 +128,12 @@ public class ReducedGameModel {
     public void setTotalCoins(int value){
         totalCoins = value;
     }
+
     public boolean isExpertMode() {
         return expertMode;
+    }
+
+    public Boolean isChat(){
+        return chat;
     }
 }
