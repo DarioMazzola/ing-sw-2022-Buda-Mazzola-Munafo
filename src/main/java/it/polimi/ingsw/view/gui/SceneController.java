@@ -15,6 +15,7 @@ import java.util.List;
 public class SceneController extends ViewObservable {
 
     private static Scene activeScene;
+    private static SceneInterface activeController;
 
     public static <T> T changeRootPane(List<ViewObserver> observerList, String fileName) {
         T controller = null;
@@ -24,19 +25,44 @@ public class SceneController extends ViewObservable {
             Parent root = loader.load();
             controller = loader.getController(); //prende il controller associato alla scena
 
-            for(ViewObserver o : observerList)
+            for (ViewObserver o : observerList)
                 ((ViewObservable) controller).addObserver(o);
 
-            SceneInterface activeController = (SceneInterface) controller;
+            activeController = (SceneInterface) controller;
             activeScene.setRoot(root);
+
         } catch (IOException e) {
-            System.err.println("Error");
+            e.printStackTrace();
         }
         return controller;
     }
 
+    public static void changeRootPane(List<ViewObserver> observerList, String fileName, SceneInterface controller) {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneController.class.getResource("/fxml/" + fileName));
+            loader.setController(controller);
+            Parent root = loader.load();
+            controller = loader.getController(); //prende il controller associato alla scena
+
+            for (ViewObserver o : observerList)
+                ((ViewObservable) controller).addObserver(o);
+
+            activeController = (SceneInterface) controller;
+            activeScene.setRoot(root);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     private static void setActiveScene(Scene scene){
         activeScene = scene;
+    }
+
+    public static SceneInterface getActiveController() {
+        return activeController;
     }
 
     public static <T> T changeRootPane(List<ViewObserver> observerList, Event event, String fileName) {
