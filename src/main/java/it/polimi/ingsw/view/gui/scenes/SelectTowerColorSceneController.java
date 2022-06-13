@@ -41,23 +41,18 @@ public class SelectTowerColorSceneController extends ViewObservable implements S
     public void initialize(){
 
         for(Color c : colorTowersAvailable) {
-            getImageViewByColor(c).setOpacity(1);
+            ImageView t = getImageViewByColor(c);
+            t.setOpacity(1);
+            t.setDisable(false);
         }
     }
 
-    public void grayClicked(MouseEvent e){
-        grayButton.setSelected(true);
-        selectButton.setDisable(false);
-    }
+    public void towerClicked(MouseEvent e){
+        ImageView towerClicked = (ImageView) e.getSource();
 
-    public void blackClicked(MouseEvent e){
-        blackButton.setSelected(true);
-        selectButton.setDisable(false);
-    }
+        RadioButton button = getButtonByImageView(towerClicked);
 
-    public void whiteClicked(MouseEvent e){
-        whiteButton.setSelected(true);
-        selectButton.setDisable(false);
+        button.setSelected(true);
     }
 
     public void onSelect(ActionEvent e) {
@@ -71,9 +66,9 @@ public class SelectTowerColorSceneController extends ViewObservable implements S
             return;
         }
         selectButton.setDisable(true);
-        blackButton.setDisable(true);
-        whiteButton.setDisable(true);
-        grayButton.setDisable(true);
+        blackImg.setDisable(true);
+        whiteImg.setDisable(true);
+        grayImg.setDisable(true);
 
         Color towerColorChosen = null;
 
@@ -90,7 +85,7 @@ public class SelectTowerColorSceneController extends ViewObservable implements S
         }
         Color finalTowerColorChosen = towerColorChosen;
 
-        System.out.println("colore selezionato: " + towerColorChosen);
+        notifyObserver(observer -> observer.onUpdateTowerColor(finalTowerColorChosen));
     }
 
     public ImageView getImageViewByColor(Color c) {
@@ -110,5 +105,23 @@ public class SelectTowerColorSceneController extends ViewObservable implements S
         }
 
         return imageView;
+    }
+
+    public RadioButton getButtonByImageView(ImageView i){
+        String id = i.getId();
+
+        RadioButton btn = null;
+
+        if(id.startsWith("gray")){
+            btn = grayButton;
+        }
+        else if(id.startsWith("black")){
+            btn = blackButton;
+        }
+        else if(id.startsWith("white")){
+            btn = whiteButton;
+        }
+
+        return btn;
     }
 }
