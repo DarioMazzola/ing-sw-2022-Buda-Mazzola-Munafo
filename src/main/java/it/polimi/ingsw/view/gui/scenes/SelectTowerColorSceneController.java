@@ -5,7 +5,10 @@ import it.polimi.ingsw.observer.ViewObservable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+
+import java.util.List;
 
 import static javafx.scene.control.Alert.AlertType.ERROR;
 
@@ -21,6 +24,26 @@ public class SelectTowerColorSceneController extends ViewObservable implements S
     private ToggleGroup towersButton ;
     @FXML
     private Button selectButton;
+    @FXML
+    private ImageView grayImg;
+    @FXML
+    private ImageView whiteImg;
+    @FXML
+    private ImageView blackImg;
+
+    private final List<Color> colorTowersAvailable;
+
+    public SelectTowerColorSceneController(List<Color> colorTowersAvailable) {
+        this.colorTowersAvailable = colorTowersAvailable;
+    }
+
+    @FXML
+    public void initialize(){
+
+        for(Color c : colorTowersAvailable) {
+            getImageViewByColor(c).setOpacity(1);
+        }
+    }
 
     public void grayClicked(MouseEvent e){
         grayButton.setSelected(true);
@@ -68,5 +91,24 @@ public class SelectTowerColorSceneController extends ViewObservable implements S
         Color finalTowerColorChosen = towerColorChosen;
 
         System.out.println("colore selezionato: " + towerColorChosen);
+    }
+
+    public ImageView getImageViewByColor(Color c) {
+
+        ImageView imageView = null;
+
+        switch (c){
+            case BLACK:
+                imageView = blackImg;
+                break;
+            case WHITE:
+                imageView = whiteImg;
+                break;
+            case GRAY:
+                imageView = grayImg;
+                break;
+        }
+
+        return imageView;
     }
 }
