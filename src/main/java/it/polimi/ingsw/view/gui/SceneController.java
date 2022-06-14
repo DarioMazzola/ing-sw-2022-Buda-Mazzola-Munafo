@@ -43,7 +43,6 @@ public class SceneController extends ViewObservable {
             FXMLLoader loader = new FXMLLoader(SceneController.class.getResource("/fxml/" + fileName));
             loader.setController(controller);
             Parent root = loader.load();
-            controller = loader.getController(); //prende il controller associato alla scena
 
             for (ViewObserver o : observerList)
                 ((ViewObservable) controller).addObserver(o);
