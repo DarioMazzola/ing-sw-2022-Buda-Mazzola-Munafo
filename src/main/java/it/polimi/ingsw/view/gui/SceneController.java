@@ -47,7 +47,7 @@ public class SceneController extends ViewObservable {
             for (ViewObserver o : observerList)
                 ((ViewObservable) controller).addObserver(o);
 
-            activeController = (SceneInterface) controller;
+            activeController = controller;
             activeScene.setRoot(root);
 
         } catch (IOException e) {
