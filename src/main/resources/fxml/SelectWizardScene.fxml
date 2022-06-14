@@ -12,13 +12,13 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #ADD8E6;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.view.gui.scenes.SelectWizardSceneController">
+<StackPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #ADD8E6;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane style="-fx-background-color: #ADD8E6#ADD8E6;">
          <children>
             <HBox layoutX="269.0" layoutY="288.0" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ImageView fx:id="firstWizardImage" fitHeight="433.0" fitWidth="532.0" onMouseClicked="#secondClicked" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="firstWizardImage" fitHeight="433.0" fitWidth="532.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/wizards/fisrt.png" />
                      </image>
@@ -26,7 +26,7 @@
                         <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fx:id="secondWizardImage" fitHeight="433.0" fitWidth="532.0" onMouseClicked="#firstClicked" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="secondWizardImage" fitHeight="433.0" fitWidth="532.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/wizards/second.png" />
                      </image>
@@ -34,7 +34,7 @@
                         <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fx:id="thirdWizardImage" fitHeight="433.0" fitWidth="532.0" onMouseClicked="#thirdClicked" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="thirdWizardImage" fitHeight="433.0" fitWidth="532.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/wizards/third.png" />
                      </image>
@@ -42,7 +42,7 @@
                         <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fx:id="fourthWizardImage" fitHeight="433.0" fitWidth="532.0" onMouseClicked="#fourthClicked" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="fourthWizardImage" fitHeight="433.0" fitWidth="532.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/wizards/fourth.png" />
                      </image>
@@ -57,19 +57,18 @@
                   <Font name="Baskerville" size="48.0" />
                </font>
             </Label>
-            <RadioButton fx:id="secondWizard" layoutX="271.0" layoutY="772.0" mnemonicParsing="false" text="SECOND" visible="false">
+            <RadioButton fx:id="firstWizard" layoutX="419.0" layoutY="781.0" mnemonicParsing="false" text="FIRST" visible="false">
                <toggleGroup>
                   <ToggleGroup fx:id="wizards" />
-               </toggleGroup>
-            </RadioButton>
-            <RadioButton fx:id="firstWizard" layoutX="623.0" layoutY="772.0" mnemonicParsing="false" text="FIRST" toggleGroup="$wizards" visible="false" />
-            <RadioButton fx:id="thirdWizard" layoutX="961.0" layoutY="772.0" mnemonicParsing="false" text="THIRD" toggleGroup="$wizards" visible="false" />
-            <RadioButton fx:id="fourthWizard" layoutX="1314.0" layoutY="772.0" mnemonicParsing="false" text="FOURTH" toggleGroup="$wizards" visible="false" />
-            <Button fx:id="selectButton" layoutX="899.0" layoutY="803.0" mnemonicParsing="false" onAction="#onSelect" text="Select">
+               </toggleGroup></RadioButton>
+            <RadioButton fx:id="thirdWizard" layoutX="1105.0" layoutY="781.0" mnemonicParsing="false" text="THIRD" toggleGroup="$wizards" visible="false" />
+            <RadioButton fx:id="fourthWizard" layoutX="1447.0" layoutY="780.0" mnemonicParsing="false" text="FOURTH" toggleGroup="$wizards" visible="false" />
+            <Button fx:id="selectButton" layoutX="899.0" layoutY="803.0" mnemonicParsing="false" text="Select">
                <font>
                   <Font name="Baskerville" size="24.0" />
                </font>
             </Button>
+            <RadioButton fx:id="secondWizard" layoutX="752.0" layoutY="780.0" mnemonicParsing="false" text="SECOND" toggleGroup="$wizards" visible="false" />
          </children>
       </AnchorPane>
    </children>

@@ -8,7 +8,6 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static javafx.scene.control.Alert.AlertType.ERROR;
@@ -50,14 +49,17 @@ public class SelectWizardSceneController extends ViewObservable implements Scene
         this.availableWizards = availableWizards;
     }
 
+    @FXML
     public void initialize() {
-        selectButton.setDisable(true);
         RadioButton[] radioButtons = new RadioButton[]{firstWizard, secondWizard, thirdWizard, fourthWizard};
         ImageView[] wizardImages = new ImageView[]{firstWizardImage, secondWizardImage, thirdWizardImage, fourthWizardImage};
-
         for (ImageView wizardImage : wizardImages) {
             wizardImage.setOpacity(0.5);
+            wizardImage.setOnMouseClicked(this::imageClicked);
         }
+        selectButton.setOnAction(this::onSelect);
+        selectButton.setDisable(true);
+
 
         for (RadioButton r : radioButtons) {
             r.setDisable(true);
@@ -86,31 +88,13 @@ public class SelectWizardSceneController extends ViewObservable implements Scene
             }
         }
     }
-    public void firstClicked(MouseEvent e){
-        System.out.println("First clicked");
-        firstWizard.setSelected(true);
-        firstWizard.setDisable(true);
-        selectButton.setDisable(false);
-    }
 
-    public void secondClicked(MouseEvent e){
-        System.out.println("Second clicked");
-        secondWizard.setSelected(true);
-        secondWizard.setDisable(true);
-        selectButton.setDisable(false);
-    }
+    public void imageClicked(MouseEvent e) {
+        System.out.println("imageClicked");
+        ImageView img = (ImageView) e.getTarget();
 
-    public void thirdClicked(MouseEvent e){
-        System.out.println("Third clicked");
-        thirdWizard.setSelected(true);
-        thirdWizard.setDisable(true);
-        selectButton.setDisable(false);
-    }
-
-    public void fourthClicked(MouseEvent e){
-        System.out.println("Fourth clicked");
-        fourthWizard.setSelected(true);
-        fourthWizard.setDisable(true);
+        RadioButton radioBtn = getButtonByImageView(img);
+        radioBtn.setSelected(true);
         selectButton.setDisable(false);
     }
 
@@ -153,5 +137,31 @@ public class SelectWizardSceneController extends ViewObservable implements Scene
 
         Wizard finalChosenWizard = chosenWizard;
         notifyObserver(observers -> observers.onUpdateWizard(finalChosenWizard));
+    }
+
+    public RadioButton getButtonByImageView (ImageView imageView) {
+        String id = imageView.getId();
+        System.out.println("Clicked: " + id);
+
+        RadioButton button;
+
+        switch (id) {
+            case "firstWizardImage":
+                button = firstWizard;
+                break;
+            case "secondWizardImage":
+                button = secondWizard;
+                break;
+            case "thirdWizardImage":
+                button = thirdWizard;
+                break;
+            case "fourthWizardImage":
+                button = fourthWizard;
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + id);
+        }
+
+        return button;
     }
 }
