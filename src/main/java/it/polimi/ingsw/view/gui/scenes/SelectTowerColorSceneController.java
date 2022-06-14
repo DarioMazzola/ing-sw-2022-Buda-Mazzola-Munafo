@@ -56,6 +56,7 @@ public class SelectTowerColorSceneController extends ViewObservable implements S
 
         button.setSelected(true);
 
+        selectButton.setDisable(false);
         selectButton.setOnAction(this::onSelect);
     }
 
