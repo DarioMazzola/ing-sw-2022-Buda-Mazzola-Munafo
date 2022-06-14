@@ -6,6 +6,9 @@ import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Wizard;
 import it.polimi.ingsw.observer.ViewObservable;
 import it.polimi.ingsw.view.UI;
+import it.polimi.ingsw.view.gui.scenes.SelectAssistantCardSceneController;
+import it.polimi.ingsw.view.gui.scenes.SelectTowerColorSceneController;
+import it.polimi.ingsw.view.gui.scenes.SelectWizardSceneController;
 import javafx.application.Platform;
 
 import java.util.List;
@@ -16,6 +19,9 @@ import java.util.List;
  * @author Dario Mazzola
  */
 public class Gui extends ViewObservable implements UI {
+
+    private ReducedGameModel gm;
+    private String nickname;
 
     @Override
     public void createNewGame() {
@@ -34,7 +40,10 @@ public class Gui extends ViewObservable implements UI {
 
     @Override
     public void selectWizard(List<Wizard> availableWizards) {
-        Platform.runLater(() -> SceneController.changeRootPane(observers, "SelectWizardScene.fxml"));
+
+        SelectWizardSceneController controller = new SelectWizardSceneController(availableWizards);
+
+        Platform.runLater(() -> SceneController.changeRootPane(observers, "SelectWizardScene.fxml", controller));
     }
 
     @Override
@@ -54,12 +63,17 @@ public class Gui extends ViewObservable implements UI {
 
     @Override
     public void selectTowerColor(List<Color> availableColors) {
+        SelectTowerColorSceneController controller = new SelectTowerColorSceneController(availableColors);
 
+        Platform.runLater(() -> SceneController.changeRootPane(observers, "SelectTowerColorScene.fxml", controller));
     }
 
     @Override
     public void selectAssistantCard(List<Card> availableAssistantCard) {
 
+        SelectAssistantCardSceneController controller = new SelectAssistantCardSceneController(gm, nickname,  availableAssistantCard);
+
+        Platform.runLater(() -> SceneController.changeRootPane(observers, "SelectAssistantCardScene.fxml", controller));
     }
 
     @Override
@@ -84,7 +98,7 @@ public class Gui extends ViewObservable implements UI {
 
     @Override
     public void goToLobby() {
-        System.out.println("GoToLobby");
+        Platform.runLater(() -> SceneController.changeRootPane(observers, "LobbyScene.fxml"));
     }
 
     @Override
@@ -94,7 +108,7 @@ public class Gui extends ViewObservable implements UI {
 
     @Override
     public void rememberNickname(String nickname) {
-
+        this.nickname = nickname;
     }
 
     @Override
@@ -149,7 +163,7 @@ public class Gui extends ViewObservable implements UI {
 
     @Override
     public void updateGameModel(ReducedGameModel gameModel) {
-
+        this.gm = gameModel;
     }
 
     @Override
