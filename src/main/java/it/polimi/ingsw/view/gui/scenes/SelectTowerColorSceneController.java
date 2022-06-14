@@ -42,9 +42,11 @@ public class SelectTowerColorSceneController extends ViewObservable implements S
 
         for(Color c : colorTowersAvailable) {
             ImageView t = getImageViewByColor(c);
+            t.setOnMouseClicked(this::towerClicked);
             t.setOpacity(1);
             t.setDisable(false);
         }
+
     }
 
     public void towerClicked(MouseEvent e){
@@ -53,6 +55,8 @@ public class SelectTowerColorSceneController extends ViewObservable implements S
         RadioButton button = getButtonByImageView(towerClicked);
 
         button.setSelected(true);
+
+        selectButton.setOnAction(this::onSelect);
     }
 
     public void onSelect(ActionEvent e) {

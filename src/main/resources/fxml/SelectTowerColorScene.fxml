@@ -9,16 +9,16 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.view.gui.scenes.SelectTowerColorSceneController">
+<StackPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane>
-         <ImageView fx:id="grayImg" disable="true" fitHeight="334.0" fitWidth="328.0" layoutX="535.0" layoutY="424.0" onMousePressed="#towerClicked" opacity="0.05" pickOnBounds="true" preserveRatio="true" x="-150.0" y="-150.0">
+         <ImageView fx:id="grayImg" disable="true" fitHeight="334.0" fitWidth="328.0" layoutX="535.0" layoutY="424.0" opacity="0.05" pickOnBounds="true" preserveRatio="true" x="-150.0" y="-150.0">
             <Image url="@../images/towers/gray_tower.png" />
          </ImageView>
-         <ImageView fx:id="blackImg" disable="true" fitHeight="300.0" fitWidth="300.0" layoutX="1400.0" layoutY="436.0" onMousePressed="#towerClicked" opacity="0.5" pickOnBounds="true" preserveRatio="true" x="-150.0" y="-150.0">
+         <ImageView fx:id="blackImg" disable="true" fitHeight="300.0" fitWidth="300.0" layoutX="1400.0" layoutY="436.0" opacity="0.5" pickOnBounds="true" preserveRatio="true" x="-150.0" y="-150.0">
             <Image url="@../images/towers/black_tower.png" />
          </ImageView>
-         <ImageView fx:id="whiteImg" disable="true" fitHeight="300.0" fitWidth="300.0" layoutX="951.0" layoutY="438.0" onMousePressed="#towerClicked" opacity="0.5" pickOnBounds="true" preserveRatio="true" x="-150.0" y="-150.0">
+         <ImageView fx:id="whiteImg" disable="true" fitHeight="300.0" fitWidth="300.0" layoutX="951.0" layoutY="438.0" opacity="0.5" pickOnBounds="true" preserveRatio="true" x="-150.0" y="-150.0">
             <Image url="@../images/towers/white_tower.png" />
          </ImageView>
          <RadioButton fx:id="grayButton" disable="true" layoutX="461.0" layoutY="622.0" mnemonicParsing="false" opacity="0.0" prefHeight="0.0" prefWidth="88.0" text="gray">
@@ -26,7 +26,7 @@
                <ToggleGroup fx:id="towersButton" />
             </toggleGroup>
          </RadioButton>
-         <Button fx:id="selectButton" disable="true" layoutX="921.0" layoutY="682.0" mnemonicParsing="false" onAction="#onSelect" text="Select">
+         <Button fx:id="selectButton" disable="true" layoutX="921.0" layoutY="682.0" mnemonicParsing="false" text="Select">
             <font>
                <Font size="24.0" />
             </font>
