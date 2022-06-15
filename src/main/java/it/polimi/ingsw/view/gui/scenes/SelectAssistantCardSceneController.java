@@ -72,8 +72,8 @@ public class SelectAssistantCardSceneController extends ViewObservable implement
     public void selectCharacterCard(MouseEvent mouseEvent) {
         ImageView imageClicked = (ImageView) mouseEvent.getSource();
 
-        int i = getValueByImage(imageClicked.getImage());
-        List<Toggle> toggles = assistantButtons.getToggles();
+        int i = getValueByImage(imageClicked.getImage()) - 1;
+        List<Toggle> toggles = assistantButtons.getToggles().sorted();
         toggles.get(i).setSelected(true);
 
         for(Toggle t : toggles){
