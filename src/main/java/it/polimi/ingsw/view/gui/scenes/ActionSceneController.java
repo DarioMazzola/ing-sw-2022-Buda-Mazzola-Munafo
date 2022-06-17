@@ -17,7 +17,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
-import java.io.File;
 import java.util.*;
 
 import static it.polimi.ingsw.model.Color.*;
@@ -1004,13 +1003,11 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     private final ReducedGameModel gm;
     private final String nickname;
     private ImageView[] EntranceMain;
-    private final Button[] diningHallMain = {diningHallMainGreen, diningHallMainRed, diningHallMainYellow,
-            diningHallMainBlue, diningHallMainPink};
+    private Button[] diningHallMain;
     private House houseSelected;
     private List<Map<String, Node>> islandList;
 
-    private final Button[] islandButtons = {Island0Btn, Island1Btn, Island2Btn, Island3Btn, Island4Btn, Island5Btn,
-            Island6Btn, Island7Btn, Island8Btn, Island9Btn, Island10Btn, Island11Btn};
+    private Button[] islandButtons;
 
     public ActionSceneController(ReducedGameModel gm, String nickname) {
         this.gm = gm;
@@ -1018,6 +1015,12 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     }
 
     public void initialize() {
+
+        this.diningHallMain = new Button[]{diningHallMainGreen, diningHallMainRed, diningHallMainYellow,
+                diningHallMainBlue, diningHallMainPink};
+
+        this.islandButtons = new Button[]{Island0Btn, Island1Btn, Island2Btn, Island3Btn, Island4Btn, Island5Btn,
+                Island6Btn, Island7Btn, Island8Btn, Island9Btn, Island10Btn, Island11Btn};
 
         int numMain = Arrays.asList(gm.getArrayPlayers()).indexOf(gm.getPlayerByNickname(nickname));
 
@@ -1028,60 +1031,54 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         if (gm.getNumPlayers() == 3) {
             numStudents = 8;
         }
-        int numTowers = 5;
+        int numTowers = 7;
         if (gm.getNumPlayers() == 3) {
-            numTowers = 7;
+            numTowers = 5;
         }
 
         int i;
 
-        File file;
         Image image;
 
         //first player
-        EntranceMain = new ImageView[9];
-        FillEntrance(EntranceMain, EntranceStudMain1, EntranceStudMain2, EntranceStudMain3, EntranceStudMain4, EntranceStudMain5, EntranceStudMain6, EntranceStudMain7, EntranceStudMain8, EntranceStudMain9);
+        EntranceMain = new ImageView[]{EntranceStudMain1, EntranceStudMain2, EntranceStudMain3, EntranceStudMain4, EntranceStudMain5, EntranceStudMain6, EntranceStudMain7, EntranceStudMain8, EntranceStudMain9};
 
         fillGraveyard(GraveyardMain, gm.getArrayPlayers()[numMain]);
         fillCardInUse(CardInUseMain, gm.getArrayPlayers()[numMain]);
 
         houseMap = gm.getArrayPlayers()[numMain].getDashboard().getStudents();
         i = numStudents;
+
         while (houseMap.get(House.BLUE) != 0) {
-            file = new File("images/students/student_blue.png");
-            image = new Image(file.toURI().toString());
+            image = new Image("images/students/student_blue.png");
             EntranceMain[i].setImage(image);
             EntranceMain[i].setVisible(true);
             houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
             i--;
         }
         while (houseMap.get(House.PINK) != 0) {
-            file = new File("images/students/student_pink.png");
-            image = new Image(file.toURI().toString());
+            image = new Image("images/students/student_pink.png");
             EntranceMain[i].setImage(image);
             EntranceMain[i].setVisible(true);
             houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
             i--;
         }
         while (houseMap.get(YELLOW) != 0) {
-            file = new File("images/students_yellow.png");
-            image = new Image(file.toURI().toString());
+            image = new Image("images/students/student_yellow.png");
             EntranceMain[i].setImage(image);
             EntranceMain[i].setVisible(true);
             houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
             i--;
         }
         while (houseMap.get(House.RED) != 0) {
-            file = new File("images/students/student_red.png");
-            image = new Image(file.toURI().toString());
+            image = new Image("images/students/student_red.png");
             EntranceMain[i].setImage(image);
             EntranceMain[i].setVisible(true);
             houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
             i--;
         }
         while (houseMap.get(House.GREEN) != 0) {
-            file = new File("images/students/student_green.png");
-            image = new Image(file.toURI().toString());
+            image = new Image("images/students/student_green.png");
             EntranceMain[i].setImage(image);
             EntranceMain[i].setVisible(true);
             houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
@@ -1110,8 +1107,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         houseMap = gm.getArrayPlayers()[numMain].getDashboard().getDiningHall().getStudents();
         i = 0;
         while (houseMap.get(House.GREEN) != 0) {
-            file = new File("images/students/student_green.png");
-            image = new Image(file.toURI().toString());
+            image = new Image("images/students/student_green.png");
             DiningMainGreen[i].setImage(image);
             DiningMainGreen[i].setVisible(true);
             houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
@@ -1123,8 +1119,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         }
         i = 0;
         while (houseMap.get(House.BLUE) != 0) {
-            file = new File("images/students/student_blue.png");
-            image = new Image(file.toURI().toString());
+            image = new Image("images/students/student_blue.png");
             DiningMainBlue[i].setImage(image);
             DiningMainBlue[i].setVisible(true);
             houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
@@ -1136,8 +1131,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         }
         i = 0;
         while (houseMap.get(House.RED) != 0) {
-            file = new File("images/students/student_red.png");
-            image = new Image(file.toURI().toString());
+            image = new Image("images/students/student_red.png");
             DiningMainRed[i].setImage(image);
             DiningMainRed[i].setVisible(true);
             houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
@@ -1149,8 +1143,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         }
         i = 0;
         while (houseMap.get(YELLOW) != 0) {
-            file = new File("images/students/student_yellow.png");
-            image = new Image(file.toURI().toString());
+            image = new Image("images/students/student_yellow.png");
             DiningMainYellow[i].setImage(image);
             DiningMainYellow[i].setVisible(true);
             houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
@@ -1162,8 +1155,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         }
         i = 0;
         while (houseMap.get(House.PINK) != 0) {
-            file = new File("images/students/student_pink.png");
-            image = new Image(file.toURI().toString());
+            image = new Image("images/students/student_pink.png");
             DiningMainPink[i].setImage(image);
             DiningMainPink[i].setVisible(true);
             houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
@@ -1177,40 +1169,35 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         profMap = gm.getArrayPlayers()[numMain].getDashboard().getProfMap();
 
         if (profMap.get(House.PINK)) {
-            file = new File("images/professors/teacher_pink.png");
-            image = new Image(file.toURI().toString());
+            image = new Image("images/professors/teacher_pink.png");
             ProfPinkMain.setImage(image);
             ProfPinkMain.setVisible(true);
         } else {
             ProfPinkMain.setVisible(false);
         }
         if (profMap.get(House.GREEN)) {
-            file = new File("images/professors/teacher_green.png");
-            image = new Image(file.toURI().toString());
+            image = new Image("images/professors/teacher_green.png");
             ProfGreenMain.setImage(image);
             ProfGreenMain.setVisible(true);
         } else {
             ProfGreenMain.setVisible(false);
         }
         if (profMap.get(YELLOW)) {
-            file = new File("images/professors/teacher_yellow.png");
-            image = new Image(file.toURI().toString());
+            image = new Image("images/professors/teacher_yellow.png");
             ProfYellowMain.setImage(image);
             ProfYellowMain.setVisible(true);
         } else {
             ProfYellowMain.setVisible(false);
         }
         if (profMap.get(House.RED)) {
-            file = new File("images/professors/teacher_red.png");
-            image = new Image(file.toURI().toString());
+            image = new Image("images/professors/teacher_red.png");
             ProfRedMain.setImage(image);
             ProfRedMain.setVisible(false);
         } else {
             ProfRedMain.setVisible(true);
         }
         if (profMap.get(House.BLUE)) {
-            file = new File("images/professors/teacher_blue.png");
-            image = new Image(file.toURI().toString());
+            image = new Image("images/professors/teacher_blue.png");
             ProfBlueMain.setImage(image);
             ProfBlueMain.setVisible(true);
         } else {
@@ -1223,19 +1210,28 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         int numTow = gm.getArrayPlayers()[numMain].getDashboard().getNumTowersIn();
         Color colorTower = gm.getArrayPlayers()[numMain].getDashboard().getTowerColor();
         i = numTowers;
-
+        String path;
         if (colorTower == BLACK) {
-            file = new File("images/students/torre_nera.png");
+            path = "images/towers/torre_nera.png";
         } else if (colorTower == Color.GRAY) {
-            file = new File("images/students/torre_grigia.png");
+            path = "images/towers/torre_grigia.png";
         } else {
-            file = new File("images/students/torre_bianca.png");
+            path = "images/towers/torre_bianca.png";
         }
 
+        //images/towers/torre_nera.png
+
+        //numTowers = 5
+        //i = 5 4 3 2 1 0 -1
+        //numTow = 6 5 4 3 2 1 0
+
         while (numTow > 0) {
-            image = new Image(file.toURI().toString());
+            image = new Image(path);
             TowersMain[i].setImage(image);
             TowersMain[i].setVisible(true);
+            System.out.println("i: " +i);
+            System.out.println("numTow: " +numTow);
+            System.out.println();
             i--;
             numTow--;
         }
@@ -1255,40 +1251,35 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         houseMap = gm.getArrayPlayers()[(numMain + 1) % gm.getNumPlayers()].getDashboard().getStudents();
         i = numStudents;
         while (houseMap.get(House.BLUE) != 0) {
-            file = new File("images/students/student_blue.png");
-            image = new Image(file.toURI().toString());
+            image = new Image("images/students/student_blue.png");
             EntranceDashboard1[i].setImage(image);
             EntranceDashboard1[i].setVisible(true);
             houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
             i--;
         }
         while (houseMap.get(House.PINK) != 0) {
-            file = new File("images/students/student_pink.png");
-            image = new Image(file.toURI().toString());
+            image = new Image("images/students/student_pink.png");
             EntranceDashboard1[i].setImage(image);
             EntranceDashboard1[i].setVisible(true);
             houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
             i--;
         }
         while (houseMap.get(YELLOW) != 0) {
-            file = new File("images/students_yellow.png");
-            image = new Image(file.toURI().toString());
+            image = new Image("images/students/student_yellow.png");
             EntranceDashboard1[i].setImage(image);
             EntranceDashboard1[i].setVisible(true);
             houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
             i--;
         }
         while (houseMap.get(House.RED) != 0) {
-            file = new File("images/students/student_red.png");
-            image = new Image(file.toURI().toString());
+            image = new Image("images/students/student_red.png");
             EntranceDashboard1[i].setImage(image);
             EntranceDashboard1[i].setVisible(true);
             houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
             i--;
         }
         while (houseMap.get(House.GREEN) != 0) {
-            file = new File("images/students/student_green.png");
-            image = new Image(file.toURI().toString());
+            image = new Image("images/students/student_green.png");
             EntranceDashboard1[i].setImage(image);
             EntranceDashboard1[i].setVisible(true);
             houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
@@ -1317,8 +1308,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         houseMap = gm.getArrayPlayers()[(numMain + 1) % gm.getNumPlayers()].getDashboard().getDiningHall().getStudents();
         i = 0;
         while (houseMap.get(House.GREEN) != 0) {
-            file = new File("images/students/student_green.png");
-            image = new Image(file.toURI().toString());
+            image = new Image("images/students/student_green.png");
             DiningDashboard1Green[i].setImage(image);
             DiningDashboard1Green[i].setVisible(true);
             houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
@@ -1330,8 +1320,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         }
         i = 0;
         while (houseMap.get(House.BLUE) != 0) {
-            file = new File("images/students/student_blue.png");
-            image = new Image(file.toURI().toString());
+            image = new Image("images/students/student_blue.png");
             DiningDashboard1Blue[i].setImage(image);
             DiningDashboard1Blue[i].setVisible(true);
             houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
@@ -1343,8 +1332,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         }
         i = 0;
         while (houseMap.get(House.RED) != 0) {
-            file = new File("images/students/student_red.png");
-            image = new Image(file.toURI().toString());
+            image = new Image("images/students/student_red.png");
             DiningDashboard1Red[i].setImage(image);
             DiningDashboard1Red[i].setVisible(true);
             houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
@@ -1356,8 +1344,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         }
         i = 0;
         while (houseMap.get(YELLOW) != 0) {
-            file = new File("images/students/student_yellow.png");
-            image = new Image(file.toURI().toString());
+            image = new Image("images/students/student_yellow.png");
             DiningDashboard1Yellow[i].setImage(image);
             DiningDashboard1Yellow[i].setVisible(true);
             houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
@@ -1369,8 +1356,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         }
         i = 0;
         while (houseMap.get(House.PINK) != 0) {
-            file = new File("images/students/student_pink.png");
-            image = new Image(file.toURI().toString());
+            image = new Image("images/students/student_pink.png");
             DiningDashboard1Pink[i].setImage(image);
             DiningDashboard1Pink[i].setVisible(true);
             houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
@@ -1384,40 +1370,35 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         profMap = gm.getArrayPlayers()[(numMain + 1) % gm.getNumPlayers()].getDashboard().getProfMap();
 
         if (profMap.get(House.PINK)) {
-            file = new File("images/professors/teacher_pink.png");
-            image = new Image(file.toURI().toString());
+            image = new Image("images/professors/teacher_pink.png");
             ProfPinkDashboard1.setImage(image);
             ProfPinkDashboard1.setVisible(true);
         } else {
             ProfPinkDashboard1.setVisible(false);
         }
         if (profMap.get(House.GREEN)) {
-            file = new File("images/professors/teacher_green.png");
-            image = new Image(file.toURI().toString());
+            image = new Image("images/professors/teacher_green.png");
             ProfGreenDashboard1.setImage(image);
             ProfGreenDashboard1.setVisible(true);
         } else {
             ProfGreenDashboard1.setVisible(false);
         }
         if (profMap.get(YELLOW)) {
-            file = new File("images/professors/teacher_yellow.png");
-            image = new Image(file.toURI().toString());
+            image = new Image("images/professors/teacher_yellow.png");
             ProfYellowDashboard1.setImage(image);
             ProfYellowDashboard1.setVisible(true);
         } else {
             ProfYellowDashboard1.setVisible(false);
         }
         if (profMap.get(House.RED)) {
-            file = new File("images/professors/teacher_red.png");
-            image = new Image(file.toURI().toString());
+            image = new Image("images/professors/teacher_red.png");
             ProfRedDashboard1.setImage(image);
             ProfRedDashboard1.setVisible(true);
         } else {
             ProfRedDashboard1.setVisible(false);
         }
         if (profMap.get(House.BLUE)) {
-            file = new File("images/professors/teacher_blue.png");
-            image = new Image(file.toURI().toString());
+            image = new Image("images/professors/teacher_blue.png");
             ProfBlueDashboard1.setImage(image);
             ProfBlueDashboard1.setVisible(true);
         } else {
@@ -1432,15 +1413,15 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         i = numTowers;
 
         if (colorTower == BLACK) {
-            file = new File("images/students/torre_nera.png");
+            path = "images/towers/torre_nera.png";
         } else if (colorTower == Color.GRAY) {
-            file = new File("images/students/torre_grigia.png");
+            path = "images/towers/torre_grigia.png";
         } else {
-            file = new File("images/students/torre_bianca.png");
+            path ="images/towers/torre_bianca.png";
         }
 
         while (numTow > 0) {
-            image = new Image(file.toURI().toString());
+            image = new Image(path);
             TowersDashboard1[i].setImage(image);
             TowersDashboard1[i].setVisible(true);
             i--;
@@ -1469,40 +1450,35 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             houseMap = gm.getArrayPlayers()[(numMain + 2) % gm.getNumPlayers()].getDashboard().getStudents();
             i = numStudents;
             while (houseMap.get(House.BLUE) != 0) {
-                file = new File("images/students/student_blue.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_blue.png");
                 EntranceDashboard2[i].setImage(image);
                 EntranceDashboard2[i].setVisible(true);
                 houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
                 i--;
             }
             while (houseMap.get(House.PINK) != 0) {
-                file = new File("images/students/student_pink.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_pink.png");
                 EntranceDashboard2[i].setImage(image);
                 EntranceDashboard2[i].setVisible(true);
                 houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
                 i--;
             }
             while (houseMap.get(YELLOW) != 0) {
-                file = new File("images/students_yellow.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_yellow.png");
                 EntranceDashboard2[i].setImage(image);
                 EntranceDashboard2[i].setVisible(true);
                 houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
                 i--;
             }
             while (houseMap.get(House.RED) != 0) {
-                file = new File("images/students/student_red.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_red.png");
                 EntranceDashboard2[i].setImage(image);
                 EntranceDashboard2[i].setVisible(true);
                 houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
                 i--;
             }
             while (houseMap.get(House.GREEN) != 0) {
-                file = new File("images/students/student_green.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_green.png");
                 EntranceDashboard2[i].setImage(image);
                 EntranceDashboard2[i].setVisible(true);
                 houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
@@ -1531,8 +1507,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             houseMap = gm.getArrayPlayers()[(numMain + 2) % gm.getNumPlayers()].getDashboard().getDiningHall().getStudents();
             i = 0;
             while (houseMap.get(House.GREEN) != 0) {
-                file = new File("images/students/student_green.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_green.png");
                 DiningDashboard2Green[i].setImage(image);
                 DiningDashboard2Green[i].setVisible(true);
                 houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
@@ -1544,8 +1519,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             }
             i = 0;
             while (houseMap.get(House.BLUE) != 0) {
-                file = new File("images/students/student_blue.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_blue.png");
                 DiningDashboard2Blue[i].setImage(image);
                 DiningDashboard2Blue[i].setVisible(true);
                 houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
@@ -1557,8 +1531,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             }
             i = 0;
             while (houseMap.get(House.RED) != 0) {
-                file = new File("images/students/student_red.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_red.png");
                 DiningDashboard2Red[i].setImage(image);
                 DiningDashboard2Red[i].setVisible(true);
                 houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
@@ -1570,8 +1543,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             }
             i = 0;
             while (houseMap.get(YELLOW) != 0) {
-                file = new File("images/students/student_yellow.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_yellow.png");
                 DiningDashboard2Yellow[i].setImage(image);
                 DiningDashboard2Yellow[i].setVisible(true);
                 houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
@@ -1583,8 +1555,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             }
             i = 0;
             while (houseMap.get(House.PINK) != 0) {
-                file = new File("images/students/student_pink.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_pink.png");
                 DiningDashboard2Pink[i].setImage(image);
                 DiningDashboard2Pink[i].setVisible(true);
                 houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
@@ -1598,40 +1569,35 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             profMap = gm.getArrayPlayers()[(numMain + 2) % gm.getNumPlayers()].getDashboard().getProfMap();
 
             if (profMap.get(House.PINK)) {
-                file = new File("images/professors/teacher_pink.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/professors/teacher_pink.png");
                 ProfPinkDashboard2.setImage(image);
                 ProfPinkDashboard2.setVisible(true);
             } else {
                 ProfPinkDashboard2.setVisible(false);
             }
             if (profMap.get(House.GREEN)) {
-                file = new File("images/professors/teacher_green.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/professors/teacher_pink.png");
                 ProfGreenDashboard2.setImage(image);
                 ProfGreenDashboard2.setVisible(true);
             } else {
                 ProfGreenDashboard2.setVisible(false);
             }
             if (profMap.get(YELLOW)) {
-                file = new File("images/professors/teacher_yellow.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/professors/teacher_yellow.png");
                 ProfYellowDashboard2.setImage(image);
                 ProfYellowDashboard2.setVisible(true);
             } else {
                 ProfYellowDashboard2.setVisible(false);
             }
             if (profMap.get(House.RED)) {
-                file = new File("images/professors/teacher_red.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/professors/teacher_red.png");
                 ProfRedDashboard2.setImage(image);
                 ProfRedDashboard2.setVisible(true);
             } else {
                 ProfRedDashboard2.setVisible(false);
             }
             if (profMap.get(House.BLUE)) {
-                file = new File("images/professors/teacher_blue.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/professors/teacher_blue.png");
                 ProfBlueDashboard2.setImage(image);
                 ProfBlueDashboard2.setVisible(true);
             } else {
@@ -1646,15 +1612,15 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             i = numTowers;
 
             if (colorTower == BLACK) {
-                file = new File("images/students/torre_nera.png");
+                path = "images/towers/torre_nera.png";
             } else if (colorTower == Color.GRAY) {
-                file = new File("images/students/torre_grigia.png");
+                path = "images/towers/torre_grigia.png";
             } else {
-                file = new File("images/students/torre_bianca.png");
+                path = "images/towers/torre_bianca.png";
             }
 
             while (numTow > 0) {
-                image = new Image(file.toURI().toString());
+                image = new Image(path);
                 TowersDashboard2[i].setImage(image);
                 TowersDashboard2[i].setVisible(true);
                 i--;
@@ -1682,40 +1648,35 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                 houseMap = gm.getArrayPlayers()[(numMain + 3) % gm.getNumPlayers()].getDashboard().getStudents();
                 i = numStudents;
                 while (houseMap.get(House.BLUE) != 0) {
-                    file = new File("images/students/student_blue.png");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("images/students/student_blue.png");
                     EntranceDashboard3[i].setImage(image);
                     EntranceDashboard3[i].setVisible(true);
                     houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
                     i--;
                 }
                 while (houseMap.get(House.PINK) != 0) {
-                    file = new File("images/students/student_pink.png");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("images/students/student_pink.png");
                     EntranceDashboard3[i].setImage(image);
                     EntranceDashboard3[i].setVisible(true);
                     houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
                     i--;
                 }
                 while (houseMap.get(YELLOW) != 0) {
-                    file = new File("images/students_yellow.png");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("students/student_yellow.png");
                     EntranceDashboard3[i].setImage(image);
                     EntranceDashboard3[i].setVisible(true);
                     houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
                     i--;
                 }
                 while (houseMap.get(House.RED) != 0) {
-                    file = new File("images/students/student_red.png");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("images/students/student_red.png");
                     EntranceDashboard3[i].setImage(image);
                     EntranceDashboard3[i].setVisible(true);
                     houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
                     i--;
                 }
                 while (houseMap.get(House.GREEN) != 0) {
-                    file = new File("images/students/student_green.png");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("images/students/student_green.png");
                     EntranceDashboard3[i].setImage(image);
                     EntranceDashboard3[i].setVisible(true);
                     houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
@@ -1744,8 +1705,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                 houseMap = gm.getArrayPlayers()[(numMain + 3) % gm.getNumPlayers()].getDashboard().getDiningHall().getStudents();
                 i = 0;
                 while (houseMap.get(House.GREEN) != 0) {
-                    file = new File("images/students/student_green.png");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("images/students/student_green.png");
                     DiningDashboard3Green[i].setImage(image);
                     DiningDashboard3Green[i].setVisible(true);
                     houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
@@ -1757,8 +1717,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                 }
                 i = 0;
                 while (houseMap.get(House.BLUE) != 0) {
-                    file = new File("images/students/student_blue.png");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("images/students/student_blue.png");
                     DiningDashboard3Blue[i].setImage(image);
                     DiningDashboard3Blue[i].setVisible(true);
                     houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
@@ -1770,8 +1729,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                 }
                 i = 0;
                 while (houseMap.get(House.RED) != 0) {
-                    file = new File("images/students/student_red.png");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("images/students/student_red.png");
                     DiningDashboard3Red[i].setImage(image);
                     DiningDashboard3Red[i].setVisible(true);
                     houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
@@ -1783,8 +1741,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                 }
                 i = 0;
                 while (houseMap.get(YELLOW) != 0) {
-                    file = new File("images/students/student_yellow.png");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("images/students/student_yellow.png");
                     DiningDashboard3Yellow[i].setImage(image);
                     DiningDashboard3Yellow[i].setVisible(true);
                     houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
@@ -1796,8 +1753,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                 }
                 i = 0;
                 while (houseMap.get(House.PINK) != 0) {
-                    file = new File("images/students/student_pink.png");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("images/students/student_pink.png");
                     DiningDashboard3Pink[i].setImage(image);
                     DiningDashboard3Pink[i].setVisible(true);
                     houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
@@ -1811,40 +1767,35 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                 profMap = gm.getArrayPlayers()[(numMain + 3) % gm.getNumPlayers()].getDashboard().getProfMap();
 
                 if (profMap.get(House.PINK)) {
-                    file = new File("images/professors/teacher_pink.png");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("images/professors/teacher_pink.png");
                     ProfPinkDashboard3.setImage(image);
                     ProfPinkDashboard3.setVisible(true);
                 } else {
                     ProfPinkDashboard3.setVisible(false);
                 }
                 if (profMap.get(House.GREEN)) {
-                    file = new File("images/professors/teacher_green.png");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("images/professors/teacher_green.png");
                     ProfGreenDashboard3.setImage(image);
                     ProfGreenDashboard3.setVisible(true);
                 } else {
                     ProfGreenDashboard3.setVisible(false);
                 }
                 if (profMap.get(YELLOW)) {
-                    file = new File("images/professors/teacher_yellow.png");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("images/professors/teacher_yellow.png");
                     ProfYellowDashboard3.setImage(image);
                     ProfYellowDashboard3.setVisible(true);
                 } else {
                     ProfYellowDashboard3.setVisible(false);
                 }
                 if (profMap.get(House.RED)) {
-                    file = new File("images/professors/teacher_red.png");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("images/professors/teacher_red.png");
                     ProfRedDashboard3.setImage(image);
                     ProfRedDashboard3.setVisible(true);
                 } else {
                     ProfRedDashboard3.setVisible(false);
                 }
                 if (profMap.get(House.BLUE)) {
-                    file = new File("images/professors/teacher_blue.png");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("images/professors/teacher_blue.png");
                     ProfBlueDashboard3.setImage(image);
                     ProfBlueDashboard3.setVisible(true);
                 } else {
@@ -1859,15 +1810,15 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                 i = numTowers;
 
                 if (colorTower == BLACK) {
-                    file = new File("images/students/torre_nera.png");
+                    path = "images/towers/torre_nera.png";
                 } else if (colorTower == Color.GRAY) {
-                    file = new File("images/students/torre_grigia.png");
+                    path = "images/towers/torre_grigia.png";
                 } else {
-                    file = new File("images/students/torre_bianca.png");
+                    path = "images/towers/torre_bianca.png";
                 }
 
                 while (numTow > 0) {
-                    image = new Image(file.toURI().toString());
+                    image = new Image(path);
                     TowersDashboard3[i].setImage(image);
                     TowersDashboard3[i].setVisible(true);
                     i--;
@@ -1897,125 +1848,125 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
             switch (gm.getCharacterCardDeck()[0].getType()) {
                 case FARMER:
-                    file = new File("images/CharacterCards/Farmer.jpg");
+                    path = "images/CharacterCards/Farmer.jpg";
                     break;
                 case MAGICAL_MAILMAN:
-                    file = new File("images/CharacterCards/MagicalMailman.jpg");
+                    path = "images/CharacterCards/MagicalMailman.jpg";
                     break;
                 case HERB_GRANMA:
-                    file = new File("images/CharacterCards/HerbGranma.jpg");
+                    path = "images/CharacterCards/HerbGranma.jpg";
                     break;
                 case MINSTREL:
-                    file = new File("images/CharacterCards/Minstrel.jpg");
+                    path = "images/CharacterCards/Minstrel.jpg";
                     break;
                 case MONK:
-                    file = new File("images/CharacterCards/Monk.jpg");
+                    path = "images/CharacterCards/Monk.jpg";
                     break;
                 case HERALD:
-                    file = new File("images/CharacterCards/Herald.jpg");
+                    path = "images/CharacterCards/Herald.jpg";
                     break;
                 case CENTAUR:
-                    file = new File("images/CharacterCards/Centuar.jpg");
+                    path = "images/CharacterCards/Centuar.jpg";
                     break;
                 case JOLLY:
-                    file = new File("images/CharacterCards/Jolly.jpg");
+                    path = "images/CharacterCards/Jolly.jpg";
                     break;
                 case KNIGHT:
-                    file = new File("images/CharacterCards/Knight.jpg");
+                    path = "images/CharacterCards/Knight.jpg";
                     break;
                 case MUSHROOM_HUNTER:
-                    file = new File("images/CharacterCards/MushroomHunter.jpg");
+                    path = "images/CharacterCards/MushroomHunter.jpg";
                     break;
                 case SPOILED_PRINCESS:
-                    file = new File("images/CharacterCards/SpoiledPrincess.jpg");
+                    path = "images/CharacterCards/SpoiledPrincess.jpg";
                     break;
                 case THIEF:
-                    file = new File("images/CharacterCards/Thief.jpg");
+                    path = "images/CharacterCards/Thief.jpg";
                     break;
             }
-            image = new Image(file.toURI().toString());
+            image = new Image(path);
             CharacterCard1.setImage(image);
 
             switch (gm.getCharacterCardDeck()[1].getType()) {
                 case FARMER:
-                    file = new File("images/CharacterCards/Farmer.jpg");
+                    path = "images/CharacterCards/Farmer.jpg";
                     break;
                 case MAGICAL_MAILMAN:
-                    file = new File("images/CharacterCards/MagicalMailman.jpg");
+                    path = "images/CharacterCards/MagicalMailman.jpg";
                     break;
                 case HERB_GRANMA:
-                    file = new File("images/CharacterCards/HerbGranma.jpg");
+                    path = "images/CharacterCards/HerbGranma.jpg";
                     break;
                 case MINSTREL:
-                    file = new File("images/CharacterCards/Minstrel.jpg");
+                    path = "images/CharacterCards/Minstrel.jpg";
                     break;
                 case MONK:
-                    file = new File("images/CharacterCards/Monk.jpg");
+                    path = "images/CharacterCards/Monk.jpg";
                     break;
                 case HERALD:
-                    file = new File("images/CharacterCards/Herald.jpg");
+                    path = "images/CharacterCards/Herald.jpg";
                     break;
                 case CENTAUR:
-                    file = new File("images/CharacterCards/Centuar.jpg");
+                    path = "images/CharacterCards/Centaur.jpg";
                     break;
                 case JOLLY:
-                    file = new File("images/CharacterCards/Jolly.jpg");
+                    path = "images/CharacterCards/Jolly.jpg";
                     break;
                 case KNIGHT:
-                    file = new File("images/CharacterCards/Knight.jpg");
+                    path = "images/CharacterCards/Knight.jpg";
                     break;
                 case MUSHROOM_HUNTER:
-                    file = new File("images/CharacterCards/MushroomHunter.jpg");
+                    path = "images/CharacterCards/MushroomHunter.jpg";
                     break;
                 case SPOILED_PRINCESS:
-                    file = new File("images/CharacterCards/SpoiledPrincess.jpg");
+                    path = "images/CharacterCards/SpoiledPrincess.jpg";
                     break;
                 case THIEF:
-                    file = new File("images/CharacterCards/Thief.jpg");
+                    path = "images/CharacterCards/Thief.jpg";
                     break;
             }
-            image = new Image(file.toURI().toString());
+            image = new Image(path);
             CharacterCard2.setImage(image);
 
             switch (gm.getCharacterCardDeck()[2].getType()) {
                 case FARMER:
-                    file = new File("images/CharacterCards/Farmer.jpg");
+                    path = "images/CharacterCards/Farmer.jpg";
                     break;
                 case MAGICAL_MAILMAN:
-                    file = new File("images/CharacterCards/MagicalMailman.jpg");
+                    path = "images/CharacterCards/MagicalMailman.jpg";
                     break;
                 case HERB_GRANMA:
-                    file = new File("images/CharacterCards/HerbGranma.jpg");
+                    path = "images/CharacterCards/HerbGranma.jpg";
                     break;
                 case MINSTREL:
-                    file = new File("images/CharacterCards/Minstrel.jpg");
+                    path = "images/CharacterCards/Minstrel.jpg";
                     break;
                 case MONK:
-                    file = new File("images/CharacterCards/Monk.jpg");
+                    path = "images/CharacterCards/Monk.jpg";
                     break;
                 case HERALD:
-                    file = new File("images/CharacterCards/Herald.jpg");
+                    path = "images/CharacterCards/Herald.jpg";
                     break;
                 case CENTAUR:
-                    file = new File("images/CharacterCards/Centuar.jpg");
+                    path = "images/CharacterCards/Centuar.jpg";
                     break;
                 case JOLLY:
-                    file = new File("images/CharacterCards/Jolly.jpg");
+                    path = "images/CharacterCards/Jolly.jpg";
                     break;
                 case KNIGHT:
-                    file = new File("images/CharacterCards/Knight.jpg");
+                    path = "images/CharacterCards/Knight.jpg";
                     break;
                 case MUSHROOM_HUNTER:
-                    file = new File("images/CharacterCards/MushroomHunter.jpg");
+                    path = "images/CharacterCards/MushroomHunter.jpg";
                     break;
                 case SPOILED_PRINCESS:
-                    file = new File("images/CharacterCards/SpoiledPrincess.jpg");
+                    path = "images/CharacterCards/SpoiledPrincess.jpg";
                     break;
                 case THIEF:
-                    file = new File("images/CharacterCards/Thief.jpg");
+                    path = "images/CharacterCards/Thief.jpg";
                     break;
             }
-            image = new Image(file.toURI().toString());
+            image = new Image(path);
             CharacterCard3.setImage(image);
         }
         if (gm.getNumPlayers() == 3) {
@@ -2037,40 +1988,35 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
             i = 0;
             while (houseMap.get(House.PINK) != 0) {
-                file = new File("images/students/student_pink.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_pink.png");
                 Cloud1[i].setImage(image);
                 Cloud1[i].setVisible(true);
                 houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
                 i++;
             }
             while (houseMap.get(House.GREEN) != 0) {
-                file = new File("images/students/student_green.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_green.png");
                 Cloud1[i].setImage(image);
                 Cloud1[i].setVisible(true);
                 houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
                 i++;
             }
             while (houseMap.get(YELLOW) != 0) {
-                file = new File("images/students/student_yellow.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_yellow.png");
                 Cloud1[i].setImage(image);
                 Cloud1[i].setVisible(true);
                 houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
                 i++;
             }
             while (houseMap.get(House.RED) != 0) {
-                file = new File("images/students/student_red.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_red.png");
                 Cloud1[i].setImage(image);
                 Cloud1[i].setVisible(true);
                 houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
                 i++;
             }
             while (houseMap.get(House.BLUE) != 0) {
-                file = new File("images/students/student_blue.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_blue.png");
                 Cloud1[i].setImage(image);
                 Cloud1[i].setVisible(true);
                 houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
@@ -2081,40 +2027,35 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
             i = 0;
             while (houseMap.get(House.PINK) != 0) {
-                file = new File("images/students/student_pink.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_pink.png");
                 Cloud2[i].setImage(image);
                 Cloud2[i].setVisible(true);
                 houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
                 i++;
             }
             while (houseMap.get(House.GREEN) != 0) {
-                file = new File("images/students/student_green.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_green.png");
                 Cloud2[i].setImage(image);
                 Cloud2[i].setVisible(true);
                 houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
                 i++;
             }
             while (houseMap.get(YELLOW) != 0) {
-                file = new File("images/students/student_yellow.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_yellow.png");
                 Cloud2[i].setImage(image);
                 Cloud2[i].setVisible(true);
                 houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
                 i++;
             }
             while (houseMap.get(House.RED) != 0) {
-                file = new File("images/students/student_red.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_red.png");
                 Cloud2[i].setImage(image);
                 Cloud2[i].setVisible(true);
                 houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
                 i++;
             }
             while (houseMap.get(House.BLUE) != 0) {
-                file = new File("images/students/student_blue.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_blue.png");
                 Cloud2[i].setImage(image);
                 Cloud2[i].setVisible(true);
                 houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
@@ -2125,40 +2066,35 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
             i = 0;
             while (houseMap.get(House.PINK) != 0) {
-                file = new File("images/students/student_pink.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_pink.png");
                 Cloud3[i].setImage(image);
                 Cloud3[i].setVisible(true);
                 houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
                 i++;
             }
             while (houseMap.get(House.GREEN) != 0) {
-                file = new File("images/students/student_green.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_green.png");
                 Cloud3[i].setImage(image);
                 Cloud3[i].setVisible(true);
                 houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
                 i++;
             }
             while (houseMap.get(YELLOW) != 0) {
-                file = new File("images/students/student_yellow.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_yellow.png");
                 Cloud3[i].setImage(image);
                 Cloud3[i].setVisible(true);
                 houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
                 i++;
             }
             while (houseMap.get(House.RED) != 0) {
-                file = new File("images/students/student_red.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_red.png");
                 Cloud3[i].setImage(image);
                 Cloud3[i].setVisible(true);
                 houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
                 i++;
             }
             while (houseMap.get(House.BLUE) != 0) {
-                file = new File("images/students/student_blue.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_blue.png");
                 Cloud3[i].setImage(image);
                 Cloud3[i].setVisible(true);
                 houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
@@ -2179,40 +2115,35 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
             i = 0;
             while (houseMap.get(House.PINK) != 0) {
-                file = new File("images/students/student_pink.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_pink.png");
                 Cloud1[i].setImage(image);
                 Cloud1[i].setVisible(true);
                 houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
                 i++;
             }
             while (houseMap.get(House.GREEN) != 0) {
-                file = new File("images/students/student_green.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_green.png");
                 Cloud1[i].setImage(image);
                 Cloud1[i].setVisible(true);
                 houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
                 i++;
             }
             while (houseMap.get(YELLOW) != 0) {
-                file = new File("images/students/student_yellow.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_yellow.png");
                 Cloud1[i].setImage(image);
                 Cloud1[i].setVisible(true);
                 houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
                 i++;
             }
             while (houseMap.get(House.RED) != 0) {
-                file = new File("images/students/student_red.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_red.png");
                 Cloud1[i].setImage(image);
                 Cloud1[i].setVisible(true);
                 houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
                 i++;
             }
             while (houseMap.get(House.BLUE) != 0) {
-                file = new File("images/students/student_blue.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_blue.png");
                 Cloud1[i].setImage(image);
                 Cloud1[i].setVisible(true);
                 houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
@@ -2223,40 +2154,35 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
             i = 0;
             while (houseMap.get(House.PINK) != 0) {
-                file = new File("images/students/student_pink.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_pink.png");
                 Cloud2[i].setImage(image);
                 Cloud2[i].setVisible(true);
                 houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
                 i++;
             }
             while (houseMap.get(House.GREEN) != 0) {
-                file = new File("images/students/student_green.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_green.png");
                 Cloud2[i].setImage(image);
                 Cloud2[i].setVisible(true);
                 houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
                 i++;
             }
             while (houseMap.get(YELLOW) != 0) {
-                file = new File("images/students/student_yellow.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_yellow.png");
                 Cloud2[i].setImage(image);
                 Cloud2[i].setVisible(true);
                 houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
                 i++;
             }
             while (houseMap.get(House.RED) != 0) {
-                file = new File("images/students/student_red.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_red.png");
                 Cloud2[i].setImage(image);
                 Cloud2[i].setVisible(true);
                 houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
                 i++;
             }
             while (houseMap.get(House.BLUE) != 0) {
-                file = new File("images/students/student_blue.png");
-                image = new Image(file.toURI().toString());
+                image = new Image("images/students/student_blue.png");
                 Cloud2[i].setImage(image);
                 Cloud2[i].setVisible(true);
                 houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
@@ -2274,40 +2200,35 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
                 i = 0;
                 while (houseMap.get(House.PINK) != 0) {
-                    file = new File("images/students/student_pink.png");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("images/students/student_pink.png");
                     Cloud3[i].setImage(image);
                     Cloud3[i].setVisible(true);
                     houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
                     i++;
                 }
                 while (houseMap.get(House.GREEN) != 0) {
-                    file = new File("images/students/student_green.png");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("images/students/student_green.png");
                     Cloud3[i].setImage(image);
                     Cloud3[i].setVisible(true);
                     houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
                     i++;
                 }
                 while (houseMap.get(YELLOW) != 0) {
-                    file = new File("images/students/student_yellow.png");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("images/students/student_yellow.png");
                     Cloud3[i].setImage(image);
                     Cloud3[i].setVisible(true);
                     houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
                     i++;
                 }
                 while (houseMap.get(House.RED) != 0) {
-                    file = new File("images/students/student_red.png");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("images/students/student_red.png");
                     Cloud3[i].setImage(image);
                     Cloud3[i].setVisible(true);
                     houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
                     i++;
                 }
                 while (houseMap.get(House.BLUE) != 0) {
-                    file = new File("images/students/student_blue.png");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("images/students/student_blue.png");
                     Cloud3[i].setImage(image);
                     Cloud3[i].setVisible(true);
                     houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
@@ -2318,45 +2239,45 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
                 i = 0;
                 while (houseMap.get(House.PINK) != 0) {
-                    file = new File("images/students/student_pink.png");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("images/students/student_pink.png");
                     Cloud4[i].setImage(image);
                     Cloud4[i].setVisible(true);
                     houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
                     i++;
                 }
                 while (houseMap.get(House.GREEN) != 0) {
-                    file = new File("images/students/student_green.png");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("images/students/student_green.png");
                     Cloud4[i].setImage(image);
                     Cloud4[i].setVisible(true);
                     houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
                     i++;
                 }
                 while (houseMap.get(YELLOW) != 0) {
-                    file = new File("images/students/student_yellow.png");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("images/students/student_yellow.png");
                     Cloud4[i].setImage(image);
                     Cloud4[i].setVisible(true);
                     houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
                     i++;
                 }
                 while (houseMap.get(House.RED) != 0) {
-                    file = new File("images/students/student_red.png");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("images/students/student_red.png");
                     Cloud4[i].setImage(image);
                     Cloud4[i].setVisible(true);
                     houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
                     i++;
                 }
                 while (houseMap.get(House.BLUE) != 0) {
-                    file = new File("images/students/student_blue.png");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("images/students/student_blue.png");
                     Cloud4[i].setImage(image);
                     Cloud4[i].setVisible(true);
                     houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
                     i++;
                 }
+            } else {
+                Cloud3Num3.setVisible(false);
+                Cloud3Num4.setVisible(false);
+                Cloud3Num3.setDisable(true);
+                Cloud3Num4.setDisable(true);
             }
 
         }
@@ -2530,37 +2451,36 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     towerNumber.setText(Integer.toString(gm.getIslandList().get(i).getNumTowers()));
 
                     if (gm.getIslandList().get(i).getColorTower() == BLACK) {
-                        file = new File("images/towers/black_tower.png");
-                        image = new Image(file.toURI().toString());
+                        image = new Image("images/towers/black_tower.png");
                         tower.setImage(image);
                     }
                     if (gm.getIslandList().get(i).getColorTower() == GRAY) {
-                        file = new File("images/towers/gray_tower.png");
-                        image = new Image(file.toURI().toString());
+                        image = new Image("images/towers/gray_tower.png");
                         tower.setImage(image);
                     }
                     if (gm.getIslandList().get(i).getColorTower() == WHITE) {
-                        file = new File("images/towers/white_tower.png");
-                        image = new Image(file.toURI().toString());
+                        image = new Image("images/towers/white_tower.png");
                         tower.setImage(image);
                         towerNumber.setStyle("-fx-text-fill: #463333;");
                     }
                 }
-            } catch (IslandException e) {
-                e.printStackTrace();
-            }
+            } catch (IslandException e) {}
 
             if (gm.isExpertMode()) {
                 ImageView noEntryTile = (ImageView) islandList.get(i).get("NoEntryTile");
                 if (gm.getIslandList().get(i).getNoEntryTile() == 0) {
                     noEntryTile.setVisible(false);
                 }
+            } else {
+                ImageView noEntryTile = (ImageView) islandList.get(i).get("NoEntryTile");
+                noEntryTile.setVisible(false);
             }
 
             if (gm.getMotherIsland() != i) {
                 ImageView mother = (ImageView) islandList.get(i).get("Mother");
                 mother.setVisible(false);
             }
+            i++;
         }
 
         Dashboard1.setDisable(true);
@@ -2619,139 +2539,135 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
     private void fillGraveyard(ImageView imgview, ReducedPlayer p) {
 
-        File file;
         Image image;
 
         if(p.getGraveyard() != null) {
             switch (p.getGraveyard()) {
                 case CARD1:
-                    file = new File("/images/Graveyards/Assistente_1.jpg");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("/images/Graveyards/Assistente_1.jpg");
                     imgview.setImage(image);
                     break;
 
                 case CARD2:
-                    file = new File("/images/Graveyards/Assistente_2.jpg");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("/images/Graveyards/Assistente_2.jpg");
                     imgview.setImage(image);
                     break;
 
                 case CARD3:
-                    file = new File("/images/Graveyards/Assistente_3.jpg");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("/images/Graveyards/Assistente_3.jpg");
                     imgview.setImage(image);
                     break;
 
                 case CARD4:
-                    file = new File("/images/Graveyards/Assistente_4.jpg");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("/images/Graveyards/Assistente_4.jpg");
                     imgview.setImage(image);
                     break;
 
                 case CARD5:
-                    file = new File("/images/Graveyards/Assistente_5.jpg");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("/images/Graveyards/Assistente_5.jpg");
                     imgview.setImage(image);
                     break;
 
                 case CARD6:
-                    file = new File("/images/Graveyards/Assistente_6.jpg");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("/images/Graveyards/Assistente_6.jpg");
                     imgview.setImage(image);
                     break;
 
                 case CARD7:
-                    file = new File("/images/Graveyards/Assistente_7.jpg");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("/images/Graveyards/Assistente_7.jpg");
                     imgview.setImage(image);
                     break;
 
                 case CARD8:
-                    file = new File("/images/Graveyards/Assistente_8.jpg");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("/images/Graveyards/Assistente_8.jpg");
                     imgview.setImage(image);
                     break;
 
                 case CARD9:
-                    file = new File("/images/Graveyards/Assistente_9.jpg");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("/images/Graveyards/Assistente_9.jpg");
                     imgview.setImage(image);
                     break;
 
                 case CARD10:
-                    file = new File("/images/Graveyards/Assistente_10.jpg");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("/images/Graveyards/Assistente_10.jpg");
                     imgview.setImage(image);
                     break;
             }
+        } else {
+            String path = null;
+            switch (p.getWizard()){
+                case FIRST:
+                    path = "/images/wizards/first.png";
+                    break;
+                case SECOND:
+                    path = "/images/wizards/second.png";
+                    break;
+                case THIRD:
+                    path = "/images/wizards/third.png";
+                    break;
+                case FOURTH:
+                    path = "/images/wizards/fourth.png";
+                    break;
+            }
+            image = new Image(path);
+            imgview.setImage(image);
+            imgview.setVisible(true);
         }
-
     }
 
     private void fillCardInUse(ImageView imgview, ReducedPlayer p) {
 
-        File file;
         Image image;
 
         if(p.getCardInUse() != null) {
             switch (p.getCardInUse()) {
                 case CARD1:
-                    file = new File("/images/assistant/Assistente_1.jpg");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("/images/assistant/Assistente_1.jpg");
                     imgview.setImage(image);
                     break;
 
                 case CARD2:
-                    file = new File("/images/assistant/Assistente_2.jpg");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("/images/assistant/Assistente_2.jpg");
                     imgview.setImage(image);
                     break;
 
                 case CARD3:
-                    file = new File("/images/assistant/Assistente_3.jpg");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("/images/assistant/Assistente_3.jpg");
                     imgview.setImage(image);
                     break;
 
                 case CARD4:
-                    file = new File("/images/assistant/Assistente_4.jpg");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("/images/assistant/Assistente_4.jpg");
                     imgview.setImage(image);
                     break;
 
                 case CARD5:
-                    file = new File("/images/assistant/Assistente_5.jpg");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("/images/assistant/Assistente_5.jpg");
                     imgview.setImage(image);
                     break;
 
                 case CARD6:
-                    file = new File("/images/assistant/Assistente_6.jpg");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("/images/assistant/Assistente_6.jpg");
                     imgview.setImage(image);
                     break;
 
                 case CARD7:
-                    file = new File("/images/assistant/Assistente_7.jpg");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("/images/assistant/Assistente_7.jpg");
                     imgview.setImage(image);
                     break;
 
                 case CARD8:
-                    file = new File("/images/assistant/Assistente_8.jpg");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("/images/assistant/Assistente_8.jpg");
                     imgview.setImage(image);
                     break;
 
                 case CARD9:
-                    file = new File("/images/assistant/Assistente_9.jpg");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("/images/assistant/Assistente_9.jpg");
                     imgview.setImage(image);
                     break;
 
                 case CARD10:
-                    file = new File("/images/assistant/Assistente_10.jpg");
-                    image = new Image(file.toURI().toString());
+                    image = new Image("/images/assistant/Assistente_10.jpg");
                     imgview.setImage(image);
                     break;
             }

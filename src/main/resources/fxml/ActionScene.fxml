@@ -14,7 +14,7 @@
    <children>
       <AnchorPane style="-fx-background-color: LIGHTSKYBLUE;">
          <children>
-            <Pane layoutX="1506.0" layoutY="717.0" prefHeight="347.0" prefWidth="400.0" style="-fx-background-color: #1F91AD;">
+            <Pane fx:id="Chat" layoutX="1506.0" layoutY="717.0" prefHeight="347.0" prefWidth="400.0" style="-fx-background-color: #1F91AD;">
                <children>
                   <Text fill="WHITE" layoutX="164.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chat" textAlignment="CENTER" wrappingWidth="72.003173828125">
                      <font>
@@ -85,7 +85,7 @@
                               <Image url="@../images/randomImages/MotherNature.PNG" />
                            </image>
                         </ImageView>
-                        <Button fx:id="Island01Btn" disable="true" layoutX="11.0" layoutY="15.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="178.0" text="Button" />
+                        <Button fx:id="Island01Btn" disable="true" layoutX="11.0" layoutY="15.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="178.0" text="Button" visible="false" />
                      </children>
                   </Pane>
                   <Pane fx:id="Island2" layoutX="210.0" layoutY="66.0" prefHeight="187.0" prefWidth="200.0">
@@ -228,7 +228,7 @@
                               <Image url="@../images/students/student_pink.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="NoEntryTileIsland31" fitHeight="148.0" fitWidth="120.0" layoutX="106.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="NoEntryTileIsland3" fitHeight="148.0" fitWidth="120.0" layoutX="106.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/Clouds/NoEntryTile.png" />
                            </image>
@@ -823,7 +823,10 @@
                         <Image url="@../images/Plancia_DEF2.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="EntranceStudDashboard1Stud1" fitHeight="19.0" fitWidth="19.0" layoutX="37.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="EntranceStudDashboard1Stud1" fitHeight="19.0" fitWidth="19.0" layoutX="37.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/students/student_green.png" />
+                     </image></ImageView>
                   <ImageView fx:id="EntranceStudDashboard1Stud2" fitHeight="19.0" fitWidth="19.0" layoutX="37.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="EntranceStudDashboard1Stud4" fitHeight="19.0" fitWidth="19.0" layoutX="37.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="EntranceStudDashboard1Stud6" fitHeight="18.0" fitWidth="19.0" layoutX="37.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true" />
