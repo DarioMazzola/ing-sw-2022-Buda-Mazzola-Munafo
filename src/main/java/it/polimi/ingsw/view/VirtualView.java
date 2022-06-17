@@ -169,6 +169,11 @@ public class VirtualView extends Observer implements View{
     }
 
     @Override
+    public void waitForOthersMoves(String move) {
+        clientHandler.sendAnswerMessage(new WaitForOthersMoves(move));
+    }
+
+    @Override
     public void selectRestoreGame() {
         clientHandler.sendAnswerMessage(new SelectRestoreGame());
     }

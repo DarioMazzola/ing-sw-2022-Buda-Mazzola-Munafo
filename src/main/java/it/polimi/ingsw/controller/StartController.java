@@ -71,7 +71,7 @@ public class StartController {
                         tc.sendAllSelectTowerColor(availableTowers);
                     }
                 } else {
-                    tc.getVirtualViewMap().get(messageReceived.getNickname()).goToWaitingRoom();
+                    tc.getVirtualViewMap().get(messageReceived.getNickname()).waitForOthersMoves("wizard");
                 }
                 break;
 
@@ -118,7 +118,7 @@ public class StartController {
                     tc.getVirtualViewMap().get(leaderArray[1]).selectTowerColor(availableTowers);
                 }
                 else {
-                    tc.getVirtualViewMap().get(messageReceived.getNickname()).goToWaitingRoom();
+                    tc.getVirtualViewMap().get(messageReceived.getNickname()).waitForOthersMoves("team");
                 }
                 break;
 
@@ -156,12 +156,12 @@ public class StartController {
                     tc.sendAllModel();
 
                     for (int i=1; i<gm.getNumPlayers(); i++){
-                        tc.getVirtualViewMap().get(gm.getArrayPlayers()[i].getNickname()).goToWaitingRoom();
+                        tc.getVirtualViewMap().get(gm.getArrayPlayers()[i].getNickname()).waitForOthersMoves("tower's color");
                     }
 
                     tc.getVirtualViewMap().get(gm.getArrayPlayers()[0].getNickname()).selectAssistantCard(Arrays.asList(Card.values()));
                 } else {
-                    tc.getVirtualViewMap().get(messageReceived.getNickname()).goToWaitingRoom();
+                    tc.getVirtualViewMap().get(messageReceived.getNickname()).waitForOthersMoves("tower's color");
                 }
                 break;
 

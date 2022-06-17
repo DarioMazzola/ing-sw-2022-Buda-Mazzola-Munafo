@@ -37,6 +37,7 @@ public enum MessageType {
     REMEMBER_NICKNAME,
     SELECT_CHAT,
     CHAT_MESSAGE_SERVER_CLIENT,
+    WAIT_FOR_OTHERS_MOVES,
 
     /*--Command Messages--*/
     CHOSEN_ASSISTANT_CARD,

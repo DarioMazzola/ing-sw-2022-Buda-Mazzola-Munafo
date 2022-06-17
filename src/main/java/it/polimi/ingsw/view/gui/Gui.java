@@ -105,6 +105,11 @@ public class Gui extends ViewObservable implements UI {
     }
 
     @Override
+    public void waitForOthersMoves(String move) {
+
+    }
+
+    @Override
     public void selectRestoreGame() {
 
     }

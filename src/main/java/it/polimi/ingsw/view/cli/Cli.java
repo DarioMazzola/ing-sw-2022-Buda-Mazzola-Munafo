@@ -353,6 +353,11 @@ public class Cli extends ViewObservable implements UI {
     }
 
     @Override
+    public void waitForOthersMoves(String move) {
+        System.out.println("Another player is choosing the "+ move +". Wait your turn");
+    }
+
+    @Override
     public void selectAssistantCard(List<Card> availableCards) {
         stop = false;
         List<Card> playersDeck = gm.getPlayerByNickname(this.nickname).getDeck();

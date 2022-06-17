@@ -125,8 +125,11 @@ public class AnswerSerializer {
             case CHAT_MESSAGE_SERVER_CLIENT:
                 list.add(CHAT_MESSAGE_SERVER_CLIENT.toString());
                 break;
+            case WAIT_FOR_OTHERS_MOVES:
+                list.add(WAIT_FOR_OTHERS_MOVES.toString());
+                break;
             default:
-                throw new IllegalArgumentException("Message (+" + messageType + ") is not an answer message");
+                throw new IllegalArgumentException("Message (" + messageType + ") is not an answer message");
         }
 
         list.add(gsonMessage);
@@ -244,6 +247,9 @@ public class AnswerSerializer {
                 break;
             case CHAT_MESSAGE_SERVER_CLIENT:
                 answer = gson.fromJson(gsonMessage, ChatMessageServerClient.class);
+                break;
+            case WAIT_FOR_OTHERS_MOVES:
+                answer = gson.fromJson(gsonMessage, WaitForOthersMoves.class);
                 break;
             default:
                 throw new IllegalArgumentException("Message (" + messageType + ") is not an answer message");
