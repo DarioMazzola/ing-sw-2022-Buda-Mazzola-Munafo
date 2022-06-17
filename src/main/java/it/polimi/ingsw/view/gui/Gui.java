@@ -6,6 +6,7 @@ import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Wizard;
 import it.polimi.ingsw.observer.ViewObservable;
 import it.polimi.ingsw.view.UI;
+import it.polimi.ingsw.view.gui.scenes.ActionSceneController;
 import it.polimi.ingsw.view.gui.scenes.SelectAssistantCardSceneController;
 import it.polimi.ingsw.view.gui.scenes.SelectTowerColorSceneController;
 import it.polimi.ingsw.view.gui.scenes.SelectWizardSceneController;
@@ -78,7 +79,9 @@ public class Gui extends ViewObservable implements UI {
 
     @Override
     public void actionPhase(List<String> availableActions) {
+        ActionSceneController controller = new ActionSceneController(gm, nickname);
 
+        Platform.runLater(() -> SceneController.changeRootPane(observers, "ActionScene.fxml", controller));
     }
 
     @Override
