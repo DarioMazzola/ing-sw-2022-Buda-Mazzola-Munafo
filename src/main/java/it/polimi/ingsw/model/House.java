@@ -6,11 +6,11 @@ package it.polimi.ingsw.model;
  * @author Alessio Buda & Dario Mazzola
  */
 public enum House {
-    YELLOW("YELLOW", "\u001b[33m"),
-    BLUE("BLUE", "\u001b[34m"),
     GREEN("GREEN", "\u001b[32m"),
     RED("RED", "\u001b[31m"),
-    PINK("PINK", "\u001b[35;1m");
+    YELLOW("YELLOW", "\u001b[33m"),
+    PINK("PINK", "\u001b[35;1m"),
+    BLUE("BLUE", "\u001b[34m");
 
     public static final String RESET = "\u001B[0m";
 
