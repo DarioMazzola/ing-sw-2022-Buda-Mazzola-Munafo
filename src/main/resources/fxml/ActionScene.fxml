@@ -85,7 +85,7 @@
                               <Image url="@../images/randomImages/MotherNature.PNG" />
                            </image>
                         </ImageView>
-                        <Button fx:id="Island01Btn" disable="true" layoutX="11.0" layoutY="15.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="178.0" text="Button" visible="false" />
+                        <Button fx:id="Island01Btn" disable="true" layoutX="11.0" layoutY="15.0" mnemonicParsing="false" opacity="0.0" prefHeight="150.0" prefWidth="178.0" text="Button" />
                      </children>
                   </Pane>
                   <Pane fx:id="Island2" layoutX="210.0" layoutY="66.0" prefHeight="187.0" prefWidth="200.0">
@@ -136,7 +136,7 @@
                               <Image url="@../images/randomImages/MotherNature.PNG" />
                            </image>
                         </ImageView>
-                        <Button fx:id="Island02Btn" disable="true" layoutX="5.0" layoutY="4.0" mnemonicParsing="false" prefHeight="174.0" prefWidth="191.0" text="Button" />
+                        <Button fx:id="Island02Btn" disable="true" layoutX="5.0" layoutY="4.0" mnemonicParsing="false" opacity="0.0" prefHeight="174.0" prefWidth="191.0" text="Button" />
                      </children>
                   </Pane>
                   <Pane fx:id="Island0" layoutX="14.0" layoutY="363.0" prefHeight="187.0" prefWidth="200.0">
@@ -187,7 +187,7 @@
                               <Image url="@../images/randomImages/MotherNature.PNG" />
                            </image>
                         </ImageView>
-                        <Button fx:id="Island00Btn" disable="true" layoutX="-1.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="187.0" prefWidth="200.0" text="Button" />
+                        <Button fx:id="Island00Btn" disable="true" layoutX="-1.0" layoutY="-2.0" mnemonicParsing="false" opacity="0.0" prefHeight="187.0" prefWidth="200.0" text="Button" />
                      </children>
                   </Pane>
                   <Pane fx:id="Island3" layoutX="403.0" layoutY="7.0" prefHeight="187.0" prefWidth="200.0">
@@ -238,7 +238,7 @@
                               <Image url="@../images/randomImages/MotherNature.PNG" />
                            </image>
                         </ImageView>
-                        <Button fx:id="Island03Btn" disable="true" layoutX="8.0" layoutY="-1.0" mnemonicParsing="false" prefHeight="194.0" prefWidth="191.0" text="Button" />
+                        <Button fx:id="Island03Btn" disable="true" layoutX="8.0" layoutY="-1.0" mnemonicParsing="false" opacity="0.0" prefHeight="194.0" prefWidth="191.0" text="Button" />
                      </children>
                   </Pane>
                   <Pane fx:id="Island4" layoutX="616.0" layoutY="7.0" prefHeight="187.0" prefWidth="200.0">
@@ -289,7 +289,7 @@
                               <Image url="@../images/randomImages/MotherNature.PNG" />
                            </image>
                         </ImageView>
-                        <Button fx:id="Island04Btn" disable="true" layoutX="11.0" layoutY="-4.0" mnemonicParsing="false" prefHeight="194.0" prefWidth="191.0" text="Button" />
+                        <Button fx:id="Island04Btn" disable="true" layoutX="11.0" layoutY="-4.0" mnemonicParsing="false" opacity="0.0" prefHeight="194.0" prefWidth="191.0" text="Button" />
                      </children>
                   </Pane>
                   <Pane fx:id="Island5" layoutX="826.0" layoutY="52.0" prefHeight="187.0" prefWidth="200.0">
@@ -340,7 +340,7 @@
                               <Image url="@../images/randomImages/MotherNature.PNG" />
                            </image>
                         </ImageView>
-                        <Button fx:id="Island05Btn" disable="true" layoutX="12.0" layoutY="7.0" mnemonicParsing="false" prefHeight="161.0" prefWidth="185.0" text="Button" />
+                        <Button fx:id="Island05Btn" disable="true" layoutX="12.0" layoutY="7.0" mnemonicParsing="false" opacity="0.0" prefHeight="161.0" prefWidth="185.0" text="Button" />
                      </children>
                   </Pane>
                   <Pane fx:id="Island6" layoutX="1026.0" layoutY="184.0" prefHeight="187.0" prefWidth="200.0">
@@ -391,7 +391,7 @@
                               <Image url="@../images/randomImages/MotherNature.PNG" />
                            </image>
                         </ImageView>
-                        <Button fx:id="Island06Btn" disable="true" layoutX="19.0" layoutY="8.0" mnemonicParsing="false" prefHeight="161.0" prefWidth="178.0" text="Button" />
+                        <Button fx:id="Island06Btn" disable="true" layoutX="19.0" layoutY="8.0" mnemonicParsing="false" opacity="0.0" prefHeight="161.0" prefWidth="178.0" text="Button" />
                      </children>
                   </Pane>
                   <Pane fx:id="Island7" layoutX="1026.0" layoutY="366.0" prefHeight="187.0" prefWidth="200.0">
@@ -442,7 +442,7 @@
                               <Image url="@../images/randomImages/MotherNature.PNG" />
                            </image>
                         </ImageView>
-                        <Button fx:id="Island07Btn" disable="true" layoutX="16.0" layoutY="3.0" mnemonicParsing="false" prefHeight="174.0" prefWidth="191.0" text="Button" />
+                        <Button fx:id="Island07Btn" disable="true" layoutX="16.0" layoutY="3.0" mnemonicParsing="false" opacity="0.0" prefHeight="174.0" prefWidth="191.0" text="Button" />
                      </children>
                   </Pane>
                   <Pane fx:id="Island9" layoutX="616.0" layoutY="519.0" prefHeight="187.0" prefWidth="200.0">
@@ -493,7 +493,7 @@
                               <Image url="@../images/randomImages/MotherNature.PNG" />
                            </image>
                         </ImageView>
-                        <Button fx:id="Island09Btn" disable="true" layoutX="20.0" layoutY="14.0" mnemonicParsing="false" prefHeight="174.0" prefWidth="178.0" text="Button" />
+                        <Button fx:id="Island09Btn" disable="true" layoutX="20.0" layoutY="14.0" mnemonicParsing="false" opacity="0.0" prefHeight="174.0" prefWidth="178.0" text="Button" />
                      </children>
                   </Pane>
                   <Pane fx:id="Island8" layoutX="826.0" layoutY="470.0" prefHeight="187.0" prefWidth="200.0">
@@ -544,7 +544,7 @@
                               <Image url="@../images/randomImages/MotherNature.PNG" />
                            </image>
                         </ImageView>
-                        <Button fx:id="Island08Btn" disable="true" layoutX="20.0" layoutY="1.0" mnemonicParsing="false" prefHeight="174.0" prefWidth="178.0" text="Button" />
+                        <Button fx:id="Island08Btn" disable="true" layoutX="20.0" layoutY="1.0" mnemonicParsing="false" opacity="0.0" prefHeight="174.0" prefWidth="178.0" text="Button" />
                      </children>
                   </Pane>
                   <Pane fx:id="Island10" layoutX="403.0" layoutY="519.0" prefHeight="187.0" prefWidth="200.0">
@@ -595,7 +595,7 @@
                               <Image url="@../images/randomImages/MotherNature.PNG" />
                            </image>
                         </ImageView>
-                        <Button fx:id="Island10Btn" disable="true" layoutX="13.0" layoutY="10.0" mnemonicParsing="false" prefHeight="174.0" prefWidth="178.0" text="Button" />
+                        <Button fx:id="Island10Btn" disable="true" layoutX="13.0" layoutY="10.0" mnemonicParsing="false" opacity="0.0" prefHeight="174.0" prefWidth="178.0" text="Button" />
                      </children>
                   </Pane>
                   <Pane fx:id="Island11" layoutX="210.0" layoutY="470.0" prefHeight="187.0" prefWidth="200.0">
@@ -646,7 +646,7 @@
                               <Image url="@../images/randomImages/MotherNature.PNG" />
                            </image>
                         </ImageView>
-                        <Button fx:id="Island11Btn" disable="true" layoutX="-6.0" layoutY="-4.0" mnemonicParsing="false" prefHeight="194.0" prefWidth="210.0" text="Button" />
+                        <Button fx:id="Island11Btn" disable="true" layoutX="-6.0" layoutY="-4.0" mnemonicParsing="false" opacity="0.0" prefHeight="194.0" prefWidth="210.0" text="Button" />
                      </children>
                   </Pane>
                   <Pane fx:id="Cloud3Num1" layoutX="471.0" layoutY="296.0" prefHeight="150.0" prefWidth="145.0">
