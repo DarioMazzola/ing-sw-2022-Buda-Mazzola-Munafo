@@ -20,7 +20,7 @@
                <children>
                   <ImageView fx:id="firstWizardImage" fitHeight="433.0" fitWidth="532.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/wizards/fisrt.png" />
+                        <Image url="@../images/wizards/first.png" />
                      </image>
                      <HBox.margin>
                         <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
