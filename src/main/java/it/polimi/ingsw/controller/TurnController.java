@@ -463,5 +463,11 @@ public class TurnController {
     public void resendActionPhase(String nickname){
         virtualViewMap.get(nickname).actionPhase(actionController.getActions());
     }
+
+    public void sendNickname(String nickname) {
+        virtualViewMap.get(nickname).selectNickname();
+        virtualViewMap.remove(nickname);
+        queue.remove(nickname);
+    }
 }
 

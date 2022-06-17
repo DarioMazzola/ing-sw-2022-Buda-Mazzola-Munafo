@@ -96,7 +96,9 @@ public class Server {
                 }
             }
             else { // the player was not present in the saved game, he/she cannot play
+                turnController.loginHandler(sender, clientHandler);
                 turnController.showError(sender, GAME_RESTORED_NICKNAME_NOT_PRESENT.toString());
+                turnController.sendNickname(sender);
             }
         }
 
