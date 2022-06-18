@@ -1870,7 +1870,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     path = "images/CharacterCards/Herald.jpg";
                     break;
                 case CENTAUR:
-                    path = "images/CharacterCards/Centuar.jpg";
+                    path = "images/CharacterCards/Centaur.jpg";
                     break;
                 case JOLLY:
                     path = "images/CharacterCards/Jolly.jpg";
@@ -1952,7 +1952,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     path = "images/CharacterCards/Herald.jpg";
                     break;
                 case CENTAUR:
-                    path = "images/CharacterCards/Centuar.jpg";
+                    path = "images/CharacterCards/Centaur.jpg";
                     break;
                 case JOLLY:
                     path = "images/CharacterCards/Jolly.jpg";
@@ -2643,52 +2643,52 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         if(p.getCardInUse() != null) {
             switch (p.getCardInUse()) {
                 case CARD1:
-                    image = new Image("/images/assistant/Assistente_1.jpg");
+                    image = new Image("/images/assistant/Assistente_1.png");
                     imgview.setImage(image);
                     break;
 
                 case CARD2:
-                    image = new Image("/images/assistant/Assistente_2.jpg");
+                    image = new Image("/images/assistant/Assistente_2.png");
                     imgview.setImage(image);
                     break;
 
                 case CARD3:
-                    image = new Image("/images/assistant/Assistente_3.jpg");
+                    image = new Image("/images/assistant/Assistente_3.png");
                     imgview.setImage(image);
                     break;
 
                 case CARD4:
-                    image = new Image("/images/assistant/Assistente_4.jpg");
+                    image = new Image("/images/assistant/Assistente_4.png");
                     imgview.setImage(image);
                     break;
 
                 case CARD5:
-                    image = new Image("/images/assistant/Assistente_5.jpg");
+                    image = new Image("/images/assistant/Assistente_5.png");
                     imgview.setImage(image);
                     break;
 
                 case CARD6:
-                    image = new Image("/images/assistant/Assistente_6.jpg");
+                    image = new Image("/images/assistant/Assistente_6.png");
                     imgview.setImage(image);
                     break;
 
                 case CARD7:
-                    image = new Image("/images/assistant/Assistente_7.jpg");
+                    image = new Image("/images/assistant/Assistente_7.png");
                     imgview.setImage(image);
                     break;
 
                 case CARD8:
-                    image = new Image("/images/assistant/Assistente_8.jpg");
+                    image = new Image("/images/assistant/Assistente_8.png");
                     imgview.setImage(image);
                     break;
 
                 case CARD9:
-                    image = new Image("/images/assistant/Assistente_9.jpg");
+                    image = new Image("/images/assistant/Assistente_9.png");
                     imgview.setImage(image);
                     break;
 
                 case CARD10:
-                    image = new Image("/images/assistant/Assistente_10.jpg");
+                    image = new Image("/images/assistant/Assistente_10.png");
                     imgview.setImage(image);
                     break;
             }
