@@ -105,10 +105,13 @@ public class Gui extends ViewObservable implements UI {
         }
         else {
             controller = (ActionSceneController) SceneController.getActiveController();
-            controller.setGm(gm);
+            Platform.runLater(() -> controller.setGm(gm));
 
-            System.out.println(gm.getPlayerByNickname(nickname).getDashboard());
-            System.out.println(gm.getIslandList());
+            if(availableActions.contains("Move Mother Nature")){
+                Platform.runLater(controller::setMoveMother);
+            }
+
+
             Platform.runLater(controller::initialize);
         }
     }
