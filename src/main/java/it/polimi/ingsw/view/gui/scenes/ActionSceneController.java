@@ -1,13 +1,12 @@
 package it.polimi.ingsw.view.gui.scenes;
 
-import it.polimi.ingsw.client.ReducedDashboard;
 import it.polimi.ingsw.client.ReducedGameModel;
 import it.polimi.ingsw.client.ReducedPlayer;
 import it.polimi.ingsw.exceptions.IslandException;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.House;
 import it.polimi.ingsw.observer.ViewObservable;
-import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -1000,13 +999,20 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     @FXML
     private Button Island12Btn;
 
-    private final ReducedGameModel gm;
+    private ReducedGameModel gm;
     private final String nickname;
     private ImageView[] EntranceMain;
     private Button[] diningHallMain;
     private House houseSelected;
     private List<Map<String, Node>> islandList;
     private House[] entranceArray;
+    private boolean moveMother;
+    private EventHandler<MouseEvent> selectStudent;
+    private EventHandler<MouseEvent> moveMotherFrom;
+    private EventHandler<MouseEvent> moveStudentToIsland;
+    private EventHandler<MouseEvent> selectStudentCancel;
+    private EventHandler<MouseEvent> moveMotherTo;
+
 
     private Button[] islandButtons;
 
@@ -2480,13 +2486,27 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         Dashboard2.setDisable(true);
         Dashboard3.setDisable(true);
 
+        selectStudent = this::selectStudent;
+        selectStudentCancel = this::selectStudentCancel;
+        moveMotherFrom = this::moveMotherFrom;
+        moveStudentToIsland = this::moveStudentToIsland;
+        moveMotherTo = this::moveMotherTo;
+
         for(ImageView student : EntranceMain){
-            student.setOnMouseClicked(this::selectStudent);
+            student.setOnMouseClicked(selectStudent);
         }
 
-        for(Button island : islandButtons) {
-            island.setOnMouseClicked(this::moveStudentToIsland);
+        if(moveMother) {
+            islandButtons[gm.getMotherIsland()].setOnMouseClicked(moveMotherFrom);
         }
+        else {
+            for (Button island : islandButtons) {
+                island.setOnMouseClicked(moveStudentToIsland);
+            }
+        }
+
+        System.out.println(gm.getPlayerByNickname(nickname).getDashboard());
+        System.out.println(gm.getIslandList());
     }
 
     private void FillCloud4(ImageView[] cloud1, ImageView stud1Cloud4Num1, ImageView stud2Cloud4Num1, ImageView stud3Cloud4Num1, ImageView stud4Cloud4Num1) {
@@ -2686,11 +2706,13 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         houseSelected = getHouseById(studentSelected.getId());
 
         for(ImageView student : EntranceMain){
-            if(! studentSelected.getId().equals(student.getId()))
-                student.setDisable(true);
+            if(! studentSelected.getId().equals(student.getId())) {
+                student.removeEventHandler(MouseEvent.MOUSE_CLICKED, selectStudent);
+                student.setOpacity(0.8);
+            }
         }
 
-        studentSelected.setOnMouseClicked(this::selectStudentCancel);
+        studentSelected.setOnMouseClicked(selectStudentCancel);
 
         //enables the diningHall of the house selected buttons
         getButtonByHouse(houseSelected).setDisable(false);
@@ -2702,17 +2724,13 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     }
 
     private void selectStudentCancel(MouseEvent mouseEvent) {
-        ImageView studentSelected = (ImageView) mouseEvent.getSource();
-
-        studentSelected.setOnMouseClicked(this::selectStudent);
-
         for(ImageView student : EntranceMain){
-            student.setDisable(false);
-            student.setOnMouseClicked(this::selectStudent);
+            student.setOpacity(1);
+            student.setOnMouseClicked(selectStudent);
         }
 
         for(Button b : islandButtons) {
-            b.setDisable(true);
+            b.removeEventHandler(MouseEvent.MOUSE_CLICKED, moveStudentToIsland);
         }
 
         getButtonByHouse(houseSelected).setDisable(true);
@@ -2729,31 +2747,24 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         Button islandClicked = (Button) event.getSource();
 
         for(Button b : islandButtons) {
-            b.setDisable(true);
+            b.removeEventHandler(MouseEvent.MOUSE_CLICKED, moveStudentToIsland);
+        }
+
+        for(ImageView student : EntranceMain){
+            student.removeEventHandler(MouseEvent.MOUSE_CLICKED, selectStudent);
+            student.setOpacity(1);
         }
 
         int islandPosition = getIslandById(islandClicked.getId());
-        System.out.println(islandPosition);
+        System.out.println("islandPosition: "+ islandPosition);
         notifyObserver(observer -> observer.onMoveStudentsToIsland(houseSelected, islandPosition));
     }
 
     private House getHouseById(String id) {
         int position = Integer.parseInt(String.valueOf(id.charAt(id.length() - 1))) - 1;
-        ReducedDashboard dashboard = gm.getPlayerByNickname(nickname).getDashboard();
-
-//        position = position - (gm.getNumPlayers() == 3 ? 9 : 7) + gm.getPlayerByNickname(nickname).getDashboard().getNumStudentsIn();
 
         System.out.println(entranceArray[position]);
         return entranceArray[position];
-
-//        int i = 0;
-//        for (House h : House.values()) {
-//            for (int j = 0; j < dashboard.getHouseStudents(h) && i != position; j++) {
-//                i++;
-//            }
-//            if (i == position)
-//                return h;
-//        }
     }
 
     private Button getButtonByHouse(House house) throws IllegalArgumentException {
@@ -2777,5 +2788,36 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     private int getIslandById (String id) {
         return Integer.parseInt(String.valueOf(id.charAt(6))) * 10
                 + Integer.parseInt(String.valueOf(id.charAt(7)));
+    }
+
+    public void setGm(ReducedGameModel gm) {
+        this.gm = gm;
+    }
+
+    public void setMoveMother(){
+        this.moveMother = true;
+    }
+
+    private void moveMotherFrom(MouseEvent event) {
+
+        int currentIsland = gm.getMotherIsland();
+
+        for(int i=0; i<gm.getPlayerByNickname(nickname).getMaxMoves(); i++) {
+            currentIsland++;
+            if(currentIsland == gm.getIslandList().size()) {
+                currentIsland = 0;
+            }
+            islandButtons[currentIsland + i].setOnMouseClicked(moveMotherTo);
+        }
+
+    }
+
+    private void moveMotherTo(MouseEvent event) {
+
+        int islandTo = getIslandById(((Button)event.getSource()).getId());
+
+        int position = islandTo - gm.getMotherIsland();
+
+        notifyObserver(observer -> observer.onMoveMotherNature(position));
     }
 }
