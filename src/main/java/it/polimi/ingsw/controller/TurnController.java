@@ -274,6 +274,7 @@ public class TurnController {
             view.selectNickname();
             return false;
         } else if (queue.contains(nickname)) {
+            view = new VirtualView(clientHandler);
             view.showError(NICKNAME_TAKEN.toString());
             view.selectNickname();
             return false;
