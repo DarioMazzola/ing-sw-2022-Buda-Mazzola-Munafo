@@ -105,13 +105,11 @@ public class Gui extends ViewObservable implements UI {
         }
         else {
             controller = (ActionSceneController) SceneController.getActiveController();
-            Platform.runLater(() -> controller.setGm(gm));
+            controller.setGm(gm);
 
             if(availableActions.contains("Move Mother Nature")){
-                Platform.runLater(controller::setMoveMother);
+                controller.setMoveMother();
             }
-
-
             Platform.runLater(controller::initialize);
         }
     }
@@ -163,7 +161,7 @@ public class Gui extends ViewObservable implements UI {
 
     @Override
     public void updateIslands(List<ReducedIsland> islands) {
-
+        gm.setIslandList(islands);
     }
 
     @Override

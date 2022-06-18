@@ -1021,6 +1021,60 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         this.nickname = nickname;
     }
 
+    public void initializeIsland() {
+        int i = 0;
+        Map<House, Integer> houseMap;
+        Image image;
+
+        while (i < gm.getIslandList().size()) {
+            houseMap = new HashMap<>(gm.getIslandList().get(i).getStudents());
+
+            islandList.get(i).get("Yellow").setVisible(houseMap.get(YELLOW) != 0);
+            islandList.get(i).get("Red").setVisible(houseMap.get(RED) != 0);
+            islandList.get(i).get("Blue").setVisible(houseMap.get(BLUE) != 0);
+            islandList.get(i).get("Green").setVisible(houseMap.get(GREEN) != 0);
+            islandList.get(i).get("Pink").setVisible(houseMap.get(PINK) != 0);
+
+            try {
+                if (gm.getIslandList().get(i).getColorTower() != null) {
+                    Text towerNumber = (Text) islandList.get(i).get("TowerNumber");
+                    ImageView tower = (ImageView) islandList.get(i).get("Tower");
+                    towerNumber.setText(Integer.toString(gm.getIslandList().get(i).getNumTowers()));
+
+                    if (gm.getIslandList().get(i).getColorTower() == BLACK) {
+                        image = new Image("images/towers/black_tower.png");
+                        tower.setImage(image);
+                    }
+                    if (gm.getIslandList().get(i).getColorTower() == GRAY) {
+                        image = new Image("images/towers/gray_tower.png");
+                        tower.setImage(image);
+                    }
+                    if (gm.getIslandList().get(i).getColorTower() == WHITE) {
+                        image = new Image("images/towers/white_tower.png");
+                        tower.setImage(image);
+                        towerNumber.setStyle("-fx-text-fill: #463333;");
+                    }
+                }
+            } catch (IslandException e) {}
+
+            if (gm.isExpertMode()) {
+                ImageView noEntryTile = (ImageView) islandList.get(i).get("NoEntryTile");
+                if (gm.getIslandList().get(i).getNoEntryTile() == 0) {
+                    noEntryTile.setVisible(false);
+                }
+            } else {
+                ImageView noEntryTile = (ImageView) islandList.get(i).get("NoEntryTile");
+                noEntryTile.setVisible(false);
+            }
+
+            if (gm.getMotherIsland() != i) {
+                ImageView mother = (ImageView) islandList.get(i).get("Mother");
+                mother.setVisible(false);
+            }
+            i++;
+        }
+    }
+
     public void initialize() {
 
         this.diningHallMain = new Button[]{diningHallMainGreen, diningHallMainRed, diningHallMainYellow,
@@ -2423,64 +2477,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             islandList.get(i).get("Pane").setDisable(true);
             i++;
         }
-        i = 0;
-        while (i < gm.getIslandList().size()) {
-            houseMap = new HashMap<>(gm.getIslandList().get(i).getStudents());
 
-            if (houseMap.get(YELLOW) == 0) {
-                islandList.get(i).get("Yellow").setVisible(false);
-            }
-            if (houseMap.get(RED) == 0) {
-                islandList.get(i).get("Red").setVisible(false);
-            }
-            if (houseMap.get(BLUE) == 0) {
-                islandList.get(i).get("Blue").setVisible(false);
-            }
-            if (houseMap.get(GREEN) == 0) {
-                islandList.get(i).get("Green").setVisible(false);
-            }
-            if (houseMap.get(PINK) == 0) {
-                islandList.get(i).get("Pink").setVisible(false);
-            }
-
-            try {
-                if (gm.getIslandList().get(i).getColorTower() != null) {
-                    Text towerNumber = (Text) islandList.get(i).get("TowerNumber");
-                    ImageView tower = (ImageView) islandList.get(i).get("Tower");
-                    towerNumber.setText(Integer.toString(gm.getIslandList().get(i).getNumTowers()));
-
-                    if (gm.getIslandList().get(i).getColorTower() == BLACK) {
-                        image = new Image("images/towers/black_tower.png");
-                        tower.setImage(image);
-                    }
-                    if (gm.getIslandList().get(i).getColorTower() == GRAY) {
-                        image = new Image("images/towers/gray_tower.png");
-                        tower.setImage(image);
-                    }
-                    if (gm.getIslandList().get(i).getColorTower() == WHITE) {
-                        image = new Image("images/towers/white_tower.png");
-                        tower.setImage(image);
-                        towerNumber.setStyle("-fx-text-fill: #463333;");
-                    }
-                }
-            } catch (IslandException e) {}
-
-            if (gm.isExpertMode()) {
-                ImageView noEntryTile = (ImageView) islandList.get(i).get("NoEntryTile");
-                if (gm.getIslandList().get(i).getNoEntryTile() == 0) {
-                    noEntryTile.setVisible(false);
-                }
-            } else {
-                ImageView noEntryTile = (ImageView) islandList.get(i).get("NoEntryTile");
-                noEntryTile.setVisible(false);
-            }
-
-            if (gm.getMotherIsland() != i) {
-                ImageView mother = (ImageView) islandList.get(i).get("Mother");
-                mother.setVisible(false);
-            }
-            i++;
-        }
+        initializeIsland();
 
         Dashboard1.setDisable(true);
         Dashboard2.setDisable(true);
