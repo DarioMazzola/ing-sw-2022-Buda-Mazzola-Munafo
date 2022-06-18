@@ -96,9 +96,21 @@ public class Gui extends ViewObservable implements UI {
 
     @Override
     public void actionPhase(List<String> availableActions) {
-        ActionSceneController controller = new ActionSceneController(gm, nickname);
 
-        Platform.runLater(() -> SceneController.changeRootPane(observers, "ActionScene.fxml", controller));
+        ActionSceneController controller;
+
+        if(! (SceneController.getActiveController() instanceof  ActionSceneController)) {
+            controller = new ActionSceneController(gm, nickname);
+            Platform.runLater(() -> SceneController.changeRootPane(observers, "ActionScene.fxml", controller));
+        }
+        else {
+            controller = (ActionSceneController) SceneController.getActiveController();
+            controller.setGm(gm);
+
+            System.out.println(gm.getPlayerByNickname(nickname).getDashboard());
+            System.out.println(gm.getIslandList());
+            Platform.runLater(controller::initialize);
+        }
     }
 
     @Override
