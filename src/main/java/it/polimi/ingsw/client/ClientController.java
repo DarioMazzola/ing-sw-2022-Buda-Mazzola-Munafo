@@ -288,6 +288,10 @@ public class ClientController extends Observer implements ViewObserver {
                 String nickname = rememberNickname.getNickname();
                 showTaskQueue.execute(() -> view.rememberNickname(nickname));
                 break;
+            case WAIT_FOR_OTHERS_MOVES:
+                String move = ((WaitForOthersMoves)message).getMove();
+                showTaskQueue.execute(() -> view.waitForOthersMoves(move));
+                break;
             default:
                 throw new IllegalStateException("Unexpected value: " + message.getType());
         }

@@ -100,6 +100,8 @@ public interface View {
      */
     void goToLobby();
 
+    void waitForOthersMoves(String move);
+
     /**
      * Asks the player whether he/she wants to restore a previously saved game.
      */
