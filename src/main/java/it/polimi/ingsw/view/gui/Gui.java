@@ -53,7 +53,7 @@ public class Gui extends ViewObservable implements UI {
     @Override
     public void selectWizard(List<Wizard> availableWizards) {
 
-        closeWaitForOthersMove();
+        Platform.runLater(this::closeWaitForOthersMove);
 
         SelectWizardSceneController controller = new SelectWizardSceneController(availableWizards);
 
@@ -86,6 +86,8 @@ public class Gui extends ViewObservable implements UI {
 
     @Override
     public void selectAssistantCard(List<Card> availableAssistantCard) {
+
+        Platform.runLater(this ::closeWaitForOthersMove);
 
         SelectAssistantCardSceneController controller = new SelectAssistantCardSceneController(gm, nickname, availableAssistantCard);
 
