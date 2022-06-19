@@ -68,7 +68,11 @@ public class Gui extends ViewObservable implements UI {
 
     @Override
     public void selectTeam(String[] teamArray, String[] leaderArray) {
+        Platform.runLater(SceneController::hidePopUp);
 
+        SelectTeamController controller = new SelectTeamController(teamArray, leaderArray);
+
+        Platform.runLater(() -> SceneController.changeRootPane(observers, "SelectTeamScene.fxml", controller));
     }
 
     @Override
