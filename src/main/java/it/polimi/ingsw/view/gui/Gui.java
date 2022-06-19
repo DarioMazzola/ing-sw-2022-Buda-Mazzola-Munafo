@@ -107,8 +107,8 @@ public class Gui extends ViewObservable implements UI {
             if (availableActions.contains("Move Mother Nature")) {
                 controller.setMoveMother();
             }
-            Platform.runLater(controller::initialize);
         }
+        Platform.runLater(controller::initializeEvents);
     }
 
     @Override
