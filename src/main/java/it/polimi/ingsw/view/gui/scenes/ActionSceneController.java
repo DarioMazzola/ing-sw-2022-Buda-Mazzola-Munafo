@@ -1744,7 +1744,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             i--;
         }
         while (houseMap.get(YELLOW) != 0) {
-            image = new Image("students/student_yellow.png");
+            image = new Image("images/students/student_yellow.png");
             EntranceDashboard3[i].setImage(image);
             EntranceDashboard3[i].setVisible(true);
             houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
