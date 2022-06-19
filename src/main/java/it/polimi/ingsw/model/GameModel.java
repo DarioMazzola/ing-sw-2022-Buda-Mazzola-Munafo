@@ -1,9 +1,6 @@
 package it.polimi.ingsw.model;
 
-import it.polimi.ingsw.client.ReducedDashboard;
-import it.polimi.ingsw.client.ReducedGameModel;
-import it.polimi.ingsw.client.ReducedIsland;
-import it.polimi.ingsw.client.ReducedPlayer;
+import it.polimi.ingsw.client.*;
 import it.polimi.ingsw.exceptions.*;
 import it.polimi.ingsw.messages.answer.*;
 import it.polimi.ingsw.model.interfaces.StudentAdderInterface;
@@ -334,12 +331,15 @@ public class GameModel extends Observable {
             }
         }
 
-        List<ReducedIsland> reducedIslands = new ArrayList<>();
+        ReducedCloud[] reducedClouds = new ReducedCloud[arrayClouds.length];
 
-        for(Island i : islandList)
-            reducedIslands.add(new ReducedIsland(i));
+        int j = 0;
+        for(Cloud i : arrayClouds) {
+            reducedClouds[j] = new ReducedCloud(i);
+            j++;
+        }
 
-        notifyObserver(new UpdateIsland(reducedIslands));
+        notifyObserver(new UpdateCloud(reducedClouds));
     }
 
     /**
@@ -549,7 +549,7 @@ public class GameModel extends Observable {
         return chat;
     }
 
-    public void setCharacterCardDeck(CharacterCard deck[]){
+    public void setCharacterCardDeck(CharacterCard[] deck){
         this.characterCardDeck = deck;
     }
     public String getTeamMate(String nickname) {
