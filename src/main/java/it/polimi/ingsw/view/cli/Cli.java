@@ -308,6 +308,7 @@ public class Cli extends ViewObservable implements UI {
 
     @Override
     public void goToWaitingRoom() {
+        System.out.println("Waiting for other players to make their choice or move ...");
         if (gm != null) {
             List<String> defaultActions = new ArrayList<>();
             defaultActions.add("See if the other player has finished his/hers turn");
@@ -871,7 +872,6 @@ public class Cli extends ViewObservable implements UI {
     @Override
     public void updateIslands(List<ReducedIsland> islands) {
         gm.setIslandList(islands);
-
     }
 
     @Override
