@@ -30,7 +30,7 @@
                      </font>
                   </Button>
                   <Pane layoutX="25.0" layoutY="90.0" prefHeight="84.0" prefWidth="350.0" />
-                  <Text fill="WHITE" layoutX="99.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Searching for new messages ...">
+                  <Text fx:id="ChatReceivedText" fill="WHITE" layoutX="99.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Searching for new messages ...">
                      <font>
                         <Font size="15.0" />
                      </font>

@@ -118,6 +118,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     private Pane Chat;
 
     @FXML
+    private Text ChatReceivedText;
+
+    @FXML
     private Pane Cloud4Num1;
     @FXML
     private Pane Cloud4Num2;
@@ -2293,6 +2296,10 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             }
 
         }
+    }
+
+    private void initializeChat (String msg) {
+        ChatReceivedText.setText(msg);
     }
 
     public void setGameModel(ReducedGameModel gm) {
