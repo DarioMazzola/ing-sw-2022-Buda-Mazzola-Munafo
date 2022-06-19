@@ -9,6 +9,7 @@ import it.polimi.ingsw.view.UI;
 import it.polimi.ingsw.view.gui.scenes.*;
 import javafx.application.Platform;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -101,7 +102,7 @@ public class Gui extends ViewObservable implements UI {
             Platform.runLater(() -> SceneController.changeRootPane(observers, "ActionScene.fxml", controller));
         } else {
             controller = (ActionSceneController) SceneController.getActiveController();
-            controller.setGm(gm);
+            controller.setGameModel(gm);
 
             if (availableActions.contains("Move Mother Nature")) {
                 controller.setMoveMother();
@@ -123,6 +124,12 @@ public class Gui extends ViewObservable implements UI {
     @Override
     public void goToWaitingRoom() {
         System.out.println("GoToWaitingRoom");
+
+        if (!(SceneController.getActiveController() instanceof ActionSceneController) && gm != null) {
+            ActionSceneController controller = new ActionSceneController(gm, nickname);
+            Platform.runLater(() -> SceneController.changeRootPane(observers, "ActionScene.fxml", controller));
+        }
+
     }
 
     @Override
@@ -164,46 +171,108 @@ public class Gui extends ViewObservable implements UI {
     @Override
     public void updateIslands(List<ReducedIsland> islands) {
         gm.setIslandList(islands);
+
+        updateActionSceneGM();
+
+        if (SceneController.getActiveController() instanceof ActionSceneController) {
+            ActionSceneController controller = (ActionSceneController) SceneController.getActiveController();
+            Platform.runLater(controller::updateIslands);
+        }
     }
 
     @Override
     public void updatePlayer(ReducedPlayer player) {
+        int index = Arrays.asList(gm.getArrayPlayers()).indexOf(gm.getPlayerByNickname(player.getNickname()));
+        gm.setPlayer(index, player);
 
+        updateActionSceneGM();
+
+        if (SceneController.getActiveController() instanceof ActionSceneController) {
+            ActionSceneController controller = (ActionSceneController) SceneController.getActiveController();
+            Platform.runLater(() -> controller.updatePlayer(player));
+        }
     }
 
     @Override
     public void updateClouds(ReducedCloud[] clouds) {
+        System.out.println("UpdateClouds: ");
+        for (ReducedCloud c : clouds) {
+            System.out.println(c);
+        }
+        gm.setArrayClouds(clouds);
 
+        updateActionSceneGM();
+
+        if (SceneController.getActiveController() instanceof ActionSceneController) {
+            ActionSceneController controller = (ActionSceneController) SceneController.getActiveController();
+            Platform.runLater(controller::updateClouds);
+        }
     }
 
     @Override
     public void updateTotalCoins(int totCoins) {
-
+        gm.setTotalCoins(totCoins);
+        // totCoins not shown in ActionScene, no update needed
     }
 
     @Override
     public void updateMotherNature(int motherIsland) {
+        gm.setMotherIsland(motherIsland);
 
+        updateActionSceneGM();
+
+        if (SceneController.getActiveController() instanceof ActionSceneController) {
+            ActionSceneController controller = (ActionSceneController) SceneController.getActiveController();
+            Platform.runLater(controller::updateMotherNature);
+        }
     }
 
     @Override
     public void updateCurrentPlayer(ReducedPlayer currentPlayer) {
+        gm.setCurrentPlayer(currentPlayer);
 
+        updateActionSceneGM();
+
+        if (SceneController.getActiveController() instanceof ActionSceneController) {
+            ActionSceneController controller = (ActionSceneController) SceneController.getActiveController();
+            Platform.runLater(() -> controller.updateCurrentPlayer(currentPlayer));
+        }
     }
 
     @Override
     public void updateDiningHall(ReducedDiningHall diningHall) {
+        gm.getPlayerByNickname(diningHall.getNickname()).getDashboard().setDiningHall(diningHall);
 
+        updateActionSceneGM();
+
+        if (SceneController.getActiveController() instanceof ActionSceneController) {
+            ActionSceneController controller = (ActionSceneController) SceneController.getActiveController();
+            Platform.runLater(() -> controller.updateDiningHall(diningHall));
+        }
     }
 
     @Override
     public void updateDashboard(ReducedDashboard dashboard) {
+        gm.getPlayerByNickname(dashboard.getNickname()).setDashboard(dashboard);
 
+        updateActionSceneGM();
+
+        if (SceneController.getActiveController() instanceof ActionSceneController) {
+            ActionSceneController controller = (ActionSceneController) SceneController.getActiveController();
+            Platform.runLater(() -> controller.updateDashboard(dashboard));
+        }
     }
 
     @Override
     public void updateGameModel(ReducedGameModel gameModel) {
         this.gm = gameModel;
+
+        updateActionSceneGM();
+
+        if (SceneController.getActiveController() instanceof ActionSceneController) {
+            ActionSceneController controller = (ActionSceneController) SceneController.getActiveController();
+            Platform.runLater(controller::initialize);
+        }
     }
 
     @Override
@@ -219,5 +288,14 @@ public class Gui extends ViewObservable implements UI {
     @Override
     public void notifyGameFull() {
 
+    }
+
+    private void updateActionSceneGM() {
+        ActionSceneController controller;
+
+        if (SceneController.getActiveController() instanceof ActionSceneController) {
+            controller = (ActionSceneController) SceneController.getActiveController();
+            controller.setGameModel(gm);
+        }
     }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
@@ -7,6 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -751,17 +753,144 @@
                   </Text>
                   <Pane layoutX="26.0" layoutY="24.0" prefHeight="150.0" prefWidth="103.0">
                      <children>
-                        <ImageView fx:id="CharacterCard1" fitHeight="150.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" />
+                        <VBox layoutX="-15.0" layoutY="-8.0" prefHeight="150.0" prefWidth="30.0">
+                           <children>
+                              <ImageView fx:id="BlueStdCard1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../images/students/student_blue.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" />
+                                 </VBox.margin></ImageView>
+                              <ImageView fx:id="GreenStdCard1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../images/students/student_green.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" top="2.0" />
+                                 </VBox.margin></ImageView>
+                              <ImageView fx:id="PinkStdCard1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../images/students/student_pink.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" top="2.0" />
+                                 </VBox.margin></ImageView>
+                              <ImageView fx:id="RedStdCard1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../images/students/student_red.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" top="2.0" />
+                                 </VBox.margin></ImageView>
+                              <ImageView fx:id="YellowStdCard1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../images/students/student_yellow.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets top="2.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                        </VBox>
                      </children>
                   </Pane>
                   <Pane layoutX="162.0" layoutY="24.0" prefHeight="150.0" prefWidth="103.0">
                      <children>
                         <ImageView fx:id="CharacterCard2" fitHeight="150.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" />
+                        <VBox layoutX="-15.0" layoutY="-8.0" prefHeight="150.0" prefWidth="30.0">
+                           <children>
+                              <ImageView fx:id="BluStdCard2" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../images/students/student_blue.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <ImageView fx:id="GreenStdCard2" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../images/students/student_green.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" top="2.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <ImageView fx:id="PinkStdCard2" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../images/students/student_pink.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" top="2.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <ImageView fx:id="RedStdCard2" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../images/students/student_red.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" top="2.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <ImageView fx:id="YellowStdCard2" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../images/students/student_yellow.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets top="2.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                        </VBox>
                      </children>
                   </Pane>
                   <Pane layoutX="297.0" layoutY="24.0" prefHeight="150.0" prefWidth="103.0">
                      <children>
                         <ImageView fx:id="CharacterCard3" fitHeight="150.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" />
+                        <VBox layoutX="-15.0" layoutY="-8.0" prefHeight="150.0" prefWidth="30.0">
+                           <children>
+                              <ImageView fx:id="BlueStdCard3" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../images/students/student_blue.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <ImageView fx:id="GreenStdCard3" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../images/students/student_green.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" top="2.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <ImageView fx:id="PinkStdCard3" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../images/students/student_pink.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" top="2.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <ImageView fx:id="RedStdCard3" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../images/students/student_red.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" top="2.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <ImageView fx:id="YellowStdCard3" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../images/students/student_yellow.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets top="2.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                        </VBox>
                      </children>
                   </Pane>
                   <ImageView fitHeight="127.0" fitWidth="115.0" layoutX="93.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true">

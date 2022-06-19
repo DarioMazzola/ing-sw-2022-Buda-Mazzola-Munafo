@@ -1,7 +1,7 @@
+
 package it.polimi.ingsw.view.gui.scenes;
 
-import it.polimi.ingsw.client.ReducedGameModel;
-import it.polimi.ingsw.client.ReducedPlayer;
+import it.polimi.ingsw.client.*;
 import it.polimi.ingsw.exceptions.IslandException;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.House;
@@ -60,10 +60,54 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     private Pane Dashboard3;
     @FXML
     private ImageView CharacterCard1;
+
+    @FXML
+    private ImageView BlueStdCard1;
+
+    @FXML
+    private ImageView GreenStdCard1;
+
+    @FXML
+    private ImageView PinkStdCard1;
+
+    @FXML
+    private ImageView RedStdCard1;
+
+    @FXML
+    private ImageView YellowStdCard1;
+
     @FXML
     private ImageView CharacterCard2;
     @FXML
+    private ImageView BlueStdCard2;
+
+    @FXML
+    private ImageView GreenStdCard2;
+
+    @FXML
+    private ImageView PinkStdCard2;
+
+    @FXML
+    private ImageView RedStdCard2;
+
+    @FXML
+    private ImageView YellowStdCard2;
+    @FXML
     private ImageView CharacterCard3;
+    @FXML
+    private ImageView BlueStdCard3;
+
+    @FXML
+    private ImageView GreenStdCard3;
+
+    @FXML
+    private ImageView PinkStdCard3;
+
+    @FXML
+    private ImageView RedStdCard3;
+
+    @FXML
+    private ImageView YellowStdCard3;
     @FXML
     private Text CostCharacterCard1;
     @FXML
@@ -1001,6 +1045,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
     private ReducedGameModel gm;
     private final String nickname;
+
+    private final int numMain;
     private ImageView[] EntranceMain;
     private Button[] diningHallMain;
     private House houseSelected;
@@ -1019,75 +1065,23 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     public ActionSceneController(ReducedGameModel gm, String nickname) {
         this.gm = gm;
         this.nickname = nickname;
+        numMain = Arrays.asList(gm.getArrayPlayers()).indexOf(gm.getPlayerByNickname(nickname));
     }
 
-    public void initializeIsland() {
-        int i = 0;
-        Map<House, Integer> houseMap;
-        Image image;
+    // <--------- Initialize methods --------->
+    private void initializeMainPlayer() {
+        initializeDashboardMain();
 
-        while (i < gm.getIslandList().size()) {
-            houseMap = new HashMap<>(gm.getIslandList().get(i).getStudents());
+        fillGraveyard(GraveyardMain, gm.getArrayPlayers()[numMain]);
+        fillCardInUse(CardInUseMain, gm.getArrayPlayers()[numMain]);
 
-            islandList.get(i).get("Yellow").setVisible(houseMap.get(YELLOW) != 0);
-            islandList.get(i).get("Red").setVisible(houseMap.get(RED) != 0);
-            islandList.get(i).get("Blue").setVisible(houseMap.get(BLUE) != 0);
-            islandList.get(i).get("Green").setVisible(houseMap.get(GREEN) != 0);
-            islandList.get(i).get("Pink").setVisible(houseMap.get(PINK) != 0);
-
-            try {
-                if (gm.getIslandList().get(i).getColorTower() != null) {
-                    Text towerNumber = (Text) islandList.get(i).get("TowerNumber");
-                    ImageView tower = (ImageView) islandList.get(i).get("Tower");
-                    towerNumber.setText(Integer.toString(gm.getIslandList().get(i).getNumTowers()));
-
-                    if (gm.getIslandList().get(i).getColorTower() == BLACK) {
-                        image = new Image("images/towers/black_tower.png");
-                        tower.setImage(image);
-                    }
-                    if (gm.getIslandList().get(i).getColorTower() == GRAY) {
-                        image = new Image("images/towers/gray_tower.png");
-                        tower.setImage(image);
-                    }
-                    if (gm.getIslandList().get(i).getColorTower() == WHITE) {
-                        image = new Image("images/towers/white_tower.png");
-                        tower.setImage(image);
-                        towerNumber.setStyle("-fx-text-fill: #463333;");
-                    }
-                }
-            } catch (IslandException e) {}
-
-            if (gm.isExpertMode()) {
-                ImageView noEntryTile = (ImageView) islandList.get(i).get("NoEntryTile");
-                if (gm.getIslandList().get(i).getNoEntryTile() == 0) {
-                    noEntryTile.setVisible(false);
-                }
-            } else {
-                ImageView noEntryTile = (ImageView) islandList.get(i).get("NoEntryTile");
-                noEntryTile.setVisible(false);
-            }
-
-            if (gm.getMotherIsland() != i) {
-                ImageView mother = (ImageView) islandList.get(i).get("Mother");
-                mother.setVisible(false);
-            }
-            i++;
+        if (gm.isExpertMode()) {
+            setCoins(NumOfCoins, gm.getArrayPlayers()[numMain]);
         }
     }
 
-    public void initialize() {
-
-        this.diningHallMain = new Button[]{diningHallMainGreen, diningHallMainRed, diningHallMainYellow,
-                diningHallMainBlue, diningHallMainPink};
-
-        this.islandButtons = new Button[]{Island00Btn, Island01Btn, Island02Btn, Island03Btn, Island04Btn, Island05Btn,
-                Island06Btn, Island07Btn, Island08Btn, Island09Btn, Island10Btn, Island11Btn};
-
-        int numMain = Arrays.asList(gm.getArrayPlayers()).indexOf(gm.getPlayerByNickname(nickname));
-
-        Map<House, Integer> houseMap;
-        Map<House, Boolean> profMap;
-
+    private void initializeDashboardMain() {
+        Image image;
         int numStudents = 6;
         if (gm.getNumPlayers() == 3) {
             numStudents = 8;
@@ -1097,18 +1091,10 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             numTowers = 5;
         }
 
-        int i;
-
-        Image image;
-
-        //first player
         EntranceMain = new ImageView[]{EntranceStudMain1, EntranceStudMain2, EntranceStudMain3, EntranceStudMain4, EntranceStudMain5, EntranceStudMain6, EntranceStudMain7, EntranceStudMain8, EntranceStudMain9};
 
-        fillGraveyard(GraveyardMain, gm.getArrayPlayers()[numMain]);
-        fillCardInUse(CardInUseMain, gm.getArrayPlayers()[numMain]);
-
-        houseMap = new HashMap<>(gm.getArrayPlayers()[numMain].getDashboard().getStudents());
-        i = numStudents;
+        Map<House, Integer> houseMap = new HashMap<>(gm.getArrayPlayers()[numMain].getDashboard().getStudents());
+        int i = numStudents;
 
         entranceArray = new House[numStudents + 1];
 
@@ -1157,6 +1143,42 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             i--;
         }
 
+        initializeDiningHallMain();
+
+        ImageView[] TowersMain = new ImageView[8];
+        FillTowers(TowersMain, Tower1Main, Tower2Main, Tower3Main, Tower4Main, Tower5Main, Tower6Main, Tower7Main, Tower8Main);
+
+        int numTow = gm.getArrayPlayers()[numMain].getDashboard().getNumTowersIn();
+        Color colorTower = gm.getArrayPlayers()[numMain].getDashboard().getTowerColor();
+        i = numTowers;
+        String path;
+        if (colorTower == BLACK) {
+            path = "images/towers/torre_nera.png";
+        } else if (colorTower == Color.GRAY) {
+            path = "images/towers/torre_grigia.png";
+        } else {
+            path = "images/towers/torre_bianca.png";
+        }
+
+        while (numTow > 0) {
+            image = new Image(path);
+            TowersMain[i].setImage(image);
+            TowersMain[i].setVisible(true);
+            i--;
+            numTow--;
+        }
+        while (i >= 0) {
+            TowersMain[i].setVisible(false);
+            i--;
+        }
+    }
+
+    private void initializeDiningHallMain() {
+        // parameters
+        Map<House, Boolean> profMap;
+        Image image;
+
+        // Main player dining hall initialization
         ImageView[] DiningMainRed = new ImageView[10];
         FillDiningHall(DiningMainRed, DiningRedStd1Main, DiningRedStd2Main, DiningRedStd3Main, DiningRedStd4Main, DiningRedStd5Main, DiningRedStd6Main, DiningRedStd7Main, DiningRedStd8Main, DiningRedStd9Main, DiningRedStd10Main);
 
@@ -1172,8 +1194,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         ImageView[] DiningMainYellow = new ImageView[10];
         FillDiningHall(DiningMainYellow, DiningYellowStd1Main, DiningYellowStd2Main, DiningYellowStd3Main, DiningYellowStd4Main, DiningYellowStd5Main, DiningYellowStd6Main, DiningYellowStd7Main, DiningYellowStd8Main, DiningYellowStd9Main, DiningYellowStd10Main);
 
-        houseMap = new HashMap<>(gm.getArrayPlayers()[numMain].getDashboard().getDiningHall().getStudents());
-        i = 0;
+        Map <House, Integer> houseMap = new HashMap<>(gm.getArrayPlayers()[numMain].getDashboard().getDiningHall().getStudents());
+        int i = 0;
         while (houseMap.get(House.GREEN) != 0) {
             image = new Image("images/students/student_green.png");
             DiningMainGreen[i].setImage(image);
@@ -1271,43 +1293,31 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         } else {
             ProfBlueMain.setVisible(false);
         }
+    }
 
-        ImageView[] TowersMain = new ImageView[8];
-        FillTowers(TowersMain, Tower1Main, Tower2Main, Tower3Main, Tower4Main, Tower5Main, Tower6Main, Tower7Main, Tower8Main);
 
-        int numTow = gm.getArrayPlayers()[numMain].getDashboard().getNumTowersIn();
-        Color colorTower = gm.getArrayPlayers()[numMain].getDashboard().getTowerColor();
-        i = numTowers;
-        String path;
-        if (colorTower == BLACK) {
-            path = "images/towers/torre_nera.png";
-        } else if (colorTower == Color.GRAY) {
-            path = "images/towers/torre_grigia.png";
-        } else {
-            path = "images/towers/torre_bianca.png";
-        }
-
-        while (numTow > 0) {
-            image = new Image(path);
-            TowersMain[i].setImage(image);
-            TowersMain[i].setVisible(true);
-            i--;
-            numTow--;
-        }
-        while (i >= 0) {
-            TowersMain[i].setVisible(false);
-            i--;
-        }
-
-        //second player
-        ImageView[] EntranceDashboard1 = new ImageView[9];
-        FillEntrance(EntranceDashboard1, EntranceStudDashboard1Stud1, EntranceStudDashboard1Stud2, EntranceStudDashboard1Stud3, EntranceStudDashboard1Stud4, EntranceStudDashboard1Stud5, EntranceStudDashboard1Stud6, EntranceStudDashboard1Stud7, EntranceStudDashboard1Stud8, EntranceStudDashboard1Stud9);
+    private void initializeSecondPlayer() {
+        initializeDashboardSecondPlayer();
 
         fillGraveyard(GraveyardDashboard1, gm.getArrayPlayers()[(numMain + 1) % gm.getNumPlayers()]);
         fillCardInUse(CardInUseDashboard1, gm.getArrayPlayers()[(numMain + 1) % gm.getNumPlayers()]);
+    }
 
-        houseMap = new HashMap<>(gm.getArrayPlayers()[(numMain + 1) % gm.getNumPlayers()].getDashboard().getStudents());
-        i = numStudents;
+    private void initializeDashboardSecondPlayer() {
+        int numStudents = 6;
+        if (gm.getNumPlayers() == 3) {
+            numStudents = 8;
+        }
+        int numTowers = 7;
+        if (gm.getNumPlayers() == 3) {
+            numTowers = 5;
+        }
+        Image image;
+        ImageView[] EntranceDashboard1 = new ImageView[9];
+        FillEntrance(EntranceDashboard1, EntranceStudDashboard1Stud1, EntranceStudDashboard1Stud2, EntranceStudDashboard1Stud3, EntranceStudDashboard1Stud4, EntranceStudDashboard1Stud5, EntranceStudDashboard1Stud6, EntranceStudDashboard1Stud7, EntranceStudDashboard1Stud8, EntranceStudDashboard1Stud9);
+
+        Map<House, Integer> houseMap = new HashMap<>(gm.getArrayPlayers()[(numMain + 1) % gm.getNumPlayers()].getDashboard().getStudents());
+        int i = numStudents;
         while (houseMap.get(House.BLUE) != 0) {
             image = new Image("images/students/student_blue.png");
             EntranceDashboard1[i].setImage(image);
@@ -1348,7 +1358,42 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             i--;
         }
 
+        initializeDiningHallSecondPlayer();
+
+        ImageView[] TowersDashboard1 = new ImageView[8];
+        FillTowers(TowersDashboard1, Tower1Dashboard1, Tower2Dashboard1, Tower3Dashboard1, Tower4Dashboard1, Tower5Dashboard1, Tower6Dashboard1, Tower7Dashboard1, Tower8Dashboard1);
+
+        int numTow = gm.getArrayPlayers()[(numMain + 1) % gm.getNumPlayers()].getDashboard().getNumTowersIn();
+        Color colorTower = gm.getArrayPlayers()[(numMain + 1) % gm.getNumPlayers()].getDashboard().getTowerColor();
+        String path;
+        i = numTowers;
+
+        if (colorTower == BLACK) {
+            path = "images/towers/torre_nera.png";
+        } else if (colorTower == Color.GRAY) {
+            path = "images/towers/torre_grigia.png";
+        } else {
+            path ="images/towers/torre_bianca.png";
+        }
+
+        while (numTow > 0) {
+            image = new Image(path);
+            TowersDashboard1[i].setImage(image);
+            TowersDashboard1[i].setVisible(true);
+            i--;
+            numTow--;
+        }
+        while (i >= 0) {
+            TowersDashboard1[i].setVisible(false);
+            i--;
+        }
+    }
+
+    private void initializeDiningHallSecondPlayer() {
+        Map<House, Boolean> profMap;
         ImageView[] DiningDashboard1Red = new ImageView[10];
+        Image image;
+
         FillDiningHall(DiningDashboard1Red, DiningRedStd1Dashboard1, DiningRedStd2Dashboard1, DiningRedStd3Dashboard1, DiningRedStd4Dashboard1, DiningRedStd5Dashboard1, DiningRedStd6Dashboard1, DiningRedStd7Dashboard1, DiningRedStd8Dashboard1, DiningRedStd9Dashboard1, DiningRedStd10Dashboard1);
 
         ImageView[] DiningDashboard1Green = new ImageView[10];
@@ -1363,8 +1408,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         ImageView[] DiningDashboard1Yellow = new ImageView[10];
         FillDiningHall(DiningDashboard1Yellow, DiningYellowStd1Dashboard1, DiningYellowStd2Dashboard1, DiningYellowStd3Dashboard1, DiningYellowStd4Dashboard1, DiningYellowStd5Dashboard1, DiningYellowStd6Dashboard1, DiningYellowStd7Dashboard1, DiningYellowStd8Dashboard1, DiningYellowStd9Dashboard1, DiningYellowStd10Dashboard1);
 
-        houseMap = new HashMap<>(gm.getArrayPlayers()[(numMain + 1) % gm.getNumPlayers()].getDashboard().getDiningHall().getStudents());
-        i = 0;
+        Map<House, Integer> houseMap = new HashMap<>(gm.getArrayPlayers()[(numMain + 1) % gm.getNumPlayers()].getDashboard().getDiningHall().getStudents());
+        int i = 0;
         while (houseMap.get(House.GREEN) != 0) {
             image = new Image("images/students/student_green.png");
             DiningDashboard1Green[i].setImage(image);
@@ -1462,571 +1507,498 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         } else {
             ProfBlueDashboard1.setVisible(false);
         }
+    }
 
-        ImageView[] TowersDashboard1 = new ImageView[8];
-        FillTowers(TowersDashboard1, Tower1Dashboard1, Tower2Dashboard1, Tower3Dashboard1, Tower4Dashboard1, Tower5Dashboard1, Tower6Dashboard1, Tower7Dashboard1, Tower8Dashboard1);
 
-        numTow = gm.getArrayPlayers()[(numMain + 1) % gm.getNumPlayers()].getDashboard().getNumTowersIn();
-        colorTower = gm.getArrayPlayers()[(numMain + 1) % gm.getNumPlayers()].getDashboard().getTowerColor();
+    private void initializeThirdPlayer() {
+        fillGraveyard(GraveyardDashboard2, gm.getArrayPlayers()[(numMain + 2) % gm.getNumPlayers()]);
+        fillCardInUse(CardInUseDashboard2, gm.getArrayPlayers()[(numMain + 2) % gm.getNumPlayers()]);
+
+        initializeDashboardThirdPlayer();
+    }
+
+    private void initializeDashboardThirdPlayer() {
+        int numStudents = 6;
+        if (gm.getNumPlayers() == 3) {
+            numStudents = 8;
+        }
+        int numTowers = 7;
+        if (gm.getNumPlayers() == 3) {
+            numTowers = 5;
+        }
+        Image image;
+        ImageView[] EntranceDashboard2 = new ImageView[9];
+        FillEntrance(EntranceDashboard2, EntranceStudDashboard2Stud1, EntranceStudDashboard2Stud2, EntranceStudDashboard2Stud3, EntranceStudDashboard2Stud4, EntranceStudDashboard2Stud5, EntranceStudDashboard2Stud6, EntranceStudDashboard2Stud7, EntranceStudDashboard2Stud8, EntranceStudDashboard2Stud9);
+
+        Map<House, Integer> houseMap = new HashMap<>(gm.getArrayPlayers()[(numMain + 2) % gm.getNumPlayers()].getDashboard().getStudents());
+        int i = numStudents;
+        while (houseMap.get(House.BLUE) != 0) {
+            image = new Image("images/students/student_blue.png");
+            EntranceDashboard2[i].setImage(image);
+            EntranceDashboard2[i].setVisible(true);
+            houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
+            i--;
+        }
+        while (houseMap.get(House.PINK) != 0) {
+            image = new Image("images/students/student_pink.png");
+            EntranceDashboard2[i].setImage(image);
+            EntranceDashboard2[i].setVisible(true);
+            houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
+            i--;
+        }
+        while (houseMap.get(YELLOW) != 0) {
+            image = new Image("images/students/student_yellow.png");
+            EntranceDashboard2[i].setImage(image);
+            EntranceDashboard2[i].setVisible(true);
+            houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
+            i--;
+        }
+        while (houseMap.get(House.RED) != 0) {
+            image = new Image("images/students/student_red.png");
+            EntranceDashboard2[i].setImage(image);
+            EntranceDashboard2[i].setVisible(true);
+            houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
+            i--;
+        }
+        while (houseMap.get(House.GREEN) != 0) {
+            image = new Image("images/students/student_green.png");
+            EntranceDashboard2[i].setImage(image);
+            EntranceDashboard2[i].setVisible(true);
+            houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
+            i--;
+        }
+        while (i >= 0) {
+            EntranceDashboard2[i].setVisible(false);
+            i--;
+        }
+
+        initializeDiningHallThirdPlayer();
+
+        ImageView[] TowersDashboard2 = new ImageView[8];
+        FillTowers(TowersDashboard2, Tower1Dashboard2, Tower2Dashboard2, Tower3Dashboard2, Tower4Dashboard2, Tower5Dashboard2, Tower6Dashboard2, Tower7Dashboard2, Tower8Dashboard2);
+
+        int numTow = gm.getArrayPlayers()[(numMain + 2) % gm.getNumPlayers()].getDashboard().getNumTowersIn();
+        Color colorTower = gm.getArrayPlayers()[(numMain + 2) % gm.getNumPlayers()].getDashboard().getTowerColor();
         i = numTowers;
+        String path;
 
         if (colorTower == BLACK) {
             path = "images/towers/torre_nera.png";
         } else if (colorTower == Color.GRAY) {
             path = "images/towers/torre_grigia.png";
         } else {
-            path ="images/towers/torre_bianca.png";
+            path = "images/towers/torre_bianca.png";
         }
 
         while (numTow > 0) {
             image = new Image(path);
-            TowersDashboard1[i].setImage(image);
-            TowersDashboard1[i].setVisible(true);
+            TowersDashboard2[i].setImage(image);
+            TowersDashboard2[i].setVisible(true);
             i--;
             numTow--;
         }
         while (i >= 0) {
-            TowersDashboard1[i].setVisible(false);
+            TowersDashboard2[i].setVisible(false);
+            i--;
+        }
+    }
+
+    private void initializeDiningHallThirdPlayer() {
+        Map<House, Boolean> profMap;
+        ImageView[] DiningDashboard1Red = new ImageView[10];
+        Image image;
+
+        ImageView[] DiningDashboard2Red = new ImageView[10];
+        FillDiningHall(DiningDashboard2Red, DiningRedStd1Dashboard2, DiningRedStd2Dashboard2, DiningRedStd3Dashboard2, DiningRedStd4Dashboard2, DiningRedStd5Dashboard2, DiningRedStd6Dashboard2, DiningRedStd7Dashboard2, DiningRedStd8Dashboard2, DiningRedStd9Dashboard2, DiningRedStd10Dashboard2);
+
+        ImageView[] DiningDashboard2Green = new ImageView[10];
+        FillDiningHall(DiningDashboard2Green, DiningGreenStd1Dashboard2, DiningGreenStd2Dashboard2, DiningGreenStd3Dashboard2, DiningGreenStd4Dashboard2, DiningGreenStd5Dashboard2, DiningGreenStd6Dashboard2, DiningGreenStd7Dashboard2, DiningGreenStd8Dashboard2, DiningGreenStd9Dashboard2, DiningGreenStd10Dashboard2);
+
+        ImageView[] DiningDashboard2Blue = new ImageView[10];
+        FillDiningHall(DiningDashboard2Blue, DiningBlueStd1Dashboard2, DiningBlueStd2Dashboard2, DiningBlueStd3Dashboard2, DiningBlueStd4Dashboard2, DiningBlueStd5Dashboard2, DiningBlueStd6Dashboard2, DiningBlueStd7Dashboard2, DiningBlueStd8Dashboard2, DiningBlueStd9Dashboard2, DiningBlueStd10Dashboard2);
+
+        ImageView[] DiningDashboard2Pink = new ImageView[10];
+        FillDiningHall(DiningDashboard2Pink, DiningPinkStd1Dashboard2, DiningPinkStd2Dashboard2, DiningPinkStd3Dashboard2, DiningPinkStd4Dashboard2, DiningPinkStd5Dashboard2, DiningPinkStd6Dashboard2, DiningPinkStd7Dashboard2, DiningPinkStd8Dashboard2, DiningPinkStd9Dashboard2, DiningPinkStd10Dashboard2);
+
+        ImageView[] DiningDashboard2Yellow = new ImageView[10];
+        FillDiningHall(DiningDashboard2Yellow, DiningYellowStd1Dashboard2, DiningYellowStd2Dashboard2, DiningYellowStd3Dashboard2, DiningYellowStd4Dashboard2, DiningYellowStd5Dashboard2, DiningYellowStd6Dashboard2, DiningYellowStd7Dashboard2, DiningYellowStd8Dashboard2, DiningYellowStd9Dashboard2, DiningYellowStd10Dashboard2);
+
+        Map<House, Integer> houseMap = new HashMap<>(gm.getArrayPlayers()[(numMain + 2) % gm.getNumPlayers()].getDashboard().getDiningHall().getStudents());
+        int i = 0;
+        while (houseMap.get(House.GREEN) != 0) {
+            image = new Image("images/students/student_green.png");
+            DiningDashboard2Green[i].setImage(image);
+            DiningDashboard2Green[i].setVisible(true);
+            houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
+            i++;
+        }
+        while (i < 10) {
+            DiningDashboard2Green[i].setVisible(false);
+            i++;
+        }
+        i = 0;
+        while (houseMap.get(House.BLUE) != 0) {
+            image = new Image("images/students/student_blue.png");
+            DiningDashboard2Blue[i].setImage(image);
+            DiningDashboard2Blue[i].setVisible(true);
+            houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
+            i++;
+        }
+        while (i < 10) {
+            DiningDashboard2Blue[i].setVisible(false);
+            i++;
+        }
+        i = 0;
+        while (houseMap.get(House.RED) != 0) {
+            image = new Image("images/students/student_red.png");
+            DiningDashboard2Red[i].setImage(image);
+            DiningDashboard2Red[i].setVisible(true);
+            houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
+            i++;
+        }
+        while (i < 10) {
+            DiningDashboard2Red[i].setVisible(false);
+            i++;
+        }
+        i = 0;
+        while (houseMap.get(YELLOW) != 0) {
+            image = new Image("images/students/student_yellow.png");
+            DiningDashboard2Yellow[i].setImage(image);
+            DiningDashboard2Yellow[i].setVisible(true);
+            houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
+            i++;
+        }
+        while (i < 10) {
+            DiningDashboard2Yellow[i].setVisible(false);
+            i++;
+        }
+        i = 0;
+        while (houseMap.get(House.PINK) != 0) {
+            image = new Image("images/students/student_pink.png");
+            DiningDashboard2Pink[i].setImage(image);
+            DiningDashboard2Pink[i].setVisible(true);
+            houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
+            i++;
+        }
+        while (i < 10) {
+            DiningDashboard2Pink[i].setVisible(false);
+            i++;
+        }
+
+        profMap = gm.getArrayPlayers()[(numMain + 2) % gm.getNumPlayers()].getDashboard().getProfMap();
+
+        if (profMap.get(House.PINK)) {
+            image = new Image("images/professors/teacher_pink.png");
+            ProfPinkDashboard2.setImage(image);
+            ProfPinkDashboard2.setVisible(true);
+        } else {
+            ProfPinkDashboard2.setVisible(false);
+        }
+        if (profMap.get(House.GREEN)) {
+            image = new Image("images/professors/teacher_pink.png");
+            ProfGreenDashboard2.setImage(image);
+            ProfGreenDashboard2.setVisible(true);
+        } else {
+            ProfGreenDashboard2.setVisible(false);
+        }
+        if (profMap.get(YELLOW)) {
+            image = new Image("images/professors/teacher_yellow.png");
+            ProfYellowDashboard2.setImage(image);
+            ProfYellowDashboard2.setVisible(true);
+        } else {
+            ProfYellowDashboard2.setVisible(false);
+        }
+        if (profMap.get(House.RED)) {
+            image = new Image("images/professors/teacher_red.png");
+            ProfRedDashboard2.setImage(image);
+            ProfRedDashboard2.setVisible(true);
+        } else {
+            ProfRedDashboard2.setVisible(false);
+        }
+        if (profMap.get(House.BLUE)) {
+            image = new Image("images/professors/teacher_blue.png");
+            ProfBlueDashboard2.setImage(image);
+            ProfBlueDashboard2.setVisible(true);
+        } else {
+            ProfBlueDashboard2.setVisible(false);
+        }
+    }
+
+
+    private void initializeFourthPlayer() {
+        fillGraveyard(GraveyardDashboard3, gm.getArrayPlayers()[(numMain + 3) % gm.getNumPlayers()]);
+        fillCardInUse(CardInUseDashboard3, gm.getArrayPlayers()[(numMain + 3) % gm.getNumPlayers()]);
+
+        initializeDashboardFourthPlayer();
+    }
+
+    private void initializeDashboardFourthPlayer() {
+        int numStudents = 6;
+        if (gm.getNumPlayers() == 3) {
+            numStudents = 8;
+        }
+        int numTowers = 7;
+        if (gm.getNumPlayers() == 3) {
+            numTowers = 5;
+        }
+        Image image;
+        ImageView[] EntranceDashboard3 = new ImageView[9];
+        FillEntrance(EntranceDashboard3, EntranceStudDashboard3Stud1, EntranceStudDashboard3Stud2, EntranceStudDashboard3Stud3, EntranceStudDashboard3Stud4, EntranceStudDashboard3Stud5, EntranceStudDashboard3Stud6, EntranceStudDashboard3Stud7, EntranceStudDashboard3Stud8, EntranceStudDashboard3Stud9);
+
+        Map<House, Integer> houseMap = new HashMap<>(gm.getArrayPlayers()[(numMain + 3) % gm.getNumPlayers()].getDashboard().getStudents());
+        int i = numStudents;
+        while (houseMap.get(House.BLUE) != 0) {
+            image = new Image("images/students/student_blue.png");
+            EntranceDashboard3[i].setImage(image);
+            EntranceDashboard3[i].setVisible(true);
+            houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
+            i--;
+        }
+        while (houseMap.get(House.PINK) != 0) {
+            image = new Image("images/students/student_pink.png");
+            EntranceDashboard3[i].setImage(image);
+            EntranceDashboard3[i].setVisible(true);
+            houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
+            i--;
+        }
+        while (houseMap.get(YELLOW) != 0) {
+            image = new Image("students/student_yellow.png");
+            EntranceDashboard3[i].setImage(image);
+            EntranceDashboard3[i].setVisible(true);
+            houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
+            i--;
+        }
+        while (houseMap.get(House.RED) != 0) {
+            image = new Image("images/students/student_red.png");
+            EntranceDashboard3[i].setImage(image);
+            EntranceDashboard3[i].setVisible(true);
+            houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
+            i--;
+        }
+        while (houseMap.get(House.GREEN) != 0) {
+            image = new Image("images/students/student_green.png");
+            EntranceDashboard3[i].setImage(image);
+            EntranceDashboard3[i].setVisible(true);
+            houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
+            i--;
+        }
+        while (i >= 0) {
+            EntranceDashboard3[i].setVisible(false);
             i--;
         }
 
-        if (gm.getNumPlayers() == 2) { //show of hid dashboards
-            Dashboard2.setVisible(false);
-            Dashboard3.setVisible(false);
-            Chat.setVisible(false);
-            Chat.setDisable(true);
-            ChatAlternative.setVisible(true);
-            TwoDashboardAlternative.setVisible(true);
-        } else if (gm.getNumPlayers() > 2) {
-            //third player
-            ImageView[] EntranceDashboard2 = new ImageView[9];
-            FillEntrance(EntranceDashboard2, EntranceStudDashboard2Stud1, EntranceStudDashboard2Stud2, EntranceStudDashboard2Stud3, EntranceStudDashboard2Stud4, EntranceStudDashboard2Stud5, EntranceStudDashboard2Stud6, EntranceStudDashboard2Stud7, EntranceStudDashboard2Stud8, EntranceStudDashboard2Stud9);
+        initializeDiningHallFourthPlayer();
 
-            fillGraveyard(GraveyardDashboard2, gm.getArrayPlayers()[(numMain + 2) % gm.getNumPlayers()]);
-            fillCardInUse(CardInUseDashboard2, gm.getArrayPlayers()[(numMain + 2) % gm.getNumPlayers()]);
+        ImageView[] TowersDashboard3 = new ImageView[8];
+        FillTowers(TowersDashboard3, Tower1Dashboard3, Tower2Dashboard3, Tower3Dashboard3, Tower4Dashboard3, Tower5Dashboard3, Tower6Dashboard3, Tower7Dashboard3, Tower8Dashboard3);
 
-            houseMap = new HashMap<>(gm.getArrayPlayers()[(numMain + 2) % gm.getNumPlayers()].getDashboard().getStudents());
-            i = numStudents;
-            while (houseMap.get(House.BLUE) != 0) {
-                image = new Image("images/students/student_blue.png");
-                EntranceDashboard2[i].setImage(image);
-                EntranceDashboard2[i].setVisible(true);
-                houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
-                i--;
-            }
-            while (houseMap.get(House.PINK) != 0) {
-                image = new Image("images/students/student_pink.png");
-                EntranceDashboard2[i].setImage(image);
-                EntranceDashboard2[i].setVisible(true);
-                houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
-                i--;
-            }
-            while (houseMap.get(YELLOW) != 0) {
-                image = new Image("images/students/student_yellow.png");
-                EntranceDashboard2[i].setImage(image);
-                EntranceDashboard2[i].setVisible(true);
-                houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
-                i--;
-            }
-            while (houseMap.get(House.RED) != 0) {
-                image = new Image("images/students/student_red.png");
-                EntranceDashboard2[i].setImage(image);
-                EntranceDashboard2[i].setVisible(true);
-                houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
-                i--;
-            }
-            while (houseMap.get(House.GREEN) != 0) {
-                image = new Image("images/students/student_green.png");
-                EntranceDashboard2[i].setImage(image);
-                EntranceDashboard2[i].setVisible(true);
-                houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
-                i--;
-            }
-            while (i >= 0) {
-                EntranceDashboard2[i].setVisible(false);
-                i--;
-            }
+        int numTow = gm.getArrayPlayers()[(numMain + 3) % gm.getNumPlayers()].getDashboard().getNumTowersIn();
+        Color colorTower = gm.getArrayPlayers()[(numMain + 3) % gm.getNumPlayers()].getDashboard().getTowerColor();
+        i = numTowers;
 
-            ImageView[] DiningDashboard2Red = new ImageView[10];
-            FillDiningHall(DiningDashboard2Red, DiningRedStd1Dashboard2, DiningRedStd2Dashboard2, DiningRedStd3Dashboard2, DiningRedStd4Dashboard2, DiningRedStd5Dashboard2, DiningRedStd6Dashboard2, DiningRedStd7Dashboard2, DiningRedStd8Dashboard2, DiningRedStd9Dashboard2, DiningRedStd10Dashboard2);
-
-            ImageView[] DiningDashboard2Green = new ImageView[10];
-            FillDiningHall(DiningDashboard2Green, DiningGreenStd1Dashboard2, DiningGreenStd2Dashboard2, DiningGreenStd3Dashboard2, DiningGreenStd4Dashboard2, DiningGreenStd5Dashboard2, DiningGreenStd6Dashboard2, DiningGreenStd7Dashboard2, DiningGreenStd8Dashboard2, DiningGreenStd9Dashboard2, DiningGreenStd10Dashboard2);
-
-            ImageView[] DiningDashboard2Blue = new ImageView[10];
-            FillDiningHall(DiningDashboard2Blue, DiningBlueStd1Dashboard2, DiningBlueStd2Dashboard2, DiningBlueStd3Dashboard2, DiningBlueStd4Dashboard2, DiningBlueStd5Dashboard2, DiningBlueStd6Dashboard2, DiningBlueStd7Dashboard2, DiningBlueStd8Dashboard2, DiningBlueStd9Dashboard2, DiningBlueStd10Dashboard2);
-
-            ImageView[] DiningDashboard2Pink = new ImageView[10];
-            FillDiningHall(DiningDashboard2Pink, DiningPinkStd1Dashboard2, DiningPinkStd2Dashboard2, DiningPinkStd3Dashboard2, DiningPinkStd4Dashboard2, DiningPinkStd5Dashboard2, DiningPinkStd6Dashboard2, DiningPinkStd7Dashboard2, DiningPinkStd8Dashboard2, DiningPinkStd9Dashboard2, DiningPinkStd10Dashboard2);
-
-            ImageView[] DiningDashboard2Yellow = new ImageView[10];
-            FillDiningHall(DiningDashboard2Yellow, DiningYellowStd1Dashboard2, DiningYellowStd2Dashboard2, DiningYellowStd3Dashboard2, DiningYellowStd4Dashboard2, DiningYellowStd5Dashboard2, DiningYellowStd6Dashboard2, DiningYellowStd7Dashboard2, DiningYellowStd8Dashboard2, DiningYellowStd9Dashboard2, DiningYellowStd10Dashboard2);
-
-            houseMap = new HashMap<>(gm.getArrayPlayers()[(numMain + 2) % gm.getNumPlayers()].getDashboard().getDiningHall().getStudents());
-            i = 0;
-            while (houseMap.get(House.GREEN) != 0) {
-                image = new Image("images/students/student_green.png");
-                DiningDashboard2Green[i].setImage(image);
-                DiningDashboard2Green[i].setVisible(true);
-                houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
-                i++;
-            }
-            while (i < 10) {
-                DiningDashboard2Green[i].setVisible(false);
-                i++;
-            }
-            i = 0;
-            while (houseMap.get(House.BLUE) != 0) {
-                image = new Image("images/students/student_blue.png");
-                DiningDashboard2Blue[i].setImage(image);
-                DiningDashboard2Blue[i].setVisible(true);
-                houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
-                i++;
-            }
-            while (i < 10) {
-                DiningDashboard2Blue[i].setVisible(false);
-                i++;
-            }
-            i = 0;
-            while (houseMap.get(House.RED) != 0) {
-                image = new Image("images/students/student_red.png");
-                DiningDashboard2Red[i].setImage(image);
-                DiningDashboard2Red[i].setVisible(true);
-                houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
-                i++;
-            }
-            while (i < 10) {
-                DiningDashboard2Red[i].setVisible(false);
-                i++;
-            }
-            i = 0;
-            while (houseMap.get(YELLOW) != 0) {
-                image = new Image("images/students/student_yellow.png");
-                DiningDashboard2Yellow[i].setImage(image);
-                DiningDashboard2Yellow[i].setVisible(true);
-                houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
-                i++;
-            }
-            while (i < 10) {
-                DiningDashboard2Yellow[i].setVisible(false);
-                i++;
-            }
-            i = 0;
-            while (houseMap.get(House.PINK) != 0) {
-                image = new Image("images/students/student_pink.png");
-                DiningDashboard2Pink[i].setImage(image);
-                DiningDashboard2Pink[i].setVisible(true);
-                houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
-                i++;
-            }
-            while (i < 10) {
-                DiningDashboard2Pink[i].setVisible(false);
-                i++;
-            }
-
-            profMap = gm.getArrayPlayers()[(numMain + 2) % gm.getNumPlayers()].getDashboard().getProfMap();
-
-            if (profMap.get(House.PINK)) {
-                image = new Image("images/professors/teacher_pink.png");
-                ProfPinkDashboard2.setImage(image);
-                ProfPinkDashboard2.setVisible(true);
-            } else {
-                ProfPinkDashboard2.setVisible(false);
-            }
-            if (profMap.get(House.GREEN)) {
-                image = new Image("images/professors/teacher_pink.png");
-                ProfGreenDashboard2.setImage(image);
-                ProfGreenDashboard2.setVisible(true);
-            } else {
-                ProfGreenDashboard2.setVisible(false);
-            }
-            if (profMap.get(YELLOW)) {
-                image = new Image("images/professors/teacher_yellow.png");
-                ProfYellowDashboard2.setImage(image);
-                ProfYellowDashboard2.setVisible(true);
-            } else {
-                ProfYellowDashboard2.setVisible(false);
-            }
-            if (profMap.get(House.RED)) {
-                image = new Image("images/professors/teacher_red.png");
-                ProfRedDashboard2.setImage(image);
-                ProfRedDashboard2.setVisible(true);
-            } else {
-                ProfRedDashboard2.setVisible(false);
-            }
-            if (profMap.get(House.BLUE)) {
-                image = new Image("images/professors/teacher_blue.png");
-                ProfBlueDashboard2.setImage(image);
-                ProfBlueDashboard2.setVisible(true);
-            } else {
-                ProfBlueDashboard2.setVisible(false);
-            }
-
-            ImageView[] TowersDashboard2 = new ImageView[8];
-            FillTowers(TowersDashboard2, Tower1Dashboard2, Tower2Dashboard2, Tower3Dashboard2, Tower4Dashboard2, Tower5Dashboard2, Tower6Dashboard2, Tower7Dashboard2, Tower8Dashboard2);
-
-            numTow = gm.getArrayPlayers()[(numMain + 2) % gm.getNumPlayers()].getDashboard().getNumTowersIn();
-            colorTower = gm.getArrayPlayers()[(numMain + 2) % gm.getNumPlayers()].getDashboard().getTowerColor();
-            i = numTowers;
-
-            if (colorTower == BLACK) {
-                path = "images/towers/torre_nera.png";
-            } else if (colorTower == Color.GRAY) {
-                path = "images/towers/torre_grigia.png";
-            } else {
-                path = "images/towers/torre_bianca.png";
-            }
-
-            while (numTow > 0) {
-                image = new Image(path);
-                TowersDashboard2[i].setImage(image);
-                TowersDashboard2[i].setVisible(true);
-                i--;
-                numTow--;
-            }
-            while (i >= 0) {
-                TowersDashboard2[i].setVisible(false);
-                i--;
-            }
-
-
-            if (gm.getNumPlayers() == 4) {
-                if (!gm.isChat()) {
-                    Chat.setVisible(false);
-                    Chat.setDisable(true);
-                    ChatAlternative.setVisible(true);
-                }
-                //fourth player
-                ImageView[] EntranceDashboard3 = new ImageView[9];
-                FillEntrance(EntranceDashboard3, EntranceStudDashboard3Stud1, EntranceStudDashboard3Stud2, EntranceStudDashboard3Stud3, EntranceStudDashboard3Stud4, EntranceStudDashboard3Stud5, EntranceStudDashboard3Stud6, EntranceStudDashboard3Stud7, EntranceStudDashboard3Stud8, EntranceStudDashboard3Stud9);
-
-                fillGraveyard(GraveyardDashboard3, gm.getArrayPlayers()[(numMain + 3) % gm.getNumPlayers()]);
-                fillCardInUse(CardInUseDashboard3, gm.getArrayPlayers()[(numMain + 3) % gm.getNumPlayers()]);
-
-                houseMap = new HashMap<>(gm.getArrayPlayers()[(numMain + 3) % gm.getNumPlayers()].getDashboard().getStudents());
-                i = numStudents;
-                while (houseMap.get(House.BLUE) != 0) {
-                    image = new Image("images/students/student_blue.png");
-                    EntranceDashboard3[i].setImage(image);
-                    EntranceDashboard3[i].setVisible(true);
-                    houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
-                    i--;
-                }
-                while (houseMap.get(House.PINK) != 0) {
-                    image = new Image("images/students/student_pink.png");
-                    EntranceDashboard3[i].setImage(image);
-                    EntranceDashboard3[i].setVisible(true);
-                    houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
-                    i--;
-                }
-                while (houseMap.get(YELLOW) != 0) {
-                    image = new Image("students/student_yellow.png");
-                    EntranceDashboard3[i].setImage(image);
-                    EntranceDashboard3[i].setVisible(true);
-                    houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
-                    i--;
-                }
-                while (houseMap.get(House.RED) != 0) {
-                    image = new Image("images/students/student_red.png");
-                    EntranceDashboard3[i].setImage(image);
-                    EntranceDashboard3[i].setVisible(true);
-                    houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
-                    i--;
-                }
-                while (houseMap.get(House.GREEN) != 0) {
-                    image = new Image("images/students/student_green.png");
-                    EntranceDashboard3[i].setImage(image);
-                    EntranceDashboard3[i].setVisible(true);
-                    houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
-                    i--;
-                }
-                while (i >= 0) {
-                    EntranceDashboard3[i].setVisible(false);
-                    i--;
-                }
-
-                ImageView[] DiningDashboard3Red = new ImageView[10];
-                FillDiningHall(DiningDashboard3Red, DiningRedStd1Dashboard3, DiningRedStd2Dashboard3, DiningRedStd3Dashboard3, DiningRedStd4Dashboard3, DiningRedStd5Dashboard3, DiningRedStd6Dashboard3, DiningRedStd7Dashboard3, DiningRedStd8Dashboard3, DiningRedStd9Dashboard3, DiningRedStd10Dashboard3);
-
-                ImageView[] DiningDashboard3Green = new ImageView[10];
-                FillDiningHall(DiningDashboard3Green, DiningGreenStd1Dashboard3, DiningGreenStd2Dashboard3, DiningGreenStd3Dashboard3, DiningGreenStd4Dashboard3, DiningGreenStd5Dashboard3, DiningGreenStd6Dashboard3, DiningGreenStd7Dashboard3, DiningGreenStd8Dashboard3, DiningGreenStd9Dashboard3, DiningGreenStd10Dashboard3);
-
-                ImageView[] DiningDashboard3Blue = new ImageView[10];
-                FillDiningHall(DiningDashboard3Blue, DiningBlueStd1Dashboard3, DiningBlueStd2Dashboard3, DiningBlueStd3Dashboard3, DiningBlueStd4Dashboard3, DiningBlueStd5Dashboard3, DiningBlueStd6Dashboard3, DiningBlueStd7Dashboard3, DiningBlueStd8Dashboard3, DiningBlueStd9Dashboard3, DiningBlueStd10Dashboard3);
-
-                ImageView[] DiningDashboard3Pink = new ImageView[10];
-                FillDiningHall(DiningDashboard3Pink, DiningPinkStd1Dashboard3, DiningPinkStd2Dashboard3, DiningPinkStd3Dashboard3, DiningPinkStd4Dashboard3, DiningPinkStd5Dashboard3, DiningPinkStd6Dashboard3, DiningPinkStd7Dashboard3, DiningPinkStd8Dashboard3, DiningPinkStd9Dashboard3, DiningPinkStd10Dashboard3);
-
-                ImageView[] DiningDashboard3Yellow = new ImageView[10];
-                FillDiningHall(DiningDashboard3Yellow, DiningYellowStd1Dashboard3, DiningYellowStd2Dashboard3, DiningYellowStd3Dashboard3, DiningYellowStd4Dashboard3, DiningYellowStd5Dashboard3, DiningYellowStd6Dashboard3, DiningYellowStd7Dashboard3, DiningYellowStd8Dashboard3, DiningYellowStd9Dashboard3, DiningYellowStd10Dashboard3);
-
-                houseMap = new HashMap<>(gm.getArrayPlayers()[(numMain + 3) % gm.getNumPlayers()].getDashboard().getDiningHall().getStudents());
-                i = 0;
-                while (houseMap.get(House.GREEN) != 0) {
-                    image = new Image("images/students/student_green.png");
-                    DiningDashboard3Green[i].setImage(image);
-                    DiningDashboard3Green[i].setVisible(true);
-                    houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
-                    i++;
-                }
-                while (i < 10) {
-                    DiningDashboard3Green[i].setVisible(false);
-                    i++;
-                }
-                i = 0;
-                while (houseMap.get(House.BLUE) != 0) {
-                    image = new Image("images/students/student_blue.png");
-                    DiningDashboard3Blue[i].setImage(image);
-                    DiningDashboard3Blue[i].setVisible(true);
-                    houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
-                    i++;
-                }
-                while (i < 10) {
-                    DiningDashboard3Blue[i].setVisible(false);
-                    i++;
-                }
-                i = 0;
-                while (houseMap.get(House.RED) != 0) {
-                    image = new Image("images/students/student_red.png");
-                    DiningDashboard3Red[i].setImage(image);
-                    DiningDashboard3Red[i].setVisible(true);
-                    houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
-                    i++;
-                }
-                while (i < 10) {
-                    DiningDashboard3Red[i].setVisible(false);
-                    i++;
-                }
-                i = 0;
-                while (houseMap.get(YELLOW) != 0) {
-                    image = new Image("images/students/student_yellow.png");
-                    DiningDashboard3Yellow[i].setImage(image);
-                    DiningDashboard3Yellow[i].setVisible(true);
-                    houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
-                    i++;
-                }
-                while (i < 10) {
-                    DiningDashboard3Yellow[i].setVisible(false);
-                    i++;
-                }
-                i = 0;
-                while (houseMap.get(House.PINK) != 0) {
-                    image = new Image("images/students/student_pink.png");
-                    DiningDashboard3Pink[i].setImage(image);
-                    DiningDashboard3Pink[i].setVisible(true);
-                    houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
-                    i++;
-                }
-                while (i < 10) {
-                    DiningDashboard3Pink[i].setVisible(false);
-                    i++;
-                }
-
-                profMap = gm.getArrayPlayers()[(numMain + 3) % gm.getNumPlayers()].getDashboard().getProfMap();
-
-                if (profMap.get(House.PINK)) {
-                    image = new Image("images/professors/teacher_pink.png");
-                    ProfPinkDashboard3.setImage(image);
-                    ProfPinkDashboard3.setVisible(true);
-                } else {
-                    ProfPinkDashboard3.setVisible(false);
-                }
-                if (profMap.get(House.GREEN)) {
-                    image = new Image("images/professors/teacher_green.png");
-                    ProfGreenDashboard3.setImage(image);
-                    ProfGreenDashboard3.setVisible(true);
-                } else {
-                    ProfGreenDashboard3.setVisible(false);
-                }
-                if (profMap.get(YELLOW)) {
-                    image = new Image("images/professors/teacher_yellow.png");
-                    ProfYellowDashboard3.setImage(image);
-                    ProfYellowDashboard3.setVisible(true);
-                } else {
-                    ProfYellowDashboard3.setVisible(false);
-                }
-                if (profMap.get(House.RED)) {
-                    image = new Image("images/professors/teacher_red.png");
-                    ProfRedDashboard3.setImage(image);
-                    ProfRedDashboard3.setVisible(true);
-                } else {
-                    ProfRedDashboard3.setVisible(false);
-                }
-                if (profMap.get(House.BLUE)) {
-                    image = new Image("images/professors/teacher_blue.png");
-                    ProfBlueDashboard3.setImage(image);
-                    ProfBlueDashboard3.setVisible(true);
-                } else {
-                    ProfBlueDashboard3.setVisible(false);
-                }
-
-                ImageView[] TowersDashboard3 = new ImageView[8];
-                FillTowers(TowersDashboard3, Tower1Dashboard3, Tower2Dashboard3, Tower3Dashboard3, Tower4Dashboard3, Tower5Dashboard3, Tower6Dashboard3, Tower7Dashboard3, Tower8Dashboard3);
-
-                numTow = gm.getArrayPlayers()[(numMain + 3) % gm.getNumPlayers()].getDashboard().getNumTowersIn();
-                colorTower = gm.getArrayPlayers()[(numMain + 3) % gm.getNumPlayers()].getDashboard().getTowerColor();
-                i = numTowers;
-
-                if (colorTower == BLACK) {
-                    path = "images/towers/torre_nera.png";
-                } else if (colorTower == Color.GRAY) {
-                    path = "images/towers/torre_grigia.png";
-                } else {
-                    path = "images/towers/torre_bianca.png";
-                }
-
-                while (numTow > 0) {
-                    image = new Image(path);
-                    TowersDashboard3[i].setImage(image);
-                    TowersDashboard3[i].setVisible(true);
-                    i--;
-                    numTow--;
-                }
-                while (i >= 0) {
-                    TowersDashboard3[i].setVisible(false);
-                    i--;
-                }
-            } else {
-                Dashboard3.setVisible(false);
-                Chat.setDisable(true);
-                Chat.setVisible(false);
-                ChatAlternative.setVisible(true);
-                OneDashboardAlternative.setVisible(true);
-            }
-        }
-        if (!gm.isExpertMode()) {
-            CharacterCardsPlacement.setVisible(false);
-            CharacterCardAlternative.setVisible(true);
+        String path;
+        if (colorTower == BLACK) {
+            path = "images/towers/torre_nera.png";
+        } else if (colorTower == Color.GRAY) {
+            path = "images/towers/torre_grigia.png";
         } else {
-            CharacterCardsPlacement.setVisible(true);
-            setCoins(NumOfCoins, gm.getArrayPlayers()[numMain]);
-            CostCharacterCard1.setText(Integer.toString(gm.getCharacterCardDeck()[0].getCost()));
-            CostCharacterCard2.setText(Integer.toString(gm.getCharacterCardDeck()[1].getCost()));
-            CostCharacterCard3.setText(Integer.toString(gm.getCharacterCardDeck()[2].getCost()));
-
-            switch (gm.getCharacterCardDeck()[0].getType()) {
-                case FARMER:
-                    path = "images/CharacterCards/Farmer.jpg";
-                    break;
-                case MAGICAL_MAILMAN:
-                    path = "images/CharacterCards/MagicalMailman.jpg";
-                    break;
-                case HERB_GRANMA:
-                    path = "images/CharacterCards/HerbGranma.jpg";
-                    break;
-                case MINSTREL:
-                    path = "images/CharacterCards/Minstrel.jpg";
-                    break;
-                case MONK:
-                    path = "images/CharacterCards/Monk.jpg";
-                    break;
-                case HERALD:
-                    path = "images/CharacterCards/Herald.jpg";
-                    break;
-                case CENTAUR:
-                    path = "images/CharacterCards/Centaur.jpg";
-                    break;
-                case JOLLY:
-                    path = "images/CharacterCards/Jolly.jpg";
-                    break;
-                case KNIGHT:
-                    path = "images/CharacterCards/Knight.jpg";
-                    break;
-                case MUSHROOM_HUNTER:
-                    path = "images/CharacterCards/MushroomHunter.jpg";
-                    break;
-                case SPOILED_PRINCESS:
-                    path = "images/CharacterCards/SpoiledPrincess.jpg";
-                    break;
-                case THIEF:
-                    path = "images/CharacterCards/Thief.jpg";
-                    break;
-            }
-            image = new Image(path);
-            CharacterCard1.setImage(image);
-
-            switch (gm.getCharacterCardDeck()[1].getType()) {
-                case FARMER:
-                    path = "images/CharacterCards/Farmer.jpg";
-                    break;
-                case MAGICAL_MAILMAN:
-                    path = "images/CharacterCards/MagicalMailman.jpg";
-                    break;
-                case HERB_GRANMA:
-                    path = "images/CharacterCards/HerbGranma.jpg";
-                    break;
-                case MINSTREL:
-                    path = "images/CharacterCards/Minstrel.jpg";
-                    break;
-                case MONK:
-                    path = "images/CharacterCards/Monk.jpg";
-                    break;
-                case HERALD:
-                    path = "images/CharacterCards/Herald.jpg";
-                    break;
-                case CENTAUR:
-                    path = "images/CharacterCards/Centaur.jpg";
-                    break;
-                case JOLLY:
-                    path = "images/CharacterCards/Jolly.jpg";
-                    break;
-                case KNIGHT:
-                    path = "images/CharacterCards/Knight.jpg";
-                    break;
-                case MUSHROOM_HUNTER:
-                    path = "images/CharacterCards/MushroomHunter.jpg";
-                    break;
-                case SPOILED_PRINCESS:
-                    path = "images/CharacterCards/SpoiledPrincess.jpg";
-                    break;
-                case THIEF:
-                    path = "images/CharacterCards/Thief.jpg";
-                    break;
-            }
-            image = new Image(path);
-            CharacterCard2.setImage(image);
-
-            switch (gm.getCharacterCardDeck()[2].getType()) {
-                case FARMER:
-                    path = "images/CharacterCards/Farmer.jpg";
-                    break;
-                case MAGICAL_MAILMAN:
-                    path = "images/CharacterCards/MagicalMailman.jpg";
-                    break;
-                case HERB_GRANMA:
-                    path = "images/CharacterCards/HerbGranma.jpg";
-                    break;
-                case MINSTREL:
-                    path = "images/CharacterCards/Minstrel.jpg";
-                    break;
-                case MONK:
-                    path = "images/CharacterCards/Monk.jpg";
-                    break;
-                case HERALD:
-                    path = "images/CharacterCards/Herald.jpg";
-                    break;
-                case CENTAUR:
-                    path = "images/CharacterCards/Centaur.jpg";
-                    break;
-                case JOLLY:
-                    path = "images/CharacterCards/Jolly.jpg";
-                    break;
-                case KNIGHT:
-                    path = "images/CharacterCards/Knight.jpg";
-                    break;
-                case MUSHROOM_HUNTER:
-                    path = "images/CharacterCards/MushroomHunter.jpg";
-                    break;
-                case SPOILED_PRINCESS:
-                    path = "images/CharacterCards/SpoiledPrincess.jpg";
-                    break;
-                case THIEF:
-                    path = "images/CharacterCards/Thief.jpg";
-                    break;
-            }
-            image = new Image(path);
-            CharacterCard3.setImage(image);
+            path = "images/towers/torre_bianca.png";
         }
+
+        while (numTow > 0) {
+            image = new Image(path);
+            TowersDashboard3[i].setImage(image);
+            TowersDashboard3[i].setVisible(true);
+            i--;
+            numTow--;
+        }
+        while (i >= 0) {
+            TowersDashboard3[i].setVisible(false);
+            i--;
+        }
+    }
+
+    private void initializeDiningHallFourthPlayer(){
+        Map<House, Boolean> profMap;
+        ImageView[] DiningDashboard1Red = new ImageView[10];
+        Image image;
+
+        ImageView[] DiningDashboard3Red = new ImageView[10];
+        FillDiningHall(DiningDashboard3Red, DiningRedStd1Dashboard3, DiningRedStd2Dashboard3, DiningRedStd3Dashboard3, DiningRedStd4Dashboard3, DiningRedStd5Dashboard3, DiningRedStd6Dashboard3, DiningRedStd7Dashboard3, DiningRedStd8Dashboard3, DiningRedStd9Dashboard3, DiningRedStd10Dashboard3);
+
+        ImageView[] DiningDashboard3Green = new ImageView[10];
+        FillDiningHall(DiningDashboard3Green, DiningGreenStd1Dashboard3, DiningGreenStd2Dashboard3, DiningGreenStd3Dashboard3, DiningGreenStd4Dashboard3, DiningGreenStd5Dashboard3, DiningGreenStd6Dashboard3, DiningGreenStd7Dashboard3, DiningGreenStd8Dashboard3, DiningGreenStd9Dashboard3, DiningGreenStd10Dashboard3);
+
+        ImageView[] DiningDashboard3Blue = new ImageView[10];
+        FillDiningHall(DiningDashboard3Blue, DiningBlueStd1Dashboard3, DiningBlueStd2Dashboard3, DiningBlueStd3Dashboard3, DiningBlueStd4Dashboard3, DiningBlueStd5Dashboard3, DiningBlueStd6Dashboard3, DiningBlueStd7Dashboard3, DiningBlueStd8Dashboard3, DiningBlueStd9Dashboard3, DiningBlueStd10Dashboard3);
+
+        ImageView[] DiningDashboard3Pink = new ImageView[10];
+        FillDiningHall(DiningDashboard3Pink, DiningPinkStd1Dashboard3, DiningPinkStd2Dashboard3, DiningPinkStd3Dashboard3, DiningPinkStd4Dashboard3, DiningPinkStd5Dashboard3, DiningPinkStd6Dashboard3, DiningPinkStd7Dashboard3, DiningPinkStd8Dashboard3, DiningPinkStd9Dashboard3, DiningPinkStd10Dashboard3);
+
+        ImageView[] DiningDashboard3Yellow = new ImageView[10];
+        FillDiningHall(DiningDashboard3Yellow, DiningYellowStd1Dashboard3, DiningYellowStd2Dashboard3, DiningYellowStd3Dashboard3, DiningYellowStd4Dashboard3, DiningYellowStd5Dashboard3, DiningYellowStd6Dashboard3, DiningYellowStd7Dashboard3, DiningYellowStd8Dashboard3, DiningYellowStd9Dashboard3, DiningYellowStd10Dashboard3);
+
+        Map<House, Integer> houseMap = new HashMap<>(gm.getArrayPlayers()[(numMain + 3) % gm.getNumPlayers()].getDashboard().getDiningHall().getStudents());
+        int i = 0;
+        while (houseMap.get(House.GREEN) != 0) {
+            image = new Image("images/students/student_green.png");
+            DiningDashboard3Green[i].setImage(image);
+            DiningDashboard3Green[i].setVisible(true);
+            houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
+            i++;
+        }
+        while (i < 10) {
+            DiningDashboard3Green[i].setVisible(false);
+            i++;
+        }
+        i = 0;
+        while (houseMap.get(House.BLUE) != 0) {
+            image = new Image("images/students/student_blue.png");
+            DiningDashboard3Blue[i].setImage(image);
+            DiningDashboard3Blue[i].setVisible(true);
+            houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
+            i++;
+        }
+        while (i < 10) {
+            DiningDashboard3Blue[i].setVisible(false);
+            i++;
+        }
+        i = 0;
+        while (houseMap.get(House.RED) != 0) {
+            image = new Image("images/students/student_red.png");
+            DiningDashboard3Red[i].setImage(image);
+            DiningDashboard3Red[i].setVisible(true);
+            houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
+            i++;
+        }
+        while (i < 10) {
+            DiningDashboard3Red[i].setVisible(false);
+            i++;
+        }
+        i = 0;
+        while (houseMap.get(YELLOW) != 0) {
+            image = new Image("images/students/student_yellow.png");
+            DiningDashboard3Yellow[i].setImage(image);
+            DiningDashboard3Yellow[i].setVisible(true);
+            houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
+            i++;
+        }
+        while (i < 10) {
+            DiningDashboard3Yellow[i].setVisible(false);
+            i++;
+        }
+        i = 0;
+        while (houseMap.get(House.PINK) != 0) {
+            image = new Image("images/students/student_pink.png");
+            DiningDashboard3Pink[i].setImage(image);
+            DiningDashboard3Pink[i].setVisible(true);
+            houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
+            i++;
+        }
+        while (i < 10) {
+            DiningDashboard3Pink[i].setVisible(false);
+            i++;
+        }
+
+        profMap = gm.getArrayPlayers()[(numMain + 3) % gm.getNumPlayers()].getDashboard().getProfMap();
+
+        if (profMap.get(House.PINK)) {
+            image = new Image("images/professors/teacher_pink.png");
+            ProfPinkDashboard3.setImage(image);
+            ProfPinkDashboard3.setVisible(true);
+        } else {
+            ProfPinkDashboard3.setVisible(false);
+        }
+        if (profMap.get(House.GREEN)) {
+            image = new Image("images/professors/teacher_green.png");
+            ProfGreenDashboard3.setImage(image);
+            ProfGreenDashboard3.setVisible(true);
+        } else {
+            ProfGreenDashboard3.setVisible(false);
+        }
+        if (profMap.get(YELLOW)) {
+            image = new Image("images/professors/teacher_yellow.png");
+            ProfYellowDashboard3.setImage(image);
+            ProfYellowDashboard3.setVisible(true);
+        } else {
+            ProfYellowDashboard3.setVisible(false);
+        }
+        if (profMap.get(House.RED)) {
+            image = new Image("images/professors/teacher_red.png");
+            ProfRedDashboard3.setImage(image);
+            ProfRedDashboard3.setVisible(true);
+        } else {
+            ProfRedDashboard3.setVisible(false);
+        }
+        if (profMap.get(House.BLUE)) {
+            image = new Image("images/professors/teacher_blue.png");
+            ProfBlueDashboard3.setImage(image);
+            ProfBlueDashboard3.setVisible(true);
+        } else {
+            ProfBlueDashboard3.setVisible(false);
+        }
+    }
+
+
+    private void initializeIslands() {
+        int i = 0;
+        Map<House, Integer> houseMap;
+        Image image;
+
+        while (i < gm.getIslandList().size()) {
+            houseMap = new HashMap<>(gm.getIslandList().get(i).getStudents());
+
+            islandList.get(i).get("Yellow").setVisible(houseMap.get(YELLOW) != 0);
+            islandList.get(i).get("Red").setVisible(houseMap.get(RED) != 0);
+            islandList.get(i).get("Blue").setVisible(houseMap.get(BLUE) != 0);
+            islandList.get(i).get("Green").setVisible(houseMap.get(GREEN) != 0);
+            islandList.get(i).get("Pink").setVisible(houseMap.get(PINK) != 0);
+
+            try {
+                if (gm.getIslandList().get(i).getColorTower() != null) {
+                    Text towerNumber = (Text) islandList.get(i).get("TowerNumber");
+                    ImageView tower = (ImageView) islandList.get(i).get("Tower");
+                    towerNumber.setText(Integer.toString(gm.getIslandList().get(i).getNumTowers()));
+
+                    if (gm.getIslandList().get(i).getColorTower() == BLACK) {
+                        image = new Image("images/towers/black_tower.png");
+                        tower.setImage(image);
+                    }
+                    if (gm.getIslandList().get(i).getColorTower() == GRAY) {
+                        image = new Image("images/towers/gray_tower.png");
+                        tower.setImage(image);
+                    }
+                    if (gm.getIslandList().get(i).getColorTower() == WHITE) {
+                        image = new Image("images/towers/white_tower.png");
+                        tower.setImage(image);
+                        towerNumber.setStyle("-fx-text-fill: #463333;");
+                    }
+                }
+            } catch (IslandException ignored) {}
+
+            if (gm.isExpertMode()) {
+                ImageView noEntryTile = (ImageView) islandList.get(i).get("NoEntryTile");
+                if (gm.getIslandList().get(i).getNoEntryTile() == 0) {
+                    noEntryTile.setVisible(false);
+                }
+            } else {
+                ImageView noEntryTile = (ImageView) islandList.get(i).get("NoEntryTile");
+                noEntryTile.setVisible(false);
+            }
+
+
+            ImageView mother = (ImageView) islandList.get(i).get("Mother");
+            mother.setVisible(true);
+            if (gm.getMotherIsland() != i) {
+                mother.setVisible(false);
+            }
+            i++;
+        }
+    }
+
+    private void initializeClouds() {
+        Image image;
+        Map<House, Integer> houseMap;
         if (gm.getNumPlayers() == 3) {
             Cloud3Num1.setVisible(false);
             Cloud3Num2.setVisible(false);
@@ -2035,16 +2007,25 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
             ImageView[] Cloud1 = new ImageView[4];
             FillCloud4(Cloud1, Stud1Cloud4Num1, Stud2Cloud4Num1, Stud3Cloud4Num1, Stud4Cloud4Num1);
+            for (ImageView i : Cloud1) {
+                i.setVisible(false);
+            }
 
             ImageView[] Cloud2 = new ImageView[4];
             FillCloud4(Cloud2, Stud1Cloud4Num2, Stud2Cloud4Num2, Stud3Cloud4Num2, Stud4Cloud4Num2);
+            for (ImageView i : Cloud2) {
+                i.setVisible(false);
+            }
 
             ImageView[] Cloud3 = new ImageView[4];
             FillCloud4(Cloud3, Stud1Cloud4Num3, Stud2Cloud4Num3, Stud3Cloud4Num3, Stud4Cloud4Num3);
+            for (ImageView i : Cloud3) {
+                i.setVisible(false);
+            }
 
             houseMap = new HashMap<>(gm.getArrayClouds()[0].getStudents());
 
-            i = 0;
+            int i = 0;
             while (houseMap.get(House.PINK) != 0) {
                 image = new Image("images/students/student_pink.png");
                 Cloud1[i].setImage(image);
@@ -2164,12 +2145,18 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
             ImageView[] Cloud1 = new ImageView[3];
             FillCloud3(Cloud1, Stud1Cloud3Num1, Stud2Cloud3Num1, Stud3Cloud3Num1);
+            for (ImageView i : Cloud1) {
+                i.setVisible(false);
+            }
 
             ImageView[] Cloud2 = new ImageView[3];
             FillCloud3(Cloud2, Stud1Cloud3Num2, Stud2Cloud3Num2, Stud3Cloud3Num2);
+            for (ImageView i : Cloud2) {
+                i.setVisible(false);
+            }
 
             houseMap = new HashMap<>(gm.getArrayClouds()[0].getStudents());
-            i = 0;
+            int i = 0;
             while (houseMap.get(House.PINK) != 0) {
                 image = new Image("images/students/student_pink.png");
                 Cloud1[i].setImage(image);
@@ -2247,9 +2234,15 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             if (gm.getNumPlayers() == 4) {
                 ImageView[] Cloud3 = new ImageView[3];
                 FillCloud3(Cloud3, Stud1Cloud3Num3, Stud2Cloud3Num3, Stud3Cloud3Num3);
+                for (ImageView img : Cloud3) {
+                    img.setVisible(false);
+                }
 
                 ImageView[] Cloud4 = new ImageView[3];
                 FillCloud3(Cloud4, Stud1Cloud3Num4, Stud2Cloud3Num4, Stud3Cloud3Num4);
+                for (ImageView img : Cloud1) {
+                    img.setVisible(false);
+                }
 
                 houseMap = new HashMap<>(gm.getArrayClouds()[2].getStudents());
                 i = 0;
@@ -2334,6 +2327,356 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             }
 
         }
+    }
+    public void setGameModel(ReducedGameModel gm) {
+        this.gm = gm;
+    }
+
+    // <--------- Update methods --------->
+    public void updateIslands() {
+        initializeIslands();
+    }
+
+    public void updateDiningHall(ReducedDiningHall diningHall) {
+        int numPlayer = determinePlayer(gm.getPlayerByNickname(diningHall.getNickname()));
+
+        switch (numPlayer) {
+            case 1:
+                initializeDiningHallMain();
+                break;
+            case 2:
+                initializeDiningHallSecondPlayer();
+                break;
+            case 3:
+                initializeDiningHallThirdPlayer();
+                break;
+            case 4:
+                initializeDiningHallFourthPlayer();
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + numPlayer);
+        }
+    }
+
+    public void updateDashboard(ReducedDashboard dashboard) {
+        int numPlayer = determinePlayer(gm.getPlayerByNickname(dashboard.getNickname()));
+
+        switch (numPlayer) {
+            case 1:
+                initializeDashboardMain();
+                break;
+            case 2:
+                initializeDashboardSecondPlayer();
+                break;
+            case 3:
+                initializeDashboardThirdPlayer();
+                break;
+            case 4:
+                initializeDashboardFourthPlayer();
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + numPlayer);
+        }
+    }
+
+    public void updatePlayer(ReducedPlayer player) {
+        int numPlayer = determinePlayer(gm.getPlayerByNickname(player.getNickname()));
+
+        switch (numPlayer) {
+            case 1:
+                initializeMainPlayer();
+                break;
+            case 2:
+                initializeSecondPlayer();
+                break;
+            case 3:
+                initializeThirdPlayer();
+                break;
+            case 4:
+                initializeFourthPlayer();
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + numPlayer);
+        }
+    }
+
+    public void updateClouds() {
+        initializeClouds();
+    }
+
+    public void updateMotherNature() {
+        initializeIslands();
+    }
+
+    public void updateCurrentPlayer(ReducedPlayer currentPlayer) {
+        updatePlayer(currentPlayer);
+    }
+
+    private int determinePlayer (ReducedPlayer player) {
+        int numPlayer = Arrays.asList(gm.getArrayPlayers()).indexOf(player);
+
+        int numSecond = (numMain + 1) % gm.getNumPlayers();
+        int numThird = (numMain + 2) % gm.getNumPlayers();
+        int numFourth = (numMain + 3) % gm.getNumPlayers();
+
+        if (numPlayer == numMain) {
+            return 1;
+        } else if (numPlayer == numSecond) {
+            return 2;
+        } else if (numPlayer == numThird) {
+            return 3;
+        } else if (numPlayer == numFourth) {
+            return 4;
+        }
+        return 0;
+    }
+
+    public void initialize() {
+
+        this.diningHallMain = new Button[]{diningHallMainGreen, diningHallMainRed, diningHallMainYellow,
+                diningHallMainBlue, diningHallMainPink};
+
+        this.islandButtons = new Button[]{Island00Btn, Island01Btn, Island02Btn, Island03Btn, Island04Btn, Island05Btn,
+                Island06Btn, Island07Btn, Island08Btn, Island09Btn, Island10Btn, Island11Btn};
+
+        Map<House, Integer> houseMap;
+
+        int i;
+
+        Image image;
+
+        //first player
+        initializeMainPlayer();
+
+        //second player
+        initializeSecondPlayer();
+
+        if (gm.getNumPlayers() == 2) { //show of hid dashboards
+            Dashboard2.setVisible(false);
+            Dashboard3.setVisible(false);
+            Chat.setVisible(false);
+            Chat.setDisable(true);
+            ChatAlternative.setVisible(true);
+            TwoDashboardAlternative.setVisible(true);
+        } else if (gm.getNumPlayers() > 2) {
+            //third player
+            initializeDashboardThirdPlayer();
+
+
+            if (gm.getNumPlayers() == 4) {
+                if (!gm.isChat()) {
+                    Chat.setVisible(false);
+                    Chat.setDisable(true);
+                    ChatAlternative.setVisible(true);
+                }
+                //fourth player
+                initializeDashboardFourthPlayer();
+            } else {
+                Dashboard3.setVisible(false);
+                Chat.setDisable(true);
+                Chat.setVisible(false);
+                ChatAlternative.setVisible(true);
+                OneDashboardAlternative.setVisible(true);
+            }
+        }
+        if (!gm.isExpertMode()) {
+            CharacterCardsPlacement.setVisible(false);
+            CharacterCardAlternative.setVisible(true);
+        } else {
+            CharacterCardsPlacement.setVisible(true);
+            CostCharacterCard1.setText(Integer.toString(gm.getCharacterCardDeck()[0].getCost()));
+            CostCharacterCard2.setText(Integer.toString(gm.getCharacterCardDeck()[1].getCost()));
+            CostCharacterCard3.setText(Integer.toString(gm.getCharacterCardDeck()[2].getCost()));
+
+            String path = null;
+            switch (gm.getCharacterCardDeck()[0].getType()) {
+                case FARMER:
+                    path = "images/CharacterCards/Farmer.jpg";
+                    break;
+                case MAGICAL_MAILMAN:
+                    path = "images/CharacterCards/MagicalMailman.jpg";
+                    break;
+                case HERB_GRANMA:
+                    path = "images/CharacterCards/HerbGranma.jpg";
+                    break;
+                case MINSTREL:
+                    path = "images/CharacterCards/Minstrel.jpg";
+                    break;
+                case MONK:
+                    path = "images/CharacterCards/Monk.jpg";
+                    break;
+                case HERALD:
+                    path = "images/CharacterCards/Herald.jpg";
+                    break;
+                case CENTAUR:
+                    path = "images/CharacterCards/Centaur.jpg";
+                    break;
+                case JOLLY:
+                    path = "images/CharacterCards/Jolly.jpg";
+                    break;
+                case KNIGHT:
+                    path = "images/CharacterCards/Knight.jpg";
+                    break;
+                case MUSHROOM_HUNTER:
+                    path = "images/CharacterCards/MushroomHunter.jpg";
+                    break;
+                case SPOILED_PRINCESS:
+                    path = "images/CharacterCards/SpoiledPrincess.jpg";
+                    break;
+                case THIEF:
+                    path = "images/CharacterCards/Thief.jpg";
+                    break;
+            }
+            image = new Image(path);
+            for (House h : House.values()) {
+                if (gm.getCharacterCardDeck()[0].getHouseMap().get(h) > 0) {
+                    switch (h) {
+                        case BLUE:
+                            BlueStdCard1.setVisible(true);
+                            break;
+                        case GREEN:
+                            GreenStdCard1.setVisible(true);
+                            break;
+                        case PINK:
+                            PinkStdCard1.setVisible(true);
+                            break;
+                        case RED:
+                            RedStdCard1.setVisible(true);
+                            break;
+                        case YELLOW:
+                            YellowStdCard1.setVisible(true);
+                            break;
+                    }
+                }
+            }
+            CharacterCard1.setImage(image);
+
+            switch (gm.getCharacterCardDeck()[1].getType()) {
+                case FARMER:
+                    path = "images/CharacterCards/Farmer.jpg";
+                    break;
+                case MAGICAL_MAILMAN:
+                    path = "images/CharacterCards/MagicalMailman.jpg";
+                    break;
+                case HERB_GRANMA:
+                    path = "images/CharacterCards/HerbGranma.jpg";
+                    break;
+                case MINSTREL:
+                    path = "images/CharacterCards/Minstrel.jpg";
+                    break;
+                case MONK:
+                    path = "images/CharacterCards/Monk.jpg";
+                    break;
+                case HERALD:
+                    path = "images/CharacterCards/Herald.jpg";
+                    break;
+                case CENTAUR:
+                    path = "images/CharacterCards/Centaur.jpg";
+                    break;
+                case JOLLY:
+                    path = "images/CharacterCards/Jolly.jpg";
+                    break;
+                case KNIGHT:
+                    path = "images/CharacterCards/Knight.jpg";
+                    break;
+                case MUSHROOM_HUNTER:
+                    path = "images/CharacterCards/MushroomHunter.jpg";
+                    break;
+                case SPOILED_PRINCESS:
+                    path = "images/CharacterCards/SpoiledPrincess.jpg";
+                    break;
+                case THIEF:
+                    path = "images/CharacterCards/Thief.jpg";
+                    break;
+            }
+            image = new Image(path);
+            for (House h : House.values()) {
+                if (gm.getCharacterCardDeck()[1].getHouseMap().get(h) > 0) {
+                    switch (h) {
+                        case BLUE:
+                            BlueStdCard2.setVisible(true);
+                            break;
+                        case GREEN:
+                            GreenStdCard2.setVisible(true);
+                            break;
+                        case PINK:
+                            PinkStdCard2.setVisible(true);
+                            break;
+                        case RED:
+                            RedStdCard2.setVisible(true);
+                            break;
+                        case YELLOW:
+                            YellowStdCard2.setVisible(true);
+                            break;
+                    }
+                }
+            }
+            CharacterCard2.setImage(image);
+
+            switch (gm.getCharacterCardDeck()[2].getType()) {
+                case FARMER:
+                    path = "images/CharacterCards/Farmer.jpg";
+                    break;
+                case MAGICAL_MAILMAN:
+                    path = "images/CharacterCards/MagicalMailman.jpg";
+                    break;
+                case HERB_GRANMA:
+                    path = "images/CharacterCards/HerbGranma.jpg";
+                    break;
+                case MINSTREL:
+                    path = "images/CharacterCards/Minstrel.jpg";
+                    break;
+                case MONK:
+                    path = "images/CharacterCards/Monk.jpg";
+                    break;
+                case HERALD:
+                    path = "images/CharacterCards/Herald.jpg";
+                    break;
+                case CENTAUR:
+                    path = "images/CharacterCards/Centaur.jpg";
+                    break;
+                case JOLLY:
+                    path = "images/CharacterCards/Jolly.jpg";
+                    break;
+                case KNIGHT:
+                    path = "images/CharacterCards/Knight.jpg";
+                    break;
+                case MUSHROOM_HUNTER:
+                    path = "images/CharacterCards/MushroomHunter.jpg";
+                    break;
+                case SPOILED_PRINCESS:
+                    path = "images/CharacterCards/SpoiledPrincess.jpg";
+                    break;
+                case THIEF:
+                    path = "images/CharacterCards/Thief.jpg";
+                    break;
+            }
+            image = new Image(path);
+            for (House h : House.values()) {
+                if (gm.getCharacterCardDeck()[2].getHouseMap().get(h) > 0) {
+                    switch (h) {
+                        case BLUE:
+                            BlueStdCard3.setVisible(true);
+                            break;
+                        case GREEN:
+                            GreenStdCard3.setVisible(true);
+                            break;
+                        case PINK:
+                            PinkStdCard3.setVisible(true);
+                            break;
+                        case RED:
+                            RedStdCard3.setVisible(true);
+                            break;
+                        case YELLOW:
+                            YellowStdCard3.setVisible(true);
+                            break;
+                    }
+                }
+            }
+            CharacterCard3.setImage(image);
+        }
+
+        initializeClouds();
 
         islandList = new ArrayList<>();
         for (i = 0; i < 12; i++) {
@@ -2478,7 +2821,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             i++;
         }
 
-        initializeIsland();
+        initializeIslands();
 
         Dashboard1.setDisable(true);
         Dashboard2.setDisable(true);
