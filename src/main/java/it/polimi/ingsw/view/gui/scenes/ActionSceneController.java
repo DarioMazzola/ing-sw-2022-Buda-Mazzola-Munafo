@@ -3031,6 +3031,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         for (Button b : islandButtons) {
             b.setOnMouseClicked(moveStudentToIsland);
         }
+
+        getButtonByHouse(houseSelected).setOnMouseClicked(moveStudentToDiningHall);
+
     }
 
     private void selectStudentCancel(MouseEvent mouseEvent) {
@@ -3049,6 +3052,16 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     }
 
     public void moveStudentToDiningHall(MouseEvent event) {
+
+        for (Button b : islandButtons) {
+            b.removeEventHandler(MouseEvent.MOUSE_CLICKED, moveStudentToIsland);
+        }
+
+        for (ImageView student : EntranceMain) {
+            student.removeEventHandler(MouseEvent.MOUSE_CLICKED, selectStudent);
+            student.setOpacity(1);
+        }
+
         notifyObserver(observer -> observer.onMoveStudentsToDiningHall(houseSelected));
     }
 
@@ -3064,6 +3077,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             student.removeEventHandler(MouseEvent.MOUSE_CLICKED, selectStudent);
             student.setOpacity(1);
         }
+
+        getButtonByHouse(houseSelected).removeEventHandler(MouseEvent.MOUSE_CLICKED, moveStudentToDiningHall);
 
         int islandPosition = getIslandById(islandClicked.getId());
         notifyObserver(observer -> observer.onMoveStudentsToIsland(houseSelected, islandPosition));
@@ -3104,6 +3119,14 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
     public void setMoveMother() {
         this.moveMother = true;
+
+        for (ImageView student : EntranceMain) {
+            student.removeEventHandler(MouseEvent.MOUSE_CLICKED, selectStudent);
+        }
+
+        for (Button diningHall : diningHallMain) {
+            diningHall.removeEventHandler(MouseEvent.MOUSE_CLICKED, moveStudentToDiningHall);
+        }
     }
 
     private void moveMotherFrom(MouseEvent event) {
@@ -3116,6 +3139,12 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                 currentIsland = 0;
             }
             islandButtons[currentIsland + i].setOnMouseClicked(moveMotherTo);
+        }
+
+
+        for (Button button : islandButtons) {
+            if (button.getOnMouseClicked().equals(moveMotherFrom))
+                button.removeEventHandler(MouseEvent.MOUSE_CLICKED, moveMotherFrom);
         }
 
     }
