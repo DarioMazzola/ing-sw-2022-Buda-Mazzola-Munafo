@@ -2802,70 +2802,18 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         moveStudentToDiningHall = this::moveStudentToDiningHall;
     }
 
-        for(ImageView student : EntranceMain){
+    public void initializeEvents() {
+        for (ImageView student : EntranceMain) {
             student.setOnMouseClicked(selectStudent);
         }
 
-        if(moveMother) {
+        if (moveMother) {
             islandButtons[gm.getMotherIsland()].setOnMouseClicked(moveMotherFrom);
-        }
-        else {
+        } else {
             for (Button island : islandButtons) {
                 island.setOnMouseClicked(moveStudentToIsland);
             }
         }
-
-        System.out.println(gm.getPlayerByNickname(nickname).getDashboard());
-        System.out.println(gm.getIslandList());
-    }
-
-    private void FillCloud4(ImageView[] cloud1, ImageView stud1Cloud4Num1, ImageView stud2Cloud4Num1, ImageView stud3Cloud4Num1, ImageView stud4Cloud4Num1) {
-        cloud1[0] = stud1Cloud4Num1;
-        cloud1[1] = stud2Cloud4Num1;
-        cloud1[2] = stud3Cloud4Num1;
-        cloud1[3] = stud4Cloud4Num1;
-    }
-
-    private void FillCloud3(ImageView[] cloud1, ImageView stud1Cloud3Num1, ImageView stud2Cloud3Num1, ImageView stud3Cloud3Num1) {
-        cloud1[0] = stud1Cloud3Num1;
-        cloud1[1] = stud2Cloud3Num1;
-        cloud1[2] = stud3Cloud3Num1;
-    }
-
-    private void FillTowers(ImageView[] TowersMain, ImageView Tower1Main, ImageView Tower2Main, ImageView Tower3Main, ImageView Tower4Main, ImageView Tower5Main, ImageView Tower6Main, ImageView Tower7Main, ImageView Tower8Main) {
-        TowersMain[0] = Tower1Main;
-        TowersMain[1] = Tower2Main;
-        TowersMain[2] = Tower3Main;
-        TowersMain[3] = Tower4Main;
-        TowersMain[4] = Tower5Main;
-        TowersMain[5] = Tower6Main;
-        TowersMain[6] = Tower7Main;
-        TowersMain[7] = Tower8Main;
-    }
-
-    private void FillDiningHall(ImageView[] diningMainRed, ImageView diningRedStd1Main, ImageView diningRedStd2Main, ImageView diningRedStd3Main, ImageView diningRedStd4Main, ImageView diningRedStd5Main, ImageView diningRedStd6Main, ImageView diningRedStd7Main, ImageView diningRedStd8Main, ImageView diningRedStd9Main, ImageView diningRedStd10Main) {
-        diningMainRed[0] = diningRedStd1Main;
-        diningMainRed[1] = diningRedStd2Main;
-        diningMainRed[2] = diningRedStd3Main;
-        diningMainRed[3] = diningRedStd4Main;
-        diningMainRed[4] = diningRedStd5Main;
-        diningMainRed[5] = diningRedStd6Main;
-        diningMainRed[6] = diningRedStd7Main;
-        diningMainRed[7] = diningRedStd8Main;
-        diningMainRed[8] = diningRedStd9Main;
-        diningMainRed[9] = diningRedStd10Main;
-    }
-
-    private void FillEntrance(ImageView[] Entrance, ImageView diningRedStd1Main, ImageView diningRedStd2Main, ImageView diningRedStd3Main, ImageView diningRedStd4Main, ImageView diningRedStd5Main, ImageView diningRedStd6Main, ImageView diningRedStd7Main, ImageView diningRedStd8Main, ImageView diningRedStd9Main) {
-        Entrance[0] = diningRedStd1Main;
-        Entrance[1] = diningRedStd2Main;
-        Entrance[2] = diningRedStd3Main;
-        Entrance[3] = diningRedStd4Main;
-        Entrance[4] = diningRedStd5Main;
-        Entrance[5] = diningRedStd6Main;
-        Entrance[6] = diningRedStd7Main;
-        Entrance[7] = diningRedStd8Main;
-        Entrance[8] = diningRedStd9Main;
     }
 
     private void fillGraveyard(ImageView imgview, ReducedPlayer p) {
