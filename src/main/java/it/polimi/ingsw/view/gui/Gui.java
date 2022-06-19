@@ -199,10 +199,6 @@ public class Gui extends ViewObservable implements UI {
 
     @Override
     public void updateClouds(ReducedCloud[] clouds) {
-        System.out.println("UpdateClouds: ");
-        for (ReducedCloud c : clouds) {
-            System.out.println(c);
-        }
         gm.setArrayClouds(clouds);
 
         updateActionSceneGM();
