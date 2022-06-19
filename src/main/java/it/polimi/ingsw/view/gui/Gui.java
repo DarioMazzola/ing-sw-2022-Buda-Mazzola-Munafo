@@ -213,7 +213,7 @@ public class Gui extends ViewObservable implements UI {
 
     @Override
     public void showError(String errorMsg) {
-        System.out.println(errorMsg);
+        Platform.runLater(() -> SceneController.displayError(errorMsg));
     }
 
     @Override

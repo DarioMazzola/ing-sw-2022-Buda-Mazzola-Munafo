@@ -8,6 +8,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.effect.GaussianBlur;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -15,6 +17,8 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.List;
+
+import static javafx.scene.control.Alert.AlertType.ERROR;
 
 public class SceneController extends ViewObservable {
 
@@ -135,5 +139,18 @@ public class SceneController extends ViewObservable {
             activeScene.getRoot().setEffect(null);
             waitStage.hide();
         }
+    }
+
+    public static void displayError(String errorMessage) {
+
+        activeScene.getRoot().setEffect(new GaussianBlur());
+
+        Alert alert = new Alert(ERROR, "", ButtonType.OK);
+        alert.setHeaderText(errorMessage);
+        alert.initOwner(activeScene.getWindow());
+        alert.initModality(Modality.APPLICATION_MODAL);
+        alert.showAndWait();
+
+        activeScene.getRoot().setEffect(null);
     }
 }
