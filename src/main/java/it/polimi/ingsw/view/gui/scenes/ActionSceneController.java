@@ -2386,6 +2386,10 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         updatePlayer(currentPlayer);
     }
 
+    public void updateChat (String msg) {
+        initializeChat(msg);
+    }
+
     private int determinePlayer(ReducedPlayer player) {
         int numPlayer = Arrays.asList(gm.getArrayPlayers()).indexOf(player);
 
