@@ -23,16 +23,25 @@ public class Gui extends ViewObservable implements UI {
 
     @Override
     public void createNewGame() {
+
+        Platform.runLater(SceneController::hidePopUp);
+
         Platform.runLater(() -> SceneController.changeRootPane(observers, "loginScene.fxml"));
     }
 
     @Override
     public void selectNumPlayers() {
+
+        Platform.runLater(SceneController::hidePopUp);
+
         Platform.runLater(() -> SceneController.changeRootPane(observers, "SelectNumPlayerScene.fxml"));
     }
 
     @Override
     public void selectExpertMode() {
+
+        Platform.runLater(SceneController::hidePopUp);
+
         Platform.runLater(() -> SceneController.changeRootPane(observers, "SelectExpertModeScene.fxml"));
     }
 
@@ -86,6 +95,7 @@ public class Gui extends ViewObservable implements UI {
 
         ActionSceneController controller;
 
+        Platform.runLater(SceneController::hidePopUp);
         if (!(SceneController.getActiveController() instanceof ActionSceneController)) {
             controller = new ActionSceneController(gm, nickname);
             Platform.runLater(() -> SceneController.changeRootPane(observers, "ActionScene.fxml", controller));
@@ -117,6 +127,8 @@ public class Gui extends ViewObservable implements UI {
 
     @Override
     public void goToLobby() {
+
+        Platform.runLater(SceneController::hidePopUp);
         Platform.runLater(() -> SceneController.changeRootPane(observers, "LobbyScene.fxml"));
     }
 
@@ -130,7 +142,8 @@ public class Gui extends ViewObservable implements UI {
 
     @Override
     public void selectRestoreGame() {
-        Platform.runLater(() -> SceneController.changeRootPane(observers, "SelectRestoreGameScene.fxml"));
+
+        Platform.runLater(() -> SceneController.displayPopUp(observers, "SelectRestoreGameScene.fxml"));
     }
 
     @Override
