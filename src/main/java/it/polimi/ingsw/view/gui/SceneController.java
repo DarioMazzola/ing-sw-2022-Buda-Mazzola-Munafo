@@ -100,6 +100,35 @@ public class SceneController extends ViewObservable {
         }
     }
 
+    public static <T> T displayPopUp(List<ViewObserver> observerList, String fileName){
+
+        T controller = null;
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneController.class.getResource("/fxml/" + fileName));
+            Parent root = loader.load();
+
+            controller = loader.getController(); //prende il controller associato alla scena
+
+            for (ViewObserver o : observerList)
+                ((ViewObservable) controller).addObserver(o);
+
+            activeController = (SceneInterface) controller;
+
+            activeScene.getRoot().setEffect(new GaussianBlur());
+
+            waitStage = new Stage(StageStyle.TRANSPARENT);
+            waitStage.initOwner(activeScene.getWindow());
+            waitStage.initModality(Modality.APPLICATION_MODAL);
+            waitStage.setScene(new Scene(root, javafx.scene.paint.Color.TRANSPARENT));
+
+            waitStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return controller;
+    }
+
     public static void hidePopUp(){
 
         if(activeScene != null && waitStage != null) {
