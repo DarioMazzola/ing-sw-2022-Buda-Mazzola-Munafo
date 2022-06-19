@@ -6,20 +6,8 @@ import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Wizard;
 import it.polimi.ingsw.observer.ViewObservable;
 import it.polimi.ingsw.view.UI;
-import it.polimi.ingsw.view.gui.scenes.ActionSceneController;
-import it.polimi.ingsw.view.gui.scenes.SelectAssistantCardSceneController;
-import it.polimi.ingsw.view.gui.scenes.SelectTowerColorSceneController;
-import it.polimi.ingsw.view.gui.scenes.SelectWizardSceneController;
+import it.polimi.ingsw.view.gui.scenes.*;
 import javafx.application.Platform;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.effect.GaussianBlur;
-import javafx.scene.layout.StackPane;
-import javafx.scene.text.Font;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.util.List;
 
@@ -32,8 +20,6 @@ public class Gui extends ViewObservable implements UI {
 
     private ReducedGameModel gm;
     private String nickname;
-    private Scene root;
-    private Stage waitStage;
 
     @Override
     public void createNewGame() {
@@ -53,7 +39,7 @@ public class Gui extends ViewObservable implements UI {
     @Override
     public void selectWizard(List<Wizard> availableWizards) {
 
-        Platform.runLater(this::closeWaitForOthersMove);
+        Platform.runLater(SceneController::hidePopUp);
 
         SelectWizardSceneController controller = new SelectWizardSceneController(availableWizards);
 
@@ -78,7 +64,8 @@ public class Gui extends ViewObservable implements UI {
     @Override
     public void selectTowerColor(List<Color> availableColors) {
 
-        Platform.runLater(this::closeWaitForOthersMove);
+        Platform.runLater(SceneController::hidePopUp);
+
         SelectTowerColorSceneController controller = new SelectTowerColorSceneController(availableColors);
 
         Platform.runLater(() -> SceneController.changeRootPane(observers, "SelectTowerColorScene.fxml", controller));
@@ -87,7 +74,7 @@ public class Gui extends ViewObservable implements UI {
     @Override
     public void selectAssistantCard(List<Card> availableAssistantCard) {
 
-        Platform.runLater(this ::closeWaitForOthersMove);
+        Platform.runLater(SceneController::hidePopUp);
 
         SelectAssistantCardSceneController controller = new SelectAssistantCardSceneController(gm, nickname, availableAssistantCard);
 
@@ -99,15 +86,14 @@ public class Gui extends ViewObservable implements UI {
 
         ActionSceneController controller;
 
-        if(! (SceneController.getActiveController() instanceof  ActionSceneController)) {
+        if (!(SceneController.getActiveController() instanceof ActionSceneController)) {
             controller = new ActionSceneController(gm, nickname);
             Platform.runLater(() -> SceneController.changeRootPane(observers, "ActionScene.fxml", controller));
-        }
-        else {
+        } else {
             controller = (ActionSceneController) SceneController.getActiveController();
             controller.setGm(gm);
 
-            if(availableActions.contains("Move Mother Nature")){
+            if (availableActions.contains("Move Mother Nature")) {
                 controller.setMoveMother();
             }
             Platform.runLater(controller::initialize);
@@ -136,12 +122,15 @@ public class Gui extends ViewObservable implements UI {
 
     @Override
     public void waitForOthersMoves(String move) {
-        Platform.runLater(() -> displayWaitForOthersMove(move));
+
+        Platform.runLater(SceneController::hidePopUp);
+        WaitForOthersMoveSceneController controller = new WaitForOthersMoveSceneController(move);
+        Platform.runLater(() -> SceneController.displayPopUp("WaitForOthersMoveScene.fxml", controller));
     }
 
     @Override
     public void selectRestoreGame() {
-
+        Platform.runLater(() -> SceneController.changeRootPane(observers, "SelectRestoreGameScene.fxml"));
     }
 
     @Override
@@ -217,51 +206,5 @@ public class Gui extends ViewObservable implements UI {
     @Override
     public void notifyGameFull() {
 
-    }
-
-    private void displayWaitForOthersMove(String move) {
-
-        root = SceneController.getActiveScene();
-
-        root.getRoot().setEffect(new GaussianBlur());
-
-        StackPane pauseRoot = new StackPane();
-
-        pauseRoot.setPrefWidth(800);
-        pauseRoot.setPrefHeight(600);
-
-        Label label = new Label("Another player is choosing the "+ move +". Wait your turn");
-        Font font = new Font("Baskerville Old Face", 24);
-
-        label.setFont(font);
-
-        pauseRoot.getChildren().add(label);
-        pauseRoot.setStyle("-fx-background-color: rgba(135, 206, 250, 0.7);");
-
-        Button resume = new Button("Ok");
-        resume.setFont(font);
-
-        resume.setOnAction((e) -> {
-            root.getRoot().setEffect(null);
-            waitStage.hide();
-        });
-
-        resume.setTranslateY(50);
-        pauseRoot.getChildren().add(resume);
-
-        waitStage = new Stage(StageStyle.TRANSPARENT);
-        waitStage.initOwner(root.getWindow());
-        waitStage.initModality(Modality.APPLICATION_MODAL);
-        waitStage.setScene(new Scene(pauseRoot, javafx.scene.paint.Color.TRANSPARENT));
-
-        waitStage.show();
-    }
-
-    private void closeWaitForOthersMove() {
-
-        if(root != null && waitStage != null) {
-            root.getRoot().setEffect(null);
-            waitStage.hide();
-        }
     }
 }

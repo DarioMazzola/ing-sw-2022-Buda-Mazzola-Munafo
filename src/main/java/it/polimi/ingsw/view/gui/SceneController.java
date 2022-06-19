@@ -8,6 +8,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.effect.GaussianBlur;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,6 +20,7 @@ public class SceneController extends ViewObservable {
 
     private static Scene activeScene;
     private static SceneInterface activeController;
+    public static Stage waitStage;
 
     public static <T> T changeRootPane(List<ViewObserver> observerList, String fileName) {
         T controller = null;
@@ -74,4 +79,32 @@ public class SceneController extends ViewObservable {
         return changeRootPane(observerList, fileName);
     }
 
+    public static void displayPopUp(String fileName, SceneInterface controller) {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(SceneController.class.getResource("/fxml/" + fileName));
+            loader.setController(controller);
+            Parent root = loader.load();
+
+            activeScene.getRoot().setEffect(new GaussianBlur());
+
+            waitStage = new Stage(StageStyle.TRANSPARENT);
+            waitStage.initOwner(activeScene.getWindow());
+            waitStage.initModality(Modality.APPLICATION_MODAL);
+            waitStage.setScene(new Scene(root, javafx.scene.paint.Color.TRANSPARENT));
+
+            waitStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void hidePopUp(){
+
+        if(activeScene != null && waitStage != null) {
+            activeScene.getRoot().setEffect(null);
+            waitStage.hide();
+        }
+    }
 }
