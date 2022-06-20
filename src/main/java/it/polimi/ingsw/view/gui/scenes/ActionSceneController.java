@@ -3233,4 +3233,47 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         notifyObserver(observer -> observer.onMoveMotherNature(position));
     }
+
+    public void setCloudSelectable() {
+
+        for(Button island : islandButtons) {
+            island.setOnMouseClicked(doNothing);
+        }
+
+        for(Button diningHall : diningHallMain) {
+            diningHall.setOnMouseClicked(doNothing);
+        }
+
+        for(ImageView student : EntranceMain) {
+            student.setOnMouseClicked(doNothing);
+        }
+
+        for(Button cloud : cloudsButtons) {
+            if(cloud.getOnMouseClicked() == null)
+                cloud.setOnMouseClicked(selectCloud);
+        }
+    }
+
+    public int getCloudById(String id) {
+        return Integer.parseInt(String.valueOf(id.charAt(id.length()-1))) - 1;
+    }
+
+    public void onCloudSelected(MouseEvent event) {
+
+        System.out.println("Cloud selected: " + event.getSource());
+
+        Button cloud = (Button) event.getSource();
+
+        int cloudSelected = getCloudById(cloud.getId());
+
+        notifyObserver(observer -> observer.onUpdateCloud(cloudSelected));
+
+        for(Button c : cloudsButtons) {
+            c.setOnMouseClicked(doNothing);
+        }
+
+    }
+
+    private void doNothing(MouseEvent event){
+    }
 }
