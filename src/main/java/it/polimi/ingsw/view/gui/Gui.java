@@ -63,7 +63,9 @@ public class Gui extends ViewObservable implements UI {
 
     @Override
     public void selectChat() {
+        Platform.runLater(SceneController::hidePopUp);
 
+        Platform.runLater(() -> SceneController.changeRootPane(observers, "SelectChatScene.fxml"));
     }
 
     @Override
