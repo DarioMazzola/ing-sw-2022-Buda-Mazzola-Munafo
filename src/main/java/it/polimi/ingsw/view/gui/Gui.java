@@ -175,7 +175,11 @@ public class Gui extends ViewObservable implements UI {
 
     @Override
     public void onChatMessageReceived(String message) {
-
+        ActionSceneController controller;
+        if (SceneController.getActiveController() instanceof ActionSceneController) {
+            controller = (ActionSceneController) SceneController.getActiveController();
+            Platform.runLater(() -> controller.updateChat(message));
+        }
     }
 
     @Override

@@ -121,6 +121,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     private Text ChatReceivedText;
 
     @FXML
+    private Text NoMessageText;
+
+    @FXML
     private Pane Cloud4Num1;
     @FXML
     private Pane Cloud4Num2;
@@ -2344,7 +2347,15 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     }
 
     private void initializeChat (String msg) {
-        ChatReceivedText.setText(msg);
+        NoMessageText.setVisible(false);
+        ReducedPlayer teamMate = null;
+        for (ReducedPlayer p : gm.getArrayPlayers()) {
+            if (p.getDashboard().getTowerColor().equals(gm.getPlayerByNickname(nickname).getDashboard().getTowerColor()) && !p.getNickname().equals(nickname)) {
+                teamMate = p;
+                break;
+            }
+        }
+        ChatReceivedText.setText("Message from " + (teamMate==null ? "your team mate" : teamMate.getNickname())  + ":\n\n<< " + msg + " >>");
     }
 
     public void setGameModel(ReducedGameModel gm) {
