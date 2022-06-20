@@ -20,7 +20,8 @@ public enum TypeOfError {
         INVALID_CLOUD("This cloud is not available! Please select another cloud"),
         GAME_ALREADY_STARTED("The game is already started. You cannot join now!"),
         GAME_RESTORED_NICKNAME_NOT_PRESENT("There is a game saved on the server that a player has decided to resume. Your nickname is not part of the game. " +
-                "Please, if you want to play, wait for the game to end or change your nickname.");
+                "Please, if you want to play, wait for the game to end or change your nickname."),
+        WRONG_MOTHER_MOVES("You cannot move mother nature in this way! Please try again");
 
         private final String description;
 
