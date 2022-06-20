@@ -105,8 +105,15 @@ public class ActionController {
                 if (studentsMoved != maxStudMoved){
                     tc.getVirtualViewMap().get(messageReceived.getNickname()).showError(STUDENTS_NOT_MOVED.toString());
                     tc.getVirtualViewMap().get(messageReceived.getNickname()).actionPhase(availableActions);
+                    break;
                 }
-                moveMotherHandler(messageReceived);
+                try {
+                    moveMotherHandler(messageReceived);
+                } catch (IllegalArgumentException e){
+                    tc.getVirtualViewMap().get(messageReceived.getNickname()).showError(WRONG_MOTHER_MOVES.toString());
+                    tc.getVirtualViewMap().get(messageReceived.getNickname()).actionPhase(availableActions);
+                    break;
+                }
 
                 //initialize variables for next turn
                 resetActions();
