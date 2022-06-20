@@ -2842,9 +2842,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     }
 
     public void initializeEvents() {
-        for (ImageView student : EntranceMain) {
-            student.setOnMouseClicked(selectStudent);
-        }
 
         if (moveMother) {
             int currentIsland = gm.getMotherIsland();
@@ -3013,7 +3010,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         for (ImageView student : EntranceMain) {
             if (!studentSelected.getId().equals(student.getId())) {
-                student.removeEventHandler(MouseEvent.MOUSE_CLICKED, selectStudent);
+                student.setOnMouseClicked(doNothing);
                 student.setOpacity(0.8);
             }
         }
@@ -3036,10 +3033,10 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         }
 
         for (Button b : islandButtons) {
-            b.removeEventHandler(MouseEvent.MOUSE_CLICKED, moveStudentToIsland);
+            b.setOnMouseClicked(doNothing);
         }
 
-        getButtonByHouse(houseSelected).removeEventHandler(MouseEvent.MOUSE_CLICKED, moveStudentToDiningHall);
+        getButtonByHouse(houseSelected).setOnMouseClicked(doNothing);
 
         houseSelected = null;
     }
@@ -3047,15 +3044,18 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     public void moveStudentToDiningHall(MouseEvent event) {
 
         for (Button b : islandButtons) {
-            b.removeEventHandler(MouseEvent.MOUSE_CLICKED, moveStudentToIsland);
+            b.setOnMouseClicked(doNothing);
         }
 
         for (ImageView student : EntranceMain) {
-            student.removeEventHandler(MouseEvent.MOUSE_CLICKED, selectStudent);
+            student.setOnMouseClicked(doNothing);
             student.setOpacity(1);
         }
 
         notifyObserver(observer -> observer.onMoveStudentsToDiningHall(houseSelected));
+
+        getButtonByHouse(houseSelected).setOnMouseClicked(doNothing);
+        houseSelected = null;
     }
 
     private void moveStudentToIsland(MouseEvent event) {
@@ -3063,18 +3063,17 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         Button islandClicked = (Button) event.getSource();
 
         for (Button b : islandButtons) {
-            b.removeEventHandler(MouseEvent.MOUSE_CLICKED, moveStudentToIsland);
+            b.setOnMouseClicked(doNothing);
         }
 
         for (ImageView student : EntranceMain) {
-            student.removeEventHandler(MouseEvent.MOUSE_CLICKED, selectStudent);
+            student.setOnMouseClicked(doNothing);
             student.setOpacity(1);
         }
 
-        getButtonByHouse(houseSelected).removeEventHandler(MouseEvent.MOUSE_CLICKED, moveStudentToDiningHall);
-
         int islandPosition = getIslandById(islandClicked.getId());
         notifyObserver(observer -> observer.onMoveStudentsToIsland(houseSelected, islandPosition));
+        houseSelected = null;
     }
 
     private House getHouseById(String id) {
@@ -3092,9 +3091,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                 return diningHallMain[1];
             case YELLOW:
                 return diningHallMain[2];
-            case BLUE:
-                return diningHallMain[3];
             case PINK:
+                return diningHallMain[3];
+            case BLUE:
                 return diningHallMain[4];
             default:
                 throw new IllegalArgumentException("You did not select the correct button");
@@ -3197,11 +3196,15 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         this.moveMother = true;
 
         for (ImageView student : EntranceMain) {
-            student.removeEventHandler(MouseEvent.MOUSE_CLICKED, selectStudent);
+            student.setOnMouseClicked(doNothing);
         }
 
         for (Button diningHall : diningHallMain) {
-            diningHall.removeEventHandler(MouseEvent.MOUSE_CLICKED, moveStudentToDiningHall);
+            diningHall.setOnMouseClicked(doNothing);
+        }
+
+        for (Button island : islandButtons) {
+            island.setOnMouseClicked(doNothing);
         }
     }
 
@@ -3217,10 +3220,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             islandButtons[currentIsland + i].setOnMouseClicked(moveMotherTo);
         }
 
-
         for (Button button : islandButtons) {
             if (button.getOnMouseClicked().equals(moveMotherFrom))
-                button.removeEventHandler(MouseEvent.MOUSE_CLICKED, moveMotherFrom);
+                button.setOnMouseClicked(doNothing);
         }
 
     }
