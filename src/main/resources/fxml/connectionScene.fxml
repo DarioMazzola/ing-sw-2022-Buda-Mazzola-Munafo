@@ -13,7 +13,7 @@
    <children>
       <AnchorPane>
       
-          <TextField fx:id="serverIpBox" layoutX="793.0" layoutY="466.0" promptText="IP address">
+          <TextField fx:id="serverIpBox" layoutX="793.0" layoutY="465.0" promptText="IP address">
               <font>
                   <Font name="Baskerville Old Face" size="24.0" />
               </font>
@@ -23,7 +23,7 @@
                   <Font name="Baskerville Old Face" size="24.0" />
               </font>
           </TextField>
-          <Button fx:id="login" layoutX="913.0" layoutY="629.0" mnemonicParsing="false" onAction="#login" text="Login">
+          <Button fx:id="login" layoutX="896.0" layoutY="629.0" mnemonicParsing="false" onAction="#login" text="Login">
               <font>
                   <Font name="Baskerville Old Face" size="24.0" />
               </font>
