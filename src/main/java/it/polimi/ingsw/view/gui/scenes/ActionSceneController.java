@@ -1943,9 +1943,19 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     }
 
     private void initializeIslands() {
-        int i = 0;
+        int i;
+        i = gm.getIslandList().size();
+        while (i < 12) {
+            islandList.get(i).get("Pane").setVisible(false);
+            islandList.get(i).get("Pane").setDisable(true);
+            i++;
+        }
+
+        i = 0;
         Map<House, Integer> houseMap;
         Image image;
+
+        islandButtons = new Button[gm.getIslandList().size()];
 
         while (i < gm.getIslandList().size()) {
             houseMap = new HashMap<>(gm.getIslandList().get(i).getStudents());
@@ -1979,13 +1989,12 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             } catch (IslandException ignored) {
             }
 
+            ImageView noEntryTile = (ImageView) islandList.get(i).get("NoEntryTile");
             if (gm.isExpertMode()) {
-                ImageView noEntryTile = (ImageView) islandList.get(i).get("NoEntryTile");
                 if (gm.getIslandList().get(i).getNoEntryTile() == 0) {
                     noEntryTile.setVisible(false);
                 }
             } else {
-                ImageView noEntryTile = (ImageView) islandList.get(i).get("NoEntryTile");
                 noEntryTile.setVisible(false);
             }
 
@@ -1995,6 +2004,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             if (gm.getMotherIsland() != i) {
                 mother.setVisible(false);
             }
+            islandButtons[i] = getButtonByIsland(i);
             i++;
         }
     }
@@ -2449,9 +2459,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         this.diningHallMain = new Button[]{diningHallMainGreen, diningHallMainRed, diningHallMainYellow,
                 diningHallMainBlue, diningHallMainPink};
 
-        this.islandButtons = new Button[]{Island00Btn, Island01Btn, Island02Btn, Island03Btn, Island04Btn, Island05Btn,
-                Island06Btn, Island07Btn, Island08Btn, Island09Btn, Island10Btn, Island11Btn};
-
         Map<House, Integer> houseMap;
 
         int i;
@@ -2827,25 +2834,11 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         islandList.get(11).put("NoEntryTile", NoEntryTileIsland11);
         islandList.get(11).put("Mother", MotherIsland11);
 
-        i = gm.getIslandList().size();
-        while (i < 12) {
-            islandList.get(i).get("Pane").setVisible(false);
-            islandList.get(i).get("Pane").setDisable(true);
-            i++;
-        }
-
         initializeIslands();
 
         Dashboard1.setDisable(true);
         Dashboard2.setDisable(true);
         Dashboard3.setDisable(true);
-
-        selectStudent = this::selectStudent;
-        selectStudentCancel = this::selectStudentCancel;
-        moveMotherFrom = this::moveMotherFrom;
-        moveStudentToIsland = this::moveStudentToIsland;
-        moveMotherTo = this::moveMotherTo;
-        moveStudentToDiningHall = this::moveStudentToDiningHall;
     }
 
     public void initializeEvents() {
@@ -2854,10 +2847,19 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         }
 
         if (moveMother) {
-            islandButtons[gm.getMotherIsland()].setOnMouseClicked(moveMotherFrom);
+            int currentIsland = gm.getMotherIsland();
+
+            for (int i = 0; i < gm.getPlayerByNickname(nickname).getMaxMoves(); i++) {
+                currentIsland++;
+                if (currentIsland >= gm.getIslandList().size()) {
+                    currentIsland = 0;
+                }
+                islandButtons[currentIsland + i].setOnMouseClicked(moveMotherTo);
+            }
+
         } else {
-            for (Button island : islandButtons) {
-                island.setOnMouseClicked(moveStudentToIsland);
+            for (ImageView student : EntranceMain) {
+                student.setOnMouseClicked(selectStudent);
             }
         }
     }
