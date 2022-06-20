@@ -141,10 +141,9 @@ public class Gui extends ViewObservable implements UI {
     public void goToWaitingRoom() {
         System.out.println("GoToWaitingRoom");
 
-        if (!(SceneController.getActiveController() instanceof ActionSceneController) && gm != null) {
-            ActionSceneController controller = new ActionSceneController(gm, nickname);
-            Platform.runLater(() -> SceneController.changeRootPane(observers, "ActionScene.fxml", controller));
-        }
+        ActionSceneController controller = new ActionSceneController(gm, nickname);
+        Platform.runLater(() -> SceneController.changeRootPane(observers, "ActionScene.fxml", controller));
+
 
     }
 
