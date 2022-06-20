@@ -2844,18 +2844,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     public void initializeEvents() {
 
         if (moveMother) {
+            System.out.println("moveMother = true");
             int currentIsland = gm.getMotherIsland();
-
             islandButtons[currentIsland].setOnMouseClicked(moveMotherFrom);
-
-            for (int i = 0; i < gm.getPlayerByNickname(nickname).getMaxMoves(); i++) {
-                currentIsland++;
-                if (currentIsland >= gm.getIslandList().size()) {
-                    currentIsland = 0;
-                }
-                islandButtons[currentIsland + i].setOnMouseClicked(moveMotherTo);
-            }
-
         } else {
             for (ImageView student : EntranceMain) {
                 student.setOnMouseClicked(selectStudent);
@@ -3219,14 +3210,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             if (currentIsland == gm.getIslandList().size()) {
                 currentIsland = 0;
             }
-            islandButtons[currentIsland + i].setOnMouseClicked(moveMotherTo);
+            islandButtons[currentIsland].setOnMouseClicked(moveMotherTo);
         }
-
-        for (Button button : islandButtons) {
-            if (button.getOnMouseClicked().equals(moveMotherFrom))
-                button.setOnMouseClicked(doNothing);
-        }
-
     }
 
     private void moveMotherTo(MouseEvent event) {
