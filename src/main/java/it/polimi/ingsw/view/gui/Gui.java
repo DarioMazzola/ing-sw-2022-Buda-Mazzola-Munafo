@@ -124,7 +124,17 @@ public class Gui extends ViewObservable implements UI {
 
     @Override
     public void selectCloud() {
+        ActionSceneController controller;
 
+        if (!(SceneController.getActiveController() instanceof ActionSceneController)) {
+            controller = new ActionSceneController(gm, nickname);
+            Platform.runLater(() -> SceneController.changeRootPane(observers, "ActionScene.fxml", controller));
+        } else {
+            controller = (ActionSceneController) SceneController.getActiveController();
+        }
+
+        Platform.runLater(controller::initializeClouds);
+        Platform.runLater(controller::setCloudSelectable);
     }
 
     @Override
