@@ -87,7 +87,7 @@ public class SelectAssistantCardSceneController extends ViewObservable implement
     public void onSelectClicked(ActionEvent event) {
 
         RadioButton radio = (RadioButton)assistantButtons.getSelectedToggle();
-        int i = Integer.parseInt(radio.getText());
+        int i = Integer.parseInt(radio.getText()) - 1;
 
         List<Card> playersDeck = gm.getPlayerByNickname(nickname).getDeck();
         notifyObserver(observer -> observer.onUpdateAssistantCard(playersDeck.get(i)));
