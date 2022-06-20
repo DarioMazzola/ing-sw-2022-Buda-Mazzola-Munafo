@@ -2846,6 +2846,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         if (moveMother) {
             int currentIsland = gm.getMotherIsland();
 
+            islandButtons[currentIsland].setOnMouseClicked(moveMotherFrom);
+
             for (int i = 0; i < gm.getPlayerByNickname(nickname).getMaxMoves(); i++) {
                 currentIsland++;
                 if (currentIsland >= gm.getIslandList().size()) {
