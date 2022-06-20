@@ -651,7 +651,7 @@
                         <Button fx:id="Island11Btn" layoutX="-6.0" layoutY="-4.0" mnemonicParsing="false" opacity="0.0" prefHeight="194.0" prefWidth="210.0" text="Button" />
                      </children>
                   </Pane>
-                  <Pane fx:id="Cloud3Num1" layoutX="471.0" layoutY="296.0" prefHeight="150.0" prefWidth="145.0">
+                  <Pane fx:id="Cloud3Num1" layoutX="421.0" layoutY="216.0" prefHeight="150.0" prefWidth="145.0">
                      <children>
                         <ImageView fitHeight="150.0" fitWidth="145.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -661,9 +661,10 @@
                         <ImageView fx:id="Stud1Cloud3Num1" fitHeight="44.0" fitWidth="41.0" layoutX="14.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="Stud2Cloud3Num1" fitHeight="44.0" fitWidth="41.0" layoutX="73.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="Stud3Cloud3Num1" fitHeight="44.0" fitWidth="41.0" layoutX="72.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true" />
+                        <Button fx:id="Cloud3Btn1" layoutX="9.0" layoutY="14.0" mnemonicParsing="false" opacity="0.0" prefHeight="117.0" prefWidth="127.0" text="Button" />
                      </children>
                   </Pane>
-                  <Pane fx:id="Cloud3Num4" layoutX="331.0" layoutY="296.0" prefHeight="150.0" prefWidth="145.0">
+                  <Pane fx:id="Cloud3Num4" layoutX="493.0" layoutY="353.0" prefHeight="150.0" prefWidth="145.0">
                      <children>
                         <ImageView fitHeight="150.0" fitWidth="145.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -673,9 +674,10 @@
                         <ImageView fx:id="Stud1Cloud3Num4" fitHeight="44.0" fitWidth="41.0" layoutX="14.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="Stud2Cloud3Num4" fitHeight="44.0" fitWidth="41.0" layoutX="73.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="Stud3Cloud3Num4" fitHeight="44.0" fitWidth="41.0" layoutX="72.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true" />
+                        <Button fx:id="Cloud3Btn4" layoutX="21.0" layoutY="14.0" mnemonicParsing="false" opacity="0.0" prefHeight="127.0" prefWidth="120.0" text="Button" />
                      </children>
                   </Pane>
-                  <Pane fx:id="Cloud3Num2" layoutX="616.0" layoutY="296.0" prefHeight="150.0" prefWidth="145.0">
+                  <Pane fx:id="Cloud3Num2" layoutX="689.0" layoutY="216.0" prefHeight="150.0" prefWidth="145.0">
                      <children>
                         <ImageView fitHeight="150.0" fitWidth="145.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -685,9 +687,10 @@
                         <ImageView fx:id="Stud1Cloud3Num2" fitHeight="44.0" fitWidth="41.0" layoutX="14.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="Stud2Cloud3Num2" fitHeight="44.0" fitWidth="41.0" layoutX="73.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="Stud3Cloud3Num2" fitHeight="44.0" fitWidth="41.0" layoutX="72.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true" />
+                        <Button fx:id="Cloud3Btn2" layoutX="20.0" layoutY="14.0" mnemonicParsing="false" opacity="0.0" prefHeight="117.0" prefWidth="111.0" text="Button" />
                      </children>
                   </Pane>
-                  <Pane fx:id="Cloud3Num3" layoutX="761.0" layoutY="291.0" prefHeight="150.0" prefWidth="145.0">
+                  <Pane fx:id="Cloud3Num3" layoutX="754.0" layoutY="333.0" prefHeight="150.0" prefWidth="145.0">
                      <children>
                         <ImageView fitHeight="150.0" fitWidth="145.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -697,6 +700,7 @@
                         <ImageView fx:id="Stud1Cloud3Num3" fitHeight="44.0" fitWidth="41.0" layoutX="14.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="Stud2Cloud3Num3" fitHeight="44.0" fitWidth="41.0" layoutX="73.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="Stud3Cloud3Num3" fitHeight="44.0" fitWidth="41.0" layoutX="72.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true" />
+                        <Button fx:id="Cloud3Btn3" layoutX="20.0" layoutY="24.0" mnemonicParsing="false" opacity="0.0" prefHeight="117.0" prefWidth="120.0" text="Button" />
                      </children>
                   </Pane>
                   <Pane fx:id="Cloud4Num1" layoutX="555.0" layoutY="213.0" prefHeight="150.0" prefWidth="145.0">
@@ -710,9 +714,10 @@
                         <ImageView fx:id="Stud2Cloud4Num1" fitHeight="40.0" fitWidth="36.0" layoutX="72.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="Stud1Cloud4Num1" fitHeight="40.0" fitWidth="36.0" layoutX="12.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="Stud3Cloud4Num1" fitHeight="40.0" fitWidth="36.0" layoutX="84.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" />
+                        <Button fx:id="Cloud4Btn1" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" opacity="0.0" prefHeight="117.0" prefWidth="127.0" text="Button" />
                      </children>
                   </Pane>
-                  <Pane fx:id="Cloud4Num2" layoutX="458.0" layoutY="333.0" prefHeight="150.0" prefWidth="145.0">
+                  <Pane fx:id="Cloud4Num2" layoutX="366.0" layoutY="353.0" prefHeight="150.0" prefWidth="145.0">
                      <children>
                         <ImageView fitHeight="161.0" fitWidth="145.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -723,6 +728,7 @@
                         <ImageView fx:id="Stud2Cloud4Num2" fitHeight="40.0" fitWidth="36.0" layoutX="72.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="Stud1Cloud4Num2" fitHeight="40.0" fitWidth="36.0" layoutX="12.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="Stud3Cloud4Num2" fitHeight="40.0" fitWidth="36.0" layoutX="84.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" />
+                        <Button fx:id="Cloud4Btn2" layoutX="13.0" layoutY="13.0" mnemonicParsing="false" opacity="0.0" prefHeight="127.0" prefWidth="120.0" text="Button" />
                      </children>
                   </Pane>
                   <Pane fx:id="Cloud4Num3" layoutX="628.0" layoutY="333.0" prefHeight="150.0" prefWidth="145.0">
@@ -736,6 +742,7 @@
                         <ImageView fx:id="Stud2Cloud4Num3" fitHeight="40.0" fitWidth="36.0" layoutX="72.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="Stud1Cloud4Num3" fitHeight="40.0" fitWidth="36.0" layoutX="12.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fx:id="Stud3Cloud4Num3" fitHeight="40.0" fitWidth="36.0" layoutX="84.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" />
+                        <Button fx:id="Cloud4Btn3" layoutX="16.0" layoutY="21.0" mnemonicParsing="false" opacity="0.0" prefHeight="117.0" prefWidth="120.0" text="Button" />
                      </children>
                   </Pane>
                </children></Pane>
