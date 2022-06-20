@@ -1281,9 +1281,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         if (profMap.get(House.RED)) {
             image = new Image("images/professors/teacher_red.png");
             ProfRedMain.setImage(image);
-            ProfRedMain.setVisible(false);
-        } else {
             ProfRedMain.setVisible(true);
+        } else {
+            ProfRedMain.setVisible(false);
         }
         if (profMap.get(House.BLUE)) {
             image = new Image("images/professors/teacher_blue.png");

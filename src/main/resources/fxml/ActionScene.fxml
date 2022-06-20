@@ -1238,7 +1238,7 @@
                   <ImageView fx:id="EntranceStudMain7" fitHeight="18.0" fitWidth="19.0" layoutX="13.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="EntranceStudMain9" fitHeight="19.0" fitWidth="19.0" layoutX="13.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="DiningGreenStd1Main" fitHeight="18.0" fitWidth="18.0" layoutX="74.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="DiningGreenStd2Main" fitHeight="18.0" fitWidth="18.0" layoutX="93.0" layoutY="22.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="DiningGreenStd2Main" fitHeight="18.0" fitWidth="18.0" layoutX="93.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="DiningGreenStd3Main" fitHeight="18.0" fitWidth="18.0" layoutX="112.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="DiningGreenStd4Main" fitHeight="18.0" fitWidth="18.0" layoutX="131.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="DiningGreenStd5Main" fitHeight="18.0" fitWidth="18.0" layoutX="150.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" />
