@@ -93,7 +93,9 @@ public class PlanningController {
             }
             if(gm.getChat() != null && gm.getChat()) {
                 availableActions.add("Send a message to your team mate");
+                availableActions.add("See received messages");
             }
+
             setPosition(0);
             gm.setCurrentPlayer(ranking[0]);
             persistence.saveData(tc);
