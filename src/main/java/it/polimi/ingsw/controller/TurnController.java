@@ -465,7 +465,10 @@ public class TurnController {
     }
 
     public void resendActionPhase(String nickname){
-        virtualViewMap.get(nickname).actionPhase(actionController.getActions());
+        if(gm.getPlayerByNickname(nickname).equals(gm.getCurrentPlayer()))
+            virtualViewMap.get(nickname).actionPhase(actionController.getActions());
+        else
+            virtualViewMap.get(nickname).goToWaitingRoom();
     }
 
     public void sendNickname(String nickname) {
