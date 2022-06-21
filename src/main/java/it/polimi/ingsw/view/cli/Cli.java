@@ -147,6 +147,7 @@ public class Cli extends ViewObservable implements UI {
 
     @Override
     public void onChatMessageReceived(String message) {
+        stop = false;
         Color towerColor = gm.getPlayerByNickname(this.nickname).getDashboard().getTowerColor();
         ReducedPlayer teamMate = null;
         for (ReducedPlayer p : gm.getArrayPlayers()) {
@@ -158,11 +159,7 @@ public class Cli extends ViewObservable implements UI {
         if(teamMate != null) {
             String teamMateNickname = teamMate.getNickname();
             System.out.println("Message received from " + teamMateNickname + ":");
-            System.out.println(message);
-            System.out.println("Do you want to answer? (Y/N)");
-            boolean continueChat = YNInput("you want to answer to the message");
-            if (continueChat)
-                sendMessage();
+            System.out.println("\n<< " + message + " >>\n");
         }
     }
 
@@ -308,6 +305,8 @@ public class Cli extends ViewObservable implements UI {
 
     @Override
     public void goToWaitingRoom() {
+        clearCli();
+        stop = false;
         System.out.println("Waiting for other players to make their choice or move ...");
         if (gm != null) {
             List<String> defaultActions = new ArrayList<>();
@@ -316,8 +315,11 @@ public class Cli extends ViewObservable implements UI {
             defaultActions.add("See the details of a Player's dashboard");
             defaultActions.add("See the current state of clouds");
             defaultActions.add("See Mother Nature position");
-            clearCli();
-            System.out.println("Waiting for other players ...");
+
+            if (gm.getNumPlayers() == 4 && gm.isChat()) {
+                defaultActions.add("Send a message to your team mate");
+                defaultActions.add("See received messages");
+            }
             while (!stop) {
                 System.out.println("\nWhile you're waiting, here's a list of available actions:");
                 printList(defaultActions);
@@ -337,10 +339,17 @@ public class Cli extends ViewObservable implements UI {
                     case "See Mother Nature position":
                         focusOnMotherNature();
                         break;
+                    case "Send a message to your team mate":
+                        sendMessage();
+                        break;
+                    case "See received messages":
+                        stop = true;
+                        notifyObserver(ViewObserver::waitForMessage);
+                        break;
                     default:
                         throw new IllegalStateException("Unexpected value: " + defaultActions.get(action));
                 }
-                if (stop)
+                if (stop && defaultActions.get(action-1).equals("See if the other player has finished his/hers turn"))
                     System.out.println("\nThe other player has finished his/hers turn!");
                 else
                     System.out.println("\nThe other player hasn't finished his/hers turn, you need to be patient ...");
