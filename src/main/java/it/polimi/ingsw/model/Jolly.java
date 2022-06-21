@@ -122,13 +122,19 @@ public class Jolly extends CharacterCard{
         if (numReturnedStudents>3 || numWantedStudents>3 || numReturnedStudents!=numWantedStudents)
             throw new IllegalArgumentException("Number of students to swap is not legal");
 
-        for (House h :House.values()) {
+        for (House h : House.values()) {
             if (returnedStudents.get(h) != 0) {
-                dashboard.removeStudents(h, returnedStudents.get(h), true);
+                dashboard.removeStudents(h, returnedStudents.get(h), false);
             }
-            dashboard.addStudents(h, wantedStudents.get(h), numWantedStudents - 1 == 0);
-            houseMap.replace(h, houseMap.get(h) - wantedStudents.get(h));
             houseMap.replace(h, houseMap.get(h) + returnedStudents.get(h));
+        }
+
+        for (House h : House.values()) {
+            if (wantedStudents.get(h) != 0) {
+                dashboard.addStudents(h, wantedStudents.get(h), numWantedStudents-1 == 0);
+                numWantedStudents--;
+            }
+            houseMap.replace(h, houseMap.get(h) - wantedStudents.get(h));
         }
     }
 
