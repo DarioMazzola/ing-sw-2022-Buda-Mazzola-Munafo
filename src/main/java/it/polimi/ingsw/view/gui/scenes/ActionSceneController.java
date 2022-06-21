@@ -1046,6 +1046,54 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     @FXML
     private Button Island12Btn;
 
+    @FXML
+    private ImageView Card1Elem1;
+    @FXML
+    private ImageView Card1Elem2;
+    @FXML
+    private ImageView Card1Elem3;
+    @FXML
+    private ImageView Card1Elem4;
+    @FXML
+    private ImageView Card1Elem5;
+    @FXML
+    private ImageView Card1Elem6;
+    @FXML
+    private ImageView Card2Elem1;
+    @FXML
+    private ImageView Card2Elem2;
+    @FXML
+    private ImageView Card2Elem3;
+    @FXML
+    private ImageView Card2Elem4;
+    @FXML
+    private ImageView Card2Elem5;
+    @FXML
+    private ImageView Card2Elem6;
+    @FXML
+    private ImageView Card3Elem1;
+    @FXML
+    private ImageView Card3Elem2;
+    @FXML
+    private ImageView Card3Elem3;
+    @FXML
+    private ImageView Card3Elem4;
+    @FXML
+    private ImageView Card3Elem5;
+    @FXML
+    private ImageView Card3Elem6;
+
+    @FXML
+    private Text NameDashboard1;
+    @FXML
+    private Text NameDashboard2;
+    @FXML
+    private Text NameDashboard3;
+
+    private String[] card1Array;
+    private String[] card2Array;
+    private String[] card3Array;
+
     private ReducedGameModel gm;
     private final String nickname;
 
@@ -1297,6 +1345,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     private void initializeSecondPlayer() {
         initializeDashboardSecondPlayer();
 
+        NameDashboard1.setText(gm.getArrayPlayers()[(numMain + 1) % gm.getNumPlayers()].getNickname());
+
         fillGraveyard(GraveyardDashboard1, gm.getArrayPlayers()[(numMain + 1) % gm.getNumPlayers()]);
         fillCardInUse(CardInUseDashboard1, gm.getArrayPlayers()[(numMain + 1) % gm.getNumPlayers()]);
     }
@@ -1502,6 +1552,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     }
 
     private void initializeThirdPlayer() {
+
+        NameDashboard2.setText(gm.getArrayPlayers()[(numMain + 2) % gm.getNumPlayers()].getNickname());
+
         fillGraveyard(GraveyardDashboard2, gm.getArrayPlayers()[(numMain + 2) % gm.getNumPlayers()]);
         fillCardInUse(CardInUseDashboard2, gm.getArrayPlayers()[(numMain + 2) % gm.getNumPlayers()]);
 
@@ -1709,6 +1762,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     }
 
     private void initializeFourthPlayer() {
+
+        NameDashboard3.setText(gm.getArrayPlayers()[(numMain + 3) % gm.getNumPlayers()].getNickname());
+
         fillGraveyard(GraveyardDashboard3, gm.getArrayPlayers()[(numMain + 3) % gm.getNumPlayers()]);
         fillCardInUse(CardInUseDashboard3, gm.getArrayPlayers()[(numMain + 3) % gm.getNumPlayers()]);
 
@@ -2466,6 +2522,16 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             CostCharacterCard2.setText(Integer.toString(gm.getCharacterCardDeck()[1].getCost()));
             CostCharacterCard3.setText(Integer.toString(gm.getCharacterCardDeck()[2].getCost()));
 
+            ImageView[] Card1Arr = new ImageView[]{Card1Elem1, Card1Elem2, Card1Elem3, Card1Elem4, Card1Elem5, Card1Elem6};
+            ImageView[] Card2Arr = new ImageView[]{Card2Elem1, Card2Elem2, Card2Elem3, Card2Elem4, Card2Elem5, Card2Elem6};
+            ImageView[] Card3Arr = new ImageView[]{Card3Elem1, Card3Elem2, Card3Elem3, Card3Elem4, Card3Elem5, Card3Elem6};
+
+            card1Array = new String[6];
+            card2Array = new String[6];
+            card3Array = new String[6];
+
+            Image empty = new Image("");
+
             String path = null;
             switch (gm.getCharacterCardDeck()[0].getType()) {
                 case FARMER:
@@ -2476,12 +2542,85 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     break;
                 case HERB_GRANMA:
                     path = "images/CharacterCards/HerbGranma.jpg";
+
+                    int numNoEntry = gm.getCharacterCardDeck()[0].getNoEntryTile();
+                    image = new Image("images/Clouds/NoEntryTileBackup.png");
+                    i=0;
+                    while (numNoEntry>0){
+                        Card1Arr[i].setImage(image);
+                        Card1Arr[i].setVisible(true);
+                        Card1Arr[i].setDisable(false);
+                        card1Array[i] = "NoEntryTile";
+                        numNoEntry--;
+                        i++;
+                    }
+                    while (i<6){
+                        Card1Arr[i].setImage(empty);
+                        Card1Arr[i].setVisible(false);
+                        Card1Arr[i].setDisable(true);
+                        card1Array[i] = "null";
+                        i++;
+                    }
                     break;
                 case MINSTREL:
                     path = "images/CharacterCards/Minstrel.jpg";
                     break;
                 case MONK:
                     path = "images/CharacterCards/Monk.jpg";
+                    houseMap = new HashMap<>(gm.getCharacterCardDeck()[0].getHouseMap());
+                    i=0;
+                    while (houseMap.get(BLUE) > 0){
+                        image = new Image("images/students/student_blue.png");
+                        Card1Arr[i].setImage(image);
+                        Card1Arr[i].setVisible(true);
+                        Card1Arr[i].setDisable(false);
+                        card1Array[i] = "Blue";
+                        houseMap.put(BLUE, houseMap.get(BLUE) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(PINK) > 0){
+                        image = new Image("images/students/student_pink.png");
+                        Card1Arr[i].setImage(image);
+                        Card1Arr[i].setVisible(true);
+                        Card1Arr[i].setDisable(false);
+                        card1Array[i] = "Pink";
+                        houseMap.put(PINK, houseMap.get(PINK) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(YELLOW) > 0){
+                        image = new Image("images/students/student_yellow.png");
+                        Card1Arr[i].setImage(image);
+                        Card1Arr[i].setVisible(true);
+                        Card1Arr[i].setDisable(false);
+                        card1Array[i] = "Yellow";
+                        houseMap.put(YELLOW, houseMap.get(YELLOW) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(RED) > 0){
+                        image = new Image("images/students/student_red.png");
+                        Card1Arr[i].setImage(image);
+                        Card1Arr[i].setVisible(true);
+                        Card1Arr[i].setDisable(false);
+                        card1Array[i] = "Red";
+                        houseMap.put(RED, houseMap.get(RED) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(GREEN) > 0){
+                        image = new Image("images/students/student_green.png");
+                        Card1Arr[i].setImage(image);
+                        Card1Arr[i].setVisible(true);
+                        Card1Arr[i].setDisable(false);
+                        card1Array[i] = "Green";
+                        houseMap.put(GREEN, houseMap.get(GREEN) - 1);
+                        i++;
+                    }
+                    while (i<6){
+                        Card1Arr[i].setImage(empty);
+                        Card1Arr[i].setVisible(false);
+                        Card1Arr[i].setDisable(true);
+                        card1Array[i] = "null";
+                        i++;
+                    }
                     break;
                 case HERALD:
                     path = "images/CharacterCards/Herald.jpg";
@@ -2491,6 +2630,61 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     break;
                 case JOLLY:
                     path = "images/CharacterCards/Jolly.jpg";
+
+                    houseMap = new HashMap<>(gm.getCharacterCardDeck()[0].getHouseMap());
+                    i=0;
+                    while (houseMap.get(BLUE) > 0){
+                        image = new Image("images/students/student_blue.png");
+                        Card1Arr[i].setImage(image);
+                        Card1Arr[i].setVisible(true);
+                        Card1Arr[i].setDisable(false);
+                        card1Array[i] = "Blue";
+                        houseMap.put(BLUE, houseMap.get(BLUE) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(PINK) > 0){
+                        image = new Image("images/students/student_pink.png");
+                        Card1Arr[i].setImage(image);
+                        Card1Arr[i].setVisible(true);
+                        Card1Arr[i].setDisable(false);
+                        card1Array[i] = "Pink";
+                        houseMap.put(PINK, houseMap.get(PINK) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(YELLOW) > 0){
+                        image = new Image("images/students/student_yellow.png");
+                        Card1Arr[i].setImage(image);
+                        Card1Arr[i].setVisible(true);
+                        Card1Arr[i].setDisable(false);
+                        card1Array[i] = "Yellow";
+                        houseMap.put(YELLOW, houseMap.get(YELLOW) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(RED) > 0){
+                        image = new Image("images/students/student_red.png");
+                        Card1Arr[i].setImage(image);
+                        Card1Arr[i].setVisible(true);
+                        Card1Arr[i].setDisable(false);
+                        card1Array[i] = "Red";
+                        houseMap.put(RED, houseMap.get(RED) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(GREEN) > 0){
+                        image = new Image("images/students/student_green.png");
+                        Card1Arr[i].setImage(image);
+                        Card1Arr[i].setVisible(true);
+                        Card1Arr[i].setDisable(false);
+                        card1Array[i] = "Green";
+                        houseMap.put(GREEN, houseMap.get(GREEN) - 1);
+                        i++;
+                    }
+                    while (i<6){
+                        Card1Arr[i].setImage(empty);
+                        Card1Arr[i].setVisible(false);
+                        Card1Arr[i].setDisable(true);
+                        card1Array[i] = "null";
+                        i++;
+                    }
                     break;
                 case KNIGHT:
                     path = "images/CharacterCards/Knight.jpg";
@@ -2500,33 +2694,68 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     break;
                 case SPOILED_PRINCESS:
                     path = "images/CharacterCards/SpoiledPrincess.jpg";
+
+                    houseMap = new HashMap<>(gm.getCharacterCardDeck()[0].getHouseMap());
+                    i=0;
+                    while (houseMap.get(BLUE) > 0){
+                        image = new Image("images/students/student_blue.png");
+                        Card1Arr[i].setImage(image);
+                        Card1Arr[i].setVisible(true);
+                        Card1Arr[i].setDisable(false);
+                        card1Array[i] = "Blue";
+                        houseMap.put(BLUE, houseMap.get(BLUE) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(PINK) > 0){
+                        image = new Image("images/students/student_pink.png");
+                        Card1Arr[i].setImage(image);
+                        Card1Arr[i].setVisible(true);
+                        Card1Arr[i].setDisable(false);
+                        card1Array[i] = "Pink";
+                        houseMap.put(PINK, houseMap.get(PINK) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(YELLOW) > 0){
+                        image = new Image("images/students/student_yellow.png");
+                        Card1Arr[i].setImage(image);
+                        Card1Arr[i].setVisible(true);
+                        Card1Arr[i].setDisable(false);
+                        card1Array[i] = "Yellow";
+                        houseMap.put(YELLOW, houseMap.get(YELLOW) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(RED) > 0){
+                        image = new Image("images/students/student_red.png");
+                        Card1Arr[i].setImage(image);
+                        Card1Arr[i].setVisible(true);
+                        Card1Arr[i].setDisable(false);
+                        card1Array[i] = "Red";
+                        houseMap.put(RED, houseMap.get(RED) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(GREEN) > 0){
+                        image = new Image("images/students/student_green.png");
+                        Card1Arr[i].setImage(image);
+                        Card1Arr[i].setVisible(true);
+                        Card1Arr[i].setDisable(false);
+                        card1Array[i] = "Green";
+                        houseMap.put(GREEN, houseMap.get(GREEN) - 1);
+                        i++;
+                    }
+                    while (i<6){
+                        Card1Arr[i].setImage(empty);
+                        Card1Arr[i].setVisible(false);
+                        Card1Arr[i].setDisable(true);
+                        card1Array[i] = "null";
+                        i++;
+                    }
                     break;
                 case THIEF:
                     path = "images/CharacterCards/Thief.jpg";
                     break;
             }
             image = new Image(path);
-            for (House h : House.values()) {
-                if (gm.getCharacterCardDeck()[0].getHouseMap().get(h) > 0) {
-                    switch (h) {
-                        case BLUE:
-                            BlueStdCard1.setVisible(true);
-                            break;
-                        case GREEN:
-                            GreenStdCard1.setVisible(true);
-                            break;
-                        case PINK:
-                            PinkStdCard1.setVisible(true);
-                            break;
-                        case RED:
-                            RedStdCard1.setVisible(true);
-                            break;
-                        case YELLOW:
-                            YellowStdCard1.setVisible(true);
-                            break;
-                    }
-                }
-            }
+
             CharacterCard1.setImage(image);
 
             switch (gm.getCharacterCardDeck()[1].getType()) {
@@ -2538,12 +2767,85 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     break;
                 case HERB_GRANMA:
                     path = "images/CharacterCards/HerbGranma.jpg";
+
+                    int numNoEntry = gm.getCharacterCardDeck()[1].getNoEntryTile();
+                    image = new Image("images/Clouds/NoEntryTileBackup.png");
+                    i=0;
+                    while (numNoEntry>0){
+                        Card2Arr[i].setImage(image);
+                        Card2Arr[i].setVisible(true);
+                        Card2Arr[i].setDisable(false);
+                        card2Array[i] = "NoEntryTile";
+                        numNoEntry--;
+                        i++;
+                    }
+                    while (i<6){
+                        Card2Arr[i].setImage(empty);
+                        Card2Arr[i].setVisible(false);
+                        Card2Arr[i].setDisable(true);
+                        card2Array[i] = "null";
+                        i++;
+                    }
                     break;
                 case MINSTREL:
                     path = "images/CharacterCards/Minstrel.jpg";
                     break;
                 case MONK:
                     path = "images/CharacterCards/Monk.jpg";
+                    houseMap = new HashMap<>(gm.getCharacterCardDeck()[1].getHouseMap());
+                    i=0;
+                    while (houseMap.get(BLUE) > 0){
+                        image = new Image("images/students/student_blue.png");
+                        Card2Arr[i].setImage(image);
+                        Card2Arr[i].setVisible(true);
+                        Card2Arr[i].setDisable(false);
+                        card2Array[i] = "Blue";
+                        houseMap.put(BLUE, houseMap.get(BLUE) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(PINK) > 0){
+                        image = new Image("images/students/student_pink.png");
+                        Card2Arr[i].setImage(image);
+                        Card2Arr[i].setVisible(true);
+                        Card2Arr[i].setDisable(false);
+                        card2Array[i] = "Pink";
+                        houseMap.put(PINK, houseMap.get(PINK) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(YELLOW) > 0){
+                        image = new Image("images/students/student_yellow.png");
+                        Card2Arr[i].setImage(image);
+                        Card2Arr[i].setVisible(true);
+                        Card2Arr[i].setDisable(false);
+                        card2Array[i] = "Yellow";
+                        houseMap.put(YELLOW, houseMap.get(YELLOW) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(RED) > 0){
+                        image = new Image("images/students/student_red.png");
+                        Card2Arr[i].setImage(image);
+                        Card2Arr[i].setVisible(true);
+                        Card2Arr[i].setDisable(false);
+                        card2Array[i] = "Red";
+                        houseMap.put(RED, houseMap.get(RED) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(GREEN) > 0){
+                        image = new Image("images/students/student_green.png");
+                        Card2Arr[i].setImage(image);
+                        Card2Arr[i].setVisible(true);
+                        Card2Arr[i].setDisable(false);
+                        card2Array[i] = "Green";
+                        houseMap.put(GREEN, houseMap.get(GREEN) - 1);
+                        i++;
+                    }
+                    while (i<6){
+                        Card2Arr[i].setImage(empty);
+                        Card2Arr[i].setVisible(false);
+                        Card2Arr[i].setDisable(true);
+                        card2Array[i] = "null";
+                        i++;
+                    }
                     break;
                 case HERALD:
                     path = "images/CharacterCards/Herald.jpg";
@@ -2553,6 +2855,61 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     break;
                 case JOLLY:
                     path = "images/CharacterCards/Jolly.jpg";
+
+                    houseMap = new HashMap<>(gm.getCharacterCardDeck()[1].getHouseMap());
+                    i=0;
+                    while (houseMap.get(BLUE) > 0){
+                        image = new Image("images/students/student_blue.png");
+                        Card2Arr[i].setImage(image);
+                        Card2Arr[i].setVisible(true);
+                        Card2Arr[i].setDisable(false);
+                        card2Array[i] = "Blue";
+                        houseMap.put(BLUE, houseMap.get(BLUE) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(PINK) > 0){
+                        image = new Image("images/students/student_pink.png");
+                        Card2Arr[i].setImage(image);
+                        Card2Arr[i].setVisible(true);
+                        Card2Arr[i].setDisable(false);
+                        card2Array[i] = "Pink";
+                        houseMap.put(PINK, houseMap.get(PINK) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(YELLOW) > 0){
+                        image = new Image("images/students/student_yellow.png");
+                        Card2Arr[i].setImage(image);
+                        Card2Arr[i].setVisible(true);
+                        Card2Arr[i].setDisable(false);
+                        card2Array[i] = "Yellow";
+                        houseMap.put(YELLOW, houseMap.get(YELLOW) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(RED) > 0){
+                        image = new Image("images/students/student_red.png");
+                        Card2Arr[i].setImage(image);
+                        Card2Arr[i].setVisible(true);
+                        Card2Arr[i].setDisable(false);
+                        card2Array[i] = "Red";
+                        houseMap.put(RED, houseMap.get(RED) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(GREEN) > 0){
+                        image = new Image("images/students/student_green.png");
+                        Card2Arr[i].setImage(image);
+                        Card2Arr[i].setVisible(true);
+                        Card2Arr[i].setDisable(false);
+                        card2Array[i] = "Green";
+                        houseMap.put(GREEN, houseMap.get(GREEN) - 1);
+                        i++;
+                    }
+                    while (i<6){
+                        Card2Arr[i].setImage(empty);
+                        Card2Arr[i].setVisible(false);
+                        Card2Arr[i].setDisable(true);
+                        card2Array[i] = "null";
+                        i++;
+                    }
                     break;
                 case KNIGHT:
                     path = "images/CharacterCards/Knight.jpg";
@@ -2562,33 +2919,68 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     break;
                 case SPOILED_PRINCESS:
                     path = "images/CharacterCards/SpoiledPrincess.jpg";
+
+                    houseMap = new HashMap<>(gm.getCharacterCardDeck()[1].getHouseMap());
+                    i=0;
+                    while (houseMap.get(BLUE) > 0){
+                        image = new Image("images/students/student_blue.png");
+                        Card2Arr[i].setImage(image);
+                        Card2Arr[i].setVisible(true);
+                        Card2Arr[i].setDisable(false);
+                        card2Array[i] = "Blue";
+                        houseMap.put(BLUE, houseMap.get(BLUE) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(PINK) > 0){
+                        image = new Image("images/students/student_pink.png");
+                        Card2Arr[i].setImage(image);
+                        Card2Arr[i].setVisible(true);
+                        Card2Arr[i].setDisable(false);
+                        card2Array[i] = "Pink";
+                        houseMap.put(PINK, houseMap.get(PINK) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(YELLOW) > 0){
+                        image = new Image("images/students/student_yellow.png");
+                        Card2Arr[i].setImage(image);
+                        Card2Arr[i].setVisible(true);
+                        Card2Arr[i].setDisable(false);
+                        card2Array[i] = "Yellow";
+                        houseMap.put(YELLOW, houseMap.get(YELLOW) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(RED) > 0){
+                        image = new Image("images/students/student_red.png");
+                        Card2Arr[i].setImage(image);
+                        Card2Arr[i].setVisible(true);
+                        Card2Arr[i].setDisable(false);
+                        card2Array[i] = "Red";
+                        houseMap.put(RED, houseMap.get(RED) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(GREEN) > 0){
+                        image = new Image("images/students/student_green.png");
+                        Card2Arr[i].setImage(image);
+                        Card2Arr[i].setVisible(true);
+                        Card2Arr[i].setDisable(false);
+                        card2Array[i] = "Green";
+                        houseMap.put(GREEN, houseMap.get(GREEN) - 1);
+                        i++;
+                    }
+                    while (i<6){
+                        Card2Arr[i].setImage(empty);
+                        Card2Arr[i].setVisible(false);
+                        Card2Arr[i].setDisable(true);
+                        card2Array[i] = "null";
+                        i++;
+                    }
                     break;
                 case THIEF:
                     path = "images/CharacterCards/Thief.jpg";
                     break;
             }
             image = new Image(path);
-            for (House h : House.values()) {
-                if (gm.getCharacterCardDeck()[1].getHouseMap().get(h) > 0) {
-                    switch (h) {
-                        case BLUE:
-                            BlueStdCard2.setVisible(true);
-                            break;
-                        case GREEN:
-                            GreenStdCard2.setVisible(true);
-                            break;
-                        case PINK:
-                            PinkStdCard2.setVisible(true);
-                            break;
-                        case RED:
-                            RedStdCard2.setVisible(true);
-                            break;
-                        case YELLOW:
-                            YellowStdCard2.setVisible(true);
-                            break;
-                    }
-                }
-            }
+
             CharacterCard2.setImage(image);
 
             switch (gm.getCharacterCardDeck()[2].getType()) {
@@ -2600,12 +2992,85 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     break;
                 case HERB_GRANMA:
                     path = "images/CharacterCards/HerbGranma.jpg";
+
+                    int numNoEntry = gm.getCharacterCardDeck()[2].getNoEntryTile();
+                    image = new Image("images/Clouds/NoEntryTileBackup.png");
+                    i=0;
+                    while (numNoEntry>0){
+                        Card3Arr[i].setImage(image);
+                        Card3Arr[i].setVisible(true);
+                        Card3Arr[i].setDisable(false);
+                        card3Array[i] = "NoEntryTile";
+                        numNoEntry--;
+                        i++;
+                    }
+                    while (i<6){
+                        Card3Arr[i].setImage(empty);
+                        Card3Arr[i].setVisible(false);
+                        Card3Arr[i].setDisable(true);
+                        card3Array[i] = "null";
+                        i++;
+                    }
                     break;
                 case MINSTREL:
                     path = "images/CharacterCards/Minstrel.jpg";
                     break;
                 case MONK:
                     path = "images/CharacterCards/Monk.jpg";
+                    houseMap = new HashMap<>(gm.getCharacterCardDeck()[2].getHouseMap());
+                    i=0;
+                    while (houseMap.get(BLUE) > 0){
+                        image = new Image("images/students/student_blue.png");
+                        Card3Arr[i].setImage(image);
+                        Card3Arr[i].setVisible(true);
+                        Card3Arr[i].setDisable(false);
+                        card3Array[i] = "Blue";
+                        houseMap.put(BLUE, houseMap.get(BLUE) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(PINK) > 0){
+                        image = new Image("images/students/student_pink.png");
+                        Card3Arr[i].setImage(image);
+                        Card3Arr[i].setVisible(true);
+                        Card3Arr[i].setDisable(false);
+                        card3Array[i] = "Pink";
+                        houseMap.put(PINK, houseMap.get(PINK) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(YELLOW) > 0){
+                        image = new Image("images/students/student_yellow.png");
+                        Card3Arr[i].setImage(image);
+                        Card3Arr[i].setVisible(true);
+                        Card3Arr[i].setDisable(false);
+                        card3Array[i] = "Yellow";
+                        houseMap.put(YELLOW, houseMap.get(YELLOW) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(RED) > 0){
+                        image = new Image("images/students/student_red.png");
+                        Card3Arr[i].setImage(image);
+                        Card3Arr[i].setVisible(true);
+                        Card3Arr[i].setDisable(false);
+                        card3Array[i] = "Red";
+                        houseMap.put(RED, houseMap.get(RED) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(GREEN) > 0){
+                        image = new Image("images/students/student_green.png");
+                        Card3Arr[i].setImage(image);
+                        Card3Arr[i].setVisible(true);
+                        Card3Arr[i].setDisable(false);
+                        card3Array[i] = "Green";
+                        houseMap.put(GREEN, houseMap.get(GREEN) - 1);
+                        i++;
+                    }
+                    while (i<6){
+                        Card3Arr[i].setImage(empty);
+                        Card3Arr[i].setVisible(false);
+                        Card3Arr[i].setDisable(true);
+                        card3Array[i] = "null";
+                        i++;
+                    }
                     break;
                 case HERALD:
                     path = "images/CharacterCards/Herald.jpg";
@@ -2615,6 +3080,61 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     break;
                 case JOLLY:
                     path = "images/CharacterCards/Jolly.jpg";
+
+                    houseMap = new HashMap<>(gm.getCharacterCardDeck()[2].getHouseMap());
+                    i=0;
+                    while (houseMap.get(BLUE) > 0){
+                        image = new Image("images/students/student_blue.png");
+                        Card3Arr[i].setImage(image);
+                        Card3Arr[i].setVisible(true);
+                        Card3Arr[i].setDisable(false);
+                        card3Array[i] = "Blue";
+                        houseMap.put(BLUE, houseMap.get(BLUE) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(PINK) > 0){
+                        image = new Image("images/students/student_pink.png");
+                        Card3Arr[i].setImage(image);
+                        Card3Arr[i].setVisible(true);
+                        Card3Arr[i].setDisable(false);
+                        card3Array[i] = "Pink";
+                        houseMap.put(PINK, houseMap.get(PINK) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(YELLOW) > 0){
+                        image = new Image("images/students/student_yellow.png");
+                        Card3Arr[i].setImage(image);
+                        Card3Arr[i].setVisible(true);
+                        Card3Arr[i].setDisable(false);
+                        card3Array[i] = "Yellow";
+                        houseMap.put(YELLOW, houseMap.get(YELLOW) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(RED) > 0){
+                        image = new Image("images/students/student_red.png");
+                        Card3Arr[i].setImage(image);
+                        Card3Arr[i].setVisible(true);
+                        Card3Arr[i].setDisable(false);
+                        card3Array[i] = "Red";
+                        houseMap.put(RED, houseMap.get(RED) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(GREEN) > 0){
+                        image = new Image("images/students/student_green.png");
+                        Card3Arr[i].setImage(image);
+                        Card3Arr[i].setVisible(true);
+                        Card3Arr[i].setDisable(false);
+                        card3Array[i] = "Green";
+                        houseMap.put(GREEN, houseMap.get(GREEN) - 1);
+                        i++;
+                    }
+                    while (i<6){
+                        Card3Arr[i].setImage(empty);
+                        Card3Arr[i].setVisible(false);
+                        Card3Arr[i].setDisable(true);
+                        card3Array[i] = "null";
+                        i++;
+                    }
                     break;
                 case KNIGHT:
                     path = "images/CharacterCards/Knight.jpg";
@@ -2624,33 +3144,68 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     break;
                 case SPOILED_PRINCESS:
                     path = "images/CharacterCards/SpoiledPrincess.jpg";
+
+                    houseMap = new HashMap<>(gm.getCharacterCardDeck()[2].getHouseMap());
+                    i=0;
+                    while (houseMap.get(BLUE) > 0){
+                        image = new Image("images/students/student_blue.png");
+                        Card3Arr[i].setImage(image);
+                        Card3Arr[i].setVisible(true);
+                        Card3Arr[i].setDisable(false);
+                        card3Array[i] = "Blue";
+                        houseMap.put(BLUE, houseMap.get(BLUE) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(PINK) > 0){
+                        image = new Image("images/students/student_pink.png");
+                        Card3Arr[i].setImage(image);
+                        Card3Arr[i].setVisible(true);
+                        Card3Arr[i].setDisable(false);
+                        card3Array[i] = "Pink";
+                        houseMap.put(PINK, houseMap.get(PINK) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(YELLOW) > 0){
+                        image = new Image("images/students/student_yellow.png");
+                        Card3Arr[i].setImage(image);
+                        Card3Arr[i].setVisible(true);
+                        Card3Arr[i].setDisable(false);
+                        card3Array[i] = "Yellow";
+                        houseMap.put(YELLOW, houseMap.get(YELLOW) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(RED) > 0){
+                        image = new Image("images/students/student_red.png");
+                        Card3Arr[i].setImage(image);
+                        Card3Arr[i].setVisible(true);
+                        Card3Arr[i].setDisable(false);
+                        card3Array[i] = "Red";
+                        houseMap.put(RED, houseMap.get(RED) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(GREEN) > 0){
+                        image = new Image("images/students/student_green.png");
+                        Card3Arr[i].setImage(image);
+                        Card3Arr[i].setVisible(true);
+                        Card3Arr[i].setDisable(false);
+                        card3Array[i] = "Green";
+                        houseMap.put(GREEN, houseMap.get(GREEN) - 1);
+                        i++;
+                    }
+                    while (i<6){
+                        Card3Arr[i].setImage(empty);
+                        Card3Arr[i].setVisible(false);
+                        Card3Arr[i].setDisable(true);
+                        card3Array[i] = "null";
+                        i++;
+                    }
                     break;
                 case THIEF:
                     path = "images/CharacterCards/Thief.jpg";
                     break;
             }
             image = new Image(path);
-            for (House h : House.values()) {
-                if (gm.getCharacterCardDeck()[2].getHouseMap().get(h) > 0) {
-                    switch (h) {
-                        case BLUE:
-                            BlueStdCard3.setVisible(true);
-                            break;
-                        case GREEN:
-                            GreenStdCard3.setVisible(true);
-                            break;
-                        case PINK:
-                            PinkStdCard3.setVisible(true);
-                            break;
-                        case RED:
-                            RedStdCard3.setVisible(true);
-                            break;
-                        case YELLOW:
-                            YellowStdCard3.setVisible(true);
-                            break;
-                    }
-                }
-            }
+
             CharacterCard3.setImage(image);
         }
 
@@ -3047,6 +3602,39 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         int position = Integer.parseInt(String.valueOf(id.charAt(id.length() - 1))) - 1;
 
         return entranceArray[position];
+    }
+
+    /**
+     * Returns the element contained in a specific cell of the character card's element array
+     * @param id the id of the element clicked
+     * @return Blue, Pink, Green, Red or Yellow if it is a student, returns NoEntryTile if it is a no entry tile and returns null if it is empty
+     */
+    private String getElemCard1(String id) { //if a number, then it's a noentrytile, if a house, then it's a student
+        int position = Integer.parseInt(String.valueOf(id.charAt(id.length() - 1))) - 1;
+
+        return card1Array[position];
+    }
+
+    /**
+     * Returns the element contained in a specific cell of the character card's element array
+     * @param id the id of the element clicked
+     * @return Blue, Pink, Green, Red or Yellow if it is a student, returns NoEntryTile if it is a no entry tile and returns null if it is empty
+     */
+    private String getElemCard2(String id) {
+        int position = Integer.parseInt(String.valueOf(id.charAt(id.length() - 1))) - 1;
+
+        return card2Array[position];
+    }
+
+    /**
+     * Returns the element contained in a specific cell of the character card's element array
+     * @param id the id of the element clicked
+     * @return Blue, Pink, Green, Red or Yellow if it is a student, returns NoEntryTile if it is a no entry tile and returns null if it is empty
+     */
+    private String getElemCard3(String id) {
+        int position = Integer.parseInt(String.valueOf(id.charAt(id.length() - 1))) - 1;
+
+        return card3Array[position];
     }
 
     private Button getButtonByHouse(House house) throws IllegalArgumentException {
