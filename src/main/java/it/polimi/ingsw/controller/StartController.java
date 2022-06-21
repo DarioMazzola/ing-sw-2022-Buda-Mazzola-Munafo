@@ -156,7 +156,7 @@ public class StartController {
                     tc.sendAllModel();
 
                     for (int i=1; i<gm.getNumPlayers(); i++){
-                        tc.getVirtualViewMap().get(gm.getArrayPlayers()[i].getNickname()).waitForOthersMoves("tower's color");
+                        tc.getVirtualViewMap().get(gm.getArrayPlayers()[i].getNickname()).waitForOthersMoves("assistant card");
                     }
 
                     tc.getVirtualViewMap().get(gm.getArrayPlayers()[0].getNickname()).selectAssistantCard(Arrays.asList(Card.values()));
