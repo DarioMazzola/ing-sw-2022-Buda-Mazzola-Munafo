@@ -99,6 +99,7 @@ public class Gui extends ViewObservable implements UI {
 
     @Override
     public void actionPhase(List<String> availableActions) {
+        Platform.runLater(SceneController::hidePopUp);
 
         ActionSceneController controller;
 
