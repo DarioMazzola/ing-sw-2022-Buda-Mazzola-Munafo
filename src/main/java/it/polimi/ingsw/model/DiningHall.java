@@ -47,7 +47,7 @@ public class DiningHall extends Observable implements StudentModifierInterface {
      * @throws IllegalArgumentException if the number of students given as a parameter is negative
      */
     @Override
-    public void addStudents(House house, int numStudents) throws StudentsTableException, NullPointerException, IllegalArgumentException{
+    public void addStudents(House house, int numStudents, boolean notify) throws StudentsTableException, NullPointerException, IllegalArgumentException{
 
         if(house == null)
             throw new NullPointerException("The house given is null");
@@ -70,7 +70,7 @@ public class DiningHall extends Observable implements StudentModifierInterface {
      * @throws IllegalArgumentException if the number of students given as a parameter is negative
      */
     @Override
-    public void removeStudents(House house, int numStudents) throws StudentsTableException, NullPointerException, IllegalArgumentException{
+    public void removeStudents(House house, int numStudents, boolean notify) throws StudentsTableException, NullPointerException, IllegalArgumentException{
 
         if(house == null)
             throw new NullPointerException("The house given is null");
@@ -83,7 +83,8 @@ public class DiningHall extends Observable implements StudentModifierInterface {
 
         tableOccupation.replace(house, tableOccupation.get(house) - numStudents);
 
-        notifyObserver(new UpdateDiningHall(new ReducedDiningHall(this)));
+        if(notify)
+            notifyObserver(new UpdateDiningHall(new ReducedDiningHall(this)));
     }
 
     public void setOwner(String owner) {

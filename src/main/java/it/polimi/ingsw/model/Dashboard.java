@@ -95,7 +95,7 @@ public class Dashboard extends Observable implements StudentModifierInterface {
      * @throws IllegalArgumentException if the number of students given as a parameter is negative
      */
     @Override
-    public void addStudents(House house, int numStudents) throws EntranceException, NullPointerException, IllegalArgumentException{
+    public void addStudents(House house, int numStudents, boolean notify) throws EntranceException, NullPointerException, IllegalArgumentException{
 
         if(house == null)
             throw new NullPointerException("The house given is null");
@@ -113,7 +113,8 @@ public class Dashboard extends Observable implements StudentModifierInterface {
         houseMap.replace(house, houseMap.get(house) + numStudents);
         numStudentsIn += numStudents;
 
-        notifyObserver(new UpdateDashboard(new ReducedDashboard(this)));
+        if(notify)
+            notifyObserver(new UpdateDashboard(new ReducedDashboard(this)));
 
     }
 
@@ -124,7 +125,7 @@ public class Dashboard extends Observable implements StudentModifierInterface {
      * @throws IllegalArgumentException if the number of students given as a parameter is negative
      */
     @Override
-    public void removeStudents(House house, int numStudents) throws IllegalChoiceException, NullPointerException, IllegalArgumentException{
+    public void removeStudents(House house, int numStudents, boolean notify) throws IllegalChoiceException, NullPointerException, IllegalArgumentException{
 
         if(house == null)
             throw new NullPointerException("The house given is null");

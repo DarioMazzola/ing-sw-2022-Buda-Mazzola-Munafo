@@ -104,8 +104,8 @@ class CharacterCardTest {
 
         //adding the same number of students to the players' dashboard
         try{
-            currentPlayer.getDashboard().getDiningHall().addStudents(houseColor, 3);
-            otherPlayer.getDashboard().getDiningHall().addStudents(houseColor, 3);
+            currentPlayer.getDashboard().getDiningHall().addStudents(houseColor, 3, false);
+            otherPlayer.getDashboard().getDiningHall().addStudents(houseColor, 3, false);
             //otherPlayer owns the professor
             otherPlayer.getDashboard().addProf(houseColor);
         } catch (StudentsTableException e) {
@@ -146,8 +146,8 @@ class CharacterCardTest {
 
         //adding more students to the currentPlayer's dashboard
         try{
-            currentPlayer.getDashboard().getDiningHall().addStudents(houseColor, 1);
-            otherPlayer.getDashboard().getDiningHall().addStudents(houseColor, 0);
+            currentPlayer.getDashboard().getDiningHall().addStudents(houseColor, 1, false);
+            otherPlayer.getDashboard().getDiningHall().addStudents(houseColor, 0, false);
 
         }
         catch (StudentsTableException e) {
@@ -195,8 +195,8 @@ class CharacterCardTest {
 
         //adding more students to the currentPlayer's dashboard
         try{
-            currentPlayer.getDashboard().getDiningHall().addStudents(houseColor, 4);
-            otherPlayer.getDashboard().getDiningHall().addStudents(houseColor, 3);
+            currentPlayer.getDashboard().getDiningHall().addStudents(houseColor, 4, false);
+            otherPlayer.getDashboard().getDiningHall().addStudents(houseColor, 3, false);
             //otherPlayer owns the professor
             otherPlayer.getDashboard().addProf(houseColor);
         } catch (StudentsTableException e) {
@@ -242,8 +242,8 @@ class CharacterCardTest {
     void checkProfTest_OtherPlayerWithMoreStudents_OtherPlayerOwnsStudents_NothingChanges(){
         //adding more students to the currentPlayer's dashboard
         try{
-            currentPlayer.getDashboard().getDiningHall().addStudents(houseColor, 3);
-            otherPlayer.getDashboard().getDiningHall().addStudents(houseColor, 4);
+            currentPlayer.getDashboard().getDiningHall().addStudents(houseColor, 3, false);
+            otherPlayer.getDashboard().getDiningHall().addStudents(houseColor, 4, false);
 
         } catch (StudentsTableException e) {
             e.printStackTrace();

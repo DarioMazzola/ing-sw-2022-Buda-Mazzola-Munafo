@@ -124,9 +124,9 @@ public class Jolly extends CharacterCard{
 
         for (House h :House.values()) {
             if (returnedStudents.get(h) != 0) {
-                dashboard.removeStudents(h, returnedStudents.get(h));
+                dashboard.removeStudents(h, returnedStudents.get(h), true);
             }
-            dashboard.addStudents(h, wantedStudents.get(h));
+            dashboard.addStudents(h, wantedStudents.get(h), numWantedStudents - 1 == 0);
             houseMap.replace(h, houseMap.get(h) - wantedStudents.get(h));
             houseMap.replace(h, houseMap.get(h) + returnedStudents.get(h));
         }

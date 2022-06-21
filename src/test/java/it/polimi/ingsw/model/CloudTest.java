@@ -104,7 +104,7 @@ class CloudTest {
         }
 
         try {
-            c.addStudents(house, 3);
+            c.addStudents(house, 3, false);
         } catch (CloudException | IllegalArgumentException | NullPointerException e){
             fail();
         }
@@ -141,11 +141,11 @@ class CloudTest {
     @Test
     void addStudent_FullCloudGiven_ShouldThrowCloudException(){
         try {
-            c.addStudents(GREEN, 3);
+            c.addStudents(GREEN, 3, false);
         } catch (CloudException | IllegalArgumentException |NullPointerException e) {
             fail();
         }
-        assertThrows(CloudException.class, ()->c.addStudents(GREEN, 10));
+        assertThrows(CloudException.class, ()->c.addStudents(GREEN, 10, false));
     }
 
     /**
@@ -153,7 +153,7 @@ class CloudTest {
      */
     @Test
     void addStudents_NegativeNumStudentsGiven_ShouldThrowIllegalArgumentException(){
-        assertThrows(IllegalArgumentException.class, ()->c.addStudents(GREEN, -2));
+        assertThrows(IllegalArgumentException.class, ()->c.addStudents(GREEN, -2, false));
     }
 
     /**
@@ -161,7 +161,7 @@ class CloudTest {
      */
     @Test
     void addStudents_NullHouseGiven_ShouldThrowNullPointerException(){
-        assertThrows(NullPointerException.class, ()->c.addStudents(null, 1));
+        assertThrows(NullPointerException.class, ()->c.addStudents(null, 1, false));
     }
 
     /**
@@ -177,7 +177,7 @@ class CloudTest {
         Map<House, Integer> housesValueBefore = new HashMap<>();
 
         try {
-            c.addStudents(GREEN, 3);
+            c.addStudents(GREEN, 3, false);
         } catch (CloudException | IllegalArgumentException | NullPointerException e) {
             fail();
         }
@@ -220,7 +220,7 @@ class CloudTest {
         }
 
         try {
-            c.removeStudents(house, 3);
+            c.removeStudents(house, 3, false);
         } catch (IllegalArgumentException | CloudException | NullPointerException e) {
             fail();
         }
@@ -257,7 +257,7 @@ class CloudTest {
      */
     @Test
     void removeStudentsTest_EmptyCloudGiven_CloudException_Empty(){
-        assertThrows(CloudException.class, ()->c.removeStudents(GREEN, 1));
+        assertThrows(CloudException.class, ()->c.removeStudents(GREEN, 1, false));
     }
 
     /**
@@ -266,11 +266,11 @@ class CloudTest {
     @Test
     void removeStudentsTest_NotPresentHouseGiven_ShouldThrowCloudException_NotPresent(){
         try {
-            c.addStudents(YELLOW, 1);
+            c.addStudents(YELLOW, 1, false);
         } catch (CloudException | IllegalArgumentException | NullPointerException e) {
             fail();
         }
-        assertThrows(CloudException.class, ()->c.removeStudents(GREEN, 1));
+        assertThrows(CloudException.class, ()->c.removeStudents(GREEN, 1, false));
     }
 
     /**
@@ -279,11 +279,11 @@ class CloudTest {
     @Test
     void removeStudentsTest_NegativeNumStudentsGiven_ShouldThrowIllegalArgumentException(){
         try {
-            c.addStudents(GREEN, 3);
+            c.addStudents(GREEN, 3, false);
         } catch (CloudException | IllegalArgumentException | NullPointerException e) {
             fail();
         }
-        assertThrows(IllegalArgumentException.class, ()->c.removeStudents(GREEN, -1));
+        assertThrows(IllegalArgumentException.class, ()->c.removeStudents(GREEN, -1, false));
     }
 
     /**
@@ -291,7 +291,7 @@ class CloudTest {
      */
     @Test
     void removeStudentsTest_NullHouseGiven_ShouldThrowNullPointerException(){
-        assertThrows(NullPointerException.class, ()->c.removeStudents(null, 1));
+        assertThrows(NullPointerException.class, ()->c.removeStudents(null, 1, false));
     }
 
     /**

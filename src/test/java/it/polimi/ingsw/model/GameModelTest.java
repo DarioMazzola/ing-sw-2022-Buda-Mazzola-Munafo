@@ -78,7 +78,7 @@ class GameModelTest {
         gm.getArrayPlayers()[1].setDashboard(Color.BLACK, "p1");
 
         try {
-            gm.getArrayPlayers()[0].getDashboard().addStudents(House.YELLOW,1);
+            gm.getArrayPlayers()[0].getDashboard().addStudents(House.YELLOW,1, false);
         } catch (EntranceException e) {
             fail();
         }
@@ -102,7 +102,7 @@ class GameModelTest {
         gm.getArrayPlayers()[1].setDashboard(Color.BLACK, "p1");
 
         try {
-            gm.getArrayPlayers()[0].getDashboard().addStudents(House.YELLOW,3);
+            gm.getArrayPlayers()[0].getDashboard().addStudents(House.YELLOW,3, false);
         } catch (EntranceException e) {
             fail();
         }
@@ -148,7 +148,7 @@ class GameModelTest {
         gm.getArrayPlayers()[1].setDashboard(Color.BLACK, "p1");
 
         try {
-            gm.getArrayPlayers()[0].getDashboard().addStudents(House.YELLOW, 1);
+            gm.getArrayPlayers()[0].getDashboard().addStudents(House.YELLOW, 1, false);
         } catch (EntranceException e) {
             fail();
         }
@@ -284,19 +284,19 @@ class GameModelTest {
         gm.setCurrentPlayer(0);
 
         try {
-            c.addStudents(House.YELLOW, 1);
+            c.addStudents(House.YELLOW, 1, false);
         } catch (CloudException e) {
             e.printStackTrace();
             fail();
         }
         try {
-            c.addStudents(House.BLUE, 1);
+            c.addStudents(House.BLUE, 1, false);
         } catch (CloudException e) {
             e.printStackTrace();
             fail();
         }
         try {
-            c.addStudents(House.RED, 1);
+            c.addStudents(House.RED, 1, false);
         } catch (CloudException e) {
             e.printStackTrace();
             fail();
@@ -847,8 +847,8 @@ class GameModelTest {
         House houseColor = House.YELLOW;
         //adding the same number of students to the players' dashboard
         try{
-            gm.getArrayPlayers()[0].getDashboard().addStudents(houseColor, 3);
-            gm.getArrayPlayers()[1].getDashboard().addStudents(houseColor, 3);
+            gm.getArrayPlayers()[0].getDashboard().addStudents(houseColor, 3, false);
+            gm.getArrayPlayers()[1].getDashboard().addStudents(houseColor, 3, false);
             //otherPlayer owns the professor
             gm.getArrayPlayers()[1].getDashboard().addProf(houseColor);
         }
@@ -1050,7 +1050,7 @@ class GameModelTest {
                 Map<House, Integer> returnedStudents = new HashMap<>();
 
                 try {
-                    gm.getCurrentPlayer().getDashboard().addStudents(house, 1);
+                    gm.getCurrentPlayer().getDashboard().addStudents(house, 1, false);
                 } catch (Exception e) {
                     e.printStackTrace();
                     fail();
@@ -1078,8 +1078,8 @@ class GameModelTest {
                 House[] fromDashboard = {YELLOW, YELLOW, YELLOW};
                 House[] fromDiningHall = {PINK, PINK, PINK};
                 try {
-                    gm.getCurrentPlayer().getDashboard().addStudents(YELLOW, 3);
-                    gm.getCurrentPlayer().getDashboard().getDiningHall().addStudents(PINK, 3);
+                    gm.getCurrentPlayer().getDashboard().addStudents(YELLOW, 3, false);
+                    gm.getCurrentPlayer().getDashboard().getDiningHall().addStudents(PINK, 3, false);
                 } catch (Exception e) {
                     e.printStackTrace();
                     fail();
@@ -1115,7 +1115,7 @@ class GameModelTest {
                 parameters.put("method", "move");
 
                 try {
-                    gm.getCurrentPlayer().getDashboard().addStudents(house, 1);
+                    gm.getCurrentPlayer().getDashboard().addStudents(house, 1, false);
                 } catch (Exception e) {
                     e.printStackTrace();
                     fail();

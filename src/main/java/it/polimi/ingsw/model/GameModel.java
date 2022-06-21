@@ -121,7 +121,7 @@ public class GameModel extends Observable {
         }
 
         for (int j=0; j<numRep; j++) {
-            player.getDashboard().addStudents(bag.pull(), 1);
+            player.getDashboard().addStudents(bag.pull(), 1, false);
         }
     }
 
@@ -216,12 +216,12 @@ public class GameModel extends Observable {
             throw new NullPointerException();
         }
 
-        from.removeStudents(house, numStudents);
+        from.removeStudents(house, numStudents, true);
 
         try {
             to.addStudents(house, numStudents);
         } catch (Exception e){
-            from.addStudents(house, numStudents);
+            from.addStudents(house, numStudents, false);
             throw new Exception();
         }
 
@@ -240,7 +240,7 @@ public class GameModel extends Observable {
             throw new NullPointerException();
         }
         try {
-            from.removeStudents(house, numStudents);
+            from.removeStudents(house, numStudents, true);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -258,7 +258,7 @@ public class GameModel extends Observable {
             }
         }
         try {
-            to.addStudents(house, numStudents);
+            to.addStudents(house, numStudents, false);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -305,7 +305,7 @@ public class GameModel extends Observable {
         for (int i=0; i<numStudents; i++) {
             pulled = from.pull();
             try {
-                to.addStudents(pulled, 1);
+                to.addStudents(pulled, 1, false);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -340,6 +340,7 @@ public class GameModel extends Observable {
         }
 
         notifyObserver(new UpdateCloud(reducedClouds));
+        notifyObserver(new UpdatePlayer(new ReducedPlayer(currentPlayer)));
     }
 
     /**
@@ -442,12 +443,13 @@ public class GameModel extends Observable {
             moveStudents(bag, arrayClouds[i], numCloud);
         }
 
-        List<ReducedIsland> reducedIslands = new ArrayList<>();
+        ReducedCloud[] reducedClouds = new ReducedCloud[numCloud];
 
-        for(Island i : islandList)
-            reducedIslands.add(new ReducedIsland(i));
+        for(int i=0; i<arrayClouds.length; i++) {
+            reducedClouds[i] = new ReducedCloud(arrayClouds[i]);
+        }
 
-        notifyObserver(new UpdateIsland(reducedIslands));
+        notifyObserver(new UpdateCloud(reducedClouds));
     }
 
     /**

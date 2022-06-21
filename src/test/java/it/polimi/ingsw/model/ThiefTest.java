@@ -61,14 +61,14 @@ public class ThiefTest {
             for (House h : House.values()) {
                 if (h == wantedHouse) {
                     try {
-                        p.getDashboard().getDiningHall().addStudents(h, 0);
+                        p.getDashboard().getDiningHall().addStudents(h, 0, false);
                     } catch (StudentsTableException e) {
                         e.printStackTrace();
                         fail();
                     }
                 } else
                     try {
-                        p.getDashboard().getDiningHall().addStudents(h, 1);
+                        p.getDashboard().getDiningHall().addStudents(h, 1, false);
                     } catch (StudentsTableException e) {
                         e.printStackTrace();
                         fail();
@@ -109,14 +109,14 @@ public class ThiefTest {
             for (House h : House.values()) {
                 if (h == wantedHouse) {
                     try {
-                        p.getDashboard().getDiningHall().addStudents(h, 2);
+                        p.getDashboard().getDiningHall().addStudents(h, 2, false);
                     } catch (StudentsTableException e) {
                         e.printStackTrace();
                         fail();
                     }
                 } else
                     try {
-                        p.getDashboard().getDiningHall().addStudents(h, 1);
+                        p.getDashboard().getDiningHall().addStudents(h, 1, false);
                     } catch (StudentsTableException e) {
                         e.printStackTrace();
                         fail();
@@ -179,14 +179,14 @@ public class ThiefTest {
             for (House h : House.values()) {
                 if (h == wantedHouse) {
                     try {
-                        p.getDashboard().getDiningHall().addStudents(h, 4);
+                        p.getDashboard().getDiningHall().addStudents(h, 4, false);
                     } catch (StudentsTableException e) {
                         e.printStackTrace();
                         fail();
                     }
                 } else
                     try {
-                        p.getDashboard().getDiningHall().addStudents(h, 1);
+                        p.getDashboard().getDiningHall().addStudents(h, 1, false);
                     } catch (StudentsTableException e) {
                         e.printStackTrace();
                         fail();

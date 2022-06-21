@@ -66,7 +66,7 @@ public class Cloud extends Observable implements StudentModifierInterface {
      * @throws IllegalArgumentException when the number of students passed is negative
      */
     @Override
-    public void addStudents(House house, int numStudents) throws CloudException{
+    public void addStudents(House house, int numStudents, boolean notify) throws CloudException{
         if (house == null){
             throw new NullPointerException("house = null can't be used as a parameter");
         }
@@ -92,7 +92,7 @@ public class Cloud extends Observable implements StudentModifierInterface {
      * @throws IllegalArgumentException when the number of students passed is negative
      */
     @Override
-    public void removeStudents(House house, int numStudents) throws CloudException{
+    public void removeStudents(House house, int numStudents, boolean notify) throws CloudException{
         if (house == null){
             throw new NullPointerException("house = null can't be used as a parameter");
         }
