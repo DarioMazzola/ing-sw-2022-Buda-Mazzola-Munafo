@@ -1112,6 +1112,31 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     @FXML
     private TextArea Suggestions;
 
+    @FXML
+    private ImageView ImgIsland0;
+    @FXML
+    private ImageView ImgIsland1;
+    @FXML
+    private ImageView ImgIsland2;
+    @FXML
+    private ImageView ImgIsland3;
+    @FXML
+    private ImageView ImgIsland4;
+    @FXML
+    private ImageView ImgIsland5;
+    @FXML
+    private ImageView ImgIsland6;
+    @FXML
+    private ImageView ImgIsland7;
+    @FXML
+    private ImageView ImgIsland8;
+    @FXML
+    private ImageView ImgIsland9;
+    @FXML
+    private ImageView ImgIsland10;
+    @FXML
+    private ImageView ImgIsland11;
+
     private String[] card1Array;
     private String[] card2Array;
     private String[] card3Array;
@@ -1121,6 +1146,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
     private final int numMain;
     private ImageView[] EntranceMain;
+    private ImageView[] islandsImageView;
     private Button[] diningHallMain;
     private List<Button> cloudsButtons;
 
@@ -2006,8 +2032,15 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     }
 
     private void initializeIslands() {
+
+        islandsImageView = new ImageView[] {ImgIsland0, ImgIsland1, ImgIsland2, ImgIsland3, ImgIsland4, ImgIsland5,
+                ImgIsland6, ImgIsland7, ImgIsland8, ImgIsland9, ImgIsland10, ImgIsland11};
+
         int i;
+        i = gm.getIslandList().size() - 1;
+
         i = gm.getIslandList().size();
+
         while (i < 12) {
             islandList.get(i).get("Pane").setVisible(false);
             islandList.get(i).get("Pane").setDisable(true);
@@ -3588,8 +3621,10 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         //enable all the islands
         for (Button b : islandButtons) {
             b.setOnMouseClicked(moveStudentToIsland);
-            b.getStyleClass().add("dropShadow");
+        }
 
+        for(ImageView island : islandsImageView) {
+            island.getStyleClass().add("dropShadow");
         }
 
         getButtonByHouse(houseSelected).setOnMouseClicked(moveStudentToDiningHall);
@@ -3606,6 +3641,10 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         for (Button b : islandButtons) {
             b.setOnMouseClicked(doNothing);
+        }
+
+        for(ImageView island : islandsImageView) {
+            island.getStyleClass().clear();
         }
 
         getButtonByHouse(houseSelected).setOnMouseClicked(doNothing);
@@ -3643,6 +3682,10 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             student.setOnMouseClicked(doNothing);
             student.setOpacity(1);
             student.getStyleClass().clear();
+        }
+
+        for(ImageView island : islandsImageView) {
+            island.getStyleClass().clear();
         }
 
         int islandPosition = getIslandById(islandClicked.getId());

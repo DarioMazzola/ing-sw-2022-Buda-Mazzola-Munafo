@@ -95,7 +95,7 @@
                   </Pane>
                   <Pane fx:id="Island2" layoutX="210.0" layoutY="66.0" prefHeight="187.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="187.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="ImgIsland2" fitHeight="187.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/islands/isola_1.png" />
                            </image>
@@ -299,7 +299,7 @@
                   </Pane>
                   <Pane fx:id="Island5" layoutX="826.0" layoutY="52.0" prefHeight="187.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="187.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="ImgIsland5" fitHeight="187.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/islands/isola_1.png" />
                            </image>
@@ -350,7 +350,7 @@
                   </Pane>
                   <Pane fx:id="Island6" layoutX="1026.0" layoutY="184.0" prefHeight="187.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="187.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="ImgIsland6" fitHeight="187.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/islands/isola_1.png" />
                            </image>
@@ -401,7 +401,7 @@
                   </Pane>
                   <Pane fx:id="Island7" layoutX="1026.0" layoutY="366.0" prefHeight="187.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="187.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="ImgIsland7" fitHeight="187.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/islands/isola_1.png" />
                            </image>
@@ -452,7 +452,7 @@
                   </Pane>
                   <Pane fx:id="Island9" layoutX="616.0" layoutY="519.0" prefHeight="187.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="187.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="ImgIsland9" fitHeight="187.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/islands/isola_1.png" />
                            </image>
@@ -503,7 +503,7 @@
                   </Pane>
                   <Pane fx:id="Island8" layoutX="826.0" layoutY="470.0" prefHeight="187.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="187.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="ImgIsland8" fitHeight="187.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/islands/isola_1.png" />
                            </image>
@@ -554,7 +554,7 @@
                   </Pane>
                   <Pane fx:id="Island10" layoutX="403.0" layoutY="519.0" prefHeight="187.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="187.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="ImgIsland10" fitHeight="187.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/islands/isola_1.png" />
                            </image>
@@ -605,7 +605,7 @@
                   </Pane>
                   <Pane fx:id="Island11" layoutX="210.0" layoutY="470.0" prefHeight="187.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="187.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="ImgIsland11" fitHeight="187.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/islands/isola_1.png" />
                            </image>
