@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #ADD8E6;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #ADD8E6;" stylesheets="/css/dropShadowEffect.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane style="-fx-background-color: #ADD8E6#ADD8E6;">
          <children>
@@ -54,7 +54,7 @@
             </HBox>
             <Label layoutX="591.0" layoutY="164.0" text="Now select your Wizard for this game!">
                <font>
-                  <Font name="Baskerville" size="48.0" />
+                  <Font name="Baskerville Old Face" size="48.0" />
                </font>
             </Label>
             <RadioButton fx:id="firstWizard" layoutX="419.0" layoutY="781.0" mnemonicParsing="false" text="FIRST" visible="false">

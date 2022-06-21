@@ -2,9 +2,13 @@ package it.polimi.ingsw.view.gui.scenes;
 
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.observer.ViewObservable;
+import it.polimi.ingsw.view.gui.SceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.Bloom;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -31,6 +35,8 @@ public class SelectTowerColorSceneController extends ViewObservable implements S
     @FXML
     private ImageView blackImg;
 
+    private ImageView[] towers;
+
     private final List<Color> colorTowersAvailable;
 
     public SelectTowerColorSceneController(List<Color> colorTowersAvailable) {
@@ -47,10 +53,17 @@ public class SelectTowerColorSceneController extends ViewObservable implements S
             t.setDisable(false);
         }
 
+        towers = new ImageView[]{grayImg, whiteImg, blackImg};
+
     }
 
     public void towerClicked(MouseEvent e){
         ImageView towerClicked = (ImageView) e.getSource();
+
+        for(ImageView tower : towers) {
+            tower.getStyleClass().clear();
+        }
+        towerClicked.getStyleClass().add("dropShadow");
 
         RadioButton button = getButtonByImageView(towerClicked);
 

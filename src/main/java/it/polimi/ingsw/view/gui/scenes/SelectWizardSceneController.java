@@ -44,6 +44,8 @@ public class SelectWizardSceneController extends ViewObservable implements Scene
     @FXML
     private Button selectButton;
 
+    private ImageView[] wizardImages;
+
     private final List<Wizard> availableWizards;
     public SelectWizardSceneController (List<Wizard> availableWizards) {
         this.availableWizards = availableWizards;
@@ -52,7 +54,7 @@ public class SelectWizardSceneController extends ViewObservable implements Scene
     @FXML
     public void initialize() {
         RadioButton[] radioButtons = new RadioButton[]{firstWizard, secondWizard, thirdWizard, fourthWizard};
-        ImageView[] wizardImages = new ImageView[]{firstWizardImage, secondWizardImage, thirdWizardImage, fourthWizardImage};
+        wizardImages = new ImageView[]{firstWizardImage, secondWizardImage, thirdWizardImage, fourthWizardImage};
         for (ImageView wizardImage : wizardImages) {
             wizardImage.setOpacity(0.5);
             wizardImage.setOnMouseClicked(this::imageClicked);
@@ -92,6 +94,11 @@ public class SelectWizardSceneController extends ViewObservable implements Scene
     public void imageClicked(MouseEvent e) {
         System.out.println("imageClicked");
         ImageView img = (ImageView) e.getTarget();
+
+        for(ImageView wizard : wizardImages) {
+            wizard.getStyleClass().clear();
+        }
+        img.getStyleClass().add("dropShadow");
 
         RadioButton radioBtn = getButtonByImageView(img);
         radioBtn.setSelected(true);

@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class SelectAssistantCardSceneController extends ViewObservable implements SceneInterface {
 
     @FXML
-    private GridPane characterCards;
+    private GridPane assistantCards;
     @FXML
     private ToggleGroup assistantButtons;
     @FXML
@@ -46,7 +46,7 @@ public class SelectAssistantCardSceneController extends ViewObservable implement
         Set<Card> result = availableCards.stream().distinct().filter(gm.getPlayerByNickname(nickname).
                 getDeck()::contains).collect(Collectors.toSet());
 
-        List<Node> cards = characterCards.getChildren().sorted();
+        List<Node> cards = assistantCards.getChildren().sorted();
 
         int i = 0;
         for(Card c : playersDeck) {
@@ -71,6 +71,11 @@ public class SelectAssistantCardSceneController extends ViewObservable implement
 
     public void selectCharacterCard(MouseEvent mouseEvent) {
         ImageView imageClicked = (ImageView) mouseEvent.getSource();
+
+        for(Node card : assistantCards.getChildren()) {
+            card.getStyleClass().clear();
+        }
+        imageClicked.getStyleClass().add("dropShadow");
 
         int i = getValueByImage(imageClicked.getImage()) - 1;
         List<Toggle> toggles = assistantButtons.getToggles().sorted();

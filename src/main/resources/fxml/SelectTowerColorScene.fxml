@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #ADD8E6;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #ADD8E6;" stylesheets="/css/dropShadowEffect.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane>
          <ImageView fx:id="grayImg" disable="true" fitHeight="334.0" fitWidth="328.0" layoutX="535.0" layoutY="424.0" opacity="0.05" pickOnBounds="true" preserveRatio="true" x="-150.0" y="-150.0">
