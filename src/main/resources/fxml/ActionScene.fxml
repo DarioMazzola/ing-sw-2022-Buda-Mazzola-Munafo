@@ -26,15 +26,15 @@
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Text>
-                  <TextArea layoutX="25.0" layoutY="185.0" prefHeight="100.0" prefWidth="350.0" />
-                  <Button layoutX="137.0" layoutY="296.0" mnemonicParsing="false" style="-fx-background-color: #FFB703;" text="Send message" textFill="WHITE">
+                  <TextArea fx:id="ChatText" layoutX="25.0" layoutY="185.0" prefHeight="100.0" prefWidth="350.0" promptText="Write your message here ..." />
+                  <Button fx:id="ChatSendBtn" layoutX="137.0" layoutY="296.0" mnemonicParsing="false" style="-fx-background-color: #FFB703;" text="Send message" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Button>
-                  <Pane layoutX="25.0" layoutY="90.0" prefHeight="84.0" prefWidth="350.0">
+                  <Pane fx:id="ChatPane" layoutX="25.0" layoutY="90.0" prefHeight="84.0" prefWidth="350.0" style="-fx-background-color: WHITE;">
                      <children>
-                        <Text fx:id="ChatReceivedText" fill="WHITE" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="350.0" />
+                        <Text fx:id="ChatReceivedText" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="350.0" />
                      </children></Pane>
                   <Text fx:id="NoMessageText" fill="WHITE" layoutX="144.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No messages yet!">
                      <font>
