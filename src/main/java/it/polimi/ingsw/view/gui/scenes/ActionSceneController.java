@@ -14,6 +14,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
@@ -1137,9 +1138,217 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     @FXML
     private ImageView ImgIsland11;
 
+
+
+    @FXML
+    private ImageView NoEntryTileDetailIsland0;
+    @FXML
+    private GridPane DescriptionIsland00;
+    @FXML
+    private Text NumGreenIsland0;
+    @FXML
+    private Text NumRedIsland0;
+    @FXML
+    private Text NumYellowIsland0;
+    @FXML
+    private Text NumBlueIsland0;
+    @FXML
+    private Text NumPinkIsland0;
+    @FXML
+    private Text NumNoEntryTileIsland0;
+
+    @FXML
+    private ImageView NoEntryTileDetailIsland1;
+    @FXML
+    private GridPane DescriptionIsland01;
+    @FXML
+    private Text NumGreenIsland1;
+    @FXML
+    private Text NumRedIsland1;
+    @FXML
+    private Text NumYellowIsland1;
+    @FXML
+    private Text NumBlueIsland1;
+    @FXML
+    private Text NumPinkIsland1;
+    @FXML
+    private Text NumNoEntryTileIsland1;
+
+    @FXML
+    private ImageView NoEntryTileDetailIsland2;
+    @FXML
+    private GridPane DescriptionIsland02;
+    @FXML
+    private Text NumGreenIsland2;
+    @FXML
+    private Text NumRedIsland2;
+    @FXML
+    private Text NumYellowIsland2;
+    @FXML
+    private Text NumBlueIsland2;
+    @FXML
+    private Text NumPinkIsland2;
+    @FXML
+    private Text NumNoEntryTileIsland2;
+
+    @FXML
+    private ImageView NoEntryTileDetailIsland3;
+    @FXML
+    private GridPane DescriptionIsland03;
+    @FXML
+    private Text NumGreenIsland3;
+    @FXML
+    private Text NumRedIsland3;
+    @FXML
+    private Text NumYellowIsland3;
+    @FXML
+    private Text NumBlueIsland3;
+    @FXML
+    private Text NumPinkIsland3;
+    @FXML
+    private Text NumNoEntryTileIsland3;
+
+    @FXML
+    private ImageView NoEntryTileDetailIsland4;
+    @FXML
+    private GridPane DescriptionIsland04;
+    @FXML
+    private Text NumGreenIsland4;
+    @FXML
+    private Text NumRedIsland4;
+    @FXML
+    private Text NumYellowIsland4;
+    @FXML
+    private Text NumBlueIsland4;
+    @FXML
+    private Text NumPinkIsland4;
+    @FXML
+    private Text NumNoEntryTileIsland4;
+
+    @FXML
+    private ImageView NoEntryTileDetailIsland5;
+    @FXML
+    private GridPane DescriptionIsland05;
+    @FXML
+    private Text NumGreenIsland5;
+    @FXML
+    private Text NumRedIsland5;
+    @FXML
+    private Text NumYellowIsland5;
+    @FXML
+    private Text NumBlueIsland5;
+    @FXML
+    private Text NumPinkIsland5;
+    @FXML
+    private Text NumNoEntryTileIsland5;
+
+    @FXML
+    private ImageView NoEntryTileDetailIsland6;
+    @FXML
+    private GridPane DescriptionIsland06;
+    @FXML
+    private Text NumGreenIsland6;
+    @FXML
+    private Text NumRedIsland6;
+    @FXML
+    private Text NumYellowIsland6;
+    @FXML
+    private Text NumBlueIsland6;
+    @FXML
+    private Text NumPinkIsland6;
+    @FXML
+    private Text NumNoEntryTileIsland6;
+
+    @FXML
+    private ImageView NoEntryTileDetailIsland7;
+    @FXML
+    private GridPane DescriptionIsland07;
+    @FXML
+    private Text NumGreenIsland7;
+    @FXML
+    private Text NumRedIsland7;
+    @FXML
+    private Text NumYellowIsland7;
+    @FXML
+    private Text NumBlueIsland7;
+    @FXML
+    private Text NumPinkIsland7;
+    @FXML
+    private Text NumNoEntryTileIsland7;
+
+    @FXML
+    private ImageView NoEntryTileDetailIsland8;
+    @FXML
+    private GridPane DescriptionIsland08;
+    @FXML
+    private Text NumGreenIsland8;
+    @FXML
+    private Text NumRedIsland8;
+    @FXML
+    private Text NumYellowIsland8;
+    @FXML
+    private Text NumBlueIsland8;
+    @FXML
+    private Text NumPinkIsland8;
+    @FXML
+    private Text NumNoEntryTileIsland8;
+
+    @FXML
+    private ImageView NoEntryTileDetailIsland9;
+    @FXML
+    private GridPane DescriptionIsland09;
+    @FXML
+    private Text NumGreenIsland9;
+    @FXML
+    private Text NumRedIsland9;
+    @FXML
+    private Text NumYellowIsland9;
+    @FXML
+    private Text NumBlueIsland9;
+    @FXML
+    private Text NumPinkIsland9;
+    @FXML
+    private Text NumNoEntryTileIsland9;
+
+    @FXML
+    private ImageView NoEntryTileDetailIsland10;
+    @FXML
+    private GridPane DescriptionIsland10;
+    @FXML
+    private Text NumGreenIsland10;
+    @FXML
+    private Text NumRedIsland10;
+    @FXML
+    private Text NumYellowIsland10;
+    @FXML
+    private Text NumBlueIsland10;
+    @FXML
+    private Text NumPinkIsland10;
+    @FXML
+    private Text NumNoEntryTileIsland10;
+
+    @FXML
+    private ImageView NoEntryTileDetailIsland11;
+    @FXML
+    private GridPane DescriptionIsland11;
+    @FXML
+    private Text NumGreenIsland11;
+    @FXML
+    private Text NumRedIsland11;
+    @FXML
+    private Text NumYellowIsland11;
+    @FXML
+    private Text NumBlueIsland11;
+    @FXML
+    private Text NumPinkIsland11;
+    @FXML
+    private Text NumNoEntryTileIsland11;
+
     private String[] card1Array;
     private String[] card2Array;
     private String[] card3Array;
+
+    private GridPane[] descriptionArray;
 
     private ReducedGameModel gm;
     private final String nickname;
@@ -2037,7 +2246,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                 ImgIsland6, ImgIsland7, ImgIsland8, ImgIsland9, ImgIsland10, ImgIsland11};
 
         int i;
-        i = gm.getIslandList().size() - 1;
 
         i = gm.getIslandList().size();
 
@@ -2056,11 +2264,28 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         while (i < gm.getIslandList().size()) {
             houseMap = new HashMap<>(gm.getIslandList().get(i).getStudents());
 
-            islandList.get(i).get("Yellow").setVisible(houseMap.get(YELLOW) != 0);
-            islandList.get(i).get("Red").setVisible(houseMap.get(RED) != 0);
-            islandList.get(i).get("Blue").setVisible(houseMap.get(BLUE) != 0);
+            List<Node> list = descriptionArray[i].getChildren().sorted();
+
+            if (!gm.isExpertMode()){
+                list.get(0).setVisible(false);
+            } else {
+                ((Text) list.get(1)).setText("X"+ gm.getIslandList().get(i).getNoEntryTile());
+            }
+
             islandList.get(i).get("Green").setVisible(houseMap.get(GREEN) != 0);
+            ((Text) list.get(3)).setText("X"+ houseMap.get(GREEN));
+
+            islandList.get(i).get("Red").setVisible(houseMap.get(RED) != 0);
+            ((Text) list.get(5)).setText("X"+ houseMap.get(RED));
+
+            islandList.get(i).get("Yellow").setVisible(houseMap.get(YELLOW) != 0);
+            ((Text) list.get(7)).setText("X"+ houseMap.get(YELLOW));
+
             islandList.get(i).get("Pink").setVisible(houseMap.get(PINK) != 0);
+            ((Text) list.get(9)).setText("X"+ houseMap.get(PINK));
+
+            islandList.get(i).get("Blue").setVisible(houseMap.get(BLUE) != 0);
+            ((Text) list.get(11)).setText("X"+ houseMap.get(BLUE));
 
             try {
                 if (gm.getIslandList().get(i).getColorTower() != null) {
@@ -2578,6 +2803,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                 diningHallMainBlue, diningHallMainPink};
 
         Map<House, Integer> houseMap;
+
+        descriptionArray = new GridPane[]{DescriptionIsland00, DescriptionIsland01, DescriptionIsland02, DescriptionIsland03, DescriptionIsland04, DescriptionIsland05, DescriptionIsland06, DescriptionIsland07, DescriptionIsland08, DescriptionIsland09, DescriptionIsland10, DescriptionIsland11};
 
         int i;
 
