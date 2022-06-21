@@ -394,14 +394,12 @@ public class Cli extends ViewObservable implements UI {
             }
         } while (!isValidInput);
         int finalChosenCard = chosenCard;
-        System.out.println("Chosen card: " + playersDeck.get(finalChosenCard-1));
         notifyObserver(observers -> observers.onUpdateAssistantCard(playersDeck.get(finalChosenCard-1)));
     }
 
     @Override
     public void actionPhase(List<String> availableActions) {
         boolean stop = false;
-        clearCli();
         do {
             System.out.println("It's up to you! Here's a list of all the available actions:");
             printList(availableActions);
