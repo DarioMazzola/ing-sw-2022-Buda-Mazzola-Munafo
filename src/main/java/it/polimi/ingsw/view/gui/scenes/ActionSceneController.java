@@ -1916,7 +1916,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
     private void initializeDiningHallThirdPlayer() {
         Map<House, Boolean> profMap;
-        ImageView[] DiningDashboard1Red = new ImageView[10];
         Image image;
 
         ImageView[] DiningDashboard2Red = new ImageView[]{DiningRedStd1Dashboard2, DiningRedStd2Dashboard2, DiningRedStd3Dashboard2, DiningRedStd4Dashboard2, DiningRedStd5Dashboard2, DiningRedStd6Dashboard2, DiningRedStd7Dashboard2, DiningRedStd8Dashboard2, DiningRedStd9Dashboard2, DiningRedStd10Dashboard2};
@@ -2126,7 +2125,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
     private void initializeDiningHallFourthPlayer() {
         Map<House, Boolean> profMap;
-        ImageView[] DiningDashboard1Red = new ImageView[10];
         Image image;
 
         ImageView[] DiningDashboard3Red = new ImageView[]{DiningRedStd1Dashboard3, DiningRedStd2Dashboard3, DiningRedStd3Dashboard3, DiningRedStd4Dashboard3, DiningRedStd5Dashboard3, DiningRedStd6Dashboard3, DiningRedStd7Dashboard3, DiningRedStd8Dashboard3, DiningRedStd9Dashboard3, DiningRedStd10Dashboard3};
@@ -2269,23 +2267,23 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             if (!gm.isExpertMode()){
                 list.get(0).setVisible(false);
             } else {
-                ((Text) list.get(1)).setText("X"+ gm.getIslandList().get(i).getNoEntryTile());
+                ((Text) list.get(8)).setText("x"+ gm.getIslandList().get(i).getNoEntryTile());
             }
 
             islandList.get(i).get("Green").setVisible(houseMap.get(GREEN) != 0);
-            ((Text) list.get(3)).setText("X"+ houseMap.get(GREEN));
+            ((Text) list.get(7)).setText("x"+ houseMap.get(GREEN));
 
             islandList.get(i).get("Red").setVisible(houseMap.get(RED) != 0);
-            ((Text) list.get(5)).setText("X"+ houseMap.get(RED));
+            ((Text) list.get(10)).setText("x"+ houseMap.get(RED));
 
             islandList.get(i).get("Yellow").setVisible(houseMap.get(YELLOW) != 0);
-            ((Text) list.get(7)).setText("X"+ houseMap.get(YELLOW));
+            ((Text) list.get(11)).setText("x"+ houseMap.get(YELLOW));
 
             islandList.get(i).get("Pink").setVisible(houseMap.get(PINK) != 0);
-            ((Text) list.get(9)).setText("X"+ houseMap.get(PINK));
+            ((Text) list.get(9)).setText("x"+ houseMap.get(PINK));
 
             islandList.get(i).get("Blue").setVisible(houseMap.get(BLUE) != 0);
-            ((Text) list.get(11)).setText("X"+ houseMap.get(BLUE));
+            ((Text) list.get(6)).setText("x"+ houseMap.get(BLUE));
 
             try {
                 if (gm.getIslandList().get(i).getColorTower() != null) {
