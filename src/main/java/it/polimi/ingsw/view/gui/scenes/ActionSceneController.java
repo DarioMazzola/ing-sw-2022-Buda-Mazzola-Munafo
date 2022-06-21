@@ -4082,6 +4082,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         for (Button island : islandButtons) {
             island.setOnMouseClicked(doNothing);
         }
+
+        getMotherByIsland(gm.getMotherIsland()).getStyleClass().add("dropShadow");
     }
 
     private void moveMotherFrom(MouseEvent event) {
@@ -4094,6 +4096,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                 currentIsland = 0;
             }
             islandButtons[currentIsland].setOnMouseClicked(moveMotherTo);
+            islandsImageView[currentIsland].getStyleClass().add("dropShadow");
         }
     }
 
@@ -4102,6 +4105,10 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         int islandTo = getIslandById(((Button) event.getSource()).getId());
 
         int position = islandTo - gm.getMotherIsland();
+
+        for(ImageView island : islandsImageView) {
+            island.getStyleClass().clear();
+        }
 
         notifyObserver(observer -> observer.onMoveMotherNature(position));
     }
@@ -4195,5 +4202,36 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     }
 
     private void doNothing(MouseEvent event){
+    }
+
+    private ImageView getMotherByIsland(int island){
+        switch (island) {
+            case 0:
+                return MotherIsland0;
+            case 1:
+                return MotherIsland1;
+            case 2:
+                return MotherIsland2;
+            case 3:
+                return MotherIsland3;
+            case 4:
+                return MotherIsland4;
+            case 5:
+                return MotherIsland5;
+            case 6:
+                return MotherIsland6;
+            case 7:
+                return MotherIsland7;
+            case 8:
+                return MotherIsland8;
+            case 9:
+                return MotherIsland9;
+            case 10:
+                return MotherIsland10;
+            case 11:
+                return MotherIsland11;
+            default:
+                throw new IllegalArgumentException();
+        }
     }
 }
