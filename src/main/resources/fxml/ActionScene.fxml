@@ -755,35 +755,36 @@
                      <children>
                         <VBox layoutX="-15.0" layoutY="-8.0" prefHeight="150.0" prefWidth="30.0">
                            <children>
-                              <ImageView fx:id="BlueStdCard1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                              <ImageView fx:id="Card1Elem1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false"/>
+                              <ImageView fx:id="Card1Elem2" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                  <image>
                                     <Image url="@../images/students/student_blue.png" />
                                  </image>
                                  <VBox.margin>
                                     <Insets bottom="2.0" />
                                  </VBox.margin></ImageView>
-                              <ImageView fx:id="GreenStdCard1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                              <ImageView fx:id="Card1Elem3" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                  <image>
                                     <Image url="@../images/students/student_green.png" />
                                  </image>
                                  <VBox.margin>
                                     <Insets bottom="2.0" top="2.0" />
                                  </VBox.margin></ImageView>
-                              <ImageView fx:id="PinkStdCard1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                              <ImageView fx:id="Card1Elem4" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                  <image>
                                     <Image url="@../images/students/student_pink.png" />
                                  </image>
                                  <VBox.margin>
                                     <Insets bottom="2.0" top="2.0" />
                                  </VBox.margin></ImageView>
-                              <ImageView fx:id="RedStdCard1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                              <ImageView fx:id="Card1Elem5" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                  <image>
                                     <Image url="@../images/students/student_red.png" />
                                  </image>
                                  <VBox.margin>
                                     <Insets bottom="2.0" top="2.0" />
                                  </VBox.margin></ImageView>
-                              <ImageView fx:id="YellowStdCard1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                              <ImageView fx:id="Card1Elem6" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                  <image>
                                     <Image url="@../images/students/student_yellow.png" />
                                  </image>
@@ -800,7 +801,8 @@
                         <ImageView fx:id="CharacterCard2" fitHeight="150.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" />
                         <VBox layoutX="-15.0" layoutY="-8.0" prefHeight="150.0" prefWidth="30.0">
                            <children>
-                              <ImageView fx:id="BluStdCard2" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                              <ImageView fx:id="Card2Elem1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false"/>
+                              <ImageView fx:id="Card2Elem2" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                  <image>
                                     <Image url="@../images/students/student_blue.png" />
                                  </image>
@@ -808,7 +810,7 @@
                                     <Insets bottom="2.0" />
                                  </VBox.margin>
                               </ImageView>
-                              <ImageView fx:id="GreenStdCard2" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                              <ImageView fx:id="Card2Elem3" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                  <image>
                                     <Image url="@../images/students/student_green.png" />
                                  </image>
@@ -816,7 +818,7 @@
                                     <Insets bottom="2.0" top="2.0" />
                                  </VBox.margin>
                               </ImageView>
-                              <ImageView fx:id="PinkStdCard2" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                              <ImageView fx:id="Card2Elem4" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                  <image>
                                     <Image url="@../images/students/student_pink.png" />
                                  </image>
@@ -824,7 +826,7 @@
                                     <Insets bottom="2.0" top="2.0" />
                                  </VBox.margin>
                               </ImageView>
-                              <ImageView fx:id="RedStdCard2" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                              <ImageView fx:id="Card2Elem5" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                  <image>
                                     <Image url="@../images/students/student_red.png" />
                                  </image>
@@ -832,7 +834,7 @@
                                     <Insets bottom="2.0" top="2.0" />
                                  </VBox.margin>
                               </ImageView>
-                              <ImageView fx:id="YellowStdCard2" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                              <ImageView fx:id="Card2Elem6" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                  <image>
                                     <Image url="@../images/students/student_yellow.png" />
                                  </image>
@@ -849,7 +851,8 @@
                         <ImageView fx:id="CharacterCard3" fitHeight="150.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" />
                         <VBox layoutX="-15.0" layoutY="-8.0" prefHeight="150.0" prefWidth="30.0">
                            <children>
-                              <ImageView fx:id="BlueStdCard3" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                              <ImageView fx:id="Card3Elem1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false"/>
+                              <ImageView fx:id="Card3Elem2" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                  <image>
                                     <Image url="@../images/students/student_blue.png" />
                                  </image>
@@ -857,7 +860,7 @@
                                     <Insets bottom="2.0" />
                                  </VBox.margin>
                               </ImageView>
-                              <ImageView fx:id="GreenStdCard3" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                              <ImageView fx:id="Card3Elem3" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                  <image>
                                     <Image url="@../images/students/student_green.png" />
                                  </image>
@@ -865,7 +868,7 @@
                                     <Insets bottom="2.0" top="2.0" />
                                  </VBox.margin>
                               </ImageView>
-                              <ImageView fx:id="PinkStdCard3" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                              <ImageView fx:id="Card3Elem4" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                  <image>
                                     <Image url="@../images/students/student_pink.png" />
                                  </image>
@@ -873,7 +876,7 @@
                                     <Insets bottom="2.0" top="2.0" />
                                  </VBox.margin>
                               </ImageView>
-                              <ImageView fx:id="RedStdCard3" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                              <ImageView fx:id="Card3Elem5" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                  <image>
                                     <Image url="@../images/students/student_red.png" />
                                  </image>
@@ -881,7 +884,7 @@
                                     <Insets bottom="2.0" top="2.0" />
                                  </VBox.margin>
                               </ImageView>
-                              <ImageView fx:id="YellowStdCard3" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                              <ImageView fx:id="Card3Elem6" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                  <image>
                                     <Image url="@../images/students/student_yellow.png" />
                                  </image>
@@ -952,10 +955,7 @@
                         <Image url="@../images/Plancia_DEF2.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="EntranceStudDashboard1Stud1" fitHeight="19.0" fitWidth="19.0" layoutX="37.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/students/student_green.png" />
-                     </image></ImageView>
+                  <ImageView fx:id="EntranceStudDashboard1Stud1" fitHeight="19.0" fitWidth="19.0" layoutX="37.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="EntranceStudDashboard1Stud2" fitHeight="19.0" fitWidth="19.0" layoutX="37.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="EntranceStudDashboard1Stud4" fitHeight="19.0" fitWidth="19.0" layoutX="37.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="EntranceStudDashboard1Stud6" fitHeight="18.0" fitWidth="19.0" layoutX="37.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true" />
@@ -1357,6 +1357,21 @@
                   <Image url="@../images/randomImages/image_2.png" />
                </image>
             </ImageView>
+            <Text fx:id="NameDashboard1" fill="#f25705" layoutX="14.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="NameDashboard2" fill="#f25705" layoutX="14.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="NameDashboard3" fill="#f25705" layoutX="14.0" layoutY="478.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>
