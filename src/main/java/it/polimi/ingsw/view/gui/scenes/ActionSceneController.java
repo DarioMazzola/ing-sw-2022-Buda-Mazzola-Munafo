@@ -2072,7 +2072,21 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         cloudsButtons = new ArrayList<>();
 
-        for(int c=0; c<gm.getArrayClouds().length; c++){
+        int numClouds = 0;
+
+        switch (gm.getNumPlayers()){
+            case 2:
+                numClouds = 2;
+                break;
+            case 3:
+                numClouds = 3;
+                break;
+            case 4:
+                numClouds = 4;
+                break;
+        }
+
+        for(int c=0; c<numClouds; c++){
             if(gm.getArrayClouds()[c].isFull())
                 cloudsButtons.add(getButtonByCloud(c));
         }
@@ -3556,11 +3570,13 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         for (ImageView student : EntranceMain) {
             if (!studentSelected.getId().equals(student.getId())) {
                 student.setOnMouseClicked(doNothing);
-                student.setOpacity(0.8);
+                student.setOpacity(0.5);
             }
+            student.getStyleClass().clear();
         }
 
         studentSelected.setOnMouseClicked(selectStudentCancel);
+        studentSelected.getStyleClass().add("dropShadow");
 
         //enable all the islands
         for (Button b : islandButtons) {
@@ -3575,6 +3591,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         for (ImageView student : EntranceMain) {
             student.setOpacity(1);
             student.setOnMouseClicked(selectStudent);
+            student.getStyleClass().clear();
         }
 
         for (Button b : islandButtons) {
@@ -3595,6 +3612,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         for (ImageView student : EntranceMain) {
             student.setOnMouseClicked(doNothing);
             student.setOpacity(1);
+            student.getStyleClass().clear();
         }
 
         notifyObserver(observer -> observer.onMoveStudentsToDiningHall(houseSelected));
@@ -3614,6 +3632,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         for (ImageView student : EntranceMain) {
             student.setOnMouseClicked(doNothing);
             student.setOpacity(1);
+            student.getStyleClass().clear();
         }
 
         int islandPosition = getIslandById(islandClicked.getId());
