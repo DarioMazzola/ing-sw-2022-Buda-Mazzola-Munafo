@@ -350,7 +350,7 @@ public class ActionController {
         }
 
         try {
-            gm.moveStudents(gm.getCurrentPlayer().getDashboard(), gm.getCurrentPlayer().getDashboard().getDiningHall(), house, 1);
+            gm.moveStudents(gm.getCurrentPlayer().getDashboard(), gm.getCurrentPlayer().getDashboard().getDiningHall(), house, 1, true);
         } catch (Exception e) {
             e.printStackTrace();
             tc.getVirtualViewMap().get(message.getNickname()).showError(INVALID_STUDENT.toString());

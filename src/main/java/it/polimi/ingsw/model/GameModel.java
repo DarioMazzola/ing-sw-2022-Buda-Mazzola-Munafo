@@ -235,7 +235,7 @@ public class GameModel extends Observable {
      * @param house the house where the students belongs
      * @param numStudents number of students moved
      */
-    public void moveStudents (StudentModifierInterface from, StudentModifierInterface to, House house, int numStudents) throws NullPointerException, IllegalChoiceException {
+    public void moveStudents (StudentModifierInterface from, StudentModifierInterface to, House house, int numStudents, boolean notify) throws NullPointerException, IllegalChoiceException {
         if (from == null || to == null || house == null) {
             throw new NullPointerException();
         }
@@ -264,7 +264,8 @@ public class GameModel extends Observable {
         }
         checkProf(house);
 
-        notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
+        if(notify)
+            notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
     }
 
     /**
@@ -297,7 +298,7 @@ public class GameModel extends Observable {
      * @param to the StudentModifierInterface where we add the students
      * @param numStudents number of students moved
      */
-    public void moveStudents (Bag from, StudentModifierInterface to, int numStudents) throws NullPointerException, BagException {
+    public void moveStudents (Bag from, StudentModifierInterface to, int numStudents, boolean notify) throws NullPointerException, BagException {
         if (from == null || to == null) {
             throw new NullPointerException();
         }
@@ -311,7 +312,8 @@ public class GameModel extends Observable {
             }
         }
 
-        notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
+        if(notify)
+            notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
     }
 
     /**
@@ -327,7 +329,7 @@ public class GameModel extends Observable {
         for (House house : House.values()){
             numStud = cloud.getHouseStudents(house);
             if (numStud > 0) {
-                moveStudents(cloud, currentPlayer.getDashboard(), house, numStud);
+                moveStudents(cloud, currentPlayer.getDashboard(), house, numStud, false);
             }
         }
 
@@ -440,7 +442,7 @@ public class GameModel extends Observable {
             numCloud = 4;
         }
         for (int i=0; i<numPlayers; i++){
-            moveStudents(bag, arrayClouds[i], numCloud);
+            moveStudents(bag, arrayClouds[i], numCloud, false);
         }
 
         ReducedCloud[] reducedClouds = new ReducedCloud[numCloud];

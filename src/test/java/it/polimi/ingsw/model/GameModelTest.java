@@ -10,8 +10,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import static it.polimi.ingsw.model.CharacterCardEnum.*;
-import static it.polimi.ingsw.model.CharacterCardEnum.THIEF;
 import static it.polimi.ingsw.model.House.PINK;
 import static it.polimi.ingsw.model.House.YELLOW;
 import static org.junit.jupiter.api.Assertions.*;
@@ -84,7 +82,7 @@ class GameModelTest {
         }
 
         try {
-            gm.moveStudents(gm.getArrayPlayers()[0].getDashboard(), gm.getArrayPlayers()[1].getDashboard(), House.YELLOW, 1);
+            gm.moveStudents(gm.getArrayPlayers()[0].getDashboard(), gm.getArrayPlayers()[1].getDashboard(), House.YELLOW, 1, false);
         } catch (Exception e) {
             fail();
         }
@@ -110,7 +108,7 @@ class GameModelTest {
         gm.setCurrentPlayer(0);
 
         try {
-            gm.moveStudents(gm.getArrayPlayers()[0].getDashboard(), gm.getArrayPlayers()[0].getDashboard().getDiningHall(), House.YELLOW, 3);
+            gm.moveStudents(gm.getArrayPlayers()[0].getDashboard(), gm.getArrayPlayers()[0].getDashboard().getDiningHall(), House.YELLOW, 3, false);
         } catch (Exception e) {
             e.printStackTrace();
             fail();
@@ -174,10 +172,10 @@ class GameModelTest {
         Dashboard b = null;
         Dashboard a = null;
         House c = null;
-        assertThrows(NullPointerException.class, ()->gm.moveStudents(a, q.getDashboard(), House.YELLOW, 1));
-        assertThrows(NullPointerException.class, ()->gm.moveStudents(p.getDashboard(), b, House.YELLOW, 1));
-        assertThrows(NullPointerException.class, ()->gm.moveStudents(p.getDashboard(), q.getDashboard(), c, 1));
-        assertThrows(NullPointerException.class, ()->gm.moveStudents(a, b, c, 1));
+        assertThrows(NullPointerException.class, ()->gm.moveStudents(a, q.getDashboard(), House.YELLOW, 1, false));
+        assertThrows(NullPointerException.class, ()->gm.moveStudents(p.getDashboard(), b, House.YELLOW, 1, false));
+        assertThrows(NullPointerException.class, ()->gm.moveStudents(p.getDashboard(), q.getDashboard(), c, 1, false));
+        assertThrows(NullPointerException.class, ()->gm.moveStudents(a, b, c, 1, false));
     }
 
     /**
@@ -204,7 +202,7 @@ class GameModelTest {
         }
 
         try {
-            gm.moveStudents(from, gm.getArrayPlayers()[0].getDashboard(), 1);
+            gm.moveStudents(from, gm.getArrayPlayers()[0].getDashboard(), 1, false);
         } catch (Exception e) {
             fail();
         }
@@ -222,10 +220,10 @@ class GameModelTest {
         Player q = new Player(numPlayers);
         Dashboard b = null;
         Bag a = null;
-        assertThrows(NullPointerException.class, ()->gm.moveStudents(a, q.getDashboard(), 1));
-        assertThrows(NullPointerException.class, ()->gm.moveStudents(p, b, 1));
-        assertThrows(NullPointerException.class, ()->gm.moveStudents(p, q.getDashboard(), 1));
-        assertThrows(NullPointerException.class, ()->gm.moveStudents(a, b,1));
+        assertThrows(NullPointerException.class, ()->gm.moveStudents(a, q.getDashboard(), 1, false));
+        assertThrows(NullPointerException.class, ()->gm.moveStudents(p, b, 1, false));
+        assertThrows(NullPointerException.class, ()->gm.moveStudents(p, q.getDashboard(), 1, false));
+        assertThrows(NullPointerException.class, ()->gm.moveStudents(a, b,1, false));
     }
 
     /**

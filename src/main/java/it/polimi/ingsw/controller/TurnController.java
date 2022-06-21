@@ -76,9 +76,7 @@ public class TurnController {
                             virtualViewMap.get(queue.get(i)).notifyGameFull();
                             virtualViewMap.remove(queue.get(i));
                         }
-                        for (int i = gm.getNumPlayers(); i < queue.size(); i++) {
-                            queue.remove(i);
-                        }
+                        queue.clear();
                         setIsGameStarted(true);
                         sendAllSelectWizard(Arrays.asList(Wizard.values()));
                     } else {
@@ -304,7 +302,7 @@ public class TurnController {
     private void initializePlayers() {
         for (Player p : gm.getArrayPlayers()) {
             try {
-                gm.moveStudents(gm.getBag(), p.getDashboard(), p.getDashboard().getNumMaxStudents());
+                gm.moveStudents(gm.getBag(), p.getDashboard(), p.getDashboard().getNumMaxStudents(), true);
             } catch (BagException e) {
                 e.printStackTrace();
             }
