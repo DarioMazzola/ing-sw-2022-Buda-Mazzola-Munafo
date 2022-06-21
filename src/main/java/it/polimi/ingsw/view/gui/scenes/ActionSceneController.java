@@ -10,6 +10,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -1108,6 +1109,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     @FXML
     private Text NameDashboard3;
 
+    @FXML
+    private TextArea Suggestions;
+
     private String[] card1Array;
     private String[] card2Array;
     private String[] card3Array;
@@ -1149,6 +1153,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         moveStudentToDiningHall = this::moveStudentToDiningHall;
         selectCloud = this::onCloudSelected;
         doNothing = this::doNothing;
+        Suggestions.setWrapText(true);
     }
 
     // <--------- Initialize methods --------->
@@ -3865,6 +3870,54 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             c.setOnMouseClicked(doNothing);
         }
 
+    }
+
+    public void setSuggestions(List<String> message, String type){
+        if (type.equals("selectCloud")){
+            Suggestions.setText("You can now select a cloud from those available!");
+            return;
+        }
+
+        if (type.equals("actionPhase")) {
+            int i = 0;
+            Suggestions.setText("You can now do one of the following:\n");
+            while (i < message.size()) {
+                switch (message.get(i)) {
+                    case "Move students to dining hall or to island":
+                        Suggestions.appendText("Move a student from the entrance to the dining hall or to an island\n");
+                        break;
+                    case "Select character card":
+                        Suggestions.appendText("Use a character card\n");
+                        break;
+                    case "Send a message to your team mate":
+                        Suggestions.appendText("Send a message to your team mate\n");
+                        break;
+                }
+                i++;
+            }
+            return;
+        }
+
+        switch (type){
+            case "Monk":
+                Suggestions.setText("You now have to select a student from the card and an island where to move it");
+                break;
+            case "HerbGranma":
+                Suggestions.setText("You now have to select an island where to put the no entry tile");
+                break;
+            case "Jolly":
+                Suggestions.setText("You now have to select a student from the card and a student from the dining hall");
+                break;
+            case "Minstrel":
+                Suggestions.setText("You now have to select a student from the dining hall and a student from the entrance");
+                break;
+            case "SpoiledPrincess":
+                Suggestions.setText("You now have to select a student from the card to add to the dining hall");
+                break;
+            case "Thief":
+                Suggestions.setText("You now have to select a type of student to take from every player");
+                break;
+        }
     }
 
     private void doNothing(MouseEvent event){
