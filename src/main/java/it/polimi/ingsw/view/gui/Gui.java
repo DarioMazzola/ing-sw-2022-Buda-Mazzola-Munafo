@@ -112,6 +112,8 @@ public class Gui extends ViewObservable implements UI {
             controller.setGameModel(gm);
         }
 
+        Platform.runLater(()->controller.setSuggestions(availableActions, "actionPhase"));
+
         if (availableActions.contains("Move Mother Nature")) {
             Platform.runLater(controller::setMoveMother);
         }
@@ -133,6 +135,8 @@ public class Gui extends ViewObservable implements UI {
         } else {
             controller = (ActionSceneController) SceneController.getActiveController();
         }
+
+        Platform.runLater(()->controller.setSuggestions(null, "selectCloud"));
 
         Platform.runLater(controller::initializeClouds);
         Platform.runLater(controller::setCloudSelectable);
