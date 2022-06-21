@@ -445,7 +445,7 @@ public class GameModel extends Observable {
             moveStudents(bag, arrayClouds[i], numCloud, false);
         }
 
-        ReducedCloud[] reducedClouds = new ReducedCloud[numCloud];
+        ReducedCloud[] reducedClouds = new ReducedCloud[arrayClouds.length];
 
         for(int i=0; i<arrayClouds.length; i++) {
             reducedClouds[i] = new ReducedCloud(arrayClouds[i]);
