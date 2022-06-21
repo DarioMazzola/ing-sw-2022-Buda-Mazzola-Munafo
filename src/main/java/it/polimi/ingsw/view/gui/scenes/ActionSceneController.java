@@ -1153,7 +1153,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         moveStudentToDiningHall = this::moveStudentToDiningHall;
         selectCloud = this::onCloudSelected;
         doNothing = this::doNothing;
-        Suggestions.setWrapText(true);
     }
 
     // <--------- Initialize methods --------->
@@ -3410,6 +3409,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         Dashboard1.setDisable(true);
         Dashboard2.setDisable(true);
         Dashboard3.setDisable(true);
+
+        Suggestions.setWrapText(true);
     }
 
     public void initializeEvents() {
@@ -3586,9 +3587,12 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         //enable all the islands
         for (Button b : islandButtons) {
             b.setOnMouseClicked(moveStudentToIsland);
+            b.getStyleClass().add("dropShadow");
+
         }
 
         getButtonByHouse(houseSelected).setOnMouseClicked(moveStudentToDiningHall);
+        getButtonByHouse(houseSelected).getStyleClass().add("dropShadow");
 
     }
 
