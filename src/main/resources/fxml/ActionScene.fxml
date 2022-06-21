@@ -765,7 +765,7 @@
                      <children>
                         <VBox layoutX="-15.0" layoutY="-8.0" prefHeight="150.0" prefWidth="30.0">
                            <children>
-                              <ImageView fx:id="Card1Elem1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false"/>
+                              <ImageView fx:id="Card1Elem1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false" />
                               <ImageView fx:id="Card1Elem2" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                  <image>
                                     <Image url="@../images/students/student_blue.png" />
@@ -811,7 +811,7 @@
                         <ImageView fx:id="CharacterCard2" fitHeight="150.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" />
                         <VBox layoutX="-15.0" layoutY="-8.0" prefHeight="150.0" prefWidth="30.0">
                            <children>
-                              <ImageView fx:id="Card2Elem1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false"/>
+                              <ImageView fx:id="Card2Elem1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false" />
                               <ImageView fx:id="Card2Elem2" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                  <image>
                                     <Image url="@../images/students/student_blue.png" />
@@ -861,7 +861,7 @@
                         <ImageView fx:id="CharacterCard3" fitHeight="150.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" />
                         <VBox layoutX="-15.0" layoutY="-8.0" prefHeight="150.0" prefWidth="30.0">
                            <children>
-                              <ImageView fx:id="Card3Elem1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false"/>
+                              <ImageView fx:id="Card3Elem1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false" />
                               <ImageView fx:id="Card3Elem2" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                  <image>
                                     <Image url="@../images/students/student_blue.png" />
@@ -1387,7 +1387,7 @@
                   <Font name="Baskerville Old Face" size="18.0" />
                </font>
             </TextArea>
-            <Text fill="#ef233c" layoutX="576.0" layoutY="571.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Suggestions">
+            <Text disable="true" fill="#ef233c" layoutX="576.0" layoutY="571.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Suggestions">
                <font>
                   <Font name="Baskerville Old Face" size="36.0" />
                </font>

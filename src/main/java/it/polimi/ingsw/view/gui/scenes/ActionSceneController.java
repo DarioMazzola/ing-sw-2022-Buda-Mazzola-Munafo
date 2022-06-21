@@ -3410,6 +3410,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         Dashboard2.setDisable(true);
         Dashboard3.setDisable(true);
 
+        Suggestions.setOnMouseClicked(doNothing);
         Suggestions.setWrapText(true);
     }
 
@@ -3646,6 +3647,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         int islandPosition = getIslandById(islandClicked.getId());
         notifyObserver(observer -> observer.onMoveStudentsToIsland(houseSelected, islandPosition));
+        getButtonByHouse(houseSelected).setOnMouseClicked(doNothing);
         houseSelected = null;
     }
 
