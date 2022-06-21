@@ -597,7 +597,7 @@
                            </image>
                         </ImageView>
                         <Button fx:id="Island04Btn" layoutX="11.0" layoutY="-4.0" mnemonicParsing="false" opacity="0.0" prefHeight="194.0" prefWidth="191.0" text="Button" />
-                        <GridPane fx:id="DescriptionIsland04" layoutX="-16.0" layoutY="-26.0" prefHeight="183.0" prefWidth="74.0">
+                        <GridPane fx:id="DescriptionIsland04" layoutX="-16.0" layoutY="-26.0" prefHeight="183.0" prefWidth="74.0" visible="false">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="72.20001220703125" minWidth="10.0" prefWidth="47.1999755859375" />
                               <ColumnConstraints hgrow="SOMETIMES" maxWidth="113.79998779296875" minWidth="10.0" prefWidth="47.200024414062504" />
@@ -611,6 +611,11 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
+                              <ImageView fx:id="NoEntryTileDetailIsland4" fitHeight="40.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/Clouds/NoEntryTile.png" />
+                                 </image>
+                              </ImageView>
                               <ImageView fitHeight="30.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
                                  <image>
                                     <Image url="@../images/students/student_green.png" />
@@ -636,6 +641,11 @@
                                     <Image url="@../images/students/student_blue.png" />
                                  </image>
                               </ImageView>
+                              <Text fx:id="NumNoEntryTileIsland4" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1">
+                                 <font>
+                                    <Font name="Baskerville Old Face" size="18.0" />
+                                 </font>
+                              </Text>
                               <Text fx:id="NumGreenIsland4" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <font>
                                     <Font name="Baskerville Old Face" size="18.0" />
@@ -657,16 +667,6 @@
                                  </font>
                               </Text>
                               <Text fx:id="NumBlueIsland4" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                                 <font>
-                                    <Font name="Baskerville Old Face" size="18.0" />
-                                 </font>
-                              </Text>
-                              <ImageView fx:id="NoEntryTileDetailIsland4" fitHeight="40.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/Clouds/NoEntryTile.png" />
-                                 </image>
-                              </ImageView>
-                              <Text fx:id="NumNoEntryTileIsland4" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1">
                                  <font>
                                     <Font name="Baskerville Old Face" size="18.0" />
                                  </font>
@@ -1621,37 +1621,37 @@
                               <Image url="@../images/students/student_blue.png" />
                            </image>
                         </ImageView>
-                        <Text fx:id="NumGreenIsland011111" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Text fx:id="NumGreenIsland5" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <font>
                               <Font name="Baskerville Old Face" size="18.0" />
                            </font>
                         </Text>
-                        <Text fx:id="NumYellowIsland011111" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <Text fx:id="NumYellowIsland5" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <font>
                               <Font name="Baskerville Old Face" size="18.0" />
                            </font>
                         </Text>
-                        <Text fx:id="NumRedIsland011111" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Text fx:id="NumRedIsland5" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <font>
                               <Font name="Baskerville Old Face" size="18.0" />
                            </font>
                         </Text>
-                        <Text fx:id="NumPinkIsland011111" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <Text fx:id="NumPinkIsland5" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <font>
                               <Font name="Baskerville Old Face" size="18.0" />
                            </font>
                         </Text>
-                        <Text fx:id="NumBlueIsland011111" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                        <Text fx:id="NumBlueIsland5" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                            <font>
                               <Font name="Baskerville Old Face" size="18.0" />
                            </font>
                         </Text>
-                        <ImageView fx:id="NoEntryTileDetailIsland011111" fitHeight="40.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="NoEntryTileDetailIsland5" fitHeight="40.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/Clouds/NoEntryTile.png" />
                            </image>
                         </ImageView>
-                        <Text fx:id="NumNoEntryTileIsland011111" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1">
+                        <Text fx:id="NumNoEntryTileIsland5" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1">
                            <font>
                               <Font name="Baskerville Old Face" size="18.0" />
                            </font>
