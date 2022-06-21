@@ -21,7 +21,7 @@ class DiningHallTest {
     void addStudentTest_FullDiningHallGiven_ShouldThrowStudentsTableException(){
         refillDiningHall();
 
-        assertThrows(StudentsTableException.class, ()->diningHall.addStudents(houseDefault, 1));
+        assertThrows(StudentsTableException.class, ()->diningHall.addStudents(houseDefault, 1, false));
 
     }
 
@@ -29,7 +29,7 @@ class DiningHallTest {
     @Test
     void addStudentTest_NullHouseGiven_ShouldThrowNullPointerException(){
 
-        assertThrows(NullPointerException.class, ()->diningHall.addStudents(null, 1));
+        assertThrows(NullPointerException.class, ()->diningHall.addStudents(null, 1, false));
     }
 
     @Test
@@ -48,7 +48,7 @@ class DiningHallTest {
         refillDiningHall();
 
         try{
-            diningHall.removeStudents(houseDefault, 1);
+            diningHall.removeStudents(houseDefault, 1, false);
         }
         catch(StudentsTableException e){
             fail();
@@ -61,7 +61,7 @@ class DiningHallTest {
 
 
         try{
-            diningHall.removeStudents(houseDefault, 1);
+            diningHall.removeStudents(houseDefault, 1, false);
         }
         catch(StudentsTableException e){
             assert(true);
@@ -72,7 +72,7 @@ class DiningHallTest {
     @Test
     void removeStudentsTest_NullHouseGiven_ShouldThrowNullPointerException(){
 
-        assertThrows(NullPointerException.class, ()->diningHall.removeStudents(null, 1));
+        assertThrows(NullPointerException.class, ()->diningHall.removeStudents(null, 1, false));
     }
 
     /**
@@ -85,7 +85,7 @@ class DiningHallTest {
         for(House h : House.values()){
             for(int i=0; i<10; i++){
                try{
-                   diningHall.addStudents(h, 1);
+                   diningHall.addStudents(h, 1, false);
                }
                catch (StudentsTableException e){
                    fail();

@@ -346,6 +346,11 @@ public class TurnController {
 
         sendAllRememberNickname();
 
+        for(Player p : gm.getArrayPlayers()) {
+            if(! p.equals(gm.getCurrentPlayer()))
+                virtualViewMap.get(p.getNickname()).goToWaitingRoom();
+        }
+
         switch (gameState){
             case PLANNING:
                 if (planningController.getSelected() == gm.getNumPlayers()) {

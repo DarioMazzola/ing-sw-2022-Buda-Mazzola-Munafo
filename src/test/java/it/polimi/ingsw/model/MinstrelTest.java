@@ -41,8 +41,8 @@ class MinstrelTest {
 
         for(int i=0; i<fromDashboard.length; i++){
             try{
-                currentPlayer.getDashboard().addStudents(fromDashboard[i], 1);
-                currentPlayer.getDashboard().getDiningHall().addStudents(fromDiningHall[i], 1);
+                currentPlayer.getDashboard().addStudents(fromDashboard[i], 1, false);
+                currentPlayer.getDashboard().getDiningHall().addStudents(fromDiningHall[i], 1, false);
             }
             catch (Exception e){
                 fail();

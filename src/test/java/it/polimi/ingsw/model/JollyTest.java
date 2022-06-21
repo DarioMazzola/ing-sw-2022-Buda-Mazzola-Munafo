@@ -78,7 +78,7 @@ public class JollyTest {
 
         // preparing dashboard
         try {
-            playerDashboard.addStudents(House.YELLOW, 6);
+            playerDashboard.addStudents(House.YELLOW, 6, false);
         } catch (EntranceException e) {
             e.printStackTrace();
             fail();
@@ -144,7 +144,7 @@ public class JollyTest {
         Map<House, Integer> oldStudentsOnCard = new HashMap<>(studentsOnCard);
         // preparing dashboard
         try {
-            playerDashboard.addStudents(House.YELLOW, 6);
+            playerDashboard.addStudents(House.YELLOW, 6, false);
         } catch (EntranceException e) {
             e.printStackTrace();
             fail();

@@ -46,17 +46,30 @@ public class Minstrel extends CharacterCard{
         if(wanted.length != leaved.length)
             throw new IllegalArgumentException("The number of students taken from the dashboard does not match " +
                                                     "the number of students taken from the diningHall");
+        int numStudent = 0;
+
         for(House h : leaved){
-            diningHall.removeStudents(h, 1);
+            if(numStudent == leaved.length - 1)
+                diningHall.removeStudents(h, 1, true);
+            else {
+                diningHall.removeStudents(h, 1, false);
+                numStudent++;
+            }
         }
 
+        int added = 0;
         for(House h: wanted) {
-            dashboard.removeStudents(h, 1);
-            diningHall.addStudents(h, 1);
+            dashboard.removeStudents(h, 1, false);
+            diningHall.addStudents(h, 1, false);
         }
 
         for(House h : leaved){
-            dashboard.addStudents(h, 1);
+            if(added == wanted.length - 1)
+                dashboard.addStudents(h, 1, true);
+            else{
+                added++;
+                dashboard.addStudents(h, 1, false);
+            }
         }
     }
 

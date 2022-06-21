@@ -121,6 +121,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     private Text ChatReceivedText;
 
     @FXML
+    private Text NoMessageText;
+
+    @FXML
     private Pane Cloud4Num1;
     @FXML
     private Pane Cloud4Num2;
@@ -1045,6 +1048,21 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     private Button Island11Btn;
     @FXML
     private Button Island12Btn;
+    @FXML
+    private Button Cloud3Btn1;
+    @FXML
+    private Button Cloud3Btn2;
+    @FXML
+    private Button Cloud3Btn3;
+    @FXML
+    private Button Cloud3Btn4;
+    @FXML
+    private Button Cloud4Btn1;
+    @FXML
+    private Button Cloud4Btn2;
+    @FXML
+    private Button Cloud4Btn3;
+
 
     @FXML
     private ImageView Card1Elem1;
@@ -1100,18 +1118,21 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     private final int numMain;
     private ImageView[] EntranceMain;
     private Button[] diningHallMain;
+    private List<Button> cloudsButtons;
+
     private House houseSelected;
     private List<Map<String, Node>> islandList;
     private House[] entranceArray;
     private boolean moveMother;
 
-    private EventHandler<MouseEvent> selectStudent;
-    private EventHandler<MouseEvent> moveMotherFrom;
-    private EventHandler<MouseEvent> moveStudentToIsland;
-    private EventHandler<MouseEvent> selectStudentCancel;
-    private EventHandler<MouseEvent> moveMotherTo;
-    private EventHandler<MouseEvent> moveStudentToDiningHall;
-
+    private final EventHandler<MouseEvent> selectStudent;
+    private final EventHandler<MouseEvent> moveMotherFrom;
+    private final EventHandler<MouseEvent> moveStudentToIsland;
+    private final EventHandler<MouseEvent> selectStudentCancel;
+    private final EventHandler<MouseEvent> moveMotherTo;
+    private final EventHandler<MouseEvent> moveStudentToDiningHall;
+    private final EventHandler<MouseEvent> selectCloud;
+    private final EventHandler<MouseEvent> doNothing;
 
     private Button[] islandButtons;
 
@@ -1119,6 +1140,15 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         this.gm = gm;
         this.nickname = nickname;
         numMain = Arrays.asList(gm.getArrayPlayers()).indexOf(gm.getPlayerByNickname(nickname));
+
+        selectStudent = this::selectStudent;
+        selectStudentCancel = this::selectStudentCancel;
+        moveMotherFrom = this::moveMotherFrom;
+        moveStudentToIsland = this::moveStudentToIsland;
+        moveMotherTo = this::moveMotherTo;
+        moveStudentToDiningHall = this::moveStudentToDiningHall;
+        selectCloud = this::onCloudSelected;
+        doNothing = this::doNothing;
     }
 
     // <--------- Initialize methods --------->
@@ -1198,7 +1228,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         initializeDiningHallMain();
 
-        ImageView[] TowersMain = new ImageView[] {Tower1Main, Tower2Main, Tower3Main, Tower4Main, Tower5Main, Tower6Main, Tower7Main, Tower8Main};
+        ImageView[] TowersMain = new ImageView[]{Tower1Main, Tower2Main, Tower3Main, Tower4Main, Tower5Main, Tower6Main, Tower7Main, Tower8Main};
 
         int numTow = gm.getArrayPlayers()[numMain].getDashboard().getNumTowersIn();
         Color colorTower = gm.getArrayPlayers()[numMain].getDashboard().getTowerColor();
@@ -1361,7 +1391,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             numTowers = 5;
         }
         Image image;
-        ImageView[] EntranceDashboard1 = new ImageView[] {EntranceStudDashboard1Stud1, EntranceStudDashboard1Stud2, EntranceStudDashboard1Stud3, EntranceStudDashboard1Stud4, EntranceStudDashboard1Stud5, EntranceStudDashboard1Stud6, EntranceStudDashboard1Stud7, EntranceStudDashboard1Stud8, EntranceStudDashboard1Stud9};
+        ImageView[] EntranceDashboard1 = new ImageView[]{EntranceStudDashboard1Stud1, EntranceStudDashboard1Stud2, EntranceStudDashboard1Stud3, EntranceStudDashboard1Stud4, EntranceStudDashboard1Stud5, EntranceStudDashboard1Stud6, EntranceStudDashboard1Stud7, EntranceStudDashboard1Stud8, EntranceStudDashboard1Stud9};
 
         Map<House, Integer> houseMap = new HashMap<>(gm.getArrayPlayers()[(numMain + 1) % gm.getNumPlayers()].getDashboard().getStudents());
         int i = numStudents;
@@ -1571,7 +1601,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             numTowers = 5;
         }
         Image image;
-        ImageView[] EntranceDashboard2 = new ImageView []{EntranceStudDashboard2Stud1, EntranceStudDashboard2Stud2, EntranceStudDashboard2Stud3, EntranceStudDashboard2Stud4, EntranceStudDashboard2Stud5, EntranceStudDashboard2Stud6, EntranceStudDashboard2Stud7, EntranceStudDashboard2Stud8, EntranceStudDashboard2Stud9};
+        ImageView[] EntranceDashboard2 = new ImageView[]{EntranceStudDashboard2Stud1, EntranceStudDashboard2Stud2, EntranceStudDashboard2Stud3, EntranceStudDashboard2Stud4, EntranceStudDashboard2Stud5, EntranceStudDashboard2Stud6, EntranceStudDashboard2Stud7, EntranceStudDashboard2Stud8, EntranceStudDashboard2Stud9};
 
         Map<House, Integer> houseMap = new HashMap<>(gm.getArrayPlayers()[(numMain + 2) % gm.getNumPlayers()].getDashboard().getStudents());
         int i = numStudents;
@@ -1781,7 +1811,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             numTowers = 5;
         }
         Image image;
-        ImageView[] EntranceDashboard3 = new ImageView[] {EntranceStudDashboard3Stud1, EntranceStudDashboard3Stud2, EntranceStudDashboard3Stud3, EntranceStudDashboard3Stud4, EntranceStudDashboard3Stud5, EntranceStudDashboard3Stud6, EntranceStudDashboard3Stud7, EntranceStudDashboard3Stud8, EntranceStudDashboard3Stud9};
+        ImageView[] EntranceDashboard3 = new ImageView[]{EntranceStudDashboard3Stud1, EntranceStudDashboard3Stud2, EntranceStudDashboard3Stud3, EntranceStudDashboard3Stud4, EntranceStudDashboard3Stud5, EntranceStudDashboard3Stud6, EntranceStudDashboard3Stud7, EntranceStudDashboard3Stud8, EntranceStudDashboard3Stud9};
 
         Map<House, Integer> houseMap = new HashMap<>(gm.getArrayPlayers()[(numMain + 3) % gm.getNumPlayers()].getDashboard().getStudents());
         int i = numStudents;
@@ -1827,7 +1857,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         initializeDiningHallFourthPlayer();
 
-        ImageView[] TowersDashboard3 = new ImageView[] {Tower1Dashboard3, Tower2Dashboard3, Tower3Dashboard3, Tower4Dashboard3, Tower5Dashboard3, Tower6Dashboard3, Tower7Dashboard3, Tower8Dashboard3};
+        ImageView[] TowersDashboard3 = new ImageView[]{Tower1Dashboard3, Tower2Dashboard3, Tower3Dashboard3, Tower4Dashboard3, Tower5Dashboard3, Tower6Dashboard3, Tower7Dashboard3, Tower8Dashboard3};
 
         int numTow = gm.getArrayPlayers()[(numMain + 3) % gm.getNumPlayers()].getDashboard().getNumTowersIn();
         Color colorTower = gm.getArrayPlayers()[(numMain + 3) % gm.getNumPlayers()].getDashboard().getTowerColor();
@@ -1972,9 +2002,19 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     }
 
     private void initializeIslands() {
-        int i = 0;
+        int i;
+        i = gm.getIslandList().size();
+        while (i < 12) {
+            islandList.get(i).get("Pane").setVisible(false);
+            islandList.get(i).get("Pane").setDisable(true);
+            i++;
+        }
+
+        i = 0;
         Map<House, Integer> houseMap;
         Image image;
+
+        islandButtons = new Button[gm.getIslandList().size()];
 
         while (i < gm.getIslandList().size()) {
             houseMap = new HashMap<>(gm.getIslandList().get(i).getStudents());
@@ -2008,13 +2048,12 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             } catch (IslandException ignored) {
             }
 
+            ImageView noEntryTile = (ImageView) islandList.get(i).get("NoEntryTile");
             if (gm.isExpertMode()) {
-                ImageView noEntryTile = (ImageView) islandList.get(i).get("NoEntryTile");
                 if (gm.getIslandList().get(i).getNoEntryTile() == 0) {
                     noEntryTile.setVisible(false);
                 }
             } else {
-                ImageView noEntryTile = (ImageView) islandList.get(i).get("NoEntryTile");
                 noEntryTile.setVisible(false);
             }
 
@@ -2024,11 +2063,20 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             if (gm.getMotherIsland() != i) {
                 mother.setVisible(false);
             }
+            islandButtons[i] = getButtonByIsland(i);
             i++;
         }
     }
 
-    private void initializeClouds() {
+    public void initializeClouds() {
+
+        cloudsButtons = new ArrayList<>();
+
+        for(int c=0; c<gm.getArrayClouds().length; c++){
+            if(gm.getArrayClouds()[c].isFull())
+                cloudsButtons.add(getButtonByCloud(c));
+        }
+
         Image image;
         Map<House, Integer> houseMap;
         if (gm.getNumPlayers() == 3) {
@@ -2047,7 +2095,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                 i.setVisible(false);
             }
 
-            ImageView[] Cloud3 = new ImageView[] {Stud1Cloud4Num3, Stud2Cloud4Num3, Stud3Cloud4Num3, Stud4Cloud4Num3};
+            ImageView[] Cloud3 = new ImageView[]{Stud1Cloud4Num3, Stud2Cloud4Num3, Stud3Cloud4Num3, Stud4Cloud4Num3};
             for (ImageView i : Cloud3) {
                 i.setVisible(false);
             }
@@ -2172,12 +2220,12 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             Cloud4Num2.setVisible(false);
             Cloud4Num3.setVisible(false);
 
-            ImageView[] Cloud1 = new ImageView[] {Stud1Cloud3Num1, Stud2Cloud3Num1, Stud3Cloud3Num1};
+            ImageView[] Cloud1 = new ImageView[]{Stud1Cloud3Num1, Stud2Cloud3Num1, Stud3Cloud3Num1};
             for (ImageView i : Cloud1) {
                 i.setVisible(false);
             }
 
-            ImageView[] Cloud2 = new ImageView[] {Stud1Cloud3Num2, Stud2Cloud3Num2, Stud3Cloud3Num2};
+            ImageView[] Cloud2 = new ImageView[]{Stud1Cloud3Num2, Stud2Cloud3Num2, Stud3Cloud3Num2};
             for (ImageView i : Cloud2) {
                 i.setVisible(false);
             }
@@ -2259,12 +2307,12 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             }
 
             if (gm.getNumPlayers() == 4) {
-                ImageView[] Cloud3 = new ImageView[] {Stud1Cloud3Num3, Stud2Cloud3Num3, Stud3Cloud3Num3};
+                ImageView[] Cloud3 = new ImageView[]{Stud1Cloud3Num3, Stud2Cloud3Num3, Stud3Cloud3Num3};
                 for (ImageView img : Cloud3) {
                     img.setVisible(false);
                 }
 
-                ImageView[] Cloud4 = new ImageView[] {Stud1Cloud3Num4, Stud2Cloud3Num4, Stud3Cloud3Num4};
+                ImageView[] Cloud4 = new ImageView[]{Stud1Cloud3Num4, Stud2Cloud3Num4, Stud3Cloud3Num4};
                 for (ImageView img : Cloud1) {
                     img.setVisible(false);
                 }
@@ -2355,7 +2403,15 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     }
 
     private void initializeChat (String msg) {
-        ChatReceivedText.setText(msg);
+        NoMessageText.setVisible(false);
+        ReducedPlayer teamMate = null;
+        for (ReducedPlayer p : gm.getArrayPlayers()) {
+            if (p.getDashboard().getTowerColor().equals(gm.getPlayerByNickname(nickname).getDashboard().getTowerColor()) && !p.getNickname().equals(nickname)) {
+                teamMate = p;
+                break;
+            }
+        }
+        ChatReceivedText.setText("Message from " + (teamMate==null ? "your team mate" : teamMate.getNickname())  + ":\n\n<< " + msg + " >>");
     }
 
     public void setGameModel(ReducedGameModel gm) {
@@ -2469,9 +2525,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         this.diningHallMain = new Button[]{diningHallMainGreen, diningHallMainRed, diningHallMainYellow,
                 diningHallMainBlue, diningHallMainPink};
-
-        this.islandButtons = new Button[]{Island00Btn, Island01Btn, Island02Btn, Island03Btn, Island04Btn, Island05Btn,
-                Island06Btn, Island07Btn, Island08Btn, Island09Btn, Island10Btn, Island11Btn};
 
         Map<House, Integer> houseMap;
 
@@ -3347,37 +3400,22 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         islandList.get(11).put("NoEntryTile", NoEntryTileIsland11);
         islandList.get(11).put("Mother", MotherIsland11);
 
-        i = gm.getIslandList().size();
-        while (i < 12) {
-            islandList.get(i).get("Pane").setVisible(false);
-            islandList.get(i).get("Pane").setDisable(true);
-            i++;
-        }
-
         initializeIslands();
 
         Dashboard1.setDisable(true);
         Dashboard2.setDisable(true);
         Dashboard3.setDisable(true);
-
-        selectStudent = this::selectStudent;
-        selectStudentCancel = this::selectStudentCancel;
-        moveMotherFrom = this::moveMotherFrom;
-        moveStudentToIsland = this::moveStudentToIsland;
-        moveMotherTo = this::moveMotherTo;
-        moveStudentToDiningHall = this::moveStudentToDiningHall;
     }
 
     public void initializeEvents() {
-        for (ImageView student : EntranceMain) {
-            student.setOnMouseClicked(selectStudent);
-        }
 
         if (moveMother) {
-            islandButtons[gm.getMotherIsland()].setOnMouseClicked(moveMotherFrom);
+            System.out.println("moveMother = true");
+            int currentIsland = gm.getMotherIsland();
+            islandButtons[currentIsland].setOnMouseClicked(moveMotherFrom);
         } else {
-            for (Button island : islandButtons) {
-                island.setOnMouseClicked(moveStudentToIsland);
+            for (ImageView student : EntranceMain) {
+                student.setOnMouseClicked(selectStudent);
             }
         }
     }
@@ -3531,15 +3569,12 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         for (ImageView student : EntranceMain) {
             if (!studentSelected.getId().equals(student.getId())) {
-                student.removeEventHandler(MouseEvent.MOUSE_CLICKED, selectStudent);
+                student.setOnMouseClicked(doNothing);
                 student.setOpacity(0.8);
             }
         }
 
         studentSelected.setOnMouseClicked(selectStudentCancel);
-
-        //enables the diningHall of the house selected buttons
-        getButtonByHouse(houseSelected).setDisable(false);
 
         //enable all the islands
         for (Button b : islandButtons) {
@@ -3557,10 +3592,10 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         }
 
         for (Button b : islandButtons) {
-            b.removeEventHandler(MouseEvent.MOUSE_CLICKED, moveStudentToIsland);
+            b.setOnMouseClicked(doNothing);
         }
 
-        getButtonByHouse(houseSelected).removeEventHandler(MouseEvent.MOUSE_CLICKED, moveStudentToDiningHall);
+        getButtonByHouse(houseSelected).setOnMouseClicked(doNothing);
 
         houseSelected = null;
     }
@@ -3568,15 +3603,18 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     public void moveStudentToDiningHall(MouseEvent event) {
 
         for (Button b : islandButtons) {
-            b.removeEventHandler(MouseEvent.MOUSE_CLICKED, moveStudentToIsland);
+            b.setOnMouseClicked(doNothing);
         }
 
         for (ImageView student : EntranceMain) {
-            student.removeEventHandler(MouseEvent.MOUSE_CLICKED, selectStudent);
+            student.setOnMouseClicked(doNothing);
             student.setOpacity(1);
         }
 
         notifyObserver(observer -> observer.onMoveStudentsToDiningHall(houseSelected));
+
+        getButtonByHouse(houseSelected).setOnMouseClicked(doNothing);
+        houseSelected = null;
     }
 
     private void moveStudentToIsland(MouseEvent event) {
@@ -3584,18 +3622,17 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         Button islandClicked = (Button) event.getSource();
 
         for (Button b : islandButtons) {
-            b.removeEventHandler(MouseEvent.MOUSE_CLICKED, moveStudentToIsland);
+            b.setOnMouseClicked(doNothing);
         }
 
         for (ImageView student : EntranceMain) {
-            student.removeEventHandler(MouseEvent.MOUSE_CLICKED, selectStudent);
+            student.setOnMouseClicked(doNothing);
             student.setOpacity(1);
         }
 
-        getButtonByHouse(houseSelected).removeEventHandler(MouseEvent.MOUSE_CLICKED, moveStudentToDiningHall);
-
         int islandPosition = getIslandById(islandClicked.getId());
         notifyObserver(observer -> observer.onMoveStudentsToIsland(houseSelected, islandPosition));
+        houseSelected = null;
     }
 
     private House getHouseById(String id) {
@@ -3646,13 +3683,96 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                 return diningHallMain[1];
             case YELLOW:
                 return diningHallMain[2];
-            case BLUE:
-                return diningHallMain[3];
             case PINK:
+                return diningHallMain[3];
+            case BLUE:
                 return diningHallMain[4];
             default:
                 throw new IllegalArgumentException("You did not select the correct button");
         }
+    }
+
+    private Button getButtonByIsland(int i) {
+
+        Button b = null;
+        switch (i){
+            case 0:
+                b = Island00Btn;
+                break;
+            case 1:
+                b = Island01Btn;
+                break;
+            case 2:
+                b = Island02Btn;
+                break;
+            case 3:
+                b = Island03Btn;
+                break;
+            case 4:
+                b = Island04Btn;
+                break;
+            case 5:
+                b = Island05Btn;
+                break;
+            case 6:
+                b = Island06Btn;
+                break;
+            case 7:
+                b = Island07Btn;
+                break;
+            case 8:
+                b = Island08Btn;
+                break;
+            case 9:
+                b = Island09Btn;
+                break;
+            case 10:
+                b = Island10Btn;
+                break;
+            case 11:
+                b = Island11Btn;
+                break;
+        }
+
+        return  b;
+    }
+
+    private Button getButtonByCloud(int c) {
+
+        int numPlayers = gm.getNumPlayers();
+        Button button = null;
+
+        if(numPlayers == 3) {
+            switch (c){
+                case 0:
+                    button = Cloud4Btn1;
+                    break;
+                case 1:
+                    button = Cloud4Btn2;
+                    break;
+                case 2:
+                    button = Cloud4Btn3;
+                    break;
+            }
+        }
+        else{
+            switch (c){
+                case 0:
+                    button = Cloud3Btn1;
+                    break;
+                case 1:
+                    button = Cloud3Btn2;
+                    break;
+                case 2:
+                    button = Cloud3Btn3;
+                    break;
+                case 4:
+                    button = Cloud3Btn4;
+                    break;
+            }
+        }
+
+        return button;
     }
 
     private int getIslandById(String id) {
@@ -3668,11 +3788,15 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         this.moveMother = true;
 
         for (ImageView student : EntranceMain) {
-            student.removeEventHandler(MouseEvent.MOUSE_CLICKED, selectStudent);
+            student.setOnMouseClicked(doNothing);
         }
 
         for (Button diningHall : diningHallMain) {
-            diningHall.removeEventHandler(MouseEvent.MOUSE_CLICKED, moveStudentToDiningHall);
+            diningHall.setOnMouseClicked(doNothing);
+        }
+
+        for (Button island : islandButtons) {
+            island.setOnMouseClicked(doNothing);
         }
     }
 
@@ -3685,15 +3809,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             if (currentIsland == gm.getIslandList().size()) {
                 currentIsland = 0;
             }
-            islandButtons[currentIsland + i].setOnMouseClicked(moveMotherTo);
+            islandButtons[currentIsland].setOnMouseClicked(moveMotherTo);
         }
-
-
-        for (Button button : islandButtons) {
-            if (button.getOnMouseClicked().equals(moveMotherFrom))
-                button.removeEventHandler(MouseEvent.MOUSE_CLICKED, moveMotherFrom);
-        }
-
     }
 
     private void moveMotherTo(MouseEvent event) {
@@ -3703,5 +3820,48 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         int position = islandTo - gm.getMotherIsland();
 
         notifyObserver(observer -> observer.onMoveMotherNature(position));
+    }
+
+    public void setCloudSelectable() {
+
+        for(Button island : islandButtons) {
+            island.setOnMouseClicked(doNothing);
+        }
+
+        for(Button diningHall : diningHallMain) {
+            diningHall.setOnMouseClicked(doNothing);
+        }
+
+        for(ImageView student : EntranceMain) {
+            student.setOnMouseClicked(doNothing);
+        }
+
+        for(Button cloud : cloudsButtons) {
+            if(cloud.getOnMouseClicked() == null)
+                cloud.setOnMouseClicked(selectCloud);
+        }
+    }
+
+    public int getCloudById(String id) {
+        return Integer.parseInt(String.valueOf(id.charAt(id.length()-1))) - 1;
+    }
+
+    public void onCloudSelected(MouseEvent event) {
+
+        System.out.println("Cloud selected: " + event.getSource());
+
+        Button cloud = (Button) event.getSource();
+
+        int cloudSelected = getCloudById(cloud.getId());
+
+        notifyObserver(observer -> observer.onUpdateCloud(cloudSelected));
+
+        for(Button c : cloudsButtons) {
+            c.setOnMouseClicked(doNothing);
+        }
+
+    }
+
+    private void doNothing(MouseEvent event){
     }
 }

@@ -70,7 +70,7 @@ public class Thief extends CharacterCard{
             int numStudentsToRemove = Math.min(numTotStudents, 3);
             try {
                 if (numStudentsToRemove != 0)
-                    p.getDashboard().getDiningHall().removeStudents(wantedHouse, numStudentsToRemove);
+                    p.getDashboard().getDiningHall().removeStudents(wantedHouse, numStudentsToRemove, true);
             } catch (StudentsTableException e) {
                 e.printStackTrace();
             }

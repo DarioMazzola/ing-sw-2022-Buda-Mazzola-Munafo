@@ -109,10 +109,10 @@ public class Gui extends ViewObservable implements UI {
         } else {
             controller = (ActionSceneController) SceneController.getActiveController();
             controller.setGameModel(gm);
+        }
 
-            if (availableActions.contains("Move Mother Nature")) {
-                controller.setMoveMother();
-            }
+        if (availableActions.contains("Move Mother Nature")) {
+            Platform.runLater(controller::setMoveMother);
         }
         Platform.runLater(controller::initializeEvents);
     }
@@ -124,17 +124,26 @@ public class Gui extends ViewObservable implements UI {
 
     @Override
     public void selectCloud() {
+        ActionSceneController controller;
 
+        if (!(SceneController.getActiveController() instanceof ActionSceneController)) {
+            controller = new ActionSceneController(gm, nickname);
+            Platform.runLater(() -> SceneController.changeRootPane(observers, "ActionScene.fxml", controller));
+        } else {
+            controller = (ActionSceneController) SceneController.getActiveController();
+        }
+
+        Platform.runLater(controller::initializeClouds);
+        Platform.runLater(controller::setCloudSelectable);
     }
 
     @Override
     public void goToWaitingRoom() {
         System.out.println("GoToWaitingRoom");
 
-        if (!(SceneController.getActiveController() instanceof ActionSceneController) && gm != null) {
-            ActionSceneController controller = new ActionSceneController(gm, nickname);
-            Platform.runLater(() -> SceneController.changeRootPane(observers, "ActionScene.fxml", controller));
-        }
+        ActionSceneController controller = new ActionSceneController(gm, nickname);
+        Platform.runLater(() -> SceneController.changeRootPane(observers, "ActionScene.fxml", controller));
+
 
     }
 
@@ -166,7 +175,11 @@ public class Gui extends ViewObservable implements UI {
 
     @Override
     public void onChatMessageReceived(String message) {
-
+        ActionSceneController controller;
+        if (SceneController.getActiveController() instanceof ActionSceneController) {
+            controller = (ActionSceneController) SceneController.getActiveController();
+            Platform.runLater(() -> controller.updateChat(message));
+        }
     }
 
     @Override

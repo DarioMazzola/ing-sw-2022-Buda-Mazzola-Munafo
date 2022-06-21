@@ -15,7 +15,7 @@ public interface StudentModifierInterface{
      * @param house The house that will have the number of students increased
      * @param numStudents The students' number added to the house
      */
-    void addStudents(House house, int numStudents) throws Exception;
+    void addStudents(House house, int numStudents, boolean notify) throws Exception;
 
     /**
      * Removes the number of students entered as a parameter
@@ -23,7 +23,7 @@ public interface StudentModifierInterface{
      * @param house the students' house to be removed
      * @param numStudents the students' number to be removed
      */
-    void removeStudents(House house, int numStudents) throws Exception;
+    void removeStudents(House house, int numStudents, boolean notify) throws Exception;
 
     /**
      * @param house The house for which to calculate the students' number

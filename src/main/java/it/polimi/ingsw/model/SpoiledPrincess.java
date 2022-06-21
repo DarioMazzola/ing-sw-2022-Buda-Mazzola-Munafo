@@ -106,7 +106,7 @@ public class SpoiledPrincess extends CharacterCard {
         House pulled = bag.pull();
         houseMap.replace(wantedHouse, houseMap.get(wantedHouse) - 1);
         houseMap.replace(pulled, houseMap.get(pulled) + 1);
-        currentPlayer.getDashboard().getDiningHall().addStudents(wantedHouse, 1);
+        currentPlayer.getDashboard().getDiningHall().addStudents(wantedHouse, 1, true);
     }
 
     @Override
