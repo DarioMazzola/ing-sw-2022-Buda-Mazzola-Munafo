@@ -2583,8 +2583,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             card2Array = new String[6];
             card3Array = new String[6];
 
-            Image empty = new Image("");
-
             String path = null;
             switch (gm.getCharacterCardDeck()[0].getType()) {
                 case FARMER:
@@ -2608,7 +2606,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                         i++;
                     }
                     while (i<6){
-                        Card1Arr[i].setImage(empty);
                         Card1Arr[i].setVisible(false);
                         Card1Arr[i].setDisable(true);
                         card1Array[i] = "null";
@@ -2668,7 +2665,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                         i++;
                     }
                     while (i<6){
-                        Card1Arr[i].setImage(empty);
                         Card1Arr[i].setVisible(false);
                         Card1Arr[i].setDisable(true);
                         card1Array[i] = "null";
@@ -2732,7 +2728,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                         i++;
                     }
                     while (i<6){
-                        Card1Arr[i].setImage(empty);
                         Card1Arr[i].setVisible(false);
                         Card1Arr[i].setDisable(true);
                         card1Array[i] = "null";
@@ -2796,7 +2791,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                         i++;
                     }
                     while (i<6){
-                        Card1Arr[i].setImage(empty);
                         Card1Arr[i].setVisible(false);
                         Card1Arr[i].setDisable(true);
                         card1Array[i] = "null";
@@ -2833,7 +2827,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                         i++;
                     }
                     while (i<6){
-                        Card2Arr[i].setImage(empty);
                         Card2Arr[i].setVisible(false);
                         Card2Arr[i].setDisable(true);
                         card2Array[i] = "null";
@@ -2893,7 +2886,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                         i++;
                     }
                     while (i<6){
-                        Card2Arr[i].setImage(empty);
                         Card2Arr[i].setVisible(false);
                         Card2Arr[i].setDisable(true);
                         card2Array[i] = "null";
@@ -2957,7 +2949,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                         i++;
                     }
                     while (i<6){
-                        Card2Arr[i].setImage(empty);
                         Card2Arr[i].setVisible(false);
                         Card2Arr[i].setDisable(true);
                         card2Array[i] = "null";
@@ -3021,7 +3012,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                         i++;
                     }
                     while (i<6){
-                        Card2Arr[i].setImage(empty);
                         Card2Arr[i].setVisible(false);
                         Card2Arr[i].setDisable(true);
                         card2Array[i] = "null";
@@ -3058,7 +3048,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                         i++;
                     }
                     while (i<6){
-                        Card3Arr[i].setImage(empty);
                         Card3Arr[i].setVisible(false);
                         Card3Arr[i].setDisable(true);
                         card3Array[i] = "null";
@@ -3118,7 +3107,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                         i++;
                     }
                     while (i<6){
-                        Card3Arr[i].setImage(empty);
                         Card3Arr[i].setVisible(false);
                         Card3Arr[i].setDisable(true);
                         card3Array[i] = "null";
@@ -3182,7 +3170,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                         i++;
                     }
                     while (i<6){
-                        Card3Arr[i].setImage(empty);
                         Card3Arr[i].setVisible(false);
                         Card3Arr[i].setDisable(true);
                         card3Array[i] = "null";
@@ -3246,7 +3233,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                         i++;
                     }
                     while (i<6){
-                        Card3Arr[i].setImage(empty);
                         Card3Arr[i].setVisible(false);
                         Card3Arr[i].setDisable(true);
                         card3Array[i] = "null";
