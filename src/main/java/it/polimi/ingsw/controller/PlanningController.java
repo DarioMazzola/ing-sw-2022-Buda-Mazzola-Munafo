@@ -93,7 +93,9 @@ public class PlanningController {
             }
             if(gm.getChat() != null && gm.getChat()) {
                 availableActions.add("Send a message to your team mate");
+                availableActions.add("See received messages");
             }
+
             setPosition(0);
             gm.setCurrentPlayer(ranking[0]);
             persistence.saveData(tc);
@@ -108,7 +110,7 @@ public class PlanningController {
             tc.getVirtualViewMap().get(gm.getArrayPlayers()[ranking[0]].getNickname()).actionPhase(availableActions);
         }
         else {
-            tc.getVirtualViewMap().get(messageReceived.getNickname()).goToWaitingRoom();
+            tc.getVirtualViewMap().get(messageReceived.getNickname()).waitForOthersMoves("assistant card");
 
             int i;
             for (i=0; i<gm.getNumPlayers(); i++){

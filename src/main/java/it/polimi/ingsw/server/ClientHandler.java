@@ -191,6 +191,7 @@ public class ClientHandler implements Runnable {
                     timer++;
                 if (timer > 3) {
                     socketServer.resendAvailableActions(nickname);
+                    enableTimer = false;
                     timer = 0;
                 }
             }
