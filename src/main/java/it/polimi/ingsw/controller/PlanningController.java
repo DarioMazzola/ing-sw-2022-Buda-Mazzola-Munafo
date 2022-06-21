@@ -128,9 +128,6 @@ public class PlanningController {
     private void UpdateRanking(){
         ranking = createRanking(cardList, gm.getNumPlayers());
         firstPlanner = ranking[0];
-        for (int i=0; i< gm.getNumPlayers(); i++){
-            gm.getArrayPlayers()[i].setGraveyard();
-        }
     }
 
     /**
