@@ -1671,7 +1671,7 @@
                         <Font name="Baskerville Old Face" size="26.0" />
                      </font>
                   </Text>
-                  <Pane layoutX="26.0" layoutY="24.0" prefHeight="150.0" prefWidth="103.0">
+                  <Pane fx:id="CharacterCard1" layoutX="26.0" layoutY="24.0" prefHeight="150.0" prefWidth="103.0">
                      <children>
                         <VBox layoutX="-15.0" layoutY="-8.0" prefHeight="150.0" prefWidth="30.0">
                            <children>
