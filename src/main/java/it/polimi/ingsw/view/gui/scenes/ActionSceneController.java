@@ -6,6 +6,7 @@ import it.polimi.ingsw.exceptions.IslandException;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.House;
 import it.polimi.ingsw.observer.ViewObservable;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -13,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -121,6 +123,15 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
     @FXML
     private Text ChatReceivedText;
+
+    @FXML
+    private Button ChatSendBtn;
+
+    @FXML
+    private TextArea ChatText;
+
+    @FXML
+    private Pane ChatPane;
 
     @FXML
     private Text NoMessageText;
@@ -2677,7 +2688,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     }
 
     private void initializeChat (String msg) {
-        NoMessageText.setVisible(false);
         ReducedPlayer teamMate = null;
         for (ReducedPlayer p : gm.getArrayPlayers()) {
             if (p.getDashboard().getTowerColor().equals(gm.getPlayerByNickname(nickname).getDashboard().getTowerColor()) && !p.getNickname().equals(nickname)) {
@@ -2685,7 +2695,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                 break;
             }
         }
-        ChatReceivedText.setText("Message from " + (teamMate==null ? "your team mate" : teamMate.getNickname())  + ":\n\n<< " + msg + " >>");
+        NoMessageText.setText("Message from " + (teamMate==null ? "your team mate" : teamMate.getNickname()));
+        ChatPane.setVisible(true);
+        ChatReceivedText.setText(msg);
     }
 
     public void setGameModel(ReducedGameModel gm) {
@@ -2831,6 +2843,11 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     Chat.setVisible(false);
                     Chat.setDisable(true);
                     ChatAlternative.setVisible(true);
+                } else {
+                    ChatSendBtn.setDisable(true);
+                    ChatPane.setVisible(false);
+                    ChatText.setOnKeyTyped(this::onChatTextTyped);
+                    ChatSendBtn.setOnAction(this::onChatSendBtnClick);
                 }
                 //fourth player
                 initializeDashboardFourthPlayer();
@@ -3826,6 +3843,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         t.setText(Integer.toString(p.getCoins()));
     }
 
+    // <--------- Event handlers --------->
     private void selectStudent(MouseEvent event) {
         ImageView studentSelected = (ImageView) event.getSource();
         System.out.println("Student selected: " + studentSelected.getId());
@@ -3920,6 +3938,17 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         notifyObserver(observer -> observer.onMoveStudentsToIsland(houseSelected, islandPosition));
         getButtonByHouse(houseSelected).setOnMouseClicked(doNothing);
         houseSelected = null;
+    }
+
+    private void onChatSendBtnClick (ActionEvent e) {
+        String message = ChatText.getText();
+        ChatText.clear();
+        System.out.println("Message :" + message);
+        notifyObserver(observers -> observers.onSendMessage(message));
+    }
+
+    private void onChatTextTyped (KeyEvent e) {
+        ChatSendBtn.setDisable(false);
     }
 
     private House getHouseById(String id) {
