@@ -3853,7 +3853,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         }
 
         getButtonByHouse(houseSelected).setOnMouseClicked(moveStudentToDiningHall);
-        getButtonByHouse(houseSelected).getStyleClass().add("dropShadow");
 
     }
 
@@ -3881,6 +3880,10 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         for (Button b : islandButtons) {
             b.setOnMouseClicked(doNothing);
+        }
+
+        for(ImageView island : islandsImageView) {
+            island.getStyleClass().clear();
         }
 
         for (ImageView student : EntranceMain) {
