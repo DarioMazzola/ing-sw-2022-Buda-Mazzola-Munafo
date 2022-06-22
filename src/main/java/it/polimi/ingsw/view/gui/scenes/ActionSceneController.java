@@ -3548,6 +3548,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             islandList.add(new HashMap<>());
         }
         islandList.get(0).put("Pane", Island0);
+        islandList.get(0).put("Description", DescriptionIsland00);
         islandList.get(0).put("Yellow", StudYellowIsland0);
         islandList.get(0).put("Red", StudRedIsland0);
         islandList.get(0).put("Blue", StudBlueIsland0);
@@ -3558,7 +3559,11 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         islandList.get(0).put("NoEntryTile", NoEntryTileIsland0);
         islandList.get(0).put("Mother", MotherIsland0);
 
+        Island0.setOnMouseEntered(this::onMouseEnteredIsland);
+        Island0.setOnMouseExited(this::onMouseExitedIsland);
+
         islandList.get(1).put("Pane", Island1);
+        islandList.get(1).put("Description", DescriptionIsland01);
         islandList.get(1).put("Yellow", StudYellowIsland1);
         islandList.get(1).put("Red", StudRedIsland1);
         islandList.get(1).put("Blue", StudBlueIsland1);
@@ -3569,7 +3574,11 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         islandList.get(1).put("NoEntryTile", NoEntryTileIsland1);
         islandList.get(1).put("Mother", MotherIsland1);
 
+        Island1.setOnMouseEntered(this::onMouseEnteredIsland);
+        Island1.setOnMouseExited(this::onMouseExitedIsland);
+
         islandList.get(2).put("Pane", Island2);
+        islandList.get(2).put("Description", DescriptionIsland02);
         islandList.get(2).put("Yellow", StudYellowIsland2);
         islandList.get(2).put("Red", StudRedIsland2);
         islandList.get(2).put("Blue", StudBlueIsland2);
@@ -3580,7 +3589,11 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         islandList.get(2).put("NoEntryTile", NoEntryTileIsland2);
         islandList.get(2).put("Mother", MotherIsland2);
 
+        Island2.setOnMouseEntered(this::onMouseEnteredIsland);
+        Island2.setOnMouseExited(this::onMouseExitedIsland);
+
         islandList.get(3).put("Pane", Island3);
+        islandList.get(3).put("Description", DescriptionIsland03);
         islandList.get(3).put("Yellow", StudYellowIsland3);
         islandList.get(3).put("Red", StudRedIsland3);
         islandList.get(3).put("Blue", StudBlueIsland3);
@@ -3591,7 +3604,11 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         islandList.get(3).put("NoEntryTile", NoEntryTileIsland3);
         islandList.get(3).put("Mother", MotherIsland3);
 
+        Island3.setOnMouseEntered(this::onMouseEnteredIsland);
+        Island3.setOnMouseExited(this::onMouseExitedIsland);
+
         islandList.get(4).put("Pane", Island4);
+        islandList.get(4).put("Description", DescriptionIsland04);
         islandList.get(4).put("Yellow", StudYellowIsland4);
         islandList.get(4).put("Red", StudRedIsland4);
         islandList.get(4).put("Blue", StudBlueIsland4);
@@ -3602,7 +3619,11 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         islandList.get(4).put("NoEntryTile", NoEntryTileIsland4);
         islandList.get(4).put("Mother", MotherIsland4);
 
+        Island4.setOnMouseEntered(this::onMouseEnteredIsland);
+        Island4.setOnMouseExited(this::onMouseExitedIsland);
+
         islandList.get(5).put("Pane", Island5);
+        islandList.get(5).put("Description", DescriptionIsland05);
         islandList.get(5).put("Yellow", StudYellowIsland5);
         islandList.get(5).put("Red", StudRedIsland5);
         islandList.get(5).put("Blue", StudBlueIsland5);
@@ -3613,7 +3634,11 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         islandList.get(5).put("NoEntryTile", NoEntryTileIsland5);
         islandList.get(5).put("Mother", MotherIsland5);
 
+        Island5.setOnMouseEntered(this::onMouseEnteredIsland);
+        Island5.setOnMouseExited(this::onMouseExitedIsland);
+
         islandList.get(6).put("Pane", Island6);
+        islandList.get(6).put("Description", DescriptionIsland06);
         islandList.get(6).put("Yellow", StudYellowIsland6);
         islandList.get(6).put("Red", StudRedIsland6);
         islandList.get(6).put("Blue", StudBlueIsland6);
@@ -3624,7 +3649,11 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         islandList.get(6).put("NoEntryTile", NoEntryTileIsland6);
         islandList.get(6).put("Mother", MotherIsland6);
 
+        Island6.setOnMouseEntered(this::onMouseEnteredIsland);
+        Island6.setOnMouseExited(this::onMouseExitedIsland);
+
         islandList.get(7).put("Pane", Island7);
+        islandList.get(7).put("Description", DescriptionIsland07);
         islandList.get(7).put("Yellow", StudYellowIsland7);
         islandList.get(7).put("Red", StudRedIsland7);
         islandList.get(7).put("Blue", StudBlueIsland7);
@@ -3635,7 +3664,11 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         islandList.get(7).put("NoEntryTile", NoEntryTileIsland7);
         islandList.get(7).put("Mother", MotherIsland7);
 
+        Island7.setOnMouseEntered(this::onMouseEnteredIsland);
+        Island7.setOnMouseExited(this::onMouseExitedIsland);
+
         islandList.get(8).put("Pane", Island8);
+        islandList.get(8).put("Description", DescriptionIsland08);
         islandList.get(8).put("Yellow", StudYellowIsland8);
         islandList.get(8).put("Red", StudRedIsland8);
         islandList.get(8).put("Blue", StudBlueIsland8);
@@ -3646,7 +3679,11 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         islandList.get(8).put("NoEntryTile", NoEntryTileIsland8);
         islandList.get(8).put("Mother", MotherIsland8);
 
+        Island8.setOnMouseEntered(this::onMouseEnteredIsland);
+        Island8.setOnMouseExited(this::onMouseExitedIsland);
+
         islandList.get(9).put("Pane", Island9);
+        islandList.get(9).put("Description", DescriptionIsland09);
         islandList.get(9).put("Yellow", StudYellowIsland9);
         islandList.get(9).put("Red", StudRedIsland9);
         islandList.get(9).put("Blue", StudBlueIsland9);
@@ -3657,7 +3694,11 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         islandList.get(9).put("NoEntryTile", NoEntryTileIsland9);
         islandList.get(9).put("Mother", MotherIsland9);
 
+        Island9.setOnMouseEntered(this::onMouseEnteredIsland);
+        Island9.setOnMouseExited(this::onMouseExitedIsland);
+
         islandList.get(10).put("Pane", Island10);
+        islandList.get(10).put("Description", DescriptionIsland10);
         islandList.get(10).put("Yellow", StudYellowIsland10);
         islandList.get(10).put("Red", StudRedIsland10);
         islandList.get(10).put("Blue", StudBlueIsland10);
@@ -3668,7 +3709,11 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         islandList.get(10).put("NoEntryTile", NoEntryTileIsland10);
         islandList.get(10).put("Mother", MotherIsland10);
 
+        Island10.setOnMouseEntered(this::onMouseEnteredIsland);
+        Island10.setOnMouseExited(this::onMouseExitedIsland);
+
         islandList.get(11).put("Pane", Island11);
+        islandList.get(11).put("Description", DescriptionIsland11);
         islandList.get(11).put("Yellow", StudYellowIsland11);
         islandList.get(11).put("Red", StudRedIsland11);
         islandList.get(11).put("Blue", StudBlueIsland11);
@@ -3679,7 +3724,12 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         islandList.get(11).put("NoEntryTile", NoEntryTileIsland11);
         islandList.get(11).put("Mother", MotherIsland11);
 
+        Island11.setOnMouseEntered(this::onMouseEnteredIsland);
+        Island11.setOnMouseExited(this::onMouseExitedIsland);
+
         initializeIslands();
+
+
 
         Dashboard1.setDisable(true);
         Dashboard2.setDisable(true);
@@ -3701,6 +3751,163 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             }
         }
     }
+
+    // <--------- Event handlers --------->
+
+    private void onMouseEnteredIsland (MouseEvent e) {
+        Pane island = (Pane) e.getTarget();
+
+        int islandIndex = getIslandIdByPane(island);
+
+        islandList.get(islandIndex).get("Description").setVisible(true);
+    }
+
+    private void onMouseExitedIsland (MouseEvent e) {
+        Pane island = (Pane) e.getTarget();
+
+        int islandIndex = getIslandIdByPane(island);
+
+        islandList.get(islandIndex).get("Description").setVisible(false);
+    }
+
+    private void selectStudent(MouseEvent event) {
+        ImageView studentSelected = (ImageView) event.getSource();
+        System.out.println("Student selected: " + studentSelected.getId());
+
+        houseSelected = getHouseById(studentSelected.getId());
+
+        for (ImageView student : EntranceMain) {
+            if (!studentSelected.getId().equals(student.getId())) {
+                student.setOnMouseClicked(doNothing);
+                student.setOpacity(0.5);
+            }
+            student.getStyleClass().clear();
+        }
+
+        studentSelected.setOnMouseClicked(selectStudentCancel);
+        studentSelected.getStyleClass().add("dropShadow");
+
+        //enable all the islands
+        for (Button b : islandButtons) {
+            b.setOnMouseClicked(moveStudentToIsland);
+        }
+
+        for(ImageView island : islandsImageView) {
+            island.getStyleClass().add("dropShadow");
+        }
+
+        getButtonByHouse(houseSelected).setOnMouseClicked(moveStudentToDiningHall);
+
+    }
+
+    private void selectStudentCancel(MouseEvent mouseEvent) {
+        for (ImageView student : EntranceMain) {
+            student.setOpacity(1);
+            student.setOnMouseClicked(selectStudent);
+            student.getStyleClass().clear();
+        }
+
+        for (Button b : islandButtons) {
+            b.setOnMouseClicked(doNothing);
+        }
+
+        for(ImageView island : islandsImageView) {
+            island.getStyleClass().clear();
+        }
+
+        getButtonByHouse(houseSelected).setOnMouseClicked(doNothing);
+
+        houseSelected = null;
+    }
+
+    public void moveStudentToDiningHall(MouseEvent event) {
+
+        for (Button b : islandButtons) {
+            b.setOnMouseClicked(doNothing);
+        }
+
+        for(ImageView island : islandsImageView) {
+            island.getStyleClass().clear();
+        }
+
+        for (ImageView student : EntranceMain) {
+            student.setOnMouseClicked(doNothing);
+            student.setOpacity(1);
+            student.getStyleClass().clear();
+        }
+
+        notifyObserver(observer -> observer.onMoveStudentsToDiningHall(houseSelected));
+
+        getButtonByHouse(houseSelected).setOnMouseClicked(doNothing);
+        houseSelected = null;
+    }
+
+    private void moveStudentToIsland(MouseEvent event) {
+
+        Button islandClicked = (Button) event.getSource();
+
+        for (Button b : islandButtons) {
+            b.setOnMouseClicked(doNothing);
+        }
+
+        for (ImageView student : EntranceMain) {
+            student.setOnMouseClicked(doNothing);
+            student.setOpacity(1);
+            student.getStyleClass().clear();
+        }
+
+        for(ImageView island : islandsImageView) {
+            island.getStyleClass().clear();
+        }
+
+        int islandPosition = getIslandById(islandClicked.getId());
+        notifyObserver(observer -> observer.onMoveStudentsToIsland(houseSelected, islandPosition));
+        getButtonByHouse(houseSelected).setOnMouseClicked(doNothing);
+        houseSelected = null;
+    }
+
+    private void onChatSendBtnClick (ActionEvent e) {
+        String message = ChatText.getText();
+        ChatText.clear();
+        System.out.println("Message :" + message);
+        notifyObserver(observers -> observers.onSendMessage(message));
+    }
+
+    private void onChatTextTyped (KeyEvent e) {
+        ChatSendBtn.setDisable(false);
+    }
+
+    private void moveMotherFrom(MouseEvent event) {
+
+        int currentIsland = gm.getMotherIsland();
+
+        for (int i = 0; i < gm.getPlayerByNickname(nickname).getMaxMoves(); i++) {
+            currentIsland++;
+            if (currentIsland == gm.getIslandList().size()) {
+                currentIsland = 0;
+            }
+            islandButtons[currentIsland].setOnMouseClicked(moveMotherTo);
+            islandsImageView[currentIsland].getStyleClass().add("dropShadow");
+        }
+    }
+
+    private void moveMotherTo(MouseEvent event) {
+
+        int islandTo = getIslandById(((Button) event.getSource()).getId());
+
+        int position = islandTo - gm.getMotherIsland();
+
+        for(ImageView island : islandsImageView) {
+            island.getStyleClass().clear();
+        }
+
+        notifyObserver(observer -> observer.onMoveMotherNature(position));
+    }
+
+    private void doNothing(MouseEvent event){
+    }
+
+    //<--------- Utility methods --------->
 
     private void fillGraveyard(ImageView imgview, ReducedPlayer p) {
 
@@ -3843,118 +4050,60 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         t.setText(Integer.toString(p.getCoins()));
     }
 
-    // <--------- Event handlers --------->
-    private void selectStudent(MouseEvent event) {
-        ImageView studentSelected = (ImageView) event.getSource();
-        System.out.println("Student selected: " + studentSelected.getId());
-
-        houseSelected = getHouseById(studentSelected.getId());
-
-        for (ImageView student : EntranceMain) {
-            if (!studentSelected.getId().equals(student.getId())) {
-                student.setOnMouseClicked(doNothing);
-                student.setOpacity(0.5);
-            }
-            student.getStyleClass().clear();
-        }
-
-        studentSelected.setOnMouseClicked(selectStudentCancel);
-        studentSelected.getStyleClass().add("dropShadow");
-
-        //enable all the islands
-        for (Button b : islandButtons) {
-            b.setOnMouseClicked(moveStudentToIsland);
-        }
-
-        for(ImageView island : islandsImageView) {
-            island.getStyleClass().add("dropShadow");
-        }
-
-        getButtonByHouse(houseSelected).setOnMouseClicked(moveStudentToDiningHall);
-
-    }
-
-    private void selectStudentCancel(MouseEvent mouseEvent) {
-        for (ImageView student : EntranceMain) {
-            student.setOpacity(1);
-            student.setOnMouseClicked(selectStudent);
-            student.getStyleClass().clear();
-        }
-
-        for (Button b : islandButtons) {
-            b.setOnMouseClicked(doNothing);
-        }
-
-        for(ImageView island : islandsImageView) {
-            island.getStyleClass().clear();
-        }
-
-        getButtonByHouse(houseSelected).setOnMouseClicked(doNothing);
-
-        houseSelected = null;
-    }
-
-    public void moveStudentToDiningHall(MouseEvent event) {
-
-        for (Button b : islandButtons) {
-            b.setOnMouseClicked(doNothing);
-        }
-
-        for(ImageView island : islandsImageView) {
-            island.getStyleClass().clear();
-        }
-
-        for (ImageView student : EntranceMain) {
-            student.setOnMouseClicked(doNothing);
-            student.setOpacity(1);
-            student.getStyleClass().clear();
-        }
-
-        notifyObserver(observer -> observer.onMoveStudentsToDiningHall(houseSelected));
-
-        getButtonByHouse(houseSelected).setOnMouseClicked(doNothing);
-        houseSelected = null;
-    }
-
-    private void moveStudentToIsland(MouseEvent event) {
-
-        Button islandClicked = (Button) event.getSource();
-
-        for (Button b : islandButtons) {
-            b.setOnMouseClicked(doNothing);
-        }
-
-        for (ImageView student : EntranceMain) {
-            student.setOnMouseClicked(doNothing);
-            student.setOpacity(1);
-            student.getStyleClass().clear();
-        }
-
-        for(ImageView island : islandsImageView) {
-            island.getStyleClass().clear();
-        }
-
-        int islandPosition = getIslandById(islandClicked.getId());
-        notifyObserver(observer -> observer.onMoveStudentsToIsland(houseSelected, islandPosition));
-        getButtonByHouse(houseSelected).setOnMouseClicked(doNothing);
-        houseSelected = null;
-    }
-
-    private void onChatSendBtnClick (ActionEvent e) {
-        String message = ChatText.getText();
-        ChatText.clear();
-        System.out.println("Message :" + message);
-        notifyObserver(observers -> observers.onSendMessage(message));
-    }
-
-    private void onChatTextTyped (KeyEvent e) {
-        ChatSendBtn.setDisable(false);
-    }
-
     private House getHouseById(String id) {
         int position = Integer.parseInt(String.valueOf(id.charAt(id.length() - 1))) - 1;
 
         return entranceArray[position];
+    }
+
+    private int getIslandIdByPane (Pane island) {
+        int islandIndex;
+
+        switch (island.getId()) {
+            case "Island0":
+                islandIndex = 0;
+                break;
+            case "Island1":
+                islandIndex = 1;
+                break;
+            case "Island2":
+                islandIndex = 2;
+                break;
+            case "Island3":
+                islandIndex = 3;
+                break;
+            case "Island4":
+                islandIndex = 4;
+                break;
+            case "Island5":
+                islandIndex = 5;
+                break;
+            case "Island6":
+                islandIndex = 6;
+                break;
+            case "Island7":
+                islandIndex = 7;
+                break;
+            case "Island8":
+                islandIndex = 8;
+                break;
+            case "Island9":
+                islandIndex = 9;
+                break;
+            case "Island10":
+                islandIndex = 10;
+                break;
+            case "Island11":
+                islandIndex = 11;
+                break;
+            case "Island12":
+                islandIndex = 12;
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + island.getId());
+        }
+
+        return islandIndex;
     }
 
     /**
@@ -4118,33 +4267,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         getMotherByIsland(gm.getMotherIsland()).getStyleClass().add("dropShadow");
     }
 
-    private void moveMotherFrom(MouseEvent event) {
-
-        int currentIsland = gm.getMotherIsland();
-
-        for (int i = 0; i < gm.getPlayerByNickname(nickname).getMaxMoves(); i++) {
-            currentIsland++;
-            if (currentIsland == gm.getIslandList().size()) {
-                currentIsland = 0;
-            }
-            islandButtons[currentIsland].setOnMouseClicked(moveMotherTo);
-            islandsImageView[currentIsland].getStyleClass().add("dropShadow");
-        }
-    }
-
-    private void moveMotherTo(MouseEvent event) {
-
-        int islandTo = getIslandById(((Button) event.getSource()).getId());
-
-        int position = islandTo - gm.getMotherIsland();
-
-        for(ImageView island : islandsImageView) {
-            island.getStyleClass().clear();
-        }
-
-        notifyObserver(observer -> observer.onMoveMotherNature(position));
-    }
-
     public void setCloudSelectable() {
 
         for(Button island : islandButtons) {
@@ -4231,9 +4353,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                 Suggestions.setText("You now have to select a type of student to take from every player");
                 break;
         }
-    }
-
-    private void doNothing(MouseEvent event){
     }
 
     private ImageView getMotherByIsland(int island){
