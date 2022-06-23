@@ -76,7 +76,9 @@ public class TurnController {
                             virtualViewMap.get(queue.get(i)).notifyGameFull();
                             virtualViewMap.remove(queue.get(i));
                         }
-                        queue.clear();
+                        for (int i = gm.getNumPlayers(); i < queue.size(); i++) {
+                            queue.remove(i);
+                        }
                         setIsGameStarted(true);
                         sendAllSelectWizard(Arrays.asList(Wizard.values()));
                     } else {
@@ -353,15 +355,22 @@ public class TurnController {
             case PLANNING:
                 if (planningController.getSelected() == gm.getNumPlayers()) {
                     List<String> availableActions = new ArrayList<>();
+
                     availableActions.add("Move students to dining hall or to island");
                     if (gm.isExpertMode()) {
                         availableActions.add("Select character card");
                     }
+                    if(gm.getChat() != null && gm.getChat()) {
+                        availableActions.add("Send a message to your team mate");
+                        availableActions.add("See received messages");
+                    }
+
                     next_State(ACTION);
                     virtualViewMap.get(gm.getArrayPlayers()[getFirstPlanner()].getNickname()).actionPhase(availableActions);
                     break;
                 }
                 else {
+                    planningController.resetCards();
                     virtualViewMap.get(gm.getArrayPlayers()[getFirstPlanner()].getNickname()).selectAssistantCard(Arrays.asList(Card.values()));
                 }
                 break;
@@ -436,7 +445,7 @@ public class TurnController {
      * @param nickname the nickname of the player to send the message to
      */
     public void selectRestore(String nickname) {
-        virtualViewMap.get(nickname). selectRestoreGame();
+        virtualViewMap.get(nickname).selectRestoreGame();
     }
 
     /**
