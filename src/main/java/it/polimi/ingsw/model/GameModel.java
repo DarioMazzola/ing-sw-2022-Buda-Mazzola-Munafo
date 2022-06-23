@@ -152,6 +152,18 @@ public class GameModel extends Observable {
 
         context.doEffect(map);
 
+        if (characterCardDeck[card].getType() == CharacterCardEnum.HERALD) {
+            System.out.println("HERALD");
+            Player p = (Player) map.get("Output");
+            if (p != null) { //pensare se mettere un messaggio che annuncia chi a vinto
+                try {
+                    moveTowers(p.getDashboard(), (Island) map.get("Island"), 1);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
         notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
     }
 
