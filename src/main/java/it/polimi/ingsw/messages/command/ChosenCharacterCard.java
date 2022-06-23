@@ -1,5 +1,12 @@
 package it.polimi.ingsw.messages.command;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import it.polimi.ingsw.model.House;
+import it.polimi.ingsw.model.Island;
+
+import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.Map;
 
 import static it.polimi.ingsw.messages.MessageType.CHOSEN_CHARACTER_CARD;
@@ -12,7 +19,7 @@ import static it.polimi.ingsw.messages.MessageType.CHOSEN_CHARACTER_CARD;
 public class ChosenCharacterCard extends CommandMessage{
 
     private final int cardIndex;
-    private final Map<String, Object> parameters;
+    private final String parameters;
 
     /**
      * Message constructor
@@ -23,7 +30,8 @@ public class ChosenCharacterCard extends CommandMessage{
     public ChosenCharacterCard(String nickname, int cardIndex, Map<String, Object> parameters) {
         super(CHOSEN_CHARACTER_CARD, nickname);
         this.cardIndex = cardIndex;
-        this.parameters = parameters;
+        Gson gson;gson = new Gson();
+        this.parameters = gson.toJson(parameters);
     }
 
     public int getCardIndex() {
@@ -31,6 +39,39 @@ public class ChosenCharacterCard extends CommandMessage{
     }
 
     public Map<String, Object> getMap() {
-        return parameters;
+        Type listOfMyClassObject = new TypeToken<HashMap<String, String>>() {}.getType();
+        Gson gson = new Gson();
+
+        Map<String, Object> map = gson.fromJson(parameters, listOfMyClassObject);
+        Map<String, Object> newMap = new HashMap<>();
+
+        for(String key : map.keySet()) {
+            if(key.equals("method")){
+                newMap.put(key, map.get(key));
+            }
+            else if(key.equals("wantedHouse") || key.equals("house")) {
+                newMap.put(key, gson.fromJson((String) map.get(key), House.class));
+            }
+            else if(key.equals("destinationIsland")) {
+                newMap.put(key, gson.fromJson((String) map.get(key), Double.class));
+            }
+            else if(key.equals("island")) {
+                newMap.put(key, gson.fromJson((String) map.get(key), Island.class));
+            }
+            else if(key.equals("wantedStudents")) {
+                Type type = new TypeToken<HashMap<House, Integer>>() {}.getType();
+                newMap.put(key, gson.fromJson((String) map.get(key), type));
+            }
+            else if(key.equals("returnedStudents")) {
+                Type type = new TypeToken<HashMap<House, Integer>>() {}.getType();
+                newMap.put(key, gson.fromJson((String) map.get(key), type));
+            }
+            else if(key.equals("fromDashboard") || key.equals("fromDiningHall")) {
+                Type type = new TypeToken<House[]>() {}.getType();
+                newMap.put(key, gson.fromJson((String) map.get(key), type));
+            }
+        }
+
+        return newMap;
     }
 }
