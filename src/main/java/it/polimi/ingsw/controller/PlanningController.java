@@ -98,8 +98,9 @@ public class PlanningController {
 
             setPosition(0);
             gm.setCurrentPlayer(ranking[0]);
-            persistence.saveData(tc);
             tc.next_State(ACTION);
+
+            persistence.saveData(tc);
 
             for (int i=0; i<gm.getNumPlayers(); i++){
                 if (!gm.getArrayPlayers()[i].equals(gm.getCurrentPlayer())){
@@ -233,7 +234,7 @@ public class PlanningController {
         return result.isEmpty();
     }
 
-    private void resetCards(){
+    public void resetCards(){
         this.availableAssistantCards.clear();
         availableAssistantCards.addAll(Arrays.asList(Card.values()));
         this.cardList.clear();
