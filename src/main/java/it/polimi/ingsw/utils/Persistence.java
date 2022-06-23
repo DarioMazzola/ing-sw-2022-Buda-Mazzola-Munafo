@@ -1,7 +1,6 @@
 package it.polimi.ingsw.utils;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import it.polimi.ingsw.controller.TurnController;
 import it.polimi.ingsw.model.*;
@@ -22,7 +21,7 @@ public class Persistence {
      * Class constructor.
      */
     public Persistence() {
-        gson = new GsonBuilder().setPrettyPrinting().create();
+        gson = new Gson();
     }
 
     /**
