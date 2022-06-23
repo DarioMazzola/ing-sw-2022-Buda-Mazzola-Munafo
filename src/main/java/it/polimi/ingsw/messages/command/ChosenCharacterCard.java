@@ -45,30 +45,29 @@ public class ChosenCharacterCard extends CommandMessage{
         Map<String, Object> map = gson.fromJson(parameters, listOfMyClassObject);
         Map<String, Object> newMap = new HashMap<>();
 
-        for(String key : map.keySet()) {
-            if(key.equals("method")){
-                newMap.put(key, map.get(key));
-            }
-            else if(key.equals("wantedHouse") || key.equals("house")) {
-                newMap.put(key, gson.fromJson((String) map.get(key), House.class));
-            }
-            else if(key.equals("destinationIsland")) {
-                newMap.put(key, gson.fromJson((String) map.get(key), Double.class));
-            }
-            else if(key.equals("island")) {
-                newMap.put(key, gson.fromJson((String) map.get(key), Integer.class));
-            }
-            else if(key.equals("wantedStudents")) {
-                Type type = new TypeToken<HashMap<House, Integer>>() {}.getType();
-                newMap.put(key, gson.fromJson((String) map.get(key), type));
-            }
-            else if(key.equals("returnedStudents")) {
-                Type type = new TypeToken<HashMap<House, Integer>>() {}.getType();
-                newMap.put(key, gson.fromJson((String) map.get(key), type));
-            }
-            else if(key.equals("fromDashboard") || key.equals("fromDiningHall")) {
-                Type type = new TypeToken<House[]>() {}.getType();
-                newMap.put(key, gson.fromJson((String) map.get(key), type));
+        if(map != null) {
+            for (String key : map.keySet()) {
+                if (key.equals("method")) {
+                    newMap.put(key, map.get(key));
+                } else if (key.equals("wantedHouse") || key.equals("house")) {
+                    newMap.put(key, gson.fromJson((String) map.get(key), House.class));
+                } else if (key.equals("destinationIsland")) {
+                    newMap.put(key, gson.fromJson((String) map.get(key), Double.class));
+                } else if (key.equals("island")) {
+                    newMap.put(key, gson.fromJson((String) map.get(key), Integer.class));
+                } else if (key.equals("wantedStudents")) {
+                    Type type = new TypeToken<HashMap<House, Integer>>() {
+                    }.getType();
+                    newMap.put(key, gson.fromJson((String) map.get(key), type));
+                } else if (key.equals("returnedStudents")) {
+                    Type type = new TypeToken<HashMap<House, Integer>>() {
+                    }.getType();
+                    newMap.put(key, gson.fromJson((String) map.get(key), type));
+                } else if (key.equals("fromDashboard") || key.equals("fromDiningHall")) {
+                    Type type = new TypeToken<House[]>() {
+                    }.getType();
+                    newMap.put(key, gson.fromJson((String) map.get(key), type));
+                }
             }
         }
 
