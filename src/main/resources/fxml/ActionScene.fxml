@@ -1673,41 +1673,26 @@
                   </Text>
                   <Pane layoutX="26.0" layoutY="24.0" prefHeight="150.0" prefWidth="103.0">
                      <children>
-                        <VBox layoutX="-15.0" layoutY="-8.0" prefHeight="150.0" prefWidth="30.0">
+                        <VBox fx:id="boxCard1" layoutX="-15.0" layoutY="-8.0" prefHeight="150.0" prefWidth="30.0">
                            <children>
-                              <ImageView fx:id="Card1Elem1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false" />
-                              <ImageView fx:id="Card1Elem2" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                                 <image>
-                                    <Image url="@../images/students/student_blue.png" />
-                                 </image>
+                              <ImageView fx:id="Card1Elem1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="Card1Elem2" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <VBox.margin>
                                     <Insets bottom="2.0" />
                                  </VBox.margin></ImageView>
-                              <ImageView fx:id="Card1Elem3" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                                 <image>
-                                    <Image url="@../images/students/student_green.png" />
-                                 </image>
+                              <ImageView fx:id="Card1Elem3" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <VBox.margin>
                                     <Insets bottom="2.0" top="2.0" />
                                  </VBox.margin></ImageView>
-                              <ImageView fx:id="Card1Elem4" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                                 <image>
-                                    <Image url="@../images/students/student_pink.png" />
-                                 </image>
+                              <ImageView fx:id="Card1Elem4" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <VBox.margin>
                                     <Insets bottom="2.0" top="2.0" />
                                  </VBox.margin></ImageView>
-                              <ImageView fx:id="Card1Elem5" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                                 <image>
-                                    <Image url="@../images/students/student_red.png" />
-                                 </image>
+                              <ImageView fx:id="Card1Elem5" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <VBox.margin>
                                     <Insets bottom="2.0" top="2.0" />
                                  </VBox.margin></ImageView>
-                              <ImageView fx:id="Card1Elem6" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                                 <image>
-                                    <Image url="@../images/students/student_yellow.png" />
-                                 </image>
+                              <ImageView fx:id="Card1Elem6" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <VBox.margin>
                                     <Insets top="2.0" />
                                  </VBox.margin>
@@ -1720,45 +1705,30 @@
                   <Pane layoutX="162.0" layoutY="24.0" prefHeight="150.0" prefWidth="103.0">
                      <children>
                         <ImageView fx:id="CharacterCard2" fitHeight="150.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" />
-                        <VBox layoutX="-15.0" layoutY="-8.0" prefHeight="150.0" prefWidth="30.0">
+                        <VBox fx:id="boxCard2" layoutX="-15.0" layoutY="-8.0" prefHeight="150.0" prefWidth="30.0">
                            <children>
-                              <ImageView fx:id="Card2Elem1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false" />
-                              <ImageView fx:id="Card2Elem2" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                                 <image>
-                                    <Image url="@../images/students/student_blue.png" />
-                                 </image>
+                              <ImageView fx:id="Card2Elem1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="Card2Elem2" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <VBox.margin>
                                     <Insets bottom="2.0" />
                                  </VBox.margin>
                               </ImageView>
-                              <ImageView fx:id="Card2Elem3" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                                 <image>
-                                    <Image url="@../images/students/student_green.png" />
-                                 </image>
+                              <ImageView fx:id="Card2Elem3" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <VBox.margin>
                                     <Insets bottom="2.0" top="2.0" />
                                  </VBox.margin>
                               </ImageView>
-                              <ImageView fx:id="Card2Elem4" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                                 <image>
-                                    <Image url="@../images/students/student_pink.png" />
-                                 </image>
+                              <ImageView fx:id="Card2Elem4" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <VBox.margin>
                                     <Insets bottom="2.0" top="2.0" />
                                  </VBox.margin>
                               </ImageView>
-                              <ImageView fx:id="Card2Elem5" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                                 <image>
-                                    <Image url="@../images/students/student_red.png" />
-                                 </image>
+                              <ImageView fx:id="Card2Elem5" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <VBox.margin>
                                     <Insets bottom="2.0" top="2.0" />
                                  </VBox.margin>
                               </ImageView>
-                              <ImageView fx:id="Card2Elem6" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                                 <image>
-                                    <Image url="@../images/students/student_yellow.png" />
-                                 </image>
+                              <ImageView fx:id="Card2Elem6" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <VBox.margin>
                                     <Insets top="2.0" />
                                  </VBox.margin>
@@ -1770,45 +1740,30 @@
                   <Pane layoutX="297.0" layoutY="24.0" prefHeight="150.0" prefWidth="103.0">
                      <children>
                         <ImageView fx:id="CharacterCard3" fitHeight="150.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" />
-                        <VBox layoutX="-15.0" layoutY="-8.0" prefHeight="150.0" prefWidth="30.0">
+                        <VBox fx:id="boxCard3" layoutX="-15.0" layoutY="-8.0" prefHeight="150.0" prefWidth="30.0">
                            <children>
-                              <ImageView fx:id="Card3Elem1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false" />
-                              <ImageView fx:id="Card3Elem2" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                                 <image>
-                                    <Image url="@../images/students/student_blue.png" />
-                                 </image>
+                              <ImageView fx:id="Card3Elem1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="Card3Elem2" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <VBox.margin>
                                     <Insets bottom="2.0" />
                                  </VBox.margin>
                               </ImageView>
-                              <ImageView fx:id="Card3Elem3" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                                 <image>
-                                    <Image url="@../images/students/student_green.png" />
-                                 </image>
+                              <ImageView fx:id="Card3Elem3" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <VBox.margin>
                                     <Insets bottom="2.0" top="2.0" />
                                  </VBox.margin>
                               </ImageView>
-                              <ImageView fx:id="Card3Elem4" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                                 <image>
-                                    <Image url="@../images/students/student_pink.png" />
-                                 </image>
+                              <ImageView fx:id="Card3Elem4" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <VBox.margin>
                                     <Insets bottom="2.0" top="2.0" />
                                  </VBox.margin>
                               </ImageView>
-                              <ImageView fx:id="Card3Elem5" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                                 <image>
-                                    <Image url="@../images/students/student_red.png" />
-                                 </image>
+                              <ImageView fx:id="Card3Elem5" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <VBox.margin>
                                     <Insets bottom="2.0" top="2.0" />
                                  </VBox.margin>
                               </ImageView>
-                              <ImageView fx:id="Card3Elem6" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                                 <image>
-                                    <Image url="@../images/students/student_yellow.png" />
-                                 </image>
+                              <ImageView fx:id="Card3Elem6" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <VBox.margin>
                                     <Insets top="2.0" />
                                  </VBox.margin>
