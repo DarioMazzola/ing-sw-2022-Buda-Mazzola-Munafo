@@ -214,7 +214,7 @@ public class ActionController {
             case HERB_GRANMA:
                 if (map.get("island") == null)
                     throw new IllegalArgumentException("Island in which to place the NoEntryTile not indicated");
-                parameters.put("method", "addNoEntryTile");
+                parameters.put("Method", "addNoEntryTile");
                 parameters.put("Island", gm.getIslandList().get((int) map.get("island")));
                 break;
 
