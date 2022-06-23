@@ -56,7 +56,7 @@ public class ChosenCharacterCard extends CommandMessage{
                 newMap.put(key, gson.fromJson((String) map.get(key), Double.class));
             }
             else if(key.equals("island")) {
-                newMap.put(key, gson.fromJson((String) map.get(key), Island.class));
+                newMap.put(key, gson.fromJson((String) map.get(key), Integer.class));
             }
             else if(key.equals("wantedStudents")) {
                 Type type = new TypeToken<HashMap<House, Integer>>() {}.getType();
