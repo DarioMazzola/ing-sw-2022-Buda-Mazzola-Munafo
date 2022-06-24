@@ -1,5 +1,6 @@
 package it.polimi.ingsw.controller;
 
+import it.polimi.ingsw.exceptions.noEntryTileException;
 import it.polimi.ingsw.messages.MessageType;
 import it.polimi.ingsw.messages.command.*;
 import it.polimi.ingsw.model.*;
@@ -345,14 +346,21 @@ public class ActionController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (p != null) { //pensare se mettere un messaggio che annuncia chi a vinto
+        if (p != null) {
             try {
                 gm.moveTowers(p.getDashboard(), gm.getIslandList().get(gm.getMotherIsland()), 1);
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        } else {
+            if (gm.getIslandList().get(gm.getMotherIsland()).isNoEntryTilePresent()){
+                try {
+                    gm.getIslandList().get(gm.getMotherIsland()).removeNoEntryTile();
+                } catch (noEntryTileException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-        //pensare se mettere un messaggio che annuncia che c'è stato un pareggio (in else)
     }
 
     /**
