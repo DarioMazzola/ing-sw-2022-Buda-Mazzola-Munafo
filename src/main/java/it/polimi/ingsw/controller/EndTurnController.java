@@ -59,13 +59,19 @@ public class EndTurnController{
             gm.setCurrentPlayer(tc.getNextPlanner());
 
             List<String> availableActions = new ArrayList<>();
+
             availableActions.add("Move students to dining hall or to island");
 
             if (gm.isExpertMode()) {
                 availableActions.add("Select character card");
             }
 
-            System.out.println("andiamo avanti");
+            if (gm.getChat()!=null){
+                if (gm.getChat()){
+                    availableActions.add("Send a message to your team mate");
+                    availableActions.add("See received messages");
+                }
+            }
 
             tc.getVirtualViewMap().get(gm.getCurrentPlayer().getNickname()).actionPhase(availableActions);
         }
