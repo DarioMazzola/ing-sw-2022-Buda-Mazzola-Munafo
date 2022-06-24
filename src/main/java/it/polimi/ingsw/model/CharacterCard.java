@@ -109,7 +109,7 @@ public class CharacterCard extends Observable {
                 break;
             }
         }
-        maxStudentsNumber = (owner == null) ? 0 : owner.getDashboard().getHouseStudents(house);
+        maxStudentsNumber = (owner == null) ? 0 : owner.getDashboard().getDiningHall().getHouseStudents(house);
         playerWithMostStudents = owner;
 
         for (Player p : players) {
