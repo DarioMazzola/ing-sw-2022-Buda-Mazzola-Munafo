@@ -263,7 +263,7 @@ public class ActionController {
                 break;
 
             case SPOILED_PRINCESS:
-                if (map.get("wantedStudents") == null)
+                if (map.get("wantedHouse") == null)
                     throw new IllegalArgumentException("Wanted students not indicated");
 
                 parameters.put("method", "move");
