@@ -4615,6 +4615,13 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                 }
                 i++;
             }
+            if (!message.contains("Move students to dining hall or to island")){
+                Suggestions.appendText("Move mother nature\n");
+            }
+
+            if (type.equals("")){
+                Suggestions.setText("");
+            }
             return;
         }
 
