@@ -2361,16 +2361,18 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                         towerNumber.setStyle("-fx-text-fill: #463333;");
                     }
                 }
+                else {
+                    Text towerNumber = (Text) islandList.get(i).get("TowerNumber");
+                    ImageView tower = (ImageView) islandList.get(i).get("Tower");
+                    towerNumber.setText(Integer.toString(gm.getIslandList().get(i).getNumTowers()));
+
+                    tower.setVisible(false);
+                }
             } catch (IslandException ignored) {
             }
 
             ImageView noEntryTile = (ImageView) islandList.get(i).get("NoEntryTile");
-            if (gm.isExpertMode() && gm.getIslandList().get(i).getNoEntryTile() != 0) {
-                    noEntryTile.setVisible(true);
-            } else {
-                noEntryTile.setVisible(false);
-            }
-
+            noEntryTile.setVisible(gm.isExpertMode() && gm.getIslandList().get(i).getNoEntryTile() != 0);
 
             ImageView mother = (ImageView) islandList.get(i).get("Mother");
             mother.setVisible(true);
