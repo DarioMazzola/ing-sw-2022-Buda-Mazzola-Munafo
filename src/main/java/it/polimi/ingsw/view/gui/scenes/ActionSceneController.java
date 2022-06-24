@@ -4153,6 +4153,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         }
 
         notifyObserver(observer -> observer.onMoveMotherNature(position));
+
+        getMotherByIsland(gm.getMotherIsland()).getStyleClass().clear();
     }
 
     private void doNothing(MouseEvent event) {
