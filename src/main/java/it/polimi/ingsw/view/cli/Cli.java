@@ -425,7 +425,9 @@ public class Cli extends ViewObservable implements UI {
                         stop = true;
                     break;
                 case "Select character card":
-                    useCharacterCard();
+                    boolean usedCard = useCharacterCard();
+                    if (usedCard)
+                        stop = true;
                     break;
                 case "See Mother Nature position":
                     focusOnMotherNature();
@@ -565,7 +567,7 @@ public class Cli extends ViewObservable implements UI {
     /**
      * Asks the player to select a character card to use and the parameters required by that card.
      */
-    private void useCharacterCard() {
+    private boolean useCharacterCard() {
         System.out.println("Here's a list of the character cards available in this game!");
         printList(Arrays.asList(gm.getCharacterCardDeck()));
         boolean poorPlayer = true;
@@ -577,7 +579,7 @@ public class Cli extends ViewObservable implements UI {
         }
         if (poorPlayer) {
             System.out.println("You don't have enough money to use any of this cards!");
-            return;
+            return false;
         }
 
         System.out.println("Enter a number between 1 and " + gm.getCharacterCardDeck().length + " to select a card (0 to go back):");
@@ -587,10 +589,10 @@ public class Cli extends ViewObservable implements UI {
             isValidInput = true;
             chosenCard = inputInRange(0, gm.getCharacterCardDeck().length, "select a valid card");
             if (chosenCard == 0)
-                return;
+                return false;
             if (gm.getCurrentPlayer().getCoins() < gm.getCharacterCardDeck()[chosenCard-1].getCost()) {
                 isValidInput = false;
-                System.out.println("You haven't got enough money to use the selected card, choose another card");
+                System.out.println("You haven't got enough money to use the selected card, choose another card (0 to go back):");
             }
         } while (!isValidInput);
 
@@ -623,7 +625,7 @@ public class Cli extends ViewObservable implements UI {
                 }
                 System.out.println("\nSelect the island where you want to put the selected student");
                 chosenIsland = selectIsland();
-                parameters.put("destinationIsland", chosenIsland);
+                parameters.put("destinationIsland", chosenIsland-1);
 
                 break;
 
@@ -824,6 +826,7 @@ public class Cli extends ViewObservable implements UI {
 
         int finalChosenCard = chosenCard;
         notifyObserver(observers -> observers.onUpdateCharacterCard(finalChosenCard-1, parameters));
+        return true;
     }
 
     private void focusOnMotherNature () {
