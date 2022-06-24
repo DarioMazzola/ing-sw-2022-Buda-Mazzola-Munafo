@@ -137,6 +137,8 @@ public class ActionController {
                     } else {
                         tc.sendAllWinner(null);
                     }
+                    persistence.delete();
+                    tc.setReset(true);
                     break;
                 }
 
@@ -147,7 +149,10 @@ public class ActionController {
             default:
                 System.err.println("Error in ActionController switch");
         }
-        persistence.saveData(tc);
+
+        if (!isEnded) {
+            persistence.saveData(tc);
+        }
     }
 
     public void setGameModel(GameModel gm) {
