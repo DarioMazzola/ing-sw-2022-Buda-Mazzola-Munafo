@@ -34,6 +34,7 @@ public class TurnController {
     private boolean isGameStarted;
     private int freeSpots;
     private boolean restoreDecisionTaken = false;
+    private boolean reset;
 
     public TurnController() {
         freeSpots = 0;
@@ -44,6 +45,7 @@ public class TurnController {
         queue = new ArrayList<>();
         virtualViewMap = new HashMap<>();
         gm = null;
+        reset = false;
     }
 
     /**
@@ -484,6 +486,14 @@ public class TurnController {
         virtualViewMap.get(nickname).selectNickname();
         virtualViewMap.remove(nickname);
         queue.remove(nickname);
+    }
+
+    public boolean reset(){
+        return reset;
+    }
+
+    public void setReset  (boolean value){
+        this.reset = value;
     }
 }
 

@@ -1673,6 +1673,7 @@
                   </Text>
                   <Pane layoutX="26.0" layoutY="24.0" prefHeight="150.0" prefWidth="103.0">
                      <children>
+                        <ImageView fx:id="CharacterCard1" fitHeight="150.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" />
                         <VBox fx:id="boxCard1" layoutX="-15.0" layoutY="-8.0" prefHeight="150.0" prefWidth="30.0">
                            <children>
                               <ImageView fx:id="Card1Elem1" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
@@ -1699,7 +1700,6 @@
                               </ImageView>
                            </children>
                         </VBox>
-                        <ImageView fx:id="CharacterCard1" fitHeight="150.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </Pane>
                   <Pane layoutX="162.0" layoutY="24.0" prefHeight="150.0" prefWidth="103.0">

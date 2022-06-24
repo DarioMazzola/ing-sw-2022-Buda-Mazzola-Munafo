@@ -66,6 +66,8 @@ public class Server {
                 }
                 else
                     turnController = new TurnController();  //se non c'è nessuna partita salvata
+            } else if (turnController.reset()){
+                turnController = new TurnController();
             }
         }
         if (restored) { //if the game has been restored

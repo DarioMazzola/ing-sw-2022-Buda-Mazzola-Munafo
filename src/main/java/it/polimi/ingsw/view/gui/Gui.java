@@ -147,9 +147,10 @@ public class Gui extends ViewObservable implements UI {
         System.out.println("GoToWaitingRoom");
 
         ActionSceneController controller = new ActionSceneController(gm, nickname);
+
+        Platform.runLater(()->controller.setSuggestions(null, ""));
+
         Platform.runLater(() -> SceneController.changeRootPane(observers, "ActionScene.fxml", controller));
-
-
     }
 
     @Override

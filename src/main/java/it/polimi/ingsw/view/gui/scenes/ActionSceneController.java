@@ -4612,6 +4612,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                 }
                 i++;
             }
+            if (!message.contains("Move students to dining hall or to island")){
+                Suggestions.appendText("Move mother nature\n");
+            }
             return;
         }
 
@@ -4634,6 +4637,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             case "Thief":
                 Suggestions.setText("You now have to select a type of student to take from every player");
                 break;
+            default:
+                Suggestions.setText("");
         }
     }
 
