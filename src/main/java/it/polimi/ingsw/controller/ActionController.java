@@ -219,8 +219,6 @@ public class ActionController {
                 break;
 
             case JOLLY:
-                if (map.get("method") == null)
-                    throw new IllegalArgumentException("Method to use not indicated");
                 if (map.get("wantedStudents") == null)
                     throw new IllegalArgumentException("Wanted house not indicated");
                 if (map.get("returnedStudents") == null)
@@ -259,9 +257,6 @@ public class ActionController {
                 break;
 
             case SPOILED_PRINCESS:
-                if (map.get("method") == null)
-                    throw new IllegalArgumentException("Method to use not indicated");
-
                 if (map.get("wantedStudents") == null)
                     throw new IllegalArgumentException("Wanted students not indicated");
 

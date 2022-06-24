@@ -2365,10 +2365,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             }
 
             ImageView noEntryTile = (ImageView) islandList.get(i).get("NoEntryTile");
-            if (gm.isExpertMode()) {
-                if (gm.getIslandList().get(i).getNoEntryTile() == 0) {
-                    noEntryTile.setVisible(false);
-                }
+            if (gm.isExpertMode() && gm.getIslandList().get(i).getNoEntryTile() != 0) {
+                    noEntryTile.setVisible(true);
             } else {
                 noEntryTile.setVisible(false);
             }
@@ -2854,8 +2852,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
     public void initialize() {
 
-        this.diningHallMain = new Button[]{diningHallMainGreen, diningHallMainRed, diningHallMainYellow,
-                diningHallMainBlue, diningHallMainPink};
+        this.diningHallMain = new Button[]{diningHallMainGreen, diningHallMainRed, diningHallMainYellow, diningHallMainPink, diningHallMainBlue};
 
         this.characterCards = new ImageView[]{CharacterCard1, CharacterCard2, CharacterCard3};
 
@@ -3124,31 +3121,13 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
                     houseMap = new HashMap<>(gm.getCharacterCardDeck()[0].getHouseMap());
                     i = 0;
-                    while (houseMap.get(BLUE) > 0) {
-                        image = new Image("images/students/student_blue.png");
+                    while (houseMap.get(GREEN) > 0) {
+                        image = new Image("images/students/student_green.png");
                         Card1Arr[i].setImage(image);
                         Card1Arr[i].setVisible(true);
                         Card1Arr[i].setDisable(false);
-                        card1Array[i] = "Blue";
-                        houseMap.put(BLUE, houseMap.get(BLUE) - 1);
-                        i++;
-                    }
-                    while (houseMap.get(PINK) > 0) {
-                        image = new Image("images/students/student_pink.png");
-                        Card1Arr[i].setImage(image);
-                        Card1Arr[i].setVisible(true);
-                        Card1Arr[i].setDisable(false);
-                        card1Array[i] = "Pink";
-                        houseMap.put(PINK, houseMap.get(PINK) - 1);
-                        i++;
-                    }
-                    while (houseMap.get(YELLOW) > 0) {
-                        image = new Image("images/students/student_yellow.png");
-                        Card1Arr[i].setImage(image);
-                        Card1Arr[i].setVisible(true);
-                        Card1Arr[i].setDisable(false);
-                        card1Array[i] = "Yellow";
-                        houseMap.put(YELLOW, houseMap.get(YELLOW) - 1);
+                        card1Array[i] = "Green";
+                        houseMap.put(GREEN, houseMap.get(GREEN) - 1);
                         i++;
                     }
                     while (houseMap.get(RED) > 0) {
@@ -3160,13 +3139,31 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                         houseMap.put(RED, houseMap.get(RED) - 1);
                         i++;
                     }
-                    while (houseMap.get(GREEN) > 0) {
-                        image = new Image("images/students/student_green.png");
+                    while (houseMap.get(YELLOW) > 0) {
+                        image = new Image("images/students/student_yellow.png");
                         Card1Arr[i].setImage(image);
                         Card1Arr[i].setVisible(true);
                         Card1Arr[i].setDisable(false);
-                        card1Array[i] = "Green";
-                        houseMap.put(GREEN, houseMap.get(GREEN) - 1);
+                        card1Array[i] = "Yellow";
+                        houseMap.put(YELLOW, houseMap.get(YELLOW) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(PINK) > 0) {
+                        image = new Image("images/students/student_pink.png");
+                        Card1Arr[i].setImage(image);
+                        Card1Arr[i].setVisible(true);
+                        Card1Arr[i].setDisable(false);
+                        card1Array[i] = "Pink";
+                        houseMap.put(PINK, houseMap.get(PINK) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(BLUE) > 0) {
+                        image = new Image("images/students/student_blue.png");
+                        Card1Arr[i].setImage(image);
+                        Card1Arr[i].setVisible(true);
+                        Card1Arr[i].setDisable(false);
+                        card1Array[i] = "Blue";
+                        houseMap.put(BLUE, houseMap.get(BLUE) - 1);
                         i++;
                     }
                     while (i < 6) {
@@ -3257,31 +3254,13 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     path = "images/CharacterCards/Monk.jpg";
                     houseMap = new HashMap<>(gm.getCharacterCardDeck()[1].getHouseMap());
                     i = 0;
-                    while (houseMap.get(BLUE) > 0) {
-                        image = new Image("images/students/student_blue.png");
+                    while (houseMap.get(GREEN) > 0) {
+                        image = new Image("images/students/student_green.png");
                         Card2Arr[i].setImage(image);
                         Card2Arr[i].setVisible(true);
                         Card2Arr[i].setDisable(false);
-                        card2Array[i] = "Blue";
-                        houseMap.put(BLUE, houseMap.get(BLUE) - 1);
-                        i++;
-                    }
-                    while (houseMap.get(PINK) > 0) {
-                        image = new Image("images/students/student_pink.png");
-                        Card2Arr[i].setImage(image);
-                        Card2Arr[i].setVisible(true);
-                        Card2Arr[i].setDisable(false);
-                        card2Array[i] = "Pink";
-                        houseMap.put(PINK, houseMap.get(PINK) - 1);
-                        i++;
-                    }
-                    while (houseMap.get(YELLOW) > 0) {
-                        image = new Image("images/students/student_yellow.png");
-                        Card2Arr[i].setImage(image);
-                        Card2Arr[i].setVisible(true);
-                        Card2Arr[i].setDisable(false);
-                        card2Array[i] = "Yellow";
-                        houseMap.put(YELLOW, houseMap.get(YELLOW) - 1);
+                        card2Array[i] = "Green";
+                        houseMap.put(GREEN, houseMap.get(GREEN) - 1);
                         i++;
                     }
                     while (houseMap.get(RED) > 0) {
@@ -3293,13 +3272,31 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                         houseMap.put(RED, houseMap.get(RED) - 1);
                         i++;
                     }
-                    while (houseMap.get(GREEN) > 0) {
-                        image = new Image("images/students/student_green.png");
+                    while (houseMap.get(YELLOW) > 0) {
+                        image = new Image("images/students/student_yellow.png");
                         Card2Arr[i].setImage(image);
                         Card2Arr[i].setVisible(true);
                         Card2Arr[i].setDisable(false);
-                        card2Array[i] = "Green";
-                        houseMap.put(GREEN, houseMap.get(GREEN) - 1);
+                        card2Array[i] = "Yellow";
+                        houseMap.put(YELLOW, houseMap.get(YELLOW) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(PINK) > 0) {
+                        image = new Image("images/students/student_pink.png");
+                        Card2Arr[i].setImage(image);
+                        Card2Arr[i].setVisible(true);
+                        Card2Arr[i].setDisable(false);
+                        card2Array[i] = "Pink";
+                        houseMap.put(PINK, houseMap.get(PINK) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(BLUE) > 0) {
+                        image = new Image("images/students/student_blue.png");
+                        Card2Arr[i].setImage(image);
+                        Card2Arr[i].setVisible(true);
+                        Card2Arr[i].setDisable(false);
+                        card2Array[i] = "Blue";
+                        houseMap.put(BLUE, houseMap.get(BLUE) - 1);
                         i++;
                     }
                     while (i < 6) {
@@ -4734,6 +4731,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     for (Node n : getVBoxByCard(cardSelected).getChildren()) {
                         n.setOnMouseClicked(selectStudentForJolly);
                     }
+                    card.setOnMouseClicked(sendStudents);
                     break;
                 case MINSTREL:
                     for (ImageView student : EntranceMain) {
@@ -4819,7 +4817,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
             for (ImageView student : EntranceMain) {
                 student.setOnMouseClicked(pickStudentsFromEntrance);
-                student.getStyleClass().add("dropShadow");
                 student.setOpacity(1);
             }
         }
@@ -4840,21 +4837,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             returnedStudents = new ArrayList<>();
         }
         returnedStudents.add(house);
-
-        if (wantedStudents.size() == returnedStudents.size()) {
-            Map<String, Object> parameters = new HashMap<>();
-
-            parameters.put("wantedStudents", wantedStudents);
-            parameters.put("returnedStudents", returnedStudents);
-
-            notifyObserver(observer -> observer.onUpdateCharacterCard(cardSelected, parameters));
-
-            initializeEvents();
-
-            wantedStudents = null;
-            returnedStudents = null;
-            //cardSelected = null;
-        }
     }
 
     // <------- SpoiledPrincess ------->
@@ -4864,11 +4846,11 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         VBox box = (VBox) studentSelected.getParent();
         String id = studentSelected.getId();
 
-        studentSelectedFromCard = getHouseById(id.substring(0, id.length() - 1) + (Integer.parseInt(String.valueOf(id.charAt(id.length() - 1))) - 1));
+        studentSelectedFromCard = House.values()[Integer.parseInt(String.valueOf(id.charAt(id.length() - 1))) - 1];
 
         Map<String, Object> parameters = new HashMap<>();
 
-        parameters.put("wantedStudents", studentSelectedFromCard);
+        parameters.put("wantedHouse", studentSelectedFromCard);
 
         notifyObserver(observer -> observer.onUpdateCharacterCard(cardSelected, parameters));
 
@@ -4924,8 +4906,26 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             Map<String, Object> parameters = new HashMap<>();
             Gson gson = new Gson();
 
-            parameters.put("fromDashboard", gson.toJson(wantedStudents.toArray()));
-            parameters.put("fromDiningHall", gson.toJson(returnedStudents.toArray()));
+            if(gm.getCharacterCardDeck()[cardSelected].getType() == CharacterCardEnum.MINSTREL) {
+                parameters.put("fromDashboard", gson.toJson(wantedStudents.toArray()));
+                parameters.put("fromDiningHall", gson.toJson(returnedStudents.toArray()));
+            }
+            else if (gm.getCharacterCardDeck()[cardSelected].getType() == CharacterCardEnum.JOLLY) {
+
+                Map<House, Integer> wantedMap = new HashMap<>();
+                Map<House, Integer> returnedMap = new HashMap<>();
+
+                for(House h : House.values()) {
+                    wantedMap.put(h, 0);
+                    returnedMap.put(h, 0);
+                }
+                for(int i=0; i<wantedStudents.size(); i++) {
+                    wantedMap.put(wantedStudents.get(i), wantedMap.get(wantedStudents.get(i)) + 1);
+                    returnedMap.put(returnedStudents.get(i), returnedMap.get(returnedStudents.get(i)) + 1);
+                }
+                parameters.put("wantedStudents", gson.toJson(wantedMap));
+                parameters.put("returnedStudents", gson.toJson(returnedMap));
+            }
             notifyObserver(observer -> observer.onUpdateCharacterCard(cardSelected, parameters));
 
             initializeEvents();
