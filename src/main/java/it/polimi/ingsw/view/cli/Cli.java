@@ -1,5 +1,6 @@
 package it.polimi.ingsw.view.cli;
 
+import com.google.gson.Gson;
 import it.polimi.ingsw.ClientMain;
 import it.polimi.ingsw.client.*;
 import it.polimi.ingsw.model.*;
@@ -570,6 +571,9 @@ public class Cli extends ViewObservable implements UI {
     private boolean useCharacterCard() {
         System.out.println("Here's a list of the character cards available in this game!");
         printList(Arrays.asList(gm.getCharacterCardDeck()));
+
+        Gson gson = new Gson();
+
         boolean poorPlayer = true;
         for (ReducedCharacterCard c : gm.getCharacterCardDeck()) {
             if (c.getCost() <= gm.getCurrentPlayer().getCoins()) {
@@ -703,8 +707,8 @@ public class Cli extends ViewObservable implements UI {
                     }
                 }
 
-                parameters.put("wantedStudents", wantedStudents);
-                parameters.put("returnedStudents", returnedStudents);
+                parameters.put("wantedStudents", gson.toJson(wantedStudents));
+                parameters.put("returnedStudents", gson.toJson(returnedStudents));
 
                 break;
 
@@ -762,8 +766,8 @@ public class Cli extends ViewObservable implements UI {
                     }
                 }
 
-                parameters.put("fromDashboard", fromDashboard);
-                parameters.put("fromDiningHall", fromDiningHall);
+                parameters.put("fromDashboard", gson.toJson(fromDashboard));
+                parameters.put("fromDiningHall", gson.toJson(fromDiningHall));
 
                 break;
 
