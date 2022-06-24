@@ -1,6 +1,7 @@
 
 package it.polimi.ingsw.view.gui.scenes;
 
+import com.google.gson.Gson;
 import it.polimi.ingsw.client.*;
 import it.polimi.ingsw.exceptions.IslandException;
 import it.polimi.ingsw.model.CharacterCardEnum;
@@ -1414,6 +1415,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     private final EventHandler<MouseEvent> selectIslandForMonk;
     private final EventHandler<MouseEvent> selectIslandForHerald;
     private final EventHandler<MouseEvent> selectStudentForMushroomHunter_Thief;
+    private final EventHandler<MouseEvent> sendStudents;
 
     private Button[] islandButtons;
 
@@ -1441,6 +1443,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         selectIslandForMonk = this::selectIslandForMonk;
         selectIslandForHerald = this::selectIslandForHerald;
         selectStudentForMushroomHunter_Thief = this::selectStudentForMushroomHunter_Thief;
+        sendStudents = this::sendStudents;
     }
 
     // <--------- Initialize methods --------->
@@ -2951,42 +2954,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     break;
                 case MINSTREL:
                     path = "images/CharacterCards/Minstrel.jpg";
-                    image = new Image("images/students/student_blue.png");
-                    Card1Arr[4].setImage(image);
-                    Card1Arr[4].setVisible(true);
-                    Card1Arr[4].setDisable(false);
-                    card1Array[4] = "Blue";
-
-                    image = new Image("images/students/student_pink.png");
-                    Card1Arr[3].setImage(image);
-                    Card1Arr[3].setVisible(true);
-                    Card1Arr[3].setDisable(false);
-                    card1Array[3] = "Pink";
-
-                    image = new Image("images/students/student_yellow.png");
-                    Card1Arr[2].setImage(image);
-                    Card1Arr[2].setVisible(true);
-                    Card1Arr[2].setDisable(false);
-                    card1Array[2] = "Yellow";
-
-                    image = new Image("images/students/student_red.png");
-                    Card1Arr[1].setImage(image);
-                    Card1Arr[1].setVisible(true);
-                    Card1Arr[1].setDisable(false);
-                    card1Array[1] = "Red";
-
-                    image = new Image("images/students/student_green.png");
-                    Card1Arr[0].setImage(image);
-                    Card1Arr[0].setVisible(true);
-                    Card1Arr[0].setDisable(false);
-                    card1Array[0] = "Green";
-                    i = 5;
-                    while (i < 6) {
-                        Card1Arr[i].setVisible(false);
-                        Card1Arr[i].setDisable(true);
-                        card1Array[i] = "null";
-                        i++;
-                    }
                     break;
                 case MONK:
                     path = "images/CharacterCards/Monk.jpg";
@@ -3115,6 +3082,42 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     break;
                 case MUSHROOM_HUNTER:
                     path = "images/CharacterCards/MushroomHunter.jpg";
+                    image = new Image("images/students/student_blue.png");
+                    Card1Arr[4].setImage(image);
+                    Card1Arr[4].setVisible(true);
+                    Card1Arr[4].setDisable(false);
+                    card1Array[4] = "Blue";
+
+                    image = new Image("images/students/student_pink.png");
+                    Card1Arr[3].setImage(image);
+                    Card1Arr[3].setVisible(true);
+                    Card1Arr[3].setDisable(false);
+                    card1Array[3] = "Pink";
+
+                    image = new Image("images/students/student_yellow.png");
+                    Card1Arr[2].setImage(image);
+                    Card1Arr[2].setVisible(true);
+                    Card1Arr[2].setDisable(false);
+                    card1Array[2] = "Yellow";
+
+                    image = new Image("images/students/student_red.png");
+                    Card1Arr[1].setImage(image);
+                    Card1Arr[1].setVisible(true);
+                    Card1Arr[1].setDisable(false);
+                    card1Array[1] = "Red";
+
+                    image = new Image("images/students/student_green.png");
+                    Card1Arr[0].setImage(image);
+                    Card1Arr[0].setVisible(true);
+                    Card1Arr[0].setDisable(false);
+                    card1Array[0] = "Green";
+                    i = 5;
+                    while (i < 6) {
+                        Card1Arr[i].setVisible(false);
+                        Card1Arr[i].setDisable(true);
+                        card1Array[i] = "null";
+                        i++;
+                    }
                     break;
                 case SPOILED_PRINCESS:
                     path = "images/CharacterCards/SpoiledPrincess.jpg";
@@ -3175,23 +3178,12 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     break;
                 case THIEF:
                     path = "images/CharacterCards/Thief.jpg";
-                    image = new Image("images/students/student_blue.png");
-                    Card1Arr[4].setImage(image);
-                    Card1Arr[4].setVisible(true);
-                    Card1Arr[4].setDisable(false);
-                    card1Array[4] = "Blue";
 
-                    image = new Image("images/students/student_pink.png");
-                    Card1Arr[3].setImage(image);
-                    Card1Arr[3].setVisible(true);
-                    Card1Arr[3].setDisable(false);
-                    card1Array[3] = "Pink";
-
-                    image = new Image("images/students/student_yellow.png");
-                    Card1Arr[2].setImage(image);
-                    Card1Arr[2].setVisible(true);
-                    Card1Arr[2].setDisable(false);
-                    card1Array[2] = "Yellow";
+                    image = new Image("images/students/student_green.png");
+                    Card1Arr[0].setImage(image);
+                    Card1Arr[0].setVisible(true);
+                    Card1Arr[0].setDisable(false);
+                    card1Array[0] = "Green";
 
                     image = new Image("images/students/student_red.png");
                     Card1Arr[1].setImage(image);
@@ -3199,11 +3191,24 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     Card1Arr[1].setDisable(false);
                     card1Array[1] = "Red";
 
-                    image = new Image("images/students/student_green.png");
-                    Card1Arr[0].setImage(image);
-                    Card1Arr[0].setVisible(true);
-                    Card1Arr[0].setDisable(false);
-                    card1Array[0] = "Green";
+                    image = new Image("images/students/student_yellow.png");
+                    Card1Arr[2].setImage(image);
+                    Card1Arr[2].setVisible(true);
+                    Card1Arr[2].setDisable(false);
+                    card1Array[2] = "Yellow";
+
+                    image = new Image("images/students/student_pink.png");
+                    Card1Arr[3].setImage(image);
+                    Card1Arr[3].setVisible(true);
+                    Card1Arr[3].setDisable(false);
+                    card1Array[3] = "Pink";
+
+                    image = new Image("images/students/student_blue.png");
+                    Card1Arr[4].setImage(image);
+                    Card1Arr[4].setVisible(true);
+                    Card1Arr[4].setDisable(false);
+                    card1Array[4] = "Blue";
+
                     i = 5;
                     while (i < 6) {
                         Card1Arr[i].setVisible(false);
@@ -3247,42 +3252,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     break;
                 case MINSTREL:
                     path = "images/CharacterCards/Minstrel.jpg";
-                    image = new Image("images/students/student_blue.png");
-                    Card2Arr[4].setImage(image);
-                    Card2Arr[4].setVisible(true);
-                    Card2Arr[4].setDisable(false);
-                    card2Array[4] = "Blue";
-
-                    image = new Image("images/students/student_pink.png");
-                    Card2Arr[3].setImage(image);
-                    Card2Arr[3].setVisible(true);
-                    Card2Arr[3].setDisable(false);
-                    card2Array[3] = "Pink";
-
-                    image = new Image("images/students/student_yellow.png");
-                    Card2Arr[2].setImage(image);
-                    Card2Arr[2].setVisible(true);
-                    Card2Arr[2].setDisable(false);
-                    card2Array[2] = "Yellow";
-
-                    image = new Image("images/students/student_red.png");
-                    Card2Arr[1].setImage(image);
-                    Card2Arr[1].setVisible(true);
-                    Card2Arr[1].setDisable(false);
-                    card2Array[1] = "Red";
-
-                    image = new Image("images/students/student_green.png");
-                    Card2Arr[0].setImage(image);
-                    Card2Arr[0].setVisible(true);
-                    Card2Arr[0].setDisable(false);
-                    card2Array[0] = "Green";
-                    i = 5;
-                    while (i < 6) {
-                        Card2Arr[i].setVisible(false);
-                        Card2Arr[i].setDisable(true);
-                        card2Array[i] = "null";
-                        i++;
-                    }
                     break;
                 case MONK:
                     path = "images/CharacterCards/Monk.jpg";
@@ -3409,6 +3378,43 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     break;
                 case MUSHROOM_HUNTER:
                     path = "images/CharacterCards/MushroomHunter.jpg";
+
+                    image = new Image("images/students/student_blue.png");
+                    Card2Arr[4].setImage(image);
+                    Card2Arr[4].setVisible(true);
+                    Card2Arr[4].setDisable(false);
+                    card2Array[4] = "Blue";
+
+                    image = new Image("images/students/student_pink.png");
+                    Card2Arr[3].setImage(image);
+                    Card2Arr[3].setVisible(true);
+                    Card2Arr[3].setDisable(false);
+                    card2Array[3] = "Pink";
+
+                    image = new Image("images/students/student_yellow.png");
+                    Card2Arr[2].setImage(image);
+                    Card2Arr[2].setVisible(true);
+                    Card2Arr[2].setDisable(false);
+                    card2Array[2] = "Yellow";
+
+                    image = new Image("images/students/student_red.png");
+                    Card2Arr[1].setImage(image);
+                    Card2Arr[1].setVisible(true);
+                    Card2Arr[1].setDisable(false);
+                    card2Array[1] = "Red";
+
+                    image = new Image("images/students/student_green.png");
+                    Card2Arr[0].setImage(image);
+                    Card2Arr[0].setVisible(true);
+                    Card2Arr[0].setDisable(false);
+                    card2Array[0] = "Green";
+                    i = 5;
+                    while (i < 6) {
+                        Card2Arr[i].setVisible(false);
+                        Card2Arr[i].setDisable(true);
+                        card2Array[i] = "null";
+                        i++;
+                    }
                     break;
                 case SPOILED_PRINCESS:
                     path = "images/CharacterCards/SpoiledPrincess.jpg";
@@ -3469,35 +3475,36 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     break;
                 case THIEF:
                     path = "images/CharacterCards/Thief.jpg";
-                    image = new Image("images/students/student_blue.png");
-                    Card1Arr[4].setImage(image);
-                    Card1Arr[4].setVisible(true);
-                    Card1Arr[4].setDisable(false);
-                    card1Array[4] = "Blue";
-
-                    image = new Image("images/students/student_pink.png");
-                    Card1Arr[3].setImage(image);
-                    Card1Arr[3].setVisible(true);
-                    Card1Arr[3].setDisable(false);
-                    card1Array[3] = "Pink";
-
-                    image = new Image("images/students/student_yellow.png");
-                    Card1Arr[2].setImage(image);
-                    Card1Arr[2].setVisible(true);
-                    Card1Arr[2].setDisable(false);
-                    card1Array[2] = "Yellow";
-
-                    image = new Image("images/students/student_red.png");
-                    Card1Arr[1].setImage(image);
-                    Card1Arr[1].setVisible(true);
-                    Card1Arr[1].setDisable(false);
-                    card1Array[1] = "Red";
 
                     image = new Image("images/students/student_green.png");
-                    Card1Arr[0].setImage(image);
-                    Card1Arr[0].setVisible(true);
-                    Card1Arr[0].setDisable(false);
-                    card1Array[0] = "Green";
+                    Card2Arr[0].setImage(image);
+                    Card2Arr[0].setVisible(true);
+                    Card2Arr[0].setDisable(false);
+                    card2Array[0] = "Green";
+
+                    image = new Image("images/students/student_red.png");
+                    Card2Arr[1].setImage(image);
+                    Card2Arr[1].setVisible(true);
+                    Card2Arr[1].setDisable(false);
+                    card2Array[1] = "Red";
+
+                    image = new Image("images/students/student_yellow.png");
+                    Card2Arr[2].setImage(image);
+                    Card2Arr[2].setVisible(true);
+                    Card2Arr[2].setDisable(false);
+                    card2Array[2] = "Yellow";
+
+                    image = new Image("images/students/student_pink.png");
+                    Card2Arr[3].setImage(image);
+                    Card2Arr[3].setVisible(true);
+                    Card2Arr[3].setDisable(false);
+                    card2Array[3] = "Pink";
+
+                    image = new Image("images/students/student_blue.png");
+                    Card2Arr[4].setImage(image);
+                    Card2Arr[4].setVisible(true);
+                    Card2Arr[4].setDisable(false);
+                    card2Array[4] = "Blue";
                     i = 5;
                     while (i < 6) {
                         Card2Arr[i].setVisible(false);
@@ -3541,42 +3548,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     break;
                 case MINSTREL:
                     path = "images/CharacterCards/Minstrel.jpg";
-                    image = new Image("images/students/student_blue.png");
-                    Card3Arr[4].setImage(image);
-                    Card3Arr[4].setVisible(true);
-                    Card3Arr[4].setDisable(false);
-                    card3Array[4] = "Blue";
-
-                    image = new Image("images/students/student_pink.png");
-                    Card3Arr[3].setImage(image);
-                    Card3Arr[3].setVisible(true);
-                    Card3Arr[3].setDisable(false);
-                    card3Array[3] = "Pink";
-
-                    image = new Image("images/students/student_yellow.png");
-                    Card3Arr[2].setImage(image);
-                    Card3Arr[2].setVisible(true);
-                    Card3Arr[2].setDisable(false);
-                    card3Array[2] = "Yellow";
-
-                    image = new Image("images/students/student_red.png");
-                    Card3Arr[1].setImage(image);
-                    Card3Arr[1].setVisible(true);
-                    Card3Arr[1].setDisable(false);
-                    card3Array[1] = "Red";
-
-                    image = new Image("images/students/student_green.png");
-                    Card3Arr[0].setImage(image);
-                    Card3Arr[0].setVisible(true);
-                    Card3Arr[0].setDisable(false);
-                    card3Array[0] = "Green";
-                    i = 5;
-                    while (i < 6) {
-                        Card3Arr[i].setVisible(false);
-                        Card3Arr[i].setDisable(true);
-                        card3Array[i] = "null";
-                        i++;
-                    }
                     break;
                 case MONK:
                     path = "images/CharacterCards/Monk.jpg";
@@ -3703,6 +3674,43 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     break;
                 case MUSHROOM_HUNTER:
                     path = "images/CharacterCards/MushroomHunter.jpg";
+
+                    image = new Image("images/students/student_blue.png");
+                    Card3Arr[4].setImage(image);
+                    Card3Arr[4].setVisible(true);
+                    Card3Arr[4].setDisable(false);
+                    card3Array[4] = "Blue";
+
+                    image = new Image("images/students/student_pink.png");
+                    Card3Arr[3].setImage(image);
+                    Card3Arr[3].setVisible(true);
+                    Card3Arr[3].setDisable(false);
+                    card3Array[3] = "Pink";
+
+                    image = new Image("images/students/student_yellow.png");
+                    Card3Arr[2].setImage(image);
+                    Card3Arr[2].setVisible(true);
+                    Card3Arr[2].setDisable(false);
+                    card3Array[2] = "Yellow";
+
+                    image = new Image("images/students/student_red.png");
+                    Card3Arr[1].setImage(image);
+                    Card3Arr[1].setVisible(true);
+                    Card3Arr[1].setDisable(false);
+                    card3Array[1] = "Red";
+
+                    image = new Image("images/students/student_green.png");
+                    Card3Arr[0].setImage(image);
+                    Card3Arr[0].setVisible(true);
+                    Card3Arr[0].setDisable(false);
+                    card3Array[0] = "Green";
+                    i = 5;
+                    while (i < 6) {
+                        Card3Arr[i].setVisible(false);
+                        Card3Arr[i].setDisable(true);
+                        card3Array[i] = "null";
+                        i++;
+                    }
                     break;
                 case SPOILED_PRINCESS:
                     path = "images/CharacterCards/SpoiledPrincess.jpg";
@@ -3763,23 +3771,12 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     break;
                 case THIEF:
                     path = "images/CharacterCards/Thief.jpg";
-                    image = new Image("images/students/student_blue.png");
-                    Card3Arr[4].setImage(image);
-                    Card3Arr[4].setVisible(true);
-                    Card3Arr[4].setDisable(false);
-                    card3Array[4] = "Blue";
 
-                    image = new Image("images/students/student_pink.png");
-                    Card3Arr[3].setImage(image);
-                    Card3Arr[3].setVisible(true);
-                    Card3Arr[3].setDisable(false);
-                    card3Array[3] = "Pink";
-
-                    image = new Image("images/students/student_yellow.png");
-                    Card3Arr[2].setImage(image);
-                    Card3Arr[2].setVisible(true);
-                    Card3Arr[2].setDisable(false);
-                    card3Array[2] = "Yellow";
+                    image = new Image("images/students/student_green.png");
+                    Card3Arr[0].setImage(image);
+                    Card3Arr[0].setVisible(true);
+                    Card3Arr[0].setDisable(false);
+                    card3Array[0] = "Green";
 
                     image = new Image("images/students/student_red.png");
                     Card3Arr[1].setImage(image);
@@ -3787,11 +3784,23 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     Card3Arr[1].setDisable(false);
                     card3Array[1] = "Red";
 
-                    image = new Image("images/students/student_green.png");
-                    Card3Arr[0].setImage(image);
-                    Card3Arr[0].setVisible(true);
-                    Card3Arr[0].setDisable(false);
-                    card3Array[0] = "Green";
+                    image = new Image("images/students/student_yellow.png");
+                    Card3Arr[2].setImage(image);
+                    Card3Arr[2].setVisible(true);
+                    Card3Arr[2].setDisable(false);
+                    card3Array[2] = "Yellow";
+
+                    image = new Image("images/students/student_pink.png");
+                    Card3Arr[3].setImage(image);
+                    Card3Arr[3].setVisible(true);
+                    Card3Arr[3].setDisable(false);
+                    card3Array[3] = "Pink";
+
+                    image = new Image("images/students/student_blue.png");
+                    Card3Arr[4].setImage(image);
+                    Card3Arr[4].setVisible(true);
+                    Card3Arr[4].setDisable(false);
+                    card3Array[4] = "Blue";
                     i = 5;
                     while (i < 6) {
                         Card3Arr[i].setVisible(false);
@@ -4040,7 +4049,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
     private void selectStudent(MouseEvent event) {
         ImageView studentSelected = (ImageView) event.getSource();
-        System.out.println(studentSelected.getId());
 
         houseSelected = getHouseById(studentSelected.getId());
 
@@ -4672,7 +4680,23 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         SceneController.getActiveScene().getRoot().setEffect(new GaussianBlur());
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        Alert alert;
+
+        //if the player does not have enough coins
+        if (gm.getPlayerByNickname(nickname).getCoins() < gm.getCharacterCardDeck()[cardSelected].getCost()) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.initOwner(SceneController.getActiveScene().getWindow());
+            alert.initModality(Modality.APPLICATION_MODAL);
+
+            alert.setTitle("Select assistant card");
+            alert.setHeaderText("You don't have enough coins to use this card!");
+
+            alert.showAndWait();
+            SceneController.getActiveScene().getRoot().setEffect(null);
+            return;
+        }
+
+        alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.initOwner(SceneController.getActiveScene().getWindow());
         alert.initModality(Modality.APPLICATION_MODAL);
 
@@ -4680,6 +4704,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         alert.setHeaderText("Card selected: " + gm.getCharacterCardDeck()[cardSelected].getCardName());
         alert.setContentText("Do you want to use this card?");
 
+        //if the player wants to use the card
         if (alert.showAndWait().orElse(ButtonType.OK) == ButtonType.OK) {
             removeEvents();
 
@@ -4704,9 +4729,14 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     }
                     break;
                 case MINSTREL:
-                    for (Node n : getVBoxByCard(cardSelected).getChildren()) {
-                        n.setOnMouseClicked(selectStudentForMinstrel);
+                    for (ImageView student : EntranceMain) {
+                        student.setOpacity(1);
+                        student.setOnMouseClicked(selectStudentForMinstrel);
                     }
+                    for (Button button : diningHallMain) {
+                        button.setOnMouseClicked(pickStudentsFromDiningHall);
+                    }
+                    card.setOnMouseClicked(sendStudents);
                     break;
                 case SPOILED_PRINCESS:
                     for (Node n : getVBoxByCard(cardSelected).getChildren()) {
@@ -4744,6 +4774,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         SceneController.getActiveScene().getRoot().setEffect(null);
     }
 
+    // <------- HerbGranma ------->
     private void addNoEntryTile(MouseEvent event) {
         Button islandClicked = (Button) event.getSource();
 
@@ -4758,6 +4789,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         //cardSelected = null;
     }
 
+    // <------- Jolly ------->
     private void selectStudentForJolly(MouseEvent event) {
         ImageView studentSelected = (ImageView) event.getSource();
 
@@ -4786,6 +4818,39 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         }
     }
 
+    private void pickStudentsFromEntrance(MouseEvent event) {
+        ImageView studentSelected = (ImageView) event.getSource();
+
+        House house = getHouseById(studentSelected.getId());
+
+        if (cardSelected != null) {
+            for (Node student : getVBoxByCard(cardSelected).getChildren()) {
+                student.setOnMouseClicked(doNothing);
+            }
+        }
+
+        if (returnedStudents == null) {
+            returnedStudents = new ArrayList<>();
+        }
+        returnedStudents.add(house);
+
+        if (wantedStudents.size() == returnedStudents.size()) {
+            Map<String, Object> parameters = new HashMap<>();
+
+            parameters.put("wantedStudents", wantedStudents);
+            parameters.put("returnedStudents", returnedStudents);
+
+            notifyObserver(observer -> observer.onUpdateCharacterCard(cardSelected, parameters));
+
+            initializeEvents();
+
+            wantedStudents = null;
+            returnedStudents = null;
+            //cardSelected = null;
+        }
+    }
+
+    // <------- SpoiledPrincess ------->
     private void selectStudentForSpoiledPrincess(MouseEvent event) {
         ImageView studentSelected = (ImageView) event.getSource();
 
@@ -4809,29 +4874,61 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         initializeEvents();
     }
 
+    // <------- Minstrel ------->
     private void selectStudentForMinstrel(MouseEvent event) {
         ImageView selected = (ImageView) event.getSource();
 
         House house = getHouseById(selected.getId());
-        VBox box = (VBox) selected.getParent();
 
         if (wantedStudents == null)
             wantedStudents = new ArrayList<>();
 
-        wantedStudents.add(studentSelectedFromCard);
+        wantedStudents.add(house);
 
         if (wantedStudents.size() == 2) {
-            for (Node n : box.getChildren()) {
-                n.setOnMouseClicked(doNothing);
-                n.getStyleClass().clear();
+            for (ImageView student : EntranceMain) {
+                student.setOnMouseClicked(doNothing);
+                student.getStyleClass().clear();
             }
-        }
-
-        for (Button button : diningHallMain) {
-            button.setOnMouseClicked(pickStudentsFromDiningHall);
         }
     }
 
+    private void pickStudentsFromDiningHall(MouseEvent event) {
+        Button studentSelected = (Button) event.getSource();
+
+        House diningHallSelected = getHouseByButton(studentSelected);
+
+        if (returnedStudents == null) {
+            returnedStudents = new ArrayList<>();
+        }
+
+        returnedStudents.add(diningHallSelected);
+
+        if(returnedStudents.size() == 2) {
+            for(Button student : diningHallMain) {
+                student.setOnMouseClicked(doNothing);
+            }
+        }
+    }
+
+    private void sendStudents(MouseEvent event) {
+
+        if (wantedStudents.size() == returnedStudents.size()) {
+            Map<String, Object> parameters = new HashMap<>();
+            Gson gson = new Gson();
+
+            parameters.put("fromDashboard", gson.toJson(wantedStudents.toArray()));
+            parameters.put("fromDiningHall", gson.toJson(returnedStudents.toArray()));
+            notifyObserver(observer -> observer.onUpdateCharacterCard(cardSelected, parameters));
+
+            initializeEvents();
+
+            wantedStudents = null;
+            returnedStudents = null;
+        }
+    }
+
+    // <------- Monk ------->
     private void selectStudentForMonk(MouseEvent event) {
         ImageView studentSelected = (ImageView) event.getSource();
 
@@ -4872,6 +4969,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         wantedStudents = null;
     }
 
+    // <------- MushroomHunter ------->
+    // <------- Thief ------->
     private void selectStudentForMushroomHunter_Thief(MouseEvent event) {
         ImageView studentSelected = (ImageView) event.getSource();
 
@@ -4892,6 +4991,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         }
     }
 
+    // <------- Herald ------->
     private void selectIslandForHerald(MouseEvent event) {
         Button island = (Button) event.getSource();
 
@@ -4902,68 +5002,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         initializeEvents();
 
         wantedStudents = null;
-    }
-
-    private void pickStudentsFromDiningHall(MouseEvent event) {
-        Button studentSelected = (Button) event.getSource();
-
-        House diningHallSelected = getHouseByButton(studentSelected);
-
-        returnedStudents.add(diningHallSelected);
-
-        for (ImageView student : EntranceMain) {
-            student.setOnMouseClicked(doNothing);
-        }
-
-        if (returnedStudents == null)
-            returnedStudents = new ArrayList<>();
-
-        if (wantedStudents.size() == returnedStudents.size()) {
-            Map<String, Object> parameters = new HashMap<>();
-
-            parameters.put("fromDashboard", wantedStudents.toArray());
-            parameters.put("fromDiningHall", returnedStudents.toArray());
-
-            notifyObserver(observer -> observer.onUpdateCharacterCard(cardSelected, parameters));
-
-            initializeEvents();
-
-            wantedStudents = null;
-            returnedStudents = null;
-            //cardSelected = null;
-        }
-    }
-
-    private void pickStudentsFromEntrance(MouseEvent event) {
-        ImageView studentSelected = (ImageView) event.getSource();
-
-        House house = getHouseById(studentSelected.getId());
-
-        if (cardSelected != null) {
-            for (Node student : getVBoxByCard(cardSelected).getChildren()) {
-                student.setOnMouseClicked(doNothing);
-            }
-        }
-
-        if (returnedStudents == null) {
-            returnedStudents = new ArrayList<>();
-        }
-        returnedStudents.add(house);
-
-        if (wantedStudents.size() == returnedStudents.size()) {
-            Map<String, Object> parameters = new HashMap<>();
-
-            parameters.put("wantedStudents", wantedStudents);
-            parameters.put("returnedStudents", returnedStudents);
-
-            notifyObserver(observer -> observer.onUpdateCharacterCard(cardSelected, parameters));
-
-            initializeEvents();
-
-            wantedStudents = null;
-            returnedStudents = null;
-            //cardSelected = null;
-        }
     }
 
     private VBox getVBoxByCard(int card) {
