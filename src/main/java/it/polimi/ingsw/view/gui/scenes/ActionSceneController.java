@@ -2854,8 +2854,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
     public void initialize() {
 
-        this.diningHallMain = new Button[]{diningHallMainGreen, diningHallMainRed, diningHallMainYellow,
-                diningHallMainBlue, diningHallMainPink};
+        this.diningHallMain = new Button[]{diningHallMainGreen, diningHallMainRed, diningHallMainYellow, diningHallMainPink, diningHallMainBlue};
 
         this.characterCards = new ImageView[]{CharacterCard1, CharacterCard2, CharacterCard3};
 
