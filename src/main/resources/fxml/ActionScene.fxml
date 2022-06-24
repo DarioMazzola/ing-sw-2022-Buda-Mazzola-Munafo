@@ -2201,12 +2201,12 @@
                         <Font size="10.0" />
                      </font>
                   </Button>
-                  <Button fx:id="diningHallMainBlue" layoutX="71.0" layoutY="103.0" mnemonicParsing="false" opacity="0.0" prefHeight="18.0" prefWidth="194.0" text="Button">
+                  <Button fx:id="diningHallMainPink" layoutX="71.0" layoutY="103.0" mnemonicParsing="false" opacity="0.0" prefHeight="18.0" prefWidth="194.0" text="Button">
                      <font>
                         <Font size="10.0" />
                      </font>
                   </Button>
-                  <Button fx:id="diningHallMainPink" layoutX="71.0" layoutY="130.0" mnemonicParsing="false" opacity="0.0" prefHeight="18.0" prefWidth="194.0" text="Button">
+                  <Button fx:id="diningHallMainBlue" layoutX="71.0" layoutY="130.0" mnemonicParsing="false" opacity="0.0" prefHeight="18.0" prefWidth="194.0" text="Button">
                      <font>
                         <Font size="10.0" />
                      </font>
