@@ -77,7 +77,7 @@ public class SelectAssistantCardSceneController extends ViewObservable implement
         }
         imageClicked.getStyleClass().add("dropShadow");
 
-        int i = getValueByImage(imageClicked.getImage()) - 1;
+        int i = getValueByImage(imageClicked.getId());
         List<Toggle> toggles = assistantButtons.getToggles().sorted();
         toggles.get(i).setSelected(true);
 
@@ -138,18 +138,7 @@ public class SelectAssistantCardSceneController extends ViewObservable implement
         return url;
     }
 
-    public int getValueByImage(Image image) {
-
-        String url;
-
-        url = image.getUrl().substring(image.getUrl().length() - 6);
-        int value1 = Integer.parseInt(String.valueOf(url.charAt(1)));
-
-        if (url.charAt(0) == '_') {
-            return value1;
-        }
-        else {
-            return Integer.parseInt(String.valueOf(url.charAt(0))) * 10 +  value1;
-        }
+    public int getValueByImage(String id) {
+        return Integer.parseInt(String.valueOf(id.charAt(id.length()-1)));
     }
 }
