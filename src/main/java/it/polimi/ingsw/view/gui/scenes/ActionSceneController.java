@@ -4130,6 +4130,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         int currentIsland = gm.getMotherIsland();
 
+        getMotherByIsland(gm.getMotherIsland()).getStyleClass().add("dropShadow");
+
         for (int i = 0; i < gm.getPlayerByNickname(nickname).getMaxMoves(); i++) {
             currentIsland++;
             if (currentIsland == gm.getIslandList().size()) {
@@ -4558,7 +4560,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             island.setOnMouseClicked(doNothing);
         }
 
-        getMotherByIsland(gm.getMotherIsland()).getStyleClass().add("dropShadow");
     }
 
     public void setCloudSelectable() {
