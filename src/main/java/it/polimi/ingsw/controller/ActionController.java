@@ -281,9 +281,6 @@ public class ActionController {
                 parameters.put("players", gm.getArrayPlayers());
                 parameters.put("bag", gm.getBag());
                 break;
-
-            default:
-                System.err.println("Error in chooseCharacterCard of ActionController switch");
         }
 
         return (parameters);
