@@ -213,7 +213,7 @@ public class Server {
         for(String nickname : clientHandlerMap.keySet()) {
             if(! nickname.equals(playerDisconnected)) {
                 String interruptedBy = playerDisconnected + " has disconnected. The game will be stopped and saved on the server. " +
-                        "The server will be interrupted but you will be able to resume the game at a later time";
+                        "You will be able to resume the game at a later time";
                 turnController.endGameDisconnection(nickname, interruptedBy);
             }
         }

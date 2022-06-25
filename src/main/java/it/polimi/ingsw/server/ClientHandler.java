@@ -69,9 +69,7 @@ public class ClientHandler implements Runnable {
             handleClientConnection();
         } catch (IOException e) {
             System.err.println("Client " + client.getInetAddress() + " connection dropped, client handler");
-            e.printStackTrace();
             disconnect();
-            System.exit(0);
         }
     }
 
@@ -147,7 +145,6 @@ public class ClientHandler implements Runnable {
             Thread.currentThread().interrupt();
         }
         socketServer.onDisconnection(this);
-        System.exit(-124);
     }
 
     /**
@@ -184,7 +181,7 @@ public class ClientHandler implements Runnable {
                 output.writeObject(message);
             } catch (IOException e) {
                 e.printStackTrace();
-                System.exit(-1);
+                disconnect();
             }
             synchronized (lock) {
                 if (enableTimer)
