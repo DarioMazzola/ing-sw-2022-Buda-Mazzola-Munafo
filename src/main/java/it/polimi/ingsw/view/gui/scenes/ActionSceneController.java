@@ -2873,8 +2873,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             TwoDashboardAlternative.setVisible(true);
         } else if (gm.getNumPlayers() > 2) {
             //third player
-            initializeDashboardThirdPlayer();
-
+            initializeThirdPlayer();
 
             if (gm.getNumPlayers() == 4) {
                 if (!gm.isChat()) {
@@ -2888,7 +2887,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     ChatSendBtn.setOnAction(this::onChatSendBtnClick);
                 }
                 //fourth player
-                initializeDashboardFourthPlayer();
+                initializeFourthPlayer();
+
             } else {
                 Dashboard3.setVisible(false);
                 Chat.setDisable(true);
