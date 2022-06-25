@@ -1,5 +1,6 @@
 package it.polimi.ingsw.view.gui;
 
+import it.polimi.ingsw.messages.TypeOfError;
 import it.polimi.ingsw.observer.ViewObservable;
 import it.polimi.ingsw.observer.ViewObserver;
 import it.polimi.ingsw.view.gui.scenes.SceneInterface;
@@ -24,9 +25,9 @@ public class SceneController extends ViewObservable {
 
     private static Scene activeScene;
     private static SceneInterface activeController;
-    public static Stage waitStage;
+    private static Stage waitStage;
 
-    public static <T> T changeRootPane(List<ViewObserver> observerList, String fileName) {
+    public <T> T changeRootPane(List<ViewObserver> observerList, String fileName) {
         T controller = null;
 
         try {
@@ -46,7 +47,7 @@ public class SceneController extends ViewObservable {
         return controller;
     }
 
-    public static void changeRootPane(List<ViewObserver> observerList, String fileName, SceneInterface controller) {
+    public void changeRootPane(List<ViewObserver> observerList, String fileName, SceneInterface controller) {
 
         try {
             FXMLLoader loader = new FXMLLoader(SceneController.class.getResource("/fxml/" + fileName));
@@ -65,25 +66,25 @@ public class SceneController extends ViewObservable {
     }
 
 
-    private static void setActiveScene(Scene scene){
+    private void setActiveScene(Scene scene){
         activeScene = scene;
     }
 
-    public static Scene getActiveScene(){
+    public Scene getActiveScene(){
         return activeScene;
     }
 
-    public static SceneInterface getActiveController() {
+    public SceneInterface getActiveController() {
         return activeController;
     }
 
-    public static <T> T changeRootPane(List<ViewObserver> observerList, Event event, String fileName) {
+    public <T> T changeRootPane(List<ViewObserver> observerList, Event event, String fileName) {
         Scene scene = ((Node) event.getSource()).getScene();
         setActiveScene(scene);
         return changeRootPane(observerList, fileName);
     }
 
-    public static void displayPopUp(String fileName, SceneInterface controller) {
+    public void displayPopUp(String fileName, SceneInterface controller) {
 
         try {
             FXMLLoader loader = new FXMLLoader(SceneController.class.getResource("/fxml/" + fileName));
@@ -104,7 +105,7 @@ public class SceneController extends ViewObservable {
         }
     }
 
-    public static <T> T displayPopUp(List<ViewObserver> observerList, String fileName){
+    public <T> T displayPopUp(List<ViewObserver> observerList, String fileName){
 
         T controller = null;
         try {
@@ -133,7 +134,7 @@ public class SceneController extends ViewObservable {
         return controller;
     }
 
-    public static void hidePopUp(){
+    public void hidePopUp(){
 
         if(activeScene != null && waitStage != null) {
             activeScene.getRoot().setEffect(null);
@@ -141,7 +142,7 @@ public class SceneController extends ViewObservable {
         }
     }
 
-    public static void displayError(String errorMessage) {
+    public void displayError(String errorMessage, List<ViewObserver> observerList) {
 
         activeScene.getRoot().setEffect(new GaussianBlur());
 
