@@ -103,6 +103,8 @@ public class Server {
                 turnController.sendNickname(sender);
             }
             else {
+                turnController.removeFromVirtualViewMap(sender);
+                clientHandlerMap.remove(sender);
                 turnController.showError(clientHandler, GAME_ALREADY_STARTED.toString());
             }
         }
@@ -137,6 +139,8 @@ public class Server {
             }
         }
         else {
+            turnController.removeFromVirtualViewMap(sender);
+            clientHandlerMap.remove(sender);
             turnController.showError(clientHandler, GAME_ALREADY_STARTED.toString());
         }
     }
