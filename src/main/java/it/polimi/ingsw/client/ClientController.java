@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client;
 
 import it.polimi.ingsw.messages.Message;
+import it.polimi.ingsw.messages.TypeOfError;
 import it.polimi.ingsw.messages.answer.*;
 import it.polimi.ingsw.messages.command.*;
 import it.polimi.ingsw.model.*;
@@ -50,8 +51,7 @@ public class ClientController extends Observer implements ViewObserver {
             client.sendPong();
             showTaskQueue.execute(view::createNewGame);
         } catch (IOException e) {
-            showTaskQueue.execute(() -> view.showError("\u001b[31m" + "A connection with the server could not be opened! Please try again"));
-            System.exit(-1);
+            update(new EndGameDisconnection(TypeOfError.SERVER_UNREACHBLE.toString()));
         }
     }
 
@@ -140,7 +140,9 @@ public class ClientController extends Observer implements ViewObserver {
 
     @Override
     public void onDisconnection() {
-        client.disconnect();
+        try{
+            client.disconnect();
+        }catch (NullPointerException ignored){}
         showTaskQueue.shutdown();
         System.exit(-12);
     }
