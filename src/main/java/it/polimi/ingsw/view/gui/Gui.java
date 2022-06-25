@@ -122,7 +122,9 @@ public class Gui extends ViewObservable implements UI {
 
     @Override
     public void sendWinner(String winner) {
-
+        Platform.runLater(SceneController::hidePopUp);
+        WinnerSceneController controller = new WinnerSceneController(winner, nickname);
+        Platform.runLater(() -> SceneController.displayPopUp("WinnerScene.fxml", controller));
     }
 
     @Override
