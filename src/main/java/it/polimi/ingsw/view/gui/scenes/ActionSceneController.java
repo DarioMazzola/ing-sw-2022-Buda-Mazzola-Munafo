@@ -1877,13 +1877,12 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     }
 
     private void initializeThirdPlayer() {
+        initializeDashboardThirdPlayer();
 
         NameDashboard2.setText(gm.getArrayPlayers()[(numMain + 2) % gm.getNumPlayers()].getNickname());
 
         fillGraveyard(GraveyardDashboard2, gm.getArrayPlayers()[(numMain + 2) % gm.getNumPlayers()]);
         fillCardInUse(CardInUseDashboard2, gm.getArrayPlayers()[(numMain + 2) % gm.getNumPlayers()]);
-
-        initializeDashboardThirdPlayer();
     }
 
     private void initializeDashboardThirdPlayer() {
@@ -2056,7 +2055,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             ProfPinkDashboard2.setVisible(false);
         }
         if (profMap.get(House.GREEN)) {
-            image = new Image("images/professors/teacher_pink.png");
+            image = new Image("images/professors/teacher_green.png");
             ProfGreenDashboard2.setImage(image);
             ProfGreenDashboard2.setVisible(true);
         } else {
@@ -2086,13 +2085,12 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     }
 
     private void initializeFourthPlayer() {
+        initializeDashboardFourthPlayer();
 
         NameDashboard3.setText(gm.getArrayPlayers()[(numMain + 3) % gm.getNumPlayers()].getNickname());
 
         fillGraveyard(GraveyardDashboard3, gm.getArrayPlayers()[(numMain + 3) % gm.getNumPlayers()]);
         fillCardInUse(CardInUseDashboard3, gm.getArrayPlayers()[(numMain + 3) % gm.getNumPlayers()]);
-
-        initializeDashboardFourthPlayer();
     }
 
     private void initializeDashboardFourthPlayer() {
@@ -2733,14 +2731,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     }
 
     private void initializeChat(String msg) {
-        ReducedPlayer teamMate = null;
-        for (ReducedPlayer p : gm.getArrayPlayers()) {
-            if (p.getDashboard().getTowerColor().equals(gm.getPlayerByNickname(nickname).getDashboard().getTowerColor()) && !p.getNickname().equals(nickname)) {
-                teamMate = p;
-                break;
-            }
-        }
-        NoMessageText.setText("Message from " + (teamMate == null ? "your team mate" : teamMate.getNickname()));
+        String teamMate = gm.getTeamMate(nickname);
+        NoMessageText.setText("Message from " + (teamMate == null ? "your team mate" : teamMate));
         ChatPane.setVisible(true);
         ChatReceivedText.setText(msg);
     }
@@ -4643,7 +4635,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                 Suggestions.setText("You now have to select a type of student to take from every player");
                 break;
             default:
-                Suggestions.setText("");
+                Suggestions.setText("You are in the waiting room! It's "+ gm.getCurrentPlayer().getNickname() + "'s turn");
         }
     }
 

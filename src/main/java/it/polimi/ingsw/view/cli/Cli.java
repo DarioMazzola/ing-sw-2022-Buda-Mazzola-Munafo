@@ -149,19 +149,9 @@ public class Cli extends ViewObservable implements UI {
     @Override
     public void onChatMessageReceived(String message) {
         stop = false;
-        Color towerColor = gm.getPlayerByNickname(this.nickname).getDashboard().getTowerColor();
-        ReducedPlayer teamMate = null;
-        for (ReducedPlayer p : gm.getArrayPlayers()) {
-            if (p.getDashboard().getTowerColor().equals(towerColor) && !p.getNickname().equals(this.nickname)) {
-                teamMate = p;
-                break;
-            }
-        }
-        if(teamMate != null) {
-            String teamMateNickname = teamMate.getNickname();
-            System.out.println("Message received from " + teamMateNickname + ":");
-            System.out.println("\n<< " + message + " >>\n");
-        }
+        String teamMate = gm.getTeamMate(nickname);
+        System.out.println("Message from " + (teamMate == null ? "your team mate" : teamMate));
+        System.out.println("\n<< " + message + " >>\n");
     }
 
     @Override

@@ -152,9 +152,9 @@ public class Gui extends ViewObservable implements UI {
 
         ActionSceneController controller = new ActionSceneController(gm, nickname);
 
-        Platform.runLater(()->controller.setSuggestions(null, ""));
-
         Platform.runLater(() -> SceneController.changeRootPane(observers, "ActionScene.fxml", controller));
+
+        Platform.runLater(()->controller.setSuggestions(null, ""));
     }
 
     @Override
