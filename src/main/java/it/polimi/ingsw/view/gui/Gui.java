@@ -148,6 +148,8 @@ public class Gui extends ViewObservable implements UI {
     public void goToWaitingRoom() {
         System.out.println("GoToWaitingRoom");
 
+        Platform.runLater(SceneController::hidePopUp);
+
         ActionSceneController controller = new ActionSceneController(gm, nickname);
 
         Platform.runLater(()->controller.setSuggestions(null, ""));
