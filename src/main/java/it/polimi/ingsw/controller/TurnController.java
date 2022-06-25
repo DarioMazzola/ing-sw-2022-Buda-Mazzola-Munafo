@@ -501,5 +501,15 @@ public class TurnController {
     public void setReset  (boolean value){
         this.reset = value;
     }
+
+    public void removeFromVirtualViewMap (String toRemove){
+        for(String s : virtualViewMap.keySet()) {
+            if(s.equals(toRemove)){
+                virtualViewMap.remove(s);
+                return;
+            }
+        }
+    }
+
 }
 
