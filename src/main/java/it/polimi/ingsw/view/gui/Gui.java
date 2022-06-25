@@ -122,6 +122,10 @@ public class Gui extends ViewObservable implements UI {
 
     @Override
     public void sendWinner(String winner) {
+        if (gm.getNumPlayers() == 4) {
+            String winnerTeamMate = gm.getTeamMate(winner);
+            winner+= " and " + winnerTeamMate;
+        }
         Platform.runLater(SceneController::hidePopUp);
         WinnerSceneController controller = new WinnerSceneController(winner, nickname);
         Platform.runLater(() -> SceneController.displayPopUp("WinnerScene.fxml", controller));
