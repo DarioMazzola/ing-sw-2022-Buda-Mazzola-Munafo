@@ -123,6 +123,7 @@ public class ClientHandler implements Runnable {
             System.err.println("Client disconnected");
             if(socketServer.belongsToTheGame(this))
                 disconnect();
+            pingHandler.shutdownNow();
         }
         client.close();
     }
