@@ -21,7 +21,10 @@ public enum TypeOfError {
         GAME_ALREADY_STARTED("The game is already started. You cannot join now!"),
         GAME_RESTORED_NICKNAME_NOT_PRESENT("There is a game saved on the server that a player has decided to resume. Your nickname is not part of the game. " +
                 "Please, if you want to play, wait for the game to end or change your nickname."),
-        WRONG_MOTHER_MOVES("You cannot move mother nature in this way! Please try again");
+        WRONG_MOTHER_MOVES("You cannot move mother nature in this way! Please try again"),
+        GAME_FULL("We are sorry, the game you're trying to join has already reached the maximum number of players.\nYou'll be disconnected..."),
+        DISCONNECTED(" has disconnected. The game will be stopped and saved on the server. " +
+                "You will be able to resume the game at a later time");
 
         private final String description;
 
