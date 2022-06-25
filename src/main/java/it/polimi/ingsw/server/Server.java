@@ -228,7 +228,16 @@ public class Server {
     }
 
     public boolean belongsToTheGame(ClientHandler clientHandler) {
-        return clientHandlerMap.containsValue(clientHandler);
+
+        String nickname = null;
+
+        for(String s : clientHandlerMap.keySet()){
+            if(clientHandlerMap.get(s).equals(clientHandler)){
+                nickname = s;
+            }
+        }
+
+        return clientHandlerMap.containsValue(clientHandler) && turnController.getVirtualViewMap().containsKey(nickname);
     }
 }
 
