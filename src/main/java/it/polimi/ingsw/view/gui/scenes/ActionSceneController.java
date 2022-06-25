@@ -2733,14 +2733,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     }
 
     private void initializeChat(String msg) {
-        ReducedPlayer teamMate = null;
-        for (ReducedPlayer p : gm.getArrayPlayers()) {
-            if (p.getDashboard().getTowerColor().equals(gm.getPlayerByNickname(nickname).getDashboard().getTowerColor()) && !p.getNickname().equals(nickname)) {
-                teamMate = p;
-                break;
-            }
-        }
-        NoMessageText.setText("Message from " + (teamMate == null ? "your team mate" : teamMate.getNickname()));
+        String teamMate = gm.getTeamMate(nickname);
+        NoMessageText.setText("Message from " + (teamMate == null ? "your team mate" : teamMate));
         ChatPane.setVisible(true);
         ChatReceivedText.setText(msg);
     }

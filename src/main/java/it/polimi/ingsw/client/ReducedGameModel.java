@@ -136,4 +136,16 @@ public class ReducedGameModel {
     public Boolean isChat(){
         return chat;
     }
+
+    public String getTeamMate (String nickname) {
+        Color towerColor = getPlayerByNickname(nickname).getDashboard().getTowerColor();
+        String teamMate = null;
+        for (ReducedPlayer p : arrayPlayers) {
+            if (p.getDashboard().getTowerColor().equals(towerColor) && !p.getNickname().equals(nickname)) {
+                teamMate = p.getNickname();
+                break;
+            }
+        }
+        return teamMate;
+    }
 }
