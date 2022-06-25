@@ -25,7 +25,7 @@ public class Server {
     private final Object lock;
     private List<String> restoredQueue;
 
-    private final Map<String, ClientHandler> clientHandlerMap;
+    private Map<String, ClientHandler> clientHandlerMap;
 
     /**
      * Class constructor.
@@ -95,8 +95,6 @@ public class Server {
                         } else
                             turnController.goToLobby(sender);
                     }
-                    else
-                        turnController.showError(sender, NICKNAME_TAKEN.toString());
                 }
             }
             else { // the player was not present in the saved game, he/she cannot play
@@ -219,6 +217,7 @@ public class Server {
                 turnController.endGameDisconnection(nickname, interruptedBy);
             }
         }
+        clientHandlerMap = Collections.synchronizedMap(new HashMap<>());
     }
 
     public void resendAvailableActions(String nickname){
