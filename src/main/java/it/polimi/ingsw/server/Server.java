@@ -79,22 +79,24 @@ public class Server {
                     turnController.selectRestore(sender);
                 }
                 else { //if the player is not the first
-                    clientHandlerMap.put(sender, clientHandler);
-                    turnController.loginHandler(sender, clientHandler);
-                    //if the player is the last
-                    if(turnController.checkIfFull(restored)){
-                        synchronized (lock) {
-                            //if the first player wants to resume the game or not
-                            if (selectedRestore) {
-                                turnController.restore();
+                    if(turnController.checkLoginNickname(sender, clientHandler)) {
+                        clientHandlerMap.put(sender, clientHandler);
+                        turnController.loginHandler(sender, clientHandler);
+                        //if the player is the last
+                        if (turnController.checkIfFull(restored)) {
+                            synchronized (lock) {
+                                //if the first player wants to resume the game or not
+                                if (selectedRestore) {
+                                    turnController.restore();
+                                } else {
+                                    turnController.goToLobby(sender);
+                                }
                             }
-                            else {
-                                turnController.goToLobby(sender);
-                            }
-                        }
+                        } else
+                            turnController.goToLobby(sender);
                     }
                     else
-                        turnController.goToLobby(sender);
+                        turnController.showError(sender, NICKNAME_TAKEN.toString());
                 }
             }
             else { // the player was not present in the saved game, he/she cannot play
