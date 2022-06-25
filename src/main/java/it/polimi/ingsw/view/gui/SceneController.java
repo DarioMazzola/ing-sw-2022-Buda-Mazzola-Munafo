@@ -155,7 +155,7 @@ public class SceneController extends ViewObservable {
         activeScene.getRoot().setEffect(null);
 
         if(errorMessage.endsWith(TypeOfError.DISCONNECTED.toString()) || errorMessage.endsWith(TypeOfError.GAME_FULL.toString())
-                || errorMessage.endsWith(TypeOfError.GAME_ALREADY_STARTED.toString())) {
+                || errorMessage.endsWith(TypeOfError.GAME_ALREADY_STARTED.toString()) || errorMessage.endsWith(TypeOfError.SERVER_UNREACHBLE.toString())) {
             for (ViewObserver observer : observerList)
                 addObserver(observer);
 
