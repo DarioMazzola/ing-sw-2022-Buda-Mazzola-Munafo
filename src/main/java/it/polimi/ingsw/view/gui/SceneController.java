@@ -153,5 +153,19 @@ public class SceneController extends ViewObservable {
         alert.showAndWait();
 
         activeScene.getRoot().setEffect(null);
+
+        if(errorMessage.endsWith(TypeOfError.DISCONNECTED.toString()) || errorMessage.endsWith(TypeOfError.GAME_FULL.toString())
+                || errorMessage.endsWith(TypeOfError.GAME_ALREADY_STARTED.toString())) {
+            for (ViewObserver observer : observerList)
+                addObserver(observer);
+
+            notifyObserver(ViewObserver::onDisconnection);
+            System.out.println("disconnected");
+
+
+            for (ViewObserver observer : observerList)
+                removeObserver(observer);
+
+        }
     }
 }
