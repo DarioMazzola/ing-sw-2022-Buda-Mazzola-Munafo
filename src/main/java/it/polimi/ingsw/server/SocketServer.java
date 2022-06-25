@@ -85,4 +85,8 @@ public class SocketServer implements Runnable { //potrebbe non essere runnable
     public void resendAvailableActions(String nickname){
         server.resendAvailableActions(nickname);
     }
+
+    public boolean belongsToTheGame(ClientHandler clientHandler) {
+        return server.belongsToTheGame(clientHandler);
+    }
 }

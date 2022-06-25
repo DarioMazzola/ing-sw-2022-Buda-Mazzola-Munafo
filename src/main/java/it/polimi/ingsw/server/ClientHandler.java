@@ -121,7 +121,8 @@ public class ClientHandler implements Runnable {
         }
         catch (SocketException e) {
             System.err.println("Client disconnected");
-            disconnect();
+            if(socketServer.belongsToTheGame(this))
+                disconnect();
         }
         client.close();
     }

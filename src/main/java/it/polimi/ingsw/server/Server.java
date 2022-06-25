@@ -97,10 +97,13 @@ public class Server {
                     }
                 }
             }
-            else { // the player was not present in the saved game, he/she cannot play
+            else if (!turnController.isGameStarted()){ // the player was not present in the saved game, he/she cannot play
                 turnController.loginHandler(sender, clientHandler);
                 turnController.showError(sender, GAME_RESTORED_NICKNAME_NOT_PRESENT.toString());
                 turnController.sendNickname(sender);
+            }
+            else {
+                turnController.showError(clientHandler, GAME_ALREADY_STARTED.toString());
             }
         }
 
@@ -134,7 +137,7 @@ public class Server {
             }
         }
         else {
-            turnController.showError(sender, GAME_ALREADY_STARTED.toString());
+            turnController.showError(clientHandler, GAME_ALREADY_STARTED.toString());
         }
     }
 
@@ -222,6 +225,10 @@ public class Server {
 
     public void resendAvailableActions(String nickname){
         turnController.resendActionPhase(nickname);
+    }
+
+    public boolean belongsToTheGame(ClientHandler clientHandler) {
+        return clientHandlerMap.containsValue(clientHandler);
     }
 }
 
