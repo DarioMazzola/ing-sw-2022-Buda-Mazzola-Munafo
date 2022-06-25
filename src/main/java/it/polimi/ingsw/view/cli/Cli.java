@@ -868,6 +868,10 @@ public class Cli extends ViewObservable implements UI {
     }
     @Override
     public void sendWinner(String winner) {
+        if (gm.getNumPlayers() == 4) {
+            String winnerTeamMate = gm.getTeamMate(winner);
+            System.out.println("GAME ENDED! " + winner + " and " + winnerTeamMate + " won the game! Thank you for playing!");
+        }
         System.out.println("GAME ENDED! " + winner + " won the game! Thank you for playing!");
     }
 
