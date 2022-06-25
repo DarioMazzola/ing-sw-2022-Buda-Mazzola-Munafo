@@ -27,7 +27,8 @@ public class MenuController extends ViewObservable implements SceneInterface{
     }
 
     public void play(ActionEvent event) {
-        SceneController.changeRootPane(observers, event, "connectionScene.fxml");
+        SceneController sceneController = new SceneController();
+        sceneController.changeRootPane(observers, event, "connectionScene.fxml");
     }
 
 }

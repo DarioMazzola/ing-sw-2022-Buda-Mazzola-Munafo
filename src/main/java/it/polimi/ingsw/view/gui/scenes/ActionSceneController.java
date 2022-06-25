@@ -4672,31 +4672,33 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
     private void selectCharacterCard(MouseEvent event) {
 
+        SceneController sceneController = new SceneController();
+
         ImageView card = (ImageView) event.getSource();
 
         String id = card.getId();
         this.cardSelected = Integer.parseInt(String.valueOf(id.charAt(id.length() - 1))) - 1;
 
-        SceneController.getActiveScene().getRoot().setEffect(new GaussianBlur());
+        sceneController.getActiveScene().getRoot().setEffect(new GaussianBlur());
 
         Alert alert;
 
         //if the player does not have enough coins
         if (gm.getPlayerByNickname(nickname).getCoins() < gm.getCharacterCardDeck()[cardSelected].getCost()) {
             alert = new Alert(Alert.AlertType.ERROR);
-            alert.initOwner(SceneController.getActiveScene().getWindow());
+            alert.initOwner(sceneController.getActiveScene().getWindow());
             alert.initModality(Modality.APPLICATION_MODAL);
 
             alert.setTitle("Select assistant card");
             alert.setHeaderText("You don't have enough coins to use this card!");
 
             alert.showAndWait();
-            SceneController.getActiveScene().getRoot().setEffect(null);
+            sceneController.getActiveScene().getRoot().setEffect(null);
             return;
         }
 
         alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.initOwner(SceneController.getActiveScene().getWindow());
+        alert.initOwner(sceneController.getActiveScene().getWindow());
         alert.initModality(Modality.APPLICATION_MODAL);
 
         alert.setTitle("Select assistant card");
@@ -4771,7 +4773,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     System.err.println("Error in chooseCharacterCard of ActionController switch");
             }
         }
-        SceneController.getActiveScene().getRoot().setEffect(null);
+        sceneController.getActiveScene().getRoot().setEffect(null);
     }
 
     // <------- HerbGranma ------->

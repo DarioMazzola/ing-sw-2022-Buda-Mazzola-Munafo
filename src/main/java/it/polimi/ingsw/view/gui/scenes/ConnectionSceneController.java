@@ -21,9 +21,12 @@ public class ConnectionSceneController extends ViewObservable implements SceneIn
     }
 
     public void login(ActionEvent event) {
+
+        SceneController sceneController = new SceneController();
+
         String ip = serverIpBox.getText();
         int port = Integer.parseInt(serverPortBox.getText());
         notifyObserver(observers -> observers.onInit(ip, port));
-        SceneController.changeRootPane(observers, event, "loginScene.fxml");
+        sceneController.changeRootPane(observers, event, "loginScene.fxml");
     }
 }
