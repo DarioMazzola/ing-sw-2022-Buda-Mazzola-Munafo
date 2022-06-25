@@ -3,6 +3,7 @@ package it.polimi.ingsw.view.cli;
 import com.google.gson.Gson;
 import it.polimi.ingsw.ClientMain;
 import it.polimi.ingsw.client.*;
+import it.polimi.ingsw.messages.TypeOfError;
 import it.polimi.ingsw.model.*;
 import it.polimi.ingsw.observer.ViewObservable;
 import it.polimi.ingsw.observer.ViewObserver;
@@ -107,6 +108,11 @@ public class Cli extends ViewObservable implements UI {
     @Override
     public void showError(String errorMsg) {
         System.out.println(errorMsg);
+
+        if(errorMsg.endsWith(TypeOfError.DISCONNECTED.toString()) || errorMsg.endsWith(TypeOfError.GAME_FULL.toString())
+                || errorMsg.endsWith(TypeOfError.GAME_ALREADY_STARTED.toString()) || errorMsg.endsWith(TypeOfError.SERVER_UNREACHBLE.toString())) {
+            notifyObserver(ViewObserver::onDisconnection);
+        }
     }
 
     /**
