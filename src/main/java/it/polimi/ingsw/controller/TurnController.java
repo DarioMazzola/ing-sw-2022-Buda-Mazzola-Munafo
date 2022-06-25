@@ -340,6 +340,7 @@ public class TurnController {
             }
         }
 
+        setIsGameStarted(true);
         setGameModel();
 
         addObservers();
@@ -458,6 +459,11 @@ public class TurnController {
      */
     public void showError(String nickname, String error) {
         virtualViewMap.get(nickname).showError(error);
+    }
+
+    public void showError(ClientHandler clientHandler, String error) {
+        VirtualView virtualView = new VirtualView(clientHandler);
+        virtualView.showError(error);
     }
 
     /**
