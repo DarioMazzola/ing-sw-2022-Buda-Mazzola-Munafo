@@ -69,7 +69,9 @@ public class ClientHandler implements Runnable {
             handleClientConnection();
         } catch (IOException e) {
             System.err.println("Client " + client.getInetAddress() + " connection dropped, client handler");
-            disconnect();
+            if(socketServer.belongsToTheGame(this))
+                disconnect();
+            pingHandler.shutdownNow();
         }
     }
 
