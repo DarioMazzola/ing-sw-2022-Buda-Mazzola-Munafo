@@ -1,6 +1,7 @@
 package it.polimi.ingsw.view.gui;
 
 import it.polimi.ingsw.client.*;
+import it.polimi.ingsw.messages.TypeOfError;
 import it.polimi.ingsw.model.Card;
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.model.Wizard;
@@ -21,39 +22,44 @@ public class Gui extends ViewObservable implements UI {
 
     private ReducedGameModel gm;
     private String nickname;
+    private final SceneController sceneController;
+
+    public Gui(){
+        this.sceneController = new SceneController();
+    }
 
     @Override
     public void createNewGame() {
 
-        Platform.runLater(SceneController::hidePopUp);
+        Platform.runLater(sceneController::hidePopUp);
 
-        Platform.runLater(() -> SceneController.changeRootPane(observers, "loginScene.fxml"));
+        Platform.runLater(() -> sceneController.changeRootPane(observers, "loginScene.fxml"));
     }
 
     @Override
     public void selectNumPlayers() {
 
-        Platform.runLater(SceneController::hidePopUp);
+        Platform.runLater(sceneController::hidePopUp);
 
-        Platform.runLater(() -> SceneController.changeRootPane(observers, "SelectNumPlayerScene.fxml"));
+        Platform.runLater(() -> sceneController.changeRootPane(observers, "SelectNumPlayerScene.fxml"));
     }
 
     @Override
     public void selectExpertMode() {
 
-        Platform.runLater(SceneController::hidePopUp);
+        Platform.runLater(sceneController::hidePopUp);
 
-        Platform.runLater(() -> SceneController.changeRootPane(observers, "SelectExpertModeScene.fxml"));
+        Platform.runLater(() -> sceneController.changeRootPane(observers, "SelectExpertModeScene.fxml"));
     }
 
     @Override
     public void selectWizard(List<Wizard> availableWizards) {
 
-        Platform.runLater(SceneController::hidePopUp);
+        Platform.runLater(sceneController::hidePopUp);
 
         SelectWizardSceneController controller = new SelectWizardSceneController(availableWizards);
 
-        Platform.runLater(() -> SceneController.changeRootPane(observers, "SelectWizardScene.fxml", controller));
+        Platform.runLater(() -> sceneController.changeRootPane(observers, "SelectWizardScene.fxml", controller));
     }
 
     @Override
@@ -63,52 +69,52 @@ public class Gui extends ViewObservable implements UI {
 
     @Override
     public void selectChat() {
-        Platform.runLater(SceneController::hidePopUp);
+        Platform.runLater(sceneController::hidePopUp);
 
-        Platform.runLater(() -> SceneController.changeRootPane(observers, "SelectChatScene.fxml"));
+        Platform.runLater(() -> sceneController.changeRootPane(observers, "SelectChatScene.fxml"));
     }
 
     @Override
     public void selectTeam(String[] teamArray, String[] leaderArray) {
-        Platform.runLater(SceneController::hidePopUp);
+        Platform.runLater(sceneController::hidePopUp);
 
         SelectTeamController controller = new SelectTeamController(teamArray, leaderArray);
 
-        Platform.runLater(() -> SceneController.changeRootPane(observers, "SelectTeamScene.fxml", controller));
+        Platform.runLater(() -> sceneController.changeRootPane(observers, "SelectTeamScene.fxml", controller));
     }
 
     @Override
     public void selectTowerColor(List<Color> availableColors) {
 
-        Platform.runLater(SceneController::hidePopUp);
+        Platform.runLater(sceneController::hidePopUp);
 
         SelectTowerColorSceneController controller = new SelectTowerColorSceneController(availableColors);
 
-        Platform.runLater(() -> SceneController.changeRootPane(observers, "SelectTowerColorScene.fxml", controller));
+        Platform.runLater(() -> sceneController.changeRootPane(observers, "SelectTowerColorScene.fxml", controller));
     }
 
     @Override
     public void selectAssistantCard(List<Card> availableAssistantCard) {
 
-        Platform.runLater(SceneController::hidePopUp);
+        Platform.runLater(sceneController::hidePopUp);
 
         SelectAssistantCardSceneController controller = new SelectAssistantCardSceneController(gm, nickname, availableAssistantCard);
 
-        Platform.runLater(() -> SceneController.changeRootPane(observers, "SelectAssistantCardScene.fxml", controller));
+        Platform.runLater(() -> sceneController.changeRootPane(observers, "SelectAssistantCardScene.fxml", controller));
     }
 
     @Override
     public void actionPhase(List<String> availableActions) {
-        Platform.runLater(SceneController::hidePopUp);
+        Platform.runLater(sceneController::hidePopUp);
 
         ActionSceneController controller;
 
-        Platform.runLater(SceneController::hidePopUp);
-        if (!(SceneController.getActiveController() instanceof ActionSceneController)) {
+        Platform.runLater(sceneController::hidePopUp);
+        if (!(sceneController.getActiveController() instanceof ActionSceneController)) {
             controller = new ActionSceneController(gm, nickname);
-            Platform.runLater(() -> SceneController.changeRootPane(observers, "ActionScene.fxml", controller));
+            Platform.runLater(() -> sceneController.changeRootPane(observers, "ActionScene.fxml", controller));
         } else {
-            controller = (ActionSceneController) SceneController.getActiveController();
+            controller = (ActionSceneController) sceneController.getActiveController();
             controller.setGameModel(gm);
         }
 
@@ -126,20 +132,20 @@ public class Gui extends ViewObservable implements UI {
             String winnerTeamMate = gm.getTeamMate(winner);
             winner+= " and " + winnerTeamMate;
         }
-        Platform.runLater(SceneController::hidePopUp);
+        Platform.runLater(sceneController::hidePopUp);
         WinnerSceneController controller = new WinnerSceneController(winner, nickname);
-        Platform.runLater(() -> SceneController.displayPopUp("WinnerScene.fxml", controller));
+        Platform.runLater(() -> sceneController.displayPopUp("WinnerScene.fxml", controller));
     }
 
     @Override
     public void selectCloud() {
         ActionSceneController controller;
 
-        if (!(SceneController.getActiveController() instanceof ActionSceneController)) {
+        if (!(sceneController.getActiveController() instanceof ActionSceneController)) {
             controller = new ActionSceneController(gm, nickname);
-            Platform.runLater(() -> SceneController.changeRootPane(observers, "ActionScene.fxml", controller));
+            Platform.runLater(() -> sceneController.changeRootPane(observers, "ActionScene.fxml", controller));
         } else {
-            controller = (ActionSceneController) SceneController.getActiveController();
+            controller = (ActionSceneController) sceneController.getActiveController();
         }
 
         Platform.runLater(()->controller.setSuggestions(null, "selectCloud"));
@@ -152,11 +158,11 @@ public class Gui extends ViewObservable implements UI {
     public void goToWaitingRoom() {
         System.out.println("GoToWaitingRoom");
 
-        Platform.runLater(SceneController::hidePopUp);
+        Platform.runLater(sceneController::hidePopUp);
 
         ActionSceneController controller = new ActionSceneController(gm, nickname);
 
-        Platform.runLater(() -> SceneController.changeRootPane(observers, "ActionScene.fxml", controller));
+        Platform.runLater(() -> sceneController.changeRootPane(observers, "ActionScene.fxml", controller));
 
         Platform.runLater(()->controller.setSuggestions(null, ""));
     }
@@ -164,22 +170,22 @@ public class Gui extends ViewObservable implements UI {
     @Override
     public void goToLobby() {
 
-        Platform.runLater(SceneController::hidePopUp);
-        Platform.runLater(() -> SceneController.changeRootPane(observers, "LobbyScene.fxml"));
+        Platform.runLater(sceneController::hidePopUp);
+        Platform.runLater(() -> sceneController.changeRootPane(observers, "LobbyScene.fxml"));
     }
 
     @Override
     public void waitForOthersMoves(String move) {
 
-        Platform.runLater(SceneController::hidePopUp);
+        Platform.runLater(sceneController::hidePopUp);
         WaitForOthersMoveSceneController controller = new WaitForOthersMoveSceneController(move);
-        Platform.runLater(() -> SceneController.displayPopUp("WaitForOthersMoveScene.fxml", controller));
+        Platform.runLater(() -> sceneController.displayPopUp("WaitForOthersMoveScene.fxml", controller));
     }
 
     @Override
     public void selectRestoreGame() {
 
-        Platform.runLater(() -> SceneController.displayPopUp(observers, "SelectRestoreGameScene.fxml"));
+        Platform.runLater(() -> sceneController.displayPopUp(observers, "SelectRestoreGameScene.fxml"));
     }
 
     @Override
@@ -190,15 +196,17 @@ public class Gui extends ViewObservable implements UI {
     @Override
     public void onChatMessageReceived(String message) {
         ActionSceneController controller;
-        if (SceneController.getActiveController() instanceof ActionSceneController) {
-            controller = (ActionSceneController) SceneController.getActiveController();
+        if (sceneController.getActiveController() instanceof ActionSceneController) {
+            controller = (ActionSceneController) sceneController.getActiveController();
             Platform.runLater(() -> controller.updateChat(message));
         }
     }
 
     @Override
     public void endGameDisconnection(String errorCause) {
+        System.out.println(errorCause);
 
+        Platform.runLater(() -> sceneController.displayError(errorCause, observers));
     }
 
     @Override
@@ -207,8 +215,8 @@ public class Gui extends ViewObservable implements UI {
 
         updateActionSceneGM();
 
-        if (SceneController.getActiveController() instanceof ActionSceneController) {
-            ActionSceneController controller = (ActionSceneController) SceneController.getActiveController();
+        if (sceneController.getActiveController() instanceof ActionSceneController) {
+            ActionSceneController controller = (ActionSceneController) sceneController.getActiveController();
             Platform.runLater(controller::updateIslands);
         }
     }
@@ -220,8 +228,8 @@ public class Gui extends ViewObservable implements UI {
 
         updateActionSceneGM();
 
-        if (SceneController.getActiveController() instanceof ActionSceneController) {
-            ActionSceneController controller = (ActionSceneController) SceneController.getActiveController();
+        if (sceneController.getActiveController() instanceof ActionSceneController) {
+            ActionSceneController controller = (ActionSceneController) sceneController.getActiveController();
             Platform.runLater(() -> controller.updatePlayer(player));
         }
     }
@@ -232,8 +240,8 @@ public class Gui extends ViewObservable implements UI {
 
         updateActionSceneGM();
 
-        if (SceneController.getActiveController() instanceof ActionSceneController) {
-            ActionSceneController controller = (ActionSceneController) SceneController.getActiveController();
+        if (sceneController.getActiveController() instanceof ActionSceneController) {
+            ActionSceneController controller = (ActionSceneController) sceneController.getActiveController();
             Platform.runLater(controller::updateClouds);
         }
     }
@@ -250,8 +258,8 @@ public class Gui extends ViewObservable implements UI {
 
         updateActionSceneGM();
 
-        if (SceneController.getActiveController() instanceof ActionSceneController) {
-            ActionSceneController controller = (ActionSceneController) SceneController.getActiveController();
+        if (sceneController.getActiveController() instanceof ActionSceneController) {
+            ActionSceneController controller = (ActionSceneController) sceneController.getActiveController();
             Platform.runLater(controller::updateMotherNature);
         }
     }
@@ -262,8 +270,8 @@ public class Gui extends ViewObservable implements UI {
 
         updateActionSceneGM();
 
-        if (SceneController.getActiveController() instanceof ActionSceneController) {
-            ActionSceneController controller = (ActionSceneController) SceneController.getActiveController();
+        if (sceneController.getActiveController() instanceof ActionSceneController) {
+            ActionSceneController controller = (ActionSceneController) sceneController.getActiveController();
             Platform.runLater(() -> controller.updateCurrentPlayer(currentPlayer));
         }
     }
@@ -274,8 +282,8 @@ public class Gui extends ViewObservable implements UI {
 
         updateActionSceneGM();
 
-        if (SceneController.getActiveController() instanceof ActionSceneController) {
-            ActionSceneController controller = (ActionSceneController) SceneController.getActiveController();
+        if (sceneController.getActiveController() instanceof ActionSceneController) {
+            ActionSceneController controller = (ActionSceneController) sceneController.getActiveController();
             Platform.runLater(() -> controller.updateDiningHall(diningHall));
         }
     }
@@ -286,8 +294,8 @@ public class Gui extends ViewObservable implements UI {
 
         updateActionSceneGM();
 
-        if (SceneController.getActiveController() instanceof ActionSceneController) {
-            ActionSceneController controller = (ActionSceneController) SceneController.getActiveController();
+        if (sceneController.getActiveController() instanceof ActionSceneController) {
+            ActionSceneController controller = (ActionSceneController) sceneController.getActiveController();
             Platform.runLater(() -> controller.updateDashboard(dashboard));
         }
     }
@@ -298,8 +306,8 @@ public class Gui extends ViewObservable implements UI {
 
         updateActionSceneGM();
 
-        if (SceneController.getActiveController() instanceof ActionSceneController) {
-            ActionSceneController controller = (ActionSceneController) SceneController.getActiveController();
+        if (sceneController.getActiveController() instanceof ActionSceneController) {
+            ActionSceneController controller = (ActionSceneController) sceneController.getActiveController();
             Platform.runLater(controller::initialize);
         }
     }
@@ -311,19 +319,20 @@ public class Gui extends ViewObservable implements UI {
 
     @Override
     public void showError(String errorMsg) {
-        Platform.runLater(() -> SceneController.displayError(errorMsg));
+        Platform.runLater(() -> sceneController.displayError(errorMsg, observers));
     }
 
     @Override
     public void notifyGameFull() {
-
+        Platform.runLater(() -> sceneController.displayError(TypeOfError.GAME_FULL.toString(), observers));
+//        notifyObserver(ViewObserver::onDisconnection);
     }
 
     private void updateActionSceneGM() {
         ActionSceneController controller;
 
-        if (SceneController.getActiveController() instanceof ActionSceneController) {
-            controller = (ActionSceneController) SceneController.getActiveController();
+        if (sceneController.getActiveController() instanceof ActionSceneController) {
+            controller = (ActionSceneController) sceneController.getActiveController();
             controller.setGameModel(gm);
         }
     }
