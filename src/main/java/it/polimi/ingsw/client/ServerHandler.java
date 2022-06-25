@@ -40,13 +40,7 @@ public class ServerHandler extends Observable {
      */
     public ServerHandler(String address, int port) throws IOException {
 
-        try{
-            this.socket = new Socket(address, port);
-        }
-        catch (IOException e){
-            disconnect();
-            throw e;
-        }
+        this.socket = new Socket(address, port);
 
         //sets a timeout for the socket on client
         socket.setSoTimeout(10000);
