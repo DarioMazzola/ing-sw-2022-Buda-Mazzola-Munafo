@@ -47,6 +47,8 @@ public class Server {
      * If, on the other hand, the client is not the first, then the player will be placed in a queue in which
      * he/she will wait for the decisions made by the first player about the initialization of the game or
      * on resuming the game or not.
+     * If there is a game in progress or the game is already started, the client will receive an
+     * error message telling him that he cannot play.
      *
      * @param message the message sent by the client.
      * @param clientHandler the ClientHandler associated with the client.
@@ -211,10 +213,21 @@ public class Server {
         }
     }
 
+    /**
+     * Forwards the chat message to the turn controller to send it
+     * to the teammate of the player who sent it.
+     * @param message the chat message sent and to forward
+     */
     public void chat(CommandMessage message){
         turnController.chat(message);
     }
 
+    /**
+     * Manages the disconnection of a client by notifying the associated client of the error.
+     * Create a new clientHandler map to handle subsequent reconnection.
+     *
+     * @param clientHandler the clientHandler of the player who disconnected
+     */
     public void onDisconnection(ClientHandler clientHandler){
         String playerDisconnected = getNicknameFromClientHandler(clientHandler);
         for(String nickname : clientHandlerMap.keySet()) {
@@ -226,10 +239,23 @@ public class Server {
         clientHandlerMap = Collections.synchronizedMap(new HashMap<>());
     }
 
+    /**
+     * Sends the available actions back to the client associated
+     * with the nickname passed as a parameter.
+     *
+     * @param nickname the nickname of the player to send the available actions to
+     */
     public void resendAvailableActions(String nickname){
         turnController.resendActionPhase(nickname);
     }
 
+    /**
+     * Checks whether a given player, associated with the clientHandler
+     * passed as a parameter, is part of the current game or not.
+     *
+     * @param clientHandler the clientHandler associated to the player
+     * @return true if the player belongs to the game.
+     */
     public boolean belongsToTheGame(ClientHandler clientHandler) {
 
         String nickname = null;
