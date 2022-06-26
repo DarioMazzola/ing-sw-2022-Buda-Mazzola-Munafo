@@ -53,19 +53,14 @@ public class TurnController {
      * Gets called to manage the messages from the client
      *
      * @param message       received from the client
-     * @param clientHandler related to the client
      */
-    public void selectMainPhase(CommandMessage message, ClientHandler clientHandler) {
+    public void selectMainPhase(CommandMessage message) {
         switch (gameState) {
             case SETUP:
-                System.out.println("doAction::setupController");
-                setupController.doAction(message, phase, clientHandler, this);
-                System.out.println("1");
+                setupController.doAction(message, phase, this);
 
                 if (gameState == START) {
-                    System.out.println("1.1");
                     int limit = queue.size();
-                    System.out.println("limit: " + limit);
                     if (queue.size() >= gm.getNumPlayers()) {
                         limit = gm.getNumPlayers();
                     } else {
@@ -88,12 +83,9 @@ public class TurnController {
                         virtualViewMap.get(message.getNickname()).goToLobby();
                     }
                 }
-                System.out.println("2");
-
                 break;
 
             case START:
-                System.out.println("siamo in start");
                 startController.doAction(message, phase, this);
                 if (gameState == PLANNING) {
                     addObservers();
