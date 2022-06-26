@@ -49,6 +49,7 @@ public class ActionController {
      * Gets called to manage the messages from the client
      *
      * @param messageReceived received from the client
+     * @param tc the turn controller in use
      */
     public void doAction(CommandMessage messageReceived, TurnController tc) {
         MessageType type = messageReceived.getType();
@@ -290,6 +291,7 @@ public class ActionController {
      * Moves the students from the entrance to the island
      *
      * @param message received from the client
+     * @param tc the turn controller in use
      */
     private void moveStudentsToIslandHandler(CommandMessage message, TurnController tc) {
         int island = ((MoveStudentToIsland) message).getIsland();
@@ -314,6 +316,7 @@ public class ActionController {
      * Moves the students from the entrance to the dining hall
      *
      * @param message received from the client
+     * @param tc the turn controller in use
      */
     private void moveStudentsToDiningHallHandler(CommandMessage message, TurnController tc) {
         House house = ((MoveStudentToDiningHall) message).getHouse();
