@@ -13,6 +13,7 @@ import static it.polimi.ingsw.messages.TypeOfError.*;
 
 /**
  * Class representing the start controller
+ *
  * @author Gabriele Munafo'
  */
 public class StartController {
