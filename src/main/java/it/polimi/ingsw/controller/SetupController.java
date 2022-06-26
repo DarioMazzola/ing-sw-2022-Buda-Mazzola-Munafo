@@ -3,7 +3,6 @@ package it.polimi.ingsw.controller;
 import it.polimi.ingsw.exceptions.BagException;
 import it.polimi.ingsw.exceptions.EntranceException;
 import it.polimi.ingsw.messages.command.*;
-import it.polimi.ingsw.server.ClientHandler;
 
 import static it.polimi.ingsw.controller.GamePhase.*;
 import static it.polimi.ingsw.controller.GameState.*;
@@ -11,6 +10,7 @@ import static it.polimi.ingsw.messages.TypeOfError.*;
 
 /**
  * Class representing the setup controller
+ *
  * @author Gabriele Munafo'
  */
 public class SetupController{
@@ -22,17 +22,16 @@ public class SetupController{
 
     public SetupController(){
         this.chat = null;
-        this.expertMode = false; //valori di default
-        this.numPlayer = 2; //valori di default
+        this.expertMode = false;
+        this.numPlayer = 2;
     }
 
     /**
      * Gets called to manage the messages from the client
      * @param messageReceived received from the client
      * @param phase which selects the right case of the switch
-     * @param clientHandler related to the client
      */
-    public void doAction(CommandMessage messageReceived, GamePhase phase, ClientHandler clientHandler, TurnController tc) {
+    public void doAction(CommandMessage messageReceived, GamePhase phase, TurnController tc) {
         System.out.println(messageReceived.getNickname() + "is in setup state");
 
         switch (phase) {
