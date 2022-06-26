@@ -121,7 +121,7 @@ public class Server {
                     return;
                 if(turnController.getPhase() == GamePhase.CREATE_GAME)
                     turnController.loginHandler(sender, clientHandler);
-                turnController.selectMainPhase(message, clientHandler);
+                turnController.selectMainPhase(message);
             }
             // if he/she is not the first player
             else if(turnController.checkLoginNickname(sender, clientHandler)){
@@ -151,7 +151,7 @@ public class Server {
      * @param message the message received.
      */
     public void receiveMessage(CommandMessage message) {
-        turnController.selectMainPhase(message, clientHandlerMap.get(message.getNickname()));
+        turnController.selectMainPhase(message);
     }
 
     /**
@@ -197,7 +197,7 @@ public class Server {
                 if(! n.equals(sender))
                     turnController.loginHandler(n, clientHandlerMap.get(n));
             }
-            turnController.selectMainPhase(message, clientHandler);
+            turnController.selectMainPhase(message);
         }
         //if the player wants to restore the game
         else {
