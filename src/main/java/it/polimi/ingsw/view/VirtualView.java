@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author Dario Mazzola
  */
-public class VirtualView extends Observer implements View{
+public class VirtualView extends Observer implements View {
 
     private transient final ClientHandler clientHandler;
 
@@ -39,26 +39,37 @@ public class VirtualView extends Observer implements View{
     }
 
     /**
-     *  Sends a message from the server to the client to notify that the player
-     *  has to choose whether the match will be played in expert mode.
+     * Sends a message from the server to the client to notify that the player
+     * has to choose whether the match will be played in expert mode.
      */
     @Override
-    public void selectExpertMode(){
+    public void selectExpertMode() {
         clientHandler.sendAnswerMessage(new SelectExpertMode());
     }
 
+    /**
+     * Sends a message from the server to the client to notify that
+     * an error has occurred.
+     *
+     * @param errorMsg the error message to show to the client
+     */
     @Override
     public void showError(String errorMsg) {
         clientHandler.sendAnswerMessage(new Nack(errorMsg));
     }
 
+    /**
+     * Sends a message from the server to the client to notify that
+     * the game if already full and the player could not join to the game
+     */
     @Override
     public void notifyGameFull() {
         clientHandler.sendAnswerMessage(new GameFull());
     }
 
     /**
-     *
+     * Send a message from the server to the client to warn that the player must
+     * select their nickname again because the chosen nickname is not available
      */
     @Override
     public void selectNickname() {
@@ -74,6 +85,11 @@ public class VirtualView extends Observer implements View{
         clientHandler.sendAnswerMessage(new SelectNumPlayers());
     }
 
+    /**
+     * Sends a message from the server to the first client connected to ask if during the match
+     * it is allowed to send messages to your teammate.
+     * This message is only sent for 4-player games.
+     */
     @Override
     public void selectChat() {
         clientHandler.sendAnswerMessage(new SelectChat());
@@ -82,10 +98,11 @@ public class VirtualView extends Observer implements View{
     /**
      * Sends a message from the server to the client to notify that the player
      * has to select the wizard for this match.
+     *
      * @param availableWizards the wizards currently available.
      */
     @Override
-    public void selectWizard(List<Wizard> availableWizards){
+    public void selectWizard(List<Wizard> availableWizards) {
         clientHandler.sendAnswerMessage(new SelectWizard(availableWizards));
     }
 
@@ -96,7 +113,7 @@ public class VirtualView extends Observer implements View{
      * @param availableTowers the tower currently available.
      */
     @Override
-    public void selectTowerColor(List<Color> availableTowers){
+    public void selectTowerColor(List<Color> availableTowers) {
         clientHandler.sendAnswerMessage(new SelectColorTower(availableTowers));
     }
 
@@ -115,11 +132,11 @@ public class VirtualView extends Observer implements View{
      * Sends a message from the server to the client to notify that the player
      * has to select the team which the player wants to belong.
      *
-     * @param teamArray the other players' preference on team choice.
+     * @param teamArray   the other players' preference on team choice.
      * @param leaderArray the other players' preference on team leader choice.
      */
     @Override
-    public void selectTeam(String[] teamArray, String[] leaderArray){
+    public void selectTeam(String[] teamArray, String[] leaderArray) {
         clientHandler.sendAnswerMessage(new SelectTeam(teamArray, leaderArray));
     }
 
@@ -130,7 +147,7 @@ public class VirtualView extends Observer implements View{
      * @param winner the winner of the match.
      */
     @Override
-    public void sendWinner(String winner){
+    public void sendWinner(String winner) {
         clientHandler.sendAnswerMessage(new SendWinner(winner));
     }
 
@@ -141,16 +158,15 @@ public class VirtualView extends Observer implements View{
      * @param availableActions all the available actions.
      */
     @Override
-    public void actionPhase(List<String> availableActions){
+    public void actionPhase(List<String> availableActions) {
         clientHandler.sendAnswerMessage(new ActionPhase(availableActions));
     }
 
     /**
      * Sends a message from the server to the client to notify that
      * the player has to select a cloud.
-     *
      */
-    public void selectCloud(){
+    public void selectCloud() {
         clientHandler.sendAnswerMessage(new SelectCloud());
     }
 
@@ -163,31 +179,63 @@ public class VirtualView extends Observer implements View{
         clientHandler.sendAnswerMessage(new GoToWaitingRoom());
     }
 
+    /**
+     * Sends a message from the server to the client to notify that the game has not
+     * started yet and must wait for other players to connect.
+     */
     @Override
     public void goToLobby() {
         clientHandler.sendAnswerMessage(new GoToLobby());
     }
 
+    /**
+     * Sends a message from the server to the client to notify that at least one player is choosing.
+     *
+     * @param move what the other player is choosing
+     */
     @Override
     public void waitForOthersMoves(String move) {
         clientHandler.sendAnswerMessage(new WaitForOthersMoves(move));
     }
 
+    /**
+     * Sends a message from the server to the client to notify that there is a
+     * game saved on the server. The player must choose whether to
+     * restore the game or delete the saved game.
+     */
     @Override
     public void selectRestoreGame() {
         clientHandler.sendAnswerMessage(new SelectRestoreGame());
     }
 
+    /**
+     * Sends a message from the server to the client to set the nickname of
+     * the client after a disconnection.
+     *
+     * @param nickname the nickname of the client
+     */
     @Override
     public void rememberNickname(String nickname) {
         clientHandler.sendAnswerMessage(new RememberNickname(nickname));
     }
 
+    /**
+     * Send a message from the server to the client to notify that the teammate has sent a
+     * message in the chat. This message is only sent if the chat is allowed by the first player.
+     *
+     * @param message the chat message received from the teammate
+     */
     @Override
     public void onChatMessageReceived(String message) {
         clientHandler.sendAnswerMessage(new ChatMessageServerClient(message));
     }
 
+    /**
+     * Send a message from the server to the client to notify that
+     * the client has to disconnect due to an error.
+     *
+     * @param errorCause the cause of the disconnection
+     */
     @Override
     public void endGameDisconnection(String errorCause) {
         clientHandler.sendAnswerMessage(new EndGameDisconnection(errorCause));
