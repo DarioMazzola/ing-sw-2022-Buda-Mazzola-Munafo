@@ -18,6 +18,7 @@ import static it.polimi.ingsw.messages.TypeOfError.*;
 
 /**
  * Class representing the turn controller
+ *
  * @author Gabriele Munafo' & Dario Mazzola
  */
 public class TurnController {
@@ -266,7 +267,13 @@ public class TurnController {
         return planningController.getFirstPlanner();
     }
 
-
+    /**
+     * Checks if the nickname chosen by the player is available
+     *
+     * @param nickname selected by the player
+     * @param clientHandler of the player
+     * @return true if the nickname is not already taken, false in the other cases
+     */
     public boolean checkLoginNickname(String nickname, ClientHandler clientHandler) {
         VirtualView view = virtualViewMap.get(nickname);
         if(view == null)
@@ -288,6 +295,9 @@ public class TurnController {
         return gm != null;
     }
 
+    /**
+     * Adds observers in the model
+     */
     private void addObservers() {
         for (String nickname : virtualViewMap.keySet()) {
             VirtualView vv = virtualViewMap.get(nickname);
@@ -303,6 +313,9 @@ public class TurnController {
         }
     }
 
+    /**
+     * Initializes the players' dashboards
+     */
     private void initializePlayers() {
         for (Player p : gm.getArrayPlayers()) {
             try {
@@ -313,6 +326,12 @@ public class TurnController {
         }
     }
 
+    /**
+     * Checks if the game is full and can be started
+     *
+     * @param restore if a saved game is present
+     * @return true if the game is full, false otherwise
+     */
     public boolean checkIfFull(boolean restore) {
 
         if(! restore) {
@@ -331,6 +350,9 @@ public class TurnController {
         return false;
     }
 
+    /**
+     * Restores the situation previous to the interruption of the game
+     */
     public void restore(){
 
         for (int i=0; i< gm.getNumPlayers(); i++) {
@@ -427,6 +449,7 @@ public class TurnController {
     /**
      * Handles a chat message. The message will only be sent to the teammate if the first player
      * has decided to enable chat for this match
+     *
      * @param message the message to sent to client teammate
      */
     public void chat(CommandMessage message){
@@ -436,6 +459,7 @@ public class TurnController {
 
     /**
      * Send the player identified by the nickname given as a parameter to the lobby because the game has not started yet
+     *
      * @param nickname the nickname that identifies the player
      */
     public void goToLobby(String nickname){
@@ -461,6 +485,12 @@ public class TurnController {
         virtualViewMap.get(nickname).showError(error);
     }
 
+    /**
+     * Notifies an error to the player identified by the client handler given as a parameter
+     *
+     * @param clientHandler the client handler of the player to send the message to
+     * @param error the error that occurred
+     */
     public void showError(ClientHandler clientHandler, String error) {
         VirtualView virtualView = new VirtualView(clientHandler);
         virtualView.showError(error);
@@ -481,6 +511,11 @@ public class TurnController {
         return gm;
     }
 
+    /**
+     * Sends again the actions to a specified player
+     *
+     * @param nickname of the player who needs the actions again
+     */
     public void resendActionPhase(String nickname){
         if(gm.getPlayerByNickname(nickname).equals(gm.getCurrentPlayer()))
             virtualViewMap.get(nickname).actionPhase(actionController.getActions());
@@ -488,6 +523,11 @@ public class TurnController {
             virtualViewMap.get(nickname).goToWaitingRoom();
     }
 
+    /**
+     * Sends a select nickname message to the specified player and deletes him from the virtualViewMap and from the queue
+     *
+     * @param nickname of the player to send the message to
+     */
     public void sendNickname(String nickname) {
         virtualViewMap.get(nickname).selectNickname();
         virtualViewMap.remove(nickname);
@@ -502,6 +542,11 @@ public class TurnController {
         this.reset = value;
     }
 
+    /**
+     * Removes a specific player from the virtualViewMap
+     *
+     * @param toRemove the nickname of the player to remove
+     */
     public void removeFromVirtualViewMap (String toRemove){
         for(String s : virtualViewMap.keySet()) {
             if(s.equals(toRemove)){
