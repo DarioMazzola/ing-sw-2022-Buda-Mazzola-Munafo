@@ -1,6 +1,5 @@
 package it.polimi.ingsw.observer;
 
-import it.polimi.ingsw.client.ReducedIsland;
 import it.polimi.ingsw.model.*;
 
 import java.util.Map;
