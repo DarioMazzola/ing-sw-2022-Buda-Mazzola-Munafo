@@ -1,9 +1,7 @@
 package it.polimi.ingsw.controller;
 
-import it.polimi.ingsw.client.ReducedPlayer;
 import it.polimi.ingsw.exceptions.BagException;
 import it.polimi.ingsw.exceptions.IllegalChoiceException;
-import it.polimi.ingsw.messages.answer.UpdateCurrentPlayer;
 import it.polimi.ingsw.messages.command.CommandMessage;
 import it.polimi.ingsw.messages.command.ChosenCloud;
 import it.polimi.ingsw.model.Card;
@@ -19,6 +17,7 @@ import static it.polimi.ingsw.messages.TypeOfError.*;
 
 /**
  * Class representing the end turn controller
+ *
  * @author Gabriele Munafo'
  */
 public class EndTurnController{
@@ -97,6 +96,9 @@ public class EndTurnController{
         return "End Turn Controller";
     }
 
+    /**
+     * Calls setGraveyard on every player
+     */
     private void setAllGraveyard(){
         for (Player p : gm.getArrayPlayers()){
             p.setGraveyard();
