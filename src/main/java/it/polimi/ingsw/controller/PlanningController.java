@@ -86,6 +86,8 @@ public class PlanningController {
 
             resetCards();
 
+            tc.sendAllModel();
+
             List<String> availableActions = new ArrayList<>();
             availableActions.add("Move students to dining hall or to island");
             if (gm.isExpertMode()) {
