@@ -11,7 +11,7 @@ import java.net.Socket;
  *
  * @author Dario Mazzola
  */
-public class SocketServer implements Runnable { //potrebbe non essere runnable
+public class SocketServer implements Runnable {
     private final Server server;
     private final int port;
 
@@ -36,7 +36,7 @@ public class SocketServer implements Runnable { //potrebbe non essere runnable
             return;
         }
 
-        while(! Thread.currentThread().isInterrupted()) {
+        while (!Thread.currentThread().isInterrupted()) {
             try {
                 Socket client = serverSocket.accept();
                 client.setSoTimeout(5000);
@@ -54,22 +54,38 @@ public class SocketServer implements Runnable { //potrebbe non essere runnable
     /**
      * Handles the connection of a new client.
      *
-     * @param  message the message received from the client
+     * @param message       the message received from the client
      * @param clientHandler the ClientHandler of the new client.
      */
     public void addClient(CommandMessage message, ClientHandler clientHandler) {
         server.addClient(message, clientHandler);
     }
 
+    /**
+     * Forwards the player's decision to restore the game to the server.
+     *
+     * @param message       the message containing the decision.
+     * @param clientHandler the clientHandler associated to the player.
+     */
     public void restoreGame(CommandMessage message, ClientHandler clientHandler) {
         server.restoreGame(message, clientHandler);
     }
 
+    /**
+     * Forwards the chat message to the server
+     *
+     * @param message the message to forward.
+     */
     public void chat(CommandMessage message) {
         server.chat(message);
     }
 
-    public void onDisconnection(ClientHandler clientHandler){
+    /**
+     * Notify to the server that a client disconnected.
+     *
+     * @param clientHandler the clientHandler associated to the client disconnected
+     */
+    public void onDisconnection(ClientHandler clientHandler) {
         server.onDisconnection(clientHandler);
     }
 
@@ -79,13 +95,25 @@ public class SocketServer implements Runnable { //potrebbe non essere runnable
      * @param message the message received.
      */
     public void receiveMessage(CommandMessage message) {
-       server.receiveMessage(message);
+        server.receiveMessage(message);
     }
 
-    public void resendAvailableActions(String nickname){
+    /**
+     * Resends the available action to the player with nickname given as a parameter.
+     *
+     * @param nickname the nickname of the player to resend the available actions to.
+     */
+    public void resendAvailableActions(String nickname) {
         server.resendAvailableActions(nickname);
     }
 
+    /**
+     * Checks whether a given player, associated with the clientHandler
+     * passed as a parameter, is part of the current game or not.
+     *
+     * @param clientHandler the clientHandler associated to the player
+     * @return true if the player belongs to the game.
+     */
     public boolean belongsToTheGame(ClientHandler clientHandler) {
         return server.belongsToTheGame(clientHandler);
     }
