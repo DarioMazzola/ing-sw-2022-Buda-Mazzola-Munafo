@@ -1,14 +1,11 @@
 package it.polimi.ingsw.controller;
 
-import it.polimi.ingsw.client.ReducedPlayer;
 import it.polimi.ingsw.exceptions.CardNotInDeckException;
-import it.polimi.ingsw.messages.answer.UpdateCurrentPlayer;
 import it.polimi.ingsw.messages.command.ChosenAssistantCard;
 import it.polimi.ingsw.messages.command.CommandMessage;
 import it.polimi.ingsw.model.Card;
 import it.polimi.ingsw.model.GameModel;
 import it.polimi.ingsw.utils.Persistence;
-import it.polimi.ingsw.view.VirtualView;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -18,6 +15,7 @@ import static it.polimi.ingsw.messages.TypeOfError.*;
 
 /**
  * Class representing the planning controller
+ *
  * @author Gabriele Munafo'
  */
 public class PlanningController {
@@ -44,7 +42,9 @@ public class PlanningController {
 
     /**
      * Gets called to manage the messages from the client
+     *
      * @param messageReceived received from the client
+     * @param tc the turn controller in use
      */
     public void doAction(CommandMessage messageReceived, TurnController tc) {
         Persistence persistence = new Persistence();
@@ -133,10 +133,11 @@ public class PlanningController {
 
     /**
      * Creates the ranking of the planning phase
+     *
      * @param cardList parameters on which the ranking is based on
      * @param numPlayers the number of players
      */
-    private int[] createRanking (List<Card> cardList, int numPlayers){ //todo non funziona????
+    private int[] createRanking (List<Card> cardList, int numPlayers){
 
         Map<Card, Integer> map = new HashMap<>();
 
@@ -227,6 +228,7 @@ public class PlanningController {
 
     /**
      * Checks if the player has other cards to play
+     *
      * @param messageReceived the message from the client
      */
     private boolean notOtherCards(CommandMessage messageReceived){
@@ -234,6 +236,9 @@ public class PlanningController {
         return result.isEmpty();
     }
 
+    /**
+     * Resets the available actions list
+     */
     public void resetCards(){
         this.availableAssistantCards.clear();
         availableAssistantCards.addAll(Arrays.asList(Card.values()));
