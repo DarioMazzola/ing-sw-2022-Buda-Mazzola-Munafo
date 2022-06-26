@@ -2389,7 +2389,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     if (gm.getIslandList().get(i).getColorTower() == WHITE) {
                         image = new Image("images/towers/white_tower.png");
                         tower.setImage(image);
-                        towerNumber.setStyle("-fx-text-fill: #463333;");
+                        towerNumber.setStyle("-fx-text-inner-color: #463333;");
                     }
                 }
                 else {

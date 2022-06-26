@@ -1895,14 +1895,14 @@
                   <ImageView fx:id="ProfYellowDashboard1" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="ProfPinkDashboard1" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="ProfBlueDashboard1" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower1Dashboard1" fitHeight="23.0" fitWidth="27.0" layoutX="322.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower2Dashboard1" fitHeight="23.0" fitWidth="27.0" layoutX="352.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower4Dashboard1" fitHeight="27.0" fitWidth="27.0" layoutX="352.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower3Dashboard1" fitHeight="28.0" fitWidth="27.0" layoutX="322.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower5Dashboard1" fitHeight="30.0" fitWidth="27.0" layoutX="322.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower6Dashboard1" fitHeight="23.0" fitWidth="27.0" layoutX="352.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower7Dashboard1" fitHeight="23.0" fitWidth="27.0" layoutX="322.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower8Dashboard1" fitHeight="28.0" fitWidth="27.0" layoutX="353.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower1Dashboard1" fitHeight="24.0" fitWidth="27.0" layoutX="325.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower2Dashboard1" fitHeight="24.0" fitWidth="27.0" layoutX="354.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower4Dashboard1" fitHeight="24.0" fitWidth="27.0" layoutX="354.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower3Dashboard1" fitHeight="24.0" fitWidth="27.0" layoutX="325.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower5Dashboard1" fitHeight="24.0" fitWidth="27.0" layoutX="325.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower6Dashboard1" fitHeight="24.0" fitWidth="27.0" layoutX="354.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower7Dashboard1" fitHeight="24.0" fitWidth="27.0" layoutX="325.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower8Dashboard1" fitHeight="24.0" fitWidth="27.0" layoutX="354.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </Pane>
             <Pane fx:id="Dashboard2" layoutX="13.0" layoutY="274.0" prefHeight="174.0" prefWidth="465.0">
@@ -1986,14 +1986,14 @@
                   <ImageView fx:id="ProfYellowDashboard2" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="ProfPinkDashboard2" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="ProfBlueDashboard2" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower1Dashboard2" fitHeight="23.0" fitWidth="27.0" layoutX="322.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower2Dashboard2" fitHeight="23.0" fitWidth="27.0" layoutX="352.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower4Dashboard2" fitHeight="23.0" fitWidth="27.0" layoutX="352.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower3Dashboard2" fitHeight="28.0" fitWidth="27.0" layoutX="322.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower5Dashboard2" fitHeight="30.0" fitWidth="27.0" layoutX="322.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower6Dashboard2" fitHeight="23.0" fitWidth="27.0" layoutX="352.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower7Dashboard2" fitHeight="23.0" fitWidth="27.0" layoutX="322.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower8Dashboard2" fitHeight="28.0" fitWidth="27.0" layoutX="353.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower1Dashboard2" fitHeight="24.0" fitWidth="27.0" layoutX="325.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower2Dashboard2" fitHeight="24.0" fitWidth="27.0" layoutX="354.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower4Dashboard2" fitHeight="24.0" fitWidth="27.0" layoutX="354.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower3Dashboard2" fitHeight="24.0" fitWidth="27.0" layoutX="325.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower5Dashboard2" fitHeight="24.0" fitWidth="27.0" layoutX="325.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower6Dashboard2" fitHeight="24.0" fitWidth="27.0" layoutX="354.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower7Dashboard2" fitHeight="24.0" fitWidth="27.0" layoutX="325.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower8Dashboard2" fitHeight="24.0" fitWidth="27.0" layoutX="354.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </Pane>
             <Pane fx:id="Dashboard3" layoutX="13.0" layoutY="493.0" prefHeight="174.0" prefWidth="465.0">
@@ -2077,14 +2077,14 @@
                   <ImageView fx:id="ProfYellowDashboard3" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="ProfPinkDashboard3" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="ProfBlueDashboard3" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower1Dashboard3" fitHeight="23.0" fitWidth="27.0" layoutX="322.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower2Dashboard3" fitHeight="23.0" fitWidth="27.0" layoutX="352.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower4Dashboard3" fitHeight="22.0" fitWidth="27.0" layoutX="353.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower3Dashboard3" fitHeight="28.0" fitWidth="27.0" layoutX="322.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower5Dashboard3" fitHeight="30.0" fitWidth="27.0" layoutX="322.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower6Dashboard3" fitHeight="23.0" fitWidth="27.0" layoutX="352.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower7Dashboard3" fitHeight="23.0" fitWidth="27.0" layoutX="322.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower8Dashboard3" fitHeight="28.0" fitWidth="27.0" layoutX="353.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower1Dashboard3" fitHeight="24.0" fitWidth="27.0" layoutX="325.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower2Dashboard3" fitHeight="24.0" fitWidth="27.0" layoutX="354.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower4Dashboard3" fitHeight="24.0" fitWidth="27.0" layoutX="354.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower3Dashboard3" fitHeight="24.0" fitWidth="27.0" layoutX="325.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower5Dashboard3" fitHeight="24.0" fitWidth="27.0" layoutX="325.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower6Dashboard3" fitHeight="24.0" fitWidth="27.0" layoutX="354.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower7Dashboard3" fitHeight="24.0" fitWidth="27.0" layoutX="325.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower8Dashboard3" fitHeight="24.0" fitWidth="27.0" layoutX="354.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </Pane>
             <Pane layoutX="247.0" layoutY="803.0" prefHeight="174.0" prefWidth="465.0" scaleX="2.0" scaleY="2.0" scaleZ="2.0">
@@ -2168,14 +2168,14 @@
                   <ImageView fx:id="ProfYellowMain" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="ProfPinkMain" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="ProfBlueMain" fitHeight="23.0" fitWidth="20.0" layoutX="282.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower1Main" fitHeight="23.0" fitWidth="27.0" layoutX="322.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower2Main" fitHeight="23.0" fitWidth="27.0" layoutX="352.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower4Main" fitHeight="22.0" fitWidth="27.0" layoutX="353.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower3Main" fitHeight="28.0" fitWidth="27.0" layoutX="322.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower5Main" fitHeight="30.0" fitWidth="27.0" layoutX="322.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower6Main" fitHeight="23.0" fitWidth="27.0" layoutX="352.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower7Main" fitHeight="23.0" fitWidth="27.0" layoutX="322.0" layoutY="119.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Tower8Main" fitHeight="28.0" fitWidth="27.0" layoutX="353.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower1Main" fitHeight="24.0" fitWidth="27.0" layoutX="325.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower2Main" fitHeight="24.0" fitWidth="27.0" layoutX="354.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower4Main" fitHeight="24.0" fitWidth="27.0" layoutX="354.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower3Main" fitHeight="24.0" fitWidth="27.0" layoutX="325.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower5Main" fitHeight="24.0" fitWidth="27.0" layoutX="325.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower6Main" fitHeight="23.0" fitWidth="27.0" layoutX="354.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower7Main" fitHeight="24.0" fitWidth="27.0" layoutX="325.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Tower8Main" fitHeight="24.0" fitWidth="27.0" layoutX="354.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true" />
                   <Text fill="#463333" layoutX="421.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Graveyard">
                      <font>
                         <Font name="Baskerville Old Face" size="9.0" />
