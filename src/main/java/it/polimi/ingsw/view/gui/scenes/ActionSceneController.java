@@ -1,4 +1,3 @@
-
 package it.polimi.ingsw.view.gui.scenes;
 
 import com.google.gson.Gson;
@@ -33,6 +32,11 @@ import java.util.*;
 import static it.polimi.ingsw.model.Color.*;
 import static it.polimi.ingsw.model.House.*;
 
+/**
+ * Class representing the action scene controller
+ *
+ * @author Gabriele Munafo' & Dario Mazzola & Alessio Buda
+ */
 public class ActionSceneController extends ViewObservable implements SceneInterface {
     @FXML
     private ImageView GraveyardMain;
@@ -59,7 +63,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     @FXML
     private ImageView OneDashboardAlternative;
 
-
     @FXML
     private Pane CharacterCardsPlacement;
     @FXML
@@ -70,21 +73,17 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     private Pane Dashboard2;
     @FXML
     private Pane Dashboard3;
+
     @FXML
     private ImageView CharacterCard1;
-
     @FXML
     private ImageView BlueStdCard1;
-
     @FXML
     private ImageView GreenStdCard1;
-
     @FXML
     private ImageView PinkStdCard1;
-
     @FXML
     private ImageView RedStdCard1;
-
     @FXML
     private ImageView YellowStdCard1;
 
@@ -92,34 +91,28 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     private ImageView CharacterCard2;
     @FXML
     private ImageView BlueStdCard2;
-
     @FXML
     private ImageView GreenStdCard2;
-
     @FXML
     private ImageView PinkStdCard2;
-
     @FXML
     private ImageView RedStdCard2;
-
     @FXML
     private ImageView YellowStdCard2;
+
     @FXML
     private ImageView CharacterCard3;
     @FXML
     private ImageView BlueStdCard3;
-
     @FXML
     private ImageView GreenStdCard3;
-
     @FXML
     private ImageView PinkStdCard3;
-
     @FXML
     private ImageView RedStdCard3;
-
     @FXML
     private ImageView YellowStdCard3;
+
     @FXML
     private Text CostCharacterCard1;
     @FXML
@@ -1447,6 +1440,10 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     }
 
     // <--------- Initialize methods --------->
+
+    /**
+     * Calls methods to initialize the dashboard, graveyard, card in use and coins of the main player
+     */
     private void initializeMainPlayer() {
         initializeDashboardMain();
 
@@ -1458,6 +1455,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         }
     }
 
+    /**
+     * Initializes the entrance and towers and calls methods to initialize professors and dining hall of the main player
+     */
     private void initializeDashboardMain() {
         Image image;
         int numStudents = 6;
@@ -1550,6 +1550,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         }
     }
 
+    /**
+     * Initializes the dining hall and professors of the main player
+     */
     private void initializeDiningHallMain() {
         // parameters
         Map<House, Boolean> profMap;
@@ -1667,6 +1670,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         }
     }
 
+    /**
+     * Calls methods to initialize the dashboard, graveyard and card in use of the second player
+     */
     private void initializeSecondPlayer() {
         initializeDashboardSecondPlayer();
 
@@ -1676,6 +1682,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         fillCardInUse(CardInUseDashboard1, gm.getArrayPlayers()[(numMain + 1) % gm.getNumPlayers()]);
     }
 
+    /**
+     * Initializes the entrance and towers and calls methods to initialize professors and dining hall of the second player
+     */
     private void initializeDashboardSecondPlayer() {
         int numStudents = 6;
         if (gm.getNumPlayers() == 3) {
@@ -1760,6 +1769,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         }
     }
 
+    /**
+     * Initializes the dining hall and professors of the second player
+     */
     private void initializeDiningHallSecondPlayer() {
         Map<House, Boolean> profMap;
 
@@ -1876,6 +1888,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         }
     }
 
+    /**
+     * Calls methods to initialize the dashboard, graveyard and card in use of the third player
+     */
     private void initializeThirdPlayer() {
         initializeDashboardThirdPlayer();
 
@@ -1885,6 +1900,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         fillCardInUse(CardInUseDashboard2, gm.getArrayPlayers()[(numMain + 2) % gm.getNumPlayers()]);
     }
 
+    /**
+     * Initializes the entrance and towers and calls methods to initialize professors and dining hall of the third player
+     */
     private void initializeDashboardThirdPlayer() {
         int numStudents = 6;
         if (gm.getNumPlayers() == 3) {
@@ -1969,6 +1987,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         }
     }
 
+    /**
+     * Initializes the dining hall and professors of the third player
+     */
     private void initializeDiningHallThirdPlayer() {
         Map<House, Boolean> profMap;
         Image image;
@@ -2084,6 +2105,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         }
     }
 
+    /**
+     * Calls methods to initialize the dashboard, graveyard and card in use of the fourth player
+     */
     private void initializeFourthPlayer() {
         initializeDashboardFourthPlayer();
 
@@ -2093,6 +2117,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         fillCardInUse(CardInUseDashboard3, gm.getArrayPlayers()[(numMain + 3) % gm.getNumPlayers()]);
     }
 
+    /**
+     * Initializes the entrance and towers and calls methods to initialize professors and dining hall of the fourth player
+     */
     private void initializeDashboardFourthPlayer() {
         int numStudents = 6;
         if (gm.getNumPlayers() == 3) {
@@ -2177,6 +2204,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         }
     }
 
+    /**
+     * Initializes the dining hall and professors of the fourth player
+     */
     private void initializeDiningHallFourthPlayer() {
         Map<House, Boolean> profMap;
         Image image;
@@ -2292,6 +2322,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         }
     }
 
+    /**
+     * Initializes the islands
+     */
     private void initializeIslands() {
 
         islandsImageView = new ImageView[]{ImgIsland0, ImgIsland1, ImgIsland2, ImgIsland3, ImgIsland4, ImgIsland5,
@@ -2382,6 +2415,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         }
     }
 
+    /**
+     * Initializes the clouds
+     */
     public void initializeClouds() {
 
         cloudsButtons = new ArrayList<>();
@@ -2730,6 +2766,10 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         }
     }
 
+    /**
+     * Initializes the chat, showing the message from the team mate, if present
+     * @param msg from the team mate
+     */
     private void initializeChat(String msg) {
         String teamMate = gm.getTeamMate(nickname);
         NoMessageText.setText("Message from " + (teamMate == null ? "your team mate" : teamMate));
@@ -2825,6 +2865,12 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         initializeChat(msg);
     }
 
+    /**
+     * Finds out which player is doing a certain action
+     *
+     * @param player who has executed an action
+     * @return the number identifying the player in the context of that gui
+     */
     private int determinePlayer(ReducedPlayer player) {
         int numPlayer = Arrays.asList(gm.getArrayPlayers()).indexOf(player);
 
@@ -2844,6 +2890,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         return 0;
     }
 
+    /**
+     * Initializes the entirety of the scene
+     */
     public void initialize() {
 
         this.diningHallMain = new Button[]{diningHallMainGreen, diningHallMainRed, diningHallMainYellow, diningHallMainPink, diningHallMainBlue};
@@ -4003,6 +4052,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         Suggestions.setWrapText(true);
     }
 
+    /**
+     * Initializes the default events of the scene
+     */
     public void initializeEvents() {
 
         if (moveMother) {
@@ -4181,6 +4233,12 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
     //<--------- Utility methods --------->
 
+    /**
+     * Puts the corrisponding assistant card in the graveyard
+     *
+     * @param imgview of the graveyard
+     * @param p the player of that graveyard
+     */
     private void fillGraveyard(ImageView imgview, ReducedPlayer p) {
 
         Image image;
@@ -4259,6 +4317,12 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         }
     }
 
+    /**
+     * Puts the corrisponding assistant card in the card in use
+     *
+     * @param imgview of the card in use
+     * @param p the player of that card in use
+     */
     private void fillCardInUse(ImageView imgview, ReducedPlayer p) {
 
         Image image;
@@ -4318,16 +4382,33 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         }
     }
 
+    /**
+     * Puts the correct number of coins of the player
+     * @param t the text field of the coins
+     * @param p the player of that coins
+     */
     private void setCoins(Text t, ReducedPlayer p) {
         t.setText(Integer.toString(p.getCoins()));
     }
 
+    /**
+     * Finds out which house has been clicked in the entrance
+     *
+     * @param id of the element clicked
+     * @return the house of the clicked element
+     */
     private House getHouseById(String id) {
         int position = Integer.parseInt(String.valueOf(id.charAt(id.length() - 1))) - 1;
 
         return entranceArray[position];
     }
 
+    /**
+     * Finds out which house has been clicked in the dininghall
+     *
+     * @param button the button clicked
+     * @return the house of the clicked element
+     */
     private House getHouseByButton(Button button) {
 
         String id = button.getId();
@@ -4346,6 +4427,12 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         throw new IllegalArgumentException();
     }
 
+    /**
+     * Finds out which island has been clicked
+     *
+     * @param island the island clicked
+     * @return the number of the island clicked
+     */
     private int getIslandIdByPane(Pane island) {
         int islandIndex;
 
@@ -4586,6 +4673,11 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
     }
 
+    /**
+     * Sets the suggestion box's text in different situations
+     * @param message if the type is action phase, it cointains a list of possible actions
+     * @param type a parameter used to identify the situation
+     */
     public void setSuggestions(List<String> message, String type) {
         if (type.equals("selectCloud")) {
             Suggestions.setText("You can now select a cloud from those available!");
