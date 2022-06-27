@@ -4183,8 +4183,11 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             if (currentIsland == gm.getIslandList().size()) {
                 currentIsland = 0;
             }
-            islandButtons[currentIsland].setOnMouseClicked(moveMotherTo);
-            islandsImageView[currentIsland].getStyleClass().add("dropShadow");
+
+            if(currentIsland != gm.getMotherIsland()) {
+                islandButtons[currentIsland].setOnMouseClicked(moveMotherTo);
+                islandsImageView[currentIsland].getStyleClass().add("dropShadow");
+            }
         }
     }
 
