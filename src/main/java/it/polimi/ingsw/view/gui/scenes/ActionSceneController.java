@@ -4871,10 +4871,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
                 case THIEF: //ok
                 case MUSHROOM_HUNTER:
-                    //capire come aggiungere gli studenti nella vbox
-
                     for (Node n : getVBoxByCard(cardSelected).getChildren()) {
                         n.setOnMouseClicked(selectStudentForMushroomHunter_Thief);
+                        n.getStyleClass().add("dropShadow");
                     }
                     break;
 
@@ -5109,6 +5108,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         for (Node n : box.getChildren()) {
             n.setOnMouseClicked(doNothing);
+            n.getStyleClass().clear();
         }
     }
 
