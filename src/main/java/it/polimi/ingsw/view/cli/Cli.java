@@ -567,7 +567,7 @@ public class Cli extends ViewObservable implements UI {
      * Asks the player to select a character card to use and the parameters required by that card.
      */
     private boolean useCharacterCard() {
-        System.out.println("Here's a list of the character cards available in this game!");
+        System.out.println("Here's a list of the character cards available in this game! You have " + gm.getPlayerByNickname(this.nickname).getCoins() + " coins to spend");
         printList(Arrays.asList(gm.getCharacterCardDeck()));
 
         Gson gson = new Gson();
