@@ -567,7 +567,7 @@ public class Cli extends ViewObservable implements UI {
      * Asks the player to select a character card to use and the parameters required by that card.
      */
     private boolean useCharacterCard() {
-        System.out.println("Here's a list of the character cards available in this game!");
+        System.out.println("Here's a list of the character cards available in this game! You have " + gm.getPlayerByNickname(this.nickname).getCoins() + " coins to spend");
         printList(Arrays.asList(gm.getCharacterCardDeck()));
 
         Gson gson = new Gson();
@@ -797,7 +797,7 @@ public class Cli extends ViewObservable implements UI {
             case THIEF:
                 System.out.println("Select the house of the students you want to removed from player's dashboards:");
                 chosenHouse = selectHouse(Arrays.asList(House.values()));
-                parameters.put("house", chosenHouse);
+                parameters.put("wantedHouse", chosenHouse);
 
                 break;
 
@@ -832,7 +832,7 @@ public class Cli extends ViewObservable implements UI {
     }
 
     private void focusOnMotherNature () {
-        System.out.println("Mother nature is currently on island " + gm.getMotherIsland());
+        System.out.println("Mother nature is currently on island " + gm.getMotherIsland()+1);
     }
 
     @Override
