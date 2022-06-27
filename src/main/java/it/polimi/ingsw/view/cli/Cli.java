@@ -318,6 +318,8 @@ public class Cli extends ViewObservable implements UI {
                 defaultActions.add("See received messages");
             }
             while (!stop) {
+                System.out.println("\nThe other player hasn't finished his/hers turn, you need to be patient ...");
+
                 System.out.println("\nWhile you're waiting, here's a list of available actions:");
                 printList(defaultActions);
                 int action = inputInRange(1, defaultActions.size(), "select a valid action");
@@ -341,6 +343,7 @@ public class Cli extends ViewObservable implements UI {
                         break;
                     case "See received messages":
                         stop = true;
+                        System.out.println("\nSearching for new messages ...\n");
                         notifyObserver(ViewObserver::waitForMessage);
                         break;
                     default:
@@ -348,8 +351,6 @@ public class Cli extends ViewObservable implements UI {
                 }
                 if (stop && defaultActions.get(action-1).equals("See if the other player has finished his/hers turn"))
                     System.out.println("\nThe other player has finished his/hers turn!");
-                else
-                    System.out.println("\nThe other player hasn't finished his/hers turn, you need to be patient ...");
             }
         }
     }
@@ -434,6 +435,7 @@ public class Cli extends ViewObservable implements UI {
                     break;
                 case "See received messages":
                     stop = true;
+                    System.out.println("\nSearching for new messages ...\n");
                     notifyObserver(ViewObserver::waitForMessage);
                     break;
                 default:
