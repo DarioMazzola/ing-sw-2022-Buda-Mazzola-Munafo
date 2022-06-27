@@ -25,7 +25,7 @@ public enum TypeOfError {
         GAME_FULL("We are sorry, the game you're trying to join has already reached the maximum number of players.\nYou'll be disconnected..."),
         DISCONNECTED(" has disconnected. The game will be stopped and saved on the server. " +
                 "You will be able to resume the game at a later time"),
-        SERVER_UNREACHBLE("A connection with the server could not be opened! Please try again");
+        SERVER_UNREACHBLE("The server is no longer reachable. Please try playing again later");
 
         private final String description;
 

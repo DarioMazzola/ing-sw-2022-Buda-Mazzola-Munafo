@@ -1,5 +1,6 @@
 package it.polimi.ingsw.client;
 
+import it.polimi.ingsw.messages.TypeOfError;
 import it.polimi.ingsw.messages.answer.AnswerMessage;
 import it.polimi.ingsw.messages.answer.AnswerSerializer;
 import it.polimi.ingsw.messages.answer.EndGameDisconnection;
@@ -73,7 +74,7 @@ public class ServerHandler extends Observable {
                     }
                 } catch (IOException | ClassNotFoundException e) {
                     disconnect();
-                    notifyObserver(new EndGameDisconnection("The server is no longer reachable. Please try playing again later"));
+                    notifyObserver(new EndGameDisconnection(TypeOfError.SERVER_UNREACHBLE.toString()));
                     readTask.shutdownNow();
                 }
 
