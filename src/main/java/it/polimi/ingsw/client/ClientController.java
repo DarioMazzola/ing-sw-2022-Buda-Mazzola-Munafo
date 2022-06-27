@@ -283,8 +283,7 @@ public class ClientController extends Observer implements ViewObserver {
                 break;
             case END_GAME_DISCONNECTION:
                 EndGameDisconnection endGameDisconnection = (EndGameDisconnection) message;
-                view.setStop(true);
-                showTaskQueue.execute(() -> view.endGameDisconnection(endGameDisconnection.getErrorCause()));
+                view.endGameDisconnection(endGameDisconnection.getErrorCause());
                 break;
             case REMEMBER_NICKNAME:
                 RememberNickname rememberNickname = (RememberNickname) message;
