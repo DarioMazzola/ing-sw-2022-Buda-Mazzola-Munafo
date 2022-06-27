@@ -1777,11 +1777,7 @@
                         <Image url="@../images/Moneta_base.png" />
                      </image>
                   </ImageView>
-                  <Text fill="#463333" layoutX="1075.0" layoutY="938.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Card in use">
-                     <font>
-                        <Font name="Baskerville Old Face" size="9.0" />
-                     </font>
-                  </Text>
+
                   <Text fx:id="CostCharacterCard1" fill="#463333" layoutX="111.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                      <font>
                         <Font name="Baskerville Old Face" size="24.0" />
