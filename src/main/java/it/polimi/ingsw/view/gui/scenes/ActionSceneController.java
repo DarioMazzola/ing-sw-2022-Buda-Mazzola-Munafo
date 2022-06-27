@@ -4835,6 +4835,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     for (Button island : islandButtons) {
                         island.setOnMouseClicked(addNoEntryTile);
                     }
+                    for (ImageView imageView : islandsImageView) {
+                        imageView.getStyleClass().add("dropShadow");
+                    }
                     break;
                 case JOLLY:
                     for (Node n : getVBoxByCard(cardSelected).getChildren()) {
@@ -4900,7 +4903,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         notifyObserver(observer -> observer.onUpdateCharacterCard(cardSelected, parameters));
         initializeEvents();
 
-        //cardSelected = null;
+        for (ImageView imageView : islandsImageView) {
+            imageView.getStyleClass().clear();
+        }
     }
 
     // <------- Jolly ------->
