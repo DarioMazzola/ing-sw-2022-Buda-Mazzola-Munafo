@@ -183,6 +183,17 @@ public class ActionController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        if (gm.getCharacterCardDeck()[numCCard].getType() == CharacterCardEnum.HERALD) {
+            Player p = (Player) parameters.get("Output");
+            if (p != null) {
+                try {
+                    gm.moveTowers(p.getDashboard(), (Island) parameters.get("Island"), 1);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     /**
