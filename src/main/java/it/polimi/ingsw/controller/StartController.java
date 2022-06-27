@@ -117,6 +117,10 @@ public class StartController {
                     tc.next_Phase(SELECT_COLOR_TOWER);
                     tc.getVirtualViewMap().get(leaderArray[0]).selectTowerColor(availableTowers);
                     tc.getVirtualViewMap().get(leaderArray[1]).selectTowerColor(availableTowers);
+
+                    tc.getVirtualViewMap().get(teamArray[0]).waitForOthersMoves("tower's color");
+                    tc.getVirtualViewMap().get(teamArray[1]).waitForOthersMoves("tower's color");
+
                 }
                 else {
                     tc.getVirtualViewMap().get(messageReceived.getNickname()).waitForOthersMoves("team");
