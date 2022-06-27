@@ -100,38 +100,25 @@ public class CharacterCard extends Observable {
 
         Player owner = null;
         Player playerWithMostStudents;
-        int numPlayerI;
-        int maxStudentsNumber;
-
         for(Player p : players){
             if (p.getDashboard().isProfPresent(house)) {
                 owner = p;
                 break;
             }
         }
-        maxStudentsNumber = (owner == null) ? 0 : owner.getDashboard().getDiningHall().getHouseStudents(house);
-        playerWithMostStudents = owner;
 
-        for (Player p : players) {
-            if(! p.equals(owner)) {
-                numPlayerI = p.getDashboard().getDiningHall().getHouseStudents(house);
-
-                if (numPlayerI > maxStudentsNumber) {
-                    playerWithMostStudents = p;
-                    maxStudentsNumber = numPlayerI;
-                }
-            }
+        int numMaxStudents = (owner == null) ? 0 : owner.getDashboard().getDiningHall().getHouseStudents(house);
+        if(numMaxStudents == 0 && currentPlayer.getDashboard().getDiningHall().getHouseStudents(house) > 0) {
+            currentPlayer.getDashboard().addProf(house);
+            return;
         }
+        if(owner != null) {
+            playerWithMostStudents = (owner.getDashboard().getDiningHall().getHouseStudents(house)
+                    >= currentPlayer.getDashboard().getDiningHall().getHouseStudents(house))
+                    ? owner : currentPlayer;
 
-        if(maxStudentsNumber > 0 && playerWithMostStudents.equals(currentPlayer)) {
-
-            if(owner == null){
-                currentPlayer.getDashboard().addProf(house);
-            }
-            else if(!owner.equals(playerWithMostStudents) &&
-                        currentPlayer.getDashboard().getDiningHall().getHouseStudents(house) > owner.getDashboard().getDiningHall().getHouseStudents(house)) {
+            if (playerWithMostStudents.equals(currentPlayer)) {
                 moveProf(owner.getDashboard(), currentPlayer.getDashboard(), house);
-
             }
         }
 
