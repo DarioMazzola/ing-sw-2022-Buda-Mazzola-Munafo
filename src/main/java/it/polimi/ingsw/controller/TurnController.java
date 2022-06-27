@@ -400,6 +400,11 @@ public class TurnController {
                 if (gm.isExpertMode() && ! actionController.isUsedCharacterCard()){
                     availableActions.add("Select character card");
                 }
+                if (gm.getChat() != null && gm.getChat()) {
+                    availableActions.add("Send a message to your team mate");
+                    availableActions.add("See received messages");
+                }
+                System.out.println("\t\t\tTurnController: " + availableActions);
                 virtualViewMap.get(gm.getCurrentPlayer().getNickname()).actionPhase(availableActions);
                 break;
 
