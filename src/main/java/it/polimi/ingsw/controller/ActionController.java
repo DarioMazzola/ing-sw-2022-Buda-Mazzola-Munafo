@@ -111,7 +111,7 @@ public class ActionController {
                     break;
                 }
                 try {
-                    moveMotherHandler(messageReceived);
+                    moveMotherHandler(messageReceived, tc);
                 } catch (IllegalArgumentException e) {
                     tc.getVirtualViewMap().get(messageReceived.getNickname()).showError(WRONG_MOTHER_MOVES.toString());
                     tc.getVirtualViewMap().get(messageReceived.getNickname()).actionPhase(availableActions);
@@ -352,7 +352,7 @@ public class ActionController {
      *
      * @param message received from the client
      */
-    private void moveMotherHandler(CommandMessage message) {
+    private void moveMotherHandler(CommandMessage message, TurnController tc) {
         int motherMoves = (((MoveMother) message).getMotherMoves());
         gm.setMotherIsland(motherMoves);
 
@@ -372,6 +372,20 @@ public class ActionController {
             if (gm.getIslandList().get(gm.getMotherIsland()).isNoEntryTilePresent()){
                 try {
                     gm.getIslandList().get(gm.getMotherIsland()).removeNoEntryTile();
+                    int i=0;
+                    for (i=0; i<gm.getCharacterCardDeck().length; i++){
+                        if (gm.getCharacterCardDeck()[i].getType().equals(CharacterCardEnum.HERB_GRANMA)){
+                            break;
+                        }
+                    }
+                    Map<String, Object> parameters = new HashMap<>();
+                    parameters.put("Method", "removeNoEntryTile");
+                    try {
+                        gm.getCharacterCardDeck()[i].doEffect(parameters);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    tc.sendAllModel();
                 } catch (noEntryTileException e) {
                     e.printStackTrace();
                 }
