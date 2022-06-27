@@ -83,6 +83,8 @@ public class EndTurnController{
                 e.printStackTrace();
             }
             tc.getVirtualViewMap().get(gm.getArrayPlayers()[tc.getFirstPlanner()].getNickname()).selectAssistantCard(Arrays.asList(Card.values()));
+
+            tc.sendAllWaitExcept("assistant card", gm.getArrayPlayers()[tc.getFirstPlanner()].getNickname());
         }
 
         persistence.saveData(tc);

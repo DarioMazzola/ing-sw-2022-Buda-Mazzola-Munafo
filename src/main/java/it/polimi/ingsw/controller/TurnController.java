@@ -553,5 +553,13 @@ public class TurnController {
         }
     }
 
+    public void sendAllWaitExcept(String move, String toExclude) {
+
+        for(String n : virtualViewMap.keySet()) {
+            if(! n.equals(toExclude))
+                virtualViewMap.get(n).waitForOthersMoves(move);
+        }
+    }
+
 }
 
