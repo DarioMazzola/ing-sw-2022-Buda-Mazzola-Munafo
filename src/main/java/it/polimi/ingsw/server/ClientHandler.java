@@ -103,6 +103,8 @@ public class ClientHandler implements Runnable {
                         socketServer.chat(message);
                     }
                     else if(message.getType() == MessageType.RELOAD_MESSAGES) {
+                        if(nickname == null)
+                            nickname = message.getNickname();
                         synchronized (lock) {
                             enableTimer = true;
                             timer = 0;
@@ -190,7 +192,7 @@ public class ClientHandler implements Runnable {
             synchronized (lock) {
                 if (enableTimer)
                     timer++;
-                if (timer > 3) {
+                if (timer > 1) {
                     socketServer.resendAvailableActions(nickname);
                     enableTimer = false;
                     timer = 0;
