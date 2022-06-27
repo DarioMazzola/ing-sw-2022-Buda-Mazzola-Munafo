@@ -797,7 +797,7 @@ public class Cli extends ViewObservable implements UI {
             case THIEF:
                 System.out.println("Select the house of the students you want to removed from player's dashboards:");
                 chosenHouse = selectHouse(Arrays.asList(House.values()));
-                parameters.put("house", chosenHouse);
+                parameters.put("wantedHouse", chosenHouse);
 
                 break;
 
