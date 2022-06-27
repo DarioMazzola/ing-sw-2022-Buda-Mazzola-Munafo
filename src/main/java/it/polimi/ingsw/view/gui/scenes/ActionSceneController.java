@@ -4195,7 +4195,12 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         int islandTo = getIslandById(((Button) event.getSource()).getId());
 
-        int position = islandTo - gm.getMotherIsland();
+        int position;
+        if (islandTo < gm.getMotherIsland()) {
+            position = gm.getIslandList().size()-gm.getMotherIsland()+islandTo;
+        } else {
+            position = islandTo - gm.getMotherIsland();
+        }
 
         for (ImageView island : islandsImageView) {
             island.getStyleClass().clear();
