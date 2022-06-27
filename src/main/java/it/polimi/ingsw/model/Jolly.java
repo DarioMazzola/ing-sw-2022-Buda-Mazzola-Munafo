@@ -140,8 +140,8 @@ public class Jolly extends CharacterCard{
 
     @Override
     public String getDescription() {
-        return "You may take up to 3 Students from this card and replace them with the same number of Students" +
-                " from your Entrance";
+        return "You may take up to 3 Students from this card and replace them with \n" +
+                "the same number of Students from your Entrance";
     }
 
     @Override

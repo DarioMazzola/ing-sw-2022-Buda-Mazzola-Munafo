@@ -45,7 +45,7 @@ public class Herald extends CharacterCard {
 
     @Override
     public String getDescription() {
-        return "Choose an Island and resolve the Island as if Mother Nature had ended her movement there. " +
+        return "Choose an Island and resolve the Island as if Mother Nature had ended her movement there. \n" +
                 "Mother Nature will still move and the Island where she ends her movement  will also be resolved.";
     }
 

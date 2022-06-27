@@ -84,7 +84,8 @@ public class Thief extends CharacterCard{
 
     @Override
     public String getDescription() {
-        return "Choose a type a student, every player (including yourself) must return 3 students of that type from their Dining Room the the bag. " +
+        return "Choose a type a student, every player (including yourself) must return 3 \n" +
+                "students of that type from their Dining Room the the bag. \n" +
                 "If any player has fewer than 3 students of that type, return as many students as they have";
     }
 

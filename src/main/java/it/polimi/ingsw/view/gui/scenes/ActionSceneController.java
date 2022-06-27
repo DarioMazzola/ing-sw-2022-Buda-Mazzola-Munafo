@@ -4783,7 +4783,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             alert = new Alert(Alert.AlertType.ERROR);
             alert.initOwner(sceneController.getActiveScene().getWindow());
             alert.initModality(Modality.APPLICATION_MODAL);
-
             alert.setTitle("Select character card");
             alert.setHeaderText("You can only use a character card per round");
 
@@ -4798,7 +4797,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             alert.initOwner(sceneController.getActiveScene().getWindow());
             alert.initModality(Modality.APPLICATION_MODAL);
 
-            alert.setTitle("Select assistant card");
+            alert.setTitle("Select character card");
             alert.setHeaderText("You don't have enough coins to use this card!");
 
             alert.showAndWait();
@@ -4811,8 +4810,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         alert.initOwner(sceneController.getActiveScene().getWindow());
         alert.initModality(Modality.APPLICATION_MODAL);
 
-        alert.setTitle("Select assistant card");
-        alert.setHeaderText("Card selected: " + gm.getCharacterCardDeck()[cardSelected].getCardName());
+        alert.setTitle("Select character card");
+        alert.setHeaderText("Card selected: " + gm.getCharacterCardDeck()[cardSelected].getCardName() + "\n\n" + gm.getCharacterCardDeck()[cardSelected].getDescription());
         alert.setContentText("Do you want to use this card?");
 
         //if the player wants to use the card

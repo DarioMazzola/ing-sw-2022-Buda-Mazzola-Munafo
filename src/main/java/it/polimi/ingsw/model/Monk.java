@@ -110,7 +110,7 @@ public class Monk extends CharacterCard {
 
     @Override
     public String getDescription() {
-        return "Take 1 student from this card and place on the island of your choice. Then draw a new Student from the Bag and place it on this card";
+        return "Take 1 student from this card and place on the island of your choice.";
     }
 
     @Override

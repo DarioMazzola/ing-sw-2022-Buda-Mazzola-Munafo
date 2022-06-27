@@ -111,7 +111,7 @@ public class SpoiledPrincess extends CharacterCard {
 
     @Override
     public String getDescription() {
-        return "Take 1 student from this card and place it in your Dining Room. Then, draw a new Student from the Bag and place it on this card";
+        return "Take 1 student from this card and place it in your Dining Room.";
     }
 
     @Override

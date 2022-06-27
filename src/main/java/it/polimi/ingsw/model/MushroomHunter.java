@@ -74,7 +74,7 @@ public class MushroomHunter extends CharacterCard{
 
     @Override
     public String getDescription() {
-        return "Choose a color of Student: during the influence calculation this, that color adds no influence";
+        return "Choose a color of Student: during the influence calculation this, \nthat color adds no influence";
     }
 
     @Override

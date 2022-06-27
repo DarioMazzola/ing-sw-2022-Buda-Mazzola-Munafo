@@ -67,7 +67,7 @@ public class Farmer extends CharacterCard {
 
     @Override
     public String getDescription() {
-        return "During this turn, you take control of any number of Professors even if you have " +
+        return "During this turn, you take control of any number of Professors even if you have \n" +
                 "the same number of Students as the player who currently controls them";
     }
 

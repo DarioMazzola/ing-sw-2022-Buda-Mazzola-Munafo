@@ -59,7 +59,7 @@ public class HerbGranma extends CharacterCard{
 
     @Override
     public String getDescription() {
-        return "Place a No Entry Tile on Island of your choice. The first time Mother Nature ends her movement there, " +
+        return "Place a No Entry Tile on Island of your choice. The first time Mother Nature ends her movement there, \n" +
                     "put the No Entry Tile back onto this card DO NOT calculate influence on that Island, or place any Towers";
     }
 
