@@ -196,6 +196,6 @@ class MushroomHunterTest {
      */
     @Test
     void getDescriptionTest(){
-        assertEquals(m.getDescription(), "Choose a color of Student: during the influence calculation this, that color adds no influence");
+        assertEquals(m.getDescription(), "Choose a color of Student: during the influence calculation this, \nthat color adds no influence");
     }
 }

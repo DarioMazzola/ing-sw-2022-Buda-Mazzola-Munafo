@@ -41,8 +41,8 @@ class MagicalMailManTest {
 
     @Test
     void getDescription() {
-        String description = "You may move Mother Nature up to 2 additional Islands than is indicated by " +
-                "the Assistant card you've played";
+        String description = "You may move Mother Nature up to 2 additional Islands than \n" +
+                "is indicated by the Assistant card you've played";
 
         assertEquals(description, magicalMailMan.getDescription());
     }

@@ -201,7 +201,7 @@ class FarmerTest {
     @Test
     void getDescription() {
 
-        String description = "During this turn, you take control of any number of Professors even if you have " +
+        String description = "During this turn, you take control of any number of Professors even if you have \n" +
                 "the same number of Students as the player who currently controls them";
 
         assertEquals(description, farmer.getDescription());

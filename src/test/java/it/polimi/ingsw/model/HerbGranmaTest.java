@@ -136,7 +136,7 @@ class HerbGranmaTest {
 
     @Test
     void getDescription() {
-        String description = "Place a No Entry Tile on Island of your choice. The first time Mother Nature ends her movement there, " +
+        String description = "Place a No Entry Tile on Island of your choice. The first time Mother Nature ends her movement there, \n" +
                 "put the No Entry Tile back onto this card DO NOT calculate influence on that Island, or place any Towers";
 
         assertEquals(description, herbGranma.getDescription());
