@@ -1381,7 +1381,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     private House studentSelectedFromCard;
     private List<House> wantedStudents;
     private List<House> returnedStudents;
-
+    private List<String> availableActions;
 
     private List<Map<String, Node>> islandList;
     private House[] entranceArray;
@@ -4679,6 +4679,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
      * @param type a parameter used to identify the situation
      */
     public void setSuggestions(List<String> message, String type) {
+
+        this.availableActions = message;
+
         if (type.equals("selectCloud")) {
             Suggestions.setText("You can now select a cloud from those available!");
             return;
@@ -4775,6 +4778,20 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         Alert alert;
 
+        //if the player has already used a card in this round
+        if (! availableActions.contains("Select character card")) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.initOwner(sceneController.getActiveScene().getWindow());
+            alert.initModality(Modality.APPLICATION_MODAL);
+
+            alert.setTitle("Select character card");
+            alert.setHeaderText("You can only use a character card per round");
+
+            alert.showAndWait();
+            sceneController.getActiveScene().getRoot().setEffect(null);
+            return;
+        }
+
         //if the player does not have enough coins
         if (gm.getPlayerByNickname(nickname).getCoins() < gm.getCharacterCardDeck()[cardSelected].getCost()) {
             alert = new Alert(Alert.AlertType.ERROR);
@@ -4789,6 +4806,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             return;
         }
 
+        availableActions.remove("Select character card");
         alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.initOwner(sceneController.getActiveScene().getWindow());
         alert.initModality(Modality.APPLICATION_MODAL);
