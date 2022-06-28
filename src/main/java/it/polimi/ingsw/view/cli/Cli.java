@@ -714,22 +714,23 @@ public class Cli extends ViewObservable implements UI {
 
                 // fromDashboard
                 System.out.println("Select up to two students to move from your Entrance");
-                House[] fromDashboard = new House[2];
-                availableHouses = new ArrayList<>();
+                Map<House, Integer> fromDashboardMap = new HashMap<>();
                 for (House h : House.values()) {
-                    if (gm.getCurrentPlayer().getDashboard().getHouseStudents(h) > 0)
-                        availableHouses.add(h);
+                    fromDashboardMap.put(h, 0);
                 }
+                availableHouses = new ArrayList<>();
+                numChosenStudents = 0;
+
                 for (int i = 0; i < 2; i++) {
-                    do {
-                        isValidInput = true;
-                        chosenHouse = selectHouse(availableHouses);
-                        if (gm.getCurrentPlayer().getDashboard().getHouseStudents(chosenHouse) <= 0) {
-                            isValidInput = false;
-                            System.out.println("There are no students of the " + chosenHouse + " house in your entrance! Select another house:");
-                        }
-                    } while (!isValidInput);
-                    fromDashboard[i] = chosenHouse;
+                    availableHouses.clear();
+                    for (House h : House.values()) {
+                        if (gm.getCurrentPlayer().getDashboard().getHouseStudents(h) - fromDashboardMap.get(h) > 0)
+                            availableHouses.add(h);
+                    }
+                    chosenHouse = selectHouse(availableHouses);
+
+                    fromDashboardMap.put(chosenHouse, fromDashboardMap.get(chosenHouse)+1);
+                    numChosenStudents++;
 
                     if (i != 1) {
                         System.out.println("Do you want to move another student? ('Y'/'N'):");
@@ -737,30 +738,39 @@ public class Cli extends ViewObservable implements UI {
                             break;
                     }
                 }
+                House[] fromDashboard = new House[numChosenStudents];
+                int index = 0;
+                for (House h : House.values()) {
+                    if (fromDashboardMap.get(h) > 0 && index < numChosenStudents) {
+                        fromDashboard[index] = h;
+                        index++;
+                    }
+                }
+
 
                 // fromDiningHall
                 System.out.println("Select up to two students to move from your dining hall");
-                House[] fromDiningHall = new House[2];
-                availableHouses = new ArrayList<>();
+                Map<House, Integer> fromDiningHallMap = new HashMap<>();
                 for (House h : House.values()) {
-                    if (gm.getCurrentPlayer().getDashboard().getDiningHall().getHouseStudents(h) > 0)
-                        availableHouses.add(h);
+                    fromDiningHallMap.put(h, 0);
                 }
-                for (int i = 0; i < 2; i++) {
-                    do {
-                        isValidInput = true;
-                        chosenHouse = selectHouse(availableHouses);
-                        if (gm.getCurrentPlayer().getDashboard().getDiningHall().getHouseStudents(chosenHouse) <= 0) {
-                            isValidInput = false;
-                            System.out.println("There are no students of the " + chosenHouse + " house in your dining hall! Select another house:");
-                        }
-                    } while (!isValidInput);
-                    fromDiningHall[i] = chosenHouse;
+                availableHouses = new ArrayList<>();
 
-                    if (i != 1) {
-                        System.out.println("Do you want to move another student? ('Y'/'N'):");
-                        if (!YNInput("you want move another student"))
-                            break;
+                for (int i = 0; i < numChosenStudents; i++) {
+                    availableHouses.clear();
+                    for (House h : House.values()) {
+                        if (gm.getCurrentPlayer().getDashboard().getDiningHall().getHouseStudents(h) - fromDiningHallMap.get(h) > 0)
+                            availableHouses.add(h);
+                    }
+                    chosenHouse = selectHouse(availableHouses);
+                    fromDiningHallMap.replace(chosenHouse, fromDiningHallMap.get(chosenHouse)+1);
+                }
+                House[] fromDiningHall = new House[numChosenStudents];
+                index = 0;
+                for (House h : House.values()) {
+                    if (fromDiningHallMap.get(h) > 0 && index < numChosenStudents) {
+                        fromDiningHall[index] = h;
+                        index++;
                     }
                 }
 
