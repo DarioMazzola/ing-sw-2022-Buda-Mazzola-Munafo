@@ -389,6 +389,7 @@ public class TurnController {
                 else {
                     planningController.resetCards();
                     virtualViewMap.get(gm.getArrayPlayers()[getFirstPlanner()].getNickname()).selectAssistantCard(Arrays.asList(Card.values()));
+                    sendAllWaitExcept("assistant card", gm.getArrayPlayers()[getFirstPlanner()].getNickname());
                 }
                 break;
 
