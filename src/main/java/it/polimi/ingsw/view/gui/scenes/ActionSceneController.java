@@ -4863,6 +4863,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                 case SPOILED_PRINCESS:
                     for (Node n : getVBoxByCard(cardSelected).getChildren()) {
                         n.setOnMouseClicked(selectStudentForSpoiledPrincess);
+                        n.getStyleClass().add("dropShadow");
                     }
                     break;
                 case HERALD:
@@ -4964,7 +4965,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         VBox box = (VBox) studentSelected.getParent();
         String id = studentSelected.getId();
 
-        studentSelectedFromCard = House.values()[Integer.parseInt(String.valueOf(id.charAt(id.length() - 1))) - 1];
+        studentSelectedFromCard = getHouseArrayFromMap(gm.getCharacterCardDeck()[cardSelected].getHouseMap()).get(
+                Integer.parseInt(String.valueOf(id.charAt(id.length() - 1))) - 1);
 
         Map<String, Object> parameters = new HashMap<>();
 
