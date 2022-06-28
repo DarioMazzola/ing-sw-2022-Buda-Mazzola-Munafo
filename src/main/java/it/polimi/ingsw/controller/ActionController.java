@@ -184,7 +184,8 @@ public class ActionController {
             e.printStackTrace();
         }
 
-        if (gm.getCharacterCardDeck()[numCCard].getType() == CharacterCardEnum.HERALD) {
+        CharacterCardEnum type = gm.getCharacterCardDeck()[numCCard].getType();
+        if (type == CharacterCardEnum.HERALD) {
             Player p = (Player) parameters.get("Output");
             if (p != null) {
                 try {
@@ -193,6 +194,9 @@ public class ActionController {
                     e.printStackTrace();
                 }
             }
+        }
+        else if(type == CharacterCardEnum.SPOILED_PRINCESS) {
+            gm.checkAllProf();
         }
     }
 
