@@ -148,6 +148,7 @@ public class GameModel extends Observable {
             throw new IllegalArgumentException("The player doesn't have enough coins to play this card!");
         }
         currentPlayer.removeCoins(characterCardDeck[card].getCost());
+        addCoins(characterCardDeck[card].getCost());
         context = new ContextCharacterCard(characterCardDeck[card]);
 
         context.doEffect(map);
@@ -366,6 +367,15 @@ public class GameModel extends Observable {
             Color color = island.getColorTower();
             if (!color.equals(dashboard.getTowerColor())){
                 island.setTowerColor(dashboard.getTowerColor());
+                int i;
+                for (i = 0; i<numPlayers; i++){
+                    if (getArrayPlayers()[i].getDashboard().getTowerColor().equals(color)){
+                        break;
+                    }
+                }
+                for (int j=0; j<numTowers; j++) {
+                    arrayPlayers[i].getDashboard().addTower();
+                }
             }
         } catch (IslandException e){
             island.setTowerColor(dashboard.getTowerColor());
