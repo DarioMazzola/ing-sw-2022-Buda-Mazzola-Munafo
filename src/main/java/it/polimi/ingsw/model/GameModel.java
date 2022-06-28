@@ -371,8 +371,10 @@ public class GameModel extends Observable {
                 island.setTowerColor(dashboard.getTowerColor());
                 for(Player p :arrayPlayers) {
                     if(p.getDashboard().getTowerColor().equals(color)){
-                        p.getDashboard().addTower();
-                        break;
+                        if (numPlayers == 2 || numPlayers == 3 || (numPlayers == 4 && p.isTeamLeader())) {
+                            p.getDashboard().addTower();
+                            break;
+                        }
                     }
                 }
             }
