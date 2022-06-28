@@ -647,9 +647,9 @@ public class Cli extends ViewObservable implements UI {
                 break;
 
             case HERALD: // needed: - Island
-                System.out.println("You should now choose an island to resolve as if Mother Nature had ended her movement there");
+                System.out.println("You should now choose an island to resolve as if Mother Nature has ended her movement there");
                 chosenIsland = selectIsland();
-                parameters.put("island", chosenIsland);
+                parameters.put("island", chosenIsland-1);
 
                 break;
 
