@@ -555,11 +555,21 @@ public class Cli extends ViewObservable implements UI {
      * Asks the player of how many steps he/she wants to move mother nature.
      */
     private boolean moveMotherNature() {
-        System.out.println("How many steps you want to move mother nature of? (1" + (gm.getCurrentPlayer().getMaxMoves() == 1 ? ", 0 to go back)" : " - " + gm.getCurrentPlayer().getMaxMoves() + ", 0 to go back)"));
-        int chosenMoves = inputInRange(0, gm.getCurrentPlayer().getMaxMoves(), "select a valid a number of moves");
-        if (chosenMoves == 0)
-            return false;
-        notifyObserver(observers -> observers.onMoveMotherNature(chosenMoves));
+        boolean isValidInput;
+        int chosenMoves;
+        do {
+            isValidInput = true;
+            System.out.println("How many steps you want to move mother nature of? (1" + (gm.getCurrentPlayer().getMaxMoves() == 1 ? ", 0 to go back)" : " - " + gm.getCurrentPlayer().getMaxMoves() + ", 0 to go back)"));
+            chosenMoves = inputInRange(0, gm.getCurrentPlayer().getMaxMoves(), "select a valid a number of moves");
+            if (chosenMoves == 0)
+                return false;
+            if ((gm.getMotherIsland() + chosenMoves) % gm.getIslandList().size() == gm.getMotherIsland()) {
+                isValidInput = false;
+                System.out.println("With the selected number of moves Mother Nature would remain on the same island. Please select a different number of moves");
+            }
+        } while (!isValidInput);
+        int finalChosenMoves = chosenMoves;
+        notifyObserver(observers -> observers.onMoveMotherNature(finalChosenMoves));
         return true;
     }
 
@@ -567,7 +577,7 @@ public class Cli extends ViewObservable implements UI {
      * Asks the player to select a character card to use and the parameters required by that card.
      */
     private boolean useCharacterCard() {
-        System.out.println("Here's a list of the character cards available in this game!");
+        System.out.println("Here's a list of the character cards available in this game! You have " + gm.getPlayerByNickname(this.nickname).getCoins() + " coins to spend");
         printList(Arrays.asList(gm.getCharacterCardDeck()));
 
         Gson gson = new Gson();
@@ -641,33 +651,30 @@ public class Cli extends ViewObservable implements UI {
             case HERB_GRANMA: // needed: - island
                 System.out.println("You should now choose an island where to put a no entry tile");
                 chosenIsland = selectIsland();
-                parameters.put("island", chosenIsland);
+                parameters.put("island", chosenIsland-1);
 
                 break;
 
             case JOLLY: // needed: - wantedStudents, - returnedStudents
+                // wantedStudents
                 Map<House, Integer> wantedStudents = new HashMap<>();
                 for (House h : House.values()) {
                     wantedStudents.put(h, 0);
                 }
 
-                // wantedStudents
                 System.out.println("Select the houses of the students you want to take from the card:");
                 availableHouses = new ArrayList<>();
-                for (House h : House.values()) {
-                    if (gm.getCharacterCardDeck()[chosenCard-1].getHouseMap().get(h) > 0)
-                        availableHouses.add(h);
-                }
+                int numChosenStudents = 0;
                 for (int i = 0; i < 3; i++) {
-                    do {
-                        isValidInput = true;
-                        chosenHouse = selectHouse(availableHouses);
-                        if (gm.getCharacterCardDeck()[chosenCard - 1].getHouseMap().get(chosenHouse) - wantedStudents.get(chosenHouse) <= 0) {
-                            isValidInput = false;
-                            System.out.println("There are no students of the " + chosenHouse + " house on the card");
-                        }
-                    } while (!isValidInput);
+                    availableHouses.clear();
+                    for (House h : House.values()) {
+                        if (gm.getCharacterCardDeck()[chosenCard-1].getHouseMap().get(h) - wantedStudents.get(h) > 0)
+                            availableHouses.add(h);
+                    }
+
+                    chosenHouse = selectHouse(availableHouses);
                     wantedStudents.replace(chosenHouse, wantedStudents.get(chosenHouse)+1);
+                    numChosenStudents++;
 
                     if (i != 2) {
                         System.out.println("Do you want to move another student? ('Y'/'N'):");
@@ -683,28 +690,16 @@ public class Cli extends ViewObservable implements UI {
                     returnedStudents.put(h, 0);
                 }
                 availableHouses = new ArrayList<>();
-                for (House h : House.values()) {
-                    if (gm.getCurrentPlayer().getDashboard().getHouseStudents(h) > 0)
-                        availableHouses.add(h);
-                }
-                for (int i = 0; i < 3; i++) {
-                    do {
-                        isValidInput = true;
-                        chosenHouse = selectHouse(availableHouses);
-                        if (gm.getCharacterCardDeck()[chosenCard - 1].getHouseMap().get(chosenHouse) - returnedStudents.get(chosenHouse) <= 0) {
-                            isValidInput = false;
-                            System.out.println("There are no students of the " + chosenHouse + " house in your Entrance");
-                        }
-                    } while (!isValidInput);
-                    returnedStudents.replace(chosenHouse, wantedStudents.get(chosenHouse)+1);
 
-                    if (i != 2) {
-                        System.out.println("Do you want to move another student? ('Y'/'N'):");
-                        if (!YNInput("you want move another student"))
-                            break;
+                for (int i = 0; i < numChosenStudents; i++) {
+                    availableHouses.clear();
+                    for (House h : House.values()) {
+                        if (gm.getCurrentPlayer().getDashboard().getHouseStudents(h) - returnedStudents.get(h) > 0)
+                            availableHouses.add(h);
                     }
+                    chosenHouse = selectHouse(availableHouses);
+                    returnedStudents.replace(chosenHouse, returnedStudents.get(chosenHouse)+1);
                 }
-
                 parameters.put("wantedStudents", gson.toJson(wantedStudents));
                 parameters.put("returnedStudents", gson.toJson(returnedStudents));
 
@@ -789,6 +784,10 @@ public class Cli extends ViewObservable implements UI {
                         isValidInput = false;
                         System.out.println("There are no students of the " + chosenHouse + " house on the card");
                     }
+                    if (gm.getPlayerByNickname(this.nickname).getDashboard().getDiningHall().getHouseStudents(chosenHouse) == 10) {
+                        isValidInput = false;
+                        System.out.println("Your dining hall for the selected house is full, you cannot add any other student. Select another house!");
+                    }
                 } while (!isValidInput);
                 parameters.put("wantedHouse", chosenHouse);
 
@@ -797,7 +796,7 @@ public class Cli extends ViewObservable implements UI {
             case THIEF:
                 System.out.println("Select the house of the students you want to removed from player's dashboards:");
                 chosenHouse = selectHouse(Arrays.asList(House.values()));
-                parameters.put("house", chosenHouse);
+                parameters.put("wantedHouse", chosenHouse);
 
                 break;
 
@@ -832,7 +831,7 @@ public class Cli extends ViewObservable implements UI {
     }
 
     private void focusOnMotherNature () {
-        System.out.println("Mother nature is currently on island " + gm.getMotherIsland());
+        System.out.println("Mother nature is currently on island " + gm.getMotherIsland()+1);
     }
 
     @Override

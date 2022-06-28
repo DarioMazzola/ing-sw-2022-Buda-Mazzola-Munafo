@@ -184,7 +184,8 @@ public class ActionController {
             e.printStackTrace();
         }
 
-        if (gm.getCharacterCardDeck()[numCCard].getType() == CharacterCardEnum.HERALD) {
+        CharacterCardEnum type = gm.getCharacterCardDeck()[numCCard].getType();
+        if (type == CharacterCardEnum.HERALD) {
             Player p = (Player) parameters.get("Output");
             if (p != null) {
                 try {
@@ -193,6 +194,9 @@ public class ActionController {
                     e.printStackTrace();
                 }
             }
+        }
+        else if(type == CharacterCardEnum.SPOILED_PRINCESS) {
+            gm.checkAllProf();
         }
     }
 
@@ -372,19 +376,6 @@ public class ActionController {
             if (gm.getIslandList().get(gm.getMotherIsland()).isNoEntryTilePresent()){
                 try {
                     gm.getIslandList().get(gm.getMotherIsland()).removeNoEntryTile();
-                    int i=0;
-                    for (i=0; i<gm.getCharacterCardDeck().length; i++){
-                        if (gm.getCharacterCardDeck()[i].getType().equals(CharacterCardEnum.HERB_GRANMA)){
-                            break;
-                        }
-                    }
-                    Map<String, Object> parameters = new HashMap<>();
-                    parameters.put("Method", "removeNoEntryTile");
-                    try {
-                        gm.getCharacterCardDeck()[i].doEffect(parameters);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
                     tc.sendAllModel();
                 } catch (noEntryTileException e) {
                     e.printStackTrace();

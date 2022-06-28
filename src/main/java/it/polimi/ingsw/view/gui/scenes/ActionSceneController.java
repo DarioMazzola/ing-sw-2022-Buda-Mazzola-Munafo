@@ -3593,31 +3593,13 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     path = "images/CharacterCards/Monk.jpg";
                     houseMap = new HashMap<>(gm.getCharacterCardDeck()[2].getHouseMap());
                     i = 0;
-                    while (houseMap.get(BLUE) > 0) {
-                        image = new Image("images/students/student_blue.png");
+                    while (houseMap.get(GREEN) > 0) {
+                        image = new Image("images/students/student_green.png");
                         Card3Arr[i].setImage(image);
                         Card3Arr[i].setVisible(true);
                         Card3Arr[i].setDisable(false);
-                        card3Array[i] = "Blue";
-                        houseMap.put(BLUE, houseMap.get(BLUE) - 1);
-                        i++;
-                    }
-                    while (houseMap.get(PINK) > 0) {
-                        image = new Image("images/students/student_pink.png");
-                        Card3Arr[i].setImage(image);
-                        Card3Arr[i].setVisible(true);
-                        Card3Arr[i].setDisable(false);
-                        card3Array[i] = "Pink";
-                        houseMap.put(PINK, houseMap.get(PINK) - 1);
-                        i++;
-                    }
-                    while (houseMap.get(YELLOW) > 0) {
-                        image = new Image("images/students/student_yellow.png");
-                        Card3Arr[i].setImage(image);
-                        Card3Arr[i].setVisible(true);
-                        Card3Arr[i].setDisable(false);
-                        card3Array[i] = "Yellow";
-                        houseMap.put(YELLOW, houseMap.get(YELLOW) - 1);
+                        card3Array[i] = "Green";
+                        houseMap.put(GREEN, houseMap.get(GREEN) - 1);
                         i++;
                     }
                     while (houseMap.get(RED) > 0) {
@@ -3629,13 +3611,31 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                         houseMap.put(RED, houseMap.get(RED) - 1);
                         i++;
                     }
-                    while (houseMap.get(GREEN) > 0) {
-                        image = new Image("images/students/student_green.png");
+                    while (houseMap.get(YELLOW) > 0) {
+                        image = new Image("images/students/student_yellow.png");
                         Card3Arr[i].setImage(image);
                         Card3Arr[i].setVisible(true);
                         Card3Arr[i].setDisable(false);
-                        card3Array[i] = "Green";
-                        houseMap.put(GREEN, houseMap.get(GREEN) - 1);
+                        card3Array[i] = "Yellow";
+                        houseMap.put(YELLOW, houseMap.get(YELLOW) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(PINK) > 0) {
+                        image = new Image("images/students/student_pink.png");
+                        Card3Arr[i].setImage(image);
+                        Card3Arr[i].setVisible(true);
+                        Card3Arr[i].setDisable(false);
+                        card3Array[i] = "Pink";
+                        houseMap.put(PINK, houseMap.get(PINK) - 1);
+                        i++;
+                    }
+                    while (houseMap.get(BLUE) > 0) {
+                        image = new Image("images/students/student_blue.png");
+                        Card3Arr[i].setImage(image);
+                        Card3Arr[i].setVisible(true);
+                        Card3Arr[i].setDisable(false);
+                        card3Array[i] = "Blue";
+                        houseMap.put(BLUE, houseMap.get(BLUE) - 1);
                         i++;
                     }
                     while (i < 6) {
@@ -4195,7 +4195,12 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         int islandTo = getIslandById(((Button) event.getSource()).getId());
 
-        int position = islandTo - gm.getMotherIsland();
+        int position;
+        if (islandTo < gm.getMotherIsland()) {
+            position = gm.getIslandList().size()-gm.getMotherIsland()+islandTo;
+        } else {
+            position = islandTo - gm.getMotherIsland();
+        }
 
         for (ImageView island : islandsImageView) {
             island.getStyleClass().clear();
@@ -4835,6 +4840,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     for (Button island : islandButtons) {
                         island.setOnMouseClicked(addNoEntryTile);
                     }
+                    for (ImageView imageView : islandsImageView) {
+                        imageView.getStyleClass().add("dropShadow");
+                    }
                     break;
                 case JOLLY:
                     for (Node n : getVBoxByCard(cardSelected).getChildren()) {
@@ -4855,6 +4863,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                 case SPOILED_PRINCESS:
                     for (Node n : getVBoxByCard(cardSelected).getChildren()) {
                         n.setOnMouseClicked(selectStudentForSpoiledPrincess);
+                        n.getStyleClass().add("dropShadow");
                     }
                     break;
                 case HERALD:
@@ -4868,10 +4877,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
                 case THIEF: //ok
                 case MUSHROOM_HUNTER:
-                    //capire come aggiungere gli studenti nella vbox
-
                     for (Node n : getVBoxByCard(cardSelected).getChildren()) {
                         n.setOnMouseClicked(selectStudentForMushroomHunter_Thief);
+                        n.getStyleClass().add("dropShadow");
                     }
                     break;
 
@@ -4900,7 +4908,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         notifyObserver(observer -> observer.onUpdateCharacterCard(cardSelected, parameters));
         initializeEvents();
 
-        //cardSelected = null;
+        for (ImageView imageView : islandsImageView) {
+            imageView.getStyleClass().clear();
+        }
     }
 
     // <------- Jolly ------->
@@ -4955,7 +4965,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         VBox box = (VBox) studentSelected.getParent();
         String id = studentSelected.getId();
 
-        studentSelectedFromCard = House.values()[Integer.parseInt(String.valueOf(id.charAt(id.length() - 1))) - 1];
+        studentSelectedFromCard = getHouseArrayFromMap(gm.getCharacterCardDeck()[cardSelected].getHouseMap()).get(
+                Integer.parseInt(String.valueOf(id.charAt(id.length() - 1))) - 1);
 
         Map<String, Object> parameters = new HashMap<>();
 
@@ -5061,6 +5072,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         for (Node n : box.getChildren()) {
             n.setOnMouseClicked(doNothing);
+            n.getStyleClass().clear();
         }
 
         for (Button island : islandButtons) {
@@ -5081,6 +5093,10 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         parameters.put("destinationIsland", Arrays.asList(islandButtons).indexOf(island));
         notifyObserver(observer -> observer.onUpdateCharacterCard(cardSelected, parameters));
+
+        for (ImageView i : islandsImageView) {
+            i.getStyleClass().clear();
+        }
 
         wantedStudents = null;
     }
@@ -5104,6 +5120,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         for (Node n : box.getChildren()) {
             n.setOnMouseClicked(doNothing);
+            n.getStyleClass().clear();
         }
     }
 

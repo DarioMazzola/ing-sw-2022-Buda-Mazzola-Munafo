@@ -149,9 +149,11 @@ public class GameModel extends Observable {
         }
         currentPlayer.removeCoins(characterCardDeck[card].getCost());
         addCoins(characterCardDeck[card].getCost());
+
         context = new ContextCharacterCard(characterCardDeck[card]);
 
         context.doEffect(map);
+        characterCardDeck[card].setInUse(false);
 
         notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
     }
@@ -367,14 +369,11 @@ public class GameModel extends Observable {
             Color color = island.getColorTower();
             if (!color.equals(dashboard.getTowerColor())){
                 island.setTowerColor(dashboard.getTowerColor());
-                int i;
-                for (i = 0; i<numPlayers; i++){
-                    if (getArrayPlayers()[i].getDashboard().getTowerColor().equals(color)){
+                for(Player p :arrayPlayers) {
+                    if(p.getDashboard().getTowerColor().equals(color)){
+                        p.getDashboard().addTower();
                         break;
                     }
-                }
-                for (int j=0; j<numTowers; j++) {
-                    arrayPlayers[i].getDashboard().addTower();
                 }
             }
         } catch (IslandException e){
