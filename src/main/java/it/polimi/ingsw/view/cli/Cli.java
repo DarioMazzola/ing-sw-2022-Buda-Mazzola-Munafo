@@ -485,21 +485,25 @@ public class Cli extends ViewObservable implements UI {
             int chosen = inputInRange(0, 2, "select a valid action");
             if (chosen == 0)
                 return false;
+            boolean moved;
             switch (chosen) {
                 case 1:
-                    moveStudentsToDiningHall();
+                    moved = moveStudentsToDiningHall();
                     break;
                 case 2:
                     moveStudentsToIsland();
+                    moved = true;
                     break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + chosen);
             }
-            return true;
+            return moved;
     }
 
     /**
      * Manages the selection of students to move from the player's dashboard to his/hers dining hall.
      */
-    private void moveStudentsToDiningHall() {
+    private boolean moveStudentsToDiningHall() {
         // checking whether the dining hall is full
         boolean fullDiningHall = true;
         for (House h : House.values()) {
@@ -509,7 +513,7 @@ public class Cli extends ViewObservable implements UI {
         }
         if (fullDiningHall) {
             System.out.println("Your dining hall is full, you cannot add any students!");
-            return;
+            return false;
         }
 
         System.out.println("This is your dashboard: \n" + gm.getCurrentPlayer().getDashboard());
@@ -523,6 +527,7 @@ public class Cli extends ViewObservable implements UI {
         }
         House chosenHouse = selectHouse(availableHouses);
         notifyObserver(observers -> observers.onMoveStudentsToDiningHall(chosenHouse));
+        return true;
     }
 
     /**
