@@ -151,6 +151,7 @@ public class GameModel extends Observable {
         context = new ContextCharacterCard(characterCardDeck[card]);
 
         context.doEffect(map);
+        characterCardDeck[card].setInUse(false);
 
         notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
     }
@@ -366,6 +367,12 @@ public class GameModel extends Observable {
             Color color = island.getColorTower();
             if (!color.equals(dashboard.getTowerColor())){
                 island.setTowerColor(dashboard.getTowerColor());
+                for(Player p :arrayPlayers) {
+                    if(p.getDashboard().getTowerColor().equals(color)){
+                        p.getDashboard().addTower();
+                        break;
+                    }
+                }
             }
         } catch (IslandException e){
             island.setTowerColor(dashboard.getTowerColor());

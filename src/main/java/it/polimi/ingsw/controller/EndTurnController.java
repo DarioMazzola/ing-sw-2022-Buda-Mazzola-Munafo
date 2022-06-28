@@ -86,6 +86,7 @@ public class EndTurnController{
 
             tc.sendAllWaitExcept("assistant card", gm.getArrayPlayers()[tc.getFirstPlanner()].getNickname());
         }
+        gm.setBaseContext();
 
         persistence.saveData(tc);
     }
