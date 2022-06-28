@@ -555,11 +555,21 @@ public class Cli extends ViewObservable implements UI {
      * Asks the player of how many steps he/she wants to move mother nature.
      */
     private boolean moveMotherNature() {
-        System.out.println("How many steps you want to move mother nature of? (1" + (gm.getCurrentPlayer().getMaxMoves() == 1 ? ", 0 to go back)" : " - " + gm.getCurrentPlayer().getMaxMoves() + ", 0 to go back)"));
-        int chosenMoves = inputInRange(0, gm.getCurrentPlayer().getMaxMoves(), "select a valid a number of moves");
-        if (chosenMoves == 0)
-            return false;
-        notifyObserver(observers -> observers.onMoveMotherNature(chosenMoves));
+        boolean isValidInput;
+        int chosenMoves;
+        do {
+            isValidInput = true;
+            System.out.println("How many steps you want to move mother nature of? (1" + (gm.getCurrentPlayer().getMaxMoves() == 1 ? ", 0 to go back)" : " - " + gm.getCurrentPlayer().getMaxMoves() + ", 0 to go back)"));
+            chosenMoves = inputInRange(0, gm.getCurrentPlayer().getMaxMoves(), "select a valid a number of moves");
+            if (chosenMoves == 0)
+                return false;
+            if ((gm.getMotherIsland() + chosenMoves) % gm.getIslandList().size() == gm.getMotherIsland()) {
+                isValidInput = false;
+                System.out.println("With the selected number of moves Mother Nature would remain on the same island. Please select a different number of moves");
+            }
+        } while (!isValidInput);
+        int finalChosenMoves = chosenMoves;
+        notifyObserver(observers -> observers.onMoveMotherNature(finalChosenMoves));
         return true;
     }
 
