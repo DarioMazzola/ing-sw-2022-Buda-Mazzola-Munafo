@@ -651,33 +651,30 @@ public class Cli extends ViewObservable implements UI {
             case HERB_GRANMA: // needed: - island
                 System.out.println("You should now choose an island where to put a no entry tile");
                 chosenIsland = selectIsland();
-                parameters.put("island", chosenIsland);
+                parameters.put("island", chosenIsland-1);
 
                 break;
 
             case JOLLY: // needed: - wantedStudents, - returnedStudents
+                // wantedStudents
                 Map<House, Integer> wantedStudents = new HashMap<>();
                 for (House h : House.values()) {
                     wantedStudents.put(h, 0);
                 }
 
-                // wantedStudents
                 System.out.println("Select the houses of the students you want to take from the card:");
                 availableHouses = new ArrayList<>();
-                for (House h : House.values()) {
-                    if (gm.getCharacterCardDeck()[chosenCard-1].getHouseMap().get(h) > 0)
-                        availableHouses.add(h);
-                }
+                int numChosenStudents = 0;
                 for (int i = 0; i < 3; i++) {
-                    do {
-                        isValidInput = true;
-                        chosenHouse = selectHouse(availableHouses);
-                        if (gm.getCharacterCardDeck()[chosenCard - 1].getHouseMap().get(chosenHouse) - wantedStudents.get(chosenHouse) <= 0) {
-                            isValidInput = false;
-                            System.out.println("There are no students of the " + chosenHouse + " house on the card");
-                        }
-                    } while (!isValidInput);
+                    availableHouses.clear();
+                    for (House h : House.values()) {
+                        if (gm.getCharacterCardDeck()[chosenCard-1].getHouseMap().get(h) - wantedStudents.get(h) > 0)
+                            availableHouses.add(h);
+                    }
+
+                    chosenHouse = selectHouse(availableHouses);
                     wantedStudents.replace(chosenHouse, wantedStudents.get(chosenHouse)+1);
+                    numChosenStudents++;
 
                     if (i != 2) {
                         System.out.println("Do you want to move another student? ('Y'/'N'):");
@@ -693,28 +690,16 @@ public class Cli extends ViewObservable implements UI {
                     returnedStudents.put(h, 0);
                 }
                 availableHouses = new ArrayList<>();
-                for (House h : House.values()) {
-                    if (gm.getCurrentPlayer().getDashboard().getHouseStudents(h) > 0)
-                        availableHouses.add(h);
-                }
-                for (int i = 0; i < 3; i++) {
-                    do {
-                        isValidInput = true;
-                        chosenHouse = selectHouse(availableHouses);
-                        if (gm.getCharacterCardDeck()[chosenCard - 1].getHouseMap().get(chosenHouse) - returnedStudents.get(chosenHouse) <= 0) {
-                            isValidInput = false;
-                            System.out.println("There are no students of the " + chosenHouse + " house in your Entrance");
-                        }
-                    } while (!isValidInput);
-                    returnedStudents.replace(chosenHouse, wantedStudents.get(chosenHouse)+1);
 
-                    if (i != 2) {
-                        System.out.println("Do you want to move another student? ('Y'/'N'):");
-                        if (!YNInput("you want move another student"))
-                            break;
+                for (int i = 0; i < numChosenStudents; i++) {
+                    availableHouses.clear();
+                    for (House h : House.values()) {
+                        if (gm.getCurrentPlayer().getDashboard().getHouseStudents(h) - returnedStudents.get(h) > 0)
+                            availableHouses.add(h);
                     }
+                    chosenHouse = selectHouse(availableHouses);
+                    returnedStudents.replace(chosenHouse, returnedStudents.get(chosenHouse)+1);
                 }
-
                 parameters.put("wantedStudents", gson.toJson(wantedStudents));
                 parameters.put("returnedStudents", gson.toJson(returnedStudents));
 
@@ -798,6 +783,10 @@ public class Cli extends ViewObservable implements UI {
                     if (gm.getCharacterCardDeck()[chosenCard - 1].getHouseMap().get(chosenHouse) <= 0) {
                         isValidInput = false;
                         System.out.println("There are no students of the " + chosenHouse + " house on the card");
+                    }
+                    if (gm.getPlayerByNickname(this.nickname).getDashboard().getDiningHall().getHouseStudents(chosenHouse) == 10) {
+                        isValidInput = false;
+                        System.out.println("Your dining hall for the selected house is full, you cannot add any other student. Select another house!");
                     }
                 } while (!isValidInput);
                 parameters.put("wantedHouse", chosenHouse);
