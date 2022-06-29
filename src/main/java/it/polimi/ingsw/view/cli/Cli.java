@@ -846,7 +846,7 @@ public class Cli extends ViewObservable implements UI {
     }
 
     private void focusOnMotherNature () {
-        System.out.println("Mother nature is currently on island " + gm.getMotherIsland()+1);
+        System.out.println("Mother nature is currently on island " + (gm.getMotherIsland()+1));
     }
 
     @Override
