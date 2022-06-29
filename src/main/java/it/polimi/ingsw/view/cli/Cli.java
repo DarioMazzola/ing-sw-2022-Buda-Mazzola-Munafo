@@ -618,28 +618,22 @@ public class Cli extends ViewObservable implements UI {
         int chosenIsland;
         House chosenHouse;
         switch (gm.getCharacterCardDeck()[chosenCard - 1].getType()) {
+
             case MONK: // needed: - wantedHouse, - destinationIsland
                 // wantedHouse
                 System.out.println("Select the house of the student you want to take from this card");
+
                 List<House> availableHouses = new ArrayList<>();
                 for (House h : House.values()) {
                     if (gm.getCharacterCardDeck()[chosenCard-1].getHouseMap().get(h) > 0)
                         availableHouses.add(h);
                 }
-                do {
-                    isValidInput = true;
-                    chosenHouse = selectHouse(availableHouses);
-                    if (gm.getCharacterCardDeck()[chosenCard - 1].getHouseMap().get(chosenHouse) <= 0) {
-                        isValidInput = false;
-                        System.out.println("There are no students of " + chosenCard + " house on the card");
-                    }
-                } while (!isValidInput);
+
+                chosenHouse = selectHouse(availableHouses);
+
                 parameters.put("wantedHouse", chosenHouse);
 
                 // destinationIsland
-                for (ReducedIsland i : gm.getIslandList()) {
-                    System.out.println(i);
-                }
                 System.out.println("\nSelect the island where you want to put the selected student");
                 chosenIsland = selectIsland();
                 parameters.put("destinationIsland", chosenIsland-1);
@@ -780,25 +774,31 @@ public class Cli extends ViewObservable implements UI {
                 break;
 
             case MUSHROOM_HUNTER:
+
                 System.out.println("Choose the house you want not be considered during the evaluation of influence:");
                 chosenHouse = selectHouse(Arrays.asList(House.values()));
                 parameters.put("house", chosenHouse);
+
                 break;
 
             case SPOILED_PRINCESS:
-                System.out.println("Choose the house of the student you want to take from the card:");
+
                 availableHouses = new ArrayList<>();
+                boolean fullDiningHall = true;
                 for (House h : House.values()) {
                     if (gm.getCharacterCardDeck()[chosenCard-1].getHouseMap().get(h) > 0)
                         availableHouses.add(h);
+                    if (gm.getPlayerByNickname(this.nickname).getDashboard().getDiningHall().getHouseStudents(h) < 10)
+                        fullDiningHall = false;
                 }
+                if (fullDiningHall) {
+                    System.out.println("\nYour dining hall is full, you cannot you this card!\n2");
+                    return false;
+                }
+                System.out.println("Choose the house of the student you want to take from the card:");
                 do {
                     isValidInput = true;
                     chosenHouse = selectHouse(availableHouses);
-                    if (gm.getCharacterCardDeck()[chosenCard - 1].getHouseMap().get(chosenHouse) <= 0) {
-                        isValidInput = false;
-                        System.out.println("There are no students of the " + chosenHouse + " house on the card");
-                    }
                     if (gm.getPlayerByNickname(this.nickname).getDashboard().getDiningHall().getHouseStudents(chosenHouse) == 10) {
                         isValidInput = false;
                         System.out.println("Your dining hall for the selected house is full, you cannot add any other student. Select another house!");
