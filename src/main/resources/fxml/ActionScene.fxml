@@ -1788,7 +1788,7 @@
                         <Font name="Baskerville Old Face" size="24.0" />
                      </font>
                   </Text>
-                  <Text fill="#463333" layoutX="39.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Costo:">
+                  <Text fill="#463333" layoutX="39.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cost:">
                      <font>
                         <Font name="Baskerville Old Face" size="24.0" />
                      </font>
@@ -1798,12 +1798,12 @@
                         <Font name="Baskerville Old Face" size="24.0" />
                      </font>
                   </Text>
-                  <Text fill="#463333" layoutX="173.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Costo:">
+                  <Text fill="#463333" layoutX="173.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cost:">
                      <font>
                         <Font name="Baskerville Old Face" size="24.0" />
                      </font>
                   </Text>
-                  <Text fill="#463333" layoutX="307.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Costo:">
+                  <Text fill="#463333" layoutX="307.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cost:">
                      <font>
                         <Font name="Baskerville Old Face" size="24.0" />
                      </font>
