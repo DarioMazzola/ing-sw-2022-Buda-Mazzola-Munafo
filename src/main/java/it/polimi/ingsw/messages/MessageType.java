@@ -1,9 +1,13 @@
 package it.polimi.ingsw.messages;
 
+/**
+ * Enumeration class that contains all types of network messages exchanged between client and server.
+ *
+ * @author Alessio Buda, Dario Mazzola & Gabriele Munafò
+ */
 public enum MessageType {
 
     /*--Answer Messages--*/
-    ACK,
     ACTION_PHASE,
     END_GAME_DISCONNECTION,
     GAME_FULL,
