@@ -67,7 +67,7 @@ public class ClientHandler implements Runnable {
         sendPing();
         try {
             handleClientConnection();
-        } catch (IOException e) {
+        } catch (IOException | ClassCastException | ClassNotFoundException e) {
             System.err.println("Client " + client.getInetAddress() + " connection dropped, client handler");
             if(socketServer.belongsToTheGame(this))
                 disconnect();
@@ -81,7 +81,7 @@ public class ClientHandler implements Runnable {
      *
      * @throws IOException any of the usual Input/Output related exceptions.
      */
-    private void handleClientConnection() throws IOException {
+    private void handleClientConnection() throws IOException, ClassNotFoundException {
         System.err.println("Client connected from " + client.getInetAddress());
 
         try {
@@ -120,13 +120,11 @@ public class ClientHandler implements Runnable {
         } catch (ClassCastException | ClassNotFoundException e) {
             e.printStackTrace();
             System.err.println("Invalid stream from client");
-            disconnect();
+            throw e;
         }
         catch (SocketException e) {
             System.err.println("Client disconnected");
-            if(socketServer.belongsToTheGame(this))
-                disconnect();
-            pingHandler.shutdownNow();
+            throw e;
         }
         client.close();
     }
