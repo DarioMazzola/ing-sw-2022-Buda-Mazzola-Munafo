@@ -16,17 +16,17 @@
          <children>
             <Label layoutX="517.0" layoutY="208.0" text="Do you want team mates to communicate with each other? ">
                <font>
-                  <Font size="36.0" />
+                  <Font name="Baskerville Old Face" size="36.0"/>
                </font>
             </Label>
             <Label layoutX="897.0" layoutY="148.0" text="CHAT">
                <font>
-                  <Font size="48.0" />
+                  <Font name="Baskerville Old Face" size="50.0" />
                </font>
             </Label>
             <RadioButton fx:id="YesBtn" layoutX="774.0" layoutY="476.0" mnemonicParsing="false" onAction="#onBtnClick" text="YES">
                <font>
-                  <Font size="24.0" />
+                  <Font name="Baskerville Old Face" size="26.0" />
                </font>
                <toggleGroup>
                   <ToggleGroup fx:id="YNBtns" />
@@ -34,12 +34,12 @@
             </RadioButton>
             <RadioButton fx:id="NoBtn" layoutX="1061.0" layoutY="476.0" mnemonicParsing="false" onAction="#onBtnClick" text="NO" toggleGroup="$YNBtns">
                <font>
-                  <Font size="24.0" />
+                  <Font name="Baskerville Old Face" size="26.0" />
                </font>
             </RadioButton>
             <Button fx:id="SelectBtn" layoutX="917.0" layoutY="630.0" mnemonicParsing="false" onAction="#onSelect" text="SELECT">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Baskerville Old Face" size="18.0" />
                </font></Button>
             <ImageView fitHeight="251.0" fitWidth="513.0" layoutX="707.0" layoutY="766.0" pickOnBounds="true" preserveRatio="true">
                <image>

@@ -12,12 +12,12 @@
       <AnchorPane fx:id="scenePane">
          <Button layoutX="1128.0" layoutY="877.0" mnemonicParsing="false" onAction="#exit" prefHeight="78.0" prefWidth="158.0" text="Exit">
             <font>
-               <Font size="36.0" />
+               <Font name="Baskerville Old Face" size="36.0"/>
             </font>
          </Button>
          <Button layoutX="509.0" layoutY="875.0" mnemonicParsing="false" onAction="#play" prefHeight="81.0" prefWidth="190.0" text="Play">
             <font>
-               <Font size="36.0" />
+               <Font name="Baskerville Old Face" size="36.0" />
             </font>
          </Button>
          <StackPane.margin>

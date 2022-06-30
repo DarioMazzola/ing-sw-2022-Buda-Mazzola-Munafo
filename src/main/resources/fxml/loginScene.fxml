@@ -35,12 +35,12 @@
          </ImageView>
          <Label layoutX="805.0" layoutY="110.0" text="NICKNAME">
             <font>
-               <Font size="48.0" />
+               <Font name="Baskerville Old Face" size="50.0" />
             </font>
          </Label>
          <Label layoutX="765.0" layoutY="343.0" text="Enter your nickname!">
             <font>
-               <Font size="36.0" />
+               <Font name="Baskerville Old Face" size="36.0" />
             </font>
          </Label>
       </AnchorPane>

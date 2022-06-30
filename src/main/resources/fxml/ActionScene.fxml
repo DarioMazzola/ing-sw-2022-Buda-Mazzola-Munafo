@@ -23,13 +23,13 @@
                <children>
                   <Text fill="WHITE" layoutX="164.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chat" textAlignment="CENTER" wrappingWidth="72.003173828125">
                      <font>
-                        <Font name="System Bold" size="30.0" />
+                        <Font name="Baskerville Old Face" size="26.0" />
                      </font>
                   </Text>
                   <TextArea fx:id="ChatText" layoutX="25.0" layoutY="185.0" prefHeight="100.0" prefWidth="350.0" promptText="Write your message here ..." />
                   <Button fx:id="ChatSendBtn" layoutX="137.0" layoutY="296.0" mnemonicParsing="false" style="-fx-background-color: #FFB703;" text="Send message" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="Baskerville Old Face" size="18.0" />
                      </font>
                   </Button>
                   <Pane fx:id="ChatPane" layoutX="25.0" layoutY="90.0" prefHeight="84.0" prefWidth="350.0" style="-fx-background-color: WHITE;">
@@ -38,7 +38,7 @@
                      </children></Pane>
                   <Text fx:id="NoMessageText" fill="WHITE" layoutX="144.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No messages yet!">
                      <font>
-                        <Font size="15.0" />
+                        <Font name="Baskerville Old Face" size="16.0" />
                      </font>
                   </Text>
                </children>
@@ -55,7 +55,7 @@
                         <ImageView fx:id="TowerIsland1" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
                         <Text fx:id="TowerNumberIsland1" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
-                              <Font name="System Bold" size="20.0" />
+                              <Font name="Baskerville Old Face" size="20.0" />
                            </font>
                         </Text>
                         <ImageView fx:id="StudRedIsland1" fitHeight="44.0" fitWidth="41.0" layoutX="79.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
@@ -182,7 +182,7 @@
                         <ImageView fx:id="TowerIsland2" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
                         <Text fx:id="TowerNumberIsland2" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
-                              <Font name="System Bold" size="20.0" />
+                              <Font name="Baskerville Old Face" size="20.0" />
                            </font>
                         </Text>
                         <ImageView fx:id="StudRedIsland2" fitHeight="44.0" fitWidth="41.0" layoutX="79.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
@@ -309,7 +309,7 @@
                         <ImageView fx:id="TowerIsland0" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
                         <Text fx:id="TowerNumberIsland0" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
-                              <Font name="System Bold" size="20.0" />
+                              <Font name="Baskerville Old Face" size="20.0" />
                            </font>
                         </Text>
                         <ImageView fx:id="StudRedIsland0" fitHeight="44.0" fitWidth="41.0" layoutX="79.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
@@ -431,7 +431,7 @@
                         <ImageView fx:id="TowerIsland3" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
                         <Text fx:id="TowerNumberIsland3" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
-                              <Font name="System Bold" size="20.0" />
+                              <Font name="Baskerville Old Face" size="20.0" />
                            </font>
                         </Text>
                         <ImageView fx:id="StudRedIsland3" fitHeight="44.0" fitWidth="41.0" layoutX="79.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
@@ -558,7 +558,7 @@
                         <ImageView fx:id="TowerIsland4" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
                         <Text fx:id="TowerNumberIsland4" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
-                              <Font name="System Bold" size="20.0" />
+                              <Font name="Baskerville Old Face" size="20.0" />
                            </font>
                         </Text>
                         <ImageView fx:id="StudRedIsland4" fitHeight="44.0" fitWidth="41.0" layoutX="79.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
@@ -685,7 +685,7 @@
                         <ImageView fx:id="TowerIsland5" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
                         <Text fx:id="TowerNumberIsland5" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
-                              <Font name="System Bold" size="20.0" />
+                              <Font name="Baskerville Old Face" size="20.0"/>
                            </font>
                         </Text>
                         <ImageView fx:id="StudRedIsland5" fitHeight="44.0" fitWidth="41.0" layoutX="79.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
@@ -736,7 +736,7 @@
                         <ImageView fx:id="TowerIsland6" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
                         <Text fx:id="TowerNumberIsland6" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
-                              <Font name="System Bold" size="20.0" />
+                              <Font name="Baskerville Old Face" size="20.0" />
                            </font>
                         </Text>
                         <ImageView fx:id="StudRedIsland6" fitHeight="44.0" fitWidth="41.0" layoutX="79.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
@@ -863,7 +863,7 @@
                         <ImageView fx:id="TowerIsland7" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
                         <Text fx:id="TowerNumberIsland7" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
-                              <Font name="System Bold" size="20.0" />
+                              <Font name="Baskerville Old Face" size="20.0" />
                            </font>
                         </Text>
                         <ImageView fx:id="StudRedIsland7" fitHeight="44.0" fitWidth="41.0" layoutX="79.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
@@ -990,7 +990,7 @@
                         <ImageView fx:id="TowerIsland9" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
                         <Text fx:id="TowerNumberIsland9" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
-                              <Font name="System Bold" size="20.0" />
+                              <Font name="Baskerville Old Face" size="20.0" />
                            </font>
                         </Text>
                         <ImageView fx:id="StudRedIsland9" fitHeight="44.0" fitWidth="41.0" layoutX="79.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
@@ -1117,7 +1117,7 @@
                         <ImageView fx:id="TowerIsland8" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
                         <Text fx:id="TowerNumberIsland8" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
-                              <Font name="System Bold" size="20.0" />
+                              <Font name="Baskerville Old Face" size="20.0" />
                            </font>
                         </Text>
                         <ImageView fx:id="StudRedIsland8" fitHeight="44.0" fitWidth="41.0" layoutX="79.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
@@ -1244,7 +1244,7 @@
                         <ImageView fx:id="TowerIsland10" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
                         <Text fx:id="TowerNumberIsland10" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
-                              <Font name="System Bold" size="20.0" />
+                              <Font name="Baskerville Old Face" size="20.0" />
                            </font>
                         </Text>
                         <ImageView fx:id="StudRedIsland10" fitHeight="44.0" fitWidth="41.0" layoutX="79.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
@@ -1371,7 +1371,7 @@
                         <ImageView fx:id="TowerIsland11" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
                         <Text fx:id="TowerNumberIsland11" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
-                              <Font name="System Bold" size="20.0" />
+                              <Font name="Baskerville Old Face" size="20.0" />
                            </font>
                         </Text>
                         <ImageView fx:id="StudRedIsland11" fitHeight="44.0" fitWidth="41.0" layoutX="79.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
@@ -2184,27 +2184,27 @@
                   </Text>
                   <Button fx:id="diningHallMainGreen" layoutX="71.0" layoutY="20.0" mnemonicParsing="false" opacity="0.0" prefHeight="18.0" prefWidth="194.0" text="Button">
                      <font>
-                        <Font size="10.0" />
+                        <Font name="Baskerville Old Face" size="10.0" />
                      </font>
                   </Button>
                   <Button fx:id="diningHallMainRed" layoutX="71.0" layoutY="47.0" mnemonicParsing="false" opacity="0.0" prefHeight="18.0" prefWidth="194.0" text="Button">
                      <font>
-                        <Font size="10.0" />
+                        <Font name="Baskerville Old Face" size="10.0" />
                      </font>
                   </Button>
                   <Button fx:id="diningHallMainYellow" layoutX="72.0" layoutY="75.0" mnemonicParsing="false" opacity="0.0" prefHeight="9.0" prefWidth="194.0" text="Button">
                      <font>
-                        <Font size="10.0" />
+                        <Font name="Baskerville Old Face" size="10.0" />
                      </font>
                   </Button>
                   <Button fx:id="diningHallMainPink" layoutX="71.0" layoutY="103.0" mnemonicParsing="false" opacity="0.0" prefHeight="18.0" prefWidth="194.0" text="Button">
                      <font>
-                        <Font size="10.0" />
+                        <Font name="Baskerville Old Face" size="10.0" />
                      </font>
                   </Button>
                   <Button fx:id="diningHallMainBlue" layoutX="71.0" layoutY="130.0" mnemonicParsing="false" opacity="0.0" prefHeight="18.0" prefWidth="194.0" text="Button">
                      <font>
-                        <Font size="10.0" />
+                        <Font name="Baskerville Old Face" size="10.0" />
                      </font>
                   </Button>
                </children>
@@ -2231,17 +2231,17 @@
             </ImageView>
             <Text fx:id="NameDashboard1" fill="#f25705" layoutX="14.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="Baskerville Old Face" size="18.0"/>
                </font>
             </Text>
             <Text fx:id="NameDashboard2" fill="#f25705" layoutX="14.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="Baskerville Old Face" size="18.0"/>
                </font>
             </Text>
             <Text fx:id="NameDashboard3" fill="#f25705" layoutX="14.0" layoutY="478.0" strokeType="OUTSIDE" strokeWidth="0.0">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="Baskerville Old Face" size="18.0" />
                </font>
             </Text>
             <TextArea fx:id="Suggestions" editable="false" layoutX="501.0" layoutY="580.0" prefHeight="127.0" prefWidth="314.0">

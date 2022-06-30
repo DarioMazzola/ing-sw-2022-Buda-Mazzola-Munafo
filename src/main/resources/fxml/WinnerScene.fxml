@@ -17,7 +17,7 @@
          <children>
             <Text fx:id="WinnerText" layoutX="81.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: CENTER;" text="Player  won the game! Thank you for playing!" wrappingWidth="437.4736328125">
                <font>
-                  <Font size="22.0" />
+                  <Font name="Baskerville Old Face" size="24.0"  />
                </font>
             </Text>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="200.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true">
@@ -27,7 +27,7 @@
             </ImageView>
             <Label layoutX="227.0" layoutY="52.0" text="GAME ENDED">
                <font>
-                  <Font size="24.0" />
+                  <Font name="Baskerville Old Face" size="26.0" />
                </font>
             </Label>
             <Text layoutX="49.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do you want to play another game?" />

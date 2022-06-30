@@ -18,12 +18,12 @@
          <children>
             <Label layoutX="883.0" layoutY="126.0" text="TEAMS">
                <font>
-                  <Font size="48.0" />
+                  <Font name="Baskerville Old Face" size="50.0"/>
                </font>
             </Label>
             <Label layoutX="574.0" layoutY="227.0" text="You should now select a team and whether you want to be leader of the team!">
                <font>
-                  <Font size="24.0" />
+                  <Font name="Baskerville Old Face" size="26.0" />
                </font>
             </Label>
             <GridPane layoutX="706.0" layoutY="360.0" prefHeight="333.0" prefWidth="508.0">
@@ -40,54 +40,54 @@
                <children>
                   <Label alignment="CENTER" prefHeight="29.0" prefWidth="192.0" text="TEAM1" GridPane.columnIndex="1">
                      <font>
-                        <Font name="System Bold" size="24.0" />
+                        <Font name="Baskerville Old Face" size="24.0" />
                      </font>
                   </Label>
                   <Label alignment="CENTER" prefHeight="29.0" prefWidth="187.0" text="TEAM2" GridPane.columnIndex="2">
                      <font>
-                        <Font name="System Bold" size="24.0" />
+                        <Font name="Baskerville Old Face" size="24.0" />
                      </font>
                   </Label>
                   <Label text="Team leader" GridPane.rowIndex="1">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="Baskerville Old Face" size="24.0" />
                      </font>
                   </Label>
                   <Label text="Other members" GridPane.rowIndex="2">
                      <font>
-                        <Font size="24.0" />
+                        <Font name="Baskerville Old Face" size="24.0" />
                      </font>
                   </Label>
                   <Label fx:id="LeaderTeam1" alignment="CENTER" prefHeight="23.0" prefWidth="167.0" text="No leader yet!" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Baskerville Old Face" size="18.0" />
                      </font>
                   </Label>
                   <Label fx:id="LeaderTeam2" alignment="CENTER" prefHeight="23.0" prefWidth="168.0" text="No leader yet!" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Baskerville Old Face" size="18.0" />
                      </font>
                   </Label>
                   <Label fx:id="MemberTeam1" alignment="CENTER" prefHeight="23.0" prefWidth="173.0" text="No members" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Baskerville Old Face" size="18.0"  />
                      </font>
                   </Label>
                   <Label fx:id="MemberTeam2" alignment="CENTER" prefHeight="23.0" prefWidth="221.0" text="No members" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <font>
-                        <Font size="18.0" />
+                        <Font name="Baskerville Old Face" size="18.0"  />
                      </font>
                   </Label>
                </children>
             </GridPane>
             <Label layoutX="652.0" layoutY="800.0" text="Which team do you want to join?">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Baskerville Old Face" size="18.0"  />
                </font>
             </Label>
             <RadioButton fx:id="Team1Btn" layoutX="914.0" layoutY="803.0" mnemonicParsing="false" text="Team1">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Baskerville Old Face" size="18.0"  />
                </font>
                <toggleGroup>
                   <ToggleGroup fx:id="TeamChoice" />
@@ -95,12 +95,12 @@
             </RadioButton>
             <RadioButton fx:id="Team2Btn" layoutX="1086.0" layoutY="803.0" mnemonicParsing="false" text="Team2" toggleGroup="$TeamChoice">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Baskerville Old Face" size="18.0"  />
                </font>
             </RadioButton>
             <Label layoutX="612.0" layoutY="891.0" text="Do you want to be leader of the team?">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Baskerville Old Face" size="18.0"  />
                </font>
             </Label>
             <CheckBox fx:id="TeamLeader" layoutX="919.0" layoutY="894.0" mnemonicParsing="false" />

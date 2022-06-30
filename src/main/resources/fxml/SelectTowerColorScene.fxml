@@ -29,19 +29,19 @@
          </RadioButton>
          <Button fx:id="selectButton" disable="true" layoutX="913.0" layoutY="683.0" mnemonicParsing="false" text="Select">
             <font>
-               <Font size="24.0" />
+               <Font name="Baskerville Old Face" size="24.0"  />
             </font>
          </Button>
          <RadioButton fx:id="whiteButton" disable="true" layoutX="932.0" layoutY="651.0" mnemonicParsing="false" opacity="0.0" prefHeight="0.0" prefWidth="88.0" text="white" toggleGroup="$towersButton" />
          <RadioButton fx:id="blackButton" disable="true" layoutX="1425.0" layoutY="636.0" mnemonicParsing="false" opacity="0.0" prefHeight="0.0" prefWidth="88.0" text="black" toggleGroup="$towersButton" />
          <Label layoutX="795.0" layoutY="62.0" text="TOWER COLOR">
             <font>
-               <Font size="48.0" />
+               <Font name="Baskerville Old Face" size="50.0" />
             </font>
          </Label>
          <Label layoutX="590.0" layoutY="179.0" text="Select the color of the towers in your dashboard!">
             <font>
-               <Font size="36.0" />
+               <Font name="Baskerville Old Face" size="36.0"  />
             </font>
          </Label>
       </AnchorPane>
