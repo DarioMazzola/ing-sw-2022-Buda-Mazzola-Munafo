@@ -2384,15 +2384,17 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                 if (gm.getIslandList().get(i).getColorTower() == BLACK) {
                     image = new Image("images/towers/black_tower.png");
                     tower.setImage(image);
+                    towerNumber.setStyle("-fx-text-fill: white;");
                 }
                 if (gm.getIslandList().get(i).getColorTower() == GRAY) {
                     image = new Image("images/towers/gray_tower.png");
                     tower.setImage(image);
+                    towerNumber.setStyle("-fx-text-fill: white;");
                 }
                 if (gm.getIslandList().get(i).getColorTower() == WHITE) {
                     image = new Image("images/towers/white_tower.png");
                     tower.setImage(image);
-                    towerNumber.setStyle("-fx-text-fill: #463333;");
+                    towerNumber.setStyle("-fx-text-fill: black;");
                 }
                 tower.setVisible(true);
                 towerNumber.setVisible(true);
@@ -2870,6 +2872,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             default:
                 throw new IllegalStateException("Unexpected value: " + numPlayer);
         }
+
+        setSuggestions(null, "");
     }
 
     /**
@@ -4749,7 +4753,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                 Suggestions.setText("You now have to select a type of student to take from every player");
                 break;
             default:
-                Suggestions.setText("You are in the waiting room! It's " + gm.getCurrentPlayer().getNickname() + "'s turn");
+                if (!gm.getCurrentPlayer().getNickname().equals(this.nickname)) {
+                    Suggestions.setText("You are in the waiting room! It's " + gm.getCurrentPlayer().getNickname() + "'s turn");
+                }
         }
     }
 
