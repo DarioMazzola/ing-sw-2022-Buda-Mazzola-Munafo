@@ -23,7 +23,7 @@ import java.util.concurrent.*;
  *
  * @author Alessio Buda
  */
-public class ClientController extends Observer implements ViewObserver {
+public class ClientController implements ViewObserver, Observer {
     private ServerHandler client;
     private String nickname;
     private final ExecutorService showTaskQueue;
