@@ -37,6 +37,7 @@ public class WinnerSceneController extends ViewObservable implements SceneInterf
         WinnerText.setFont(font);
         SelectBtn.setDisable(true);
         YesBtn.setOnAction(this::onButtonClick);
+        NoBtn.setOnAction(this::onButtonClick);
         SelectBtn.setOnAction(this::onSelect);
     }
 
