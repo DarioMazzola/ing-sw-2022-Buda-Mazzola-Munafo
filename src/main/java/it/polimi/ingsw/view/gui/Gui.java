@@ -146,6 +146,7 @@ public class Gui extends ViewObservable implements UI {
     @Override
     public void actionPhase(List<String> availableActions) {
         Platform.runLater(sceneController::hidePopUp);
+        Runtime.getRuntime().gc();
 
         ActionSceneController controller;
 
@@ -272,6 +273,7 @@ public class Gui extends ViewObservable implements UI {
     @Override
     public void onChatMessageReceived(String message) {
         ActionSceneController controller;
+        Runtime.getRuntime().gc();
         if (sceneController.getActiveController() instanceof ActionSceneController) {
             controller = (ActionSceneController) sceneController.getActiveController();
             Platform.runLater(() -> controller.updateChat(message));
@@ -291,6 +293,7 @@ public class Gui extends ViewObservable implements UI {
     @Override
     public void updateIslands(List<ReducedIsland> islands) {
         gm.setIslandList(islands);
+        Runtime.getRuntime().gc();
 
         updateActionSceneGM();
 
@@ -309,6 +312,7 @@ public class Gui extends ViewObservable implements UI {
     public void updatePlayer(ReducedPlayer player) {
         int index = Arrays.asList(gm.getArrayPlayers()).indexOf(gm.getPlayerByNickname(player.getNickname()));
         gm.setPlayer(index, player);
+        Runtime.getRuntime().gc();
 
         updateActionSceneGM();
 
@@ -326,6 +330,7 @@ public class Gui extends ViewObservable implements UI {
     @Override
     public void updateClouds(ReducedCloud[] clouds) {
         gm.setArrayClouds(clouds);
+        Runtime.getRuntime().gc();
 
         updateActionSceneGM();
 
@@ -342,6 +347,7 @@ public class Gui extends ViewObservable implements UI {
      */
     @Override
     public void updateTotalCoins(int totCoins) {
+        Runtime.getRuntime().gc();
         gm.setTotalCoins(totCoins);
         // totCoins not shown in ActionScene, no update needed
     }
@@ -354,6 +360,7 @@ public class Gui extends ViewObservable implements UI {
     @Override
     public void updateMotherNature(int motherIsland) {
         gm.setMotherIsland(motherIsland);
+        Runtime.getRuntime().gc();
 
         updateActionSceneGM();
 
@@ -371,6 +378,7 @@ public class Gui extends ViewObservable implements UI {
     @Override
     public void updateCurrentPlayer(ReducedPlayer currentPlayer) {
         gm.setCurrentPlayer(currentPlayer);
+        Runtime.getRuntime().gc();
 
         updateActionSceneGM();
 
@@ -388,6 +396,7 @@ public class Gui extends ViewObservable implements UI {
     @Override
     public void updateDiningHall(ReducedDiningHall diningHall) {
         gm.getPlayerByNickname(diningHall.getNickname()).getDashboard().setDiningHall(diningHall);
+        Runtime.getRuntime().gc();
 
         updateActionSceneGM();
 
@@ -405,6 +414,7 @@ public class Gui extends ViewObservable implements UI {
     @Override
     public void updateDashboard(ReducedDashboard dashboard) {
         gm.getPlayerByNickname(dashboard.getNickname()).setDashboard(dashboard);
+        Runtime.getRuntime().gc();
 
         updateActionSceneGM();
 
@@ -422,6 +432,7 @@ public class Gui extends ViewObservable implements UI {
     @Override
     public void updateGameModel(ReducedGameModel gameModel) {
         this.gm = gameModel;
+        Runtime.getRuntime().gc();
 
         updateActionSceneGM();
 
@@ -459,6 +470,7 @@ public class Gui extends ViewObservable implements UI {
      */
     private void updateActionSceneGM() {
         ActionSceneController controller;
+        Runtime.getRuntime().gc();
 
         if (sceneController.getActiveController() instanceof ActionSceneController) {
             controller = (ActionSceneController) sceneController.getActiveController();
