@@ -7,7 +7,7 @@ import static it.polimi.ingsw.messages.MessageType.CHOSEN_TEAM;
  * This message is sent from the client to the server when there are 4 players.
  * It is used to communicate to the server the player's chosen team if he/she wants to be the team leader.
  *
- * @author Alessio Buda
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class ChosenTeam extends CommandMessage {
     private final int selectedTeam;

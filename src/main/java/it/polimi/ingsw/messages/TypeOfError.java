@@ -1,5 +1,10 @@
 package it.polimi.ingsw.messages;
 
+/**
+ * Enumeration class with all types of errors that can be sent from the server to the client.
+ *
+ * @author Alessio Buda, Dario Mazzola, Gabriele Munafo'
+ */
 public enum TypeOfError {
         ASSISTANT_CARD_NOT_AVAILABLE("This card is not present in your deck! Please select another one"),
         ASSISTANT_CARD_TAKEN("This assistant card has already been selected by another player! Please select an available assistant card"),

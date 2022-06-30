@@ -6,7 +6,7 @@ import it.polimi.ingsw.messages.MessageType;
  * ChosenChat message is sent from the client to the server
  * to communicate whether the player wants to allow communication between team members.
  *
- * @author Alessio Buda
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class ChosenChat extends CommandMessage {
     private final boolean chat;

@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Class that represents the ReducedDiningHall
+ * Class that represents a reduced version of a diningHall
  * @author Gabriele Munafo'
  */
 public class ReducedDiningHall {

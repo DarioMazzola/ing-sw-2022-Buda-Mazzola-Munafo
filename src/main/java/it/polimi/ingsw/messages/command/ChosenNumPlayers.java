@@ -7,7 +7,7 @@ import static it.polimi.ingsw.messages.MessageType.CHOSEN_NUM_PLAYERS;
  * This message is sent from the client to the server when the client represents the first player connected
  * to communicate the number of players for this game.
  *
- * @author Alessio Buda
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class ChosenNumPlayers extends CommandMessage {
     private final int numPlayers;

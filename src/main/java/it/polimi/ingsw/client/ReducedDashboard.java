@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Class that represents the ReducedDashboard
+ * Class that represents a reduced version of a dashboard
  * @author Gabriele Munafo'
  */
 public class ReducedDashboard {

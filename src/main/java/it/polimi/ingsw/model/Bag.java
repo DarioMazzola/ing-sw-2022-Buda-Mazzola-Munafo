@@ -1,8 +1,3 @@
-/**
- * Describes the Bag Class
- *
- * @autor Dario Mazzola
- */
 package it.polimi.ingsw.model;
 
 import it.polimi.ingsw.exceptions.BagException;
@@ -13,6 +8,11 @@ import java.util.*;
 
 import static it.polimi.ingsw.model.House.*;
 
+/**
+ * Describes the Bag Class
+ *
+ * @author Dario Mazzola
+ */
 public class Bag implements StudentAdderInterface {
 
     private final Map<House, Integer> houseMap;

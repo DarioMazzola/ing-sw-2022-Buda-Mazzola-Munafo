@@ -9,7 +9,7 @@ import java.util.List;
  * This message is sent from the server to the client to communicate all the possible actions
  * that the player can do.
  *
- * @author Dario Mazzola & Gabriele Munafo'
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class ActionPhase extends AnswerMessage {
     private final List<String> availableActions;

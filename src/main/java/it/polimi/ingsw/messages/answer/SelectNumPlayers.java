@@ -6,7 +6,7 @@ import static it.polimi.ingsw.messages.MessageType.SELECT_NUM_PLAYERS;
  * This message is sent from the server to the client to communicate that
  * the player has to choose the number of players for this match
  *
- * @author Dario Mazzola
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class SelectNumPlayers extends AnswerMessage {
 

@@ -5,7 +5,7 @@ import static it.polimi.ingsw.messages.MessageType.CHOSEN_CLOUD;
 /**
  * This message is sent from the client to the server to communicate the player's selected cloud.
  *
- * @author Dario Mazzola
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class ChosenCloud extends CommandMessage{
 

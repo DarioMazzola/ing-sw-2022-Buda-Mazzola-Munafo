@@ -7,7 +7,7 @@ import static it.polimi.ingsw.messages.MessageType.UPDATE_CURRENT_PLAYER;
 /**
  * Class representing message from the server to the client to notify the change of the current player.
  *
- * @author Dario Mazzola
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class UpdateCurrentPlayer extends AnswerMessage{
 

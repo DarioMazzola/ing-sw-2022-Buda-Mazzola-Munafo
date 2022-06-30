@@ -1,11 +1,7 @@
 package it.polimi.ingsw.model;
 
-import it.polimi.ingsw.client.ReducedCloud;
-import it.polimi.ingsw.client.ReducedIsland;
 import it.polimi.ingsw.exceptions.IslandException;
 import it.polimi.ingsw.exceptions.noEntryTileException;
-import it.polimi.ingsw.messages.answer.UpdateCloud;
-import it.polimi.ingsw.messages.answer.UpdateIsland;
 import it.polimi.ingsw.model.interfaces.StudentAdderInterface;
 import it.polimi.ingsw.observer.Observable;
 

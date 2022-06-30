@@ -9,7 +9,7 @@ import static it.polimi.ingsw.messages.MessageType.MOVE_STUDENT_TO_ISLAND;
  *This message is sent from the client to the server to communicate the student the player wants to move from
  * his/hers dining hall to an island.
  *
- * @author Dario Mazzola
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class MoveStudentToIsland extends CommandMessage{
 

@@ -5,7 +5,7 @@ import static it.polimi.ingsw.messages.MessageType.NEW_GAME;
 /**
  * This message is sent from the client to the server when a player wants to start a game
  *
- * @author Dario Mazzola
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class NewGame extends CommandMessage{
 

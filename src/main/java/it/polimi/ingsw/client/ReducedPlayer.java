@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class that represents the ReducedPlayer
+ * Class that represents a reduced version of a Player
  * @author Gabriele Munafo'
  */
 public class ReducedPlayer {

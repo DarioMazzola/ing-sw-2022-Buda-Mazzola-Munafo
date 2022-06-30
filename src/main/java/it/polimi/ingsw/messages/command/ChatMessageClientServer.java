@@ -6,7 +6,7 @@ import it.polimi.ingsw.messages.MessageType;
  * MessageClientServer class represents a message sent from the client
  * to the server in order to be forwarded to the teammate of the player.
  *
- * @author Alessio Buda
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class ChatMessageClientServer extends CommandMessage {
     private final String message;

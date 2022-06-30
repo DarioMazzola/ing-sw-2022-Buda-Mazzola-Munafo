@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * An abstract class representing a command message, sent from the client to the server.
  *
- * @author Dario Mazzola
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public abstract class CommandMessage extends Message {
     private final String nickname;

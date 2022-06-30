@@ -8,7 +8,7 @@ import static it.polimi.ingsw.messages.MessageType.CHOSEN_ASSISTANT_CARD;
  * AssistantCards class represents AssistantCards network message.
  * This message is sent from the client to the server to communicate player's selected assistant card for this round.
  *
- * @author Alessio Buda
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class ChosenAssistantCard extends CommandMessage {
     private final Card assistantCard;

@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Class that represents the ReducedGameModel
+ * Class that represents a reduced version of a GameModel
  * @author Gabriele Munafo'
  */
 public class ReducedGameModel {

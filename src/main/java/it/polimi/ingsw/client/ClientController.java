@@ -21,7 +21,7 @@ import java.util.concurrent.*;
  * It processes received messages and sends command messages to the server.
  * It is an implementation of {@link ViewObserver} and {@link Observer}.
  *
- * @author Alessio Buda
+ * @author Alessio Buda & Dario Mazzola
  */
 public class ClientController extends Observer implements ViewObserver {
     private ServerHandler client;
@@ -41,6 +41,9 @@ public class ClientController extends Observer implements ViewObserver {
         updateTaskQueue = Executors.newSingleThreadExecutor();
     }
 
+    /**
+     * @see ViewObserver#onInit(String, int)
+     */
     @Override
     public void onInit(String ip, int port) {
         try {
@@ -55,89 +58,139 @@ public class ClientController extends Observer implements ViewObserver {
         }
     }
 
+    /**
+     * @see ViewObserver#onCreateNewGame(String) 
+     */
     @Override
     public void onCreateNewGame(String nickname) {
         this.nickname = nickname;
         client.sendMessage(new NewGame(nickname));
     }
 
+    /**
+     * @see ViewObserver#onUpdateNickname(String)
+     */
     @Override
     public void onUpdateNickname(String nickname) {
         this.nickname = nickname;
         client.sendMessage(new Nickname(nickname));
     }
 
-
+    /**
+     * @see ViewObserver#onUpdateNumPlayers(int)
+     */
     @Override
     public void onUpdateNumPlayers(int numPlayers) {
         client.sendMessage(new ChosenNumPlayers(this.nickname, numPlayers));
     }
 
+    /**
+     * @see ViewObserver#onUpdateChat(boolean)
+     */
     @Override
     public void onUpdateChat(boolean chat) {
         client.sendMessage(new ChosenChat(this.nickname, chat));
     }
 
+    /**
+     * @see ViewObserver#onUpdateWizard(Wizard)
+     */
     @Override
     public void onUpdateWizard(Wizard wizard) {
         client.sendMessage(new ChosenWizard(this.nickname, wizard));
     }
 
+    /**
+     * @see ViewObserver#onUpdateExpertMode(boolean)
+     */
     @Override
     public void onUpdateExpertMode(boolean expertMode) {
         client.sendMessage(new ChosenExpertMode(this.nickname, expertMode));
     }
 
+    /**
+     * @see ViewObserver#onUpdateTeam(int, boolean)
+     */
     @Override
     public void onUpdateTeam(int selectedTeam, boolean isTeamLeader) {
         client.sendMessage(new ChosenTeam(this.nickname, selectedTeam, isTeamLeader));
     }
 
+    /**
+     * @see ViewObserver#onUpdateTowerColor(Color)
+     */
     @Override
     public void onUpdateTowerColor(Color towerColor) {
         client.sendMessage(new ChosenTowerColor(this.nickname, towerColor));
     }
 
+    /**
+     * @see ViewObserver#onUpdateAssistantCard(Card)
+     */
     @Override
     public void onUpdateAssistantCard(Card chosenCard) {
         client.sendMessage(new ChosenAssistantCard(this.nickname, chosenCard));
     }
 
+    /**
+     * @see ViewObserver#onMoveStudentsToDiningHall(House)
+     */
     @Override
     public void onMoveStudentsToDiningHall(House chosenHouse) {
         client.sendMessage(new MoveStudentToDiningHall(this.nickname, chosenHouse));
     }
 
+    /**
+     * @see ViewObserver#onMoveStudentsToIsland(House, int)
+     */
     @Override
     public void onMoveStudentsToIsland(House chosenHouse, int chosenIsland) {
         client.sendMessage(new MoveStudentToIsland(this.nickname, chosenHouse, chosenIsland));
     }
 
+    /**
+     * @see ViewObserver#onMoveMotherNature(int)
+     */
     @Override
     public void onMoveMotherNature(int moves) {
         client.sendMessage(new MoveMother(this.nickname, moves));
     }
 
+    /**
+     * @see ViewObserver#onUpdateCloud(int)
+     */
     @Override
     public void onUpdateCloud(int chosenCloud) {
         client.sendMessage(new ChosenCloud(this.nickname, chosenCloud));
     }
 
+    /**
+     * @see ViewObserver#onUpdateCharacterCard(int, Map)
+     */
     @Override
     public void onUpdateCharacterCard(int cardIndex, Map<String, Object> parameters) {
         client.sendMessage(new ChosenCharacterCard(this.nickname, cardIndex, parameters));
     }
 
+    /**
+     * @see ViewObserver#onRestoreGame(boolean)
+     */
     @Override
     public void onRestoreGame(boolean toRestore) {
         client.sendMessage(new ChosenRestoreGame(this.nickname, toRestore));
     }
 
+    /**
+     * @see ViewObserver#onSendMessage(String)
+     */
     @Override
     public void onSendMessage(String message) {
         client.sendMessage(new ChatMessageClientServer(this.nickname, message));
     }
 
+    /**
+     * @see ViewObserver#onDisconnection()
+     */
     @Override
     public void onDisconnection() {
         try{
@@ -147,11 +200,17 @@ public class ClientController extends Observer implements ViewObserver {
         System.exit(-12);
     }
 
+    /**
+     * @see ViewObserver#waitForMessage()
+     */
     @Override
     public void waitForMessage(){
         client.sendMessage(new ReloadMessages(this.nickname));
     }
 
+    /**
+     * @see Observer#update(Message)
+     */
     @Override
     public void update(Message message) {
 
