@@ -19,6 +19,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * Scene that asks the player to choose the assistant card for this round.
+ *
+ * @author Dario Mazzola.
+ */
 public class SelectAssistantCardSceneController extends ViewObservable implements SceneInterface {
 
     @FXML
@@ -32,8 +37,14 @@ public class SelectAssistantCardSceneController extends ViewObservable implement
     private final String nickname;
     private final List<Card> availableCards;
 
-    public SelectAssistantCardSceneController(ReducedGameModel gm, String nickname, List<Card> availableCards){
-
+    /**
+     * Class constructor.
+     *
+     * @param gm             the game model we update to that moment
+     * @param nickname       the nickname of the player.
+     * @param availableCards all the available assistant card that are not used by other players.
+     */
+    public SelectAssistantCardSceneController(ReducedGameModel gm, String nickname, List<Card> availableCards) {
         this.gm = gm;
         this.nickname = nickname;
         this.availableCards = availableCards;
@@ -49,30 +60,35 @@ public class SelectAssistantCardSceneController extends ViewObservable implement
         List<Node> cards = assistantCards.getChildren().sorted();
 
         int i = 0;
-        for(Card c : playersDeck) {
+        for (Card c : playersDeck) {
             Node node = cards.get(i);
-            if(! result.contains(c)) {
+            if (!result.contains(c)) {
                 node.setDisable(true);
                 node.setOpacity(0.5);
-            }
-            else{
+            } else {
                 node.setDisable(false);
                 node.setOnMouseClicked(this::selectCharacterCard);
             }
 
             Image cardImage = new Image(getUrlByValue(c.getValue()));
 
-            ((ImageView)node).setImage(cardImage);
+            ((ImageView) node).setImage(cardImage);
             i++;
         }
 
         selectButton.setOnAction(this::onSelectClicked);
     }
 
+    /**
+     * Handles the event triggered when the player selects an image of one of
+     * the available assistant cards owned by the player.
+     *
+     * @param mouseEvent the event fired
+     */
     public void selectCharacterCard(MouseEvent mouseEvent) {
         ImageView imageClicked = (ImageView) mouseEvent.getSource();
 
-        for(Node card : assistantCards.getChildren()) {
+        for (Node card : assistantCards.getChildren()) {
             card.getStyleClass().clear();
         }
         imageClicked.getStyleClass().add("dropShadow");
@@ -81,23 +97,34 @@ public class SelectAssistantCardSceneController extends ViewObservable implement
         List<Toggle> toggles = assistantButtons.getToggles().sorted();
         toggles.get(i).setSelected(true);
 
-        for(Toggle t : toggles){
-            if(! t.equals(toggles.get(i))){
+        for (Toggle t : toggles) {
+            if (!t.equals(toggles.get(i))) {
                 t.setSelected(false);
             }
         }
         selectButton.setDisable(false);
     }
 
+    /**
+     * Handles the event fired when the player clicks on the select button.
+     *
+     * @param event the event fired
+     */
     public void onSelectClicked(ActionEvent event) {
 
-        RadioButton radio = (RadioButton)assistantButtons.getSelectedToggle();
+        RadioButton radio = (RadioButton) assistantButtons.getSelectedToggle();
         int i = Integer.parseInt(radio.getText());
 
         List<Card> playersDeck = gm.getPlayerByNickname(nickname).getDeck();
         notifyObserver(observer -> observer.onUpdateAssistantCard(playersDeck.get(i)));
     }
 
+    /**
+     * Returns the URL of the assistant card created form its value.
+     *
+     * @param value the value of the card
+     * @return the URL that refers to assistant card
+     */
     public String getUrlByValue(int value) {
 
         String url = "/images/assistant/";
@@ -138,7 +165,13 @@ public class SelectAssistantCardSceneController extends ViewObservable implement
         return url;
     }
 
+    /**
+     * Returns the value of the assistant card created form its id.
+     *
+     * @param id the id of the card
+     * @return the value of the card
+     */
     public int getValueByImage(String id) {
-        return Integer.parseInt(String.valueOf(id.charAt(id.length()-1)));
+        return Integer.parseInt(String.valueOf(id.charAt(id.length() - 1)));
     }
 }
