@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  * Class representing the virtual view. An instance of this class hides from the server controller
- * how the network layer is done. The server controller can use his methods to have a dialogue with
+ * how the network layer is implemented. The server controller can use his methods to have a dialogue with
  * the client as if he had the view on the same side
  *
  * @author Dario Mazzola
