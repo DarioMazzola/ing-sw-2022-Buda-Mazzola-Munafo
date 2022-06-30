@@ -3,7 +3,7 @@ package it.polimi.ingsw.messages.answer;
 import it.polimi.ingsw.messages.MessageType;
 
 /**
- * MessageServerClient class represents a message to be forwarded by the server to a player.
+ * MessageServerClient class represents a chat message to be forwarded by the server to a player.
  *
  * @author Alessio Buda
  */

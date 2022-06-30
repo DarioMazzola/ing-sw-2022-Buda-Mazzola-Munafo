@@ -2,6 +2,12 @@ package it.polimi.ingsw.messages.answer;
 
 import static it.polimi.ingsw.messages.MessageType.REMEMBER_NICKNAME;
 
+/**
+ * This message is sent by the server to the client to remind the client of the nickname
+ * chosen by the player following a disconnection.
+ *
+ * @author Dario Mazzola
+ */
 public class RememberNickname extends AnswerMessage{
 
     private final String nickname;
