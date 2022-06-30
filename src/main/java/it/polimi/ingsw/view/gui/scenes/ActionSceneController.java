@@ -4850,6 +4850,12 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                 case JOLLY:
                     for (Node n : getVBoxByCard(cardSelected).getChildren()) {
                         n.setOnMouseClicked(selectStudentForJolly);
+                        n.getStyleClass().add("dropShadow");
+                    }
+                    for (ImageView student : EntranceMain) {
+                        student.setOnMouseClicked(pickStudentsFromEntrance);
+                        student.setOpacity(1);
+                        student.getStyleClass().add("dropShadow");
                     }
                     card.setOnMouseClicked(sendStudents);
                     break;
@@ -4936,11 +4942,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                 n.setOnMouseClicked(doNothing);
                 n.getStyleClass().clear();
             }
-
-            for (ImageView student : EntranceMain) {
-                student.setOnMouseClicked(pickStudentsFromEntrance);
-                student.setOpacity(1);
-            }
         }
     }
 
@@ -4949,15 +4950,17 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         House house = getHouseById(studentSelected.getId());
 
-        if (cardSelected != null) {
-            for (Node student : getVBoxByCard(cardSelected).getChildren()) {
-                student.setOnMouseClicked(doNothing);
-            }
-        }
-
         if (returnedStudents == null) {
             returnedStudents = new ArrayList<>();
         }
+
+        if (returnedStudents.size() == 3) {
+            for (ImageView student : EntranceMain) {
+                student.setOnMouseClicked(doNothing);
+                student.getStyleClass().clear();
+            }
+        }
+
         returnedStudents.add(house);
     }
 
@@ -5025,7 +5028,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
     private void sendStudents(MouseEvent event) {
 
-        if (wantedStudents.size() == returnedStudents.size()) {
+        if (wantedStudents != null && returnedStudents != null && wantedStudents.size() == returnedStudents.size()) {
             Map<String, Object> parameters = new HashMap<>();
             Gson gson = new Gson();
 
@@ -5054,6 +5057,18 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
             wantedStudents = null;
             returnedStudents = null;
+        } else {
+            Alert alert;
+            SceneController sceneController = new SceneController();
+            //if the player has already used a card in this round
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.initOwner(sceneController.getActiveScene().getWindow());
+            alert.initModality(Modality.APPLICATION_MODAL);
+            alert.setTitle("Select character card");
+            alert.setHeaderText("the students you want to take from the card and those \nyou want to leave must be equal in number");
+
+            alert.showAndWait();
+            sceneController.getActiveScene().getRoot().setEffect(null);
         }
     }
 
