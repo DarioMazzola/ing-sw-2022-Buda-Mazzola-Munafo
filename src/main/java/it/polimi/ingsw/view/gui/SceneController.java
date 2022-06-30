@@ -134,6 +134,13 @@ public class SceneController extends ViewObservable {
         return controller;
     }
 
+    public void displayPopUp(List<ViewObserver> observerList, String fileName, SceneInterface controller){
+        for(ViewObserver o : observerList) {
+            ((ViewObservable) controller).addObserver(o);
+        }
+        displayPopUp(fileName, controller);
+    }
+
     public void hidePopUp(){
 
         if(activeScene != null && waitStage != null) {
