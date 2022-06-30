@@ -2373,32 +2373,33 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             ((Text) list.get(6)).setText("x" + houseMap.get(BLUE));
 
             try {
-                if (gm.getIslandList().get(i).getColorTower() != null) {
-                    Text towerNumber = (Text) islandList.get(i).get("TowerNumber");
-                    ImageView tower = (ImageView) islandList.get(i).get("Tower");
-                    towerNumber.setText(Integer.toString(gm.getIslandList().get(i).getNumTowers()));
+                gm.getIslandList().get(i).getColorTower();
+                Text towerNumber = (Text) islandList.get(i).get("TowerNumber");
+                ImageView tower = (ImageView) islandList.get(i).get("Tower");
+                towerNumber.setText(Integer.toString(gm.getIslandList().get(i).getNumTowers()));
 
-                    if (gm.getIslandList().get(i).getColorTower() == BLACK) {
-                        image = new Image("images/towers/black_tower.png");
-                        tower.setImage(image);
-                    }
-                    if (gm.getIslandList().get(i).getColorTower() == GRAY) {
-                        image = new Image("images/towers/gray_tower.png");
-                        tower.setImage(image);
-                    }
-                    if (gm.getIslandList().get(i).getColorTower() == WHITE) {
-                        image = new Image("images/towers/white_tower.png");
-                        tower.setImage(image);
-                        towerNumber.setStyle("-fx-text-inner-color: #463333;");
-                    }
-                } else {
-                    Text towerNumber = (Text) islandList.get(i).get("TowerNumber");
-                    ImageView tower = (ImageView) islandList.get(i).get("Tower");
-                    towerNumber.setText(Integer.toString(gm.getIslandList().get(i).getNumTowers()));
-
-                    tower.setVisible(false);
+                if (gm.getIslandList().get(i).getColorTower() == BLACK) {
+                    image = new Image("images/towers/black_tower.png");
+                    tower.setImage(image);
                 }
-            } catch (IslandException ignored) {
+                if (gm.getIslandList().get(i).getColorTower() == GRAY) {
+                    image = new Image("images/towers/gray_tower.png");
+                    tower.setImage(image);
+                }
+                if (gm.getIslandList().get(i).getColorTower() == WHITE) {
+                    image = new Image("images/towers/white_tower.png");
+                    tower.setImage(image);
+                    towerNumber.setStyle("-fx-text-inner-color: #463333;");
+                }
+                tower.setVisible(true);
+                towerNumber.setVisible(true);
+
+            } catch (IslandException e) {
+                Text towerNumber = (Text) islandList.get(i).get("TowerNumber");
+                ImageView tower = (ImageView) islandList.get(i).get("Tower");
+                towerNumber.setText(Integer.toString(gm.getIslandList().get(i).getNumTowers()));
+                tower.setVisible(false);
+                towerNumber.setVisible(false);
             }
 
             ImageView noEntryTile = (ImageView) islandList.get(i).get("NoEntryTile");

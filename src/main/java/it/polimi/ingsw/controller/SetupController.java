@@ -32,7 +32,7 @@ public class SetupController{
      * @param phase which selects the right case of the switch
      */
     public void doAction(CommandMessage messageReceived, GamePhase phase, TurnController tc) {
-        System.out.println(messageReceived.getNickname() + "is in setup state");
+        System.out.println("\n" + messageReceived.getNickname() + " is in setup state\n");
 
         switch (phase) {
             case CREATE_GAME:

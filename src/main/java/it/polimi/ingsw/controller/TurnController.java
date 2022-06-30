@@ -251,7 +251,6 @@ public class TurnController {
      */
     public int getNextPlanner() {
         planningController.setPosition(planningController.getPosition() + 1);
-        System.out.println("la posizione nel ranking è " + planningController.getPosition());
         return (planningController.getRanking()[planningController.getPosition()]);
     }
 
@@ -328,7 +327,6 @@ public class TurnController {
 
         if(! restore) {
             if (queue.size() == gm.getNumPlayers()) {
-                System.out.println("2.1");
                 while (freeSpots != 0) {
                     gm.getArrayPlayers()[gm.getNumPlayers() - freeSpots].setNickname(queue.get(gm.getNumPlayers() - freeSpots));
                     freeSpots--;
@@ -405,7 +403,6 @@ public class TurnController {
                     availableActions.add("Send a message to your team mate");
                     availableActions.add("See received messages");
                 }
-                System.out.println("\t\t\tTurnController: " + availableActions);
                 virtualViewMap.get(gm.getCurrentPlayer().getNickname()).actionPhase(availableActions);
                 break;
 

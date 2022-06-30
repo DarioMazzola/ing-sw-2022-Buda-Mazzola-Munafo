@@ -46,7 +46,7 @@ public class StartController {
      * @param phase which selects the right case of the switch
      */
     public void doAction(CommandMessage messageReceived, GamePhase phase, TurnController tc) {
-        System.out.println(messageReceived.getNickname() + " is in start state");
+        System.out.println("\n" + messageReceived.getNickname() + " is in start state\n");
         Player p;
 
         switch (phase) {
@@ -128,7 +128,6 @@ public class StartController {
                 break;
 
             case SELECT_COLOR_TOWER:
-                System.out.println("stiamo scegliendo il colore delle torri");
                 Color colorTower = ((ChosenTowerColor) messageReceived).getTowerColor();
 
                 if (colorTowerTaken(colorTower)) {

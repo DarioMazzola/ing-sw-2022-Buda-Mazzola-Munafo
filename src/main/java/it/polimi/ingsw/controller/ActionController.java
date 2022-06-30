@@ -56,6 +56,8 @@ public class ActionController {
 
         Persistence persistence = new Persistence();
 
+        System.out.println("\n" + messageReceived.getNickname() + " is in action state\n");
+
         switch (type) {
             case MOVE_STUDENT_TO_ISLAND:
                 if (studentsMoved == maxStudMoved) {
@@ -397,7 +399,6 @@ public class ActionController {
             availableActions.add("Send a message to your team mate");
             availableActions.add("See received messages");
         }
-        System.out.println(availableActions);
     }
 
     /**
@@ -463,7 +464,6 @@ public class ActionController {
                     }
                     winner = gm.getArrayPlayers()[i];
                     isEnded = true;
-                    System.out.println("Game ended towers!");
                 }
             } else {
                 if (gm.getArrayPlayers()[i].getDashboard().getNumTowers() < 1) {
@@ -472,7 +472,6 @@ public class ActionController {
                     }
                     winner = gm.getArrayPlayers()[i];
                     isEnded = true;
-                    System.out.println("Game ended towers!");
                 }
             }
         }

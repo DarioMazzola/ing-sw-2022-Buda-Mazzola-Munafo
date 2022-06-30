@@ -34,7 +34,7 @@ public class EndTurnController{
      */
     public void doAction(CommandMessage messageReceived, TurnController tc) {
         Persistence persistence = new Persistence();
-        System.out.println(messageReceived.getNickname() + "is in end turn state");
+        System.out.println("\n" + messageReceived.getNickname() + " is in end turn state\n");
 
         int numCloud = ((ChosenCloud)messageReceived).getCloud();
 

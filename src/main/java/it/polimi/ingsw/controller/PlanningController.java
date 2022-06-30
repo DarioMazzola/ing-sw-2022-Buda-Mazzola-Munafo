@@ -48,11 +48,9 @@ public class PlanningController {
      */
     public void doAction(CommandMessage messageReceived, TurnController tc) {
         Persistence persistence = new Persistence();
-        System.out.println(messageReceived.getNickname() + "is in planning state");
+        System.out.println("\n" + messageReceived.getNickname() + " is in planning state\n");
 
         Card card = ((ChosenAssistantCard) messageReceived).getAssistantCard();
-
-        System.out.println(card.toString());
 
         for (int i = 0; i < gm.getNumPlayers(); i++) {
             if (gm.getArrayPlayers()[i].getCardInUse() != null && card.equals(gm.getArrayPlayers()[i].getCardInUse())) {
