@@ -59,7 +59,7 @@ class HeraldTest {
     @Test
     void getDescription() {
         String description = "Choose an Island and resolve the Island as if Mother Nature had ended her movement there. \n" +
-                "Mother Nature will still move and the Island where she ends her movement  will also be resolved.";
+                "Mother Nature will still move and the Island where she ends her movement will also be resolved.";
         assertEquals(description, characterCard.getDescription());
     }
 

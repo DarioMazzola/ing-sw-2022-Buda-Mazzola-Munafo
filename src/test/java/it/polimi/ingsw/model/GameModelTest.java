@@ -789,6 +789,12 @@ class GameModelTest {
 
         CharacterCard characterCard = gm.getCharacterCardDeck()[0];
 
+        try {
+            gm.removeCoins(5);
+        } catch (TotalCoinsException e) {
+            e.printStackTrace();
+            fail();
+        }
         gm.getCurrentPlayer().addCoins(5);
 
         int coinsBefore = gm.getCurrentPlayer().getCoins();
