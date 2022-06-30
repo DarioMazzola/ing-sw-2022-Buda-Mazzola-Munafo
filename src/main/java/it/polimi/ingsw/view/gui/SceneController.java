@@ -21,19 +21,34 @@ import java.util.List;
 
 import static javafx.scene.control.Alert.AlertType.ERROR;
 
+/**
+ * Class representing the general controller for GUI scenes.
+ *
+ * @author Dario Mazzola
+ */
 public class SceneController extends ViewObservable {
 
     private static Scene activeScene;
     private static SceneInterface activeController;
     private static Stage waitStage;
 
+    /**
+     * Sets the scene as active starting from the filename passed as a parameter. The observers
+     * passed as a parameter are added controller associated with the scene.
+     * Controller is created as a generic type <T> so that it can be used as a ViewObservable and SceneInterface
+     *
+     * @param observerList the list of observer to add to the controller
+     * @param fileName     the name of the file that points to the scene to load
+     * @param <T>          the generic type of the controller
+     * @return the controller associated to the scene.
+     */
     public <T> T changeRootPane(List<ViewObserver> observerList, String fileName) {
         T controller = null;
 
         try {
             FXMLLoader loader = new FXMLLoader(SceneController.class.getResource("/fxml/" + fileName));
             Parent root = loader.load();
-            controller = loader.getController(); //prende il controller associato alla scena
+            controller = loader.getController();
 
             for (ViewObserver o : observerList)
                 ((ViewObservable) controller).addObserver(o);
@@ -47,6 +62,15 @@ public class SceneController extends ViewObservable {
         return controller;
     }
 
+    /**
+     * Sets the scene as active starting from the filename passed as a parameter. The observers
+     * passed as a parameter are added controller associated with the scene.
+     * Controller passed as a parameter is set dynamically into the scene.
+     *
+     * @param observerList the list of observer to add to the controller
+     * @param fileName     the name of the file that points to the scene to load
+     * @param controller   the controller to set for this scene.
+     */
     public void changeRootPane(List<ViewObserver> observerList, String fileName, SceneInterface controller) {
 
         try {
@@ -65,12 +89,11 @@ public class SceneController extends ViewObservable {
         }
     }
 
-
-    private void setActiveScene(Scene scene){
+    private void setActiveScene(Scene scene) {
         activeScene = scene;
     }
 
-    public Scene getActiveScene(){
+    public Scene getActiveScene() {
         return activeScene;
     }
 
@@ -78,12 +101,29 @@ public class SceneController extends ViewObservable {
         return activeController;
     }
 
+    /**
+     * Sets the scene as active starting from the filename passed as a parameter. The observers
+     * passed as a parameter are added controller associated with the scene.
+     * Controller is created as a generic type <T> so that it can be used as a ViewObservable and SceneInterface
+     *
+     * @param observerList the list of observer to add to the controller
+     * @param event        the event fired
+     * @param fileName     the name of the file that points to the scene to load
+     * @param <T>          the generic type of the controller
+     * @return the controller associated to the scene.
+     */
     public <T> T changeRootPane(List<ViewObserver> observerList, Event event, String fileName) {
         Scene scene = ((Node) event.getSource()).getScene();
         setActiveScene(scene);
         return changeRootPane(observerList, fileName);
     }
 
+    /**
+     * Show as Pop-up the scene pointed to by the filename provided as a parameter.
+     *
+     * @param fileName   the name of the file that points to the scene to load
+     * @param controller the controller to set to the scene
+     */
     public void displayPopUp(String fileName, SceneInterface controller) {
 
         try {
@@ -105,14 +145,24 @@ public class SceneController extends ViewObservable {
         }
     }
 
-    public <T> T displayPopUp(List<ViewObserver> observerList, String fileName){
+    /**
+     * Show as Pop-up the scene pointed to by the filename provided as a parameter. The observers
+     * passed as a parameter are added controller associated with the scene.
+     * Controller is created as a generic type <T> so that it can be used as a ViewObservable and SceneInterface
+     *
+     * @param observerList the list of observer to add to the controller
+     * @param fileName     the name of the file that points to the scene to load
+     * @param <T>          the generic type of the controller
+     * @return the controller associated to the scene.
+     */
+    public <T> T displayPopUp(List<ViewObserver> observerList, String fileName) {
 
         T controller = null;
         try {
             FXMLLoader loader = new FXMLLoader(SceneController.class.getResource("/fxml/" + fileName));
             Parent root = loader.load();
 
-            controller = loader.getController(); //prende il controller associato alla scena
+            controller = loader.getController();
 
             for (ViewObserver o : observerList)
                 ((ViewObservable) controller).addObserver(o);
@@ -134,21 +184,39 @@ public class SceneController extends ViewObservable {
         return controller;
     }
 
-    public void displayPopUp(List<ViewObserver> observerList, String fileName, SceneInterface controller){
-        for(ViewObserver o : observerList) {
+    /**
+     * Show as Pop-up the scene pointed to by the filename provided as a parameter. The observers
+     * passed as a parameter are added controller associated with the scene.
+     *
+     * @param observerList the list of observer to add to the controller
+     * @param fileName     the name of the file that points to the scene to load
+     * @param controller   the controller associated to the scene
+     */
+    public void displayPopUp(List<ViewObserver> observerList, String fileName, SceneInterface controller) {
+        for (ViewObserver o : observerList) {
             ((ViewObservable) controller).addObserver(o);
         }
         displayPopUp(fileName, controller);
     }
 
-    public void hidePopUp(){
+    /**
+     * Hides the Pop-up and removes all effects placed on the main stage
+     */
+    public void hidePopUp() {
 
-        if(activeScene != null && waitStage != null) {
+        if (activeScene != null && waitStage != null) {
             activeScene.getRoot().setEffect(null);
             waitStage.hide();
         }
     }
 
+    /**
+     * Shows the client the error message passed as a parameter. Adds the observer passed as a parameter
+     * in case after the error message it is necessary to handle a disconnection.
+     *
+     * @param errorMessage the error message to show
+     * @param observerList the list of observer to add to the controller
+     */
     public void displayError(String errorMessage, List<ViewObserver> observerList) {
 
         activeScene.getRoot().setEffect(new GaussianBlur());
@@ -161,7 +229,7 @@ public class SceneController extends ViewObservable {
 
         activeScene.getRoot().setEffect(null);
 
-        if(errorMessage.endsWith(TypeOfError.DISCONNECTED.toString()) || errorMessage.endsWith(TypeOfError.GAME_FULL.toString())
+        if (errorMessage.endsWith(TypeOfError.DISCONNECTED.toString()) || errorMessage.endsWith(TypeOfError.GAME_FULL.toString())
                 || errorMessage.endsWith(TypeOfError.GAME_ALREADY_STARTED.toString()) || errorMessage.endsWith(TypeOfError.SERVER_UNREACHBLE.toString())) {
             for (ViewObserver observer : observerList)
                 addObserver(observer);
