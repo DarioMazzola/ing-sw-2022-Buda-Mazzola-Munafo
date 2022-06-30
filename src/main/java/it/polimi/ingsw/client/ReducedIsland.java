@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Class that represents the ReducedIsland
+ * Class that represents a reduced version of an Island
  * @author Gabriele Munafo'
  */
 public class ReducedIsland {

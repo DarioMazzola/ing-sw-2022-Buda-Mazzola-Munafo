@@ -10,7 +10,7 @@ import java.util.Map;
 import static it.polimi.ingsw.model.CharacterCardEnum.*;
 
 /**
- * Class that represents the ReducedGameModel
+ * Class that represents a reduced version of a CharacterCard
  * @author Gabriele Munafo'
  */
 public class ReducedCharacterCard {

@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Class that represents the ReducedCloud
+ * Class that represents a reduced version of a cloud
  * @author Gabriele Munafo'
  */
 public class ReducedCloud {
