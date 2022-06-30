@@ -51,11 +51,16 @@ public class EndTurnController{
         }
 
         if (tc.isThereNextPlayer()){
-            tc.getVirtualViewMap().get(messageReceived.getNickname()).goToWaitingRoom();
-
-            tc.next_State(GameState.ACTION);
 
             gm.setCurrentPlayer(tc.getNextPlanner());
+
+            for (Player p : gm.getArrayPlayers()){
+                if (!p.getNickname().equals(gm.getCurrentPlayer().getNickname())){
+                    tc.getVirtualViewMap().get(p.getNickname()).goToWaitingRoom();
+                }
+            }
+
+            tc.next_State(GameState.ACTION);
 
             List<String> availableActions = new ArrayList<>();
 
