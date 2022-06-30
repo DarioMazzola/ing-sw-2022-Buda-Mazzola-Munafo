@@ -10,7 +10,9 @@ import it.polimi.ingsw.observer.Observable;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
+/** CharacterCard class represents the base context and the class from which all the other character cards inherit.
+ * It implements the base version of the methods reimplemented by the different character cards and utility methods.
+ *
  * @author Dario Mazzola & Gabriele Munafo'
  */
 public class CharacterCard extends Observable {
