@@ -7,6 +7,12 @@ import javafx.scene.control.*;
 
 import static javafx.scene.control.Alert.AlertType.ERROR;
 
+/**
+ * Scene that asks the player to choose whether to restore the game saved on the server or not.
+ * This scene will be shown as a PopUp alerting take a decision.
+ *
+ * @author Dario Mazzola
+ */
 public class SelectRestoreGameSceneController extends ViewObservable implements SceneInterface {
 
     @FXML
@@ -19,6 +25,11 @@ public class SelectRestoreGameSceneController extends ViewObservable implements 
         selectButton.setOnAction(this::onSelectButton);
     }
 
+    /**
+     * Handles the event fired when the player click on the select button.
+     *
+     * @param event the event fired
+     */
     public void onSelectButton(ActionEvent event) {
         RadioButton radioButton = (RadioButton) restoreButtons.getSelectedToggle();
 

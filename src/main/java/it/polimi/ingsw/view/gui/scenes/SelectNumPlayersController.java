@@ -8,6 +8,11 @@ import javafx.scene.control.*;
 
 import static javafx.scene.control.Alert.AlertType.ERROR;
 
+/**
+ * Scene that asks the player to choose the number of player for this game
+ *
+ * @author Dario Mazzola.
+ */
 public class SelectNumPlayersController extends ViewObservable implements SceneInterface{
 
     @FXML
@@ -22,6 +27,11 @@ public class SelectNumPlayersController extends ViewObservable implements SceneI
     @FXML
     private ToggleGroup playerButton;
 
+    /**
+     * Handles the event fired when the player click on the select button.
+     *
+     * @param event the event fired
+     */
     public void selectNumPlayers(ActionEvent event) {
         RadioButton selectedRadioButton = (RadioButton) playerButton.getSelectedToggle();
         if(selectedRadioButton == null) {

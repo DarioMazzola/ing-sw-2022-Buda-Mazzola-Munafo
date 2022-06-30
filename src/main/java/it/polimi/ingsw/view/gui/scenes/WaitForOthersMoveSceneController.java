@@ -12,6 +12,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+/**
+ * Scene representing the waiting room for the player when another player is choosing the color of the towers,
+ * the assistant card or the wizard. This scene will be shown as a PopUp alerting the player to wait.
+ *
+ * @author Dario Mazzola
+ */
 public class WaitForOthersMoveSceneController extends ViewObservable implements SceneInterface {
 
     @FXML
@@ -22,7 +28,12 @@ public class WaitForOthersMoveSceneController extends ViewObservable implements 
     private Stage waitStage;
     private final String move;
 
-    public WaitForOthersMoveSceneController( String move) {
+    /**
+     * Class constructor.
+     *
+     * @param move the choice that the player is waiting for.
+     */
+    public WaitForOthersMoveSceneController(String move) {
         this.move = move;
     }
 
