@@ -16,6 +16,11 @@ import java.util.List;
 
 import static javafx.scene.control.Alert.AlertType.ERROR;
 
+/**
+ * Scene that asks the player to choose the color of the towers.
+ *
+ * @author Dario Mazzola.
+ */
 public class SelectTowerColorSceneController extends ViewObservable implements SceneInterface {
 
     @FXML
@@ -39,6 +44,11 @@ public class SelectTowerColorSceneController extends ViewObservable implements S
 
     private final List<Color> colorTowersAvailable;
 
+    /**
+     * Class constructor.
+     *
+     * @param colorTowersAvailable the tower color available
+     */
     public SelectTowerColorSceneController(List<Color> colorTowersAvailable) {
         this.colorTowersAvailable = colorTowersAvailable;
     }
@@ -57,6 +67,11 @@ public class SelectTowerColorSceneController extends ViewObservable implements S
 
     }
 
+    /**
+     * Handles the event fired when the player select the image of one of the available towers.
+     *
+     * @param e the event fired
+     */
     public void towerClicked(MouseEvent e){
         ImageView towerClicked = (ImageView) e.getSource();
 
@@ -73,6 +88,11 @@ public class SelectTowerColorSceneController extends ViewObservable implements S
         selectButton.setOnAction(this::onSelect);
     }
 
+    /**
+     * Handles the event fired when the player click on the select button.
+     *
+     * @param e the event fired
+     */
     public void onSelect(ActionEvent e) {
 
         RadioButton selectedRadioButton = (RadioButton) towersButton.getSelectedToggle();
@@ -106,7 +126,13 @@ public class SelectTowerColorSceneController extends ViewObservable implements S
         notifyObserver(observer -> observer.onUpdateTowerColor(finalTowerColorChosen));
     }
 
-    public ImageView getImageViewByColor(Color c) {
+    /**
+     * Returns the ImageView associated to the color of the tower given as a parameter.
+     *
+     * @param c the color of the tower
+     * @return the ImageView associated with the Color passed as a parameter
+     */
+    private ImageView getImageViewByColor(Color c) {
 
         ImageView imageView = null;
 
@@ -125,8 +151,14 @@ public class SelectTowerColorSceneController extends ViewObservable implements S
         return imageView;
     }
 
-    public RadioButton getButtonByImageView(ImageView i){
-        String id = i.getId();
+    /**
+     * Returns the RadioButton associated with the image given as a parameter.
+     *
+     * @param imageView the image clicked
+     * @return the RadioButton associated with the image passed as a parameter
+     */
+    private RadioButton getButtonByImageView(ImageView imageView){
+        String id = imageView.getId();
 
         RadioButton btn = null;
 
