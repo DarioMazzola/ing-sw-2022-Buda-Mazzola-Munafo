@@ -7,7 +7,7 @@ import java.util.List;
 import static it.polimi.ingsw.messages.MessageType.SELECT_ASSISTANT_CARD;
 
 /**
- * AllAssistantCards class represents AllAssistantCards network message.
+ * SelectAssistantCard class represents SelectAssistantCard network message.
  * This message is sent from the server to the client to communicate the assistant cards in current player's deck.
  *
  * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'

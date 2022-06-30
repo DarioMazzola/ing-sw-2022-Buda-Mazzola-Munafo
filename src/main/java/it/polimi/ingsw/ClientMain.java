@@ -7,7 +7,11 @@ import javafx.application.Application;
 
 import java.util.Scanner;
 
-
+/**
+ * Represents the landing class for a player. The Client is asked if he wants to play with the CLI or the GUI.
+ *
+ * @author Alessio Buda, Dario Mazzola & Gabriele Munafò
+ */
 public class ClientMain {
 
     public static void main(String[] args) {
@@ -33,9 +37,12 @@ public class ClientMain {
 
         Scanner scanner = new Scanner(System.in);
 
-        int choice;
+        int choice = 0;
         do {
-            choice = Integer.parseInt(scanner.nextLine());
+            try {
+                choice = Integer.parseInt(scanner.nextLine());
+            }
+            catch (Exception ignored) {}
 
         } while (choice != 1 && choice != 2);
 

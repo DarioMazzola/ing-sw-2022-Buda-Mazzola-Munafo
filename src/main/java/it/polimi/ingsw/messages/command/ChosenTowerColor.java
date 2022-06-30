@@ -17,7 +17,7 @@ public class ChosenTowerColor extends CommandMessage {
      * Class constructor.
      *
      * @param nickname player's nickname
-     * @param towerColor the tower color selceted by the player
+     * @param towerColor the tower color selected by the player
      */
     public ChosenTowerColor(String nickname, Color towerColor) {
         super(CHOSEN_TOWER_COLOR, nickname);

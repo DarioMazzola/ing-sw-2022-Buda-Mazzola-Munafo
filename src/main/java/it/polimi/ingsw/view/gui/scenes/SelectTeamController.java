@@ -9,6 +9,11 @@ import javax.swing.text.View;
 
 import static javafx.scene.control.Alert.AlertType.ERROR;
 
+/**
+ * Scene that asks the player to choose the team for this game.
+ *
+ * @author Alessio Buda
+ */
 public class SelectTeamController extends ViewObservable implements SceneInterface{
     @FXML
     private Label LeaderTeam1;
@@ -46,6 +51,7 @@ public class SelectTeamController extends ViewObservable implements SceneInterfa
         this.leaderArray = leaderArray;
     }
 
+    @FXML
     public void initialize() {
         if (teamArray[0] != null)
             MemberTeam1.setText(teamArray[0]);
@@ -70,6 +76,11 @@ public class SelectTeamController extends ViewObservable implements SceneInterfa
         SelectBtn.setOnAction(this::onSelect);
     }
 
+    /**
+     * Handles the event fired when the player select the image of one of the available towers.
+     *
+     * @param e the event fired
+     */
     public void onSelect(ActionEvent e) {
         RadioButton selectedRadioButton = (RadioButton) TeamChoice.getSelectedToggle();
         if(selectedRadioButton == null) {
@@ -99,6 +110,11 @@ public class SelectTeamController extends ViewObservable implements SceneInterfa
         notifyObserver(observers -> observers.onUpdateTeam(selectedTeam, teamLeader));
     }
 
+    /**
+     * Handles the event fired when the player clicks on the button for Team1 or Team2.
+     *
+     * @param e the event fired
+     */
     public void onButtonClick (ActionEvent e) {
         RadioButton btn = (RadioButton) e.getTarget();
 

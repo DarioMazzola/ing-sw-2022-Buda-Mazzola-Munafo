@@ -14,6 +14,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Class representing the main class for the GUI. Set up the initial controller, create the scene and stage.
+ *
+ * @author Dario Mazzola
+ */
 public class MainGui extends Application {
 
     public static void main(String[] args) {
@@ -56,6 +61,12 @@ public class MainGui extends Application {
         stage.show();
     }
 
+    /**
+     * Method that shows a PopUp to the player in case he decides to exit the
+     * application by pressing the exit button
+     *
+     * @param stage the GUI stage
+     */
     private void logout(Stage stage) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 

@@ -1,6 +1,5 @@
 package it.polimi.ingsw.view.gui.scenes;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_ADDPeer;
 import it.polimi.ingsw.observer.ViewObservable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +9,12 @@ import javafx.scene.text.Text;
 
 import static javafx.scene.control.Alert.AlertType.ERROR;
 
+/**
+ * Scene showing the player the screen announcing the winner. Gives the player the
+ * option to play another game or quit the game.
+ *
+ * @author Dario Mazzola
+ */
 public class WinnerSceneController extends ViewObservable implements SceneInterface {
     private final String winner;
     private final String nickname;
@@ -25,12 +30,19 @@ public class WinnerSceneController extends ViewObservable implements SceneInterf
     @FXML
     private Button SelectBtn;
 
-    public WinnerSceneController (String winner, String nickname) {
+    /**
+     * Class constructor
+     *
+     * @param winner   the player who won
+     * @param nickname the nickname of the player
+     */
+    public WinnerSceneController(String winner, String nickname) {
         this.winner = winner;
         this.nickname = nickname;
 
     }
 
+    @FXML
     public void initialize() {
         WinnerText.setText(winner + " won the game! Thank you for playing!");
         Font font = new Font("Baskerville Old Face", 22);
@@ -41,13 +53,23 @@ public class WinnerSceneController extends ViewObservable implements SceneInterf
         SelectBtn.setOnAction(this::onSelect);
     }
 
-    private void onButtonClick (ActionEvent e) {
+    /**
+     * Handles the event triggered by the player's selection.
+     *
+     * @param e the event fired
+     */
+    private void onButtonClick(ActionEvent e) {
         SelectBtn.setDisable(false);
     }
 
+    /**
+     * Handles the event triggered when the player click the select button.
+     *
+     * @param e the event fired
+     */
     private void onSelect(ActionEvent e) {
         RadioButton btn = (RadioButton) YNBtns.getSelectedToggle();
-        if(btn == null) {
+        if (btn == null) {
             Alert alert = new Alert(ERROR, "", ButtonType.OK);
             alert.setTitle("Invalid new game selection");
             alert.setHeaderText("You must select whether you want to play a new game!");
