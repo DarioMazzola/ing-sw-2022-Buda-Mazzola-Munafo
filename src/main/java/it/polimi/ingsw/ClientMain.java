@@ -8,7 +8,7 @@ import javafx.application.Application;
 import java.util.Scanner;
 
 /**
- * Represents the finishing class for a player. The Client is asked if he wants to play with the CLI or the GUI.
+ * Represents the landing class for a player. The Client is asked if he wants to play with the CLI or the GUI.
  *
  * @author Alessio Buda, Dario Mazzola & Gabriele Munafò
  */

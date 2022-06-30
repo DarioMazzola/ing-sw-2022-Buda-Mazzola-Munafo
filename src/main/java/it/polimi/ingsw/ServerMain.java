@@ -6,6 +6,11 @@ import it.polimi.ingsw.server.SocketServer;
 
 import java.util.Scanner;
 
+/**
+ * Represents the main class for the server. The Client is asked if he wants to play with the CLI or the GUI.
+ *
+ * @author Alessio Buda, Dario Mazzola & Gabriele Munafò
+ */
 public class ServerMain {
     
     private static final int defaultPort = 1234;
