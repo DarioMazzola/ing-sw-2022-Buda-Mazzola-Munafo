@@ -70,6 +70,8 @@ public class Server {
                     turnController = new TurnController();  //se non c'è nessuna partita salvata
             } else if (turnController.reset()){
                 turnController = new TurnController();
+                restored = false;
+                firstHandler = null;
             }
         }
         if (restored) { //if the game has been restored
@@ -114,7 +116,7 @@ public class Server {
         // if the game has not already started
         else if (! turnController.isGameStarted()) {
             // if he/she is the first player
-            if (clientHandlerMap.isEmpty() || (firstHandler != null && firstHandler.equals(clientHandler))) {
+            if (clientHandlerMap.isEmpty() || (firstHandler != null && firstHandler.equals(clientHandler)) || firstHandler == null) {
                 if(firstHandler == null) {
                     clientHandlerMap.put(sender, clientHandler);
                     firstHandler = clientHandler;
