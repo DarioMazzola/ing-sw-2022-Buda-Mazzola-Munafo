@@ -2427,23 +2427,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         cloudsButtons = new ArrayList<>();
 
-        int numClouds = 0;
-
-        switch (gm.getNumPlayers()) {
-            case 2:
-                numClouds = 2;
-                break;
-            case 3:
-                numClouds = 3;
-                break;
-            case 4:
-                numClouds = 4;
-                break;
-        }
-
-        for (int c = 0; c < numClouds; c++) {
-            if (gm.getArrayClouds()[c].isFull())
-                cloudsButtons.add(getButtonByCloud(c));
+        for (int c = 0; c <gm.getArrayClouds().length; c++) {
+            cloudsButtons.add(getButtonByCloud(c));
         }
 
         Image image;
@@ -4607,12 +4592,11 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                 case 2:
                     button = Cloud3Btn3;
                     break;
-                case 4:
+                case 3:
                     button = Cloud3Btn4;
                     break;
             }
         }
-
         return button;
     }
 
@@ -4660,9 +4644,9 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         removeEvents();
 
-        for (Button cloud : cloudsButtons) {
-            if (cloud.getOnMouseClicked() == null)
-                cloud.setOnMouseClicked(selectCloud);
+        for (int i=0; i<gm.getArrayClouds().length; i++) {
+            if (gm.getArrayClouds()[i].isFull())
+                cloudsButtons.get(i).setOnMouseClicked(selectCloud);
         }
     }
 
