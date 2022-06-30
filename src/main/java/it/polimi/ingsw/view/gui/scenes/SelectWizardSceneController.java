@@ -12,6 +12,9 @@ import java.util.List;
 
 import static javafx.scene.control.Alert.AlertType.ERROR;
 
+/**
+ * Scene that asks the player to choose the wizard for this game.
+ */
 public class SelectWizardSceneController extends ViewObservable implements SceneInterface {
 
     @FXML
@@ -47,7 +50,8 @@ public class SelectWizardSceneController extends ViewObservable implements Scene
     private ImageView[] wizardImages;
 
     private final List<Wizard> availableWizards;
-    public SelectWizardSceneController (List<Wizard> availableWizards) {
+
+    public SelectWizardSceneController(List<Wizard> availableWizards) {
         this.availableWizards = availableWizards;
     }
 
@@ -91,11 +95,16 @@ public class SelectWizardSceneController extends ViewObservable implements Scene
         }
     }
 
+    /**
+     * Manages the wizard selection event on click of the image associated with the wizard
+     *
+     * @param e the event fired
+     */
     public void imageClicked(MouseEvent e) {
         System.out.println("imageClicked");
         ImageView img = (ImageView) e.getTarget();
 
-        for(ImageView wizard : wizardImages) {
+        for (ImageView wizard : wizardImages) {
             wizard.getStyleClass().clear();
         }
         img.getStyleClass().add("dropShadow");
@@ -105,10 +114,15 @@ public class SelectWizardSceneController extends ViewObservable implements Scene
         selectButton.setDisable(false);
     }
 
+    /**
+     * Handles the event fired when the player click on the select button.
+     *
+     * @param e the event fired
+     */
     public void onSelect(ActionEvent e) {
 
         RadioButton selectedRadioButton = (RadioButton) wizards.getSelectedToggle();
-        if(selectedRadioButton == null) {
+        if (selectedRadioButton == null) {
             Alert alert = new Alert(ERROR, "", ButtonType.OK);
             alert.setTitle("Invalid wizard selection");
             alert.setHeaderText("You must select a wizard \nfor this game before going on");
@@ -146,7 +160,13 @@ public class SelectWizardSceneController extends ViewObservable implements Scene
         notifyObserver(observers -> observers.onUpdateWizard(finalChosenWizard));
     }
 
-    public RadioButton getButtonByImageView (ImageView imageView) {
+    /**
+     * Returns the RadioButton associated with the image clicked.
+     *
+     * @param imageView the ImageView selected
+     * @return the RadioButton associated
+     */
+    public RadioButton getButtonByImageView(ImageView imageView) {
         String id = imageView.getId();
         System.out.println("Clicked: " + id);
 
