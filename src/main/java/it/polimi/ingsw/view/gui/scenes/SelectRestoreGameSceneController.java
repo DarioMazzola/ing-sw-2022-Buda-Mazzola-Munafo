@@ -26,7 +26,7 @@ public class SelectRestoreGameSceneController extends ViewObservable implements 
     }
 
     /**
-     * Handles the event fired when the player click on the select button.
+     * Handles the event fired when the player clicks on the select button.
      *
      * @param event the event fired
      */

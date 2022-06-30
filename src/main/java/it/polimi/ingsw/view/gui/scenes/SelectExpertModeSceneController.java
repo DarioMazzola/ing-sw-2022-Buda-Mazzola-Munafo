@@ -8,6 +8,11 @@ import javafx.scene.control.*;
 
 import static javafx.scene.control.Alert.AlertType.ERROR;
 
+/**
+ * Scene that asks the player to choose whether to play in expert mode or not.
+ *
+ * @author Dario Mazzola.
+ */
 public class SelectExpertModeSceneController extends ViewObservable implements SceneInterface {
 
     @FXML
@@ -19,6 +24,11 @@ public class SelectExpertModeSceneController extends ViewObservable implements S
     @FXML
     private Button continueButton;
 
+    /**
+     * Handles the event fired when the player clicks on the select button.
+     *
+     * @param event the event fired
+     */
     public void onSelectExpertMode(ActionEvent event){
         RadioButton selectedRadioButton = (RadioButton) expertButton.getSelectedToggle();
         if(selectedRadioButton == null) {

@@ -89,7 +89,7 @@ public class SelectTowerColorSceneController extends ViewObservable implements S
     }
 
     /**
-     * Handles the event fired when the player click on the select button.
+     * Handles the event fired when the player clicks on the select button.
      *
      * @param e the event fired
      */
