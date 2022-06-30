@@ -161,7 +161,6 @@ public class Persistence {
             CharacterCard[] characterCards = new CharacterCard[3];
             int j;
             for (i = 0; i < 3; i++) {
-                System.out.println(jsonArray.get(i).getAsString());
                 j = i + 1;
                 CharacterCard characterCard = gson.fromJson(jsonArray.get(j).getAsString(), CharacterCard.class);
                 switch (characterCard.getType()) {
@@ -227,6 +226,9 @@ public class Persistence {
         return f.exists();
     }
 
+    /**
+     * Deletes the file saved on the server
+     */
     public void delete() {
         File myObj = new File("savedData.json");
         if(myObj.delete())
