@@ -14,6 +14,8 @@ import static javafx.scene.control.Alert.AlertType.*;
 
 /**
  * Scene controller asking the player to enter the nickname with which he wants to take part in the game
+ *
+ * @author Dario Mazzola
  */
 public class LoginSceneController extends ViewObservable implements SceneInterface {
 
