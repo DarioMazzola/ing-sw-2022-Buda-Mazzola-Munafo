@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author Dario Mazzola
  */
-public class VirtualView implements View, Observer {
+public class VirtualView extends Observer implements View {
 
     private transient final ClientHandler clientHandler;
 
