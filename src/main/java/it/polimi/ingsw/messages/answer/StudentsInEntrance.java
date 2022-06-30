@@ -10,7 +10,7 @@ import static it.polimi.ingsw.messages.MessageType.STUDENTS_IN_ENTRANCE;
 /**
  * This message is sent from the server to the client to communicate the students in current player's entrance.
  *
- * @author Dario Mazzola
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class StudentsInEntrance extends AnswerMessage{
 

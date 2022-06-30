@@ -8,7 +8,7 @@ import static it.polimi.ingsw.messages.MessageType.MOVE_STUDENT_TO_DINING_HALL;
  * This message is sent from the client to the server to communicate the student to move from the player's
  * entrance to his/hers dining hall.
  *
- * @author Dario Mazzola
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class MoveStudentToDiningHall extends CommandMessage{
 

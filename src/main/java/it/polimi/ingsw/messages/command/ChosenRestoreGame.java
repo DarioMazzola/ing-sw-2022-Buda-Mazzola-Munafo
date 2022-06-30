@@ -5,7 +5,7 @@ import static it.polimi.ingsw.messages.MessageType.CHOSEN_RESTORE_GAME;
 /**
  * This message is sent from the client to the server to communicate whether to resume the saved game or not.
  *
- * @author Dario Mazzola
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class ChosenRestoreGame extends CommandMessage{
 

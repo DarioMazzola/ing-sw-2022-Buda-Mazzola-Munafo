@@ -9,7 +9,7 @@ import static it.polimi.ingsw.messages.MessageType.SELECT_CHARACTER_CARD;
 /**
  * This message is sent from the server to the client to communicate all the character cards in use in this game.
  *
- * @author Dario Mazzola
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class SelectCharacterCard extends AnswerMessage{
 

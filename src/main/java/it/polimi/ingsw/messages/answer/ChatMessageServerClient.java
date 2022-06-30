@@ -5,7 +5,7 @@ import it.polimi.ingsw.messages.MessageType;
 /**
  * MessageServerClient class represents a chat message to be forwarded by the server to a player.
  *
- * @author Alessio Buda
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class ChatMessageServerClient extends AnswerMessage {
     private final String message;

@@ -7,7 +7,7 @@ import static it.polimi.ingsw.messages.MessageType.UPDATE_GAME_MODEL;
 /**
  * Class representing messages from the server to the client to notify the change of the Game Model.
  *
- * @author Dario Mazzola
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class UpdateGameModel extends AnswerMessage{
 

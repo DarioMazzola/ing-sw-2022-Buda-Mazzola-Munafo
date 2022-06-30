@@ -9,7 +9,7 @@ import static it.polimi.ingsw.messages.MessageType.UPDATE_ISLAND;
 /**
  * Class representing messages from the server to the client to notify the change of an Island.
  *
- * @author Dario Mazzola
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class UpdateIsland extends AnswerMessage{
 

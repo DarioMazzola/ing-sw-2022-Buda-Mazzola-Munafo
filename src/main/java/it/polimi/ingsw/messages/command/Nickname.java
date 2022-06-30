@@ -7,7 +7,7 @@ import static it.polimi.ingsw.messages.MessageType.NICKNAME;
  * This message is sent from the client to the server to communicate the player's chosen nickname.
  * Input validity must be checked by the server.
  *
- * @author Alessio Buda
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class Nickname extends CommandMessage {
 

@@ -7,7 +7,7 @@ import static it.polimi.ingsw.messages.MessageType.CHOSEN_EXPERT_MODE;
  * This message is sent from the client to the server, when the client represents the first player connected,
  * to communicate whether the current game will be played in expert mode.
  *
- * @author Alessio Buda
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class ChosenExpertMode extends CommandMessage {
     private final boolean expertMode;

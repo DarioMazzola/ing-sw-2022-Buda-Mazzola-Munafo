@@ -7,7 +7,7 @@ import static it.polimi.ingsw.messages.MessageType.UPDATE_CHARACTER_CARD;
 /**
  * Class representing messages from the server to the client to notify the change of a CharacterCard.
  *
- * @author Dario Mazzola
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class UpdateCharacterCard extends AnswerMessage{
 

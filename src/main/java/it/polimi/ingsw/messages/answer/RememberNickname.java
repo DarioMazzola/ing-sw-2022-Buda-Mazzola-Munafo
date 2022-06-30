@@ -6,7 +6,7 @@ import static it.polimi.ingsw.messages.MessageType.REMEMBER_NICKNAME;
  * This message is sent by the server to the client to remind the client of the nickname
  * chosen by the player following a disconnection.
  *
- * @author Dario Mazzola
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class RememberNickname extends AnswerMessage{
 

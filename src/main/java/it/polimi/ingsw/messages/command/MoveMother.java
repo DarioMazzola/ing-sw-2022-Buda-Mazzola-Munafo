@@ -6,7 +6,7 @@ import static it.polimi.ingsw.messages.MessageType.MOVE_MOTHER;
  * This message is sent from the client to the server to communicate the number mother nature steps selected
  * by the player.
  *
- * @author Dario Mazzola
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class MoveMother extends CommandMessage{
 

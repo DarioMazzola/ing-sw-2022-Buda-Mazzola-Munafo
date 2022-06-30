@@ -9,7 +9,7 @@ import java.util.List;
  * This message is sent from the server to the client to communicate that the player
  * has to select his/her color of the tower for this match.
  *
- * @author Dario Mazzola
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class SelectColorTower extends AnswerMessage{
     private final List<Color> availableColors;

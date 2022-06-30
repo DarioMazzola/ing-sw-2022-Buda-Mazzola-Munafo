@@ -6,7 +6,7 @@ import static it.polimi.ingsw.messages.MessageType.SELECT_EXPERT_MODE;
  * This message is sent from the server to the client to communicate that
  * the player has to choose whether the match will be played in expert mode.
  *
- * @author Dario Mazzola
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class SelectExpertMode extends AnswerMessage {
 

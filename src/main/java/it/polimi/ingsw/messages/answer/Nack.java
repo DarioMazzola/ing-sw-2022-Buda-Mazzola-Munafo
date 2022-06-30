@@ -6,7 +6,7 @@ import static it.polimi.ingsw.messages.MessageType.NACK;
  * This message is sent from the server to the client when a generic message has not been acknowledged. If the
  * client receives this message, it notifies the player of the error and asks him/her to make his/her choice again.
  *
- * @author Dario Mazzola
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class Nack extends AnswerMessage{
 

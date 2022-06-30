@@ -8,7 +8,7 @@ import static it.polimi.ingsw.messages.MessageType.CHOSEN_TOWER_COLOR;
  * SelectColorTower class represents SelectColorTower network message.
  * This message is sent from the client to the server to communicate the player's chosen tower color.
  *
- * @author Alessio Buda
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class ChosenTowerColor extends CommandMessage {
     private final Color towerColor;

@@ -7,7 +7,7 @@ import static it.polimi.ingsw.messages.MessageType.UPDATE_DINING_HALL;
 /**
  * Class representing messages from the server to the client to notify the change of a Dining Hall.
  *
- * @author Dario Mazzola
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class UpdateDiningHall extends AnswerMessage{
 

@@ -5,7 +5,7 @@ import static it.polimi.ingsw.messages.MessageType.PONG;
 /**
  * This message is sent from the client to the server to signal that the connection is still alive.
  *
- * @author Dario Mazzola
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class Pong extends CommandMessage{
 

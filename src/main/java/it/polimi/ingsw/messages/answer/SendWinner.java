@@ -5,7 +5,7 @@ import static it.polimi.ingsw.messages.MessageType.SEND_WINNER;
 /**
  * This message is sent from the server to the client to communicate the winning player
  *
- * @author Dario Mazzola
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class SendWinner extends AnswerMessage {
 

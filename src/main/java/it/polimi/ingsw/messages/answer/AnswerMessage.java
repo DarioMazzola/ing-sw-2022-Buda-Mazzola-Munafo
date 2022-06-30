@@ -6,7 +6,7 @@ import it.polimi.ingsw.messages.MessageType;
 /**
  * An abstract class representing an answer message, sent form the server to the client.
  *
- * @author Dario Mazzola
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 
 public abstract class AnswerMessage extends Message {

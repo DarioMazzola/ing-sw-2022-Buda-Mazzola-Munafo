@@ -14,7 +14,7 @@ import static it.polimi.ingsw.messages.MessageType.CHOSEN_CHARACTER_CARD;
 /**
  * This message is sent from the client to the server to request the character cards in use in this game.
  *
- * @author Dario Mazzola
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class ChosenCharacterCard extends CommandMessage{
 
@@ -38,6 +38,12 @@ public class ChosenCharacterCard extends CommandMessage{
         return cardIndex;
     }
 
+    /**
+     * Method that returns the Map <String, Object> built with all the parameters necessary for
+     * the functioning of the character cards starting from the card that was used to send the message.
+     *
+     * @return the map with the all parameters necessary to use the CharacterCard
+     */
     public Map<String, Object> getMap() {
         Type listOfMyClassObject = new TypeToken<HashMap<String, String>>() {}.getType();
         Gson gson = new Gson();

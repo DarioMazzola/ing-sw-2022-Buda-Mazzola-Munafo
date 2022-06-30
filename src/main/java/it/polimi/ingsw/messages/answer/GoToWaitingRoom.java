@@ -7,7 +7,7 @@ import static it.polimi.ingsw.messages.MessageType.GO_TO_WAITING_ROOM;
  * This message is sent from the sever to the client when the server tells the client to go to the waiting room as
  * the player has finished his turn and has to wait for the others to make their moves.
  *
- * @author Dario Mazzola
+ * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class GoToWaitingRoom extends AnswerMessage{
 
