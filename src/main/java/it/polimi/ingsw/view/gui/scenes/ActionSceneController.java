@@ -2680,7 +2680,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                 }
 
                 ImageView[] Cloud4 = new ImageView[]{Stud1Cloud3Num4, Stud2Cloud3Num4, Stud3Cloud3Num4};
-                for (ImageView img : Cloud1) {
+                for (ImageView img : Cloud4) {
                     img.setVisible(false);
                 }
 
