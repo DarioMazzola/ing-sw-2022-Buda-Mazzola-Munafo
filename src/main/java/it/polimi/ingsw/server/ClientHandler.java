@@ -91,7 +91,6 @@ public class ClientHandler implements Runnable {
                 CommandMessage message = CommandSerializer.deserialize(msg);
 
                 if (message != null && message.getType() != MessageType.PONG) {
-                    System.out.println(message);
 
                     if (message.getType() == MessageType.NEW_GAME || message.getType() == MessageType.NICKNAME) {
                         socketServer.addClient(message, this);
