@@ -100,7 +100,7 @@ public class ActionController {
                     break;
                 }
 
-                selectCharacterCardHandler(messageReceived);
+                selectCharacterCardHandler(messageReceived, tc);
 
                 usedCharacterCard = true;
                 availableActions.remove("Select character card");
@@ -172,7 +172,7 @@ public class ActionController {
      *
      * @param message the message passed
      */
-    private void selectCharacterCardHandler(CommandMessage message) {
+    private void selectCharacterCardHandler(CommandMessage message, TurnController tc) {
 
         Map<String, Object> map = ((ChosenCharacterCard) message).getMap();
 
@@ -193,6 +193,7 @@ public class ActionController {
             if (p != null) {
                 try {
                     gm.moveTowers(p.getDashboard(), (Island) parameters.get("Island"), 1);
+                    tc.sendAllModel();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -372,6 +373,7 @@ public class ActionController {
         if (p != null) {
             try {
                 gm.moveTowers(p.getDashboard(), gm.getIslandList().get(gm.getMotherIsland()), 1);
+                tc.sendAllModel();
             } catch (Exception e) {
                 e.printStackTrace();
             }
