@@ -18,10 +18,6 @@ public enum Color {
         this.escape = escape;
     }
 
-    public String getName() {
-        return name;
-    }
-
     @Override
     public String toString() {
         return escape + name + RESET;

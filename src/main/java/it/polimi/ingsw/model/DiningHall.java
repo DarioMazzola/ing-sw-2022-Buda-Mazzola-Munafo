@@ -17,7 +17,7 @@ import static it.polimi.ingsw.model.House.*;
 public class DiningHall extends Observable implements StudentModifierInterface {
 
     private final Map<House, Integer> tableOccupation;
-    private String owner;
+    private final String owner;
 
     /**
      * Dining hall class constructor: initializes the students' number from each house to zero
@@ -86,11 +86,6 @@ public class DiningHall extends Observable implements StudentModifierInterface {
         if(notify)
             notifyObserver(new UpdateDiningHall(new ReducedDiningHall(this)));
     }
-
-    public void setOwner(String owner) {
-        this.owner = owner;
-    }
-
     public String getOwner() {
         return owner;
     }

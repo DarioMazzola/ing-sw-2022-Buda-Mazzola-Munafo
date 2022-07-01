@@ -131,16 +131,4 @@ public class Island extends Observable implements StudentAdderInterface {
     public Integer getNoEntryTile(){
         return(noEntryTile);
     }
-
-    @Override
-    public String toString() {
-        StringBuilder string = new StringBuilder("ISLAND:");
-        string.append("\nTOWER COLOR: ").append(towerColor).append(" (").append(numTowers).append(" towers)");
-        string.append("NO ENTRY TILE: ").append(isNoEntryTilePresent() ? "Yes" : "No");
-        string.append("\nSTUDENTS: ");
-        for (House h : House.values()) {
-            string.append("\n").append(h).append(": ").append(getHouseStudents(h));
-        }
-        return string.toString();
-    }
 }
