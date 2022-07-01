@@ -58,8 +58,7 @@ To correctly visualize the coverage report, clone the repository and open the "i
 | Persistence                  | 🟢  |
 | Resilience to disconnections | 🔴  |
 
-Legend: 🟢 Implemented 
-        🔴 Not implemented
+**Legend**: 🟢 Implemented   🔴 Not implemented
 
 ## Compiling 
 
