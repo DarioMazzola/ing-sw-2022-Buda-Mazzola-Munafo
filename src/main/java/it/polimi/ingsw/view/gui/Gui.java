@@ -212,6 +212,7 @@ public class Gui extends ViewObservable implements UI {
     @Override
     public void goToWaitingRoom() {
 
+        Runtime.getRuntime().gc();
         Platform.runLater(sceneController::hidePopUp);
 
         ActionSceneController controller = new ActionSceneController(gm, nickname);
