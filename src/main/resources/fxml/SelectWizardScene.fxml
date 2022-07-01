@@ -63,9 +63,9 @@
                </toggleGroup></RadioButton>
             <RadioButton fx:id="thirdWizard" layoutX="1105.0" layoutY="781.0" mnemonicParsing="false" text="THIRD" toggleGroup="$wizards" visible="false" />
             <RadioButton fx:id="fourthWizard" layoutX="1447.0" layoutY="780.0" mnemonicParsing="false" text="FOURTH" toggleGroup="$wizards" visible="false" />
-            <Button fx:id="selectButton" layoutX="899.0" layoutY="803.0" mnemonicParsing="false" text="Select">
+            <Button fx:id="selectButton" layoutX="895.0" layoutY="823.0" mnemonicParsing="false" text="Select">
                <font>
-                  <Font name="Baskerville" size="24.0" />
+                  <Font name="Baskerville Old Face" size="36.0" />
                </font>
             </Button>
             <RadioButton fx:id="secondWizard" layoutX="752.0" layoutY="780.0" mnemonicParsing="false" text="SECOND" toggleGroup="$wizards" visible="false" />

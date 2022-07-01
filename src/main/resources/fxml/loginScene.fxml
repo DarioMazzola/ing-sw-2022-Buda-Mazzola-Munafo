@@ -13,12 +13,12 @@
 <StackPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #ADD8E6;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.view.gui.scenes.LoginSceneController">
    <children>
       <AnchorPane>
-         <TextField fx:id="usernameBox" layoutX="776.0" layoutY="491.0" promptText="Nickname">
+         <TextField fx:id="usernameBox" layoutX="794.0" layoutY="486.0" promptText="Nickname">
             <font>
                <Font name="Baskerville Old Face" size="24.0" />
             </font>
          </TextField>
-         <Button fx:id="playButton" layoutX="886.0" layoutY="628.0" mnemonicParsing="false" onAction="#onPlayButton" text="Play">
+         <Button fx:id="playButton" layoutX="924.0" layoutY="607.0" mnemonicParsing="false" onAction="#onPlayButton" text="Play">
             <font>
                <Font name="Baskerville Old Face" size="24.0" />
             </font>
@@ -33,12 +33,12 @@
                <Image url="@../images/randomImages/image_5.png" />
             </image>
          </ImageView>
-         <Label layoutX="805.0" layoutY="110.0" text="NICKNAME">
+         <Label layoutX="821.0" layoutY="108.0" text="NICKNAME">
             <font>
                <Font name="Baskerville Old Face" size="50.0" />
             </font>
          </Label>
-         <Label layoutX="765.0" layoutY="343.0" text="Enter your nickname!">
+         <Label layoutX="802.0" layoutY="337.0" text="Enter your nickname!">
             <font>
                <Font name="Baskerville Old Face" size="36.0" />
             </font>

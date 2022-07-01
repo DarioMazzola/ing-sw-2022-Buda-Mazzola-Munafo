@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -16,9 +18,9 @@
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: LIGHTSKYBLUE;">
          <children>
-            <Label layoutX="883.0" layoutY="126.0" text="TEAMS">
+            <Label layoutX="870.0" layoutY="122.0" text="TEAMS">
                <font>
-                  <Font name="Baskerville Old Face" size="50.0"/>
+                  <Font name="Baskerville Old Face" size="50.0" />
                </font>
             </Label>
             <Label layoutX="574.0" layoutY="227.0" text="You should now select a team and whether you want to be leader of the team!">
@@ -26,7 +28,7 @@
                   <Font name="Baskerville Old Face" size="26.0" />
                </font>
             </Label>
-            <GridPane layoutX="706.0" layoutY="360.0" prefHeight="333.0" prefWidth="508.0">
+            <GridPane gridLinesVisible="true" layoutX="706.0" layoutY="314.0" prefHeight="333.0" prefWidth="508.0" style="-fx-background-color: #EDF2F4;">
               <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -48,12 +50,12 @@
                         <Font name="Baskerville Old Face" size="24.0" />
                      </font>
                   </Label>
-                  <Label text="Team leader" GridPane.rowIndex="1">
+                  <Label prefHeight="28.0" prefWidth="170.0" style="-fx-alignment: CENTER;" text="Team leader" GridPane.rowIndex="1">
                      <font>
                         <Font name="Baskerville Old Face" size="24.0" />
                      </font>
                   </Label>
-                  <Label text="Other members" GridPane.rowIndex="2">
+                  <Label prefHeight="28.0" prefWidth="169.0" style="-fx-alignment: CENTER;" text="Other members" GridPane.rowIndex="2">
                      <font>
                         <Font name="Baskerville Old Face" size="24.0" />
                      </font>
@@ -70,41 +72,64 @@
                   </Label>
                   <Label fx:id="MemberTeam1" alignment="CENTER" prefHeight="23.0" prefWidth="173.0" text="No members" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
-                        <Font name="Baskerville Old Face" size="18.0"  />
+                        <Font name="Baskerville Old Face" size="18.0" />
                      </font>
                   </Label>
                   <Label fx:id="MemberTeam2" alignment="CENTER" prefHeight="23.0" prefWidth="221.0" text="No members" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <font>
-                        <Font name="Baskerville Old Face" size="18.0"  />
+                        <Font name="Baskerville Old Face" size="18.0" />
                      </font>
                   </Label>
                </children>
             </GridPane>
-            <Label layoutX="652.0" layoutY="800.0" text="Which team do you want to join?">
+            <Label layoutX="671.0" layoutY="716.0" text="Which team do you want to join?">
                <font>
-                  <Font name="Baskerville Old Face" size="18.0"  />
+                  <Font name="Baskerville Old Face" size="18.0" />
                </font>
             </Label>
-            <RadioButton fx:id="Team1Btn" layoutX="914.0" layoutY="803.0" mnemonicParsing="false" text="Team1">
+            <RadioButton fx:id="Team1Btn" layoutX="933.0" layoutY="719.0" mnemonicParsing="false" text="Team1">
                <font>
-                  <Font name="Baskerville Old Face" size="18.0"  />
+                  <Font name="Baskerville Old Face" size="18.0" />
                </font>
                <toggleGroup>
                   <ToggleGroup fx:id="TeamChoice" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="Team2Btn" layoutX="1086.0" layoutY="803.0" mnemonicParsing="false" text="Team2" toggleGroup="$TeamChoice">
+            <RadioButton fx:id="Team2Btn" layoutX="1105.0" layoutY="719.0" mnemonicParsing="false" text="Team2" toggleGroup="$TeamChoice">
                <font>
-                  <Font name="Baskerville Old Face" size="18.0"  />
+                  <Font name="Baskerville Old Face" size="18.0" />
                </font>
             </RadioButton>
-            <Label layoutX="612.0" layoutY="891.0" text="Do you want to be leader of the team?">
+            <Label layoutX="631.0" layoutY="807.0" text="Do you want to be leader of the team?">
                <font>
-                  <Font name="Baskerville Old Face" size="18.0"  />
+                  <Font name="Baskerville Old Face" size="18.0" />
                </font>
             </Label>
-            <CheckBox fx:id="TeamLeader" layoutX="919.0" layoutY="894.0" mnemonicParsing="false" />
-            <Button fx:id="SelectBtn" layoutX="1019.0" layoutY="955.0" mnemonicParsing="false" text="OK" />
+            <CheckBox fx:id="TeamLeader" layoutX="938.0" layoutY="810.0" mnemonicParsing="false" />
+            <Button fx:id="SelectBtn" layoutX="910.0" layoutY="900.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="99.0" text="OK">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font></Button>
+            <ImageView fitHeight="377.0" fitWidth="546.0" layoutX="7.0" layoutY="630.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/randomImages/image_1.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="135.0" fitWidth="198.0" layoutX="1095.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/randomImages/trophy.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="135.0" fitWidth="203.0" layoutX="635.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/randomImages/trophy.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="327.0" fitWidth="469.0" layoutX="1398.0" layoutY="502.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/randomImages/image_5.png" />
+               </image>
+            </ImageView>
          </children></AnchorPane>
    </children>
 </StackPane>

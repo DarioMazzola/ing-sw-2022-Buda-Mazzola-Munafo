@@ -12,7 +12,7 @@
 
 <StackPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #ADD8E6;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.view.gui.scenes.SelectNumPlayersController">
    <children>
-      <AnchorPane>
+      <AnchorPane style="-fx-background-color: LIGHTSKYBLUE;">
          <RadioButton fx:id="players2" layoutX="859.0" layoutY="217.0" mnemonicParsing="false" text="2 players">
             <font>
                <Font name="Baskerville Old Face" size="36.0" />
@@ -61,9 +61,9 @@
                <Image url="@../images/randomImages/blue_prof.png" />
             </image>
          </ImageView>
-         <Label layoutX="723.0" layoutY="92.0" text="How many players want to play?">
+         <Label layoutX="652.0" layoutY="79.0" text="How many players want to play?">
             <font>
-               <Font name="Baskerville Old Face" size="36.0" />
+               <Font name="Baskerville Old Face" size="48.0" />
             </font>
          </Label>
       </AnchorPane>

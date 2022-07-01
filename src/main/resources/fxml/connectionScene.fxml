@@ -23,7 +23,7 @@
                   <Font name="Baskerville Old Face" size="24.0" />
               </font>
           </TextField>
-          <Button fx:id="login" layoutX="896.0" layoutY="629.0" mnemonicParsing="false" onAction="#login" text="Login">
+          <Button fx:id="login" layoutX="915.0" layoutY="627.0" mnemonicParsing="false" onAction="#login" text="Login">
               <font>
                   <Font name="Baskerville Old Face" size="24.0" />
               </font>
@@ -38,7 +38,7 @@
                <Image url="@../images/randomImages/image_3.png" />
             </image>
          </ImageView>
-         <Text fill="#0000006d" layoutX="522.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please select an IP address and a port number">
+         <Text fill="#343a40" layoutX="522.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please select an IP address and a port number">
             <font>
                <Font name="Baskerville Old Face" size="48.0" />
             </font>
