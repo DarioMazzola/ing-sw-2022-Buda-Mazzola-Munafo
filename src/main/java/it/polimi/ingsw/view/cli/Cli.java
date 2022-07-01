@@ -735,9 +735,11 @@ public class Cli extends ViewObservable implements UI {
                 House[] fromDashboard = new House[numChosenStudents];
                 int index = 0;
                 for (House h : House.values()) {
-                    if (fromDashboardMap.get(h) > 0 && index < numChosenStudents) {
-                        fromDashboard[index] = h;
-                        index++;
+                    for (int i = 0; i < fromDashboardMap.get(h);  i++) {
+                        if (index < numChosenStudents) {
+                            fromDashboard[index] = h;
+                            index++;
+                        }
                     }
                 }
 
@@ -762,9 +764,11 @@ public class Cli extends ViewObservable implements UI {
                 House[] fromDiningHall = new House[numChosenStudents];
                 index = 0;
                 for (House h : House.values()) {
-                    if (fromDiningHallMap.get(h) > 0 && index < numChosenStudents) {
-                        fromDiningHall[index] = h;
-                        index++;
+                    for (int i = 0; i < fromDiningHallMap.get(h);  i++) {
+                        if (index < numChosenStudents) {
+                            fromDiningHall[index] = h;
+                            index++;
+                        }
                     }
                 }
 
