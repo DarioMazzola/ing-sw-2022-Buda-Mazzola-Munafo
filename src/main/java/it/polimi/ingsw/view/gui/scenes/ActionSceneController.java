@@ -4828,7 +4828,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             return;
         }
 
-        availableActions.remove("Select character card");
+
         alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.initOwner(sceneController.getActiveScene().getWindow());
         alert.initModality(Modality.APPLICATION_MODAL);
@@ -4840,7 +4840,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         //if the player wants to use the card
         if (alert.showAndWait().orElse(ButtonType.OK) == ButtonType.OK) {
             removeEvents();
-
+            availableActions.remove("Select character card");
             CharacterCardEnum type = gm.getCharacterCardDeck()[cardSelected].getType();
             setSuggestions(null, gm.getCharacterCardDeck()[cardSelected].getCardName());
 
