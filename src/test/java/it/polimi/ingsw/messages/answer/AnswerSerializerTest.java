@@ -101,17 +101,6 @@ class AnswerSerializerTest {
     }
 
     @Test
-    void serializeAndDeserializeSelectCharacterCardTest() {
-        AnswerMessage message = new SelectCharacterCard(null);
-
-        String serialized = AnswerSerializer.serialize(message);
-
-        AnswerMessage messageDeserialized = AnswerSerializer.deserialize(serialized);
-
-        assertEquals(message.getType(), messageDeserialized.getType());
-    }
-
-    @Test
     void serializeAndDeserializeSelectCloudTest() {
         AnswerMessage message = new SelectCloud();
 
