@@ -185,9 +185,6 @@ public class AnswerSerializer {
             case SELECT_ASSISTANT_CARD:
                 answer = gson.fromJson(gsonMessage, SelectAssistantCard.class);
                 break;
-            case SELECT_CHARACTER_CARD:
-                answer = gson.fromJson(gsonMessage, SelectCharacterCard.class);
-                break;
             case SELECT_CLOUD:
                 answer = gson.fromJson(gsonMessage, SelectCloud.class);
                 break;
