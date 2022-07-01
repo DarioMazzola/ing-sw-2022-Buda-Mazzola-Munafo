@@ -514,7 +514,7 @@ public class TurnController {
     public void resendActionPhase(String nickname){
         if(gm.getPlayerByNickname(nickname).equals(gm.getCurrentPlayer()))
             virtualViewMap.get(nickname).actionPhase(actionController.getActions());
-        else
+        else if (gameState != PLANNING)
             virtualViewMap.get(nickname).goToWaitingRoom();
     }
 
