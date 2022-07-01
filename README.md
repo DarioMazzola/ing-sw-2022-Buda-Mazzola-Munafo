@@ -87,6 +87,8 @@ This project requires Java 11 or higher to be correctly executed.
 
 ### Eriantys client
 
+For a better user experience, we suggest using a macOS/Linux terminal. If run with a Windows terminal, the CLI version of the client cloud not correctly render all characters. 
+
 To launch Eriantys client enter the following command by opening a terminal in the "target" directory:
 
 ```
