@@ -79,45 +79,44 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">4</i>&nbsp;import java.util.List;
 <i class="no-highlight">5</i>&nbsp;import java.util.function.Consumer;
 <i class="no-highlight">6</i>&nbsp;
-<i class="no-highlight">7</i>&nbsp;
-<i class="no-highlight">8</i>&nbsp;/**
-<i class="no-highlight">9</i>&nbsp; * ViewObservable manages a list of observers of the view.
-<i class="no-highlight">10</i>&nbsp; *
-<i class="no-highlight">11</i>&nbsp; * @author Alessio Buda
-<i class="no-highlight">12</i>&nbsp; */
-<b class="nc"><i class="no-highlight">13</i>&nbsp;public class ViewObservable {</b>
-<b class="nc"><i class="no-highlight">14</i>&nbsp;    protected final List&lt;ViewObserver&gt; observers = new ArrayList&lt;&gt;();</b>
-<i class="no-highlight">15</i>&nbsp;
-<i class="no-highlight">16</i>&nbsp;    /**
-<i class="no-highlight">17</i>&nbsp;     * Adds an observer.
-<i class="no-highlight">18</i>&nbsp;     *
-<i class="no-highlight">19</i>&nbsp;     * @param observer the observer to be added.
-<i class="no-highlight">20</i>&nbsp;     */
-<i class="no-highlight">21</i>&nbsp;    public void addObserver(ViewObserver observer) {
-<b class="nc"><i class="no-highlight">22</i>&nbsp;        observers.add(observer);</b>
-<i class="no-highlight">23</i>&nbsp;    }
-<i class="no-highlight">24</i>&nbsp;
-<i class="no-highlight">25</i>&nbsp;    /**
-<i class="no-highlight">26</i>&nbsp;     * Removes an observer.
-<i class="no-highlight">27</i>&nbsp;     *
-<i class="no-highlight">28</i>&nbsp;     * @param observer the observer to be removed.
-<i class="no-highlight">29</i>&nbsp;     */
-<i class="no-highlight">30</i>&nbsp;    public void removeObserver(ViewObserver observer) {
-<b class="nc"><i class="no-highlight">31</i>&nbsp;        observers.remove(observer);</b>
-<i class="no-highlight">32</i>&nbsp;    }
-<i class="no-highlight">33</i>&nbsp;
-<i class="no-highlight">34</i>&nbsp;    /**
-<i class="no-highlight">35</i>&nbsp;     * Notifies all the current observers through the lambda argument.
-<i class="no-highlight">36</i>&nbsp;     *
-<i class="no-highlight">37</i>&nbsp;     * @param lambda the lambda to be called on the observers.
-<i class="no-highlight">38</i>&nbsp;     */
-<i class="no-highlight">39</i>&nbsp;    protected void notifyObserver(Consumer&lt;ViewObserver&gt; lambda) {
-<b class="nc"><i class="no-highlight">40</i>&nbsp;        for (ViewObserver observer : observers) {</b>
-<b class="nc"><i class="no-highlight">41</i>&nbsp;            lambda.accept(observer);</b>
-<b class="nc"><i class="no-highlight">42</i>&nbsp;        }</b>
-<i class="no-highlight">43</i>&nbsp;    }
-<i class="no-highlight">44</i>&nbsp;}
-<i class="no-highlight">45</i>&nbsp;
+<i class="no-highlight">7</i>&nbsp;/**
+<i class="no-highlight">8</i>&nbsp; * ViewObservable manages a list of observers of the view.
+<i class="no-highlight">9</i>&nbsp; *
+<i class="no-highlight">10</i>&nbsp; * @author Alessio Buda
+<i class="no-highlight">11</i>&nbsp; */
+<b class="nc"><i class="no-highlight">12</i>&nbsp;public class ViewObservable {</b>
+<b class="nc"><i class="no-highlight">13</i>&nbsp;    protected final List&lt;ViewObserver&gt; observers = new ArrayList&lt;&gt;();</b>
+<i class="no-highlight">14</i>&nbsp;
+<i class="no-highlight">15</i>&nbsp;    /**
+<i class="no-highlight">16</i>&nbsp;     * Adds an observer.
+<i class="no-highlight">17</i>&nbsp;     *
+<i class="no-highlight">18</i>&nbsp;     * @param observer the observer to be added.
+<i class="no-highlight">19</i>&nbsp;     */
+<i class="no-highlight">20</i>&nbsp;    public void addObserver(ViewObserver observer) {
+<b class="nc"><i class="no-highlight">21</i>&nbsp;        observers.add(observer);</b>
+<i class="no-highlight">22</i>&nbsp;    }
+<i class="no-highlight">23</i>&nbsp;
+<i class="no-highlight">24</i>&nbsp;    /**
+<i class="no-highlight">25</i>&nbsp;     * Removes an observer.
+<i class="no-highlight">26</i>&nbsp;     *
+<i class="no-highlight">27</i>&nbsp;     * @param observer the observer to be removed.
+<i class="no-highlight">28</i>&nbsp;     */
+<i class="no-highlight">29</i>&nbsp;    public void removeObserver(ViewObserver observer) {
+<b class="nc"><i class="no-highlight">30</i>&nbsp;        observers.remove(observer);</b>
+<i class="no-highlight">31</i>&nbsp;    }
+<i class="no-highlight">32</i>&nbsp;
+<i class="no-highlight">33</i>&nbsp;    /**
+<i class="no-highlight">34</i>&nbsp;     * Notifies all the current observers through the lambda argument.
+<i class="no-highlight">35</i>&nbsp;     *
+<i class="no-highlight">36</i>&nbsp;     * @param lambda the lambda to be called on the observers.
+<i class="no-highlight">37</i>&nbsp;     */
+<i class="no-highlight">38</i>&nbsp;    protected void notifyObserver(Consumer&lt;ViewObserver&gt; lambda) {
+<b class="nc"><i class="no-highlight">39</i>&nbsp;        for (ViewObserver observer : observers) {</b>
+<b class="nc"><i class="no-highlight">40</i>&nbsp;            lambda.accept(observer);</b>
+<b class="nc"><i class="no-highlight">41</i>&nbsp;        }</b>
+<i class="no-highlight">42</i>&nbsp;    }
+<i class="no-highlight">43</i>&nbsp;}
+<i class="no-highlight">44</i>&nbsp;
 </div>
 </pre>
 </div>
@@ -144,7 +143,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-01 12:22</div>
+    <div style="float:right;">generated on 2022-07-01 19:12</div>
 </div>
 </body>
 </html>

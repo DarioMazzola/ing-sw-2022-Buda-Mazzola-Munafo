@@ -75,18 +75,28 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package it.polimi.ingsw.messages;
 <i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;public abstract class Message {
-<i class="no-highlight">4</i>&nbsp;
-<i class="no-highlight">5</i>&nbsp;    private final MessageType messageType;
-<i class="no-highlight">6</i>&nbsp;
-<b class="fc"><i class="no-highlight">7</i>&nbsp;    protected Message(MessageType messageType) {</b>
-<b class="fc"><i class="no-highlight">8</i>&nbsp;        this.messageType = messageType;</b>
-<i class="no-highlight">9</i>&nbsp;    }
-<i class="no-highlight">10</i>&nbsp;
-<i class="no-highlight">11</i>&nbsp;    public MessageType getType() {
-<b class="fc"><i class="no-highlight">12</i>&nbsp;        return messageType;</b>
-<i class="no-highlight">13</i>&nbsp;    }
-<i class="no-highlight">14</i>&nbsp;}
+<i class="no-highlight">3</i>&nbsp;/**
+<i class="no-highlight">4</i>&nbsp; * Represents a message
+<i class="no-highlight">5</i>&nbsp; *
+<i class="no-highlight">6</i>&nbsp; * @author Dario Mazzola &amp; Alessio Buda &amp; Gabriele Munafo&#39;
+<i class="no-highlight">7</i>&nbsp; */
+<i class="no-highlight">8</i>&nbsp;public abstract class Message {
+<i class="no-highlight">9</i>&nbsp;
+<i class="no-highlight">10</i>&nbsp;    private final MessageType messageType;
+<i class="no-highlight">11</i>&nbsp;
+<i class="no-highlight">12</i>&nbsp;    /**
+<i class="no-highlight">13</i>&nbsp;     * Class constructor
+<i class="no-highlight">14</i>&nbsp;     *
+<i class="no-highlight">15</i>&nbsp;     * @param messageType the type of message to create
+<i class="no-highlight">16</i>&nbsp;     */
+<b class="fc"><i class="no-highlight">17</i>&nbsp;    protected Message(MessageType messageType) {</b>
+<b class="fc"><i class="no-highlight">18</i>&nbsp;        this.messageType = messageType;</b>
+<i class="no-highlight">19</i>&nbsp;    }
+<i class="no-highlight">20</i>&nbsp;
+<i class="no-highlight">21</i>&nbsp;    public MessageType getType() {
+<b class="fc"><i class="no-highlight">22</i>&nbsp;        return messageType;</b>
+<i class="no-highlight">23</i>&nbsp;    }
+<i class="no-highlight">24</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -113,7 +123,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-01 12:22</div>
+    <div style="float:right;">generated on 2022-07-01 19:12</div>
 </div>
 </body>
 </html>

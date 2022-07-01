@@ -103,179 +103,175 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">2</i>&nbsp;
 <i class="no-highlight">3</i>&nbsp;import it.polimi.ingsw.model.Color;
 <i class="no-highlight">4</i>&nbsp;import it.polimi.ingsw.observer.ViewObservable;
-<i class="no-highlight">5</i>&nbsp;import it.polimi.ingsw.view.gui.SceneController;
-<i class="no-highlight">6</i>&nbsp;import javafx.event.ActionEvent;
-<i class="no-highlight">7</i>&nbsp;import javafx.fxml.FXML;
-<i class="no-highlight">8</i>&nbsp;import javafx.scene.Scene;
-<i class="no-highlight">9</i>&nbsp;import javafx.scene.control.*;
-<i class="no-highlight">10</i>&nbsp;import javafx.scene.effect.Bloom;
-<i class="no-highlight">11</i>&nbsp;import javafx.scene.effect.Glow;
-<i class="no-highlight">12</i>&nbsp;import javafx.scene.image.ImageView;
-<i class="no-highlight">13</i>&nbsp;import javafx.scene.input.MouseEvent;
+<i class="no-highlight">5</i>&nbsp;import javafx.event.ActionEvent;
+<i class="no-highlight">6</i>&nbsp;import javafx.fxml.FXML;
+<i class="no-highlight">7</i>&nbsp;import javafx.scene.control.*;
+<i class="no-highlight">8</i>&nbsp;import javafx.scene.image.ImageView;
+<i class="no-highlight">9</i>&nbsp;import javafx.scene.input.MouseEvent;
+<i class="no-highlight">10</i>&nbsp;
+<i class="no-highlight">11</i>&nbsp;import java.util.List;
+<i class="no-highlight">12</i>&nbsp;
+<i class="no-highlight">13</i>&nbsp;import static javafx.scene.control.Alert.AlertType.ERROR;
 <i class="no-highlight">14</i>&nbsp;
-<i class="no-highlight">15</i>&nbsp;import java.util.List;
-<i class="no-highlight">16</i>&nbsp;
-<i class="no-highlight">17</i>&nbsp;import static javafx.scene.control.Alert.AlertType.ERROR;
-<i class="no-highlight">18</i>&nbsp;
-<i class="no-highlight">19</i>&nbsp;/**
-<i class="no-highlight">20</i>&nbsp; * Scene that asks the player to choose the color of the towers.
-<i class="no-highlight">21</i>&nbsp; *
-<i class="no-highlight">22</i>&nbsp; * @author Dario Mazzola.
-<i class="no-highlight">23</i>&nbsp; */
-<i class="no-highlight">24</i>&nbsp;public class SelectTowerColorSceneController extends ViewObservable implements SceneInterface {
-<i class="no-highlight">25</i>&nbsp;
+<i class="no-highlight">15</i>&nbsp;/**
+<i class="no-highlight">16</i>&nbsp; * Scene that asks the player to choose the color of the towers.
+<i class="no-highlight">17</i>&nbsp; *
+<i class="no-highlight">18</i>&nbsp; * @author Dario Mazzola.
+<i class="no-highlight">19</i>&nbsp; */
+<i class="no-highlight">20</i>&nbsp;public class SelectTowerColorSceneController extends ViewObservable implements SceneInterface {
+<i class="no-highlight">21</i>&nbsp;
+<i class="no-highlight">22</i>&nbsp;    @FXML
+<i class="no-highlight">23</i>&nbsp;    private RadioButton grayButton;
+<i class="no-highlight">24</i>&nbsp;    @FXML
+<i class="no-highlight">25</i>&nbsp;    private RadioButton whiteButton;
 <i class="no-highlight">26</i>&nbsp;    @FXML
-<i class="no-highlight">27</i>&nbsp;    private RadioButton grayButton;
+<i class="no-highlight">27</i>&nbsp;    private RadioButton blackButton;
 <i class="no-highlight">28</i>&nbsp;    @FXML
-<i class="no-highlight">29</i>&nbsp;    private RadioButton whiteButton;
+<i class="no-highlight">29</i>&nbsp;    private ToggleGroup towersButton ;
 <i class="no-highlight">30</i>&nbsp;    @FXML
-<i class="no-highlight">31</i>&nbsp;    private RadioButton blackButton;
+<i class="no-highlight">31</i>&nbsp;    private Button selectButton;
 <i class="no-highlight">32</i>&nbsp;    @FXML
-<i class="no-highlight">33</i>&nbsp;    private ToggleGroup towersButton ;
+<i class="no-highlight">33</i>&nbsp;    private ImageView grayImg;
 <i class="no-highlight">34</i>&nbsp;    @FXML
-<i class="no-highlight">35</i>&nbsp;    private Button selectButton;
+<i class="no-highlight">35</i>&nbsp;    private ImageView whiteImg;
 <i class="no-highlight">36</i>&nbsp;    @FXML
-<i class="no-highlight">37</i>&nbsp;    private ImageView grayImg;
-<i class="no-highlight">38</i>&nbsp;    @FXML
-<i class="no-highlight">39</i>&nbsp;    private ImageView whiteImg;
-<i class="no-highlight">40</i>&nbsp;    @FXML
-<i class="no-highlight">41</i>&nbsp;    private ImageView blackImg;
+<i class="no-highlight">37</i>&nbsp;    private ImageView blackImg;
+<i class="no-highlight">38</i>&nbsp;
+<i class="no-highlight">39</i>&nbsp;    private ImageView[] towers;
+<i class="no-highlight">40</i>&nbsp;
+<i class="no-highlight">41</i>&nbsp;    private final List&lt;Color&gt; colorTowersAvailable;
 <i class="no-highlight">42</i>&nbsp;
-<i class="no-highlight">43</i>&nbsp;    private ImageView[] towers;
-<i class="no-highlight">44</i>&nbsp;
-<i class="no-highlight">45</i>&nbsp;    private final List&lt;Color&gt; colorTowersAvailable;
-<i class="no-highlight">46</i>&nbsp;
-<i class="no-highlight">47</i>&nbsp;    /**
-<i class="no-highlight">48</i>&nbsp;     * Class constructor.
-<i class="no-highlight">49</i>&nbsp;     *
-<i class="no-highlight">50</i>&nbsp;     * @param colorTowersAvailable the tower color available
-<i class="no-highlight">51</i>&nbsp;     */
-<b class="nc"><i class="no-highlight">52</i>&nbsp;    public SelectTowerColorSceneController(List&lt;Color&gt; colorTowersAvailable) {</b>
-<b class="nc"><i class="no-highlight">53</i>&nbsp;        this.colorTowersAvailable = colorTowersAvailable;</b>
-<i class="no-highlight">54</i>&nbsp;    }
-<i class="no-highlight">55</i>&nbsp;
-<i class="no-highlight">56</i>&nbsp;    @FXML
-<i class="no-highlight">57</i>&nbsp;    public void initialize(){
-<i class="no-highlight">58</i>&nbsp;
-<b class="nc"><i class="no-highlight">59</i>&nbsp;        for(Color c : colorTowersAvailable) {</b>
-<b class="nc"><i class="no-highlight">60</i>&nbsp;            ImageView t = getImageViewByColor(c);</b>
-<b class="nc"><i class="no-highlight">61</i>&nbsp;            t.setOnMouseClicked(this::towerClicked);</b>
-<b class="nc"><i class="no-highlight">62</i>&nbsp;            t.setOpacity(1);</b>
-<b class="nc"><i class="no-highlight">63</i>&nbsp;            t.setDisable(false);</b>
-<b class="nc"><i class="no-highlight">64</i>&nbsp;        }</b>
+<i class="no-highlight">43</i>&nbsp;    /**
+<i class="no-highlight">44</i>&nbsp;     * Class constructor.
+<i class="no-highlight">45</i>&nbsp;     *
+<i class="no-highlight">46</i>&nbsp;     * @param colorTowersAvailable the tower color available
+<i class="no-highlight">47</i>&nbsp;     */
+<b class="nc"><i class="no-highlight">48</i>&nbsp;    public SelectTowerColorSceneController(List&lt;Color&gt; colorTowersAvailable) {</b>
+<b class="nc"><i class="no-highlight">49</i>&nbsp;        this.colorTowersAvailable = colorTowersAvailable;</b>
+<i class="no-highlight">50</i>&nbsp;    }
+<i class="no-highlight">51</i>&nbsp;
+<i class="no-highlight">52</i>&nbsp;    @FXML
+<i class="no-highlight">53</i>&nbsp;    public void initialize(){
+<i class="no-highlight">54</i>&nbsp;
+<b class="nc"><i class="no-highlight">55</i>&nbsp;        for(Color c : colorTowersAvailable) {</b>
+<b class="nc"><i class="no-highlight">56</i>&nbsp;            ImageView t = getImageViewByColor(c);</b>
+<b class="nc"><i class="no-highlight">57</i>&nbsp;            t.setOnMouseClicked(this::towerClicked);</b>
+<b class="nc"><i class="no-highlight">58</i>&nbsp;            t.setOpacity(1);</b>
+<b class="nc"><i class="no-highlight">59</i>&nbsp;            t.setDisable(false);</b>
+<b class="nc"><i class="no-highlight">60</i>&nbsp;        }</b>
+<i class="no-highlight">61</i>&nbsp;
+<b class="nc"><i class="no-highlight">62</i>&nbsp;        towers = new ImageView[]{grayImg, whiteImg, blackImg};</b>
+<i class="no-highlight">63</i>&nbsp;
+<i class="no-highlight">64</i>&nbsp;    }
 <i class="no-highlight">65</i>&nbsp;
-<b class="nc"><i class="no-highlight">66</i>&nbsp;        towers = new ImageView[]{grayImg, whiteImg, blackImg};</b>
-<i class="no-highlight">67</i>&nbsp;
-<i class="no-highlight">68</i>&nbsp;    }
-<i class="no-highlight">69</i>&nbsp;
-<i class="no-highlight">70</i>&nbsp;    /**
-<i class="no-highlight">71</i>&nbsp;     * Handles the event fired when the player select the image of one of the available towers.
-<i class="no-highlight">72</i>&nbsp;     *
-<i class="no-highlight">73</i>&nbsp;     * @param e the event fired
-<i class="no-highlight">74</i>&nbsp;     */
-<i class="no-highlight">75</i>&nbsp;    public void towerClicked(MouseEvent e){
-<b class="nc"><i class="no-highlight">76</i>&nbsp;        ImageView towerClicked = (ImageView) e.getSource();</b>
-<i class="no-highlight">77</i>&nbsp;
-<b class="nc"><i class="no-highlight">78</i>&nbsp;        for(ImageView tower : towers) {</b>
-<b class="nc"><i class="no-highlight">79</i>&nbsp;            tower.getStyleClass().clear();</b>
-<i class="no-highlight">80</i>&nbsp;        }
-<b class="nc"><i class="no-highlight">81</i>&nbsp;        towerClicked.getStyleClass().add(&quot;dropShadow&quot;);</b>
+<i class="no-highlight">66</i>&nbsp;    /**
+<i class="no-highlight">67</i>&nbsp;     * Handles the event fired when the player select the image of one of the available towers.
+<i class="no-highlight">68</i>&nbsp;     *
+<i class="no-highlight">69</i>&nbsp;     * @param e the event fired
+<i class="no-highlight">70</i>&nbsp;     */
+<i class="no-highlight">71</i>&nbsp;    public void towerClicked(MouseEvent e){
+<b class="nc"><i class="no-highlight">72</i>&nbsp;        ImageView towerClicked = (ImageView) e.getSource();</b>
+<i class="no-highlight">73</i>&nbsp;
+<b class="nc"><i class="no-highlight">74</i>&nbsp;        for(ImageView tower : towers) {</b>
+<b class="nc"><i class="no-highlight">75</i>&nbsp;            tower.getStyleClass().clear();</b>
+<i class="no-highlight">76</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">77</i>&nbsp;        towerClicked.getStyleClass().add(&quot;dropShadow&quot;);</b>
+<i class="no-highlight">78</i>&nbsp;
+<b class="nc"><i class="no-highlight">79</i>&nbsp;        RadioButton button = getButtonByImageView(towerClicked);</b>
+<i class="no-highlight">80</i>&nbsp;
+<b class="nc"><i class="no-highlight">81</i>&nbsp;        button.setSelected(true);</b>
 <i class="no-highlight">82</i>&nbsp;
-<b class="nc"><i class="no-highlight">83</i>&nbsp;        RadioButton button = getButtonByImageView(towerClicked);</b>
-<i class="no-highlight">84</i>&nbsp;
-<b class="nc"><i class="no-highlight">85</i>&nbsp;        button.setSelected(true);</b>
+<b class="nc"><i class="no-highlight">83</i>&nbsp;        selectButton.setDisable(false);</b>
+<b class="nc"><i class="no-highlight">84</i>&nbsp;        selectButton.setOnAction(this::onSelect);</b>
+<i class="no-highlight">85</i>&nbsp;    }
 <i class="no-highlight">86</i>&nbsp;
-<b class="nc"><i class="no-highlight">87</i>&nbsp;        selectButton.setDisable(false);</b>
-<b class="nc"><i class="no-highlight">88</i>&nbsp;        selectButton.setOnAction(this::onSelect);</b>
-<i class="no-highlight">89</i>&nbsp;    }
-<i class="no-highlight">90</i>&nbsp;
-<i class="no-highlight">91</i>&nbsp;    /**
-<i class="no-highlight">92</i>&nbsp;     * Handles the event fired when the player clicks on the select button.
-<i class="no-highlight">93</i>&nbsp;     *
-<i class="no-highlight">94</i>&nbsp;     * @param e the event fired
-<i class="no-highlight">95</i>&nbsp;     */
-<i class="no-highlight">96</i>&nbsp;    public void onSelect(ActionEvent e) {
-<i class="no-highlight">97</i>&nbsp;
-<b class="nc"><i class="no-highlight">98</i>&nbsp;        RadioButton selectedRadioButton = (RadioButton) towersButton.getSelectedToggle();</b>
-<b class="nc"><i class="no-highlight">99</i>&nbsp;        if(selectedRadioButton == null) {</b>
-<b class="nc"><i class="no-highlight">100</i>&nbsp;            Alert alert = new Alert(ERROR, &quot;&quot;, ButtonType.OK);</b>
-<b class="nc"><i class="no-highlight">101</i>&nbsp;            alert.setTitle(&quot;Invalid tower color selection&quot;);</b>
-<b class="nc"><i class="no-highlight">102</i>&nbsp;            alert.setHeaderText(&quot;You must select a tower color \nfor this game before going on&quot;);</b>
-<b class="nc"><i class="no-highlight">103</i>&nbsp;            alert.showAndWait();</b>
-<i class="no-highlight">104</i>&nbsp;            return;
-<i class="no-highlight">105</i>&nbsp;        }
-<b class="nc"><i class="no-highlight">106</i>&nbsp;        selectButton.setDisable(true);</b>
-<b class="nc"><i class="no-highlight">107</i>&nbsp;        blackImg.setDisable(true);</b>
-<b class="nc"><i class="no-highlight">108</i>&nbsp;        whiteImg.setDisable(true);</b>
-<b class="nc"><i class="no-highlight">109</i>&nbsp;        grayImg.setDisable(true);</b>
-<i class="no-highlight">110</i>&nbsp;
-<b class="nc"><i class="no-highlight">111</i>&nbsp;        Color towerColorChosen = null;</b>
-<i class="no-highlight">112</i>&nbsp;
-<b class="nc"><i class="no-highlight">113</i>&nbsp;        switch (selectedRadioButton.getText()) {</b>
-<i class="no-highlight">114</i>&nbsp;            case &quot;black&quot;:
-<b class="nc"><i class="no-highlight">115</i>&nbsp;                towerColorChosen = Color.BLACK;</b>
-<b class="nc"><i class="no-highlight">116</i>&nbsp;                break;</b>
-<i class="no-highlight">117</i>&nbsp;            case &quot;white&quot;:
-<b class="nc"><i class="no-highlight">118</i>&nbsp;                towerColorChosen = Color.WHITE;</b>
-<b class="nc"><i class="no-highlight">119</i>&nbsp;                break;</b>
-<i class="no-highlight">120</i>&nbsp;            case &quot;gray&quot;:
-<b class="nc"><i class="no-highlight">121</i>&nbsp;                towerColorChosen = Color.GRAY;</b>
-<i class="no-highlight">122</i>&nbsp;                break;
-<i class="no-highlight">123</i>&nbsp;        }
-<b class="nc"><i class="no-highlight">124</i>&nbsp;        Color finalTowerColorChosen = towerColorChosen;</b>
-<i class="no-highlight">125</i>&nbsp;
-<b class="nc"><i class="no-highlight">126</i>&nbsp;        notifyObserver(observer -&gt; observer.onUpdateTowerColor(finalTowerColorChosen));</b>
-<i class="no-highlight">127</i>&nbsp;    }
-<i class="no-highlight">128</i>&nbsp;
-<i class="no-highlight">129</i>&nbsp;    /**
-<i class="no-highlight">130</i>&nbsp;     * Returns the ImageView associated to the color of the tower given as a parameter.
-<i class="no-highlight">131</i>&nbsp;     *
-<i class="no-highlight">132</i>&nbsp;     * @param c the color of the tower
-<i class="no-highlight">133</i>&nbsp;     * @return the ImageView associated with the Color passed as a parameter
-<i class="no-highlight">134</i>&nbsp;     */
-<i class="no-highlight">135</i>&nbsp;    private ImageView getImageViewByColor(Color c) {
-<i class="no-highlight">136</i>&nbsp;
-<b class="nc"><i class="no-highlight">137</i>&nbsp;        ImageView imageView = null;</b>
-<i class="no-highlight">138</i>&nbsp;
-<b class="nc"><i class="no-highlight">139</i>&nbsp;        switch (c){</b>
-<i class="no-highlight">140</i>&nbsp;            case BLACK:
-<b class="nc"><i class="no-highlight">141</i>&nbsp;                imageView = blackImg;</b>
-<b class="nc"><i class="no-highlight">142</i>&nbsp;                break;</b>
-<i class="no-highlight">143</i>&nbsp;            case WHITE:
-<b class="nc"><i class="no-highlight">144</i>&nbsp;                imageView = whiteImg;</b>
-<b class="nc"><i class="no-highlight">145</i>&nbsp;                break;</b>
-<i class="no-highlight">146</i>&nbsp;            case GRAY:
-<b class="nc"><i class="no-highlight">147</i>&nbsp;                imageView = grayImg;</b>
-<i class="no-highlight">148</i>&nbsp;                break;
-<i class="no-highlight">149</i>&nbsp;        }
-<i class="no-highlight">150</i>&nbsp;
-<b class="nc"><i class="no-highlight">151</i>&nbsp;        return imageView;</b>
-<i class="no-highlight">152</i>&nbsp;    }
-<i class="no-highlight">153</i>&nbsp;
-<i class="no-highlight">154</i>&nbsp;    /**
-<i class="no-highlight">155</i>&nbsp;     * Returns the RadioButton associated with the image given as a parameter.
-<i class="no-highlight">156</i>&nbsp;     *
-<i class="no-highlight">157</i>&nbsp;     * @param imageView the image clicked
-<i class="no-highlight">158</i>&nbsp;     * @return the RadioButton associated with the image passed as a parameter
-<i class="no-highlight">159</i>&nbsp;     */
-<i class="no-highlight">160</i>&nbsp;    private RadioButton getButtonByImageView(ImageView imageView){
-<b class="nc"><i class="no-highlight">161</i>&nbsp;        String id = imageView.getId();</b>
-<i class="no-highlight">162</i>&nbsp;
-<b class="nc"><i class="no-highlight">163</i>&nbsp;        RadioButton btn = null;</b>
-<i class="no-highlight">164</i>&nbsp;
-<b class="nc"><i class="no-highlight">165</i>&nbsp;        if(id.startsWith(&quot;gray&quot;)){</b>
-<b class="nc"><i class="no-highlight">166</i>&nbsp;            btn = grayButton;</b>
-<i class="no-highlight">167</i>&nbsp;        }
-<b class="nc"><i class="no-highlight">168</i>&nbsp;        else if(id.startsWith(&quot;black&quot;)){</b>
-<b class="nc"><i class="no-highlight">169</i>&nbsp;            btn = blackButton;</b>
-<i class="no-highlight">170</i>&nbsp;        }
-<b class="nc"><i class="no-highlight">171</i>&nbsp;        else if(id.startsWith(&quot;white&quot;)){</b>
-<b class="nc"><i class="no-highlight">172</i>&nbsp;            btn = whiteButton;</b>
-<i class="no-highlight">173</i>&nbsp;        }
-<i class="no-highlight">174</i>&nbsp;
-<b class="nc"><i class="no-highlight">175</i>&nbsp;        return btn;</b>
-<i class="no-highlight">176</i>&nbsp;    }
-<i class="no-highlight">177</i>&nbsp;}
+<i class="no-highlight">87</i>&nbsp;    /**
+<i class="no-highlight">88</i>&nbsp;     * Handles the event fired when the player clicks on the select button.
+<i class="no-highlight">89</i>&nbsp;     *
+<i class="no-highlight">90</i>&nbsp;     * @param e the event fired
+<i class="no-highlight">91</i>&nbsp;     */
+<i class="no-highlight">92</i>&nbsp;    public void onSelect(ActionEvent e) {
+<i class="no-highlight">93</i>&nbsp;
+<b class="nc"><i class="no-highlight">94</i>&nbsp;        RadioButton selectedRadioButton = (RadioButton) towersButton.getSelectedToggle();</b>
+<b class="nc"><i class="no-highlight">95</i>&nbsp;        if(selectedRadioButton == null) {</b>
+<b class="nc"><i class="no-highlight">96</i>&nbsp;            Alert alert = new Alert(ERROR, &quot;&quot;, ButtonType.OK);</b>
+<b class="nc"><i class="no-highlight">97</i>&nbsp;            alert.setTitle(&quot;Invalid tower color selection&quot;);</b>
+<b class="nc"><i class="no-highlight">98</i>&nbsp;            alert.setHeaderText(&quot;You must select a tower color \nfor this game before going on&quot;);</b>
+<b class="nc"><i class="no-highlight">99</i>&nbsp;            alert.showAndWait();</b>
+<i class="no-highlight">100</i>&nbsp;            return;
+<i class="no-highlight">101</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">102</i>&nbsp;        selectButton.setDisable(true);</b>
+<b class="nc"><i class="no-highlight">103</i>&nbsp;        blackImg.setDisable(true);</b>
+<b class="nc"><i class="no-highlight">104</i>&nbsp;        whiteImg.setDisable(true);</b>
+<b class="nc"><i class="no-highlight">105</i>&nbsp;        grayImg.setDisable(true);</b>
+<i class="no-highlight">106</i>&nbsp;
+<b class="nc"><i class="no-highlight">107</i>&nbsp;        Color towerColorChosen = null;</b>
+<i class="no-highlight">108</i>&nbsp;
+<b class="nc"><i class="no-highlight">109</i>&nbsp;        switch (selectedRadioButton.getText()) {</b>
+<i class="no-highlight">110</i>&nbsp;            case &quot;black&quot;:
+<b class="nc"><i class="no-highlight">111</i>&nbsp;                towerColorChosen = Color.BLACK;</b>
+<b class="nc"><i class="no-highlight">112</i>&nbsp;                break;</b>
+<i class="no-highlight">113</i>&nbsp;            case &quot;white&quot;:
+<b class="nc"><i class="no-highlight">114</i>&nbsp;                towerColorChosen = Color.WHITE;</b>
+<b class="nc"><i class="no-highlight">115</i>&nbsp;                break;</b>
+<i class="no-highlight">116</i>&nbsp;            case &quot;gray&quot;:
+<b class="nc"><i class="no-highlight">117</i>&nbsp;                towerColorChosen = Color.GRAY;</b>
+<i class="no-highlight">118</i>&nbsp;                break;
+<i class="no-highlight">119</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">120</i>&nbsp;        Color finalTowerColorChosen = towerColorChosen;</b>
+<i class="no-highlight">121</i>&nbsp;
+<b class="nc"><i class="no-highlight">122</i>&nbsp;        notifyObserver(observer -&gt; observer.onUpdateTowerColor(finalTowerColorChosen));</b>
+<i class="no-highlight">123</i>&nbsp;    }
+<i class="no-highlight">124</i>&nbsp;
+<i class="no-highlight">125</i>&nbsp;    /**
+<i class="no-highlight">126</i>&nbsp;     * Returns the ImageView associated to the color of the tower given as a parameter.
+<i class="no-highlight">127</i>&nbsp;     *
+<i class="no-highlight">128</i>&nbsp;     * @param c the color of the tower
+<i class="no-highlight">129</i>&nbsp;     * @return the ImageView associated with the Color passed as a parameter
+<i class="no-highlight">130</i>&nbsp;     */
+<i class="no-highlight">131</i>&nbsp;    private ImageView getImageViewByColor(Color c) {
+<i class="no-highlight">132</i>&nbsp;
+<b class="nc"><i class="no-highlight">133</i>&nbsp;        ImageView imageView = null;</b>
+<i class="no-highlight">134</i>&nbsp;
+<b class="nc"><i class="no-highlight">135</i>&nbsp;        switch (c){</b>
+<i class="no-highlight">136</i>&nbsp;            case BLACK:
+<b class="nc"><i class="no-highlight">137</i>&nbsp;                imageView = blackImg;</b>
+<b class="nc"><i class="no-highlight">138</i>&nbsp;                break;</b>
+<i class="no-highlight">139</i>&nbsp;            case WHITE:
+<b class="nc"><i class="no-highlight">140</i>&nbsp;                imageView = whiteImg;</b>
+<b class="nc"><i class="no-highlight">141</i>&nbsp;                break;</b>
+<i class="no-highlight">142</i>&nbsp;            case GRAY:
+<b class="nc"><i class="no-highlight">143</i>&nbsp;                imageView = grayImg;</b>
+<i class="no-highlight">144</i>&nbsp;                break;
+<i class="no-highlight">145</i>&nbsp;        }
+<i class="no-highlight">146</i>&nbsp;
+<b class="nc"><i class="no-highlight">147</i>&nbsp;        return imageView;</b>
+<i class="no-highlight">148</i>&nbsp;    }
+<i class="no-highlight">149</i>&nbsp;
+<i class="no-highlight">150</i>&nbsp;    /**
+<i class="no-highlight">151</i>&nbsp;     * Returns the RadioButton associated with the image given as a parameter.
+<i class="no-highlight">152</i>&nbsp;     *
+<i class="no-highlight">153</i>&nbsp;     * @param imageView the image clicked
+<i class="no-highlight">154</i>&nbsp;     * @return the RadioButton associated with the image passed as a parameter
+<i class="no-highlight">155</i>&nbsp;     */
+<i class="no-highlight">156</i>&nbsp;    private RadioButton getButtonByImageView(ImageView imageView){
+<b class="nc"><i class="no-highlight">157</i>&nbsp;        String id = imageView.getId();</b>
+<i class="no-highlight">158</i>&nbsp;
+<b class="nc"><i class="no-highlight">159</i>&nbsp;        RadioButton btn = null;</b>
+<i class="no-highlight">160</i>&nbsp;
+<b class="nc"><i class="no-highlight">161</i>&nbsp;        if(id.startsWith(&quot;gray&quot;)){</b>
+<b class="nc"><i class="no-highlight">162</i>&nbsp;            btn = grayButton;</b>
+<i class="no-highlight">163</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">164</i>&nbsp;        else if(id.startsWith(&quot;black&quot;)){</b>
+<b class="nc"><i class="no-highlight">165</i>&nbsp;            btn = blackButton;</b>
+<i class="no-highlight">166</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">167</i>&nbsp;        else if(id.startsWith(&quot;white&quot;)){</b>
+<b class="nc"><i class="no-highlight">168</i>&nbsp;            btn = whiteButton;</b>
+<i class="no-highlight">169</i>&nbsp;        }
+<i class="no-highlight">170</i>&nbsp;
+<b class="nc"><i class="no-highlight">171</i>&nbsp;        return btn;</b>
+<i class="no-highlight">172</i>&nbsp;    }
+<i class="no-highlight">173</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -302,7 +298,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-01 12:22</div>
+    <div style="float:right;">generated on 2022-07-01 19:12</div>
 </div>
 </body>
 </html>

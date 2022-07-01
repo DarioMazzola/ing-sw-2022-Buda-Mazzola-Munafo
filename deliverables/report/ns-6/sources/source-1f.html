@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > UpdateMotherIsland</title>
+  <title>Coverage Report > UpdatePlayer</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/highlight-idea.css";
@@ -20,7 +20,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     <a href="../index.html">it.polimi.ingsw.messages.answer</a>
 </div>
 
-<h1>Coverage Summary for Class: UpdateMotherIsland (it.polimi.ingsw.messages.answer)</h1>
+<h1>Coverage Summary for Class: UpdatePlayer (it.polimi.ingsw.messages.answer)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -39,7 +39,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">UpdateMotherIsland</td>
+  <td class="name">UpdatePlayer</td>
 <td class="coverageStat">
   <span class="percent">
     100%
@@ -75,26 +75,33 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package it.polimi.ingsw.messages.answer;
 <i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import static it.polimi.ingsw.messages.MessageType.UPDATE_MOTHER_ISLAND;
+<i class="no-highlight">3</i>&nbsp;import it.polimi.ingsw.client.ReducedPlayer;
 <i class="no-highlight">4</i>&nbsp;
-<i class="no-highlight">5</i>&nbsp;/**
-<i class="no-highlight">6</i>&nbsp; * This message is sent from the server to the client to update the mother nature position following a move.
-<i class="no-highlight">7</i>&nbsp; *
-<i class="no-highlight">8</i>&nbsp; * @author Alessio Buda &amp; Dario Mazzola &amp; Gabriele Munafo&#39;
-<i class="no-highlight">9</i>&nbsp; */
-<i class="no-highlight">10</i>&nbsp;public class UpdateMotherIsland extends AnswerMessage{
-<i class="no-highlight">11</i>&nbsp;
-<i class="no-highlight">12</i>&nbsp;    private final int motherIsland;
+<i class="no-highlight">5</i>&nbsp;import static it.polimi.ingsw.messages.MessageType.UPDATE_PLAYER;
+<i class="no-highlight">6</i>&nbsp;
+<i class="no-highlight">7</i>&nbsp;/**
+<i class="no-highlight">8</i>&nbsp; * Class representing messages from the server to the client to notify the change of a Player.
+<i class="no-highlight">9</i>&nbsp; *
+<i class="no-highlight">10</i>&nbsp; * @author Alessio Buda &amp; Dario Mazzola &amp; Gabriele Munafo&#39;
+<i class="no-highlight">11</i>&nbsp; */
+<i class="no-highlight">12</i>&nbsp;public class UpdatePlayer extends AnswerMessage{
 <i class="no-highlight">13</i>&nbsp;
-<i class="no-highlight">14</i>&nbsp;    public UpdateMotherIsland(int motherIsland) {
-<b class="fc"><i class="no-highlight">15</i>&nbsp;        super(UPDATE_MOTHER_ISLAND);</b>
-<b class="fc"><i class="no-highlight">16</i>&nbsp;        this.motherIsland = motherIsland;</b>
-<i class="no-highlight">17</i>&nbsp;    }
-<i class="no-highlight">18</i>&nbsp;
-<i class="no-highlight">19</i>&nbsp;    public int getMotherIsland() {
-<b class="nc"><i class="no-highlight">20</i>&nbsp;        return motherIsland;</b>
-<i class="no-highlight">21</i>&nbsp;    }
-<i class="no-highlight">22</i>&nbsp;}
+<i class="no-highlight">14</i>&nbsp;    private final ReducedPlayer player;
+<i class="no-highlight">15</i>&nbsp;
+<i class="no-highlight">16</i>&nbsp;    /**
+<i class="no-highlight">17</i>&nbsp;     * Class constructor
+<i class="no-highlight">18</i>&nbsp;     *
+<i class="no-highlight">19</i>&nbsp;     * @param player the player to send
+<i class="no-highlight">20</i>&nbsp;     */
+<i class="no-highlight">21</i>&nbsp;    public UpdatePlayer(ReducedPlayer player){
+<b class="fc"><i class="no-highlight">22</i>&nbsp;        super(UPDATE_PLAYER);</b>
+<b class="fc"><i class="no-highlight">23</i>&nbsp;        this.player = player;</b>
+<i class="no-highlight">24</i>&nbsp;    }
+<i class="no-highlight">25</i>&nbsp;
+<i class="no-highlight">26</i>&nbsp;    public ReducedPlayer getPlayer() {
+<b class="nc"><i class="no-highlight">27</i>&nbsp;        return player;</b>
+<i class="no-highlight">28</i>&nbsp;    }
+<i class="no-highlight">29</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -121,7 +128,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-01 12:22</div>
+    <div style="float:right;">generated on 2022-07-01 19:12</div>
 </div>
 </body>
 </html>

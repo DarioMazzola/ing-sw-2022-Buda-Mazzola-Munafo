@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > SendWinner</title>
+  <title>Coverage Report > UpdateCharacterCard</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/highlight-idea.css";
@@ -20,7 +20,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     <a href="../index.html">it.polimi.ingsw.messages.answer</a>
 </div>
 
-<h1>Coverage Summary for Class: SendWinner (it.polimi.ingsw.messages.answer)</h1>
+<h1>Coverage Summary for Class: UpdateCharacterCard (it.polimi.ingsw.messages.answer)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -39,7 +39,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">SendWinner</td>
+  <td class="name">UpdateCharacterCard</td>
 <td class="coverageStat">
   <span class="percent">
     100%
@@ -75,30 +75,33 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package it.polimi.ingsw.messages.answer;
 <i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import static it.polimi.ingsw.messages.MessageType.SEND_WINNER;
+<i class="no-highlight">3</i>&nbsp;import it.polimi.ingsw.client.ReducedCharacterCard;
 <i class="no-highlight">4</i>&nbsp;
-<i class="no-highlight">5</i>&nbsp;/**
-<i class="no-highlight">6</i>&nbsp; * This message is sent from the server to the client to communicate the winning player
-<i class="no-highlight">7</i>&nbsp; *
-<i class="no-highlight">8</i>&nbsp; * @author Alessio Buda &amp; Dario Mazzola &amp; Gabriele Munafo&#39;
-<i class="no-highlight">9</i>&nbsp; */
-<i class="no-highlight">10</i>&nbsp;public class SendWinner extends AnswerMessage {
-<i class="no-highlight">11</i>&nbsp;
-<i class="no-highlight">12</i>&nbsp;    String winner;
+<i class="no-highlight">5</i>&nbsp;import static it.polimi.ingsw.messages.MessageType.UPDATE_CHARACTER_CARD;
+<i class="no-highlight">6</i>&nbsp;
+<i class="no-highlight">7</i>&nbsp;/**
+<i class="no-highlight">8</i>&nbsp; * Class representing messages from the server to the client to notify the change of a CharacterCard.
+<i class="no-highlight">9</i>&nbsp; *
+<i class="no-highlight">10</i>&nbsp; * @author Alessio Buda &amp; Dario Mazzola &amp; Gabriele Munafo&#39;
+<i class="no-highlight">11</i>&nbsp; */
+<i class="no-highlight">12</i>&nbsp;public class UpdateCharacterCard extends AnswerMessage{
 <i class="no-highlight">13</i>&nbsp;
-<i class="no-highlight">14</i>&nbsp;    /**
-<i class="no-highlight">15</i>&nbsp;     * Message constructor
-<i class="no-highlight">16</i>&nbsp;     *
-<i class="no-highlight">17</i>&nbsp;     */
-<i class="no-highlight">18</i>&nbsp;    public SendWinner(String winner) {
-<b class="fc"><i class="no-highlight">19</i>&nbsp;        super(SEND_WINNER);</b>
-<b class="fc"><i class="no-highlight">20</i>&nbsp;        this.winner = winner;</b>
-<i class="no-highlight">21</i>&nbsp;    }
-<i class="no-highlight">22</i>&nbsp;
-<i class="no-highlight">23</i>&nbsp;    public String getWinner() {
-<b class="nc"><i class="no-highlight">24</i>&nbsp;        return winner;</b>
-<i class="no-highlight">25</i>&nbsp;    }
-<i class="no-highlight">26</i>&nbsp;}
+<i class="no-highlight">14</i>&nbsp;    private final ReducedCharacterCard characterCard;
+<i class="no-highlight">15</i>&nbsp;
+<i class="no-highlight">16</i>&nbsp;    /**
+<i class="no-highlight">17</i>&nbsp;     * Class constructor
+<i class="no-highlight">18</i>&nbsp;     *
+<i class="no-highlight">19</i>&nbsp;     * @param characterCard the characterCard to send
+<i class="no-highlight">20</i>&nbsp;     */
+<i class="no-highlight">21</i>&nbsp;    public UpdateCharacterCard(ReducedCharacterCard characterCard) {
+<b class="fc"><i class="no-highlight">22</i>&nbsp;        super(UPDATE_CHARACTER_CARD);</b>
+<b class="fc"><i class="no-highlight">23</i>&nbsp;        this.characterCard = characterCard;</b>
+<i class="no-highlight">24</i>&nbsp;    }
+<i class="no-highlight">25</i>&nbsp;
+<i class="no-highlight">26</i>&nbsp;    public ReducedCharacterCard getCharacterCard() {
+<b class="nc"><i class="no-highlight">27</i>&nbsp;        return characterCard;</b>
+<i class="no-highlight">28</i>&nbsp;    }
+<i class="no-highlight">29</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -125,7 +128,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-01 12:22</div>
+    <div style="float:right;">generated on 2022-07-01 19:12</div>
 </div>
 </body>
 </html>

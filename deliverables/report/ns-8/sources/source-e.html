@@ -81,54 +81,56 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">6</i>&nbsp;
 <i class="no-highlight">7</i>&nbsp;/**
 <i class="no-highlight">8</i>&nbsp; * Class that represent the Herald character card
-<i class="no-highlight">9</i>&nbsp; * @author Gabriele Munafò
-<i class="no-highlight">10</i>&nbsp; */
-<i class="no-highlight">11</i>&nbsp;public class Herald extends CharacterCard {
-<i class="no-highlight">12</i>&nbsp;
-<i class="no-highlight">13</i>&nbsp;    public Herald() {
-<b class="fc"><i class="no-highlight">14</i>&nbsp;        super(3, &quot;Herald&quot;, HERALD);</b>
-<i class="no-highlight">15</i>&nbsp;    }
-<i class="no-highlight">16</i>&nbsp;
-<i class="no-highlight">17</i>&nbsp;    /**
-<i class="no-highlight">18</i>&nbsp;     * Calculates the influence on a provided island
-<i class="no-highlight">19</i>&nbsp;     * @param parameters map that provides the island where to calculate the influence
-<i class="no-highlight">20</i>&nbsp;     * @throws NullPointerException when parameters is null or when the island given in the map parameters is null
-<i class="no-highlight">21</i>&nbsp;     */
-<i class="no-highlight">22</i>&nbsp;    @Override
-<i class="no-highlight">23</i>&nbsp;    public void doEffect(Map&lt;String, Object&gt; parameters) throws Exception{
-<b class="fc"><i class="no-highlight">24</i>&nbsp;        super.doEffect(parameters);</b>
-<i class="no-highlight">25</i>&nbsp;
-<b class="fc"><i class="no-highlight">26</i>&nbsp;        if (parameters == null){</b>
-<b class="nc"><i class="no-highlight">27</i>&nbsp;            throw new NullPointerException();</b>
-<i class="no-highlight">28</i>&nbsp;        }
-<b class="fc"><i class="no-highlight">29</i>&nbsp;        Island island = (Island) parameters.get(&quot;Island&quot;);</b>
-<b class="fc"><i class="no-highlight">30</i>&nbsp;        if (island == null){</b>
-<b class="nc"><i class="no-highlight">31</i>&nbsp;            throw new NullPointerException();</b>
-<i class="no-highlight">32</i>&nbsp;        }
-<b class="fc"><i class="no-highlight">33</i>&nbsp;        Player[] arrayPlayers = (Player[]) parameters.get(&quot;ArrayPlayers&quot;);</b>
-<b class="fc"><i class="no-highlight">34</i>&nbsp;        if (arrayPlayers == null){</b>
-<b class="nc"><i class="no-highlight">35</i>&nbsp;            throw new NullPointerException();</b>
-<i class="no-highlight">36</i>&nbsp;        }
-<b class="fc"><i class="no-highlight">37</i>&nbsp;        int numPlayers = (int) parameters.get(&quot;NumPlayers&quot;);</b>
-<b class="fc"><i class="no-highlight">38</i>&nbsp;        CharacterCard[] characterCardDeck = (CharacterCard[]) parameters.get(&quot;CharacterCardDeck&quot;);</b>
-<i class="no-highlight">39</i>&nbsp;
-<b class="fc"><i class="no-highlight">40</i>&nbsp;        Player player = super.checkInfluence(island, true, numPlayers, arrayPlayers, characterCardDeck);</b>
+<i class="no-highlight">9</i>&nbsp; *
+<i class="no-highlight">10</i>&nbsp; * @author Gabriele Munafò
+<i class="no-highlight">11</i>&nbsp; */
+<i class="no-highlight">12</i>&nbsp;public class Herald extends CharacterCard {
+<i class="no-highlight">13</i>&nbsp;
+<i class="no-highlight">14</i>&nbsp;    public Herald() {
+<b class="fc"><i class="no-highlight">15</i>&nbsp;        super(3, &quot;Herald&quot;, HERALD);</b>
+<i class="no-highlight">16</i>&nbsp;    }
+<i class="no-highlight">17</i>&nbsp;
+<i class="no-highlight">18</i>&nbsp;    /**
+<i class="no-highlight">19</i>&nbsp;     * Calculates the influence on a provided island
+<i class="no-highlight">20</i>&nbsp;     *
+<i class="no-highlight">21</i>&nbsp;     * @param parameters map that provides the island where to calculate the influence
+<i class="no-highlight">22</i>&nbsp;     * @throws NullPointerException when parameters is null or when the island given in the map parameters is null
+<i class="no-highlight">23</i>&nbsp;     */
+<i class="no-highlight">24</i>&nbsp;    @Override
+<i class="no-highlight">25</i>&nbsp;    public void doEffect(Map&lt;String, Object&gt; parameters) throws Exception {
+<b class="fc"><i class="no-highlight">26</i>&nbsp;        super.doEffect(parameters);</b>
+<i class="no-highlight">27</i>&nbsp;
+<b class="fc"><i class="no-highlight">28</i>&nbsp;        if (parameters == null) {</b>
+<b class="nc"><i class="no-highlight">29</i>&nbsp;            throw new NullPointerException();</b>
+<i class="no-highlight">30</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">31</i>&nbsp;        Island island = (Island) parameters.get(&quot;Island&quot;);</b>
+<b class="fc"><i class="no-highlight">32</i>&nbsp;        if (island == null) {</b>
+<b class="nc"><i class="no-highlight">33</i>&nbsp;            throw new NullPointerException();</b>
+<i class="no-highlight">34</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">35</i>&nbsp;        Player[] arrayPlayers = (Player[]) parameters.get(&quot;ArrayPlayers&quot;);</b>
+<b class="fc"><i class="no-highlight">36</i>&nbsp;        if (arrayPlayers == null) {</b>
+<b class="nc"><i class="no-highlight">37</i>&nbsp;            throw new NullPointerException();</b>
+<i class="no-highlight">38</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">39</i>&nbsp;        int numPlayers = (int) parameters.get(&quot;NumPlayers&quot;);</b>
+<b class="fc"><i class="no-highlight">40</i>&nbsp;        CharacterCard[] characterCardDeck = (CharacterCard[]) parameters.get(&quot;CharacterCardDeck&quot;);</b>
 <i class="no-highlight">41</i>&nbsp;
-<b class="fc"><i class="no-highlight">42</i>&nbsp;        parameters.put(&quot;Output&quot;, player);</b>
+<b class="fc"><i class="no-highlight">42</i>&nbsp;        Player player = super.checkInfluence(island, true, numPlayers, arrayPlayers, characterCardDeck);</b>
 <i class="no-highlight">43</i>&nbsp;
-<i class="no-highlight">44</i>&nbsp;    }
+<b class="fc"><i class="no-highlight">44</i>&nbsp;        parameters.put(&quot;Output&quot;, player);</b>
 <i class="no-highlight">45</i>&nbsp;
-<i class="no-highlight">46</i>&nbsp;    @Override
-<i class="no-highlight">47</i>&nbsp;    public String getDescription() {
-<b class="fc"><i class="no-highlight">48</i>&nbsp;        return &quot;Choose an Island and resolve the Island as if Mother Nature had ended her movement there. \n&quot; +</b>
-<i class="no-highlight">49</i>&nbsp;                &quot;Mother Nature will still move and the Island where she ends her movement will also be resolved.&quot;;
-<i class="no-highlight">50</i>&nbsp;    }
-<i class="no-highlight">51</i>&nbsp;
-<i class="no-highlight">52</i>&nbsp;    @Override
-<i class="no-highlight">53</i>&nbsp;    public CharacterCardEnum getType() {
-<b class="fc"><i class="no-highlight">54</i>&nbsp;        return HERALD;</b>
-<i class="no-highlight">55</i>&nbsp;    }
-<i class="no-highlight">56</i>&nbsp;}
+<i class="no-highlight">46</i>&nbsp;    }
+<i class="no-highlight">47</i>&nbsp;
+<i class="no-highlight">48</i>&nbsp;    @Override
+<i class="no-highlight">49</i>&nbsp;    public String getDescription() {
+<b class="fc"><i class="no-highlight">50</i>&nbsp;        return &quot;Choose an Island and resolve the Island as if Mother Nature had ended her movement there. \n&quot; +</b>
+<i class="no-highlight">51</i>&nbsp;                &quot;Mother Nature will still move and the Island where she ends her movement will also be resolved.&quot;;
+<i class="no-highlight">52</i>&nbsp;    }
+<i class="no-highlight">53</i>&nbsp;
+<i class="no-highlight">54</i>&nbsp;    @Override
+<i class="no-highlight">55</i>&nbsp;    public CharacterCardEnum getType() {
+<b class="fc"><i class="no-highlight">56</i>&nbsp;        return HERALD;</b>
+<i class="no-highlight">57</i>&nbsp;    }
+<i class="no-highlight">58</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -155,7 +157,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-01 12:22</div>
+    <div style="float:right;">generated on 2022-07-01 19:12</div>
 </div>
 </body>
 </html>

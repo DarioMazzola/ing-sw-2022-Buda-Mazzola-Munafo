@@ -84,40 +84,40 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">9</i>&nbsp;
 <i class="no-highlight">10</i>&nbsp;/**
 <i class="no-highlight">11</i>&nbsp; * Class that represents a reduced version of a Player
-<i class="no-highlight">12</i>&nbsp; * @author Gabriele Munafo&#39;
-<i class="no-highlight">13</i>&nbsp; */
-<i class="no-highlight">14</i>&nbsp;public class ReducedPlayer {
-<i class="no-highlight">15</i>&nbsp;    private final String nickname;
-<i class="no-highlight">16</i>&nbsp;    private final Wizard wizard;
-<i class="no-highlight">17</i>&nbsp;    private final Boolean teamLeader;
-<i class="no-highlight">18</i>&nbsp;    private final List&lt;Card&gt; deck;
-<i class="no-highlight">19</i>&nbsp;    private final Card cardInUse;
-<i class="no-highlight">20</i>&nbsp;    private final int maxMoves;
-<i class="no-highlight">21</i>&nbsp;    private final Card graveyard;
-<i class="no-highlight">22</i>&nbsp;    private final int coins;
-<i class="no-highlight">23</i>&nbsp;    private ReducedDashboard dashboard;
-<i class="no-highlight">24</i>&nbsp;
-<b class="fc"><i class="no-highlight">25</i>&nbsp;    public ReducedPlayer(Player p){</b>
-<b class="fc"><i class="no-highlight">26</i>&nbsp;        nickname = p.getNickname();</b>
-<i class="no-highlight">27</i>&nbsp;
-<b class="fc"><i class="no-highlight">28</i>&nbsp;        wizard = p.getWizard();</b>
-<i class="no-highlight">29</i>&nbsp;
-<b class="fc"><i class="no-highlight">30</i>&nbsp;        teamLeader = p.isTeamLeader();</b>
-<i class="no-highlight">31</i>&nbsp;
-<b class="fc"><i class="no-highlight">32</i>&nbsp;        deck = new ArrayList&lt;&gt;();</b>
-<b class="fc"><i class="no-highlight">33</i>&nbsp;        deck.addAll(p.getDeck());</b>
-<i class="no-highlight">34</i>&nbsp;
-<b class="fc"><i class="no-highlight">35</i>&nbsp;        cardInUse = p.getCardInUse();</b>
-<i class="no-highlight">36</i>&nbsp;
-<b class="fc"><i class="no-highlight">37</i>&nbsp;        maxMoves = p.getMaxMoves();</b>
-<i class="no-highlight">38</i>&nbsp;
-<b class="fc"><i class="no-highlight">39</i>&nbsp;        graveyard = p.getGraveyard();</b>
-<i class="no-highlight">40</i>&nbsp;
-<b class="fc"><i class="no-highlight">41</i>&nbsp;        coins = p.getCoins();</b>
-<b class="fc"><i class="no-highlight">42</i>&nbsp;        if (p.getDashboard() != null) {</b>
-<b class="fc"><i class="no-highlight">43</i>&nbsp;            dashboard = new ReducedDashboard(p.getDashboard());</b>
-<i class="no-highlight">44</i>&nbsp;        }
-<b class="fc"><i class="no-highlight">45</i>&nbsp;        else dashboard = null;</b>
+<i class="no-highlight">12</i>&nbsp; *
+<i class="no-highlight">13</i>&nbsp; * @author Gabriele Munafo&#39;
+<i class="no-highlight">14</i>&nbsp; */
+<i class="no-highlight">15</i>&nbsp;public class ReducedPlayer {
+<i class="no-highlight">16</i>&nbsp;    private final String nickname;
+<i class="no-highlight">17</i>&nbsp;    private final Wizard wizard;
+<i class="no-highlight">18</i>&nbsp;    private final Boolean teamLeader;
+<i class="no-highlight">19</i>&nbsp;    private final List&lt;Card&gt; deck;
+<i class="no-highlight">20</i>&nbsp;    private final Card cardInUse;
+<i class="no-highlight">21</i>&nbsp;    private final int maxMoves;
+<i class="no-highlight">22</i>&nbsp;    private final Card graveyard;
+<i class="no-highlight">23</i>&nbsp;    private final int coins;
+<i class="no-highlight">24</i>&nbsp;    private ReducedDashboard dashboard;
+<i class="no-highlight">25</i>&nbsp;
+<b class="fc"><i class="no-highlight">26</i>&nbsp;    public ReducedPlayer(Player p) {</b>
+<b class="fc"><i class="no-highlight">27</i>&nbsp;        nickname = p.getNickname();</b>
+<i class="no-highlight">28</i>&nbsp;
+<b class="fc"><i class="no-highlight">29</i>&nbsp;        wizard = p.getWizard();</b>
+<i class="no-highlight">30</i>&nbsp;
+<b class="fc"><i class="no-highlight">31</i>&nbsp;        teamLeader = p.isTeamLeader();</b>
+<i class="no-highlight">32</i>&nbsp;
+<b class="fc"><i class="no-highlight">33</i>&nbsp;        deck = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i class="no-highlight">34</i>&nbsp;        deck.addAll(p.getDeck());</b>
+<i class="no-highlight">35</i>&nbsp;
+<b class="fc"><i class="no-highlight">36</i>&nbsp;        cardInUse = p.getCardInUse();</b>
+<i class="no-highlight">37</i>&nbsp;
+<b class="fc"><i class="no-highlight">38</i>&nbsp;        maxMoves = p.getMaxMoves();</b>
+<i class="no-highlight">39</i>&nbsp;
+<b class="fc"><i class="no-highlight">40</i>&nbsp;        graveyard = p.getGraveyard();</b>
+<i class="no-highlight">41</i>&nbsp;
+<b class="fc"><i class="no-highlight">42</i>&nbsp;        coins = p.getCoins();</b>
+<b class="fc"><i class="no-highlight">43</i>&nbsp;        if (p.getDashboard() != null) {</b>
+<b class="fc"><i class="no-highlight">44</i>&nbsp;            dashboard = new ReducedDashboard(p.getDashboard());</b>
+<b class="fc"><i class="no-highlight">45</i>&nbsp;        } else dashboard = null;</b>
 <i class="no-highlight">46</i>&nbsp;    }
 <i class="no-highlight">47</i>&nbsp;
 <i class="no-highlight">48</i>&nbsp;    public String getNickname() {
@@ -156,7 +156,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc"><i class="no-highlight">81</i>&nbsp;        return coins;</b>
 <i class="no-highlight">82</i>&nbsp;    }
 <i class="no-highlight">83</i>&nbsp;
-<i class="no-highlight">84</i>&nbsp;    public ReducedDashboard getDashboard () {
+<i class="no-highlight">84</i>&nbsp;    public ReducedDashboard getDashboard() {
 <b class="nc"><i class="no-highlight">85</i>&nbsp;        return dashboard;</b>
 <i class="no-highlight">86</i>&nbsp;    }
 <i class="no-highlight">87</i>&nbsp;
@@ -190,7 +190,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-01 12:22</div>
+    <div style="float:right;">generated on 2022-07-01 19:12</div>
 </div>
 </body>
 </html>

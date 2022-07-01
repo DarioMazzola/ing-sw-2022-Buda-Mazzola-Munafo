@@ -83,48 +83,49 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">8</i>&nbsp;
 <i class="no-highlight">9</i>&nbsp;/**
 <i class="no-highlight">10</i>&nbsp; * Class that represents a reduced version of a cloud
-<i class="no-highlight">11</i>&nbsp; * @author Gabriele Munafo&#39;
-<i class="no-highlight">12</i>&nbsp; */
-<i class="no-highlight">13</i>&nbsp;public class ReducedCloud {
-<i class="no-highlight">14</i>&nbsp;    private final Map&lt;House,Integer&gt; houseMap;
-<i class="no-highlight">15</i>&nbsp;    private final int numMaxStud;
-<i class="no-highlight">16</i>&nbsp;    private final boolean full;
-<i class="no-highlight">17</i>&nbsp;
-<b class="fc"><i class="no-highlight">18</i>&nbsp;    public ReducedCloud(Cloud c){</b>
-<b class="fc"><i class="no-highlight">19</i>&nbsp;        houseMap = new HashMap&lt;&gt;();</b>
-<b class="fc"><i class="no-highlight">20</i>&nbsp;        houseMap.putAll(c.getStudents());</b>
-<b class="fc"><i class="no-highlight">21</i>&nbsp;        numMaxStud = c.getNumMaxStud();</b>
-<b class="fc"><i class="no-highlight">22</i>&nbsp;        full = c.isFull();</b>
-<i class="no-highlight">23</i>&nbsp;    }
-<i class="no-highlight">24</i>&nbsp;
-<i class="no-highlight">25</i>&nbsp;    public Map&lt;House, Integer&gt; getStudents (){
-<b class="nc"><i class="no-highlight">26</i>&nbsp;        return (houseMap);</b>
-<i class="no-highlight">27</i>&nbsp;    }
-<i class="no-highlight">28</i>&nbsp;
-<i class="no-highlight">29</i>&nbsp;    public int getHouseStudents (House house){
-<b class="nc"><i class="no-highlight">30</i>&nbsp;        if (house == null){</b>
-<b class="nc"><i class="no-highlight">31</i>&nbsp;            throw new NullPointerException(&quot;house = null can&#39;t be used as a parameter&quot;);</b>
-<i class="no-highlight">32</i>&nbsp;        }
-<b class="nc"><i class="no-highlight">33</i>&nbsp;        return(houseMap.get(house));</b>
-<i class="no-highlight">34</i>&nbsp;    }
-<i class="no-highlight">35</i>&nbsp;
-<i class="no-highlight">36</i>&nbsp;    public boolean isFull(){
-<b class="nc"><i class="no-highlight">37</i>&nbsp;        return(full);</b>
-<i class="no-highlight">38</i>&nbsp;    }
-<i class="no-highlight">39</i>&nbsp;
-<i class="no-highlight">40</i>&nbsp;    public int getNumMaxStud(){
-<b class="nc"><i class="no-highlight">41</i>&nbsp;        return numMaxStud;</b>
-<i class="no-highlight">42</i>&nbsp;    }
-<i class="no-highlight">43</i>&nbsp;
-<i class="no-highlight">44</i>&nbsp;    @Override
-<i class="no-highlight">45</i>&nbsp;    public String toString() {
-<b class="nc"><i class="no-highlight">46</i>&nbsp;        StringBuilder string = new StringBuilder(&quot;Students on the cloud: &quot;);</b>
-<b class="nc"><i class="no-highlight">47</i>&nbsp;        for (House h : House.values()) {</b>
-<b class="nc"><i class="no-highlight">48</i>&nbsp;            string.append(&quot;\n&quot;).append(h.getColouredHouse()).append(&quot;: &quot;).append(getHouseStudents(h));</b>
-<i class="no-highlight">49</i>&nbsp;        }
-<b class="nc"><i class="no-highlight">50</i>&nbsp;        return string.toString();</b>
-<i class="no-highlight">51</i>&nbsp;    }
-<i class="no-highlight">52</i>&nbsp;}
+<i class="no-highlight">11</i>&nbsp; *
+<i class="no-highlight">12</i>&nbsp; * @author Gabriele Munafo&#39;
+<i class="no-highlight">13</i>&nbsp; */
+<i class="no-highlight">14</i>&nbsp;public class ReducedCloud {
+<i class="no-highlight">15</i>&nbsp;    private final Map&lt;House, Integer&gt; houseMap;
+<i class="no-highlight">16</i>&nbsp;    private final int numMaxStud;
+<i class="no-highlight">17</i>&nbsp;    private final boolean full;
+<i class="no-highlight">18</i>&nbsp;
+<b class="fc"><i class="no-highlight">19</i>&nbsp;    public ReducedCloud(Cloud c) {</b>
+<b class="fc"><i class="no-highlight">20</i>&nbsp;        houseMap = new HashMap&lt;&gt;();</b>
+<b class="fc"><i class="no-highlight">21</i>&nbsp;        houseMap.putAll(c.getStudents());</b>
+<b class="fc"><i class="no-highlight">22</i>&nbsp;        numMaxStud = c.getNumMaxStud();</b>
+<b class="fc"><i class="no-highlight">23</i>&nbsp;        full = c.isFull();</b>
+<i class="no-highlight">24</i>&nbsp;    }
+<i class="no-highlight">25</i>&nbsp;
+<i class="no-highlight">26</i>&nbsp;    public Map&lt;House, Integer&gt; getStudents() {
+<b class="nc"><i class="no-highlight">27</i>&nbsp;        return (houseMap);</b>
+<i class="no-highlight">28</i>&nbsp;    }
+<i class="no-highlight">29</i>&nbsp;
+<i class="no-highlight">30</i>&nbsp;    public int getHouseStudents(House house) {
+<b class="nc"><i class="no-highlight">31</i>&nbsp;        if (house == null) {</b>
+<b class="nc"><i class="no-highlight">32</i>&nbsp;            throw new NullPointerException(&quot;house = null can&#39;t be used as a parameter&quot;);</b>
+<i class="no-highlight">33</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">34</i>&nbsp;        return (houseMap.get(house));</b>
+<i class="no-highlight">35</i>&nbsp;    }
+<i class="no-highlight">36</i>&nbsp;
+<i class="no-highlight">37</i>&nbsp;    public boolean isFull() {
+<b class="nc"><i class="no-highlight">38</i>&nbsp;        return (full);</b>
+<i class="no-highlight">39</i>&nbsp;    }
+<i class="no-highlight">40</i>&nbsp;
+<i class="no-highlight">41</i>&nbsp;    public int getNumMaxStud() {
+<b class="nc"><i class="no-highlight">42</i>&nbsp;        return numMaxStud;</b>
+<i class="no-highlight">43</i>&nbsp;    }
+<i class="no-highlight">44</i>&nbsp;
+<i class="no-highlight">45</i>&nbsp;    @Override
+<i class="no-highlight">46</i>&nbsp;    public String toString() {
+<b class="nc"><i class="no-highlight">47</i>&nbsp;        StringBuilder string = new StringBuilder(&quot;Students on the cloud: &quot;);</b>
+<b class="nc"><i class="no-highlight">48</i>&nbsp;        for (House h : House.values()) {</b>
+<b class="nc"><i class="no-highlight">49</i>&nbsp;            string.append(&quot;\n&quot;).append(h.getColouredHouse()).append(&quot;: &quot;).append(getHouseStudents(h));</b>
+<i class="no-highlight">50</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">51</i>&nbsp;        return string.toString();</b>
+<i class="no-highlight">52</i>&nbsp;    }
+<i class="no-highlight">53</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -151,7 +152,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-01 12:22</div>
+    <div style="float:right;">generated on 2022-07-01 19:12</div>
 </div>
 </body>
 </html>

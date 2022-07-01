@@ -83,80 +83,83 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">8</i>&nbsp;
 <i class="no-highlight">9</i>&nbsp;/**
 <i class="no-highlight">10</i>&nbsp; * Class that represent the MushroomHunter character card
-<i class="no-highlight">11</i>&nbsp; * @author Gabriele Munafò
-<i class="no-highlight">12</i>&nbsp; */
-<i class="no-highlight">13</i>&nbsp;public class MushroomHunter extends CharacterCard{
-<i class="no-highlight">14</i>&nbsp;
-<b class="fc"><i class="no-highlight">15</i>&nbsp;    private House houseToIgnore = null;</b>
-<i class="no-highlight">16</i>&nbsp;
-<i class="no-highlight">17</i>&nbsp;    public MushroomHunter() {
-<b class="fc"><i class="no-highlight">18</i>&nbsp;        super(3, &quot;MushroomHunter&quot;, MUSHROOM_HUNTER);</b>
-<i class="no-highlight">19</i>&nbsp;    }
-<i class="no-highlight">20</i>&nbsp;
-<i class="no-highlight">21</i>&nbsp;    /**
-<i class="no-highlight">22</i>&nbsp;     * Temporary removes a specified professor from a player, calculates the influence and then gives the professor back
-<i class="no-highlight">23</i>&nbsp;     * @param parameters the map containing the house to ignore, the island where to calculate the influence, the number of players and the array of players
-<i class="no-highlight">24</i>&nbsp;     * @throws NullPointerException when parameters is null or when house, arrayPlayers or island are null
-<i class="no-highlight">25</i>&nbsp;     */
-<i class="no-highlight">26</i>&nbsp;    @Override
-<i class="no-highlight">27</i>&nbsp;    public void doEffect(Map&lt;String, Object&gt; parameters) throws Exception {
-<b class="fc"><i class="no-highlight">28</i>&nbsp;        super.doEffect(parameters);</b>
-<i class="no-highlight">29</i>&nbsp;
-<b class="fc"><i class="no-highlight">30</i>&nbsp;        if (parameters == null) {</b>
-<b class="fc"><i class="no-highlight">31</i>&nbsp;            throw new NullPointerException();</b>
-<i class="no-highlight">32</i>&nbsp;        }
-<i class="no-highlight">33</i>&nbsp;
-<b class="fc"><i class="no-highlight">34</i>&nbsp;        houseToIgnore = (House) parameters.get(&quot;House&quot;);</b>
+<i class="no-highlight">11</i>&nbsp; *
+<i class="no-highlight">12</i>&nbsp; * @author Gabriele Munafò
+<i class="no-highlight">13</i>&nbsp; */
+<i class="no-highlight">14</i>&nbsp;public class MushroomHunter extends CharacterCard {
+<i class="no-highlight">15</i>&nbsp;
+<b class="fc"><i class="no-highlight">16</i>&nbsp;    private House houseToIgnore = null;</b>
+<i class="no-highlight">17</i>&nbsp;
+<i class="no-highlight">18</i>&nbsp;    public MushroomHunter() {
+<b class="fc"><i class="no-highlight">19</i>&nbsp;        super(3, &quot;MushroomHunter&quot;, MUSHROOM_HUNTER);</b>
+<i class="no-highlight">20</i>&nbsp;    }
+<i class="no-highlight">21</i>&nbsp;
+<i class="no-highlight">22</i>&nbsp;    /**
+<i class="no-highlight">23</i>&nbsp;     * Temporary removes a specified professor from a player, calculates the influence and then gives the professor back
+<i class="no-highlight">24</i>&nbsp;     *
+<i class="no-highlight">25</i>&nbsp;     * @param parameters the map containing the house to ignore, the island where to calculate the influence, the number of players and the array of players
+<i class="no-highlight">26</i>&nbsp;     * @throws NullPointerException when parameters is null or when house, arrayPlayers or island are null
+<i class="no-highlight">27</i>&nbsp;     */
+<i class="no-highlight">28</i>&nbsp;    @Override
+<i class="no-highlight">29</i>&nbsp;    public void doEffect(Map&lt;String, Object&gt; parameters) throws Exception {
+<b class="fc"><i class="no-highlight">30</i>&nbsp;        super.doEffect(parameters);</b>
+<i class="no-highlight">31</i>&nbsp;
+<b class="fc"><i class="no-highlight">32</i>&nbsp;        if (parameters == null) {</b>
+<b class="fc"><i class="no-highlight">33</i>&nbsp;            throw new NullPointerException();</b>
+<i class="no-highlight">34</i>&nbsp;        }
 <i class="no-highlight">35</i>&nbsp;
-<b class="fc"><i class="no-highlight">36</i>&nbsp;        if (houseToIgnore == null) {</b>
-<b class="fc"><i class="no-highlight">37</i>&nbsp;            throw new NullPointerException();</b>
-<i class="no-highlight">38</i>&nbsp;        }
-<i class="no-highlight">39</i>&nbsp;    }
-<i class="no-highlight">40</i>&nbsp;
-<i class="no-highlight">41</i>&nbsp;    /**
-<i class="no-highlight">42</i>&nbsp;     * Calculates the influence on a certain island, removing a certain professor
-<i class="no-highlight">43</i>&nbsp;     * @param island where to calculate the influence
-<i class="no-highlight">44</i>&nbsp;     * @param expertMode the mode the game is in
-<i class="no-highlight">45</i>&nbsp;     * @param numPlayers the number of players
-<i class="no-highlight">46</i>&nbsp;     * @param arrayPlayers the array of players
-<i class="no-highlight">47</i>&nbsp;     * @param characterCardDeck the array of Character Card
-<i class="no-highlight">48</i>&nbsp;     * @return the player with the highest influence
-<i class="no-highlight">49</i>&nbsp;     */
-<i class="no-highlight">50</i>&nbsp;    @Override
-<i class="no-highlight">51</i>&nbsp;    public Player checkInfluence(Island island, Boolean expertMode, int numPlayers, Player[] arrayPlayers, CharacterCard[] characterCardDeck) throws Exception {
-<b class="fc"><i class="no-highlight">52</i>&nbsp;        boolean useful = false;</b>
-<b class="fc"><i class="no-highlight">53</i>&nbsp;        int giveBack = 0;</b>
-<i class="no-highlight">54</i>&nbsp;
-<b class="fc"><i class="no-highlight">55</i>&nbsp;        for (int i = 0; i &lt; numPlayers; i++) {</b>
-<b class="fc"><i class="no-highlight">56</i>&nbsp;            if (arrayPlayers[i].getDashboard().isProfPresent(houseToIgnore)) {</b>
-<b class="fc"><i class="no-highlight">57</i>&nbsp;                useful = true;</b>
-<b class="fc"><i class="no-highlight">58</i>&nbsp;                giveBack = i;</b>
-<i class="no-highlight">59</i>&nbsp;                try {
-<b class="fc"><i class="no-highlight">60</i>&nbsp;                    arrayPlayers[i].getDashboard().removeProf(houseToIgnore);</b>
-<b class="nc"><i class="no-highlight">61</i>&nbsp;                } catch (IllegalChoiceException e) {</b>
-<b class="nc"><i class="no-highlight">62</i>&nbsp;                    e.printStackTrace();</b>
-<b class="fc"><i class="no-highlight">63</i>&nbsp;                }</b>
-<i class="no-highlight">64</i>&nbsp;            }
-<i class="no-highlight">65</i>&nbsp;        }
-<i class="no-highlight">66</i>&nbsp;
-<b class="fc"><i class="no-highlight">67</i>&nbsp;        Player player = super.checkInfluence(island, expertMode, numPlayers, arrayPlayers, characterCardDeck);</b>
-<i class="no-highlight">68</i>&nbsp;
-<b class="fc"><i class="no-highlight">69</i>&nbsp;        if (useful) {</b>
-<b class="fc"><i class="no-highlight">70</i>&nbsp;            arrayPlayers[giveBack].getDashboard().addProf(houseToIgnore);</b>
-<i class="no-highlight">71</i>&nbsp;        }
-<b class="fc"><i class="no-highlight">72</i>&nbsp;        return (player);</b>
-<i class="no-highlight">73</i>&nbsp;    }
-<i class="no-highlight">74</i>&nbsp;
-<i class="no-highlight">75</i>&nbsp;    @Override
-<i class="no-highlight">76</i>&nbsp;    public String getDescription() {
-<b class="fc"><i class="no-highlight">77</i>&nbsp;        return &quot;Choose a color of Student: during the influence calculation this turn, \nthat color adds no influence&quot;;</b>
-<i class="no-highlight">78</i>&nbsp;    }
-<i class="no-highlight">79</i>&nbsp;
-<i class="no-highlight">80</i>&nbsp;    @Override
-<i class="no-highlight">81</i>&nbsp;    public CharacterCardEnum getType() {
-<b class="fc"><i class="no-highlight">82</i>&nbsp;        return MUSHROOM_HUNTER;</b>
-<i class="no-highlight">83</i>&nbsp;    }
-<i class="no-highlight">84</i>&nbsp;}
+<b class="fc"><i class="no-highlight">36</i>&nbsp;        houseToIgnore = (House) parameters.get(&quot;House&quot;);</b>
+<i class="no-highlight">37</i>&nbsp;
+<b class="fc"><i class="no-highlight">38</i>&nbsp;        if (houseToIgnore == null) {</b>
+<b class="fc"><i class="no-highlight">39</i>&nbsp;            throw new NullPointerException();</b>
+<i class="no-highlight">40</i>&nbsp;        }
+<i class="no-highlight">41</i>&nbsp;    }
+<i class="no-highlight">42</i>&nbsp;
+<i class="no-highlight">43</i>&nbsp;    /**
+<i class="no-highlight">44</i>&nbsp;     * Calculates the influence on a certain island, removing a certain professor
+<i class="no-highlight">45</i>&nbsp;     *
+<i class="no-highlight">46</i>&nbsp;     * @param island            where to calculate the influence
+<i class="no-highlight">47</i>&nbsp;     * @param expertMode        the mode the game is in
+<i class="no-highlight">48</i>&nbsp;     * @param numPlayers        the number of players
+<i class="no-highlight">49</i>&nbsp;     * @param arrayPlayers      the array of players
+<i class="no-highlight">50</i>&nbsp;     * @param characterCardDeck the array of Character Card
+<i class="no-highlight">51</i>&nbsp;     * @return the player with the highest influence
+<i class="no-highlight">52</i>&nbsp;     */
+<i class="no-highlight">53</i>&nbsp;    @Override
+<i class="no-highlight">54</i>&nbsp;    public Player checkInfluence(Island island, Boolean expertMode, int numPlayers, Player[] arrayPlayers, CharacterCard[] characterCardDeck) throws Exception {
+<b class="fc"><i class="no-highlight">55</i>&nbsp;        boolean useful = false;</b>
+<b class="fc"><i class="no-highlight">56</i>&nbsp;        int giveBack = 0;</b>
+<i class="no-highlight">57</i>&nbsp;
+<b class="fc"><i class="no-highlight">58</i>&nbsp;        for (int i = 0; i &lt; numPlayers; i++) {</b>
+<b class="fc"><i class="no-highlight">59</i>&nbsp;            if (arrayPlayers[i].getDashboard().isProfPresent(houseToIgnore)) {</b>
+<b class="fc"><i class="no-highlight">60</i>&nbsp;                useful = true;</b>
+<b class="fc"><i class="no-highlight">61</i>&nbsp;                giveBack = i;</b>
+<i class="no-highlight">62</i>&nbsp;                try {
+<b class="fc"><i class="no-highlight">63</i>&nbsp;                    arrayPlayers[i].getDashboard().removeProf(houseToIgnore);</b>
+<b class="nc"><i class="no-highlight">64</i>&nbsp;                } catch (IllegalChoiceException e) {</b>
+<b class="nc"><i class="no-highlight">65</i>&nbsp;                    e.printStackTrace();</b>
+<b class="fc"><i class="no-highlight">66</i>&nbsp;                }</b>
+<i class="no-highlight">67</i>&nbsp;            }
+<i class="no-highlight">68</i>&nbsp;        }
+<i class="no-highlight">69</i>&nbsp;
+<b class="fc"><i class="no-highlight">70</i>&nbsp;        Player player = super.checkInfluence(island, expertMode, numPlayers, arrayPlayers, characterCardDeck);</b>
+<i class="no-highlight">71</i>&nbsp;
+<b class="fc"><i class="no-highlight">72</i>&nbsp;        if (useful) {</b>
+<b class="fc"><i class="no-highlight">73</i>&nbsp;            arrayPlayers[giveBack].getDashboard().addProf(houseToIgnore);</b>
+<i class="no-highlight">74</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">75</i>&nbsp;        return (player);</b>
+<i class="no-highlight">76</i>&nbsp;    }
+<i class="no-highlight">77</i>&nbsp;
+<i class="no-highlight">78</i>&nbsp;    @Override
+<i class="no-highlight">79</i>&nbsp;    public String getDescription() {
+<b class="fc"><i class="no-highlight">80</i>&nbsp;        return &quot;Choose a color of Student: during the influence calculation this turn, \nthat color adds no influence&quot;;</b>
+<i class="no-highlight">81</i>&nbsp;    }
+<i class="no-highlight">82</i>&nbsp;
+<i class="no-highlight">83</i>&nbsp;    @Override
+<i class="no-highlight">84</i>&nbsp;    public CharacterCardEnum getType() {
+<b class="fc"><i class="no-highlight">85</i>&nbsp;        return MUSHROOM_HUNTER;</b>
+<i class="no-highlight">86</i>&nbsp;    }
+<i class="no-highlight">87</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -183,7 +186,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-01 12:22</div>
+    <div style="float:right;">generated on 2022-07-01 19:12</div>
 </div>
 </body>
 </html>

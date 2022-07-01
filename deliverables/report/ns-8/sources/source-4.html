@@ -85,315 +85,324 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">10</i>&nbsp;import java.util.HashMap;
 <i class="no-highlight">11</i>&nbsp;import java.util.Map;
 <i class="no-highlight">12</i>&nbsp;
-<i class="no-highlight">13</i>&nbsp;/** CharacterCard class represents the base context and the class from which all the other character cards inherit.
-<i class="no-highlight">14</i>&nbsp; * It implements the base version of the methods reimplemented by the different character cards and utility methods.
-<i class="no-highlight">15</i>&nbsp; *
-<i class="no-highlight">16</i>&nbsp; * @author Dario Mazzola &amp; Gabriele Munafo&#39;
-<i class="no-highlight">17</i>&nbsp; */
-<i class="no-highlight">18</i>&nbsp;public class CharacterCard extends Observable {
-<i class="no-highlight">19</i>&nbsp;
-<i class="no-highlight">20</i>&nbsp;    private int cost;
-<i class="no-highlight">21</i>&nbsp;    private boolean neverUsed;
-<i class="no-highlight">22</i>&nbsp;    private boolean inUse;
-<i class="no-highlight">23</i>&nbsp;    private final String cardName;
-<i class="no-highlight">24</i>&nbsp;    private final CharacterCardEnum type;
-<i class="no-highlight">25</i>&nbsp;
-<i class="no-highlight">26</i>&nbsp;    /**
-<i class="no-highlight">27</i>&nbsp;     * CharacterCard constructor
-<i class="no-highlight">28</i>&nbsp;     * @param cost how much does the card cost on first use
-<i class="no-highlight">29</i>&nbsp;     * @param cardName the name of the CharacterCard
-<i class="no-highlight">30</i>&nbsp;     */
-<b class="fc"><i class="no-highlight">31</i>&nbsp;    public CharacterCard(int cost, String cardName, CharacterCardEnum type){</b>
-<b class="fc"><i class="no-highlight">32</i>&nbsp;        this.cost = cost;</b>
-<b class="fc"><i class="no-highlight">33</i>&nbsp;        neverUsed = true;</b>
-<b class="fc"><i class="no-highlight">34</i>&nbsp;        inUse = false;</b>
-<b class="fc"><i class="no-highlight">35</i>&nbsp;        this.cardName = cardName;</b>
-<b class="fc"><i class="no-highlight">36</i>&nbsp;        this.type = type;</b>
-<i class="no-highlight">37</i>&nbsp;    }
-<i class="no-highlight">38</i>&nbsp;
-<i class="no-highlight">39</i>&nbsp;    public int getCost() {
-<b class="fc"><i class="no-highlight">40</i>&nbsp;        return cost;</b>
-<i class="no-highlight">41</i>&nbsp;    }
-<i class="no-highlight">42</i>&nbsp;
-<i class="no-highlight">43</i>&nbsp;    private void increaseCost(){
-<b class="fc"><i class="no-highlight">44</i>&nbsp;        cost++;</b>
-<i class="no-highlight">45</i>&nbsp;    }
-<i class="no-highlight">46</i>&nbsp;
-<i class="no-highlight">47</i>&nbsp;    private void setNotNeverUsed(){
-<b class="fc"><i class="no-highlight">48</i>&nbsp;        neverUsed = false;</b>
-<i class="no-highlight">49</i>&nbsp;    }
-<i class="no-highlight">50</i>&nbsp;
-<i class="no-highlight">51</i>&nbsp;    public boolean isNeverUsed() {
-<b class="fc"><i class="no-highlight">52</i>&nbsp;        return neverUsed;</b>
-<i class="no-highlight">53</i>&nbsp;    }
-<i class="no-highlight">54</i>&nbsp;
-<i class="no-highlight">55</i>&nbsp;    public void setInUse (boolean isCardInUse){
-<b class="fc"><i class="no-highlight">56</i>&nbsp;        inUse = isCardInUse;</b>
-<i class="no-highlight">57</i>&nbsp;    }
-<i class="no-highlight">58</i>&nbsp;
-<i class="no-highlight">59</i>&nbsp;    public boolean isInUse() {
-<b class="fc"><i class="no-highlight">60</i>&nbsp;        return inUse;</b>
-<i class="no-highlight">61</i>&nbsp;    }
-<i class="no-highlight">62</i>&nbsp;
-<i class="no-highlight">63</i>&nbsp;    /**
-<i class="no-highlight">64</i>&nbsp;     * Returns a description of the CharacterCard&#39;s effect
-<i class="no-highlight">65</i>&nbsp;     * @return A description of the CharacterCard&#39;s effect
-<i class="no-highlight">66</i>&nbsp;     */
-<i class="no-highlight">67</i>&nbsp;    public String getDescription(){
-<b class="fc"><i class="no-highlight">68</i>&nbsp;        return &quot;Standard context&quot;;</b>
-<i class="no-highlight">69</i>&nbsp;    }
-<i class="no-highlight">70</i>&nbsp;
-<i class="no-highlight">71</i>&nbsp;    /**
-<i class="no-highlight">72</i>&nbsp;     * Performs the effect of the characterCard selected.
-<i class="no-highlight">73</i>&nbsp;     * If the card chosen is that of the basic context,
-<i class="no-highlight">74</i>&nbsp;     * or if the game is not played in expert mode it will never be called
-<i class="no-highlight">75</i>&nbsp;     * @param parameters A map that contains the objects that need to the characterCards and the objects that must be returned
-<i class="no-highlight">76</i>&nbsp;     */
-<i class="no-highlight">77</i>&nbsp;    public void doEffect(Map&lt;String, Object&gt; parameters) throws Exception{
-<b class="fc"><i class="no-highlight">78</i>&nbsp;        if(isNeverUsed()) {</b>
-<b class="fc"><i class="no-highlight">79</i>&nbsp;            increaseCost();</b>
-<b class="fc"><i class="no-highlight">80</i>&nbsp;            setNotNeverUsed();</b>
-<i class="no-highlight">81</i>&nbsp;        }
-<b class="fc"><i class="no-highlight">82</i>&nbsp;        setInUse(true);</b>
-<i class="no-highlight">83</i>&nbsp;    }
-<i class="no-highlight">84</i>&nbsp;
-<i class="no-highlight">85</i>&nbsp;    @Override
-<i class="no-highlight">86</i>&nbsp;    public String toString() {
-<b class="fc"><i class="no-highlight">87</i>&nbsp;        return cardName;</b>
-<i class="no-highlight">88</i>&nbsp;    }
-<i class="no-highlight">89</i>&nbsp;
-<i class="no-highlight">90</i>&nbsp;    /**
-<i class="no-highlight">91</i>&nbsp;     * Checks if a professor should be given to the current Player.
-<i class="no-highlight">92</i>&nbsp;     * If the professor belongs to some other player and the current player has more students than the professor&#39;s color,
-<i class="no-highlight">93</i>&nbsp;     * the professor is removed from his dashboard and assigned to the current player.
-<i class="no-highlight">94</i>&nbsp;     * If the professor does not belong to anyone and the current player has at least one player,
-<i class="no-highlight">95</i>&nbsp;     * then the professor is assigned to the current player
-<i class="no-highlight">96</i>&nbsp;     * @param players An array that contains references to all players in the game
-<i class="no-highlight">97</i>&nbsp;     * @param currentPlayer The player who is playing this turn
-<i class="no-highlight">98</i>&nbsp;     * @param house The house of the professor to check
-<i class="no-highlight">99</i>&nbsp;     * @throws IllegalChoiceException if the professor of the given house is not present in the dashboard from which to remove it
-<i class="no-highlight">100</i>&nbsp;     */
-<i class="no-highlight">101</i>&nbsp;    protected void checkProf(Player[] players, Player currentPlayer, House house) throws IllegalChoiceException {
-<i class="no-highlight">102</i>&nbsp;
-<b class="fc"><i class="no-highlight">103</i>&nbsp;        Player owner = null;</b>
-<i class="no-highlight">104</i>&nbsp;        Player playerWithMostStudents;
-<b class="fc"><i class="no-highlight">105</i>&nbsp;        for(Player p : players){</b>
-<b class="fc"><i class="no-highlight">106</i>&nbsp;            if (p.getDashboard().isProfPresent(house)) {</b>
-<b class="fc"><i class="no-highlight">107</i>&nbsp;                owner = p;</b>
-<b class="fc"><i class="no-highlight">108</i>&nbsp;                break;</b>
-<i class="no-highlight">109</i>&nbsp;            }
-<i class="no-highlight">110</i>&nbsp;        }
-<i class="no-highlight">111</i>&nbsp;
-<b class="fc"><i class="no-highlight">112</i>&nbsp;        int numMaxStudents = (owner == null) ? 0 : owner.getDashboard().getDiningHall().getHouseStudents(house);</b>
-<b class="fc"><i class="no-highlight">113</i>&nbsp;        if(numMaxStudents == 0 &amp;&amp; currentPlayer.getDashboard().getDiningHall().getHouseStudents(house) &gt; 0) {</b>
-<b class="fc"><i class="no-highlight">114</i>&nbsp;            currentPlayer.getDashboard().addProf(house);</b>
-<i class="no-highlight">115</i>&nbsp;            return;
-<i class="no-highlight">116</i>&nbsp;        }
-<b class="fc"><i class="no-highlight">117</i>&nbsp;        if(owner != null) {</b>
-<b class="fc"><i class="no-highlight">118</i>&nbsp;            playerWithMostStudents = (owner.getDashboard().getDiningHall().getHouseStudents(house)</b>
-<b class="fc"><i class="no-highlight">119</i>&nbsp;                    &gt;= currentPlayer.getDashboard().getDiningHall().getHouseStudents(house))</b>
-<b class="fc"><i class="no-highlight">120</i>&nbsp;                    ? owner : currentPlayer;</b>
-<i class="no-highlight">121</i>&nbsp;
-<b class="fc"><i class="no-highlight">122</i>&nbsp;            if (playerWithMostStudents.equals(currentPlayer)) {</b>
-<b class="fc"><i class="no-highlight">123</i>&nbsp;                moveProf(owner.getDashboard(), currentPlayer.getDashboard(), house);</b>
-<i class="no-highlight">124</i>&nbsp;            }
-<i class="no-highlight">125</i>&nbsp;        }
+<i class="no-highlight">13</i>&nbsp;/**
+<i class="no-highlight">14</i>&nbsp; * CharacterCard class represents the base context and the class from which all the other character cards inherit.
+<i class="no-highlight">15</i>&nbsp; * It implements the base version of the methods reimplemented by the different character cards and utility methods.
+<i class="no-highlight">16</i>&nbsp; *
+<i class="no-highlight">17</i>&nbsp; * @author Dario Mazzola &amp; Gabriele Munafo&#39;
+<i class="no-highlight">18</i>&nbsp; */
+<i class="no-highlight">19</i>&nbsp;public class CharacterCard extends Observable {
+<i class="no-highlight">20</i>&nbsp;
+<i class="no-highlight">21</i>&nbsp;    private int cost;
+<i class="no-highlight">22</i>&nbsp;    private boolean neverUsed;
+<i class="no-highlight">23</i>&nbsp;    private boolean inUse;
+<i class="no-highlight">24</i>&nbsp;    private final String cardName;
+<i class="no-highlight">25</i>&nbsp;    private final CharacterCardEnum type;
+<i class="no-highlight">26</i>&nbsp;
+<i class="no-highlight">27</i>&nbsp;    /**
+<i class="no-highlight">28</i>&nbsp;     * CharacterCard constructor
+<i class="no-highlight">29</i>&nbsp;     *
+<i class="no-highlight">30</i>&nbsp;     * @param cost     how much does the card cost on first use
+<i class="no-highlight">31</i>&nbsp;     * @param cardName the name of the CharacterCard
+<i class="no-highlight">32</i>&nbsp;     */
+<b class="fc"><i class="no-highlight">33</i>&nbsp;    public CharacterCard(int cost, String cardName, CharacterCardEnum type) {</b>
+<b class="fc"><i class="no-highlight">34</i>&nbsp;        this.cost = cost;</b>
+<b class="fc"><i class="no-highlight">35</i>&nbsp;        neverUsed = true;</b>
+<b class="fc"><i class="no-highlight">36</i>&nbsp;        inUse = false;</b>
+<b class="fc"><i class="no-highlight">37</i>&nbsp;        this.cardName = cardName;</b>
+<b class="fc"><i class="no-highlight">38</i>&nbsp;        this.type = type;</b>
+<i class="no-highlight">39</i>&nbsp;    }
+<i class="no-highlight">40</i>&nbsp;
+<i class="no-highlight">41</i>&nbsp;    public int getCost() {
+<b class="fc"><i class="no-highlight">42</i>&nbsp;        return cost;</b>
+<i class="no-highlight">43</i>&nbsp;    }
+<i class="no-highlight">44</i>&nbsp;
+<i class="no-highlight">45</i>&nbsp;    private void increaseCost() {
+<b class="fc"><i class="no-highlight">46</i>&nbsp;        cost++;</b>
+<i class="no-highlight">47</i>&nbsp;    }
+<i class="no-highlight">48</i>&nbsp;
+<i class="no-highlight">49</i>&nbsp;    private void setNotNeverUsed() {
+<b class="fc"><i class="no-highlight">50</i>&nbsp;        neverUsed = false;</b>
+<i class="no-highlight">51</i>&nbsp;    }
+<i class="no-highlight">52</i>&nbsp;
+<i class="no-highlight">53</i>&nbsp;    public boolean isNeverUsed() {
+<b class="fc"><i class="no-highlight">54</i>&nbsp;        return neverUsed;</b>
+<i class="no-highlight">55</i>&nbsp;    }
+<i class="no-highlight">56</i>&nbsp;
+<i class="no-highlight">57</i>&nbsp;    public void setInUse(boolean isCardInUse) {
+<b class="fc"><i class="no-highlight">58</i>&nbsp;        inUse = isCardInUse;</b>
+<i class="no-highlight">59</i>&nbsp;    }
+<i class="no-highlight">60</i>&nbsp;
+<i class="no-highlight">61</i>&nbsp;    public boolean isInUse() {
+<b class="fc"><i class="no-highlight">62</i>&nbsp;        return inUse;</b>
+<i class="no-highlight">63</i>&nbsp;    }
+<i class="no-highlight">64</i>&nbsp;
+<i class="no-highlight">65</i>&nbsp;    /**
+<i class="no-highlight">66</i>&nbsp;     * Returns a description of the CharacterCard&#39;s effect
+<i class="no-highlight">67</i>&nbsp;     *
+<i class="no-highlight">68</i>&nbsp;     * @return A description of the CharacterCard&#39;s effect
+<i class="no-highlight">69</i>&nbsp;     */
+<i class="no-highlight">70</i>&nbsp;    public String getDescription() {
+<b class="fc"><i class="no-highlight">71</i>&nbsp;        return &quot;Standard context&quot;;</b>
+<i class="no-highlight">72</i>&nbsp;    }
+<i class="no-highlight">73</i>&nbsp;
+<i class="no-highlight">74</i>&nbsp;    /**
+<i class="no-highlight">75</i>&nbsp;     * Performs the effect of the characterCard selected.
+<i class="no-highlight">76</i>&nbsp;     * If the card chosen is that of the basic context,
+<i class="no-highlight">77</i>&nbsp;     * or if the game is not played in expert mode it will never be called
+<i class="no-highlight">78</i>&nbsp;     *
+<i class="no-highlight">79</i>&nbsp;     * @param parameters A map that contains the objects that need to the characterCards and the objects that must be returned
+<i class="no-highlight">80</i>&nbsp;     */
+<i class="no-highlight">81</i>&nbsp;    public void doEffect(Map&lt;String, Object&gt; parameters) throws Exception {
+<b class="fc"><i class="no-highlight">82</i>&nbsp;        if (isNeverUsed()) {</b>
+<b class="fc"><i class="no-highlight">83</i>&nbsp;            increaseCost();</b>
+<b class="fc"><i class="no-highlight">84</i>&nbsp;            setNotNeverUsed();</b>
+<i class="no-highlight">85</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">86</i>&nbsp;        setInUse(true);</b>
+<i class="no-highlight">87</i>&nbsp;    }
+<i class="no-highlight">88</i>&nbsp;
+<i class="no-highlight">89</i>&nbsp;    @Override
+<i class="no-highlight">90</i>&nbsp;    public String toString() {
+<b class="fc"><i class="no-highlight">91</i>&nbsp;        return cardName;</b>
+<i class="no-highlight">92</i>&nbsp;    }
+<i class="no-highlight">93</i>&nbsp;
+<i class="no-highlight">94</i>&nbsp;    /**
+<i class="no-highlight">95</i>&nbsp;     * Checks if a professor should be given to the current Player.
+<i class="no-highlight">96</i>&nbsp;     * If the professor belongs to some other player and the current player has more students than the professor&#39;s color,
+<i class="no-highlight">97</i>&nbsp;     * the professor is removed from his dashboard and assigned to the current player.
+<i class="no-highlight">98</i>&nbsp;     * If the professor does not belong to anyone and the current player has at least one player,
+<i class="no-highlight">99</i>&nbsp;     * then the professor is assigned to the current player
+<i class="no-highlight">100</i>&nbsp;     *
+<i class="no-highlight">101</i>&nbsp;     * @param players       An array that contains references to all players in the game
+<i class="no-highlight">102</i>&nbsp;     * @param currentPlayer The player who is playing this turn
+<i class="no-highlight">103</i>&nbsp;     * @param house         The house of the professor to check
+<i class="no-highlight">104</i>&nbsp;     * @throws IllegalChoiceException if the professor of the given house is not present in the dashboard from which to remove it
+<i class="no-highlight">105</i>&nbsp;     */
+<i class="no-highlight">106</i>&nbsp;    protected void checkProf(Player[] players, Player currentPlayer, House house) throws IllegalChoiceException {
+<i class="no-highlight">107</i>&nbsp;
+<b class="fc"><i class="no-highlight">108</i>&nbsp;        Player owner = null;</b>
+<i class="no-highlight">109</i>&nbsp;        Player playerWithMostStudents;
+<b class="fc"><i class="no-highlight">110</i>&nbsp;        for (Player p : players) {</b>
+<b class="fc"><i class="no-highlight">111</i>&nbsp;            if (p.getDashboard().isProfPresent(house)) {</b>
+<b class="fc"><i class="no-highlight">112</i>&nbsp;                owner = p;</b>
+<b class="fc"><i class="no-highlight">113</i>&nbsp;                break;</b>
+<i class="no-highlight">114</i>&nbsp;            }
+<i class="no-highlight">115</i>&nbsp;        }
+<i class="no-highlight">116</i>&nbsp;
+<b class="fc"><i class="no-highlight">117</i>&nbsp;        int numMaxStudents = (owner == null) ? 0 : owner.getDashboard().getDiningHall().getHouseStudents(house);</b>
+<b class="fc"><i class="no-highlight">118</i>&nbsp;        if (numMaxStudents == 0 &amp;&amp; currentPlayer.getDashboard().getDiningHall().getHouseStudents(house) &gt; 0) {</b>
+<b class="fc"><i class="no-highlight">119</i>&nbsp;            currentPlayer.getDashboard().addProf(house);</b>
+<i class="no-highlight">120</i>&nbsp;            return;
+<i class="no-highlight">121</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">122</i>&nbsp;        if (owner != null) {</b>
+<b class="fc"><i class="no-highlight">123</i>&nbsp;            playerWithMostStudents = (owner.getDashboard().getDiningHall().getHouseStudents(house)</b>
+<b class="fc"><i class="no-highlight">124</i>&nbsp;                    &gt;= currentPlayer.getDashboard().getDiningHall().getHouseStudents(house))</b>
+<b class="fc"><i class="no-highlight">125</i>&nbsp;                    ? owner : currentPlayer;</b>
 <i class="no-highlight">126</i>&nbsp;
-<i class="no-highlight">127</i>&nbsp;    }
-<i class="no-highlight">128</i>&nbsp;
-<i class="no-highlight">129</i>&nbsp;    /**
-<i class="no-highlight">130</i>&nbsp;     * Moves a professor of a given house from a dashboard to another one
-<i class="no-highlight">131</i>&nbsp;     * @param from the dashboard from which to remove the professor of the house indicated as a parameter
-<i class="no-highlight">132</i>&nbsp;     * @param to the dashboard in which to add the professor of the house indicated as a parameter
-<i class="no-highlight">133</i>&nbsp;     * @param house the professor&#39;s house that has to be moved
-<i class="no-highlight">134</i>&nbsp;     * @throws IllegalChoiceException if the professor of the given house is not present in the dashboard from which to remove it
-<i class="no-highlight">135</i>&nbsp;     */
-<i class="no-highlight">136</i>&nbsp;    protected void moveProf(Dashboard from, Dashboard to, House house) throws IllegalChoiceException{
-<b class="fc"><i class="no-highlight">137</i>&nbsp;        from.removeProf(house);</b>
-<b class="fc"><i class="no-highlight">138</i>&nbsp;        to.addProf(house);</b>
-<i class="no-highlight">139</i>&nbsp;
-<b class="fc"><i class="no-highlight">140</i>&nbsp;        notifyObserver(new UpdateDashboard(new ReducedDashboard(from)));</b>
-<b class="fc"><i class="no-highlight">141</i>&nbsp;        notifyObserver(new UpdateDashboard(new ReducedDashboard(to)));</b>
-<i class="no-highlight">142</i>&nbsp;    }
-<i class="no-highlight">143</i>&nbsp;
-<i class="no-highlight">144</i>&nbsp;    /**
-<i class="no-highlight">145</i>&nbsp;     * Calculates the influence of each player on a certain island and selects, if present, the player who has the highest influence
-<i class="no-highlight">146</i>&nbsp;     * @param island the island where we calculate the influence on
-<i class="no-highlight">147</i>&nbsp;     * @return the player who has the highest influence on the island, null if no one has the highest influence
-<i class="no-highlight">148</i>&nbsp;     */
-<i class="no-highlight">149</i>&nbsp;    public Player checkInfluence(Island island, Boolean expertMode, int numPlayers, Player[] arrayPlayers, CharacterCard[] characterCardDeck) throws Exception {
-<i class="no-highlight">150</i>&nbsp;
-<b class="fc"><i class="no-highlight">151</i>&nbsp;        if (expertMode &amp;&amp; island.isNoEntryTilePresent()){</b>
-<b class="fc"><i class="no-highlight">152</i>&nbsp;            removeNoEntryTile(island, characterCardDeck);</b>
-<b class="fc"><i class="no-highlight">153</i>&nbsp;            return(null);</b>
-<i class="no-highlight">154</i>&nbsp;        }
-<i class="no-highlight">155</i>&nbsp;        int[] influences;
-<i class="no-highlight">156</i>&nbsp;
-<b class="fc"><i class="no-highlight">157</i>&nbsp;        if (numPlayers == 2 || numPlayers == 3) {</b>
-<b class="fc"><i class="no-highlight">158</i>&nbsp;            influences = new int[numPlayers];</b>
-<b class="fc"><i class="no-highlight">159</i>&nbsp;            for (int i = 0; i &lt; numPlayers; i++) {</b>
-<b class="fc"><i class="no-highlight">160</i>&nbsp;                influences[i] = 0;</b>
-<b class="fc"><i class="no-highlight">161</i>&nbsp;                for (House house : House.values()) {</b>
-<b class="fc"><i class="no-highlight">162</i>&nbsp;                    if (arrayPlayers[i].getDashboard().isProfPresent(house)) {</b>
-<b class="fc"><i class="no-highlight">163</i>&nbsp;                        influences[i] = influences[i] + island.getHouseStudents(house);</b>
-<i class="no-highlight">164</i>&nbsp;                    }
-<i class="no-highlight">165</i>&nbsp;                }
-<i class="no-highlight">166</i>&nbsp;                try{
-<b class="fc"><i class="no-highlight">167</i>&nbsp;                    if ((arrayPlayers[i].getDashboard().getTowerColor()).equals(island.getColorTower())) {</b>
-<b class="fc"><i class="no-highlight">168</i>&nbsp;                        influences[i] = influences[i] + island.getNumTowers();</b>
-<i class="no-highlight">169</i>&nbsp;                    }
-<i class="no-highlight">170</i>&nbsp;                }
-<b class="fc"><i class="no-highlight">171</i>&nbsp;                catch (IslandException e){</b>
-<b class="fc"><i class="no-highlight">172</i>&nbsp;                    influences[i] = influences[i];</b>
-<b class="fc"><i class="no-highlight">173</i>&nbsp;                }</b>
-<i class="no-highlight">174</i>&nbsp;
-<i class="no-highlight">175</i>&nbsp;            }
-<i class="no-highlight">176</i>&nbsp;
-<b class="fc"><i class="no-highlight">177</i>&nbsp;            int max = 0;</b>
-<b class="fc"><i class="no-highlight">178</i>&nbsp;            boolean tie = false;</b>
-<i class="no-highlight">179</i>&nbsp;
-<b class="fc"><i class="no-highlight">180</i>&nbsp;            for (int i = 1; i &lt; numPlayers; i++) {</b>
-<b class="fc"><i class="no-highlight">181</i>&nbsp;                if (influences[max] &lt;= influences[i]) {</b>
-<b class="fc"><i class="no-highlight">182</i>&nbsp;                    if (influences[max] == influences[i]) {</b>
-<b class="fc"><i class="no-highlight">183</i>&nbsp;                        tie = true;</b>
-<i class="no-highlight">184</i>&nbsp;                    } else {
-<b class="fc"><i class="no-highlight">185</i>&nbsp;                        tie = false;</b>
-<b class="fc"><i class="no-highlight">186</i>&nbsp;                        max = i;</b>
-<i class="no-highlight">187</i>&nbsp;                    }
-<i class="no-highlight">188</i>&nbsp;                }
-<i class="no-highlight">189</i>&nbsp;            }
-<b class="fc"><i class="no-highlight">190</i>&nbsp;            if (tie) {</b>
-<b class="fc"><i class="no-highlight">191</i>&nbsp;                return (null);</b>
-<i class="no-highlight">192</i>&nbsp;            } else {
-<b class="fc"><i class="no-highlight">193</i>&nbsp;                return (arrayPlayers[max]);</b>
-<i class="no-highlight">194</i>&nbsp;            }
-<i class="no-highlight">195</i>&nbsp;        }
-<i class="no-highlight">196</i>&nbsp;        //four players
-<i class="no-highlight">197</i>&nbsp;        else {
-<b class="fc"><i class="no-highlight">198</i>&nbsp;            influences = new int[2];</b>
-<b class="fc"><i class="no-highlight">199</i>&nbsp;            int q = 0;</b>
-<b class="fc"><i class="no-highlight">200</i>&nbsp;            int teamOneLeader = 0;</b>
-<b class="fc"><i class="no-highlight">201</i>&nbsp;            int teamTwoLeader = 0;</b>
-<b class="fc"><i class="no-highlight">202</i>&nbsp;            int[] teamOne = new int[2];</b>
-<b class="fc"><i class="no-highlight">203</i>&nbsp;            int[] teamTwo = new int[2];</b>
-<i class="no-highlight">204</i>&nbsp;
-<b class="fc"><i class="no-highlight">205</i>&nbsp;            for(int i=0; i&lt;numPlayers; i++) {</b>
-<b class="fc"><i class="no-highlight">206</i>&nbsp;                if(arrayPlayers[i].isTeamLeader() &amp;&amp; q ==0) {</b>
-<b class="fc"><i class="no-highlight">207</i>&nbsp;                    teamOneLeader = i;</b>
-<b class="fc"><i class="no-highlight">208</i>&nbsp;                    teamOne[0] = i;</b>
-<b class="fc"><i class="no-highlight">209</i>&nbsp;                    q++;</b>
-<i class="no-highlight">210</i>&nbsp;                }
-<b class="fc"><i class="no-highlight">211</i>&nbsp;                else if(arrayPlayers[i].isTeamLeader()) {</b>
-<b class="fc"><i class="no-highlight">212</i>&nbsp;                    teamTwoLeader = i;</b>
-<b class="fc"><i class="no-highlight">213</i>&nbsp;                    teamTwo[0] = i;</b>
-<b class="fc"><i class="no-highlight">214</i>&nbsp;                    q = 0;</b>
-<b class="fc"><i class="no-highlight">215</i>&nbsp;                    break;</b>
-<i class="no-highlight">216</i>&nbsp;                }
-<i class="no-highlight">217</i>&nbsp;            }
-<i class="no-highlight">218</i>&nbsp;
-<b class="fc"><i class="no-highlight">219</i>&nbsp;            for(int i=0; i&lt;numPlayers; i++) {</b>
-<b class="fc"><i class="no-highlight">220</i>&nbsp;                if (i != teamOneLeader &amp;&amp; i != teamTwoLeader) {</b>
-<b class="fc"><i class="no-highlight">221</i>&nbsp;                    if (arrayPlayers[i].getDashboard().getTowerColor().equals(arrayPlayers[teamOneLeader].getDashboard().getTowerColor())) {</b>
-<b class="fc"><i class="no-highlight">222</i>&nbsp;                        teamOne[1] = i;</b>
-<i class="no-highlight">223</i>&nbsp;                    } else {
-<b class="fc"><i class="no-highlight">224</i>&nbsp;                        teamTwo[1] = i;</b>
-<i class="no-highlight">225</i>&nbsp;                    }
-<i class="no-highlight">226</i>&nbsp;                }
-<i class="no-highlight">227</i>&nbsp;
-<i class="no-highlight">228</i>&nbsp;            }
-<i class="no-highlight">229</i>&nbsp;
-<b class="fc"><i class="no-highlight">230</i>&nbsp;            boolean towerAdded = false;</b>
-<i class="no-highlight">231</i>&nbsp;
-<b class="fc"><i class="no-highlight">232</i>&nbsp;            for(int i=0; i&lt;2; i++){</b>
-<b class="fc"><i class="no-highlight">233</i>&nbsp;                influences[i] = 0;</b>
+<b class="fc"><i class="no-highlight">127</i>&nbsp;            if (playerWithMostStudents.equals(currentPlayer)) {</b>
+<b class="fc"><i class="no-highlight">128</i>&nbsp;                moveProf(owner.getDashboard(), currentPlayer.getDashboard(), house);</b>
+<i class="no-highlight">129</i>&nbsp;            }
+<i class="no-highlight">130</i>&nbsp;        }
+<i class="no-highlight">131</i>&nbsp;
+<i class="no-highlight">132</i>&nbsp;    }
+<i class="no-highlight">133</i>&nbsp;
+<i class="no-highlight">134</i>&nbsp;    /**
+<i class="no-highlight">135</i>&nbsp;     * Moves a professor of a given house from a dashboard to another one
+<i class="no-highlight">136</i>&nbsp;     *
+<i class="no-highlight">137</i>&nbsp;     * @param from  the dashboard from which to remove the professor of the house indicated as a parameter
+<i class="no-highlight">138</i>&nbsp;     * @param to    the dashboard in which to add the professor of the house indicated as a parameter
+<i class="no-highlight">139</i>&nbsp;     * @param house the professor&#39;s house that has to be moved
+<i class="no-highlight">140</i>&nbsp;     * @throws IllegalChoiceException if the professor of the given house is not present in the dashboard from which to remove it
+<i class="no-highlight">141</i>&nbsp;     */
+<i class="no-highlight">142</i>&nbsp;    protected void moveProf(Dashboard from, Dashboard to, House house) throws IllegalChoiceException {
+<b class="fc"><i class="no-highlight">143</i>&nbsp;        from.removeProf(house);</b>
+<b class="fc"><i class="no-highlight">144</i>&nbsp;        to.addProf(house);</b>
+<i class="no-highlight">145</i>&nbsp;
+<b class="fc"><i class="no-highlight">146</i>&nbsp;        notifyObserver(new UpdateDashboard(new ReducedDashboard(from)));</b>
+<b class="fc"><i class="no-highlight">147</i>&nbsp;        notifyObserver(new UpdateDashboard(new ReducedDashboard(to)));</b>
+<i class="no-highlight">148</i>&nbsp;    }
+<i class="no-highlight">149</i>&nbsp;
+<i class="no-highlight">150</i>&nbsp;    /**
+<i class="no-highlight">151</i>&nbsp;     * Calculates the influence of each player on a certain island and selects, if present, the player who has the highest influence
+<i class="no-highlight">152</i>&nbsp;     *
+<i class="no-highlight">153</i>&nbsp;     * @param island the island where we calculate the influence on
+<i class="no-highlight">154</i>&nbsp;     * @return the player who has the highest influence on the island, null if no one has the highest influence
+<i class="no-highlight">155</i>&nbsp;     */
+<i class="no-highlight">156</i>&nbsp;    public Player checkInfluence(Island island, Boolean expertMode, int numPlayers, Player[] arrayPlayers, CharacterCard[] characterCardDeck) throws Exception {
+<i class="no-highlight">157</i>&nbsp;
+<b class="fc"><i class="no-highlight">158</i>&nbsp;        if (expertMode &amp;&amp; island.isNoEntryTilePresent()) {</b>
+<b class="fc"><i class="no-highlight">159</i>&nbsp;            removeNoEntryTile(characterCardDeck);</b>
+<b class="fc"><i class="no-highlight">160</i>&nbsp;            return (null);</b>
+<i class="no-highlight">161</i>&nbsp;        }
+<i class="no-highlight">162</i>&nbsp;        int[] influences;
+<i class="no-highlight">163</i>&nbsp;
+<b class="fc"><i class="no-highlight">164</i>&nbsp;        if (numPlayers == 2 || numPlayers == 3) {</b>
+<b class="fc"><i class="no-highlight">165</i>&nbsp;            influences = new int[numPlayers];</b>
+<b class="fc"><i class="no-highlight">166</i>&nbsp;            for (int i = 0; i &lt; numPlayers; i++) {</b>
+<b class="fc"><i class="no-highlight">167</i>&nbsp;                influences[i] = 0;</b>
+<b class="fc"><i class="no-highlight">168</i>&nbsp;                for (House house : House.values()) {</b>
+<b class="fc"><i class="no-highlight">169</i>&nbsp;                    if (arrayPlayers[i].getDashboard().isProfPresent(house)) {</b>
+<b class="fc"><i class="no-highlight">170</i>&nbsp;                        influences[i] = influences[i] + island.getHouseStudents(house);</b>
+<i class="no-highlight">171</i>&nbsp;                    }
+<i class="no-highlight">172</i>&nbsp;                }
+<i class="no-highlight">173</i>&nbsp;                try {
+<b class="fc"><i class="no-highlight">174</i>&nbsp;                    if ((arrayPlayers[i].getDashboard().getTowerColor()).equals(island.getColorTower())) {</b>
+<b class="fc"><i class="no-highlight">175</i>&nbsp;                        influences[i] = influences[i] + island.getNumTowers();</b>
+<i class="no-highlight">176</i>&nbsp;                    }
+<b class="fc"><i class="no-highlight">177</i>&nbsp;                } catch (IslandException e) {</b>
+<b class="fc"><i class="no-highlight">178</i>&nbsp;                    influences[i] = influences[i];</b>
+<b class="fc"><i class="no-highlight">179</i>&nbsp;                }</b>
+<i class="no-highlight">180</i>&nbsp;
+<i class="no-highlight">181</i>&nbsp;            }
+<i class="no-highlight">182</i>&nbsp;
+<b class="fc"><i class="no-highlight">183</i>&nbsp;            int max = 0;</b>
+<b class="fc"><i class="no-highlight">184</i>&nbsp;            boolean tie = false;</b>
+<i class="no-highlight">185</i>&nbsp;
+<b class="fc"><i class="no-highlight">186</i>&nbsp;            for (int i = 1; i &lt; numPlayers; i++) {</b>
+<b class="fc"><i class="no-highlight">187</i>&nbsp;                if (influences[max] &lt;= influences[i]) {</b>
+<b class="fc"><i class="no-highlight">188</i>&nbsp;                    if (influences[max] == influences[i]) {</b>
+<b class="fc"><i class="no-highlight">189</i>&nbsp;                        tie = true;</b>
+<i class="no-highlight">190</i>&nbsp;                    } else {
+<b class="fc"><i class="no-highlight">191</i>&nbsp;                        tie = false;</b>
+<b class="fc"><i class="no-highlight">192</i>&nbsp;                        max = i;</b>
+<i class="no-highlight">193</i>&nbsp;                    }
+<i class="no-highlight">194</i>&nbsp;                }
+<i class="no-highlight">195</i>&nbsp;            }
+<b class="fc"><i class="no-highlight">196</i>&nbsp;            if (tie) {</b>
+<b class="fc"><i class="no-highlight">197</i>&nbsp;                return (null);</b>
+<i class="no-highlight">198</i>&nbsp;            } else {
+<b class="fc"><i class="no-highlight">199</i>&nbsp;                return (arrayPlayers[max]);</b>
+<i class="no-highlight">200</i>&nbsp;            }
+<i class="no-highlight">201</i>&nbsp;        }
+<i class="no-highlight">202</i>&nbsp;        //four players
+<i class="no-highlight">203</i>&nbsp;        else {
+<b class="fc"><i class="no-highlight">204</i>&nbsp;            influences = new int[2];</b>
+<b class="fc"><i class="no-highlight">205</i>&nbsp;            int q = 0;</b>
+<b class="fc"><i class="no-highlight">206</i>&nbsp;            int teamOneLeader = 0;</b>
+<b class="fc"><i class="no-highlight">207</i>&nbsp;            int teamTwoLeader = 0;</b>
+<b class="fc"><i class="no-highlight">208</i>&nbsp;            int[] teamOne = new int[2];</b>
+<b class="fc"><i class="no-highlight">209</i>&nbsp;            int[] teamTwo = new int[2];</b>
+<i class="no-highlight">210</i>&nbsp;
+<b class="fc"><i class="no-highlight">211</i>&nbsp;            for (int i = 0; i &lt; numPlayers; i++) {</b>
+<b class="fc"><i class="no-highlight">212</i>&nbsp;                if (arrayPlayers[i].isTeamLeader() &amp;&amp; q == 0) {</b>
+<b class="fc"><i class="no-highlight">213</i>&nbsp;                    teamOneLeader = i;</b>
+<b class="fc"><i class="no-highlight">214</i>&nbsp;                    teamOne[0] = i;</b>
+<b class="fc"><i class="no-highlight">215</i>&nbsp;                    q++;</b>
+<b class="fc"><i class="no-highlight">216</i>&nbsp;                } else if (arrayPlayers[i].isTeamLeader()) {</b>
+<b class="fc"><i class="no-highlight">217</i>&nbsp;                    teamTwoLeader = i;</b>
+<b class="fc"><i class="no-highlight">218</i>&nbsp;                    teamTwo[0] = i;</b>
+<b class="fc"><i class="no-highlight">219</i>&nbsp;                    q = 0;</b>
+<b class="fc"><i class="no-highlight">220</i>&nbsp;                    break;</b>
+<i class="no-highlight">221</i>&nbsp;                }
+<i class="no-highlight">222</i>&nbsp;            }
+<i class="no-highlight">223</i>&nbsp;
+<b class="fc"><i class="no-highlight">224</i>&nbsp;            for (int i = 0; i &lt; numPlayers; i++) {</b>
+<b class="fc"><i class="no-highlight">225</i>&nbsp;                if (i != teamOneLeader &amp;&amp; i != teamTwoLeader) {</b>
+<b class="fc"><i class="no-highlight">226</i>&nbsp;                    if (arrayPlayers[i].getDashboard().getTowerColor().equals(arrayPlayers[teamOneLeader].getDashboard().getTowerColor())) {</b>
+<b class="fc"><i class="no-highlight">227</i>&nbsp;                        teamOne[1] = i;</b>
+<i class="no-highlight">228</i>&nbsp;                    } else {
+<b class="fc"><i class="no-highlight">229</i>&nbsp;                        teamTwo[1] = i;</b>
+<i class="no-highlight">230</i>&nbsp;                    }
+<i class="no-highlight">231</i>&nbsp;                }
+<i class="no-highlight">232</i>&nbsp;
+<i class="no-highlight">233</i>&nbsp;            }
 <i class="no-highlight">234</i>&nbsp;
-<b class="fc"><i class="no-highlight">235</i>&nbsp;                for(House h : House.values()) {</b>
-<b class="fc"><i class="no-highlight">236</i>&nbsp;                    if (i == 0) {</b>
-<b class="fc"><i class="no-highlight">237</i>&nbsp;                        if(arrayPlayers[teamOne[0]].getDashboard().isProfPresent(h)){</b>
-<b class="fc"><i class="no-highlight">238</i>&nbsp;                            influences[i] += island.getHouseStudents(h);</b>
-<i class="no-highlight">239</i>&nbsp;                        }
-<b class="fc"><i class="no-highlight">240</i>&nbsp;                        if(arrayPlayers[teamOne[1]].getDashboard().isProfPresent(h)){</b>
-<b class="fc"><i class="no-highlight">241</i>&nbsp;                            influences[i] += island.getHouseStudents(h);</b>
-<i class="no-highlight">242</i>&nbsp;                        }
-<i class="no-highlight">243</i>&nbsp;                        try {
-<b class="fc"><i class="no-highlight">244</i>&nbsp;                            if (!towerAdded &amp;&amp; arrayPlayers[teamOne[0]].getDashboard().getTowerColor().equals(island.getColorTower())) {</b>
-<b class="fc"><i class="no-highlight">245</i>&nbsp;                                influences[i] = influences[i] + island.getNumTowers();</b>
-<b class="fc"><i class="no-highlight">246</i>&nbsp;                                towerAdded = true;</b>
-<i class="no-highlight">247</i>&nbsp;                            }
-<i class="no-highlight">248</i>&nbsp;                        }
-<b class="fc"><i class="no-highlight">249</i>&nbsp;                        catch (IslandException e){</b>
-<b class="fc"><i class="no-highlight">250</i>&nbsp;                            influences[q] = influences[q];</b>
-<b class="fc"><i class="no-highlight">251</i>&nbsp;                        }</b>
-<i class="no-highlight">252</i>&nbsp;
-<i class="no-highlight">253</i>&nbsp;                    }
-<b class="fc"><i class="no-highlight">254</i>&nbsp;                    if (i == 1) {</b>
-<b class="fc"><i class="no-highlight">255</i>&nbsp;                        if(arrayPlayers[teamTwo[0]].getDashboard().isProfPresent(h)){</b>
-<b class="fc"><i class="no-highlight">256</i>&nbsp;                            influences[i] += island.getHouseStudents(h);</b>
-<i class="no-highlight">257</i>&nbsp;                        }
-<b class="fc"><i class="no-highlight">258</i>&nbsp;                        if(arrayPlayers[teamTwo[1]].getDashboard().isProfPresent(h)){</b>
-<b class="fc"><i class="no-highlight">259</i>&nbsp;                            influences[i] += island.getHouseStudents(h);</b>
-<i class="no-highlight">260</i>&nbsp;                        }
-<i class="no-highlight">261</i>&nbsp;                        try {
-<b class="fc"><i class="no-highlight">262</i>&nbsp;                            if (!towerAdded &amp;&amp; arrayPlayers[teamTwo[0]].getDashboard().getTowerColor().equals(island.getColorTower())) {</b>
-<b class="fc"><i class="no-highlight">263</i>&nbsp;                                influences[i] = influences[i] + island.getNumTowers();</b>
-<b class="fc"><i class="no-highlight">264</i>&nbsp;                                towerAdded = true;</b>
-<i class="no-highlight">265</i>&nbsp;                            }
-<i class="no-highlight">266</i>&nbsp;                        }
-<b class="fc"><i class="no-highlight">267</i>&nbsp;                        catch (IslandException e){</b>
-<b class="fc"><i class="no-highlight">268</i>&nbsp;                            influences[q] = influences[q];</b>
-<b class="fc"><i class="no-highlight">269</i>&nbsp;                        }</b>
-<i class="no-highlight">270</i>&nbsp;                    }
-<i class="no-highlight">271</i>&nbsp;                }
-<i class="no-highlight">272</i>&nbsp;            }
-<i class="no-highlight">273</i>&nbsp;
-<b class="fc"><i class="no-highlight">274</i>&nbsp;            int max = 0;</b>
-<b class="fc"><i class="no-highlight">275</i>&nbsp;            boolean tie = false;</b>
+<b class="fc"><i class="no-highlight">235</i>&nbsp;            boolean towerAdded = false;</b>
+<i class="no-highlight">236</i>&nbsp;
+<b class="fc"><i class="no-highlight">237</i>&nbsp;            for (int i = 0; i &lt; 2; i++) {</b>
+<b class="fc"><i class="no-highlight">238</i>&nbsp;                influences[i] = 0;</b>
+<i class="no-highlight">239</i>&nbsp;
+<b class="fc"><i class="no-highlight">240</i>&nbsp;                for (House h : House.values()) {</b>
+<b class="fc"><i class="no-highlight">241</i>&nbsp;                    if (i == 0) {</b>
+<b class="fc"><i class="no-highlight">242</i>&nbsp;                        if (arrayPlayers[teamOne[0]].getDashboard().isProfPresent(h)) {</b>
+<b class="fc"><i class="no-highlight">243</i>&nbsp;                            influences[i] += island.getHouseStudents(h);</b>
+<i class="no-highlight">244</i>&nbsp;                        }
+<b class="fc"><i class="no-highlight">245</i>&nbsp;                        if (arrayPlayers[teamOne[1]].getDashboard().isProfPresent(h)) {</b>
+<b class="fc"><i class="no-highlight">246</i>&nbsp;                            influences[i] += island.getHouseStudents(h);</b>
+<i class="no-highlight">247</i>&nbsp;                        }
+<i class="no-highlight">248</i>&nbsp;                        try {
+<b class="fc"><i class="no-highlight">249</i>&nbsp;                            if (!towerAdded &amp;&amp; arrayPlayers[teamOne[0]].getDashboard().getTowerColor().equals(island.getColorTower())) {</b>
+<b class="fc"><i class="no-highlight">250</i>&nbsp;                                influences[i] = influences[i] + island.getNumTowers();</b>
+<b class="fc"><i class="no-highlight">251</i>&nbsp;                                towerAdded = true;</b>
+<i class="no-highlight">252</i>&nbsp;                            }
+<b class="fc"><i class="no-highlight">253</i>&nbsp;                        } catch (IslandException e) {</b>
+<b class="fc"><i class="no-highlight">254</i>&nbsp;                            influences[q] = influences[q];</b>
+<b class="fc"><i class="no-highlight">255</i>&nbsp;                        }</b>
+<i class="no-highlight">256</i>&nbsp;
+<i class="no-highlight">257</i>&nbsp;                    }
+<b class="fc"><i class="no-highlight">258</i>&nbsp;                    if (i == 1) {</b>
+<b class="fc"><i class="no-highlight">259</i>&nbsp;                        if (arrayPlayers[teamTwo[0]].getDashboard().isProfPresent(h)) {</b>
+<b class="fc"><i class="no-highlight">260</i>&nbsp;                            influences[i] += island.getHouseStudents(h);</b>
+<i class="no-highlight">261</i>&nbsp;                        }
+<b class="fc"><i class="no-highlight">262</i>&nbsp;                        if (arrayPlayers[teamTwo[1]].getDashboard().isProfPresent(h)) {</b>
+<b class="fc"><i class="no-highlight">263</i>&nbsp;                            influences[i] += island.getHouseStudents(h);</b>
+<i class="no-highlight">264</i>&nbsp;                        }
+<i class="no-highlight">265</i>&nbsp;                        try {
+<b class="fc"><i class="no-highlight">266</i>&nbsp;                            if (!towerAdded &amp;&amp; arrayPlayers[teamTwo[0]].getDashboard().getTowerColor().equals(island.getColorTower())) {</b>
+<b class="fc"><i class="no-highlight">267</i>&nbsp;                                influences[i] = influences[i] + island.getNumTowers();</b>
+<b class="fc"><i class="no-highlight">268</i>&nbsp;                                towerAdded = true;</b>
+<i class="no-highlight">269</i>&nbsp;                            }
+<b class="fc"><i class="no-highlight">270</i>&nbsp;                        } catch (IslandException e) {</b>
+<b class="fc"><i class="no-highlight">271</i>&nbsp;                            influences[q] = influences[q];</b>
+<b class="fc"><i class="no-highlight">272</i>&nbsp;                        }</b>
+<i class="no-highlight">273</i>&nbsp;                    }
+<i class="no-highlight">274</i>&nbsp;                }
+<i class="no-highlight">275</i>&nbsp;            }
 <i class="no-highlight">276</i>&nbsp;
-<b class="fc"><i class="no-highlight">277</i>&nbsp;            if (influences[max] &lt;= influences[1]) {</b>
-<b class="fc"><i class="no-highlight">278</i>&nbsp;                if (influences[max] == influences[1]) {</b>
-<b class="fc"><i class="no-highlight">279</i>&nbsp;                    tie = true;</b>
-<i class="no-highlight">280</i>&nbsp;                } else {
-<b class="fc"><i class="no-highlight">281</i>&nbsp;                    max = 1;</b>
-<i class="no-highlight">282</i>&nbsp;                }
-<i class="no-highlight">283</i>&nbsp;            }
-<b class="fc"><i class="no-highlight">284</i>&nbsp;            if (tie) {</b>
-<b class="fc"><i class="no-highlight">285</i>&nbsp;                return (null);</b>
-<i class="no-highlight">286</i>&nbsp;            } else {
-<b class="fc"><i class="no-highlight">287</i>&nbsp;                if (max == 0){</b>
-<b class="fc"><i class="no-highlight">288</i>&nbsp;                    return (arrayPlayers[teamOneLeader]);</b>
-<i class="no-highlight">289</i>&nbsp;                } else {
-<b class="fc"><i class="no-highlight">290</i>&nbsp;                    return (arrayPlayers[teamTwoLeader]);</b>
-<i class="no-highlight">291</i>&nbsp;                }
-<i class="no-highlight">292</i>&nbsp;            }
-<i class="no-highlight">293</i>&nbsp;        }
-<i class="no-highlight">294</i>&nbsp;    }
-<i class="no-highlight">295</i>&nbsp;
-<i class="no-highlight">296</i>&nbsp;    void removeNoEntryTile(Island island, CharacterCard[] characterCardDeck) throws Exception{
-<b class="fc"><i class="no-highlight">297</i>&nbsp;        boolean cardPresent = false;</b>
-<b class="fc"><i class="no-highlight">298</i>&nbsp;        HerbGranma herbGranma = null;</b>
-<i class="no-highlight">299</i>&nbsp;
-<b class="fc"><i class="no-highlight">300</i>&nbsp;        for(CharacterCard c : characterCardDeck){</b>
-<b class="fc"><i class="no-highlight">301</i>&nbsp;            if (c instanceof HerbGranma) {</b>
-<b class="fc"><i class="no-highlight">302</i>&nbsp;                cardPresent = true;</b>
-<b class="fc"><i class="no-highlight">303</i>&nbsp;                herbGranma = (HerbGranma) c;</b>
-<b class="fc"><i class="no-highlight">304</i>&nbsp;                break;</b>
-<i class="no-highlight">305</i>&nbsp;            }
-<i class="no-highlight">306</i>&nbsp;        }
-<b class="fc"><i class="no-highlight">307</i>&nbsp;        if(!cardPresent){</b>
-<b class="nc"><i class="no-highlight">308</i>&nbsp;            throw new CardNotInDeckException();</b>
-<i class="no-highlight">309</i>&nbsp;        }
-<i class="no-highlight">310</i>&nbsp;
-<b class="fc"><i class="no-highlight">311</i>&nbsp;        Map&lt;String, Object&gt; parameters = new HashMap&lt;&gt;();</b>
-<i class="no-highlight">312</i>&nbsp;
-<b class="fc"><i class="no-highlight">313</i>&nbsp;        parameters.put(&quot;Method&quot;, &quot;removeNoEntryTile&quot;);</b>
-<i class="no-highlight">314</i>&nbsp;
-<b class="fc"><i class="no-highlight">315</i>&nbsp;        herbGranma.doEffect(parameters);</b>
-<i class="no-highlight">316</i>&nbsp;    }
-<i class="no-highlight">317</i>&nbsp;
-<i class="no-highlight">318</i>&nbsp;    public CharacterCardEnum getType(){
-<b class="fc"><i class="no-highlight">319</i>&nbsp;        return type;</b>
-<i class="no-highlight">320</i>&nbsp;    }
-<i class="no-highlight">321</i>&nbsp;}
+<b class="fc"><i class="no-highlight">277</i>&nbsp;            int max = 0;</b>
+<b class="fc"><i class="no-highlight">278</i>&nbsp;            boolean tie = false;</b>
+<i class="no-highlight">279</i>&nbsp;
+<b class="fc"><i class="no-highlight">280</i>&nbsp;            if (influences[max] &lt;= influences[1]) {</b>
+<b class="fc"><i class="no-highlight">281</i>&nbsp;                if (influences[max] == influences[1]) {</b>
+<b class="fc"><i class="no-highlight">282</i>&nbsp;                    tie = true;</b>
+<i class="no-highlight">283</i>&nbsp;                } else {
+<b class="fc"><i class="no-highlight">284</i>&nbsp;                    max = 1;</b>
+<i class="no-highlight">285</i>&nbsp;                }
+<i class="no-highlight">286</i>&nbsp;            }
+<b class="fc"><i class="no-highlight">287</i>&nbsp;            if (tie) {</b>
+<b class="fc"><i class="no-highlight">288</i>&nbsp;                return (null);</b>
+<i class="no-highlight">289</i>&nbsp;            } else {
+<b class="fc"><i class="no-highlight">290</i>&nbsp;                if (max == 0) {</b>
+<b class="fc"><i class="no-highlight">291</i>&nbsp;                    return (arrayPlayers[teamOneLeader]);</b>
+<i class="no-highlight">292</i>&nbsp;                } else {
+<b class="fc"><i class="no-highlight">293</i>&nbsp;                    return (arrayPlayers[teamTwoLeader]);</b>
+<i class="no-highlight">294</i>&nbsp;                }
+<i class="no-highlight">295</i>&nbsp;            }
+<i class="no-highlight">296</i>&nbsp;        }
+<i class="no-highlight">297</i>&nbsp;    }
+<i class="no-highlight">298</i>&nbsp;
+<i class="no-highlight">299</i>&nbsp;    /**
+<i class="no-highlight">300</i>&nbsp;     * Removes the no entry tile from an island
+<i class="no-highlight">301</i>&nbsp;     *
+<i class="no-highlight">302</i>&nbsp;     * @param characterCardDeck the deck of cards
+<i class="no-highlight">303</i>&nbsp;     * @throws Exception when herb granma is not in deck
+<i class="no-highlight">304</i>&nbsp;     */
+<i class="no-highlight">305</i>&nbsp;    void removeNoEntryTile(CharacterCard[] characterCardDeck) throws Exception {
+<b class="fc"><i class="no-highlight">306</i>&nbsp;        boolean cardPresent = false;</b>
+<b class="fc"><i class="no-highlight">307</i>&nbsp;        HerbGranma herbGranma = null;</b>
+<i class="no-highlight">308</i>&nbsp;
+<b class="fc"><i class="no-highlight">309</i>&nbsp;        for (CharacterCard c : characterCardDeck) {</b>
+<b class="fc"><i class="no-highlight">310</i>&nbsp;            if (c instanceof HerbGranma) {</b>
+<b class="fc"><i class="no-highlight">311</i>&nbsp;                cardPresent = true;</b>
+<b class="fc"><i class="no-highlight">312</i>&nbsp;                herbGranma = (HerbGranma) c;</b>
+<b class="fc"><i class="no-highlight">313</i>&nbsp;                break;</b>
+<i class="no-highlight">314</i>&nbsp;            }
+<i class="no-highlight">315</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">316</i>&nbsp;        if (!cardPresent) {</b>
+<b class="nc"><i class="no-highlight">317</i>&nbsp;            throw new CardNotInDeckException();</b>
+<i class="no-highlight">318</i>&nbsp;        }
+<i class="no-highlight">319</i>&nbsp;
+<b class="fc"><i class="no-highlight">320</i>&nbsp;        Map&lt;String, Object&gt; parameters = new HashMap&lt;&gt;();</b>
+<i class="no-highlight">321</i>&nbsp;
+<b class="fc"><i class="no-highlight">322</i>&nbsp;        parameters.put(&quot;Method&quot;, &quot;removeNoEntryTile&quot;);</b>
+<i class="no-highlight">323</i>&nbsp;
+<b class="fc"><i class="no-highlight">324</i>&nbsp;        herbGranma.doEffect(parameters);</b>
+<i class="no-highlight">325</i>&nbsp;    }
+<i class="no-highlight">326</i>&nbsp;
+<i class="no-highlight">327</i>&nbsp;    public CharacterCardEnum getType() {
+<b class="fc"><i class="no-highlight">328</i>&nbsp;        return type;</b>
+<i class="no-highlight">329</i>&nbsp;    }
+<i class="no-highlight">330</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -420,7 +429,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-01 12:22</div>
+    <div style="float:right;">generated on 2022-07-01 19:12</div>
 </div>
 </body>
 </html>

@@ -113,60 +113,61 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">12</i>&nbsp;
 <i class="no-highlight">13</i>&nbsp;    /**
 <i class="no-highlight">14</i>&nbsp;     * Creates a characterCard from its name and the elements that card needs to be created
-<i class="no-highlight">15</i>&nbsp;     * @param cardType the characterCard name
-<i class="no-highlight">16</i>&nbsp;     * @param bag the bag of the match that some cards needs for creation
-<i class="no-highlight">17</i>&nbsp;     * @return the character chard of the type indicated by the parameters
-<i class="no-highlight">18</i>&nbsp;     * @throws BagException when a BagException occurs while creating a card of type Monk, Jolly or SpoiledPrincess
-<i class="no-highlight">19</i>&nbsp;     * @throws IllegalArgumentException when the given cardType does not correspond to any card
-<i class="no-highlight">20</i>&nbsp;     */
-<i class="no-highlight">21</i>&nbsp;    public CharacterCard getCharacterCard(CharacterCardEnum cardType, Bag bag) throws BagException, IllegalArgumentException {
-<i class="no-highlight">22</i>&nbsp;
-<i class="no-highlight">23</i>&nbsp;        CharacterCard c;
-<i class="no-highlight">24</i>&nbsp;
-<b class="fc"><i class="no-highlight">25</i>&nbsp;        switch (cardType) {</b>
-<i class="no-highlight">26</i>&nbsp;            case FARMER :
-<b class="fc"><i class="no-highlight">27</i>&nbsp;                c = new Farmer();</b>
-<b class="fc"><i class="no-highlight">28</i>&nbsp;                break;</b>
-<i class="no-highlight">29</i>&nbsp;            case MAGICAL_MAILMAN :
-<b class="fc"><i class="no-highlight">30</i>&nbsp;                c = new MagicalMailMan();</b>
-<b class="fc"><i class="no-highlight">31</i>&nbsp;                break;</b>
-<i class="no-highlight">32</i>&nbsp;            case HERB_GRANMA :
-<b class="fc"><i class="no-highlight">33</i>&nbsp;                c = new HerbGranma();</b>
-<b class="fc"><i class="no-highlight">34</i>&nbsp;                break;</b>
-<i class="no-highlight">35</i>&nbsp;            case MINSTREL :
-<b class="fc"><i class="no-highlight">36</i>&nbsp;                c = new Minstrel();</b>
-<b class="fc"><i class="no-highlight">37</i>&nbsp;                break;</b>
-<i class="no-highlight">38</i>&nbsp;            case MONK :
-<b class="fc"><i class="no-highlight">39</i>&nbsp;                c = new Monk(bag);</b>
-<b class="fc"><i class="no-highlight">40</i>&nbsp;                break;</b>
-<i class="no-highlight">41</i>&nbsp;            case HERALD :
-<b class="fc"><i class="no-highlight">42</i>&nbsp;                c = new Herald();</b>
-<b class="fc"><i class="no-highlight">43</i>&nbsp;                break;</b>
-<i class="no-highlight">44</i>&nbsp;            case CENTAUR :
-<b class="fc"><i class="no-highlight">45</i>&nbsp;                c = new Centaur();</b>
-<b class="fc"><i class="no-highlight">46</i>&nbsp;                break;</b>
-<i class="no-highlight">47</i>&nbsp;            case JOLLY :
-<b class="fc"><i class="no-highlight">48</i>&nbsp;                c = new Jolly(bag);</b>
-<b class="fc"><i class="no-highlight">49</i>&nbsp;                break;</b>
-<i class="no-highlight">50</i>&nbsp;            case KNIGHT :
-<b class="fc"><i class="no-highlight">51</i>&nbsp;                c = new Knight();</b>
-<b class="fc"><i class="no-highlight">52</i>&nbsp;                break;</b>
-<i class="no-highlight">53</i>&nbsp;            case MUSHROOM_HUNTER :
-<b class="fc"><i class="no-highlight">54</i>&nbsp;                c = new MushroomHunter();</b>
-<b class="fc"><i class="no-highlight">55</i>&nbsp;                break;</b>
-<i class="no-highlight">56</i>&nbsp;            case SPOILED_PRINCESS :
-<b class="fc"><i class="no-highlight">57</i>&nbsp;                c = new SpoiledPrincess(bag);</b>
-<b class="fc"><i class="no-highlight">58</i>&nbsp;                break;</b>
-<i class="no-highlight">59</i>&nbsp;            case THIEF :
-<b class="fc"><i class="no-highlight">60</i>&nbsp;                c = new Thief();</b>
-<b class="fc"><i class="no-highlight">61</i>&nbsp;                break;</b>
-<i class="no-highlight">62</i>&nbsp;            default :
-<b class="nc"><i class="no-highlight">63</i>&nbsp;                throw new IllegalArgumentException(&quot;There is no characterCard with this name&quot;);</b>
-<i class="no-highlight">64</i>&nbsp;        }
-<i class="no-highlight">65</i>&nbsp;
-<b class="fc"><i class="no-highlight">66</i>&nbsp;        return c;</b>
-<i class="no-highlight">67</i>&nbsp;    }
-<i class="no-highlight">68</i>&nbsp;}
+<i class="no-highlight">15</i>&nbsp;     *
+<i class="no-highlight">16</i>&nbsp;     * @param cardType the characterCard name
+<i class="no-highlight">17</i>&nbsp;     * @param bag      the bag of the match that some cards needs for creation
+<i class="no-highlight">18</i>&nbsp;     * @return the character chard of the type indicated by the parameters
+<i class="no-highlight">19</i>&nbsp;     * @throws BagException             when a BagException occurs while creating a card of type Monk, Jolly or SpoiledPrincess
+<i class="no-highlight">20</i>&nbsp;     * @throws IllegalArgumentException when the given cardType does not correspond to any card
+<i class="no-highlight">21</i>&nbsp;     */
+<i class="no-highlight">22</i>&nbsp;    public CharacterCard getCharacterCard(CharacterCardEnum cardType, Bag bag) throws BagException, IllegalArgumentException {
+<i class="no-highlight">23</i>&nbsp;
+<i class="no-highlight">24</i>&nbsp;        CharacterCard c;
+<i class="no-highlight">25</i>&nbsp;
+<b class="fc"><i class="no-highlight">26</i>&nbsp;        switch (cardType) {</b>
+<i class="no-highlight">27</i>&nbsp;            case FARMER:
+<b class="fc"><i class="no-highlight">28</i>&nbsp;                c = new Farmer();</b>
+<b class="fc"><i class="no-highlight">29</i>&nbsp;                break;</b>
+<i class="no-highlight">30</i>&nbsp;            case MAGICAL_MAILMAN:
+<b class="fc"><i class="no-highlight">31</i>&nbsp;                c = new MagicalMailMan();</b>
+<b class="fc"><i class="no-highlight">32</i>&nbsp;                break;</b>
+<i class="no-highlight">33</i>&nbsp;            case HERB_GRANMA:
+<b class="fc"><i class="no-highlight">34</i>&nbsp;                c = new HerbGranma();</b>
+<b class="fc"><i class="no-highlight">35</i>&nbsp;                break;</b>
+<i class="no-highlight">36</i>&nbsp;            case MINSTREL:
+<b class="fc"><i class="no-highlight">37</i>&nbsp;                c = new Minstrel();</b>
+<b class="fc"><i class="no-highlight">38</i>&nbsp;                break;</b>
+<i class="no-highlight">39</i>&nbsp;            case MONK:
+<b class="fc"><i class="no-highlight">40</i>&nbsp;                c = new Monk(bag);</b>
+<b class="fc"><i class="no-highlight">41</i>&nbsp;                break;</b>
+<i class="no-highlight">42</i>&nbsp;            case HERALD:
+<b class="fc"><i class="no-highlight">43</i>&nbsp;                c = new Herald();</b>
+<b class="fc"><i class="no-highlight">44</i>&nbsp;                break;</b>
+<i class="no-highlight">45</i>&nbsp;            case CENTAUR:
+<b class="fc"><i class="no-highlight">46</i>&nbsp;                c = new Centaur();</b>
+<b class="fc"><i class="no-highlight">47</i>&nbsp;                break;</b>
+<i class="no-highlight">48</i>&nbsp;            case JOLLY:
+<b class="fc"><i class="no-highlight">49</i>&nbsp;                c = new Jolly(bag);</b>
+<b class="fc"><i class="no-highlight">50</i>&nbsp;                break;</b>
+<i class="no-highlight">51</i>&nbsp;            case KNIGHT:
+<b class="fc"><i class="no-highlight">52</i>&nbsp;                c = new Knight();</b>
+<b class="fc"><i class="no-highlight">53</i>&nbsp;                break;</b>
+<i class="no-highlight">54</i>&nbsp;            case MUSHROOM_HUNTER:
+<b class="fc"><i class="no-highlight">55</i>&nbsp;                c = new MushroomHunter();</b>
+<b class="fc"><i class="no-highlight">56</i>&nbsp;                break;</b>
+<i class="no-highlight">57</i>&nbsp;            case SPOILED_PRINCESS:
+<b class="fc"><i class="no-highlight">58</i>&nbsp;                c = new SpoiledPrincess(bag);</b>
+<b class="fc"><i class="no-highlight">59</i>&nbsp;                break;</b>
+<i class="no-highlight">60</i>&nbsp;            case THIEF:
+<b class="fc"><i class="no-highlight">61</i>&nbsp;                c = new Thief();</b>
+<b class="fc"><i class="no-highlight">62</i>&nbsp;                break;</b>
+<i class="no-highlight">63</i>&nbsp;            default:
+<b class="nc"><i class="no-highlight">64</i>&nbsp;                throw new IllegalArgumentException(&quot;There is no characterCard with this name&quot;);</b>
+<i class="no-highlight">65</i>&nbsp;        }
+<i class="no-highlight">66</i>&nbsp;
+<b class="fc"><i class="no-highlight">67</i>&nbsp;        return c;</b>
+<i class="no-highlight">68</i>&nbsp;    }
+<i class="no-highlight">69</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -193,7 +194,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-01 12:22</div>
+    <div style="float:right;">generated on 2022-07-01 19:12</div>
 </div>
 </body>
 </html>

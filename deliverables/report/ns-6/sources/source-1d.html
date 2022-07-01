@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > UpdateGameModel</title>
+  <title>Coverage Report > UpdateIsland</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/highlight-idea.css";
@@ -20,7 +20,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     <a href="../index.html">it.polimi.ingsw.messages.answer</a>
 </div>
 
-<h1>Coverage Summary for Class: UpdateGameModel (it.polimi.ingsw.messages.answer)</h1>
+<h1>Coverage Summary for Class: UpdateIsland (it.polimi.ingsw.messages.answer)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -39,7 +39,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">UpdateGameModel</td>
+  <td class="name">UpdateIsland</td>
 <td class="coverageStat">
   <span class="percent">
     100%
@@ -75,33 +75,35 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package it.polimi.ingsw.messages.answer;
 <i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import it.polimi.ingsw.client.ReducedGameModel;
+<i class="no-highlight">3</i>&nbsp;import it.polimi.ingsw.client.ReducedIsland;
 <i class="no-highlight">4</i>&nbsp;
-<i class="no-highlight">5</i>&nbsp;import static it.polimi.ingsw.messages.MessageType.UPDATE_GAME_MODEL;
+<i class="no-highlight">5</i>&nbsp;import java.util.List;
 <i class="no-highlight">6</i>&nbsp;
-<i class="no-highlight">7</i>&nbsp;/**
-<i class="no-highlight">8</i>&nbsp; * Class representing messages from the server to the client to notify the change of the Game Model.
-<i class="no-highlight">9</i>&nbsp; *
-<i class="no-highlight">10</i>&nbsp; * @author Alessio Buda &amp; Dario Mazzola &amp; Gabriele Munafo&#39;
-<i class="no-highlight">11</i>&nbsp; */
-<i class="no-highlight">12</i>&nbsp;public class UpdateGameModel extends AnswerMessage{
-<i class="no-highlight">13</i>&nbsp;
-<i class="no-highlight">14</i>&nbsp;    private final ReducedGameModel gameModel;
+<i class="no-highlight">7</i>&nbsp;import static it.polimi.ingsw.messages.MessageType.UPDATE_ISLAND;
+<i class="no-highlight">8</i>&nbsp;
+<i class="no-highlight">9</i>&nbsp;/**
+<i class="no-highlight">10</i>&nbsp; * Class representing messages from the server to the client to notify the change of an Island.
+<i class="no-highlight">11</i>&nbsp; *
+<i class="no-highlight">12</i>&nbsp; * @author Alessio Buda &amp; Dario Mazzola &amp; Gabriele Munafo&#39;
+<i class="no-highlight">13</i>&nbsp; */
+<i class="no-highlight">14</i>&nbsp;public class UpdateIsland extends AnswerMessage{
 <i class="no-highlight">15</i>&nbsp;
-<i class="no-highlight">16</i>&nbsp;    /**
-<i class="no-highlight">17</i>&nbsp;     * Class constructor.
-<i class="no-highlight">18</i>&nbsp;     *
-<i class="no-highlight">19</i>&nbsp;     * @param gameModel the gameModel to send
-<i class="no-highlight">20</i>&nbsp;     */
-<i class="no-highlight">21</i>&nbsp;    public UpdateGameModel(ReducedGameModel gameModel){
-<b class="fc"><i class="no-highlight">22</i>&nbsp;        super(UPDATE_GAME_MODEL);</b>
-<b class="fc"><i class="no-highlight">23</i>&nbsp;        this.gameModel = gameModel;</b>
-<i class="no-highlight">24</i>&nbsp;    }
-<i class="no-highlight">25</i>&nbsp;
-<i class="no-highlight">26</i>&nbsp;    public ReducedGameModel getGameModel() {
-<b class="nc"><i class="no-highlight">27</i>&nbsp;        return gameModel;</b>
-<i class="no-highlight">28</i>&nbsp;    }
-<i class="no-highlight">29</i>&nbsp;}
+<i class="no-highlight">16</i>&nbsp;    private final List&lt;ReducedIsland&gt; island;
+<i class="no-highlight">17</i>&nbsp;
+<i class="no-highlight">18</i>&nbsp;    /**
+<i class="no-highlight">19</i>&nbsp;     * Class constructor
+<i class="no-highlight">20</i>&nbsp;     *
+<i class="no-highlight">21</i>&nbsp;     * @param island the island to send.
+<i class="no-highlight">22</i>&nbsp;     */
+<i class="no-highlight">23</i>&nbsp;    public UpdateIsland(List&lt;ReducedIsland&gt; island) {
+<b class="fc"><i class="no-highlight">24</i>&nbsp;        super(UPDATE_ISLAND);</b>
+<b class="fc"><i class="no-highlight">25</i>&nbsp;        this.island = island;</b>
+<i class="no-highlight">26</i>&nbsp;    }
+<i class="no-highlight">27</i>&nbsp;
+<i class="no-highlight">28</i>&nbsp;    public List&lt;ReducedIsland&gt; getIsland() {
+<b class="nc"><i class="no-highlight">29</i>&nbsp;        return island;</b>
+<i class="no-highlight">30</i>&nbsp;    }
+<i class="no-highlight">31</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -128,7 +130,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-01 12:22</div>
+    <div style="float:right;">generated on 2022-07-01 19:12</div>
 </div>
 </body>
 </html>

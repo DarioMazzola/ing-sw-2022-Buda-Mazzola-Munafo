@@ -143,87 +143,87 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">42</i>&nbsp;
 <i class="no-highlight">43</i>&nbsp;    /**
 <i class="no-highlight">44</i>&nbsp;     * Gets called to manage the messages from the client
-<i class="no-highlight">45</i>&nbsp;     * @param messageReceived received from the client
-<i class="no-highlight">46</i>&nbsp;     * @param phase which selects the right case of the switch
-<i class="no-highlight">47</i>&nbsp;     */
-<i class="no-highlight">48</i>&nbsp;    public void doAction(CommandMessage messageReceived, GamePhase phase, TurnController tc) {
-<b class="nc"><i class="no-highlight">49</i>&nbsp;        System.out.println(&quot;\n&quot; + messageReceived.getNickname() + &quot; is in start state\n&quot;);</b>
-<i class="no-highlight">50</i>&nbsp;        Player p;
-<i class="no-highlight">51</i>&nbsp;
-<b class="nc"><i class="no-highlight">52</i>&nbsp;        switch (phase) {</b>
-<i class="no-highlight">53</i>&nbsp;            case WIZARD:
-<b class="nc"><i class="no-highlight">54</i>&nbsp;                p = gm.getPlayerByNickname(messageReceived.getNickname());</b>
-<b class="nc"><i class="no-highlight">55</i>&nbsp;                Wizard wizard = ((ChosenWizard) messageReceived).getWizard();</b>
-<i class="no-highlight">56</i>&nbsp;
-<b class="nc"><i class="no-highlight">57</i>&nbsp;                if (wizardTaken(wizard)) {</b>
-<b class="nc"><i class="no-highlight">58</i>&nbsp;                    tc.getVirtualViewMap().get(messageReceived.getNickname()).showError(WIZARD_TAKEN.toString());</b>
-<b class="nc"><i class="no-highlight">59</i>&nbsp;                    tc.getVirtualViewMap().get(messageReceived.getNickname()).selectWizard(availableWizards);</b>
-<b class="nc"><i class="no-highlight">60</i>&nbsp;                    break;</b>
-<i class="no-highlight">61</i>&nbsp;                }
-<i class="no-highlight">62</i>&nbsp;
-<b class="nc"><i class="no-highlight">63</i>&nbsp;                p.setWizard(wizard);</b>
-<b class="nc"><i class="no-highlight">64</i>&nbsp;                availableWizards.remove(wizard);</b>
-<i class="no-highlight">65</i>&nbsp;
-<b class="nc"><i class="no-highlight">66</i>&nbsp;                if (4 - availableWizards.size() == gm.getNumPlayers()) {</b>
-<b class="nc"><i class="no-highlight">67</i>&nbsp;                    if (gm.getNumPlayers() == 4) {</b>
-<b class="nc"><i class="no-highlight">68</i>&nbsp;                        tc.next_Phase(SELECT_TEAM);</b>
-<b class="nc"><i class="no-highlight">69</i>&nbsp;                        tc.sendAllSelectTeam(teamArray, leaderArray);</b>
-<i class="no-highlight">70</i>&nbsp;                    } else {
-<b class="nc"><i class="no-highlight">71</i>&nbsp;                        tc.next_Phase(SELECT_COLOR_TOWER);</b>
-<b class="nc"><i class="no-highlight">72</i>&nbsp;                        tc.sendAllSelectTowerColor(availableTowers);</b>
-<i class="no-highlight">73</i>&nbsp;                    }
-<i class="no-highlight">74</i>&nbsp;                } else {
-<b class="nc"><i class="no-highlight">75</i>&nbsp;                    tc.getVirtualViewMap().get(messageReceived.getNickname()).waitForOthersMoves(&quot;wizard&quot;);</b>
-<i class="no-highlight">76</i>&nbsp;                }
-<b class="nc"><i class="no-highlight">77</i>&nbsp;                break;</b>
-<i class="no-highlight">78</i>&nbsp;
-<i class="no-highlight">79</i>&nbsp;            case SELECT_TEAM:
-<b class="nc"><i class="no-highlight">80</i>&nbsp;                boolean isTeamLeader = ((ChosenTeam) messageReceived).isTeamLeader();</b>
-<b class="nc"><i class="no-highlight">81</i>&nbsp;                int team = (((ChosenTeam) messageReceived).getSelectedTeam()) - 1;</b>
-<i class="no-highlight">82</i>&nbsp;
-<b class="nc"><i class="no-highlight">83</i>&nbsp;                if (team != 0 &amp;&amp; team != 1) {</b>
-<b class="nc"><i class="no-highlight">84</i>&nbsp;                    tc.getVirtualViewMap().get(messageReceived.getNickname()).showError(INVALID_TEAM.toString());</b>
-<b class="nc"><i class="no-highlight">85</i>&nbsp;                    tc.getVirtualViewMap().get(messageReceived.getNickname()).selectTeam(teamArray, leaderArray);</b>
-<b class="nc"><i class="no-highlight">86</i>&nbsp;                    break;</b>
-<i class="no-highlight">87</i>&nbsp;                }
-<i class="no-highlight">88</i>&nbsp;
-<b class="nc"><i class="no-highlight">89</i>&nbsp;                if (isTeamLeader) {</b>
-<b class="nc"><i class="no-highlight">90</i>&nbsp;                    if (this.leaderArray[team] == null) {</b>
-<b class="nc"><i class="no-highlight">91</i>&nbsp;                        this.leaderArray[team] = messageReceived.getNickname();</b>
-<b class="nc"><i class="no-highlight">92</i>&nbsp;                        gm.getPlayerByNickname(messageReceived.getNickname()).setTeamLeader(true);</b>
-<b class="nc"><i class="no-highlight">93</i>&nbsp;                    } else if (this.teamArray[team] == null) {</b>
-<b class="nc"><i class="no-highlight">94</i>&nbsp;                        tc.getVirtualViewMap().get(messageReceived.getNickname()).showError(LEADER_TAKEN.toString());</b>
-<b class="nc"><i class="no-highlight">95</i>&nbsp;                        tc.getVirtualViewMap().get(messageReceived.getNickname()).selectTeam(teamArray, leaderArray);</b>
-<b class="nc"><i class="no-highlight">96</i>&nbsp;                        break;</b>
-<i class="no-highlight">97</i>&nbsp;                    } else {
-<b class="nc"><i class="no-highlight">98</i>&nbsp;                        tc.getVirtualViewMap().get(messageReceived.getNickname()).showError(TEAM_FULL.toString());</b>
-<b class="nc"><i class="no-highlight">99</i>&nbsp;                        tc.getVirtualViewMap().get(messageReceived.getNickname()).selectTeam(teamArray, leaderArray);</b>
-<b class="nc"><i class="no-highlight">100</i>&nbsp;                        break;</b>
-<i class="no-highlight">101</i>&nbsp;                    }
-<i class="no-highlight">102</i>&nbsp;                } else {
-<b class="nc"><i class="no-highlight">103</i>&nbsp;                    if (this.teamArray[team] == null) {</b>
-<b class="nc"><i class="no-highlight">104</i>&nbsp;                        this.teamArray[team] = messageReceived.getNickname();</b>
-<b class="nc"><i class="no-highlight">105</i>&nbsp;                        gm.getPlayerByNickname(messageReceived.getNickname()).setTeamLeader(false);</b>
-<b class="nc"><i class="no-highlight">106</i>&nbsp;                    } else if (this.leaderArray[team] == null) {</b>
-<b class="nc"><i class="no-highlight">107</i>&nbsp;                        tc.getVirtualViewMap().get(messageReceived.getNickname()).showError(TEAM_TAKEN.toString());</b>
-<b class="nc"><i class="no-highlight">108</i>&nbsp;                        tc.getVirtualViewMap().get(messageReceived.getNickname()).selectTeam(teamArray, leaderArray);</b>
-<b class="nc"><i class="no-highlight">109</i>&nbsp;                        break;</b>
-<i class="no-highlight">110</i>&nbsp;                    } else {
-<b class="nc"><i class="no-highlight">111</i>&nbsp;                        tc.getVirtualViewMap().get(messageReceived.getNickname()).showError(TEAM_FULL.toString());</b>
-<b class="nc"><i class="no-highlight">112</i>&nbsp;                        tc.getVirtualViewMap().get(messageReceived.getNickname()).selectTeam(teamArray, leaderArray);</b>
-<b class="nc"><i class="no-highlight">113</i>&nbsp;                        break;</b>
-<i class="no-highlight">114</i>&nbsp;                    }
-<i class="no-highlight">115</i>&nbsp;                }
-<b class="nc"><i class="no-highlight">116</i>&nbsp;                if (teamFull()) {</b>
-<b class="nc"><i class="no-highlight">117</i>&nbsp;                    tc.next_Phase(SELECT_COLOR_TOWER);</b>
-<b class="nc"><i class="no-highlight">118</i>&nbsp;                    tc.getVirtualViewMap().get(leaderArray[0]).selectTowerColor(availableTowers);</b>
-<b class="nc"><i class="no-highlight">119</i>&nbsp;                    tc.getVirtualViewMap().get(leaderArray[1]).selectTowerColor(availableTowers);</b>
-<i class="no-highlight">120</i>&nbsp;
-<b class="nc"><i class="no-highlight">121</i>&nbsp;                    tc.getVirtualViewMap().get(teamArray[0]).waitForOthersMoves(&quot;tower&#39;s color&quot;);</b>
-<b class="nc"><i class="no-highlight">122</i>&nbsp;                    tc.getVirtualViewMap().get(teamArray[1]).waitForOthersMoves(&quot;tower&#39;s color&quot;);</b>
-<i class="no-highlight">123</i>&nbsp;
-<i class="no-highlight">124</i>&nbsp;                }
-<i class="no-highlight">125</i>&nbsp;                else {
+<i class="no-highlight">45</i>&nbsp;     *
+<i class="no-highlight">46</i>&nbsp;     * @param messageReceived received from the client
+<i class="no-highlight">47</i>&nbsp;     * @param phase           which selects the right case of the switch
+<i class="no-highlight">48</i>&nbsp;     */
+<i class="no-highlight">49</i>&nbsp;    public void doAction(CommandMessage messageReceived, GamePhase phase, TurnController tc) {
+<b class="nc"><i class="no-highlight">50</i>&nbsp;        System.out.println(&quot;\n&quot; + messageReceived.getNickname() + &quot; is in start state\n&quot;);</b>
+<i class="no-highlight">51</i>&nbsp;        Player p;
+<i class="no-highlight">52</i>&nbsp;
+<b class="nc"><i class="no-highlight">53</i>&nbsp;        switch (phase) {</b>
+<i class="no-highlight">54</i>&nbsp;            case WIZARD:
+<b class="nc"><i class="no-highlight">55</i>&nbsp;                p = gm.getPlayerByNickname(messageReceived.getNickname());</b>
+<b class="nc"><i class="no-highlight">56</i>&nbsp;                Wizard wizard = ((ChosenWizard) messageReceived).getWizard();</b>
+<i class="no-highlight">57</i>&nbsp;
+<b class="nc"><i class="no-highlight">58</i>&nbsp;                if (wizardTaken(wizard)) {</b>
+<b class="nc"><i class="no-highlight">59</i>&nbsp;                    tc.getVirtualViewMap().get(messageReceived.getNickname()).showError(WIZARD_TAKEN.toString());</b>
+<b class="nc"><i class="no-highlight">60</i>&nbsp;                    tc.getVirtualViewMap().get(messageReceived.getNickname()).selectWizard(availableWizards);</b>
+<b class="nc"><i class="no-highlight">61</i>&nbsp;                    break;</b>
+<i class="no-highlight">62</i>&nbsp;                }
+<i class="no-highlight">63</i>&nbsp;
+<b class="nc"><i class="no-highlight">64</i>&nbsp;                p.setWizard(wizard);</b>
+<b class="nc"><i class="no-highlight">65</i>&nbsp;                availableWizards.remove(wizard);</b>
+<i class="no-highlight">66</i>&nbsp;
+<b class="nc"><i class="no-highlight">67</i>&nbsp;                if (4 - availableWizards.size() == gm.getNumPlayers()) {</b>
+<b class="nc"><i class="no-highlight">68</i>&nbsp;                    if (gm.getNumPlayers() == 4) {</b>
+<b class="nc"><i class="no-highlight">69</i>&nbsp;                        tc.next_Phase(SELECT_TEAM);</b>
+<b class="nc"><i class="no-highlight">70</i>&nbsp;                        tc.sendAllSelectTeam(teamArray, leaderArray);</b>
+<i class="no-highlight">71</i>&nbsp;                    } else {
+<b class="nc"><i class="no-highlight">72</i>&nbsp;                        tc.next_Phase(SELECT_COLOR_TOWER);</b>
+<b class="nc"><i class="no-highlight">73</i>&nbsp;                        tc.sendAllSelectTowerColor(availableTowers);</b>
+<i class="no-highlight">74</i>&nbsp;                    }
+<i class="no-highlight">75</i>&nbsp;                } else {
+<b class="nc"><i class="no-highlight">76</i>&nbsp;                    tc.getVirtualViewMap().get(messageReceived.getNickname()).waitForOthersMoves(&quot;wizard&quot;);</b>
+<i class="no-highlight">77</i>&nbsp;                }
+<b class="nc"><i class="no-highlight">78</i>&nbsp;                break;</b>
+<i class="no-highlight">79</i>&nbsp;
+<i class="no-highlight">80</i>&nbsp;            case SELECT_TEAM:
+<b class="nc"><i class="no-highlight">81</i>&nbsp;                boolean isTeamLeader = ((ChosenTeam) messageReceived).isTeamLeader();</b>
+<b class="nc"><i class="no-highlight">82</i>&nbsp;                int team = (((ChosenTeam) messageReceived).getSelectedTeam()) - 1;</b>
+<i class="no-highlight">83</i>&nbsp;
+<b class="nc"><i class="no-highlight">84</i>&nbsp;                if (team != 0 &amp;&amp; team != 1) {</b>
+<b class="nc"><i class="no-highlight">85</i>&nbsp;                    tc.getVirtualViewMap().get(messageReceived.getNickname()).showError(INVALID_TEAM.toString());</b>
+<b class="nc"><i class="no-highlight">86</i>&nbsp;                    tc.getVirtualViewMap().get(messageReceived.getNickname()).selectTeam(teamArray, leaderArray);</b>
+<b class="nc"><i class="no-highlight">87</i>&nbsp;                    break;</b>
+<i class="no-highlight">88</i>&nbsp;                }
+<i class="no-highlight">89</i>&nbsp;
+<b class="nc"><i class="no-highlight">90</i>&nbsp;                if (isTeamLeader) {</b>
+<b class="nc"><i class="no-highlight">91</i>&nbsp;                    if (this.leaderArray[team] == null) {</b>
+<b class="nc"><i class="no-highlight">92</i>&nbsp;                        this.leaderArray[team] = messageReceived.getNickname();</b>
+<b class="nc"><i class="no-highlight">93</i>&nbsp;                        gm.getPlayerByNickname(messageReceived.getNickname()).setTeamLeader(true);</b>
+<b class="nc"><i class="no-highlight">94</i>&nbsp;                    } else if (this.teamArray[team] == null) {</b>
+<b class="nc"><i class="no-highlight">95</i>&nbsp;                        tc.getVirtualViewMap().get(messageReceived.getNickname()).showError(LEADER_TAKEN.toString());</b>
+<b class="nc"><i class="no-highlight">96</i>&nbsp;                        tc.getVirtualViewMap().get(messageReceived.getNickname()).selectTeam(teamArray, leaderArray);</b>
+<b class="nc"><i class="no-highlight">97</i>&nbsp;                        break;</b>
+<i class="no-highlight">98</i>&nbsp;                    } else {
+<b class="nc"><i class="no-highlight">99</i>&nbsp;                        tc.getVirtualViewMap().get(messageReceived.getNickname()).showError(TEAM_FULL.toString());</b>
+<b class="nc"><i class="no-highlight">100</i>&nbsp;                        tc.getVirtualViewMap().get(messageReceived.getNickname()).selectTeam(teamArray, leaderArray);</b>
+<b class="nc"><i class="no-highlight">101</i>&nbsp;                        break;</b>
+<i class="no-highlight">102</i>&nbsp;                    }
+<i class="no-highlight">103</i>&nbsp;                } else {
+<b class="nc"><i class="no-highlight">104</i>&nbsp;                    if (this.teamArray[team] == null) {</b>
+<b class="nc"><i class="no-highlight">105</i>&nbsp;                        this.teamArray[team] = messageReceived.getNickname();</b>
+<b class="nc"><i class="no-highlight">106</i>&nbsp;                        gm.getPlayerByNickname(messageReceived.getNickname()).setTeamLeader(false);</b>
+<b class="nc"><i class="no-highlight">107</i>&nbsp;                    } else if (this.leaderArray[team] == null) {</b>
+<b class="nc"><i class="no-highlight">108</i>&nbsp;                        tc.getVirtualViewMap().get(messageReceived.getNickname()).showError(TEAM_TAKEN.toString());</b>
+<b class="nc"><i class="no-highlight">109</i>&nbsp;                        tc.getVirtualViewMap().get(messageReceived.getNickname()).selectTeam(teamArray, leaderArray);</b>
+<b class="nc"><i class="no-highlight">110</i>&nbsp;                        break;</b>
+<i class="no-highlight">111</i>&nbsp;                    } else {
+<b class="nc"><i class="no-highlight">112</i>&nbsp;                        tc.getVirtualViewMap().get(messageReceived.getNickname()).showError(TEAM_FULL.toString());</b>
+<b class="nc"><i class="no-highlight">113</i>&nbsp;                        tc.getVirtualViewMap().get(messageReceived.getNickname()).selectTeam(teamArray, leaderArray);</b>
+<b class="nc"><i class="no-highlight">114</i>&nbsp;                        break;</b>
+<i class="no-highlight">115</i>&nbsp;                    }
+<i class="no-highlight">116</i>&nbsp;                }
+<b class="nc"><i class="no-highlight">117</i>&nbsp;                if (teamFull()) {</b>
+<b class="nc"><i class="no-highlight">118</i>&nbsp;                    tc.next_Phase(SELECT_COLOR_TOWER);</b>
+<b class="nc"><i class="no-highlight">119</i>&nbsp;                    tc.getVirtualViewMap().get(leaderArray[0]).selectTowerColor(availableTowers);</b>
+<b class="nc"><i class="no-highlight">120</i>&nbsp;                    tc.getVirtualViewMap().get(leaderArray[1]).selectTowerColor(availableTowers);</b>
+<i class="no-highlight">121</i>&nbsp;
+<b class="nc"><i class="no-highlight">122</i>&nbsp;                    tc.getVirtualViewMap().get(teamArray[0]).waitForOthersMoves(&quot;tower&#39;s color&quot;);</b>
+<b class="nc"><i class="no-highlight">123</i>&nbsp;                    tc.getVirtualViewMap().get(teamArray[1]).waitForOthersMoves(&quot;tower&#39;s color&quot;);</b>
+<i class="no-highlight">124</i>&nbsp;
+<i class="no-highlight">125</i>&nbsp;                } else {
 <b class="nc"><i class="no-highlight">126</i>&nbsp;                    tc.getVirtualViewMap().get(messageReceived.getNickname()).waitForOthersMoves(&quot;team&quot;);</b>
 <i class="no-highlight">127</i>&nbsp;                }
 <b class="nc"><i class="no-highlight">128</i>&nbsp;                break;</b>
@@ -260,7 +260,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">159</i>&nbsp;
 <b class="nc"><i class="no-highlight">160</i>&nbsp;                    tc.sendAllModel();</b>
 <i class="no-highlight">161</i>&nbsp;
-<b class="nc"><i class="no-highlight">162</i>&nbsp;                    for (int i=1; i&lt;gm.getNumPlayers(); i++){</b>
+<b class="nc"><i class="no-highlight">162</i>&nbsp;                    for (int i = 1; i &lt; gm.getNumPlayers(); i++) {</b>
 <b class="nc"><i class="no-highlight">163</i>&nbsp;                        tc.getVirtualViewMap().get(gm.getArrayPlayers()[i].getNickname()).waitForOthersMoves(&quot;assistant card&quot;);</b>
 <i class="no-highlight">164</i>&nbsp;                    }
 <i class="no-highlight">165</i>&nbsp;
@@ -281,58 +281,60 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">180</i>&nbsp;
 <i class="no-highlight">181</i>&nbsp;    /**
 <i class="no-highlight">182</i>&nbsp;     * Checks if the wizard is already been taken by another player
-<i class="no-highlight">183</i>&nbsp;     * @param wizard that has to be checked
-<i class="no-highlight">184</i>&nbsp;     */
-<i class="no-highlight">185</i>&nbsp;    private boolean wizardTaken(Wizard wizard) {
-<b class="nc"><i class="no-highlight">186</i>&nbsp;        for (int i = 0; i &lt; gm.getNumPlayers(); i++) {</b>
-<b class="nc"><i class="no-highlight">187</i>&nbsp;            if (wizard.equals(gm.getArrayPlayers()[i].getWizard())) {</b>
-<b class="nc"><i class="no-highlight">188</i>&nbsp;                return true;</b>
-<i class="no-highlight">189</i>&nbsp;            }
-<i class="no-highlight">190</i>&nbsp;        }
-<b class="nc"><i class="no-highlight">191</i>&nbsp;        return false;</b>
-<i class="no-highlight">192</i>&nbsp;    }
-<i class="no-highlight">193</i>&nbsp;
-<i class="no-highlight">194</i>&nbsp;    public void setGameModel(GameModel gm){
-<b class="nc"><i class="no-highlight">195</i>&nbsp;        this.gm = gm;</b>
-<i class="no-highlight">196</i>&nbsp;    }
-<i class="no-highlight">197</i>&nbsp;
-<i class="no-highlight">198</i>&nbsp;    /**
-<i class="no-highlight">199</i>&nbsp;     * Checks if the color tower is already been taken by another player
-<i class="no-highlight">200</i>&nbsp;     * @param color that has to be checked
-<i class="no-highlight">201</i>&nbsp;     */
-<i class="no-highlight">202</i>&nbsp;    private boolean colorTowerTaken(Color color) {
-<b class="nc"><i class="no-highlight">203</i>&nbsp;        for (int i = 0; i &lt; gm.getNumPlayers(); i++) {</b>
-<b class="nc"><i class="no-highlight">204</i>&nbsp;            if (gm.getArrayPlayers()[i].getDashboard() != null &amp;&amp; color.equals(gm.getArrayPlayers()[i].getDashboard().getTowerColor())) {</b>
-<b class="nc"><i class="no-highlight">205</i>&nbsp;                return true;</b>
-<i class="no-highlight">206</i>&nbsp;            }
-<i class="no-highlight">207</i>&nbsp;        }
-<b class="nc"><i class="no-highlight">208</i>&nbsp;        return false;</b>
-<i class="no-highlight">209</i>&nbsp;    }
-<i class="no-highlight">210</i>&nbsp;
-<i class="no-highlight">211</i>&nbsp;    /**
-<i class="no-highlight">212</i>&nbsp;     * Checks if the teams are full
-<i class="no-highlight">213</i>&nbsp;     */
-<i class="no-highlight">214</i>&nbsp;    private boolean teamFull() {
-<b class="nc"><i class="no-highlight">215</i>&nbsp;        for (int i = 0; i &lt; 2; i++) {</b>
-<b class="nc"><i class="no-highlight">216</i>&nbsp;            if (leaderArray[i] == null || teamArray[i] == null) {</b>
-<b class="nc"><i class="no-highlight">217</i>&nbsp;                return false;</b>
-<i class="no-highlight">218</i>&nbsp;            }
-<i class="no-highlight">219</i>&nbsp;        }
-<b class="nc"><i class="no-highlight">220</i>&nbsp;        return true;</b>
-<i class="no-highlight">221</i>&nbsp;    }
-<i class="no-highlight">222</i>&nbsp;
-<i class="no-highlight">223</i>&nbsp;    /**
-<i class="no-highlight">224</i>&nbsp;     * Checks if every player has selected the color
-<i class="no-highlight">225</i>&nbsp;     */
-<i class="no-highlight">226</i>&nbsp;    private boolean colorFull() {
-<b class="nc"><i class="no-highlight">227</i>&nbsp;        for (int i = 0; i &lt; gm.getNumPlayers(); i++) {</b>
-<b class="nc"><i class="no-highlight">228</i>&nbsp;            if (gm.getArrayPlayers()[i].getDashboard() == null) {</b>
-<b class="nc"><i class="no-highlight">229</i>&nbsp;                return false;</b>
-<i class="no-highlight">230</i>&nbsp;            }
-<i class="no-highlight">231</i>&nbsp;        }
-<b class="nc"><i class="no-highlight">232</i>&nbsp;        return true;</b>
-<i class="no-highlight">233</i>&nbsp;    }
-<i class="no-highlight">234</i>&nbsp;}
+<i class="no-highlight">183</i>&nbsp;     *
+<i class="no-highlight">184</i>&nbsp;     * @param wizard that has to be checked
+<i class="no-highlight">185</i>&nbsp;     */
+<i class="no-highlight">186</i>&nbsp;    private boolean wizardTaken(Wizard wizard) {
+<b class="nc"><i class="no-highlight">187</i>&nbsp;        for (int i = 0; i &lt; gm.getNumPlayers(); i++) {</b>
+<b class="nc"><i class="no-highlight">188</i>&nbsp;            if (wizard.equals(gm.getArrayPlayers()[i].getWizard())) {</b>
+<b class="nc"><i class="no-highlight">189</i>&nbsp;                return true;</b>
+<i class="no-highlight">190</i>&nbsp;            }
+<i class="no-highlight">191</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">192</i>&nbsp;        return false;</b>
+<i class="no-highlight">193</i>&nbsp;    }
+<i class="no-highlight">194</i>&nbsp;
+<i class="no-highlight">195</i>&nbsp;    public void setGameModel(GameModel gm) {
+<b class="nc"><i class="no-highlight">196</i>&nbsp;        this.gm = gm;</b>
+<i class="no-highlight">197</i>&nbsp;    }
+<i class="no-highlight">198</i>&nbsp;
+<i class="no-highlight">199</i>&nbsp;    /**
+<i class="no-highlight">200</i>&nbsp;     * Checks if the color tower is already been taken by another player
+<i class="no-highlight">201</i>&nbsp;     *
+<i class="no-highlight">202</i>&nbsp;     * @param color that has to be checked
+<i class="no-highlight">203</i>&nbsp;     */
+<i class="no-highlight">204</i>&nbsp;    private boolean colorTowerTaken(Color color) {
+<b class="nc"><i class="no-highlight">205</i>&nbsp;        for (int i = 0; i &lt; gm.getNumPlayers(); i++) {</b>
+<b class="nc"><i class="no-highlight">206</i>&nbsp;            if (gm.getArrayPlayers()[i].getDashboard() != null &amp;&amp; color.equals(gm.getArrayPlayers()[i].getDashboard().getTowerColor())) {</b>
+<b class="nc"><i class="no-highlight">207</i>&nbsp;                return true;</b>
+<i class="no-highlight">208</i>&nbsp;            }
+<i class="no-highlight">209</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">210</i>&nbsp;        return false;</b>
+<i class="no-highlight">211</i>&nbsp;    }
+<i class="no-highlight">212</i>&nbsp;
+<i class="no-highlight">213</i>&nbsp;    /**
+<i class="no-highlight">214</i>&nbsp;     * Checks if the teams are full
+<i class="no-highlight">215</i>&nbsp;     */
+<i class="no-highlight">216</i>&nbsp;    private boolean teamFull() {
+<b class="nc"><i class="no-highlight">217</i>&nbsp;        for (int i = 0; i &lt; 2; i++) {</b>
+<b class="nc"><i class="no-highlight">218</i>&nbsp;            if (leaderArray[i] == null || teamArray[i] == null) {</b>
+<b class="nc"><i class="no-highlight">219</i>&nbsp;                return false;</b>
+<i class="no-highlight">220</i>&nbsp;            }
+<i class="no-highlight">221</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">222</i>&nbsp;        return true;</b>
+<i class="no-highlight">223</i>&nbsp;    }
+<i class="no-highlight">224</i>&nbsp;
+<i class="no-highlight">225</i>&nbsp;    /**
+<i class="no-highlight">226</i>&nbsp;     * Checks if every player has selected the color
+<i class="no-highlight">227</i>&nbsp;     */
+<i class="no-highlight">228</i>&nbsp;    private boolean colorFull() {
+<b class="nc"><i class="no-highlight">229</i>&nbsp;        for (int i = 0; i &lt; gm.getNumPlayers(); i++) {</b>
+<b class="nc"><i class="no-highlight">230</i>&nbsp;            if (gm.getArrayPlayers()[i].getDashboard() == null) {</b>
+<b class="nc"><i class="no-highlight">231</i>&nbsp;                return false;</b>
+<i class="no-highlight">232</i>&nbsp;            }
+<i class="no-highlight">233</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">234</i>&nbsp;        return true;</b>
+<i class="no-highlight">235</i>&nbsp;    }
+<i class="no-highlight">236</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -359,7 +361,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-01 12:22</div>
+    <div style="float:right;">generated on 2022-07-01 19:12</div>
 </div>
 </body>
 </html>

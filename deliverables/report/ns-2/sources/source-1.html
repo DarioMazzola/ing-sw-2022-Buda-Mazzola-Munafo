@@ -50,7 +50,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/145)
+    (0/146)
   </span>
 </td>
 </tr>
@@ -88,7 +88,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/146)
+    (0/147)
   </span>
 </td>
 </tr>
@@ -151,16 +151,16 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc"><i class="no-highlight">50</i>&nbsp;            client = new ServerHandler(ip, port);</b>
 <i class="no-highlight">51</i>&nbsp;
 <b class="nc"><i class="no-highlight">52</i>&nbsp;            client.addObserver(this);</b>
-<b class="nc"><i class="no-highlight">53</i>&nbsp;            client.readMessage(); // Starts an asynchronous reading from the server.</b>
+<b class="nc"><i class="no-highlight">53</i>&nbsp;            client.readMessage(); // Starts an asynchronous reading from the server</b>
 <b class="nc"><i class="no-highlight">54</i>&nbsp;            client.sendPong();</b>
 <b class="nc"><i class="no-highlight">55</i>&nbsp;            showTaskQueue.execute(view::createNewGame);</b>
 <b class="nc"><i class="no-highlight">56</i>&nbsp;        } catch (IOException e) {</b>
-<b class="nc"><i class="no-highlight">57</i>&nbsp;            update(new EndGameDisconnection(TypeOfError.SERVER_UNREACHBLE.toString()));</b>
+<b class="nc"><i class="no-highlight">57</i>&nbsp;            update(new EndGameDisconnection(TypeOfError.SERVER_UNREACHABLE.toString()));</b>
 <b class="nc"><i class="no-highlight">58</i>&nbsp;        }</b>
 <i class="no-highlight">59</i>&nbsp;    }
 <i class="no-highlight">60</i>&nbsp;
 <i class="no-highlight">61</i>&nbsp;    /**
-<i class="no-highlight">62</i>&nbsp;     * @see ViewObserver#onCreateNewGame(String) 
+<i class="no-highlight">62</i>&nbsp;     * @see ViewObserver#onCreateNewGame(String)
 <i class="no-highlight">63</i>&nbsp;     */
 <i class="no-highlight">64</i>&nbsp;    @Override
 <i class="no-highlight">65</i>&nbsp;    public void onCreateNewGame(String nickname) {
@@ -294,172 +294,173 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">193</i>&nbsp;     */
 <i class="no-highlight">194</i>&nbsp;    @Override
 <i class="no-highlight">195</i>&nbsp;    public void onDisconnection() {
-<i class="no-highlight">196</i>&nbsp;        try{
+<i class="no-highlight">196</i>&nbsp;        try {
 <b class="nc"><i class="no-highlight">197</i>&nbsp;            client.disconnect();</b>
-<b class="nc"><i class="no-highlight">198</i>&nbsp;        }catch (NullPointerException ignored){}</b>
-<b class="nc"><i class="no-highlight">199</i>&nbsp;        showTaskQueue.shutdown();</b>
-<b class="nc"><i class="no-highlight">200</i>&nbsp;        System.exit(-12);</b>
-<i class="no-highlight">201</i>&nbsp;    }
-<i class="no-highlight">202</i>&nbsp;
-<i class="no-highlight">203</i>&nbsp;    /**
-<i class="no-highlight">204</i>&nbsp;     * @see ViewObserver#waitForMessage()
-<i class="no-highlight">205</i>&nbsp;     */
-<i class="no-highlight">206</i>&nbsp;    @Override
-<i class="no-highlight">207</i>&nbsp;    public void waitForMessage(){
-<b class="nc"><i class="no-highlight">208</i>&nbsp;        client.sendMessage(new ReloadMessages(this.nickname));</b>
-<i class="no-highlight">209</i>&nbsp;    }
-<i class="no-highlight">210</i>&nbsp;
-<i class="no-highlight">211</i>&nbsp;    /**
-<i class="no-highlight">212</i>&nbsp;     * @see Observer#update(Message)
-<i class="no-highlight">213</i>&nbsp;     */
-<i class="no-highlight">214</i>&nbsp;    @Override
-<i class="no-highlight">215</i>&nbsp;    public void update(Message message) {
-<i class="no-highlight">216</i>&nbsp;
-<b class="nc"><i class="no-highlight">217</i>&nbsp;        switch (message.getType()) {</b>
-<i class="no-highlight">218</i>&nbsp;            case PING:
-<b class="nc"><i class="no-highlight">219</i>&nbsp;                break;</b>
-<i class="no-highlight">220</i>&nbsp;            case GAME_FULL:
-<b class="nc"><i class="no-highlight">221</i>&nbsp;                showTaskQueue.execute(view::notifyGameFull);</b>
-<b class="nc"><i class="no-highlight">222</i>&nbsp;                break;</b>
-<i class="no-highlight">223</i>&nbsp;            case NACK:
-<b class="nc"><i class="no-highlight">224</i>&nbsp;                Nack nack = (Nack) message;</b>
-<b class="nc"><i class="no-highlight">225</i>&nbsp;                String error = nack.getTypeOfError();</b>
-<b class="nc"><i class="no-highlight">226</i>&nbsp;                showTaskQueue.execute(() -&gt; view.showError(error));</b>
-<b class="nc"><i class="no-highlight">227</i>&nbsp;                break;</b>
-<i class="no-highlight">228</i>&nbsp;            case SELECT_NICKNAME:
-<b class="nc"><i class="no-highlight">229</i>&nbsp;                showTaskQueue.execute(view::selectNickname);</b>
-<b class="nc"><i class="no-highlight">230</i>&nbsp;                break;</b>
-<i class="no-highlight">231</i>&nbsp;            case SELECT_NUM_PLAYERS:
-<b class="nc"><i class="no-highlight">232</i>&nbsp;                showTaskQueue.execute(view::selectNumPlayers);</b>
-<b class="nc"><i class="no-highlight">233</i>&nbsp;                break;</b>
-<i class="no-highlight">234</i>&nbsp;            case SELECT_CHAT:
-<b class="nc"><i class="no-highlight">235</i>&nbsp;                showTaskQueue.execute(view::selectChat);</b>
-<b class="nc"><i class="no-highlight">236</i>&nbsp;                break;</b>
-<i class="no-highlight">237</i>&nbsp;            case SELECT_EXPERT_MODE:
-<b class="nc"><i class="no-highlight">238</i>&nbsp;                showTaskQueue.execute(view::selectExpertMode);</b>
-<b class="nc"><i class="no-highlight">239</i>&nbsp;                break;</b>
-<i class="no-highlight">240</i>&nbsp;            case SELECT_WIZARD:
-<b class="nc"><i class="no-highlight">241</i>&nbsp;                SelectWizard selectWizard = (SelectWizard) message;</b>
-<b class="nc"><i class="no-highlight">242</i>&nbsp;                List&lt;Wizard&gt; availableWizards = selectWizard.getAvailableWizards();</b>
-<b class="nc"><i class="no-highlight">243</i>&nbsp;                showTaskQueue.execute(() -&gt; view.rememberNickname(this.nickname));</b>
-<b class="nc"><i class="no-highlight">244</i>&nbsp;                showTaskQueue.execute(() -&gt; view.selectWizard(availableWizards));</b>
-<b class="nc"><i class="no-highlight">245</i>&nbsp;                break;</b>
-<i class="no-highlight">246</i>&nbsp;            case SELECT_TEAM:
-<b class="nc"><i class="no-highlight">247</i>&nbsp;                SelectTeam selectTeam = (SelectTeam) message;</b>
-<b class="nc"><i class="no-highlight">248</i>&nbsp;                String[] teamArray = selectTeam.getTeamArray();</b>
-<b class="nc"><i class="no-highlight">249</i>&nbsp;                String[] leaderArray = selectTeam.getLeaderArray();</b>
-<b class="nc"><i class="no-highlight">250</i>&nbsp;                showTaskQueue.execute(() -&gt; view.selectTeam(teamArray, leaderArray));</b>
-<b class="nc"><i class="no-highlight">251</i>&nbsp;                break;</b>
-<i class="no-highlight">252</i>&nbsp;            case SELECT_COLOR_TOWER:
-<b class="nc"><i class="no-highlight">253</i>&nbsp;                SelectColorTower selectColorTower = (SelectColorTower) message;</b>
-<b class="nc"><i class="no-highlight">254</i>&nbsp;                List&lt;Color&gt; availableColors = selectColorTower.getAvailableColors();</b>
-<b class="nc"><i class="no-highlight">255</i>&nbsp;                showTaskQueue.execute(() -&gt; view.selectTowerColor(availableColors));</b>
-<b class="nc"><i class="no-highlight">256</i>&nbsp;                break;</b>
-<i class="no-highlight">257</i>&nbsp;            case SELECT_ASSISTANT_CARD:
-<b class="nc"><i class="no-highlight">258</i>&nbsp;                SelectAssistantCard selectAssistantCard = (SelectAssistantCard) message;</b>
-<b class="nc"><i class="no-highlight">259</i>&nbsp;                List&lt;Card&gt; availableAssistantCards = selectAssistantCard.getAvailableAssistantCards();</b>
-<b class="nc"><i class="no-highlight">260</i>&nbsp;                view.setStop(true);</b>
-<b class="nc"><i class="no-highlight">261</i>&nbsp;                showTaskQueue.execute(() -&gt; view.selectAssistantCard(availableAssistantCards));</b>
-<b class="nc"><i class="no-highlight">262</i>&nbsp;                break;</b>
-<i class="no-highlight">263</i>&nbsp;            case ACTION_PHASE:
-<b class="nc"><i class="no-highlight">264</i>&nbsp;                ActionPhase actionPhase = (ActionPhase) message;</b>
-<b class="nc"><i class="no-highlight">265</i>&nbsp;                List&lt;String&gt; availableActions = actionPhase.getAvailableActions();</b>
-<i class="no-highlight">266</i>&nbsp;
-<b class="nc"><i class="no-highlight">267</i>&nbsp;                List&lt;String&gt; defaultActions = new ArrayList&lt;&gt;();</b>
-<b class="nc"><i class="no-highlight">268</i>&nbsp;                defaultActions.add(&quot;See the details of an Island&quot;);</b>
-<b class="nc"><i class="no-highlight">269</i>&nbsp;                defaultActions.add(&quot;See the details of a Player&#39;s dashboard&quot;);</b>
-<b class="nc"><i class="no-highlight">270</i>&nbsp;                defaultActions.add(&quot;See the current state of clouds&quot;);</b>
-<b class="nc"><i class="no-highlight">271</i>&nbsp;                defaultActions.add(&quot;See Mother Nature position&quot;);</b>
-<i class="no-highlight">272</i>&nbsp;
-<b class="nc"><i class="no-highlight">273</i>&nbsp;                availableActions.addAll(defaultActions);</b>
-<b class="nc"><i class="no-highlight">274</i>&nbsp;                if (!availableActions.contains(&quot;Move students to dining hall or to island&quot;))</b>
-<b class="nc"><i class="no-highlight">275</i>&nbsp;                    availableActions.add(&quot;Move Mother Nature&quot;);</b>
-<b class="nc"><i class="no-highlight">276</i>&nbsp;                view.setStop(true);</b>
-<b class="nc"><i class="no-highlight">277</i>&nbsp;                showTaskQueue.execute(() -&gt; view.actionPhase(availableActions));</b>
-<b class="nc"><i class="no-highlight">278</i>&nbsp;                break;</b>
-<i class="no-highlight">279</i>&nbsp;            case CHAT_MESSAGE_SERVER_CLIENT:
-<b class="nc"><i class="no-highlight">280</i>&nbsp;                ChatMessageServerClient chatMessageServerClient = (ChatMessageServerClient) message;</b>
-<b class="nc"><i class="no-highlight">281</i>&nbsp;                String chatMessage = chatMessageServerClient.getMessage();</b>
-<b class="nc"><i class="no-highlight">282</i>&nbsp;                showTaskQueue.execute(() -&gt; view.onChatMessageReceived(chatMessage));</b>
-<b class="nc"><i class="no-highlight">283</i>&nbsp;                break;</b>
-<i class="no-highlight">284</i>&nbsp;            case GO_TO_WAITING_ROOM:
-<b class="nc"><i class="no-highlight">285</i>&nbsp;                showTaskQueue.execute(view::goToWaitingRoom);</b>
-<b class="nc"><i class="no-highlight">286</i>&nbsp;                break;</b>
-<i class="no-highlight">287</i>&nbsp;            case SEND_WINNER:
-<b class="nc"><i class="no-highlight">288</i>&nbsp;                SendWinner sendWinner = (SendWinner) message;</b>
-<b class="nc"><i class="no-highlight">289</i>&nbsp;                String winner = sendWinner.getWinner();</b>
-<b class="nc"><i class="no-highlight">290</i>&nbsp;                view.setStop(true);</b>
-<b class="nc"><i class="no-highlight">291</i>&nbsp;                showTaskQueue.execute(() -&gt; view.sendWinner(winner));</b>
-<b class="nc"><i class="no-highlight">292</i>&nbsp;                break;</b>
-<i class="no-highlight">293</i>&nbsp;            case UPDATE_ISLAND:
-<b class="nc"><i class="no-highlight">294</i>&nbsp;                UpdateIsland updateIsland = (UpdateIsland) message;</b>
-<b class="nc"><i class="no-highlight">295</i>&nbsp;                List&lt;ReducedIsland&gt; islands = updateIsland.getIsland();</b>
-<b class="nc"><i class="no-highlight">296</i>&nbsp;                updateTaskQueue.execute(() -&gt; view.updateIslands(islands));</b>
-<b class="nc"><i class="no-highlight">297</i>&nbsp;                break;</b>
-<i class="no-highlight">298</i>&nbsp;            case UPDATE_DINING_HALL:
-<b class="nc"><i class="no-highlight">299</i>&nbsp;                UpdateDiningHall updateDiningHall = (UpdateDiningHall) message;</b>
-<b class="nc"><i class="no-highlight">300</i>&nbsp;                ReducedDiningHall diningHall = updateDiningHall.getDiningHall();</b>
-<b class="nc"><i class="no-highlight">301</i>&nbsp;                updateTaskQueue.execute(() -&gt; view.updateDiningHall(diningHall));</b>
-<b class="nc"><i class="no-highlight">302</i>&nbsp;                break;</b>
-<i class="no-highlight">303</i>&nbsp;            case UPDATE_DASHBOARD:
-<b class="nc"><i class="no-highlight">304</i>&nbsp;                UpdateDashboard updateDashboard = (UpdateDashboard) message;</b>
-<b class="nc"><i class="no-highlight">305</i>&nbsp;                ReducedDashboard dashboard = updateDashboard.getDashboard();</b>
-<b class="nc"><i class="no-highlight">306</i>&nbsp;                updateTaskQueue.execute(() -&gt; view.updateDashboard(dashboard));</b>
-<b class="nc"><i class="no-highlight">307</i>&nbsp;                break;</b>
-<i class="no-highlight">308</i>&nbsp;            case UPDATE_CLOUD:
-<b class="nc"><i class="no-highlight">309</i>&nbsp;                UpdateCloud updateCloud = (UpdateCloud) message;</b>
-<b class="nc"><i class="no-highlight">310</i>&nbsp;                ReducedCloud[] clouds = updateCloud.getClouds();</b>
-<b class="nc"><i class="no-highlight">311</i>&nbsp;                updateTaskQueue.execute(() -&gt; view.updateClouds(clouds));</b>
-<b class="nc"><i class="no-highlight">312</i>&nbsp;                break;</b>
-<i class="no-highlight">313</i>&nbsp;            case UPDATE_MOTHER_ISLAND:
-<b class="nc"><i class="no-highlight">314</i>&nbsp;                UpdateMotherIsland updateMotherIsland = (UpdateMotherIsland) message;</b>
-<b class="nc"><i class="no-highlight">315</i>&nbsp;                int motherIsland = updateMotherIsland.getMotherIsland();</b>
-<b class="nc"><i class="no-highlight">316</i>&nbsp;                showTaskQueue.execute(() -&gt; view.updateMotherNature(motherIsland));</b>
-<b class="nc"><i class="no-highlight">317</i>&nbsp;                break;</b>
-<i class="no-highlight">318</i>&nbsp;            case UPDATE_CURRENT_PLAYER:
-<b class="nc"><i class="no-highlight">319</i>&nbsp;                UpdateCurrentPlayer updateCurrentPlayer = (UpdateCurrentPlayer) message;</b>
-<b class="nc"><i class="no-highlight">320</i>&nbsp;                ReducedPlayer currentPlayer = updateCurrentPlayer.getCurrentPlayer();</b>
-<b class="nc"><i class="no-highlight">321</i>&nbsp;                updateTaskQueue.execute(() -&gt; view.updateCurrentPlayer(currentPlayer));</b>
-<b class="nc"><i class="no-highlight">322</i>&nbsp;                break;</b>
-<i class="no-highlight">323</i>&nbsp;            case UPDATE_PLAYER:
-<b class="nc"><i class="no-highlight">324</i>&nbsp;                UpdatePlayer updatePlayer = (UpdatePlayer) message;</b>
-<b class="nc"><i class="no-highlight">325</i>&nbsp;                ReducedPlayer player = updatePlayer.getPlayer();</b>
-<b class="nc"><i class="no-highlight">326</i>&nbsp;                updateTaskQueue.execute(() -&gt; view.updatePlayer(player));</b>
-<b class="nc"><i class="no-highlight">327</i>&nbsp;                break;</b>
-<i class="no-highlight">328</i>&nbsp;            case UPDATE_GAME_MODEL:
-<b class="nc"><i class="no-highlight">329</i>&nbsp;                UpdateGameModel updateGameModel = (UpdateGameModel) message;</b>
-<b class="nc"><i class="no-highlight">330</i>&nbsp;                ReducedGameModel gameModel = updateGameModel.getGameModel();</b>
-<b class="nc"><i class="no-highlight">331</i>&nbsp;                updateTaskQueue.execute(() -&gt; view.updateGameModel(gameModel));</b>
-<b class="nc"><i class="no-highlight">332</i>&nbsp;                break;</b>
-<i class="no-highlight">333</i>&nbsp;            case SELECT_CLOUD:
-<b class="nc"><i class="no-highlight">334</i>&nbsp;                view.setStop(true);</b>
-<b class="nc"><i class="no-highlight">335</i>&nbsp;                showTaskQueue.execute(view::selectCloud);</b>
-<b class="nc"><i class="no-highlight">336</i>&nbsp;                break;</b>
-<i class="no-highlight">337</i>&nbsp;            case GO_TO_LOBBY:
-<b class="nc"><i class="no-highlight">338</i>&nbsp;                showTaskQueue.execute(view::goToLobby);</b>
-<b class="nc"><i class="no-highlight">339</i>&nbsp;                break;</b>
-<i class="no-highlight">340</i>&nbsp;            case SELECT_RESTORE_GAME:
-<b class="nc"><i class="no-highlight">341</i>&nbsp;                showTaskQueue.execute(view::selectRestoreGame);</b>
-<b class="nc"><i class="no-highlight">342</i>&nbsp;                break;</b>
-<i class="no-highlight">343</i>&nbsp;            case END_GAME_DISCONNECTION:
-<b class="nc"><i class="no-highlight">344</i>&nbsp;                EndGameDisconnection endGameDisconnection = (EndGameDisconnection) message;</b>
-<b class="nc"><i class="no-highlight">345</i>&nbsp;                view.setStop(true);</b>
-<b class="nc"><i class="no-highlight">346</i>&nbsp;                view.endGameDisconnection(endGameDisconnection.getErrorCause());</b>
-<b class="nc"><i class="no-highlight">347</i>&nbsp;                break;</b>
-<i class="no-highlight">348</i>&nbsp;            case REMEMBER_NICKNAME:
-<b class="nc"><i class="no-highlight">349</i>&nbsp;                RememberNickname rememberNickname = (RememberNickname) message;</b>
-<b class="nc"><i class="no-highlight">350</i>&nbsp;                String nickname = rememberNickname.getNickname();</b>
-<b class="nc"><i class="no-highlight">351</i>&nbsp;                showTaskQueue.execute(() -&gt; view.rememberNickname(nickname));</b>
-<b class="nc"><i class="no-highlight">352</i>&nbsp;                break;</b>
-<i class="no-highlight">353</i>&nbsp;            case WAIT_FOR_OTHERS_MOVES:
-<b class="nc"><i class="no-highlight">354</i>&nbsp;                String move = ((WaitForOthersMoves)message).getMove();</b>
-<b class="nc"><i class="no-highlight">355</i>&nbsp;                showTaskQueue.execute(() -&gt; view.waitForOthersMoves(move));</b>
-<b class="nc"><i class="no-highlight">356</i>&nbsp;                break;</b>
-<i class="no-highlight">357</i>&nbsp;            default:
-<b class="nc"><i class="no-highlight">358</i>&nbsp;                throw new IllegalStateException(&quot;Unexpected value: &quot; + message.getType());</b>
-<i class="no-highlight">359</i>&nbsp;        }
-<i class="no-highlight">360</i>&nbsp;    }
-<i class="no-highlight">361</i>&nbsp;}
+<b class="nc"><i class="no-highlight">198</i>&nbsp;        } catch (NullPointerException ignored) {</b>
+<b class="nc"><i class="no-highlight">199</i>&nbsp;        }</b>
+<b class="nc"><i class="no-highlight">200</i>&nbsp;        showTaskQueue.shutdown();</b>
+<b class="nc"><i class="no-highlight">201</i>&nbsp;        System.exit(-12);</b>
+<i class="no-highlight">202</i>&nbsp;    }
+<i class="no-highlight">203</i>&nbsp;
+<i class="no-highlight">204</i>&nbsp;    /**
+<i class="no-highlight">205</i>&nbsp;     * @see ViewObserver#waitForMessage()
+<i class="no-highlight">206</i>&nbsp;     */
+<i class="no-highlight">207</i>&nbsp;    @Override
+<i class="no-highlight">208</i>&nbsp;    public void waitForMessage() {
+<b class="nc"><i class="no-highlight">209</i>&nbsp;        client.sendMessage(new ReloadMessages(this.nickname));</b>
+<i class="no-highlight">210</i>&nbsp;    }
+<i class="no-highlight">211</i>&nbsp;
+<i class="no-highlight">212</i>&nbsp;    /**
+<i class="no-highlight">213</i>&nbsp;     * @see Observer#update(Message)
+<i class="no-highlight">214</i>&nbsp;     */
+<i class="no-highlight">215</i>&nbsp;    @Override
+<i class="no-highlight">216</i>&nbsp;    public void update(Message message) {
+<i class="no-highlight">217</i>&nbsp;
+<b class="nc"><i class="no-highlight">218</i>&nbsp;        switch (message.getType()) {</b>
+<i class="no-highlight">219</i>&nbsp;            case PING:
+<b class="nc"><i class="no-highlight">220</i>&nbsp;                break;</b>
+<i class="no-highlight">221</i>&nbsp;            case GAME_FULL:
+<b class="nc"><i class="no-highlight">222</i>&nbsp;                showTaskQueue.execute(view::notifyGameFull);</b>
+<b class="nc"><i class="no-highlight">223</i>&nbsp;                break;</b>
+<i class="no-highlight">224</i>&nbsp;            case NACK:
+<b class="nc"><i class="no-highlight">225</i>&nbsp;                Nack nack = (Nack) message;</b>
+<b class="nc"><i class="no-highlight">226</i>&nbsp;                String error = nack.getTypeOfError();</b>
+<b class="nc"><i class="no-highlight">227</i>&nbsp;                showTaskQueue.execute(() -&gt; view.showError(error));</b>
+<b class="nc"><i class="no-highlight">228</i>&nbsp;                break;</b>
+<i class="no-highlight">229</i>&nbsp;            case SELECT_NICKNAME:
+<b class="nc"><i class="no-highlight">230</i>&nbsp;                showTaskQueue.execute(view::selectNickname);</b>
+<b class="nc"><i class="no-highlight">231</i>&nbsp;                break;</b>
+<i class="no-highlight">232</i>&nbsp;            case SELECT_NUM_PLAYERS:
+<b class="nc"><i class="no-highlight">233</i>&nbsp;                showTaskQueue.execute(view::selectNumPlayers);</b>
+<b class="nc"><i class="no-highlight">234</i>&nbsp;                break;</b>
+<i class="no-highlight">235</i>&nbsp;            case SELECT_CHAT:
+<b class="nc"><i class="no-highlight">236</i>&nbsp;                showTaskQueue.execute(view::selectChat);</b>
+<b class="nc"><i class="no-highlight">237</i>&nbsp;                break;</b>
+<i class="no-highlight">238</i>&nbsp;            case SELECT_EXPERT_MODE:
+<b class="nc"><i class="no-highlight">239</i>&nbsp;                showTaskQueue.execute(view::selectExpertMode);</b>
+<b class="nc"><i class="no-highlight">240</i>&nbsp;                break;</b>
+<i class="no-highlight">241</i>&nbsp;            case SELECT_WIZARD:
+<b class="nc"><i class="no-highlight">242</i>&nbsp;                SelectWizard selectWizard = (SelectWizard) message;</b>
+<b class="nc"><i class="no-highlight">243</i>&nbsp;                List&lt;Wizard&gt; availableWizards = selectWizard.getAvailableWizards();</b>
+<b class="nc"><i class="no-highlight">244</i>&nbsp;                showTaskQueue.execute(() -&gt; view.rememberNickname(this.nickname));</b>
+<b class="nc"><i class="no-highlight">245</i>&nbsp;                showTaskQueue.execute(() -&gt; view.selectWizard(availableWizards));</b>
+<b class="nc"><i class="no-highlight">246</i>&nbsp;                break;</b>
+<i class="no-highlight">247</i>&nbsp;            case SELECT_TEAM:
+<b class="nc"><i class="no-highlight">248</i>&nbsp;                SelectTeam selectTeam = (SelectTeam) message;</b>
+<b class="nc"><i class="no-highlight">249</i>&nbsp;                String[] teamArray = selectTeam.getTeamArray();</b>
+<b class="nc"><i class="no-highlight">250</i>&nbsp;                String[] leaderArray = selectTeam.getLeaderArray();</b>
+<b class="nc"><i class="no-highlight">251</i>&nbsp;                showTaskQueue.execute(() -&gt; view.selectTeam(teamArray, leaderArray));</b>
+<b class="nc"><i class="no-highlight">252</i>&nbsp;                break;</b>
+<i class="no-highlight">253</i>&nbsp;            case SELECT_COLOR_TOWER:
+<b class="nc"><i class="no-highlight">254</i>&nbsp;                SelectColorTower selectColorTower = (SelectColorTower) message;</b>
+<b class="nc"><i class="no-highlight">255</i>&nbsp;                List&lt;Color&gt; availableColors = selectColorTower.getAvailableColors();</b>
+<b class="nc"><i class="no-highlight">256</i>&nbsp;                showTaskQueue.execute(() -&gt; view.selectTowerColor(availableColors));</b>
+<b class="nc"><i class="no-highlight">257</i>&nbsp;                break;</b>
+<i class="no-highlight">258</i>&nbsp;            case SELECT_ASSISTANT_CARD:
+<b class="nc"><i class="no-highlight">259</i>&nbsp;                SelectAssistantCard selectAssistantCard = (SelectAssistantCard) message;</b>
+<b class="nc"><i class="no-highlight">260</i>&nbsp;                List&lt;Card&gt; availableAssistantCards = selectAssistantCard.getAvailableAssistantCards();</b>
+<b class="nc"><i class="no-highlight">261</i>&nbsp;                view.setStop(true);</b>
+<b class="nc"><i class="no-highlight">262</i>&nbsp;                showTaskQueue.execute(() -&gt; view.selectAssistantCard(availableAssistantCards));</b>
+<b class="nc"><i class="no-highlight">263</i>&nbsp;                break;</b>
+<i class="no-highlight">264</i>&nbsp;            case ACTION_PHASE:
+<b class="nc"><i class="no-highlight">265</i>&nbsp;                ActionPhase actionPhase = (ActionPhase) message;</b>
+<b class="nc"><i class="no-highlight">266</i>&nbsp;                List&lt;String&gt; availableActions = actionPhase.getAvailableActions();</b>
+<i class="no-highlight">267</i>&nbsp;
+<b class="nc"><i class="no-highlight">268</i>&nbsp;                List&lt;String&gt; defaultActions = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i class="no-highlight">269</i>&nbsp;                defaultActions.add(&quot;See the details of an Island&quot;);</b>
+<b class="nc"><i class="no-highlight">270</i>&nbsp;                defaultActions.add(&quot;See the details of a Player&#39;s dashboard&quot;);</b>
+<b class="nc"><i class="no-highlight">271</i>&nbsp;                defaultActions.add(&quot;See the current state of clouds&quot;);</b>
+<b class="nc"><i class="no-highlight">272</i>&nbsp;                defaultActions.add(&quot;See Mother Nature position&quot;);</b>
+<i class="no-highlight">273</i>&nbsp;
+<b class="nc"><i class="no-highlight">274</i>&nbsp;                availableActions.addAll(defaultActions);</b>
+<b class="nc"><i class="no-highlight">275</i>&nbsp;                if (!availableActions.contains(&quot;Move students to dining hall or to island&quot;))</b>
+<b class="nc"><i class="no-highlight">276</i>&nbsp;                    availableActions.add(&quot;Move Mother Nature&quot;);</b>
+<b class="nc"><i class="no-highlight">277</i>&nbsp;                view.setStop(true);</b>
+<b class="nc"><i class="no-highlight">278</i>&nbsp;                showTaskQueue.execute(() -&gt; view.actionPhase(availableActions));</b>
+<b class="nc"><i class="no-highlight">279</i>&nbsp;                break;</b>
+<i class="no-highlight">280</i>&nbsp;            case CHAT_MESSAGE_SERVER_CLIENT:
+<b class="nc"><i class="no-highlight">281</i>&nbsp;                ChatMessageServerClient chatMessageServerClient = (ChatMessageServerClient) message;</b>
+<b class="nc"><i class="no-highlight">282</i>&nbsp;                String chatMessage = chatMessageServerClient.getMessage();</b>
+<b class="nc"><i class="no-highlight">283</i>&nbsp;                showTaskQueue.execute(() -&gt; view.onChatMessageReceived(chatMessage));</b>
+<b class="nc"><i class="no-highlight">284</i>&nbsp;                break;</b>
+<i class="no-highlight">285</i>&nbsp;            case GO_TO_WAITING_ROOM:
+<b class="nc"><i class="no-highlight">286</i>&nbsp;                showTaskQueue.execute(view::goToWaitingRoom);</b>
+<b class="nc"><i class="no-highlight">287</i>&nbsp;                break;</b>
+<i class="no-highlight">288</i>&nbsp;            case SEND_WINNER:
+<b class="nc"><i class="no-highlight">289</i>&nbsp;                SendWinner sendWinner = (SendWinner) message;</b>
+<b class="nc"><i class="no-highlight">290</i>&nbsp;                String winner = sendWinner.getWinner();</b>
+<b class="nc"><i class="no-highlight">291</i>&nbsp;                view.setStop(true);</b>
+<b class="nc"><i class="no-highlight">292</i>&nbsp;                showTaskQueue.execute(() -&gt; view.sendWinner(winner));</b>
+<b class="nc"><i class="no-highlight">293</i>&nbsp;                break;</b>
+<i class="no-highlight">294</i>&nbsp;            case UPDATE_ISLAND:
+<b class="nc"><i class="no-highlight">295</i>&nbsp;                UpdateIsland updateIsland = (UpdateIsland) message;</b>
+<b class="nc"><i class="no-highlight">296</i>&nbsp;                List&lt;ReducedIsland&gt; islands = updateIsland.getIsland();</b>
+<b class="nc"><i class="no-highlight">297</i>&nbsp;                updateTaskQueue.execute(() -&gt; view.updateIslands(islands));</b>
+<b class="nc"><i class="no-highlight">298</i>&nbsp;                break;</b>
+<i class="no-highlight">299</i>&nbsp;            case UPDATE_DINING_HALL:
+<b class="nc"><i class="no-highlight">300</i>&nbsp;                UpdateDiningHall updateDiningHall = (UpdateDiningHall) message;</b>
+<b class="nc"><i class="no-highlight">301</i>&nbsp;                ReducedDiningHall diningHall = updateDiningHall.getDiningHall();</b>
+<b class="nc"><i class="no-highlight">302</i>&nbsp;                updateTaskQueue.execute(() -&gt; view.updateDiningHall(diningHall));</b>
+<b class="nc"><i class="no-highlight">303</i>&nbsp;                break;</b>
+<i class="no-highlight">304</i>&nbsp;            case UPDATE_DASHBOARD:
+<b class="nc"><i class="no-highlight">305</i>&nbsp;                UpdateDashboard updateDashboard = (UpdateDashboard) message;</b>
+<b class="nc"><i class="no-highlight">306</i>&nbsp;                ReducedDashboard dashboard = updateDashboard.getDashboard();</b>
+<b class="nc"><i class="no-highlight">307</i>&nbsp;                updateTaskQueue.execute(() -&gt; view.updateDashboard(dashboard));</b>
+<b class="nc"><i class="no-highlight">308</i>&nbsp;                break;</b>
+<i class="no-highlight">309</i>&nbsp;            case UPDATE_CLOUD:
+<b class="nc"><i class="no-highlight">310</i>&nbsp;                UpdateCloud updateCloud = (UpdateCloud) message;</b>
+<b class="nc"><i class="no-highlight">311</i>&nbsp;                ReducedCloud[] clouds = updateCloud.getClouds();</b>
+<b class="nc"><i class="no-highlight">312</i>&nbsp;                updateTaskQueue.execute(() -&gt; view.updateClouds(clouds));</b>
+<b class="nc"><i class="no-highlight">313</i>&nbsp;                break;</b>
+<i class="no-highlight">314</i>&nbsp;            case UPDATE_MOTHER_ISLAND:
+<b class="nc"><i class="no-highlight">315</i>&nbsp;                UpdateMotherIsland updateMotherIsland = (UpdateMotherIsland) message;</b>
+<b class="nc"><i class="no-highlight">316</i>&nbsp;                int motherIsland = updateMotherIsland.getMotherIsland();</b>
+<b class="nc"><i class="no-highlight">317</i>&nbsp;                showTaskQueue.execute(() -&gt; view.updateMotherNature(motherIsland));</b>
+<b class="nc"><i class="no-highlight">318</i>&nbsp;                break;</b>
+<i class="no-highlight">319</i>&nbsp;            case UPDATE_CURRENT_PLAYER:
+<b class="nc"><i class="no-highlight">320</i>&nbsp;                UpdateCurrentPlayer updateCurrentPlayer = (UpdateCurrentPlayer) message;</b>
+<b class="nc"><i class="no-highlight">321</i>&nbsp;                ReducedPlayer currentPlayer = updateCurrentPlayer.getCurrentPlayer();</b>
+<b class="nc"><i class="no-highlight">322</i>&nbsp;                updateTaskQueue.execute(() -&gt; view.updateCurrentPlayer(currentPlayer));</b>
+<b class="nc"><i class="no-highlight">323</i>&nbsp;                break;</b>
+<i class="no-highlight">324</i>&nbsp;            case UPDATE_PLAYER:
+<b class="nc"><i class="no-highlight">325</i>&nbsp;                UpdatePlayer updatePlayer = (UpdatePlayer) message;</b>
+<b class="nc"><i class="no-highlight">326</i>&nbsp;                ReducedPlayer player = updatePlayer.getPlayer();</b>
+<b class="nc"><i class="no-highlight">327</i>&nbsp;                updateTaskQueue.execute(() -&gt; view.updatePlayer(player));</b>
+<b class="nc"><i class="no-highlight">328</i>&nbsp;                break;</b>
+<i class="no-highlight">329</i>&nbsp;            case UPDATE_GAME_MODEL:
+<b class="nc"><i class="no-highlight">330</i>&nbsp;                UpdateGameModel updateGameModel = (UpdateGameModel) message;</b>
+<b class="nc"><i class="no-highlight">331</i>&nbsp;                ReducedGameModel gameModel = updateGameModel.getGameModel();</b>
+<b class="nc"><i class="no-highlight">332</i>&nbsp;                updateTaskQueue.execute(() -&gt; view.updateGameModel(gameModel));</b>
+<b class="nc"><i class="no-highlight">333</i>&nbsp;                break;</b>
+<i class="no-highlight">334</i>&nbsp;            case SELECT_CLOUD:
+<b class="nc"><i class="no-highlight">335</i>&nbsp;                view.setStop(true);</b>
+<b class="nc"><i class="no-highlight">336</i>&nbsp;                showTaskQueue.execute(view::selectCloud);</b>
+<b class="nc"><i class="no-highlight">337</i>&nbsp;                break;</b>
+<i class="no-highlight">338</i>&nbsp;            case GO_TO_LOBBY:
+<b class="nc"><i class="no-highlight">339</i>&nbsp;                showTaskQueue.execute(view::goToLobby);</b>
+<b class="nc"><i class="no-highlight">340</i>&nbsp;                break;</b>
+<i class="no-highlight">341</i>&nbsp;            case SELECT_RESTORE_GAME:
+<b class="nc"><i class="no-highlight">342</i>&nbsp;                showTaskQueue.execute(view::selectRestoreGame);</b>
+<b class="nc"><i class="no-highlight">343</i>&nbsp;                break;</b>
+<i class="no-highlight">344</i>&nbsp;            case END_GAME_DISCONNECTION:
+<b class="nc"><i class="no-highlight">345</i>&nbsp;                EndGameDisconnection endGameDisconnection = (EndGameDisconnection) message;</b>
+<b class="nc"><i class="no-highlight">346</i>&nbsp;                view.setStop(true);</b>
+<b class="nc"><i class="no-highlight">347</i>&nbsp;                view.endGameDisconnection(endGameDisconnection.getErrorCause());</b>
+<b class="nc"><i class="no-highlight">348</i>&nbsp;                break;</b>
+<i class="no-highlight">349</i>&nbsp;            case REMEMBER_NICKNAME:
+<b class="nc"><i class="no-highlight">350</i>&nbsp;                RememberNickname rememberNickname = (RememberNickname) message;</b>
+<b class="nc"><i class="no-highlight">351</i>&nbsp;                String nickname = rememberNickname.getNickname();</b>
+<b class="nc"><i class="no-highlight">352</i>&nbsp;                showTaskQueue.execute(() -&gt; view.rememberNickname(nickname));</b>
+<b class="nc"><i class="no-highlight">353</i>&nbsp;                break;</b>
+<i class="no-highlight">354</i>&nbsp;            case WAIT_FOR_OTHERS_MOVES:
+<b class="nc"><i class="no-highlight">355</i>&nbsp;                String move = ((WaitForOthersMoves) message).getMove();</b>
+<b class="nc"><i class="no-highlight">356</i>&nbsp;                showTaskQueue.execute(() -&gt; view.waitForOthersMoves(move));</b>
+<b class="nc"><i class="no-highlight">357</i>&nbsp;                break;</b>
+<i class="no-highlight">358</i>&nbsp;            default:
+<b class="nc"><i class="no-highlight">359</i>&nbsp;                throw new IllegalStateException(&quot;Unexpected value: &quot; + message.getType());</b>
+<i class="no-highlight">360</i>&nbsp;        }
+<i class="no-highlight">361</i>&nbsp;    }
+<i class="no-highlight">362</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -486,7 +487,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-01 12:22</div>
+    <div style="float:right;">generated on 2022-07-01 19:12</div>
 </div>
 </body>
 </html>

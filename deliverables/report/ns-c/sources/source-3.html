@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > UI</title>
+  <title>Coverage Report > View</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/highlight-idea.css";
@@ -20,14 +20,14 @@ Current scope:     <a href="../../index.html">all classes</a>
     <a href="../index.html">it.polimi.ingsw.view</a>
 </div>
 
-<h1>Coverage Summary for Class: UI (it.polimi.ingsw.view)</h1>
+<h1>Coverage Summary for Class: View (it.polimi.ingsw.view)</h1>
 
 <table class="coverageStats">
 <tr>
   <th class="name">Class</th>
 </tr>
 <tr>
-  <td class="name">UI</td>
+  <td class="name">View</td>
 </tr>
 
 </table>
@@ -39,86 +39,139 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package it.polimi.ingsw.view;
 <i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import it.polimi.ingsw.client.*;
-<i class="no-highlight">4</i>&nbsp;
-<i class="no-highlight">5</i>&nbsp;import java.util.List;
+<i class="no-highlight">3</i>&nbsp;import it.polimi.ingsw.model.Card;
+<i class="no-highlight">4</i>&nbsp;import it.polimi.ingsw.model.Color;
+<i class="no-highlight">5</i>&nbsp;import it.polimi.ingsw.model.Wizard;
 <i class="no-highlight">6</i>&nbsp;
-<i class="no-highlight">7</i>&nbsp;public interface UI extends View{
+<i class="no-highlight">7</i>&nbsp;import java.util.List;
 <i class="no-highlight">8</i>&nbsp;
-<i class="no-highlight">9</i>&nbsp;    /**
-<i class="no-highlight">10</i>&nbsp;     * Asks a nickname to the player to create a new game and notifies the observers.
-<i class="no-highlight">11</i>&nbsp;     */
-<i class="no-highlight">12</i>&nbsp;    void createNewGame();
-<i class="no-highlight">13</i>&nbsp;
-<i class="no-highlight">14</i>&nbsp;    /**
-<i class="no-highlight">15</i>&nbsp;     * Updates the list of islands in the game model according to the changes communicated by the server.
-<i class="no-highlight">16</i>&nbsp;     *
-<i class="no-highlight">17</i>&nbsp;     * @param islands a list of updated islands
-<i class="no-highlight">18</i>&nbsp;     */
-<i class="no-highlight">19</i>&nbsp;    void updateIslands(List&lt;ReducedIsland&gt; islands);
-<i class="no-highlight">20</i>&nbsp;
-<i class="no-highlight">21</i>&nbsp;    /**
-<i class="no-highlight">22</i>&nbsp;     * Updates the given player with an updated version.
-<i class="no-highlight">23</i>&nbsp;     *
-<i class="no-highlight">24</i>&nbsp;     * @param player the updated version of the player
-<i class="no-highlight">25</i>&nbsp;     */
-<i class="no-highlight">26</i>&nbsp;    void updatePlayer(ReducedPlayer player);
-<i class="no-highlight">27</i>&nbsp;
-<i class="no-highlight">28</i>&nbsp;    /**
-<i class="no-highlight">29</i>&nbsp;     * Updates the array of clouds in the game model with an updated version.
-<i class="no-highlight">30</i>&nbsp;     *
-<i class="no-highlight">31</i>&nbsp;     * @param clouds the updated version of the array of clouds
-<i class="no-highlight">32</i>&nbsp;     */
-<i class="no-highlight">33</i>&nbsp;    void updateClouds(ReducedCloud[] clouds);
-<i class="no-highlight">34</i>&nbsp;
-<i class="no-highlight">35</i>&nbsp;    /**
-<i class="no-highlight">36</i>&nbsp;     * Updates the total number of coins in the game model.
-<i class="no-highlight">37</i>&nbsp;     *
-<i class="no-highlight">38</i>&nbsp;     * @param totCoins the updated number of coins
+<i class="no-highlight">9</i>&nbsp;/**
+<i class="no-highlight">10</i>&nbsp; * Defines a generic view to be implemented by each view type (e.g. CLI, GUI in JavaFX, ...).
+<i class="no-highlight">11</i>&nbsp; *
+<i class="no-highlight">12</i>&nbsp; * @author Dario Mazzola
+<i class="no-highlight">13</i>&nbsp; */
+<i class="no-highlight">14</i>&nbsp;public interface View {
+<i class="no-highlight">15</i>&nbsp;    /**
+<i class="no-highlight">16</i>&nbsp;     * Shows an error message received from the server to the player.
+<i class="no-highlight">17</i>&nbsp;     *
+<i class="no-highlight">18</i>&nbsp;     * @param errorMsg the message to show
+<i class="no-highlight">19</i>&nbsp;     */
+<i class="no-highlight">20</i>&nbsp;    void showError(String errorMsg);
+<i class="no-highlight">21</i>&nbsp;
+<i class="no-highlight">22</i>&nbsp;    /**
+<i class="no-highlight">23</i>&nbsp;     * Notifies that the maximum number of players has been reached and the player will be disconnected.
+<i class="no-highlight">24</i>&nbsp;     */
+<i class="no-highlight">25</i>&nbsp;    void notifyGameFull();
+<i class="no-highlight">26</i>&nbsp;
+<i class="no-highlight">27</i>&nbsp;    /**
+<i class="no-highlight">28</i>&nbsp;     * Asks a nickname to the player and notifies the observers.
+<i class="no-highlight">29</i>&nbsp;     */
+<i class="no-highlight">30</i>&nbsp;    void selectNickname();
+<i class="no-highlight">31</i>&nbsp;
+<i class="no-highlight">32</i>&nbsp;    /**
+<i class="no-highlight">33</i>&nbsp;     * Asks the desired number of players for this game and notifies the observers.
+<i class="no-highlight">34</i>&nbsp;     */
+<i class="no-highlight">35</i>&nbsp;    void selectNumPlayers();
+<i class="no-highlight">36</i>&nbsp;
+<i class="no-highlight">37</i>&nbsp;    /**
+<i class="no-highlight">38</i>&nbsp;     * Asks the player whether he wants team members to communicate with each other and notifies the observers.
 <i class="no-highlight">39</i>&nbsp;     */
-<i class="no-highlight">40</i>&nbsp;    void updateTotalCoins(int totCoins);
+<i class="no-highlight">40</i>&nbsp;    void selectChat ();
 <i class="no-highlight">41</i>&nbsp;
 <i class="no-highlight">42</i>&nbsp;    /**
-<i class="no-highlight">43</i>&nbsp;     * Updates the position of mother nature.
-<i class="no-highlight">44</i>&nbsp;     *
-<i class="no-highlight">45</i>&nbsp;     * @param motherIsland the updated island on which mother nature is located
-<i class="no-highlight">46</i>&nbsp;     */
-<i class="no-highlight">47</i>&nbsp;    void updateMotherNature(int motherIsland);
-<i class="no-highlight">48</i>&nbsp;
-<i class="no-highlight">49</i>&nbsp;    /**
-<i class="no-highlight">50</i>&nbsp;     * Updates current player in game model.
-<i class="no-highlight">51</i>&nbsp;     *
-<i class="no-highlight">52</i>&nbsp;     * @param currentPlayer the updated current player
-<i class="no-highlight">53</i>&nbsp;     */
-<i class="no-highlight">54</i>&nbsp;    void updateCurrentPlayer(ReducedPlayer currentPlayer);
-<i class="no-highlight">55</i>&nbsp;
-<i class="no-highlight">56</i>&nbsp;    /**
-<i class="no-highlight">57</i>&nbsp;     * Updates the dining hall of the player identified by the nickname (attribute of dining hall).
-<i class="no-highlight">58</i>&nbsp;     *
-<i class="no-highlight">59</i>&nbsp;     * @param diningHall the updated version of the dining hall
-<i class="no-highlight">60</i>&nbsp;     */
-<i class="no-highlight">61</i>&nbsp;    void updateDiningHall(ReducedDiningHall diningHall);
-<i class="no-highlight">62</i>&nbsp;
-<i class="no-highlight">63</i>&nbsp;    /**
-<i class="no-highlight">64</i>&nbsp;     * Updates the dashboard of the player identified by the nickname (attribute of dashboard).
-<i class="no-highlight">65</i>&nbsp;     *
-<i class="no-highlight">66</i>&nbsp;     * @param dashboard the updated version of the dining hall
-<i class="no-highlight">67</i>&nbsp;     */
-<i class="no-highlight">68</i>&nbsp;    void updateDashboard(ReducedDashboard dashboard);
-<i class="no-highlight">69</i>&nbsp;
-<i class="no-highlight">70</i>&nbsp;    /**
-<i class="no-highlight">71</i>&nbsp;     * Updates the game model.
-<i class="no-highlight">72</i>&nbsp;     *
-<i class="no-highlight">73</i>&nbsp;     * @param gameModel the updated version of the game model
-<i class="no-highlight">74</i>&nbsp;     */
-<i class="no-highlight">75</i>&nbsp;    void updateGameModel(ReducedGameModel gameModel);
-<i class="no-highlight">76</i>&nbsp;
-<i class="no-highlight">77</i>&nbsp;    /**
-<i class="no-highlight">78</i>&nbsp;     * Sets stop attribute. It is used to manage player&#39;s actions while in waiting room.
-<i class="no-highlight">79</i>&nbsp;     * @param stop true if the player should exit from the waiting room, false otherwise
-<i class="no-highlight">80</i>&nbsp;     */
-<i class="no-highlight">81</i>&nbsp;    void setStop(boolean stop);
-<i class="no-highlight">82</i>&nbsp;}
+<i class="no-highlight">43</i>&nbsp;     * Asks the player whether he/she wants to play in expert mode and notifies the observers.
+<i class="no-highlight">44</i>&nbsp;     */
+<i class="no-highlight">45</i>&nbsp;    void selectExpertMode();
+<i class="no-highlight">46</i>&nbsp;
+<i class="no-highlight">47</i>&nbsp;    /**
+<i class="no-highlight">48</i>&nbsp;     * Asks the player to choose a wizard among the ones not selected by other players and notifies the observers.
+<i class="no-highlight">49</i>&nbsp;     *
+<i class="no-highlight">50</i>&nbsp;     * @param availableWizards a list of the available wizards
+<i class="no-highlight">51</i>&nbsp;     */
+<i class="no-highlight">52</i>&nbsp;    void selectWizard(List&lt;Wizard&gt; availableWizards);
+<i class="no-highlight">53</i>&nbsp;
+<i class="no-highlight">54</i>&nbsp;    /**
+<i class="no-highlight">55</i>&nbsp;     * Shows the player already created team and asks to choose a team and whether to be team leader and notifies the observers.
+<i class="no-highlight">56</i>&nbsp;     */
+<i class="no-highlight">57</i>&nbsp;    void selectTeam(String[] teamArray, String[] leaderArray);
+<i class="no-highlight">58</i>&nbsp;
+<i class="no-highlight">59</i>&nbsp;    /**
+<i class="no-highlight">60</i>&nbsp;     * Asks the player to choose a color for his/hers towers among the ones still available and notifies the observers.
+<i class="no-highlight">61</i>&nbsp;     *
+<i class="no-highlight">62</i>&nbsp;     * @param availableColors a list of all the tower colors still available
+<i class="no-highlight">63</i>&nbsp;     */
+<i class="no-highlight">64</i>&nbsp;    void selectTowerColor(List&lt;Color&gt; availableColors);
+<i class="no-highlight">65</i>&nbsp;
+<i class="no-highlight">66</i>&nbsp;    /**
+<i class="no-highlight">67</i>&nbsp;     * Asks the player to choose the assistant among the ones still available and notifies the observers.
+<i class="no-highlight">68</i>&nbsp;     *
+<i class="no-highlight">69</i>&nbsp;     * @param availableAssistantCard the assistant card available
+<i class="no-highlight">70</i>&nbsp;     */
+<i class="no-highlight">71</i>&nbsp;    void selectAssistantCard(List&lt;Card&gt; availableAssistantCard);
+<i class="no-highlight">72</i>&nbsp;
+<i class="no-highlight">73</i>&nbsp;    /**
+<i class="no-highlight">74</i>&nbsp;     * Shows all the available actions that the player can do.
+<i class="no-highlight">75</i>&nbsp;     *
+<i class="no-highlight">76</i>&nbsp;     * @param availableActions all the available actions
+<i class="no-highlight">77</i>&nbsp;     */
+<i class="no-highlight">78</i>&nbsp;    void actionPhase(List&lt;String&gt; availableActions);
+<i class="no-highlight">79</i>&nbsp;
+<i class="no-highlight">80</i>&nbsp;    /**
+<i class="no-highlight">81</i>&nbsp;     * Shows the player who won the match
+<i class="no-highlight">82</i>&nbsp;     *
+<i class="no-highlight">83</i>&nbsp;     * @param winner the player who won the match
+<i class="no-highlight">84</i>&nbsp;     */
+<i class="no-highlight">85</i>&nbsp;    void sendWinner(String winner);
+<i class="no-highlight">86</i>&nbsp;
+<i class="no-highlight">87</i>&nbsp;    /**
+<i class="no-highlight">88</i>&nbsp;     * Asks the player to choose a cloud among the ones still available and notifies the observers.
+<i class="no-highlight">89</i>&nbsp;     *
+<i class="no-highlight">90</i>&nbsp;     */
+<i class="no-highlight">91</i>&nbsp;    void selectCloud();
+<i class="no-highlight">92</i>&nbsp;
+<i class="no-highlight">93</i>&nbsp;    /**
+<i class="no-highlight">94</i>&nbsp;     * Puts the player in the waiting room.
+<i class="no-highlight">95</i>&nbsp;     */
+<i class="no-highlight">96</i>&nbsp;    void goToWaitingRoom();
+<i class="no-highlight">97</i>&nbsp;
+<i class="no-highlight">98</i>&nbsp;    /**
+<i class="no-highlight">99</i>&nbsp;     * Puts the player in the lobby.
+<i class="no-highlight">100</i>&nbsp;     */
+<i class="no-highlight">101</i>&nbsp;    void goToLobby();
+<i class="no-highlight">102</i>&nbsp;
+<i class="no-highlight">103</i>&nbsp;    /**
+<i class="no-highlight">104</i>&nbsp;     * Sends a wait message to a player
+<i class="no-highlight">105</i>&nbsp;     *
+<i class="no-highlight">106</i>&nbsp;     * @param move the action been done by the current player
+<i class="no-highlight">107</i>&nbsp;     */
+<i class="no-highlight">108</i>&nbsp;    void waitForOthersMoves(String move);
+<i class="no-highlight">109</i>&nbsp;
+<i class="no-highlight">110</i>&nbsp;    /**
+<i class="no-highlight">111</i>&nbsp;     * Asks the player whether he/she wants to restore a previously saved game.
+<i class="no-highlight">112</i>&nbsp;     */
+<i class="no-highlight">113</i>&nbsp;    void selectRestoreGame();
+<i class="no-highlight">114</i>&nbsp;
+<i class="no-highlight">115</i>&nbsp;    /**
+<i class="no-highlight">116</i>&nbsp;     * Sends the nickname to the player
+<i class="no-highlight">117</i>&nbsp;     *
+<i class="no-highlight">118</i>&nbsp;     * @param nickname the nickname of the player
+<i class="no-highlight">119</i>&nbsp;     */
+<i class="no-highlight">120</i>&nbsp;    void rememberNickname(String nickname);
+<i class="no-highlight">121</i>&nbsp;
+<i class="no-highlight">122</i>&nbsp;    /**
+<i class="no-highlight">123</i>&nbsp;     * Sends the received messages
+<i class="no-highlight">124</i>&nbsp;     *
+<i class="no-highlight">125</i>&nbsp;     * @param message the message sent by the team mate
+<i class="no-highlight">126</i>&nbsp;     */
+<i class="no-highlight">127</i>&nbsp;    void onChatMessageReceived(String message);
+<i class="no-highlight">128</i>&nbsp;
+<i class="no-highlight">129</i>&nbsp;    /**
+<i class="no-highlight">130</i>&nbsp;     * Sends an error message after a disconnection
+<i class="no-highlight">131</i>&nbsp;     *
+<i class="no-highlight">132</i>&nbsp;     * @param errorCause the cause of the error
+<i class="no-highlight">133</i>&nbsp;     */
+<i class="no-highlight">134</i>&nbsp;    void endGameDisconnection(String errorCause);
+<i class="no-highlight">135</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -145,7 +198,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-01 12:22</div>
+    <div style="float:right;">generated on 2022-07-01 19:12</div>
 </div>
 </body>
 </html>

@@ -53,7 +53,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/13)
+    (0/15)
   </span>
 </td>
 <td class="coverageStat">
@@ -61,7 +61,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     0%
   </span>
   <span class="absValue">
-    (0/108)
+    (0/112)
   </span>
 </td>
 </tr>
@@ -101,242 +101,251 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">26</i>&nbsp;    private final List&lt;Card&gt; availableAssistantCards;
 <i class="no-highlight">27</i>&nbsp;    private int selected;
 <i class="no-highlight">28</i>&nbsp;    private int position;
-<i class="no-highlight">29</i>&nbsp;
-<b class="nc"><i class="no-highlight">30</i>&nbsp;    public PlanningController (GameModel gm){</b>
-<i class="no-highlight">31</i>&nbsp;
-<b class="nc"><i class="no-highlight">32</i>&nbsp;        this.selected = 0;</b>
-<b class="nc"><i class="no-highlight">33</i>&nbsp;        this.firstPlanner = 0;</b>
-<b class="nc"><i class="no-highlight">34</i>&nbsp;        this.gm = gm;</b>
-<b class="nc"><i class="no-highlight">35</i>&nbsp;        position = 1;</b>
-<i class="no-highlight">36</i>&nbsp;
-<b class="nc"><i class="no-highlight">37</i>&nbsp;        this.cardList = new ArrayList&lt;&gt;();</b>
-<i class="no-highlight">38</i>&nbsp;
-<b class="nc"><i class="no-highlight">39</i>&nbsp;        this.availableAssistantCards = new ArrayList&lt;&gt;();</b>
-<b class="nc"><i class="no-highlight">40</i>&nbsp;        availableAssistantCards.addAll(Arrays.asList(Card.values()));</b>
-<i class="no-highlight">41</i>&nbsp;    }
-<i class="no-highlight">42</i>&nbsp;
-<i class="no-highlight">43</i>&nbsp;    /**
-<i class="no-highlight">44</i>&nbsp;     * Gets called to manage the messages from the client
-<i class="no-highlight">45</i>&nbsp;     *
-<i class="no-highlight">46</i>&nbsp;     * @param messageReceived received from the client
-<i class="no-highlight">47</i>&nbsp;     * @param tc the turn controller in use
-<i class="no-highlight">48</i>&nbsp;     */
-<i class="no-highlight">49</i>&nbsp;    public void doAction(CommandMessage messageReceived, TurnController tc) {
-<b class="nc"><i class="no-highlight">50</i>&nbsp;        Persistence persistence = new Persistence();</b>
-<b class="nc"><i class="no-highlight">51</i>&nbsp;        System.out.println(&quot;\n&quot; + messageReceived.getNickname() + &quot; is in planning state\n&quot;);</b>
-<i class="no-highlight">52</i>&nbsp;
-<b class="nc"><i class="no-highlight">53</i>&nbsp;        Card card = ((ChosenAssistantCard) messageReceived).getAssistantCard();</b>
-<i class="no-highlight">54</i>&nbsp;
-<b class="nc"><i class="no-highlight">55</i>&nbsp;        for (int i = 0; i &lt; gm.getNumPlayers(); i++) {</b>
-<b class="nc"><i class="no-highlight">56</i>&nbsp;            if (gm.getArrayPlayers()[i].getCardInUse() != null &amp;&amp; card.equals(gm.getArrayPlayers()[i].getCardInUse())) {</b>
-<b class="nc"><i class="no-highlight">57</i>&nbsp;                if (!notOtherCards(messageReceived)) {</b>
-<b class="nc"><i class="no-highlight">58</i>&nbsp;                    tc.getVirtualViewMap().get(messageReceived.getNickname()).showError(ASSISTANT_CARD_TAKEN.toString());</b>
-<b class="nc"><i class="no-highlight">59</i>&nbsp;                    tc.getVirtualViewMap().get(messageReceived.getNickname()).selectAssistantCard(availableAssistantCards);</b>
-<i class="no-highlight">60</i>&nbsp;                    return;
-<i class="no-highlight">61</i>&nbsp;                } else {
-<i class="no-highlight">62</i>&nbsp;                    break;
-<i class="no-highlight">63</i>&nbsp;                }
-<i class="no-highlight">64</i>&nbsp;            }
-<i class="no-highlight">65</i>&nbsp;        }
-<i class="no-highlight">66</i>&nbsp;
-<i class="no-highlight">67</i>&nbsp;        try {
-<b class="nc"><i class="no-highlight">68</i>&nbsp;            gm.getPlayerByNickname(messageReceived.getNickname()).useCard(card);</b>
-<b class="nc"><i class="no-highlight">69</i>&nbsp;        } catch (CardNotInDeckException e) {</b>
-<b class="nc"><i class="no-highlight">70</i>&nbsp;            e.printStackTrace();</b>
-<b class="nc"><i class="no-highlight">71</i>&nbsp;            tc.getVirtualViewMap().get(messageReceived.getNickname()).showError(ASSISTANT_CARD_NOT_AVAILABLE.toString());</b>
-<b class="nc"><i class="no-highlight">72</i>&nbsp;            tc.getVirtualViewMap().get(messageReceived.getNickname()).selectAssistantCard(availableAssistantCards);</b>
-<i class="no-highlight">73</i>&nbsp;            return;
-<b class="nc"><i class="no-highlight">74</i>&nbsp;        }</b>
-<i class="no-highlight">75</i>&nbsp;
-<b class="nc"><i class="no-highlight">76</i>&nbsp;        cardList.add(card);</b>
-<b class="nc"><i class="no-highlight">77</i>&nbsp;        availableAssistantCards.remove(card);</b>
-<b class="nc"><i class="no-highlight">78</i>&nbsp;        selected++;</b>
-<i class="no-highlight">79</i>&nbsp;
-<b class="nc"><i class="no-highlight">80</i>&nbsp;        if(selected == gm.getNumPlayers()){</b>
-<b class="nc"><i class="no-highlight">81</i>&nbsp;            selected = 0;</b>
-<i class="no-highlight">82</i>&nbsp;
-<b class="nc"><i class="no-highlight">83</i>&nbsp;            UpdateRanking();</b>
-<i class="no-highlight">84</i>&nbsp;
-<b class="nc"><i class="no-highlight">85</i>&nbsp;            resetCards();</b>
-<i class="no-highlight">86</i>&nbsp;
-<b class="nc"><i class="no-highlight">87</i>&nbsp;            tc.sendAllModel();</b>
-<i class="no-highlight">88</i>&nbsp;
-<b class="nc"><i class="no-highlight">89</i>&nbsp;            List&lt;String&gt; availableActions = new ArrayList&lt;&gt;();</b>
-<b class="nc"><i class="no-highlight">90</i>&nbsp;            availableActions.add(&quot;Move students to dining hall or to island&quot;);</b>
-<b class="nc"><i class="no-highlight">91</i>&nbsp;            if (gm.isExpertMode()) {</b>
-<b class="nc"><i class="no-highlight">92</i>&nbsp;                availableActions.add(&quot;Select character card&quot;);</b>
-<i class="no-highlight">93</i>&nbsp;            }
-<b class="nc"><i class="no-highlight">94</i>&nbsp;            if(gm.getChat() != null &amp;&amp; gm.getChat()) {</b>
-<b class="nc"><i class="no-highlight">95</i>&nbsp;                availableActions.add(&quot;Send a message to your team mate&quot;);</b>
-<b class="nc"><i class="no-highlight">96</i>&nbsp;                availableActions.add(&quot;See received messages&quot;);</b>
-<i class="no-highlight">97</i>&nbsp;            }
-<i class="no-highlight">98</i>&nbsp;
-<b class="nc"><i class="no-highlight">99</i>&nbsp;            setPosition(0);</b>
-<b class="nc"><i class="no-highlight">100</i>&nbsp;            gm.setCurrentPlayer(ranking[0]);</b>
-<b class="nc"><i class="no-highlight">101</i>&nbsp;            tc.next_State(ACTION);</b>
-<i class="no-highlight">102</i>&nbsp;
-<b class="nc"><i class="no-highlight">103</i>&nbsp;            persistence.saveData(tc);</b>
-<i class="no-highlight">104</i>&nbsp;
-<b class="nc"><i class="no-highlight">105</i>&nbsp;            for (int i=0; i&lt;gm.getNumPlayers(); i++){</b>
-<b class="nc"><i class="no-highlight">106</i>&nbsp;                if (!gm.getArrayPlayers()[i].equals(gm.getCurrentPlayer())){</b>
-<b class="nc"><i class="no-highlight">107</i>&nbsp;                    tc.getVirtualViewMap().get(gm.getArrayPlayers()[i].getNickname()).goToWaitingRoom();</b>
-<i class="no-highlight">108</i>&nbsp;                }
-<i class="no-highlight">109</i>&nbsp;            }
-<i class="no-highlight">110</i>&nbsp;
-<b class="nc"><i class="no-highlight">111</i>&nbsp;            tc.getVirtualViewMap().get(gm.getArrayPlayers()[ranking[0]].getNickname()).actionPhase(availableActions);</b>
-<b class="nc"><i class="no-highlight">112</i>&nbsp;        }</b>
-<i class="no-highlight">113</i>&nbsp;        else {
+<i class="no-highlight">29</i>&nbsp;    private int nextChoosing;
+<i class="no-highlight">30</i>&nbsp;
+<b class="nc"><i class="no-highlight">31</i>&nbsp;    public PlanningController(GameModel gm) {</b>
+<b class="nc"><i class="no-highlight">32</i>&nbsp;        this.nextChoosing = -1;</b>
+<b class="nc"><i class="no-highlight">33</i>&nbsp;        this.selected = 0;</b>
+<b class="nc"><i class="no-highlight">34</i>&nbsp;        this.firstPlanner = 0;</b>
+<b class="nc"><i class="no-highlight">35</i>&nbsp;        this.gm = gm;</b>
+<b class="nc"><i class="no-highlight">36</i>&nbsp;        position = 1;</b>
+<i class="no-highlight">37</i>&nbsp;
+<b class="nc"><i class="no-highlight">38</i>&nbsp;        this.cardList = new ArrayList&lt;&gt;();</b>
+<i class="no-highlight">39</i>&nbsp;
+<b class="nc"><i class="no-highlight">40</i>&nbsp;        this.availableAssistantCards = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i class="no-highlight">41</i>&nbsp;        availableAssistantCards.addAll(Arrays.asList(Card.values()));</b>
+<i class="no-highlight">42</i>&nbsp;    }
+<i class="no-highlight">43</i>&nbsp;
+<i class="no-highlight">44</i>&nbsp;    /**
+<i class="no-highlight">45</i>&nbsp;     * Gets called to manage the messages from the client
+<i class="no-highlight">46</i>&nbsp;     *
+<i class="no-highlight">47</i>&nbsp;     * @param messageReceived received from the client
+<i class="no-highlight">48</i>&nbsp;     * @param tc              the turn controller in use
+<i class="no-highlight">49</i>&nbsp;     */
+<i class="no-highlight">50</i>&nbsp;    public void doAction(CommandMessage messageReceived, TurnController tc) {
+<b class="nc"><i class="no-highlight">51</i>&nbsp;        Persistence persistence = new Persistence();</b>
+<b class="nc"><i class="no-highlight">52</i>&nbsp;        System.out.println(&quot;\n&quot; + messageReceived.getNickname() + &quot; is in planning state\n&quot;);</b>
+<i class="no-highlight">53</i>&nbsp;
+<b class="nc"><i class="no-highlight">54</i>&nbsp;        Card card = ((ChosenAssistantCard) messageReceived).getAssistantCard();</b>
+<i class="no-highlight">55</i>&nbsp;
+<b class="nc"><i class="no-highlight">56</i>&nbsp;        for (int i = 0; i &lt; gm.getNumPlayers(); i++) {</b>
+<b class="nc"><i class="no-highlight">57</i>&nbsp;            if (gm.getArrayPlayers()[i].getCardInUse() != null &amp;&amp; card.equals(gm.getArrayPlayers()[i].getCardInUse())) {</b>
+<b class="nc"><i class="no-highlight">58</i>&nbsp;                if (!notOtherCards(messageReceived)) {</b>
+<b class="nc"><i class="no-highlight">59</i>&nbsp;                    tc.getVirtualViewMap().get(messageReceived.getNickname()).showError(ASSISTANT_CARD_TAKEN.toString());</b>
+<b class="nc"><i class="no-highlight">60</i>&nbsp;                    tc.getVirtualViewMap().get(messageReceived.getNickname()).selectAssistantCard(availableAssistantCards);</b>
+<i class="no-highlight">61</i>&nbsp;                    return;
+<i class="no-highlight">62</i>&nbsp;                } else {
+<i class="no-highlight">63</i>&nbsp;                    break;
+<i class="no-highlight">64</i>&nbsp;                }
+<i class="no-highlight">65</i>&nbsp;            }
+<i class="no-highlight">66</i>&nbsp;        }
+<i class="no-highlight">67</i>&nbsp;
+<i class="no-highlight">68</i>&nbsp;        try {
+<b class="nc"><i class="no-highlight">69</i>&nbsp;            gm.getPlayerByNickname(messageReceived.getNickname()).useCard(card);</b>
+<b class="nc"><i class="no-highlight">70</i>&nbsp;        } catch (CardNotInDeckException e) {</b>
+<b class="nc"><i class="no-highlight">71</i>&nbsp;            e.printStackTrace();</b>
+<b class="nc"><i class="no-highlight">72</i>&nbsp;            tc.getVirtualViewMap().get(messageReceived.getNickname()).showError(ASSISTANT_CARD_NOT_AVAILABLE.toString());</b>
+<b class="nc"><i class="no-highlight">73</i>&nbsp;            tc.getVirtualViewMap().get(messageReceived.getNickname()).selectAssistantCard(availableAssistantCards);</b>
+<i class="no-highlight">74</i>&nbsp;            return;
+<b class="nc"><i class="no-highlight">75</i>&nbsp;        }</b>
+<i class="no-highlight">76</i>&nbsp;
+<b class="nc"><i class="no-highlight">77</i>&nbsp;        cardList.add(card);</b>
+<b class="nc"><i class="no-highlight">78</i>&nbsp;        availableAssistantCards.remove(card);</b>
+<b class="nc"><i class="no-highlight">79</i>&nbsp;        selected++;</b>
+<i class="no-highlight">80</i>&nbsp;
+<b class="nc"><i class="no-highlight">81</i>&nbsp;        if (selected == gm.getNumPlayers()) {</b>
+<b class="nc"><i class="no-highlight">82</i>&nbsp;            selected = 0;</b>
+<i class="no-highlight">83</i>&nbsp;
+<b class="nc"><i class="no-highlight">84</i>&nbsp;            UpdateRanking();</b>
+<i class="no-highlight">85</i>&nbsp;
+<b class="nc"><i class="no-highlight">86</i>&nbsp;            resetCards();</b>
+<i class="no-highlight">87</i>&nbsp;
+<b class="nc"><i class="no-highlight">88</i>&nbsp;            tc.sendAllModel();</b>
+<i class="no-highlight">89</i>&nbsp;
+<b class="nc"><i class="no-highlight">90</i>&nbsp;            List&lt;String&gt; availableActions = new ArrayList&lt;&gt;();</b>
+<b class="nc"><i class="no-highlight">91</i>&nbsp;            availableActions.add(&quot;Move students to dining hall or to island&quot;);</b>
+<b class="nc"><i class="no-highlight">92</i>&nbsp;            if (gm.isExpertMode()) {</b>
+<b class="nc"><i class="no-highlight">93</i>&nbsp;                availableActions.add(&quot;Select character card&quot;);</b>
+<i class="no-highlight">94</i>&nbsp;            }
+<b class="nc"><i class="no-highlight">95</i>&nbsp;            if (gm.getChat() != null &amp;&amp; gm.getChat()) {</b>
+<b class="nc"><i class="no-highlight">96</i>&nbsp;                availableActions.add(&quot;Send a message to your team mate&quot;);</b>
+<b class="nc"><i class="no-highlight">97</i>&nbsp;                availableActions.add(&quot;See received messages&quot;);</b>
+<i class="no-highlight">98</i>&nbsp;            }
+<i class="no-highlight">99</i>&nbsp;
+<b class="nc"><i class="no-highlight">100</i>&nbsp;            setPosition(0);</b>
+<b class="nc"><i class="no-highlight">101</i>&nbsp;            gm.setCurrentPlayer(ranking[0]);</b>
+<b class="nc"><i class="no-highlight">102</i>&nbsp;            tc.next_State(ACTION);</b>
+<i class="no-highlight">103</i>&nbsp;
+<b class="nc"><i class="no-highlight">104</i>&nbsp;            persistence.saveData(tc);</b>
+<i class="no-highlight">105</i>&nbsp;
+<b class="nc"><i class="no-highlight">106</i>&nbsp;            for (int i = 0; i &lt; gm.getNumPlayers(); i++) {</b>
+<b class="nc"><i class="no-highlight">107</i>&nbsp;                if (!gm.getArrayPlayers()[i].equals(gm.getCurrentPlayer())) {</b>
+<b class="nc"><i class="no-highlight">108</i>&nbsp;                    tc.getVirtualViewMap().get(gm.getArrayPlayers()[i].getNickname()).goToWaitingRoom();</b>
+<i class="no-highlight">109</i>&nbsp;                }
+<i class="no-highlight">110</i>&nbsp;            }
+<i class="no-highlight">111</i>&nbsp;
+<b class="nc"><i class="no-highlight">112</i>&nbsp;            tc.getVirtualViewMap().get(gm.getArrayPlayers()[ranking[0]].getNickname()).actionPhase(availableActions);</b>
+<b class="nc"><i class="no-highlight">113</i>&nbsp;        } else {</b>
 <b class="nc"><i class="no-highlight">114</i>&nbsp;            tc.getVirtualViewMap().get(messageReceived.getNickname()).waitForOthersMoves(&quot;assistant card&quot;);</b>
 <i class="no-highlight">115</i>&nbsp;
 <i class="no-highlight">116</i>&nbsp;            int i;
-<b class="nc"><i class="no-highlight">117</i>&nbsp;            for (i=0; i&lt;gm.getNumPlayers(); i++){</b>
-<b class="nc"><i class="no-highlight">118</i>&nbsp;                if (gm.getArrayPlayers()[i].getNickname().equals(messageReceived.getNickname())){</b>
+<b class="nc"><i class="no-highlight">117</i>&nbsp;            for (i = 0; i &lt; gm.getNumPlayers(); i++) {</b>
+<b class="nc"><i class="no-highlight">118</i>&nbsp;                if (gm.getArrayPlayers()[i].getNickname().equals(messageReceived.getNickname())) {</b>
 <b class="nc"><i class="no-highlight">119</i>&nbsp;                    break;</b>
 <i class="no-highlight">120</i>&nbsp;                }
 <i class="no-highlight">121</i>&nbsp;            }
-<b class="nc"><i class="no-highlight">122</i>&nbsp;            tc.getVirtualViewMap().get(gm.getArrayPlayers()[(i + 1)% gm.getNumPlayers()].getNickname()).selectAssistantCard(availableAssistantCards);</b>
-<i class="no-highlight">123</i>&nbsp;        }
-<i class="no-highlight">124</i>&nbsp;    }
-<i class="no-highlight">125</i>&nbsp;
-<i class="no-highlight">126</i>&nbsp;    /**
-<i class="no-highlight">127</i>&nbsp;     * Updates the ranking of the planning phase
-<i class="no-highlight">128</i>&nbsp;     */
-<i class="no-highlight">129</i>&nbsp;    private void UpdateRanking(){
-<b class="nc"><i class="no-highlight">130</i>&nbsp;        ranking = createRanking(cardList, gm.getNumPlayers());</b>
-<b class="nc"><i class="no-highlight">131</i>&nbsp;        firstPlanner = ranking[0];</b>
-<i class="no-highlight">132</i>&nbsp;    }
-<i class="no-highlight">133</i>&nbsp;
-<i class="no-highlight">134</i>&nbsp;    /**
-<i class="no-highlight">135</i>&nbsp;     * Creates the ranking of the planning phase
-<i class="no-highlight">136</i>&nbsp;     *
-<i class="no-highlight">137</i>&nbsp;     * @param cardList parameters on which the ranking is based on
-<i class="no-highlight">138</i>&nbsp;     * @param numPlayers the number of players
-<i class="no-highlight">139</i>&nbsp;     */
-<i class="no-highlight">140</i>&nbsp;    private int[] createRanking (List&lt;Card&gt; cardList, int numPlayers){
-<i class="no-highlight">141</i>&nbsp;
-<b class="nc"><i class="no-highlight">142</i>&nbsp;        Map&lt;Card, Integer&gt; map = new HashMap&lt;&gt;();</b>
-<i class="no-highlight">143</i>&nbsp;
-<b class="nc"><i class="no-highlight">144</i>&nbsp;        Card[] cardArray = cardList.toArray(new Card[cardList.size()]);</b>
-<i class="no-highlight">145</i>&nbsp;
-<b class="nc"><i class="no-highlight">146</i>&nbsp;        for (int i = 0; i &lt; numPlayers; i++) {</b>
-<b class="nc"><i class="no-highlight">147</i>&nbsp;            map.put(cardArray[i], i);</b>
-<i class="no-highlight">148</i>&nbsp;        }
-<i class="no-highlight">149</i>&nbsp;
-<i class="no-highlight">150</i>&nbsp;        int j;
-<i class="no-highlight">151</i>&nbsp;        Card tmp;
+<b class="nc"><i class="no-highlight">122</i>&nbsp;            this.nextChoosing = (i + 1) % gm.getNumPlayers();</b>
+<b class="nc"><i class="no-highlight">123</i>&nbsp;            tc.getVirtualViewMap().get(gm.getArrayPlayers()[(i + 1) % gm.getNumPlayers()].getNickname()).selectAssistantCard(availableAssistantCards);</b>
+<i class="no-highlight">124</i>&nbsp;        }
+<i class="no-highlight">125</i>&nbsp;    }
+<i class="no-highlight">126</i>&nbsp;
+<i class="no-highlight">127</i>&nbsp;    public int getNextChoosing() {
+<b class="nc"><i class="no-highlight">128</i>&nbsp;        return nextChoosing;</b>
+<i class="no-highlight">129</i>&nbsp;    }
+<i class="no-highlight">130</i>&nbsp;
+<i class="no-highlight">131</i>&nbsp;    public void resetNextChoosing() {
+<b class="nc"><i class="no-highlight">132</i>&nbsp;        nextChoosing = -1;</b>
+<i class="no-highlight">133</i>&nbsp;    }
+<i class="no-highlight">134</i>&nbsp;
+<i class="no-highlight">135</i>&nbsp;    /**
+<i class="no-highlight">136</i>&nbsp;     * Updates the ranking of the planning phase
+<i class="no-highlight">137</i>&nbsp;     */
+<i class="no-highlight">138</i>&nbsp;    private void UpdateRanking() {
+<b class="nc"><i class="no-highlight">139</i>&nbsp;        ranking = createRanking(cardList, gm.getNumPlayers());</b>
+<b class="nc"><i class="no-highlight">140</i>&nbsp;        firstPlanner = ranking[0];</b>
+<i class="no-highlight">141</i>&nbsp;    }
+<i class="no-highlight">142</i>&nbsp;
+<i class="no-highlight">143</i>&nbsp;    /**
+<i class="no-highlight">144</i>&nbsp;     * Creates the ranking of the planning phase
+<i class="no-highlight">145</i>&nbsp;     *
+<i class="no-highlight">146</i>&nbsp;     * @param cardList   parameters on which the ranking is based on
+<i class="no-highlight">147</i>&nbsp;     * @param numPlayers the number of players
+<i class="no-highlight">148</i>&nbsp;     */
+<i class="no-highlight">149</i>&nbsp;    private int[] createRanking(List&lt;Card&gt; cardList, int numPlayers) {
+<i class="no-highlight">150</i>&nbsp;
+<b class="nc"><i class="no-highlight">151</i>&nbsp;        Map&lt;Card, Integer&gt; map = new HashMap&lt;&gt;();</b>
 <i class="no-highlight">152</i>&nbsp;
-<b class="nc"><i class="no-highlight">153</i>&nbsp;        for (int i = 0; i &lt; numPlayers; i++) {</b>
-<b class="nc"><i class="no-highlight">154</i>&nbsp;            j = i;</b>
-<b class="nc"><i class="no-highlight">155</i>&nbsp;            for (int k = i + 1; k &lt; numPlayers; k++) {</b>
-<b class="nc"><i class="no-highlight">156</i>&nbsp;                if (cardArray[k].getValue() &lt; cardArray[j].getValue()) {</b>
-<b class="nc"><i class="no-highlight">157</i>&nbsp;                    j = k;</b>
-<i class="no-highlight">158</i>&nbsp;                }
-<i class="no-highlight">159</i>&nbsp;            }
-<b class="nc"><i class="no-highlight">160</i>&nbsp;            tmp = cardArray[j];</b>
-<b class="nc"><i class="no-highlight">161</i>&nbsp;            cardArray[j] = cardArray[i];</b>
-<b class="nc"><i class="no-highlight">162</i>&nbsp;            cardArray[i] = tmp;</b>
-<i class="no-highlight">163</i>&nbsp;        }
-<i class="no-highlight">164</i>&nbsp;
-<b class="nc"><i class="no-highlight">165</i>&nbsp;        List&lt;Card&gt; duplicates = null;</b>
-<i class="no-highlight">166</i>&nbsp;
-<b class="nc"><i class="no-highlight">167</i>&nbsp;        for (int i = 0; i &lt; numPlayers - 1; i++) {</b>
-<b class="nc"><i class="no-highlight">168</i>&nbsp;            if (cardArray[i].getValue() == cardArray[i + 1].getValue()) {</b>
-<b class="nc"><i class="no-highlight">169</i>&nbsp;                if (duplicates == null) {</b>
-<b class="nc"><i class="no-highlight">170</i>&nbsp;                    duplicates = new ArrayList&lt;&gt;();</b>
-<i class="no-highlight">171</i>&nbsp;                }
-<b class="nc"><i class="no-highlight">172</i>&nbsp;                duplicates.add(cardArray[i]);</b>
-<i class="no-highlight">173</i>&nbsp;            }
-<i class="no-highlight">174</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">153</i>&nbsp;        Card[] cardArray = cardList.toArray(new Card[cardList.size()]);</b>
+<i class="no-highlight">154</i>&nbsp;
+<b class="nc"><i class="no-highlight">155</i>&nbsp;        for (int i = 0; i &lt; numPlayers; i++) {</b>
+<b class="nc"><i class="no-highlight">156</i>&nbsp;            map.put(cardArray[i], i);</b>
+<i class="no-highlight">157</i>&nbsp;        }
+<i class="no-highlight">158</i>&nbsp;
+<i class="no-highlight">159</i>&nbsp;        int j;
+<i class="no-highlight">160</i>&nbsp;        Card tmp;
+<i class="no-highlight">161</i>&nbsp;
+<b class="nc"><i class="no-highlight">162</i>&nbsp;        for (int i = 0; i &lt; numPlayers; i++) {</b>
+<b class="nc"><i class="no-highlight">163</i>&nbsp;            j = i;</b>
+<b class="nc"><i class="no-highlight">164</i>&nbsp;            for (int k = i + 1; k &lt; numPlayers; k++) {</b>
+<b class="nc"><i class="no-highlight">165</i>&nbsp;                if (cardArray[k].getValue() &lt; cardArray[j].getValue()) {</b>
+<b class="nc"><i class="no-highlight">166</i>&nbsp;                    j = k;</b>
+<i class="no-highlight">167</i>&nbsp;                }
+<i class="no-highlight">168</i>&nbsp;            }
+<b class="nc"><i class="no-highlight">169</i>&nbsp;            tmp = cardArray[j];</b>
+<b class="nc"><i class="no-highlight">170</i>&nbsp;            cardArray[j] = cardArray[i];</b>
+<b class="nc"><i class="no-highlight">171</i>&nbsp;            cardArray[i] = tmp;</b>
+<i class="no-highlight">172</i>&nbsp;        }
+<i class="no-highlight">173</i>&nbsp;
+<b class="nc"><i class="no-highlight">174</i>&nbsp;        List&lt;Card&gt; duplicates = null;</b>
 <i class="no-highlight">175</i>&nbsp;
-<b class="nc"><i class="no-highlight">176</i>&nbsp;        if (duplicates != null) {</b>
-<b class="nc"><i class="no-highlight">177</i>&nbsp;            duplicates = duplicates.stream().distinct().collect(Collectors.toList());</b>
-<i class="no-highlight">178</i>&nbsp;        }
-<i class="no-highlight">179</i>&nbsp;
-<b class="nc"><i class="no-highlight">180</i>&nbsp;        int[] ranking = new int[numPlayers];</b>
-<i class="no-highlight">181</i>&nbsp;
-<b class="nc"><i class="no-highlight">182</i>&nbsp;        if (duplicates == null) {</b>
-<b class="nc"><i class="no-highlight">183</i>&nbsp;            for (int i = 0; i &lt; numPlayers; i++) {</b>
-<b class="nc"><i class="no-highlight">184</i>&nbsp;                ranking[i] = (map.get(cardArray[i]) + firstPlanner) % numPlayers;</b>
-<i class="no-highlight">185</i>&nbsp;            }
-<i class="no-highlight">186</i>&nbsp;        } else {
-<b class="nc"><i class="no-highlight">187</i>&nbsp;            for (int i = 0; i &lt; numPlayers; i++) {</b>
-<b class="nc"><i class="no-highlight">188</i>&nbsp;                Card same = null;</b>
-<b class="nc"><i class="no-highlight">189</i>&nbsp;                for (Card duplicate : duplicates) {</b>
-<b class="nc"><i class="no-highlight">190</i>&nbsp;                    if (duplicate.equals(cardArray[i])) {</b>
-<b class="nc"><i class="no-highlight">191</i>&nbsp;                        same = cardArray[i];</b>
-<b class="nc"><i class="no-highlight">192</i>&nbsp;                        break;</b>
-<i class="no-highlight">193</i>&nbsp;                    }
-<b class="nc"><i class="no-highlight">194</i>&nbsp;                }</b>
-<i class="no-highlight">195</i>&nbsp;
-<b class="nc"><i class="no-highlight">196</i>&nbsp;                if (same == null) {</b>
-<b class="nc"><i class="no-highlight">197</i>&nbsp;                    ranking[i] = (map.get(cardArray[i]) + firstPlanner) % numPlayers;</b>
-<i class="no-highlight">198</i>&nbsp;                } else {
-<b class="nc"><i class="no-highlight">199</i>&nbsp;                    int times = 0;</b>
-<b class="nc"><i class="no-highlight">200</i>&nbsp;                    for (int q = i; q &lt; numPlayers; q++) {</b>
-<b class="nc"><i class="no-highlight">201</i>&nbsp;                        if (cardArray[q].equals(cardArray[i])) {</b>
-<b class="nc"><i class="no-highlight">202</i>&nbsp;                            times++;</b>
-<i class="no-highlight">203</i>&nbsp;                        }
-<i class="no-highlight">204</i>&nbsp;                    }
-<b class="nc"><i class="no-highlight">205</i>&nbsp;                    for (int q = i; q &lt; i + times; q++) {</b>
-<b class="nc"><i class="no-highlight">206</i>&nbsp;                        int position = cardList.indexOf(cardArray[q]);</b>
-<b class="nc"><i class="no-highlight">207</i>&nbsp;                        cardList.set(position, null);</b>
-<b class="nc"><i class="no-highlight">208</i>&nbsp;                        ranking[q] = (position + firstPlanner) % numPlayers;</b>
-<i class="no-highlight">209</i>&nbsp;                    }
-<b class="nc"><i class="no-highlight">210</i>&nbsp;                    i = i + times - 1;</b>
-<i class="no-highlight">211</i>&nbsp;                }
-<i class="no-highlight">212</i>&nbsp;            }
-<i class="no-highlight">213</i>&nbsp;        }
-<b class="nc"><i class="no-highlight">214</i>&nbsp;        return(ranking);</b>
-<i class="no-highlight">215</i>&nbsp;    }
-<i class="no-highlight">216</i>&nbsp;
-<i class="no-highlight">217</i>&nbsp;    public int[] getRanking(){
-<b class="nc"><i class="no-highlight">218</i>&nbsp;        return ranking;</b>
-<i class="no-highlight">219</i>&nbsp;    }
-<i class="no-highlight">220</i>&nbsp;
-<i class="no-highlight">221</i>&nbsp;    public String toString(){
-<b class="nc"><i class="no-highlight">222</i>&nbsp;        return &quot;Planning Controller&quot;;</b>
-<i class="no-highlight">223</i>&nbsp;    }
-<i class="no-highlight">224</i>&nbsp;
-<i class="no-highlight">225</i>&nbsp;    public void setGameModel(GameModel gm){
-<b class="nc"><i class="no-highlight">226</i>&nbsp;        this.gm = gm;</b>
-<i class="no-highlight">227</i>&nbsp;    }
-<i class="no-highlight">228</i>&nbsp;
-<i class="no-highlight">229</i>&nbsp;    /**
-<i class="no-highlight">230</i>&nbsp;     * Checks if the player has other cards to play
-<i class="no-highlight">231</i>&nbsp;     *
-<i class="no-highlight">232</i>&nbsp;     * @param messageReceived the message from the client
-<i class="no-highlight">233</i>&nbsp;     */
-<i class="no-highlight">234</i>&nbsp;    private boolean notOtherCards(CommandMessage messageReceived){
-<b class="nc"><i class="no-highlight">235</i>&nbsp;        Set&lt;Card&gt; result = availableAssistantCards.stream().distinct().filter(gm.getPlayerByNickname(messageReceived.getNickname()).getDeck()::contains).collect(Collectors.toSet());</b>
-<b class="nc"><i class="no-highlight">236</i>&nbsp;        return result.isEmpty();</b>
-<i class="no-highlight">237</i>&nbsp;    }
-<i class="no-highlight">238</i>&nbsp;
-<i class="no-highlight">239</i>&nbsp;    /**
-<i class="no-highlight">240</i>&nbsp;     * Resets the available actions list
-<i class="no-highlight">241</i>&nbsp;     */
-<i class="no-highlight">242</i>&nbsp;    public void resetCards(){
-<b class="nc"><i class="no-highlight">243</i>&nbsp;        this.availableAssistantCards.clear();</b>
-<b class="nc"><i class="no-highlight">244</i>&nbsp;        availableAssistantCards.addAll(Arrays.asList(Card.values()));</b>
-<b class="nc"><i class="no-highlight">245</i>&nbsp;        this.cardList.clear();</b>
+<b class="nc"><i class="no-highlight">176</i>&nbsp;        for (int i = 0; i &lt; numPlayers - 1; i++) {</b>
+<b class="nc"><i class="no-highlight">177</i>&nbsp;            if (cardArray[i].getValue() == cardArray[i + 1].getValue()) {</b>
+<b class="nc"><i class="no-highlight">178</i>&nbsp;                if (duplicates == null) {</b>
+<b class="nc"><i class="no-highlight">179</i>&nbsp;                    duplicates = new ArrayList&lt;&gt;();</b>
+<i class="no-highlight">180</i>&nbsp;                }
+<b class="nc"><i class="no-highlight">181</i>&nbsp;                duplicates.add(cardArray[i]);</b>
+<i class="no-highlight">182</i>&nbsp;            }
+<i class="no-highlight">183</i>&nbsp;        }
+<i class="no-highlight">184</i>&nbsp;
+<b class="nc"><i class="no-highlight">185</i>&nbsp;        if (duplicates != null) {</b>
+<b class="nc"><i class="no-highlight">186</i>&nbsp;            duplicates = duplicates.stream().distinct().collect(Collectors.toList());</b>
+<i class="no-highlight">187</i>&nbsp;        }
+<i class="no-highlight">188</i>&nbsp;
+<b class="nc"><i class="no-highlight">189</i>&nbsp;        int[] ranking = new int[numPlayers];</b>
+<i class="no-highlight">190</i>&nbsp;
+<b class="nc"><i class="no-highlight">191</i>&nbsp;        if (duplicates == null) {</b>
+<b class="nc"><i class="no-highlight">192</i>&nbsp;            for (int i = 0; i &lt; numPlayers; i++) {</b>
+<b class="nc"><i class="no-highlight">193</i>&nbsp;                ranking[i] = (map.get(cardArray[i]) + firstPlanner) % numPlayers;</b>
+<i class="no-highlight">194</i>&nbsp;            }
+<i class="no-highlight">195</i>&nbsp;        } else {
+<b class="nc"><i class="no-highlight">196</i>&nbsp;            for (int i = 0; i &lt; numPlayers; i++) {</b>
+<b class="nc"><i class="no-highlight">197</i>&nbsp;                Card same = null;</b>
+<b class="nc"><i class="no-highlight">198</i>&nbsp;                for (Card duplicate : duplicates) {</b>
+<b class="nc"><i class="no-highlight">199</i>&nbsp;                    if (duplicate.equals(cardArray[i])) {</b>
+<b class="nc"><i class="no-highlight">200</i>&nbsp;                        same = cardArray[i];</b>
+<b class="nc"><i class="no-highlight">201</i>&nbsp;                        break;</b>
+<i class="no-highlight">202</i>&nbsp;                    }
+<b class="nc"><i class="no-highlight">203</i>&nbsp;                }</b>
+<i class="no-highlight">204</i>&nbsp;
+<b class="nc"><i class="no-highlight">205</i>&nbsp;                if (same == null) {</b>
+<b class="nc"><i class="no-highlight">206</i>&nbsp;                    ranking[i] = (map.get(cardArray[i]) + firstPlanner) % numPlayers;</b>
+<i class="no-highlight">207</i>&nbsp;                } else {
+<b class="nc"><i class="no-highlight">208</i>&nbsp;                    int times = 0;</b>
+<b class="nc"><i class="no-highlight">209</i>&nbsp;                    for (int q = i; q &lt; numPlayers; q++) {</b>
+<b class="nc"><i class="no-highlight">210</i>&nbsp;                        if (cardArray[q].equals(cardArray[i])) {</b>
+<b class="nc"><i class="no-highlight">211</i>&nbsp;                            times++;</b>
+<i class="no-highlight">212</i>&nbsp;                        }
+<i class="no-highlight">213</i>&nbsp;                    }
+<b class="nc"><i class="no-highlight">214</i>&nbsp;                    for (int q = i; q &lt; i + times; q++) {</b>
+<b class="nc"><i class="no-highlight">215</i>&nbsp;                        int position = cardList.indexOf(cardArray[q]);</b>
+<b class="nc"><i class="no-highlight">216</i>&nbsp;                        cardList.set(position, null);</b>
+<b class="nc"><i class="no-highlight">217</i>&nbsp;                        ranking[q] = (position + firstPlanner) % numPlayers;</b>
+<i class="no-highlight">218</i>&nbsp;                    }
+<b class="nc"><i class="no-highlight">219</i>&nbsp;                    i = i + times - 1;</b>
+<i class="no-highlight">220</i>&nbsp;                }
+<i class="no-highlight">221</i>&nbsp;            }
+<i class="no-highlight">222</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">223</i>&nbsp;        return (ranking);</b>
+<i class="no-highlight">224</i>&nbsp;    }
+<i class="no-highlight">225</i>&nbsp;
+<i class="no-highlight">226</i>&nbsp;    public int[] getRanking() {
+<b class="nc"><i class="no-highlight">227</i>&nbsp;        return ranking;</b>
+<i class="no-highlight">228</i>&nbsp;    }
+<i class="no-highlight">229</i>&nbsp;
+<i class="no-highlight">230</i>&nbsp;    public String toString() {
+<b class="nc"><i class="no-highlight">231</i>&nbsp;        return &quot;Planning Controller&quot;;</b>
+<i class="no-highlight">232</i>&nbsp;    }
+<i class="no-highlight">233</i>&nbsp;
+<i class="no-highlight">234</i>&nbsp;    public void setGameModel(GameModel gm) {
+<b class="nc"><i class="no-highlight">235</i>&nbsp;        this.gm = gm;</b>
+<i class="no-highlight">236</i>&nbsp;    }
+<i class="no-highlight">237</i>&nbsp;
+<i class="no-highlight">238</i>&nbsp;    /**
+<i class="no-highlight">239</i>&nbsp;     * Checks if the player has other cards to play
+<i class="no-highlight">240</i>&nbsp;     *
+<i class="no-highlight">241</i>&nbsp;     * @param messageReceived the message from the client
+<i class="no-highlight">242</i>&nbsp;     */
+<i class="no-highlight">243</i>&nbsp;    private boolean notOtherCards(CommandMessage messageReceived) {
+<b class="nc"><i class="no-highlight">244</i>&nbsp;        Set&lt;Card&gt; result = availableAssistantCards.stream().distinct().filter(gm.getPlayerByNickname(messageReceived.getNickname()).getDeck()::contains).collect(Collectors.toSet());</b>
+<b class="nc"><i class="no-highlight">245</i>&nbsp;        return result.isEmpty();</b>
 <i class="no-highlight">246</i>&nbsp;    }
 <i class="no-highlight">247</i>&nbsp;
-<i class="no-highlight">248</i>&nbsp;    public int getFirstPlanner(){
-<b class="nc"><i class="no-highlight">249</i>&nbsp;        return firstPlanner;</b>
-<i class="no-highlight">250</i>&nbsp;    }
-<i class="no-highlight">251</i>&nbsp;
-<i class="no-highlight">252</i>&nbsp;    public void setPosition(int value){
-<b class="nc"><i class="no-highlight">253</i>&nbsp;        position = value;</b>
-<i class="no-highlight">254</i>&nbsp;    }
-<i class="no-highlight">255</i>&nbsp;
-<i class="no-highlight">256</i>&nbsp;    public int getPosition(){
-<b class="nc"><i class="no-highlight">257</i>&nbsp;        return position;</b>
-<i class="no-highlight">258</i>&nbsp;    }
-<i class="no-highlight">259</i>&nbsp;
-<i class="no-highlight">260</i>&nbsp;    public int getSelected(){
-<b class="nc"><i class="no-highlight">261</i>&nbsp;        return selected;</b>
-<i class="no-highlight">262</i>&nbsp;    }
-<i class="no-highlight">263</i>&nbsp;}
+<i class="no-highlight">248</i>&nbsp;    /**
+<i class="no-highlight">249</i>&nbsp;     * Resets the available actions list
+<i class="no-highlight">250</i>&nbsp;     */
+<i class="no-highlight">251</i>&nbsp;    public void resetCards() {
+<b class="nc"><i class="no-highlight">252</i>&nbsp;        this.availableAssistantCards.clear();</b>
+<b class="nc"><i class="no-highlight">253</i>&nbsp;        availableAssistantCards.addAll(Arrays.asList(Card.values()));</b>
+<b class="nc"><i class="no-highlight">254</i>&nbsp;        this.cardList.clear();</b>
+<i class="no-highlight">255</i>&nbsp;    }
+<i class="no-highlight">256</i>&nbsp;
+<i class="no-highlight">257</i>&nbsp;    public int getFirstPlanner() {
+<b class="nc"><i class="no-highlight">258</i>&nbsp;        return firstPlanner;</b>
+<i class="no-highlight">259</i>&nbsp;    }
+<i class="no-highlight">260</i>&nbsp;
+<i class="no-highlight">261</i>&nbsp;    public void setPosition(int value) {
+<b class="nc"><i class="no-highlight">262</i>&nbsp;        position = value;</b>
+<i class="no-highlight">263</i>&nbsp;    }
 <i class="no-highlight">264</i>&nbsp;
+<i class="no-highlight">265</i>&nbsp;    public int getPosition() {
+<b class="nc"><i class="no-highlight">266</i>&nbsp;        return position;</b>
+<i class="no-highlight">267</i>&nbsp;    }
+<i class="no-highlight">268</i>&nbsp;
+<i class="no-highlight">269</i>&nbsp;    public int getSelected() {
+<b class="nc"><i class="no-highlight">270</i>&nbsp;        return selected;</b>
+<i class="no-highlight">271</i>&nbsp;    }
+<i class="no-highlight">272</i>&nbsp;}
+<i class="no-highlight">273</i>&nbsp;
 </div>
 </pre>
 </div>
@@ -363,7 +372,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-01 12:22</div>
+    <div style="float:right;">generated on 2022-07-01 19:12</div>
 </div>
 </body>
 </html>

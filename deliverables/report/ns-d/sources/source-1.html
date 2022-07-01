@@ -130,7 +130,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">29</i>&nbsp;    private boolean stop;
 <i class="no-highlight">30</i>&nbsp;
 <i class="no-highlight">31</i>&nbsp;    /**
-<i class="no-highlight">32</i>&nbsp;     * Class constructor.
+<i class="no-highlight">32</i>&nbsp;     * Class constructor
 <i class="no-highlight">33</i>&nbsp;     */
 <b class="nc"><i class="no-highlight">34</i>&nbsp;    public Cli() {</b>
 <b class="nc"><i class="no-highlight">35</i>&nbsp;        scanner = new Scanner(System.in);</b>
@@ -142,7 +142,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">41</i>&nbsp;    }
 <i class="no-highlight">42</i>&nbsp;
 <i class="no-highlight">43</i>&nbsp;    /**
-<i class="no-highlight">44</i>&nbsp;     * Initiates the communication with the server.
+<i class="no-highlight">44</i>&nbsp;     * Initiates the communication with the server
 <i class="no-highlight">45</i>&nbsp;     */
 <i class="no-highlight">46</i>&nbsp;    public void start() {
 <b class="nc"><i class="no-highlight">47</i>&nbsp;        clearCli();</b>
@@ -211,7 +211,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc"><i class="no-highlight">110</i>&nbsp;        System.out.println(errorMsg);</b>
 <i class="no-highlight">111</i>&nbsp;
 <b class="nc"><i class="no-highlight">112</i>&nbsp;        if(errorMsg.endsWith(TypeOfError.DISCONNECTED.toString()) || errorMsg.endsWith(TypeOfError.GAME_FULL.toString())</b>
-<b class="nc"><i class="no-highlight">113</i>&nbsp;                || errorMsg.endsWith(TypeOfError.GAME_ALREADY_STARTED.toString()) || errorMsg.endsWith(TypeOfError.SERVER_UNREACHBLE.toString())) {</b>
+<b class="nc"><i class="no-highlight">113</i>&nbsp;                || errorMsg.endsWith(TypeOfError.GAME_ALREADY_STARTED.toString()) || errorMsg.endsWith(TypeOfError.SERVER_UNREACHABLE.toString())) {</b>
 <b class="nc"><i class="no-highlight">114</i>&nbsp;            notifyObserver(ViewObserver::onDisconnection);</b>
 <i class="no-highlight">115</i>&nbsp;        }
 <i class="no-highlight">116</i>&nbsp;    }
@@ -316,7 +316,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">215</i>&nbsp;    }
 <i class="no-highlight">216</i>&nbsp;
 <i class="no-highlight">217</i>&nbsp;    @Override
-<i class="no-highlight">218</i>&nbsp;    public void selectTeam(String[] teamArray, String[] leaderArray) { // TODO: modificare e testare
+<i class="no-highlight">218</i>&nbsp;    public void selectTeam(String[] teamArray, String[] leaderArray) {
 <b class="nc"><i class="no-highlight">219</i>&nbsp;        int numPlayersTeam1 = (teamArray[0] == null ? 0 : 1) + (leaderArray[0] == null ? 0 : 1);</b>
 <b class="nc"><i class="no-highlight">220</i>&nbsp;        int numPlayersTeam2 = (teamArray[1] == null ? 0 : 1) + (leaderArray[1] == null ? 0 : 1);</b>
 <b class="nc"><i class="no-highlight">221</i>&nbsp;        boolean hasLeader1 = (leaderArray[0] != null);</b>
@@ -994,12 +994,12 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc"><i class="no-highlight">893</i>&nbsp;        if (gm.getNumPlayers() == 4) {</b>
 <b class="nc"><i class="no-highlight">894</i>&nbsp;            String winnerTeamMate = gm.getTeamMate(winner);</b>
 <b class="nc"><i class="no-highlight">895</i>&nbsp;            System.out.println(&quot;GAME ENDED! &quot; + winner + &quot; and &quot; + winnerTeamMate + &quot; won the game! Thank you for playing!&quot;);</b>
-<i class="no-highlight">896</i>&nbsp;        }
-<b class="nc"><i class="no-highlight">897</i>&nbsp;        System.out.println(&quot;GAME ENDED! &quot; + winner + &quot; won the game! Thank you for playing!&quot;);</b>
-<i class="no-highlight">898</i>&nbsp;
-<b class="nc"><i class="no-highlight">899</i>&nbsp;        System.out.println(&quot;Do you want to play another game?&quot;);</b>
-<b class="nc"><i class="no-highlight">900</i>&nbsp;        boolean newGame = YNInput(&quot;you want to play again&quot;);</b>
-<b class="nc"><i class="no-highlight">901</i>&nbsp;        System.out.println(newGame);</b>
+<b class="nc"><i class="no-highlight">896</i>&nbsp;        } else {</b>
+<b class="nc"><i class="no-highlight">897</i>&nbsp;            System.out.println(&quot;GAME ENDED! &quot; + winner + &quot; won the game! Thank you for playing!&quot;);</b>
+<i class="no-highlight">898</i>&nbsp;        }
+<i class="no-highlight">899</i>&nbsp;
+<b class="nc"><i class="no-highlight">900</i>&nbsp;        System.out.println(&quot;Do you want to play another game? (Y/N)&quot;);</b>
+<b class="nc"><i class="no-highlight">901</i>&nbsp;        boolean newGame = YNInput(&quot;you want to play again&quot;);</b>
 <b class="nc"><i class="no-highlight">902</i>&nbsp;        if (newGame)</b>
 <b class="nc"><i class="no-highlight">903</i>&nbsp;            notifyObserver(observers -&gt; observers.onCreateNewGame(nickname));</b>
 <i class="no-highlight">904</i>&nbsp;        else
@@ -1203,7 +1203,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-01 12:22</div>
+    <div style="float:right;">generated on 2022-07-01 19:12</div>
 </div>
 </body>
 </html>

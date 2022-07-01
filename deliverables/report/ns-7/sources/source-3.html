@@ -142,79 +142,78 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">3</i>&nbsp;import com.google.gson.Gson;
 <i class="no-highlight">4</i>&nbsp;import com.google.gson.reflect.TypeToken;
 <i class="no-highlight">5</i>&nbsp;import it.polimi.ingsw.model.House;
-<i class="no-highlight">6</i>&nbsp;import it.polimi.ingsw.model.Island;
-<i class="no-highlight">7</i>&nbsp;
-<i class="no-highlight">8</i>&nbsp;import java.lang.reflect.Type;
-<i class="no-highlight">9</i>&nbsp;import java.util.HashMap;
-<i class="no-highlight">10</i>&nbsp;import java.util.Map;
-<i class="no-highlight">11</i>&nbsp;
-<i class="no-highlight">12</i>&nbsp;import static it.polimi.ingsw.messages.MessageType.CHOSEN_CHARACTER_CARD;
-<i class="no-highlight">13</i>&nbsp;
-<i class="no-highlight">14</i>&nbsp;/**
-<i class="no-highlight">15</i>&nbsp; * This message is sent from the client to the server to request the character cards in use in this game.
-<i class="no-highlight">16</i>&nbsp; *
-<i class="no-highlight">17</i>&nbsp; * @author Alessio Buda &amp; Dario Mazzola &amp; Gabriele Munafo&#39;
-<i class="no-highlight">18</i>&nbsp; */
-<i class="no-highlight">19</i>&nbsp;public class ChosenCharacterCard extends CommandMessage{
-<i class="no-highlight">20</i>&nbsp;
-<i class="no-highlight">21</i>&nbsp;    private final int cardIndex;
-<i class="no-highlight">22</i>&nbsp;    private final String parameters;
-<i class="no-highlight">23</i>&nbsp;
-<i class="no-highlight">24</i>&nbsp;    /**
-<i class="no-highlight">25</i>&nbsp;     * Message constructor
-<i class="no-highlight">26</i>&nbsp;     *
-<i class="no-highlight">27</i>&nbsp;     * @param nickname The nickname of the player sending the message
-<i class="no-highlight">28</i>&nbsp;     * @param cardIndex The index of the CharacterCard chosen by the player
-<i class="no-highlight">29</i>&nbsp;     */
-<i class="no-highlight">30</i>&nbsp;    public ChosenCharacterCard(String nickname, int cardIndex, Map&lt;String, Object&gt; parameters) {
-<b class="fc"><i class="no-highlight">31</i>&nbsp;        super(CHOSEN_CHARACTER_CARD, nickname);</b>
-<b class="fc"><i class="no-highlight">32</i>&nbsp;        this.cardIndex = cardIndex;</b>
-<b class="fc"><i class="no-highlight">33</i>&nbsp;        Gson gson;gson = new Gson();</b>
-<b class="fc"><i class="no-highlight">34</i>&nbsp;        this.parameters = gson.toJson(parameters);</b>
-<i class="no-highlight">35</i>&nbsp;    }
-<i class="no-highlight">36</i>&nbsp;
-<i class="no-highlight">37</i>&nbsp;    public int getCardIndex() {
-<b class="nc"><i class="no-highlight">38</i>&nbsp;        return cardIndex;</b>
-<i class="no-highlight">39</i>&nbsp;    }
-<i class="no-highlight">40</i>&nbsp;
-<i class="no-highlight">41</i>&nbsp;    /**
-<i class="no-highlight">42</i>&nbsp;     * Method that returns the Map &lt;String, Object&gt; built with all the parameters necessary for
-<i class="no-highlight">43</i>&nbsp;     * the functioning of the character cards starting from the card that was used to send the message.
-<i class="no-highlight">44</i>&nbsp;     *
-<i class="no-highlight">45</i>&nbsp;     * @return the map with the all parameters necessary to use the CharacterCard
-<i class="no-highlight">46</i>&nbsp;     */
-<i class="no-highlight">47</i>&nbsp;    public Map&lt;String, Object&gt; getMap() {
-<b class="nc"><i class="no-highlight">48</i>&nbsp;        Type listOfMyClassObject = new TypeToken&lt;HashMap&lt;String, String&gt;&gt;() {}.getType();</b>
-<b class="nc"><i class="no-highlight">49</i>&nbsp;        Gson gson = new Gson();</b>
-<i class="no-highlight">50</i>&nbsp;
-<b class="nc"><i class="no-highlight">51</i>&nbsp;        Map&lt;String, Object&gt; map = gson.fromJson(parameters, listOfMyClassObject);</b>
-<b class="nc"><i class="no-highlight">52</i>&nbsp;        Map&lt;String, Object&gt; newMap = new HashMap&lt;&gt;();</b>
-<i class="no-highlight">53</i>&nbsp;
-<b class="nc"><i class="no-highlight">54</i>&nbsp;        if(map != null) {</b>
-<b class="nc"><i class="no-highlight">55</i>&nbsp;            for (String key : map.keySet()) {</b>
-<b class="nc"><i class="no-highlight">56</i>&nbsp;                if (key.equals(&quot;method&quot;)) {</b>
-<b class="nc"><i class="no-highlight">57</i>&nbsp;                    newMap.put(key, map.get(key));</b>
-<b class="nc"><i class="no-highlight">58</i>&nbsp;                } else if (key.equals(&quot;wantedHouse&quot;) || key.equals(&quot;house&quot;)) {</b>
-<b class="nc"><i class="no-highlight">59</i>&nbsp;                    newMap.put(key, gson.fromJson((String) map.get(key), House.class));</b>
-<b class="nc"><i class="no-highlight">60</i>&nbsp;                } else if (key.equals(&quot;destinationIsland&quot;)) {</b>
-<b class="nc"><i class="no-highlight">61</i>&nbsp;                    newMap.put(key, gson.fromJson((String) map.get(key), Double.class));</b>
-<b class="nc"><i class="no-highlight">62</i>&nbsp;                } else if (key.equals(&quot;island&quot;)) {</b>
-<b class="nc"><i class="no-highlight">63</i>&nbsp;                    newMap.put(key, gson.fromJson((String) map.get(key), Integer.class));</b>
-<b class="nc"><i class="no-highlight">64</i>&nbsp;                } else if (key.equals(&quot;wantedStudents&quot;) || key.equals(&quot;returnedStudents&quot;)) {</b>
-<b class="nc"><i class="no-highlight">65</i>&nbsp;                    Type type = new TypeToken&lt;HashMap&lt;House, Integer&gt;&gt;() {</b>
-<b class="nc"><i class="no-highlight">66</i>&nbsp;                    }.getType();</b>
-<b class="nc"><i class="no-highlight">67</i>&nbsp;                    newMap.put(key, gson.fromJson((String) map.get(key), type));</b>
-<b class="nc"><i class="no-highlight">68</i>&nbsp;                } else if (key.equals(&quot;fromDashboard&quot;) || key.equals(&quot;fromDiningHall&quot;)) {</b>
-<b class="nc"><i class="no-highlight">69</i>&nbsp;                    Type type = new TypeToken&lt;House[]&gt;() {</b>
-<b class="nc"><i class="no-highlight">70</i>&nbsp;                    }.getType();</b>
-<b class="nc"><i class="no-highlight">71</i>&nbsp;                    newMap.put(key, gson.fromJson((String) map.get(key), type));</b>
-<i class="no-highlight">72</i>&nbsp;                }
-<b class="nc"><i class="no-highlight">73</i>&nbsp;            }</b>
-<i class="no-highlight">74</i>&nbsp;        }
-<i class="no-highlight">75</i>&nbsp;
-<b class="nc"><i class="no-highlight">76</i>&nbsp;        return newMap;</b>
-<i class="no-highlight">77</i>&nbsp;    }
-<i class="no-highlight">78</i>&nbsp;}
+<i class="no-highlight">6</i>&nbsp;
+<i class="no-highlight">7</i>&nbsp;import java.lang.reflect.Type;
+<i class="no-highlight">8</i>&nbsp;import java.util.HashMap;
+<i class="no-highlight">9</i>&nbsp;import java.util.Map;
+<i class="no-highlight">10</i>&nbsp;
+<i class="no-highlight">11</i>&nbsp;import static it.polimi.ingsw.messages.MessageType.CHOSEN_CHARACTER_CARD;
+<i class="no-highlight">12</i>&nbsp;
+<i class="no-highlight">13</i>&nbsp;/**
+<i class="no-highlight">14</i>&nbsp; * This message is sent from the client to the server to request the character cards in use in this game.
+<i class="no-highlight">15</i>&nbsp; *
+<i class="no-highlight">16</i>&nbsp; * @author Alessio Buda &amp; Dario Mazzola &amp; Gabriele Munafo&#39;
+<i class="no-highlight">17</i>&nbsp; */
+<i class="no-highlight">18</i>&nbsp;public class ChosenCharacterCard extends CommandMessage{
+<i class="no-highlight">19</i>&nbsp;
+<i class="no-highlight">20</i>&nbsp;    private final int cardIndex;
+<i class="no-highlight">21</i>&nbsp;    private final String parameters;
+<i class="no-highlight">22</i>&nbsp;
+<i class="no-highlight">23</i>&nbsp;    /**
+<i class="no-highlight">24</i>&nbsp;     * Message constructor
+<i class="no-highlight">25</i>&nbsp;     *
+<i class="no-highlight">26</i>&nbsp;     * @param nickname The nickname of the player sending the message
+<i class="no-highlight">27</i>&nbsp;     * @param cardIndex The index of the CharacterCard chosen by the player
+<i class="no-highlight">28</i>&nbsp;     */
+<i class="no-highlight">29</i>&nbsp;    public ChosenCharacterCard(String nickname, int cardIndex, Map&lt;String, Object&gt; parameters) {
+<b class="fc"><i class="no-highlight">30</i>&nbsp;        super(CHOSEN_CHARACTER_CARD, nickname);</b>
+<b class="fc"><i class="no-highlight">31</i>&nbsp;        this.cardIndex = cardIndex;</b>
+<b class="fc"><i class="no-highlight">32</i>&nbsp;        Gson gson;gson = new Gson();</b>
+<b class="fc"><i class="no-highlight">33</i>&nbsp;        this.parameters = gson.toJson(parameters);</b>
+<i class="no-highlight">34</i>&nbsp;    }
+<i class="no-highlight">35</i>&nbsp;
+<i class="no-highlight">36</i>&nbsp;    public int getCardIndex() {
+<b class="nc"><i class="no-highlight">37</i>&nbsp;        return cardIndex;</b>
+<i class="no-highlight">38</i>&nbsp;    }
+<i class="no-highlight">39</i>&nbsp;
+<i class="no-highlight">40</i>&nbsp;    /**
+<i class="no-highlight">41</i>&nbsp;     * Method that returns the Map &lt;String, Object&gt; built with all the parameters necessary for
+<i class="no-highlight">42</i>&nbsp;     * the functioning of the character cards starting from the card that was used to send the message.
+<i class="no-highlight">43</i>&nbsp;     *
+<i class="no-highlight">44</i>&nbsp;     * @return the map with the all parameters necessary to use the CharacterCard
+<i class="no-highlight">45</i>&nbsp;     */
+<i class="no-highlight">46</i>&nbsp;    public Map&lt;String, Object&gt; getMap() {
+<b class="nc"><i class="no-highlight">47</i>&nbsp;        Type listOfMyClassObject = new TypeToken&lt;HashMap&lt;String, String&gt;&gt;() {}.getType();</b>
+<b class="nc"><i class="no-highlight">48</i>&nbsp;        Gson gson = new Gson();</b>
+<i class="no-highlight">49</i>&nbsp;
+<b class="nc"><i class="no-highlight">50</i>&nbsp;        Map&lt;String, Object&gt; map = gson.fromJson(parameters, listOfMyClassObject);</b>
+<b class="nc"><i class="no-highlight">51</i>&nbsp;        Map&lt;String, Object&gt; newMap = new HashMap&lt;&gt;();</b>
+<i class="no-highlight">52</i>&nbsp;
+<b class="nc"><i class="no-highlight">53</i>&nbsp;        if(map != null) {</b>
+<b class="nc"><i class="no-highlight">54</i>&nbsp;            for (String key : map.keySet()) {</b>
+<b class="nc"><i class="no-highlight">55</i>&nbsp;                if (key.equals(&quot;method&quot;)) {</b>
+<b class="nc"><i class="no-highlight">56</i>&nbsp;                    newMap.put(key, map.get(key));</b>
+<b class="nc"><i class="no-highlight">57</i>&nbsp;                } else if (key.equals(&quot;wantedHouse&quot;) || key.equals(&quot;house&quot;)) {</b>
+<b class="nc"><i class="no-highlight">58</i>&nbsp;                    newMap.put(key, gson.fromJson((String) map.get(key), House.class));</b>
+<b class="nc"><i class="no-highlight">59</i>&nbsp;                } else if (key.equals(&quot;destinationIsland&quot;)) {</b>
+<b class="nc"><i class="no-highlight">60</i>&nbsp;                    newMap.put(key, gson.fromJson((String) map.get(key), Double.class));</b>
+<b class="nc"><i class="no-highlight">61</i>&nbsp;                } else if (key.equals(&quot;island&quot;)) {</b>
+<b class="nc"><i class="no-highlight">62</i>&nbsp;                    newMap.put(key, gson.fromJson((String) map.get(key), Integer.class));</b>
+<b class="nc"><i class="no-highlight">63</i>&nbsp;                } else if (key.equals(&quot;wantedStudents&quot;) || key.equals(&quot;returnedStudents&quot;)) {</b>
+<b class="nc"><i class="no-highlight">64</i>&nbsp;                    Type type = new TypeToken&lt;HashMap&lt;House, Integer&gt;&gt;() {</b>
+<b class="nc"><i class="no-highlight">65</i>&nbsp;                    }.getType();</b>
+<b class="nc"><i class="no-highlight">66</i>&nbsp;                    newMap.put(key, gson.fromJson((String) map.get(key), type));</b>
+<b class="nc"><i class="no-highlight">67</i>&nbsp;                } else if (key.equals(&quot;fromDashboard&quot;) || key.equals(&quot;fromDiningHall&quot;)) {</b>
+<b class="nc"><i class="no-highlight">68</i>&nbsp;                    Type type = new TypeToken&lt;House[]&gt;() {</b>
+<b class="nc"><i class="no-highlight">69</i>&nbsp;                    }.getType();</b>
+<b class="nc"><i class="no-highlight">70</i>&nbsp;                    newMap.put(key, gson.fromJson((String) map.get(key), type));</b>
+<i class="no-highlight">71</i>&nbsp;                }
+<b class="nc"><i class="no-highlight">72</i>&nbsp;            }</b>
+<i class="no-highlight">73</i>&nbsp;        }
+<i class="no-highlight">74</i>&nbsp;
+<b class="nc"><i class="no-highlight">75</i>&nbsp;        return newMap;</b>
+<i class="no-highlight">76</i>&nbsp;    }
+<i class="no-highlight">77</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -241,7 +240,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-01 12:22</div>
+    <div style="float:right;">generated on 2022-07-01 19:12</div>
 </div>
 </body>
 </html>

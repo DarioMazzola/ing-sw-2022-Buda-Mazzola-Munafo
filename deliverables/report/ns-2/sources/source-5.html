@@ -83,31 +83,32 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">8</i>&nbsp;
 <i class="no-highlight">9</i>&nbsp;/**
 <i class="no-highlight">10</i>&nbsp; * Class that represents a reduced version of a diningHall
-<i class="no-highlight">11</i>&nbsp; * @author Gabriele Munafo&#39;
-<i class="no-highlight">12</i>&nbsp; */
-<i class="no-highlight">13</i>&nbsp;public class ReducedDiningHall {
-<i class="no-highlight">14</i>&nbsp;    private final Map&lt;House, Integer&gt; tableOccupation;
-<i class="no-highlight">15</i>&nbsp;    private final String nickname;
-<i class="no-highlight">16</i>&nbsp;
-<b class="fc"><i class="no-highlight">17</i>&nbsp;    public ReducedDiningHall(DiningHall d){</b>
-<b class="fc"><i class="no-highlight">18</i>&nbsp;        tableOccupation = new HashMap&lt;&gt;();</b>
-<b class="fc"><i class="no-highlight">19</i>&nbsp;        tableOccupation.putAll(d.getStudents());</b>
-<i class="no-highlight">20</i>&nbsp;
-<b class="fc"><i class="no-highlight">21</i>&nbsp;        nickname = d.getOwner();</b>
-<i class="no-highlight">22</i>&nbsp;    }
-<i class="no-highlight">23</i>&nbsp;
-<i class="no-highlight">24</i>&nbsp;    public int getHouseStudents(House house){
-<b class="nc"><i class="no-highlight">25</i>&nbsp;        return tableOccupation.get(house);</b>
-<i class="no-highlight">26</i>&nbsp;    }
-<i class="no-highlight">27</i>&nbsp;
-<i class="no-highlight">28</i>&nbsp;    public Map&lt;House, Integer&gt; getStudents() {
-<b class="nc"><i class="no-highlight">29</i>&nbsp;        return tableOccupation;</b>
-<i class="no-highlight">30</i>&nbsp;    }
-<i class="no-highlight">31</i>&nbsp;
-<i class="no-highlight">32</i>&nbsp;    public String getNickname() {
-<b class="nc"><i class="no-highlight">33</i>&nbsp;        return nickname;</b>
-<i class="no-highlight">34</i>&nbsp;    }
-<i class="no-highlight">35</i>&nbsp;}
+<i class="no-highlight">11</i>&nbsp; *
+<i class="no-highlight">12</i>&nbsp; * @author Gabriele Munafo&#39;
+<i class="no-highlight">13</i>&nbsp; */
+<i class="no-highlight">14</i>&nbsp;public class ReducedDiningHall {
+<i class="no-highlight">15</i>&nbsp;    private final Map&lt;House, Integer&gt; tableOccupation;
+<i class="no-highlight">16</i>&nbsp;    private final String nickname;
+<i class="no-highlight">17</i>&nbsp;
+<b class="fc"><i class="no-highlight">18</i>&nbsp;    public ReducedDiningHall(DiningHall d) {</b>
+<b class="fc"><i class="no-highlight">19</i>&nbsp;        tableOccupation = new HashMap&lt;&gt;();</b>
+<b class="fc"><i class="no-highlight">20</i>&nbsp;        tableOccupation.putAll(d.getStudents());</b>
+<i class="no-highlight">21</i>&nbsp;
+<b class="fc"><i class="no-highlight">22</i>&nbsp;        nickname = d.getOwner();</b>
+<i class="no-highlight">23</i>&nbsp;    }
+<i class="no-highlight">24</i>&nbsp;
+<i class="no-highlight">25</i>&nbsp;    public int getHouseStudents(House house) {
+<b class="nc"><i class="no-highlight">26</i>&nbsp;        return tableOccupation.get(house);</b>
+<i class="no-highlight">27</i>&nbsp;    }
+<i class="no-highlight">28</i>&nbsp;
+<i class="no-highlight">29</i>&nbsp;    public Map&lt;House, Integer&gt; getStudents() {
+<b class="nc"><i class="no-highlight">30</i>&nbsp;        return tableOccupation;</b>
+<i class="no-highlight">31</i>&nbsp;    }
+<i class="no-highlight">32</i>&nbsp;
+<i class="no-highlight">33</i>&nbsp;    public String getNickname() {
+<b class="nc"><i class="no-highlight">34</i>&nbsp;        return nickname;</b>
+<i class="no-highlight">35</i>&nbsp;    }
+<i class="no-highlight">36</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -134,7 +135,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-01 12:22</div>
+    <div style="float:right;">generated on 2022-07-01 19:12</div>
 </div>
 </body>
 </html>

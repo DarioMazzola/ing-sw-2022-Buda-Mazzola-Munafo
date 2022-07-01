@@ -75,30 +75,32 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package it.polimi.ingsw.model;
 <i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;/** enum class representing Tower Colors
-<i class="no-highlight">4</i>&nbsp; * @author Alessio Buda &amp; Dario Mazzola
-<i class="no-highlight">5</i>&nbsp; */
-<b class="fc"><i class="no-highlight">6</i>&nbsp;public enum Color {</b>
-<b class="fc"><i class="no-highlight">7</i>&nbsp;    WHITE (&quot;WHITE&quot;, &quot;\u001B[0m&quot;),</b>
-<b class="fc"><i class="no-highlight">8</i>&nbsp;    GRAY(&quot;GRAY&quot;,&quot;\u001B[37m&quot;),</b>
-<b class="fc"><i class="no-highlight">9</i>&nbsp;    BLACK(&quot;BLACK&quot;,&quot;\u001B[30m&quot;);</b>
-<i class="no-highlight">10</i>&nbsp;
-<i class="no-highlight">11</i>&nbsp;    public static final String RESET = &quot;\u001B[0m&quot;;
+<i class="no-highlight">3</i>&nbsp;/**
+<i class="no-highlight">4</i>&nbsp; * Enum class representing Tower Colors
+<i class="no-highlight">5</i>&nbsp; *
+<i class="no-highlight">6</i>&nbsp; * @author Alessio Buda &amp; Dario Mazzola
+<i class="no-highlight">7</i>&nbsp; */
+<b class="fc"><i class="no-highlight">8</i>&nbsp;public enum Color {</b>
+<b class="fc"><i class="no-highlight">9</i>&nbsp;    WHITE (&quot;WHITE&quot;, &quot;\u001B[97m&quot;),</b>
+<b class="fc"><i class="no-highlight">10</i>&nbsp;    GRAY(&quot;GRAY&quot;,&quot;\u001B[37m&quot;),</b>
+<b class="fc"><i class="no-highlight">11</i>&nbsp;    BLACK(&quot;BLACK&quot;,&quot;\u001B[90m&quot;);</b>
 <i class="no-highlight">12</i>&nbsp;
-<i class="no-highlight">13</i>&nbsp;    private final String escape;
-<i class="no-highlight">14</i>&nbsp;    private final String name;
-<i class="no-highlight">15</i>&nbsp;
-<b class="fc"><i class="no-highlight">16</i>&nbsp;    Color(String name, String escape) {</b>
-<b class="fc"><i class="no-highlight">17</i>&nbsp;        this.name = name;</b>
-<b class="fc"><i class="no-highlight">18</i>&nbsp;        this.escape = escape;</b>
-<i class="no-highlight">19</i>&nbsp;    }
-<i class="no-highlight">20</i>&nbsp;
-<i class="no-highlight">21</i>&nbsp;    @Override
-<i class="no-highlight">22</i>&nbsp;    public String toString() {
-<b class="nc"><i class="no-highlight">23</i>&nbsp;        return escape + name + RESET;</b>
-<i class="no-highlight">24</i>&nbsp;    }
-<i class="no-highlight">25</i>&nbsp;}
-<i class="no-highlight">26</i>&nbsp;
+<i class="no-highlight">13</i>&nbsp;    public static final String RESET = &quot;\u001B[0m&quot;;
+<i class="no-highlight">14</i>&nbsp;
+<i class="no-highlight">15</i>&nbsp;    private final String escape;
+<i class="no-highlight">16</i>&nbsp;    private final String name;
+<i class="no-highlight">17</i>&nbsp;
+<b class="fc"><i class="no-highlight">18</i>&nbsp;    Color(String name, String escape) {</b>
+<b class="fc"><i class="no-highlight">19</i>&nbsp;        this.name = name;</b>
+<b class="fc"><i class="no-highlight">20</i>&nbsp;        this.escape = escape;</b>
+<i class="no-highlight">21</i>&nbsp;    }
+<i class="no-highlight">22</i>&nbsp;
+<i class="no-highlight">23</i>&nbsp;    @Override
+<i class="no-highlight">24</i>&nbsp;    public String toString() {
+<b class="nc"><i class="no-highlight">25</i>&nbsp;        return escape + name + RESET;</b>
+<i class="no-highlight">26</i>&nbsp;    }
+<i class="no-highlight">27</i>&nbsp;}
+<i class="no-highlight">28</i>&nbsp;
 </div>
 </pre>
 </div>
@@ -125,7 +127,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-01 12:22</div>
+    <div style="float:right;">generated on 2022-07-01 19:12</div>
 </div>
 </body>
 </html>

@@ -86,42 +86,42 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">11</i>&nbsp;
 <i class="no-highlight">12</i>&nbsp;/**
 <i class="no-highlight">13</i>&nbsp; * Class that represents a reduced version of a CharacterCard
-<i class="no-highlight">14</i>&nbsp; * @author Gabriele Munafo&#39;
-<i class="no-highlight">15</i>&nbsp; */
-<i class="no-highlight">16</i>&nbsp;public class ReducedCharacterCard {
-<i class="no-highlight">17</i>&nbsp;    private final int cost;
-<i class="no-highlight">18</i>&nbsp;    private final boolean inUse;
-<i class="no-highlight">19</i>&nbsp;    private final String cardName;
-<i class="no-highlight">20</i>&nbsp;    private final CharacterCardEnum type;
-<i class="no-highlight">21</i>&nbsp;    private final String description;
-<i class="no-highlight">22</i>&nbsp;    private final Map&lt;House, Integer&gt; houseMap;
-<i class="no-highlight">23</i>&nbsp;    private Integer noEntryTile;
-<i class="no-highlight">24</i>&nbsp;
-<b class="fc"><i class="no-highlight">25</i>&nbsp;    public ReducedCharacterCard(CharacterCard c){</b>
-<b class="fc"><i class="no-highlight">26</i>&nbsp;        cost = c.getCost();</b>
-<b class="fc"><i class="no-highlight">27</i>&nbsp;        inUse = c.isInUse();</b>
-<b class="fc"><i class="no-highlight">28</i>&nbsp;        cardName = c.toString();</b>
-<b class="fc"><i class="no-highlight">29</i>&nbsp;        type = c.getType();</b>
-<b class="fc"><i class="no-highlight">30</i>&nbsp;        description = c.getDescription();</b>
-<i class="no-highlight">31</i>&nbsp;
-<b class="fc"><i class="no-highlight">32</i>&nbsp;        if (c.getType() == MONK || c.getType() == JOLLY || c.getType() == SPOILED_PRINCESS) {</b>
-<b class="fc"><i class="no-highlight">33</i>&nbsp;            houseMap = new HashMap&lt;&gt;();</b>
-<b class="fc"><i class="no-highlight">34</i>&nbsp;            Map&lt;String, Object&gt; parameters = new HashMap&lt;&gt;();</b>
-<i class="no-highlight">35</i>&nbsp;
-<b class="fc"><i class="no-highlight">36</i>&nbsp;            parameters.put(&quot;method&quot;, &quot;getStudents&quot;);</b>
-<i class="no-highlight">37</i>&nbsp;
-<i class="no-highlight">38</i>&nbsp;            try {
-<b class="fc"><i class="no-highlight">39</i>&nbsp;                c.doEffect(parameters);</b>
-<b class="fc"><i class="no-highlight">40</i>&nbsp;                houseMap.putAll((HashMap&lt;House, Integer&gt;) parameters.get(&quot;studentsOnCard&quot;));</b>
-<b class="nc"><i class="no-highlight">41</i>&nbsp;            } catch (Exception e) {</b>
-<b class="nc"><i class="no-highlight">42</i>&nbsp;                e.printStackTrace();</b>
-<b class="fc"><i class="no-highlight">43</i>&nbsp;            }</b>
-<b class="fc"><i class="no-highlight">44</i>&nbsp;        }</b>
-<i class="no-highlight">45</i>&nbsp;        else {
+<i class="no-highlight">14</i>&nbsp; *
+<i class="no-highlight">15</i>&nbsp; * @author Gabriele Munafo&#39;
+<i class="no-highlight">16</i>&nbsp; */
+<i class="no-highlight">17</i>&nbsp;public class ReducedCharacterCard {
+<i class="no-highlight">18</i>&nbsp;    private final int cost;
+<i class="no-highlight">19</i>&nbsp;    private final boolean inUse;
+<i class="no-highlight">20</i>&nbsp;    private final String cardName;
+<i class="no-highlight">21</i>&nbsp;    private final CharacterCardEnum type;
+<i class="no-highlight">22</i>&nbsp;    private final String description;
+<i class="no-highlight">23</i>&nbsp;    private final Map&lt;House, Integer&gt; houseMap;
+<i class="no-highlight">24</i>&nbsp;    private Integer noEntryTile;
+<i class="no-highlight">25</i>&nbsp;
+<b class="fc"><i class="no-highlight">26</i>&nbsp;    public ReducedCharacterCard(CharacterCard c) {</b>
+<b class="fc"><i class="no-highlight">27</i>&nbsp;        cost = c.getCost();</b>
+<b class="fc"><i class="no-highlight">28</i>&nbsp;        inUse = c.isInUse();</b>
+<b class="fc"><i class="no-highlight">29</i>&nbsp;        cardName = c.toString();</b>
+<b class="fc"><i class="no-highlight">30</i>&nbsp;        type = c.getType();</b>
+<b class="fc"><i class="no-highlight">31</i>&nbsp;        description = c.getDescription();</b>
+<i class="no-highlight">32</i>&nbsp;
+<b class="fc"><i class="no-highlight">33</i>&nbsp;        if (c.getType() == MONK || c.getType() == JOLLY || c.getType() == SPOILED_PRINCESS) {</b>
+<b class="fc"><i class="no-highlight">34</i>&nbsp;            houseMap = new HashMap&lt;&gt;();</b>
+<b class="fc"><i class="no-highlight">35</i>&nbsp;            Map&lt;String, Object&gt; parameters = new HashMap&lt;&gt;();</b>
+<i class="no-highlight">36</i>&nbsp;
+<b class="fc"><i class="no-highlight">37</i>&nbsp;            parameters.put(&quot;method&quot;, &quot;getStudents&quot;);</b>
+<i class="no-highlight">38</i>&nbsp;
+<i class="no-highlight">39</i>&nbsp;            try {
+<b class="fc"><i class="no-highlight">40</i>&nbsp;                c.doEffect(parameters);</b>
+<b class="fc"><i class="no-highlight">41</i>&nbsp;                houseMap.putAll((HashMap&lt;House, Integer&gt;) parameters.get(&quot;studentsOnCard&quot;));</b>
+<b class="nc"><i class="no-highlight">42</i>&nbsp;            } catch (Exception e) {</b>
+<b class="nc"><i class="no-highlight">43</i>&nbsp;                e.printStackTrace();</b>
+<b class="fc"><i class="no-highlight">44</i>&nbsp;            }</b>
+<b class="fc"><i class="no-highlight">45</i>&nbsp;        } else {</b>
 <b class="fc"><i class="no-highlight">46</i>&nbsp;            houseMap = null;</b>
 <i class="no-highlight">47</i>&nbsp;        }
 <i class="no-highlight">48</i>&nbsp;
-<b class="fc"><i class="no-highlight">49</i>&nbsp;        if (c.getType() == HERB_GRANMA){</b>
+<b class="fc"><i class="no-highlight">49</i>&nbsp;        if (c.getType() == HERB_GRANMA) {</b>
 <b class="fc"><i class="no-highlight">50</i>&nbsp;            Map&lt;String, Object&gt; parameters = new HashMap&lt;&gt;();</b>
 <b class="fc"><i class="no-highlight">51</i>&nbsp;            parameters.put(&quot;Method&quot;, &quot;getNoEntryTileNumber&quot;);</b>
 <i class="no-highlight">52</i>&nbsp;            try {
@@ -130,58 +130,57 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc"><i class="no-highlight">55</i>&nbsp;            } catch (Exception e) {</b>
 <b class="nc"><i class="no-highlight">56</i>&nbsp;                e.printStackTrace();</b>
 <b class="fc"><i class="no-highlight">57</i>&nbsp;            }</b>
-<b class="fc"><i class="no-highlight">58</i>&nbsp;        }</b>
-<i class="no-highlight">59</i>&nbsp;        else {
-<b class="fc"><i class="no-highlight">60</i>&nbsp;            noEntryTile = null;</b>
-<i class="no-highlight">61</i>&nbsp;        }
-<i class="no-highlight">62</i>&nbsp;    }
-<i class="no-highlight">63</i>&nbsp;
-<i class="no-highlight">64</i>&nbsp;    public String getCardName(){
-<b class="nc"><i class="no-highlight">65</i>&nbsp;        return cardName;</b>
-<i class="no-highlight">66</i>&nbsp;    }
-<i class="no-highlight">67</i>&nbsp;
-<i class="no-highlight">68</i>&nbsp;    public CharacterCardEnum getType() {
-<b class="nc"><i class="no-highlight">69</i>&nbsp;        return type;</b>
-<i class="no-highlight">70</i>&nbsp;    }
-<i class="no-highlight">71</i>&nbsp;
-<i class="no-highlight">72</i>&nbsp;    public int getCost() {
-<b class="nc"><i class="no-highlight">73</i>&nbsp;        return cost;</b>
-<i class="no-highlight">74</i>&nbsp;    }
-<i class="no-highlight">75</i>&nbsp;
-<i class="no-highlight">76</i>&nbsp;    public String getDescription() {
-<b class="nc"><i class="no-highlight">77</i>&nbsp;        return description;</b>
-<i class="no-highlight">78</i>&nbsp;    }
-<i class="no-highlight">79</i>&nbsp;
-<i class="no-highlight">80</i>&nbsp;    public boolean isInUse(){
-<b class="nc"><i class="no-highlight">81</i>&nbsp;        return inUse;</b>
-<i class="no-highlight">82</i>&nbsp;    }
-<i class="no-highlight">83</i>&nbsp;
-<i class="no-highlight">84</i>&nbsp;    public Integer getNoEntryTile(){
-<b class="nc"><i class="no-highlight">85</i>&nbsp;        return noEntryTile;</b>
-<i class="no-highlight">86</i>&nbsp;    }
-<i class="no-highlight">87</i>&nbsp;
-<i class="no-highlight">88</i>&nbsp;    public Map&lt;House, Integer&gt; getHouseMap(){
-<b class="nc"><i class="no-highlight">89</i>&nbsp;        return houseMap;</b>
-<i class="no-highlight">90</i>&nbsp;    }
-<i class="no-highlight">91</i>&nbsp;
-<i class="no-highlight">92</i>&nbsp;    @Override
-<i class="no-highlight">93</i>&nbsp;    public String toString() {
-<b class="nc"><i class="no-highlight">94</i>&nbsp;        StringBuilder string = new StringBuilder(cardName + &quot;\nCOST: &quot; + cost + &quot;\n&quot; + description + &quot;\n&quot;);</b>
-<b class="nc"><i class="no-highlight">95</i>&nbsp;        if (houseMap != null) {</b>
-<b class="nc"><i class="no-highlight">96</i>&nbsp;            for (House h : House.values()) {</b>
-<b class="nc"><i class="no-highlight">97</i>&nbsp;                string.append(h.getColouredHouse()).append(&quot;: &quot;).append(houseMap.get(h));</b>
-<b class="nc"><i class="no-highlight">98</i>&nbsp;                if (h != House.values()[House.values().length-1])</b>
-<b class="nc"><i class="no-highlight">99</i>&nbsp;                    string.append(&quot;, &quot;);</b>
-<i class="no-highlight">100</i>&nbsp;                else
-<b class="nc"><i class="no-highlight">101</i>&nbsp;                    string.append(&quot;.\n&quot;);</b>
-<i class="no-highlight">102</i>&nbsp;            }
-<i class="no-highlight">103</i>&nbsp;        }
-<b class="nc"><i class="no-highlight">104</i>&nbsp;        if (noEntryTile != null) {</b>
-<b class="nc"><i class="no-highlight">105</i>&nbsp;            string.append(&quot;NO ENTRY TILES: &quot;).append(noEntryTile).append(&quot;\n&quot;);</b>
-<i class="no-highlight">106</i>&nbsp;        }
-<b class="nc"><i class="no-highlight">107</i>&nbsp;        return string.toString();</b>
-<i class="no-highlight">108</i>&nbsp;    }
-<i class="no-highlight">109</i>&nbsp;}
+<b class="fc"><i class="no-highlight">58</i>&nbsp;        } else {</b>
+<b class="fc"><i class="no-highlight">59</i>&nbsp;            noEntryTile = null;</b>
+<i class="no-highlight">60</i>&nbsp;        }
+<i class="no-highlight">61</i>&nbsp;    }
+<i class="no-highlight">62</i>&nbsp;
+<i class="no-highlight">63</i>&nbsp;    public String getCardName() {
+<b class="nc"><i class="no-highlight">64</i>&nbsp;        return cardName;</b>
+<i class="no-highlight">65</i>&nbsp;    }
+<i class="no-highlight">66</i>&nbsp;
+<i class="no-highlight">67</i>&nbsp;    public CharacterCardEnum getType() {
+<b class="nc"><i class="no-highlight">68</i>&nbsp;        return type;</b>
+<i class="no-highlight">69</i>&nbsp;    }
+<i class="no-highlight">70</i>&nbsp;
+<i class="no-highlight">71</i>&nbsp;    public int getCost() {
+<b class="nc"><i class="no-highlight">72</i>&nbsp;        return cost;</b>
+<i class="no-highlight">73</i>&nbsp;    }
+<i class="no-highlight">74</i>&nbsp;
+<i class="no-highlight">75</i>&nbsp;    public String getDescription() {
+<b class="nc"><i class="no-highlight">76</i>&nbsp;        return description;</b>
+<i class="no-highlight">77</i>&nbsp;    }
+<i class="no-highlight">78</i>&nbsp;
+<i class="no-highlight">79</i>&nbsp;    public boolean isInUse() {
+<b class="nc"><i class="no-highlight">80</i>&nbsp;        return inUse;</b>
+<i class="no-highlight">81</i>&nbsp;    }
+<i class="no-highlight">82</i>&nbsp;
+<i class="no-highlight">83</i>&nbsp;    public Integer getNoEntryTile() {
+<b class="nc"><i class="no-highlight">84</i>&nbsp;        return noEntryTile;</b>
+<i class="no-highlight">85</i>&nbsp;    }
+<i class="no-highlight">86</i>&nbsp;
+<i class="no-highlight">87</i>&nbsp;    public Map&lt;House, Integer&gt; getHouseMap() {
+<b class="nc"><i class="no-highlight">88</i>&nbsp;        return houseMap;</b>
+<i class="no-highlight">89</i>&nbsp;    }
+<i class="no-highlight">90</i>&nbsp;
+<i class="no-highlight">91</i>&nbsp;    @Override
+<i class="no-highlight">92</i>&nbsp;    public String toString() {
+<b class="nc"><i class="no-highlight">93</i>&nbsp;        StringBuilder string = new StringBuilder(cardName + &quot;\nCOST: &quot; + cost + &quot;\n&quot; + description + &quot;\n&quot;);</b>
+<b class="nc"><i class="no-highlight">94</i>&nbsp;        if (houseMap != null) {</b>
+<b class="nc"><i class="no-highlight">95</i>&nbsp;            for (House h : House.values()) {</b>
+<b class="nc"><i class="no-highlight">96</i>&nbsp;                string.append(h.getColouredHouse()).append(&quot;: &quot;).append(houseMap.get(h));</b>
+<b class="nc"><i class="no-highlight">97</i>&nbsp;                if (h != House.values()[House.values().length - 1])</b>
+<b class="nc"><i class="no-highlight">98</i>&nbsp;                    string.append(&quot;, &quot;);</b>
+<i class="no-highlight">99</i>&nbsp;                else
+<b class="nc"><i class="no-highlight">100</i>&nbsp;                    string.append(&quot;.\n&quot;);</b>
+<i class="no-highlight">101</i>&nbsp;            }
+<i class="no-highlight">102</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">103</i>&nbsp;        if (noEntryTile != null) {</b>
+<b class="nc"><i class="no-highlight">104</i>&nbsp;            string.append(&quot;NO ENTRY TILES: &quot;).append(noEntryTile).append(&quot;\n&quot;);</b>
+<i class="no-highlight">105</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">106</i>&nbsp;        return string.toString();</b>
+<i class="no-highlight">107</i>&nbsp;    }
+<i class="no-highlight">108</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -208,7 +207,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-01 12:22</div>
+    <div style="float:right;">generated on 2022-07-01 19:12</div>
 </div>
 </body>
 </html>

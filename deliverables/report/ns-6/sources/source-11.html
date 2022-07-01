@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html id="htmlId">
 <head>
-  <title>Coverage Report > SelectExpertMode</title>
+  <title>Coverage Report > SelectNickname</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/highlight-idea.css";
@@ -20,7 +20,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     <a href="../index.html">it.polimi.ingsw.messages.answer</a>
 </div>
 
-<h1>Coverage Summary for Class: SelectExpertMode (it.polimi.ingsw.messages.answer)</h1>
+<h1>Coverage Summary for Class: SelectNickname (it.polimi.ingsw.messages.answer)</h1>
 
 <table class="coverageStats">
 <tr>
@@ -39,7 +39,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">SelectExpertMode</td>
+  <td class="name">SelectNickname</td>
 <td class="coverageStat">
   <span class="percent">
     100%
@@ -75,22 +75,22 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package it.polimi.ingsw.messages.answer;
 <i class="no-highlight">2</i>&nbsp;
-<i class="no-highlight">3</i>&nbsp;import static it.polimi.ingsw.messages.MessageType.SELECT_EXPERT_MODE;
+<i class="no-highlight">3</i>&nbsp;import static it.polimi.ingsw.messages.MessageType.SELECT_NICKNAME;
 <i class="no-highlight">4</i>&nbsp;
 <i class="no-highlight">5</i>&nbsp;/**
-<i class="no-highlight">6</i>&nbsp; * This message is sent from the server to the client to communicate that
-<i class="no-highlight">7</i>&nbsp; * the player has to choose whether the match will be played in expert mode.
+<i class="no-highlight">6</i>&nbsp; * This message is sent by the server to the client to ask the player to choose the
+<i class="no-highlight">7</i>&nbsp; * nickname again because the one he had chosen is not available.
 <i class="no-highlight">8</i>&nbsp; *
 <i class="no-highlight">9</i>&nbsp; * @author Alessio Buda &amp; Dario Mazzola &amp; Gabriele Munafo&#39;
 <i class="no-highlight">10</i>&nbsp; */
-<i class="no-highlight">11</i>&nbsp;public class SelectExpertMode extends AnswerMessage {
+<i class="no-highlight">11</i>&nbsp;public class SelectNickname extends AnswerMessage {
 <i class="no-highlight">12</i>&nbsp;
-<i class="no-highlight">13</i>&nbsp;    /**
-<i class="no-highlight">14</i>&nbsp;     * Class constructor.
-<i class="no-highlight">15</i>&nbsp;     *
+<i class="no-highlight">13</i>&nbsp;
+<i class="no-highlight">14</i>&nbsp;    /**
+<i class="no-highlight">15</i>&nbsp;     * Class constructor
 <i class="no-highlight">16</i>&nbsp;     */
-<i class="no-highlight">17</i>&nbsp;    public SelectExpertMode() {
-<b class="fc"><i class="no-highlight">18</i>&nbsp;        super(SELECT_EXPERT_MODE);</b>
+<i class="no-highlight">17</i>&nbsp;    public SelectNickname() {
+<b class="fc"><i class="no-highlight">18</i>&nbsp;        super(SELECT_NICKNAME);</b>
 <i class="no-highlight">19</i>&nbsp;    }
 <i class="no-highlight">20</i>&nbsp;}
 </div>
@@ -119,7 +119,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-01 12:22</div>
+    <div style="float:right;">generated on 2022-07-01 19:12</div>
 </div>
 </body>
 </html>

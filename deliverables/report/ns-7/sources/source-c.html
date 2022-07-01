@@ -76,33 +76,31 @@ Current scope:     <a href="../../index.html">all classes</a>
 <div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package it.polimi.ingsw.messages.command;
 <i class="no-highlight">2</i>&nbsp;
 <i class="no-highlight">3</i>&nbsp;import it.polimi.ingsw.messages.MessageType;
-<i class="no-highlight">4</i>&nbsp;/* import it.polimi.ingsw.server.ClientHandler; */
-<i class="no-highlight">5</i>&nbsp;import it.polimi.ingsw.messages.Message;
-<i class="no-highlight">6</i>&nbsp;
-<i class="no-highlight">7</i>&nbsp;import java.io.IOException;
-<i class="no-highlight">8</i>&nbsp;
-<i class="no-highlight">9</i>&nbsp;/**
-<i class="no-highlight">10</i>&nbsp; * An abstract class representing a command message, sent from the client to the server.
-<i class="no-highlight">11</i>&nbsp; *
-<i class="no-highlight">12</i>&nbsp; * @author Alessio Buda &amp; Dario Mazzola &amp; Gabriele Munafo&#39;
-<i class="no-highlight">13</i>&nbsp; */
-<i class="no-highlight">14</i>&nbsp;public abstract class CommandMessage extends Message {
-<i class="no-highlight">15</i>&nbsp;    private final String nickname;
-<i class="no-highlight">16</i>&nbsp;
-<i class="no-highlight">17</i>&nbsp;    /**
-<i class="no-highlight">18</i>&nbsp;     *
-<i class="no-highlight">19</i>&nbsp;     * @param messageType The typology of the message
-<i class="no-highlight">20</i>&nbsp;     * @param nickname The nickname of the player sending the message
-<i class="no-highlight">21</i>&nbsp;     */
-<i class="no-highlight">22</i>&nbsp;    protected CommandMessage(MessageType messageType, String nickname) {
-<b class="fc"><i class="no-highlight">23</i>&nbsp;        super(messageType);</b>
-<b class="fc"><i class="no-highlight">24</i>&nbsp;        this.nickname = nickname;</b>
-<i class="no-highlight">25</i>&nbsp;    }
-<i class="no-highlight">26</i>&nbsp;
-<i class="no-highlight">27</i>&nbsp;    public String getNickname() {
-<b class="nc"><i class="no-highlight">28</i>&nbsp;        return nickname;</b>
-<i class="no-highlight">29</i>&nbsp;    }
-<i class="no-highlight">30</i>&nbsp;}
+<i class="no-highlight">4</i>&nbsp;import it.polimi.ingsw.messages.Message;
+<i class="no-highlight">5</i>&nbsp;
+<i class="no-highlight">6</i>&nbsp;/**
+<i class="no-highlight">7</i>&nbsp; * An abstract class representing a command message, sent from the client to the server.
+<i class="no-highlight">8</i>&nbsp; *
+<i class="no-highlight">9</i>&nbsp; * @author Alessio Buda &amp; Dario Mazzola &amp; Gabriele Munafo&#39;
+<i class="no-highlight">10</i>&nbsp; */
+<i class="no-highlight">11</i>&nbsp;public abstract class CommandMessage extends Message {
+<i class="no-highlight">12</i>&nbsp;    private final String nickname;
+<i class="no-highlight">13</i>&nbsp;
+<i class="no-highlight">14</i>&nbsp;    /**
+<i class="no-highlight">15</i>&nbsp;     * Class constructor
+<i class="no-highlight">16</i>&nbsp;     *
+<i class="no-highlight">17</i>&nbsp;     * @param messageType The typology of the message
+<i class="no-highlight">18</i>&nbsp;     * @param nickname The nickname of the player sending the message
+<i class="no-highlight">19</i>&nbsp;     */
+<i class="no-highlight">20</i>&nbsp;    protected CommandMessage(MessageType messageType, String nickname) {
+<b class="fc"><i class="no-highlight">21</i>&nbsp;        super(messageType);</b>
+<b class="fc"><i class="no-highlight">22</i>&nbsp;        this.nickname = nickname;</b>
+<i class="no-highlight">23</i>&nbsp;    }
+<i class="no-highlight">24</i>&nbsp;
+<i class="no-highlight">25</i>&nbsp;    public String getNickname() {
+<b class="nc"><i class="no-highlight">26</i>&nbsp;        return nickname;</b>
+<i class="no-highlight">27</i>&nbsp;    }
+<i class="no-highlight">28</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -129,7 +127,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-01 12:22</div>
+    <div style="float:right;">generated on 2022-07-01 19:12</div>
 </div>
 </body>
 </html>

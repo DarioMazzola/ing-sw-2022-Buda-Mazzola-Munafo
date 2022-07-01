@@ -83,39 +83,37 @@ Current scope:     <a href="../../index.html">all classes</a>
 <i class="no-highlight">8</i>&nbsp;import javafx.scene.control.ButtonType;
 <i class="no-highlight">9</i>&nbsp;import javafx.scene.control.TextField;
 <i class="no-highlight">10</i>&nbsp;
-<i class="no-highlight">11</i>&nbsp;import java.io.IOException;
+<i class="no-highlight">11</i>&nbsp;import static javafx.scene.control.Alert.AlertType.*;
 <i class="no-highlight">12</i>&nbsp;
-<i class="no-highlight">13</i>&nbsp;import static javafx.scene.control.Alert.AlertType.*;
-<i class="no-highlight">14</i>&nbsp;
-<i class="no-highlight">15</i>&nbsp;/**
-<i class="no-highlight">16</i>&nbsp; * Scene controller asking the player to enter the nickname with which he wants to take part in the game
-<i class="no-highlight">17</i>&nbsp; *
-<i class="no-highlight">18</i>&nbsp; * @author Dario Mazzola
-<i class="no-highlight">19</i>&nbsp; */
-<b class="nc"><i class="no-highlight">20</i>&nbsp;public class LoginSceneController extends ViewObservable implements SceneInterface {</b>
-<i class="no-highlight">21</i>&nbsp;
+<i class="no-highlight">13</i>&nbsp;/**
+<i class="no-highlight">14</i>&nbsp; * Scene controller asking the player to enter the nickname with which he wants to take part in the game
+<i class="no-highlight">15</i>&nbsp; *
+<i class="no-highlight">16</i>&nbsp; * @author Dario Mazzola
+<i class="no-highlight">17</i>&nbsp; */
+<b class="nc"><i class="no-highlight">18</i>&nbsp;public class LoginSceneController extends ViewObservable implements SceneInterface {</b>
+<i class="no-highlight">19</i>&nbsp;
+<i class="no-highlight">20</i>&nbsp;    @FXML
+<i class="no-highlight">21</i>&nbsp;    private TextField usernameBox;
 <i class="no-highlight">22</i>&nbsp;    @FXML
-<i class="no-highlight">23</i>&nbsp;    private TextField usernameBox;
-<i class="no-highlight">24</i>&nbsp;    @FXML
-<i class="no-highlight">25</i>&nbsp;    private Button playButton;
-<i class="no-highlight">26</i>&nbsp;
-<i class="no-highlight">27</i>&nbsp;    /**
-<i class="no-highlight">28</i>&nbsp;     * Handles the event fired when the player clicks on the select button.
-<i class="no-highlight">29</i>&nbsp;     *
-<i class="no-highlight">30</i>&nbsp;     * @param event the event fired.
-<i class="no-highlight">31</i>&nbsp;     */
-<i class="no-highlight">32</i>&nbsp;    public void onPlayButton(ActionEvent event) {
-<b class="nc"><i class="no-highlight">33</i>&nbsp;        String nickname = usernameBox.getText();</b>
-<b class="nc"><i class="no-highlight">34</i>&nbsp;        if (nickname == null || nickname.isEmpty()) {</b>
-<b class="nc"><i class="no-highlight">35</i>&nbsp;            Alert alert = new Alert(ERROR, &quot;&quot;, ButtonType.OK);</b>
-<b class="nc"><i class="no-highlight">36</i>&nbsp;            alert.setTitle(&quot;Invalid nickname&quot;);</b>
-<b class="nc"><i class="no-highlight">37</i>&nbsp;            alert.setHeaderText(&quot;Empty nickname! Please insert a nickname\nthat is at least 1 character long&quot;);</b>
-<b class="nc"><i class="no-highlight">38</i>&nbsp;            alert.showAndWait();</b>
-<i class="no-highlight">39</i>&nbsp;            return;
-<i class="no-highlight">40</i>&nbsp;        }
-<b class="nc"><i class="no-highlight">41</i>&nbsp;        notifyObserver(observers -&gt; observers.onCreateNewGame(nickname));</b>
-<i class="no-highlight">42</i>&nbsp;    }
-<i class="no-highlight">43</i>&nbsp;}
+<i class="no-highlight">23</i>&nbsp;    private Button playButton;
+<i class="no-highlight">24</i>&nbsp;
+<i class="no-highlight">25</i>&nbsp;    /**
+<i class="no-highlight">26</i>&nbsp;     * Handles the event fired when the player clicks on the select button.
+<i class="no-highlight">27</i>&nbsp;     *
+<i class="no-highlight">28</i>&nbsp;     * @param event the event fired.
+<i class="no-highlight">29</i>&nbsp;     */
+<i class="no-highlight">30</i>&nbsp;    public void onPlayButton(ActionEvent event) {
+<b class="nc"><i class="no-highlight">31</i>&nbsp;        String nickname = usernameBox.getText();</b>
+<b class="nc"><i class="no-highlight">32</i>&nbsp;        if (nickname == null || nickname.isEmpty()) {</b>
+<b class="nc"><i class="no-highlight">33</i>&nbsp;            Alert alert = new Alert(ERROR, &quot;&quot;, ButtonType.OK);</b>
+<b class="nc"><i class="no-highlight">34</i>&nbsp;            alert.setTitle(&quot;Invalid nickname&quot;);</b>
+<b class="nc"><i class="no-highlight">35</i>&nbsp;            alert.setHeaderText(&quot;Empty nickname! Please insert a nickname\nthat is at least 1 character long&quot;);</b>
+<b class="nc"><i class="no-highlight">36</i>&nbsp;            alert.showAndWait();</b>
+<i class="no-highlight">37</i>&nbsp;            return;
+<i class="no-highlight">38</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">39</i>&nbsp;        notifyObserver(observers -&gt; observers.onCreateNewGame(nickname));</b>
+<i class="no-highlight">40</i>&nbsp;    }
+<i class="no-highlight">41</i>&nbsp;}
 </div>
 </pre>
 </div>
@@ -142,7 +140,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2022-07-01 12:22</div>
+    <div style="float:right;">generated on 2022-07-01 19:12</div>
 </div>
 </body>
 </html>
