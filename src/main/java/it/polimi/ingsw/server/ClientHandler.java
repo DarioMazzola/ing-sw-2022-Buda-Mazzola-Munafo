@@ -166,8 +166,9 @@ public class ClientHandler implements Runnable {
         } catch (IOException e) {
             e.printStackTrace();
             System.err.println("Impossible to sent: " + message);
-            System.err.println(e.getMessage());
-            disconnect();
+            if(socketServer.belongsToTheGame(this))
+                disconnect();
+            pingHandler.shutdownNow();
         }
     }
 
@@ -184,7 +185,9 @@ public class ClientHandler implements Runnable {
                 output.writeObject(message);
             } catch (IOException e) {
                 e.printStackTrace();
-                disconnect();
+                if(socketServer.belongsToTheGame(this))
+                    disconnect();
+                pingHandler.shutdownNow();
             }
             synchronized (lock) {
                 if (enableTimer)

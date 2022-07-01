@@ -33,6 +33,7 @@ public class ActionController {
         this.winner = null;
         this.gm = gm;
         this.studentsMoved = 0;
+        System.out.println("NumPlayers: " + gm.getNumPlayers());
         if (gm.getNumPlayers() == 2 || gm.getNumPlayers() == 4) {
             this.maxStudMoved = 3;
         } else {
