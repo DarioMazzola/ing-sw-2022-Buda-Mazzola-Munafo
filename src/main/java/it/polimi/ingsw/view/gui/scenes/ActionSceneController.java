@@ -4720,16 +4720,16 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                 Suggestions.setText("You now have to select an island where to put the no entry tile");
                 break;
             case "Jolly":
-                Suggestions.setText("You now have to select a student from the card and a student from the dining hall");
+                Suggestions.setText("You now have to select up to 3 students from the card and the same number of students from the entrance. When you are done, click on the card to confirm your choice!");
                 break;
             case "Minstrel":
-                Suggestions.setText("You now have to select a student from the dining hall and a student from the entrance");
+                Suggestions.setText("You now have to select up to 2 student from the dining hall and the same number of students from the entrance. When you are done, click on the card to confirm your choice!");
                 break;
             case "SpoiledPrincess":
                 Suggestions.setText("You now have to select a student from the card to add to the dining hall");
                 break;
             case "Thief":
-                Suggestions.setText("You now have to select a type of student to take from every player");
+                Suggestions.setText("You now have to select the house of the students to take from every player's dining hall");
                 break;
             default:
                 if (!gm.getCurrentPlayer().getNickname().equals(this.nickname)) {
