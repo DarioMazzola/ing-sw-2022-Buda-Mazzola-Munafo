@@ -6,9 +6,9 @@ package it.polimi.ingsw.model;
  * @author Alessio Buda & Dario Mazzola
  */
 public enum Color {
-    WHITE("WHITE", "\u001B[0m"),
-    GRAY("GRAY", "\u001B[37m"),
-    BLACK("BLACK", "\u001B[30m");
+    WHITE ("WHITE", "\u001B[97m"),
+    GRAY("GRAY","\u001B[37m"),
+    BLACK("BLACK","\u001B[90m");
 
     public static final String RESET = "\u001B[0m";
 
