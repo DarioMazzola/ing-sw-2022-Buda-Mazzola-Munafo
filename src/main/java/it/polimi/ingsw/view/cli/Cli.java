@@ -893,12 +893,12 @@ public class Cli extends ViewObservable implements UI {
         if (gm.getNumPlayers() == 4) {
             String winnerTeamMate = gm.getTeamMate(winner);
             System.out.println("GAME ENDED! " + winner + " and " + winnerTeamMate + " won the game! Thank you for playing!");
+        } else {
+            System.out.println("GAME ENDED! " + winner + " won the game! Thank you for playing!");
         }
-        System.out.println("GAME ENDED! " + winner + " won the game! Thank you for playing!");
 
-        System.out.println("Do you want to play another game?");
+        System.out.println("Do you want to play another game? (Y/N)");
         boolean newGame = YNInput("you want to play again");
-        System.out.println(newGame);
         if (newGame)
             notifyObserver(observers -> observers.onCreateNewGame(nickname));
         else
