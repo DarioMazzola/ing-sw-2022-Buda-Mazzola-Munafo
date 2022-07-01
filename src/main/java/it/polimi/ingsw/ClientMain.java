@@ -15,6 +15,7 @@ import java.util.Scanner;
 public class ClientMain {
 
     public static void main(String[] args) {
+        clearCli();
 
         System.out.println(" " +
                 " /$$$$$$$$           /$$                       /$$                        \n" +
@@ -56,6 +57,14 @@ public class ClientMain {
             System.setProperty("prism.allowhidpi", "false");
             Application.launch(MainGui.class);
         }
+    }
+
+    /**
+     * Clears terminal.
+     */
+    private static void clearCli() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 }
 

@@ -22,6 +22,22 @@ public class ServerMain {
         Scanner scanner = new Scanner(System.in);
         int serverPort = 0;
 
+        clearCli();
+        System.out.println(" " +
+                " /$$$$$$$$           /$$                       /$$                        \n" +
+                "| $$_____/          |__/                      | $$                        \n" +
+                "| $$        /$$$$$$  /$$  /$$$$$$  /$$$$$$$  /$$$$$$   /$$   /$$  /$$$$$$$\n" +
+                "| $$$$$    /$$__  $$| $$ |____  $$| $$__  $$|_  $$_/  | $$  | $$ /$$_____/\n" +
+                "| $$__/   | $$  \\__/| $$  /$$$$$$$| $$  \\ $$  | $$    | $$  | $$|  $$$$$$ \n" +
+                "| $$      | $$      | $$ /$$__  $$| $$  | $$  | $$ /$$| $$  | $$ \\____  $$\n" +
+                "| $$$$$$$$| $$      | $$|  $$$$$$$| $$  | $$  |  $$$$/|  $$$$$$$ /$$$$$$$/\n" +
+                "|________/|__/      |__/ \\_______/|__/  |__/   \\___/   \\____  $$|_______/ \n" +
+                "                                                       /$$  | $$          \n" +
+                "                                                      |  $$$$$$/          \n" +
+                "                                                       \\______/           \n" +
+                "\n");
+
+        System.out.println("Welcome to the Eriantys server!");
         System.out.println("Server port? [default: 1234]");
         try{
             String input = scanner.nextLine();
@@ -51,5 +67,13 @@ public class ServerMain {
         SocketServer socketServer = new SocketServer(server, serverPort);
         Thread thread = new Thread(socketServer, "socketserver_");
         thread.start();
+    }
+
+    /**
+     * Clears terminal.
+     */
+    private static void clearCli() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 }
