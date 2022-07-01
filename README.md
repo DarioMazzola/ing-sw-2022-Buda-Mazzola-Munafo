@@ -78,7 +78,7 @@ A new folder called "target" will be created in the project home directory, insi
 
 ### Jar
 
-Precompiled Jars can be found at the following link: [Jar]()
+Precompiled Jars can be found at the following link: [Jar](https://github.com/DarioMazzola/ing-sw-2022-Buda-Mazzola-Munafo/tree/main/deliverables/jar)
 
 ## Execution
 
