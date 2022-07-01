@@ -382,13 +382,13 @@ public class Cli extends ViewObservable implements UI {
         }
         boolean isValidInput;
         int chosenCard;
-        System.out.println("Chose a card by entering a number between 1 and " + (i-1));
+        System.out.println("Choose a card by entering a number between 1 and " + (i-1));
         do {
             isValidInput = true;
             chosenCard = inputInRange(1, playersDeck.size(), "to select a valid card");
             if (!result.contains(playersDeck.get(chosenCard-1)) && result.size() > 0) {
                 isValidInput = false;
-                System.out.println("You can't chose this card, it has already been chosen by another player!\nChose another card: ");
+                System.out.println("You can't choose this card, it has already been chosen by another player!\nChoose another card: ");
             }
         } while (!isValidInput);
         int finalChosenCard = chosenCard;
@@ -547,7 +547,7 @@ public class Cli extends ViewObservable implements UI {
             chosenHouse = selectHouse(availableHouses);
             if (gm.getCurrentPlayer().getDashboard().getHouseStudents(chosenHouse) <= 0) {
                 isValidInput = false;
-                System.out.println("You don't have any students of the " + chosenHouse + " house, please chose another house:");
+                System.out.println("You don't have any students of the " + chosenHouse + " house, please choose another house:");
             }
         } while (!isValidInput);
 
