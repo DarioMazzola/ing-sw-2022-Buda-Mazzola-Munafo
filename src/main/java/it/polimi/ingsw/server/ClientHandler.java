@@ -145,9 +145,9 @@ public class ClientHandler implements Runnable {
                 System.out.println("Client disconnected");
             }
             connected = false;
-            Thread.currentThread().interrupt();
         }
         socketServer.onDisconnection(this);
+        Thread.currentThread().interrupt();
     }
 
     /**
