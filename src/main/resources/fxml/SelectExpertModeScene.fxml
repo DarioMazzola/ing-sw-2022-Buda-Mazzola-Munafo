@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #ADD8E6;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.view.gui.scenes.SelectExpertModeSceneController">
+<StackPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: LIGHTSKYBLUE;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.view.gui.scenes.SelectExpertModeSceneController">
    <children>
       <AnchorPane style="-fx-background-color: LIGHTSKYBLUE;">
          <Button fx:id="continueButton" layoutX="880.0" layoutY="494.0" mnemonicParsing="false" onAction="#onSelectExpertMode" prefHeight="92.0" prefWidth="158.0" text="Continue">

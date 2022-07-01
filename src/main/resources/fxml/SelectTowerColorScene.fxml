@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #ADD8E6;" stylesheets="/css/dropShadowEffect.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane prefHeight="1080.0" prefWidth="1920.0" stylesheets="/css/dropShadowEffect.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane style="-fx-background-color: LightSkyBlue;">
+      <AnchorPane style="-fx-background-color: LIGHTSKYBLUE;">
          <ImageView fx:id="grayImg" disable="true" fitHeight="330.0" fitWidth="337.0" layoutX="534.0" layoutY="419.0" opacity="0.05" pickOnBounds="true" preserveRatio="true" x="-150.0" y="-150.0">
             <Image url="@../images/towers/gray_tower.png" />
          </ImageView>

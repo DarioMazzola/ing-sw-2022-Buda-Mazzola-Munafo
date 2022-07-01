@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #ADD8E6;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.view.gui.scenes.SelectNumPlayersController">
+<StackPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: LIGHTSKYBLUE;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.view.gui.scenes.SelectNumPlayersController">
    <children>
       <AnchorPane style="-fx-background-color: LIGHTSKYBLUE;">
          <RadioButton fx:id="players2" layoutX="859.0" layoutY="217.0" mnemonicParsing="false" text="2 players">

@@ -15,7 +15,7 @@
    <children>
       <AnchorPane prefHeight="400.0" prefWidth="600.0">
          <children>
-            <Text fx:id="WinnerText" layoutX="77.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: CENTER;" text="Player  won the game! Thank you for playing!" wrappingWidth="437.4736328125">
+            <Text fx:id="WinnerText" layoutX="76.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-alignment: CENTER;" text="Player  won the game! Thank you for playing!" wrappingWidth="437.4736328125">
                <font>
                   <Font name="Baskerville Old Face" size="24.0" />
                </font>
@@ -25,7 +25,7 @@
                   <Image url="@../images/randomImages/trophy.png" />
                </image>
             </ImageView>
-            <Label layoutX="212.0" layoutY="52.0" text="GAME ENDED">
+            <Label layoutX="216.0" layoutY="42.0" text="GAME ENDED">
                <font>
                   <Font name="Baskerville Old Face" size="26.0" />
                </font>

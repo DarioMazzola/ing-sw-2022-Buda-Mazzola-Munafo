@@ -14,7 +14,7 @@
 
 <StackPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #ADD8E6;" stylesheets="/css/dropShadowEffect.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane style="-fx-background-color: #ADD8E6#ADD8E6;">
+      <AnchorPane style="-fx-background-color: LIGHTSKYBLUE;">
          <children>
             <HBox layoutX="269.0" layoutY="288.0" prefHeight="100.0" prefWidth="200.0">
                <children>
