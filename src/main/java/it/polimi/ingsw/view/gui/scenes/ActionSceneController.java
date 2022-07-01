@@ -2384,17 +2384,14 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                 if (gm.getIslandList().get(i).getColorTower() == BLACK) {
                     image = new Image("images/towers/black_tower.png");
                     tower.setImage(image);
-                    towerNumber.setStyle("-fx-text-fill: white;");
                 }
                 if (gm.getIslandList().get(i).getColorTower() == GRAY) {
                     image = new Image("images/towers/gray_tower.png");
                     tower.setImage(image);
-                    towerNumber.setStyle("-fx-text-fill: white;");
                 }
                 if (gm.getIslandList().get(i).getColorTower() == WHITE) {
                     image = new Image("images/towers/white_tower.png");
                     tower.setImage(image);
-                    towerNumber.setStyle("-fx-text-fill: black;");
                 }
                 tower.setVisible(true);
                 towerNumber.setVisible(true);

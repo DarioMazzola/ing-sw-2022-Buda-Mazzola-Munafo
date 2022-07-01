@@ -53,7 +53,7 @@
                            </image>
                         </ImageView>
                         <ImageView fx:id="TowerIsland1" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
-                        <Text fx:id="TowerNumberIsland1" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                        <Text fx:id="TowerNumberIsland1" fill="#F95738" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
                               <Font name="Baskerville Old Face" size="20.0" />
                            </font>
@@ -180,7 +180,7 @@
                            </image>
                         </ImageView>
                         <ImageView fx:id="TowerIsland2" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
-                        <Text fx:id="TowerNumberIsland2" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                        <Text fx:id="TowerNumberIsland2" fill="#F95738" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
                               <Font name="Baskerville Old Face" size="20.0" />
                            </font>
@@ -307,7 +307,7 @@
                            </image>
                         </ImageView>
                         <ImageView fx:id="TowerIsland0" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
-                        <Text fx:id="TowerNumberIsland0" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                        <Text fx:id="TowerNumberIsland0" fill="#F95738" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
                               <Font name="Baskerville Old Face" size="20.0" />
                            </font>
@@ -429,7 +429,7 @@
                            </image>
                         </ImageView>
                         <ImageView fx:id="TowerIsland3" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
-                        <Text fx:id="TowerNumberIsland3" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                        <Text fx:id="TowerNumberIsland3" fill="#F95738" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
                               <Font name="Baskerville Old Face" size="20.0" />
                            </font>
@@ -556,7 +556,7 @@
                            </image>
                         </ImageView>
                         <ImageView fx:id="TowerIsland4" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
-                        <Text fx:id="TowerNumberIsland4" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                        <Text fx:id="TowerNumberIsland4" fill="#F95738" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
                               <Font name="Baskerville Old Face" size="20.0" />
                            </font>
@@ -683,7 +683,7 @@
                            </image>
                         </ImageView>
                         <ImageView fx:id="TowerIsland5" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
-                        <Text fx:id="TowerNumberIsland5" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                        <Text fx:id="TowerNumberIsland5" fill="#F95738" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
                               <Font name="Baskerville Old Face" size="20.0"/>
                            </font>
@@ -734,7 +734,7 @@
                            </image>
                         </ImageView>
                         <ImageView fx:id="TowerIsland6" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
-                        <Text fx:id="TowerNumberIsland6" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                        <Text fx:id="TowerNumberIsland6" fill="#F95738" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
                               <Font name="Baskerville Old Face" size="20.0" />
                            </font>
@@ -861,7 +861,7 @@
                            </image>
                         </ImageView>
                         <ImageView fx:id="TowerIsland7" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
-                        <Text fx:id="TowerNumberIsland7" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                        <Text fx:id="TowerNumberIsland7" fill="#F95738" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
                               <Font name="Baskerville Old Face" size="20.0" />
                            </font>
@@ -988,7 +988,7 @@
                            </image>
                         </ImageView>
                         <ImageView fx:id="TowerIsland9" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
-                        <Text fx:id="TowerNumberIsland9" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                        <Text fx:id="TowerNumberIsland9" fill="#F95738" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
                               <Font name="Baskerville Old Face" size="20.0" />
                            </font>
@@ -1115,7 +1115,7 @@
                            </image>
                         </ImageView>
                         <ImageView fx:id="TowerIsland8" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
-                        <Text fx:id="TowerNumberIsland8" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                        <Text fx:id="TowerNumberIsland8" fill="#F95738" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
                               <Font name="Baskerville Old Face" size="20.0" />
                            </font>
@@ -1242,7 +1242,7 @@
                            </image>
                         </ImageView>
                         <ImageView fx:id="TowerIsland10" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
-                        <Text fx:id="TowerNumberIsland10" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                        <Text fx:id="TowerNumberIsland10" fill="#F95738" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
                               <Font name="Baskerville Old Face" size="20.0" />
                            </font>
@@ -1369,7 +1369,7 @@
                            </image>
                         </ImageView>
                         <ImageView fx:id="TowerIsland11" fitHeight="75.0" fitWidth="72.0" layoutX="64.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
-                        <Text fx:id="TowerNumberIsland11" fill="#faedcd" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                        <Text fx:id="TowerNumberIsland11" fill="#F95738" layoutX="94.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0">
                            <font>
                               <Font name="Baskerville Old Face" size="20.0" />
                            </font>
