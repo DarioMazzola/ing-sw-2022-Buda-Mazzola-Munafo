@@ -315,7 +315,7 @@ class GameModelTest {
     }
 
     /**
-     * Verfies that the NullPointerException is correctly thrown by refillFromCloud when an invalid cloud is passed
+     * Verifies that the NullPointerException is correctly thrown by refillFromCloud when an invalid cloud is passed
      */
     @Test
     void refillFromCloud_Exceptions() {
@@ -761,6 +761,9 @@ class GameModelTest {
         assertEquals(gm.getArrayPlayers()[0], winner);
     }
 
+    /**
+     * Verifies that an IllegalArgumentException is thrown when player has not enough money to use the desired card.
+     */
     @Test
     void useCharacterCardTest_playerWithNotEnoughCoins_ShouldThrowsIllegalArgumentException(){
         island = new Island(expertMode);
@@ -777,6 +780,17 @@ class GameModelTest {
         assertThrows(IllegalArgumentException.class, ()->gm.useCharacterCard(0, null));
     }
 
+    /**
+     * Verifies that an IllegalArgumentException is thrown when card parameter of method useCharacterCard is not a valid index.
+     */
+    @Test
+    void useCharacterCardTest_invalidIndex_ShouldThrowIllegalArgumentException(){
+        assertThrows(IllegalArgumentException.class, ()->gm.useCharacterCard(4, null));
+    }
+
+    /**
+     * Verifies that when the player uses character card and has enough coins, the number of coins of the player is decremented of the correct amount.
+     */
     @Test
     void useCharacterCardTest_playerWithEnoughCoins(){
         island = new Island(expertMode);
@@ -811,6 +825,9 @@ class GameModelTest {
         assertEquals(coinsBefore, gm.getCurrentPlayer().getCoins() + characterCard.getCost() - 1);
     }
 
+    /**
+     * Verifies the correct setting of the base context.
+     */
     @Test
     void setBaseContextTest(){
         island = new Island(expertMode);
@@ -882,6 +899,9 @@ class GameModelTest {
         }
     }
 
+    /**
+     * Verifies that a TotalCoinException is thrown when too many coins are added to the total number of coins in GameModel.
+     */
     @Test
     void addCoinsTest_ToManyCoinsAdded_ShouldThrowTotalCoinsException(){
         island = new Island(expertMode);
@@ -896,8 +916,13 @@ class GameModelTest {
         assertThrows(TotalCoinsException.class, () ->gm.addCoins(12));
     }
 
+    /**
+     * Verifies that a TotalCoinsException is thrown when a single coin is added to the total number of coins in GameModel
+     * and the total number of coins is already the maximum possible.
+     */
     @Test
-    void addCoinsTest_WalletAlreadyFull_AddedAnotherCoin_ShouldThrowTotalCoinsException(){island = new Island(expertMode);
+    void addCoinsTest_WalletAlreadyFull_AddedAnotherCoin_ShouldThrowTotalCoinsException(){
+        island = new Island(expertMode);
 
         expertMode = true;
 
@@ -918,6 +943,9 @@ class GameModelTest {
         assertThrows(TotalCoinsException.class, () ->gm.addCoins(1));
     }
 
+    /**
+     * Verifies that coins are correctly added to total number of coins.
+     */
     @Test
     void addCoinsTest(){
         island = new Island(expertMode);
@@ -942,6 +970,9 @@ class GameModelTest {
         assertEquals(coinsBefore +2, gm.getTotalCoins());
     }
 
+    /**
+     * Verifies that a TotalCoinsException is thrown when trying to remove too many coins from the total number of coins.
+     */
     @Test
     void removeCoinsTest_ToManyCoinsRemoved_ShouldThrowTotalCoinsException(){
         island = new Island(expertMode);
@@ -955,6 +986,9 @@ class GameModelTest {
         assertThrows(TotalCoinsException.class, () ->gm.removeCoins(50));
     }
 
+    /**
+     * Verifies that the coins are correctly removed from the total number of coins.
+     */
     @Test
     void removeCoinsTest(){
         island = new Island(expertMode);
@@ -979,6 +1013,9 @@ class GameModelTest {
         assertEquals(coinsBefore -2, gm.getTotalCoins());
     }
 
+    /**
+     * Prepares character cards contexts.
+     */
     private void prepareContext(){
         island = new Island(expertMode);
 
