@@ -1479,40 +1479,40 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         entranceArray = new House[numStudents + 1];
 
+        image = new Image("images/students/student_blue.png");
         while (houseMap.get(House.BLUE) != 0) {
-            image = new Image("images/students/student_blue.png");
             EntranceMain[i].setImage(image);
             EntranceMain[i].setVisible(true);
             entranceArray[i] = BLUE;
             houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
             i--;
         }
+        image = new Image("images/students/student_pink.png");
         while (houseMap.get(House.PINK) != 0) {
-            image = new Image("images/students/student_pink.png");
             EntranceMain[i].setImage(image);
             EntranceMain[i].setVisible(true);
             entranceArray[i] = PINK;
             houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
             i--;
         }
+        image = new Image("images/students/student_yellow.png");
         while (houseMap.get(YELLOW) != 0) {
-            image = new Image("images/students/student_yellow.png");
             EntranceMain[i].setImage(image);
             EntranceMain[i].setVisible(true);
             entranceArray[i] = YELLOW;
             houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
             i--;
         }
+        image = new Image("images/students/student_red.png");
         while (houseMap.get(House.RED) != 0) {
-            image = new Image("images/students/student_red.png");
             EntranceMain[i].setImage(image);
             EntranceMain[i].setVisible(true);
             entranceArray[i] = RED;
             houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
             i--;
         }
+        image = new Image("images/students/student_green.png");
         while (houseMap.get(House.GREEN) != 0) {
-            image = new Image("images/students/student_green.png");
             EntranceMain[i].setImage(image);
             EntranceMain[i].setVisible(true);
             entranceArray[i] = GREEN;
@@ -1574,8 +1574,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         Map<House, Integer> houseMap = new HashMap<>(gm.getArrayPlayers()[numMain].getDashboard().getDiningHall().getStudents());
         int i = 0;
+        image = new Image("images/students/student_green.png");
         while (houseMap.get(House.GREEN) != 0) {
-            image = new Image("images/students/student_green.png");
             DiningMainGreen[i].setImage(image);
             DiningMainGreen[i].setVisible(true);
             houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
@@ -1586,8 +1586,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             i++;
         }
         i = 0;
+        image = new Image("images/students/student_blue.png");
         while (houseMap.get(House.BLUE) != 0) {
-            image = new Image("images/students/student_blue.png");
             DiningMainBlue[i].setImage(image);
             DiningMainBlue[i].setVisible(true);
             houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
@@ -1598,8 +1598,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             i++;
         }
         i = 0;
+        image = new Image("images/students/student_red.png");
         while (houseMap.get(House.RED) != 0) {
-            image = new Image("images/students/student_red.png");
             DiningMainRed[i].setImage(image);
             DiningMainRed[i].setVisible(true);
             houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
@@ -1610,8 +1610,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             i++;
         }
         i = 0;
+        image = new Image("images/students/student_yellow.png");
         while (houseMap.get(YELLOW) != 0) {
-            image = new Image("images/students/student_yellow.png");
             DiningMainYellow[i].setImage(image);
             DiningMainYellow[i].setVisible(true);
             houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
@@ -1622,8 +1622,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             i++;
         }
         i = 0;
+        image = new Image("images/students/student_pink.png");
         while (houseMap.get(House.PINK) != 0) {
-            image = new Image("images/students/student_pink.png");
             DiningMainPink[i].setImage(image);
             DiningMainPink[i].setVisible(true);
             houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
@@ -1702,36 +1702,36 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         Map<House, Integer> houseMap = new HashMap<>(gm.getArrayPlayers()[(numMain + 1) % gm.getNumPlayers()].getDashboard().getStudents());
         int i = numStudents;
+        image = new Image("images/students/student_blue.png");
         while (houseMap.get(House.BLUE) != 0) {
-            image = new Image("images/students/student_blue.png");
             EntranceDashboard1[i].setImage(image);
             EntranceDashboard1[i].setVisible(true);
             houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
             i--;
         }
+        image = new Image("images/students/student_pink.png");
         while (houseMap.get(House.PINK) != 0) {
-            image = new Image("images/students/student_pink.png");
             EntranceDashboard1[i].setImage(image);
             EntranceDashboard1[i].setVisible(true);
             houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
             i--;
         }
+        image = new Image("images/students/student_yellow.png");
         while (houseMap.get(YELLOW) != 0) {
-            image = new Image("images/students/student_yellow.png");
             EntranceDashboard1[i].setImage(image);
             EntranceDashboard1[i].setVisible(true);
             houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
             i--;
         }
+        image = new Image("images/students/student_red.png");
         while (houseMap.get(House.RED) != 0) {
-            image = new Image("images/students/student_red.png");
             EntranceDashboard1[i].setImage(image);
             EntranceDashboard1[i].setVisible(true);
             houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
             i--;
         }
+        image = new Image("images/students/student_green.png");
         while (houseMap.get(House.GREEN) != 0) {
-            image = new Image("images/students/student_green.png");
             EntranceDashboard1[i].setImage(image);
             EntranceDashboard1[i].setVisible(true);
             houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
@@ -1792,8 +1792,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         Map<House, Integer> houseMap = new HashMap<>(gm.getArrayPlayers()[(numMain + 1) % gm.getNumPlayers()].getDashboard().getDiningHall().getStudents());
         int i = 0;
+        image = new Image("images/students/student_green.png");
         while (houseMap.get(House.GREEN) != 0) {
-            image = new Image("images/students/student_green.png");
             DiningDashboard1Green[i].setImage(image);
             DiningDashboard1Green[i].setVisible(true);
             houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
@@ -1804,8 +1804,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             i++;
         }
         i = 0;
+        image = new Image("images/students/student_blue.png");
         while (houseMap.get(House.BLUE) != 0) {
-            image = new Image("images/students/student_blue.png");
             DiningDashboard1Blue[i].setImage(image);
             DiningDashboard1Blue[i].setVisible(true);
             houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
@@ -1816,8 +1816,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             i++;
         }
         i = 0;
+        image = new Image("images/students/student_red.png");
         while (houseMap.get(House.RED) != 0) {
-            image = new Image("images/students/student_red.png");
             DiningDashboard1Red[i].setImage(image);
             DiningDashboard1Red[i].setVisible(true);
             houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
@@ -1828,8 +1828,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             i++;
         }
         i = 0;
+        image = new Image("images/students/student_yellow.png");
         while (houseMap.get(YELLOW) != 0) {
-            image = new Image("images/students/student_yellow.png");
             DiningDashboard1Yellow[i].setImage(image);
             DiningDashboard1Yellow[i].setVisible(true);
             houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
@@ -1840,8 +1840,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             i++;
         }
         i = 0;
+        image = new Image("images/students/student_pink.png");
         while (houseMap.get(House.PINK) != 0) {
-            image = new Image("images/students/student_pink.png");
             DiningDashboard1Pink[i].setImage(image);
             DiningDashboard1Pink[i].setVisible(true);
             houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
@@ -1920,36 +1920,36 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         Map<House, Integer> houseMap = new HashMap<>(gm.getArrayPlayers()[(numMain + 2) % gm.getNumPlayers()].getDashboard().getStudents());
         int i = numStudents;
+        image = new Image("images/students/student_blue.png");
         while (houseMap.get(House.BLUE) != 0) {
-            image = new Image("images/students/student_blue.png");
             EntranceDashboard2[i].setImage(image);
             EntranceDashboard2[i].setVisible(true);
             houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
             i--;
         }
+        image = new Image("images/students/student_pink.png");
         while (houseMap.get(House.PINK) != 0) {
-            image = new Image("images/students/student_pink.png");
             EntranceDashboard2[i].setImage(image);
             EntranceDashboard2[i].setVisible(true);
             houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
             i--;
         }
+        image = new Image("images/students/student_yellow.png");
         while (houseMap.get(YELLOW) != 0) {
-            image = new Image("images/students/student_yellow.png");
             EntranceDashboard2[i].setImage(image);
             EntranceDashboard2[i].setVisible(true);
             houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
             i--;
         }
+        image = new Image("images/students/student_red.png");
         while (houseMap.get(House.RED) != 0) {
-            image = new Image("images/students/student_red.png");
             EntranceDashboard2[i].setImage(image);
             EntranceDashboard2[i].setVisible(true);
             houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
             i--;
         }
+        image = new Image("images/students/student_green.png");
         while (houseMap.get(House.GREEN) != 0) {
-            image = new Image("images/students/student_green.png");
             EntranceDashboard2[i].setImage(image);
             EntranceDashboard2[i].setVisible(true);
             houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
@@ -2009,8 +2009,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         Map<House, Integer> houseMap = new HashMap<>(gm.getArrayPlayers()[(numMain + 2) % gm.getNumPlayers()].getDashboard().getDiningHall().getStudents());
         int i = 0;
+        image = new Image("images/students/student_green.png");
         while (houseMap.get(House.GREEN) != 0) {
-            image = new Image("images/students/student_green.png");
             DiningDashboard2Green[i].setImage(image);
             DiningDashboard2Green[i].setVisible(true);
             houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
@@ -2021,8 +2021,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             i++;
         }
         i = 0;
+        image = new Image("images/students/student_blue.png");
         while (houseMap.get(House.BLUE) != 0) {
-            image = new Image("images/students/student_blue.png");
             DiningDashboard2Blue[i].setImage(image);
             DiningDashboard2Blue[i].setVisible(true);
             houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
@@ -2033,8 +2033,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             i++;
         }
         i = 0;
+        image = new Image("images/students/student_red.png");
         while (houseMap.get(House.RED) != 0) {
-            image = new Image("images/students/student_red.png");
             DiningDashboard2Red[i].setImage(image);
             DiningDashboard2Red[i].setVisible(true);
             houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
@@ -2045,8 +2045,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             i++;
         }
         i = 0;
+        image = new Image("images/students/student_yellow.png");
         while (houseMap.get(YELLOW) != 0) {
-            image = new Image("images/students/student_yellow.png");
             DiningDashboard2Yellow[i].setImage(image);
             DiningDashboard2Yellow[i].setVisible(true);
             houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
@@ -2057,8 +2057,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             i++;
         }
         i = 0;
+        image = new Image("images/students/student_pink.png");
         while (houseMap.get(House.PINK) != 0) {
-            image = new Image("images/students/student_pink.png");
             DiningDashboard2Pink[i].setImage(image);
             DiningDashboard2Pink[i].setVisible(true);
             houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
@@ -2071,36 +2071,36 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         profMap = gm.getArrayPlayers()[(numMain + 2) % gm.getNumPlayers()].getDashboard().getProfMap();
 
+        image = new Image("images/professors/teacher_pink.png");
         if (profMap.get(House.PINK)) {
-            image = new Image("images/professors/teacher_pink.png");
             ProfPinkDashboard2.setImage(image);
             ProfPinkDashboard2.setVisible(true);
         } else {
             ProfPinkDashboard2.setVisible(false);
         }
+        image = new Image("images/professors/teacher_green.png");
         if (profMap.get(House.GREEN)) {
-            image = new Image("images/professors/teacher_green.png");
             ProfGreenDashboard2.setImage(image);
             ProfGreenDashboard2.setVisible(true);
         } else {
             ProfGreenDashboard2.setVisible(false);
         }
+        image = new Image("images/professors/teacher_yellow.png");
         if (profMap.get(YELLOW)) {
-            image = new Image("images/professors/teacher_yellow.png");
             ProfYellowDashboard2.setImage(image);
             ProfYellowDashboard2.setVisible(true);
         } else {
             ProfYellowDashboard2.setVisible(false);
         }
+        image = new Image("images/professors/teacher_red.png");
         if (profMap.get(House.RED)) {
-            image = new Image("images/professors/teacher_red.png");
             ProfRedDashboard2.setImage(image);
             ProfRedDashboard2.setVisible(true);
         } else {
             ProfRedDashboard2.setVisible(false);
         }
+        image = new Image("images/professors/teacher_blue.png");
         if (profMap.get(House.BLUE)) {
-            image = new Image("images/professors/teacher_blue.png");
             ProfBlueDashboard2.setImage(image);
             ProfBlueDashboard2.setVisible(true);
         } else {
@@ -2137,36 +2137,36 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         Map<House, Integer> houseMap = new HashMap<>(gm.getArrayPlayers()[(numMain + 3) % gm.getNumPlayers()].getDashboard().getStudents());
         int i = numStudents;
+        image = new Image("images/students/student_blue.png");
         while (houseMap.get(House.BLUE) != 0) {
-            image = new Image("images/students/student_blue.png");
             EntranceDashboard3[i].setImage(image);
             EntranceDashboard3[i].setVisible(true);
             houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
             i--;
         }
+        image = new Image("images/students/student_pink.png");
         while (houseMap.get(House.PINK) != 0) {
-            image = new Image("images/students/student_pink.png");
             EntranceDashboard3[i].setImage(image);
             EntranceDashboard3[i].setVisible(true);
             houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
             i--;
         }
+        image = new Image("images/students/student_yellow.png");
         while (houseMap.get(YELLOW) != 0) {
-            image = new Image("images/students/student_yellow.png");
             EntranceDashboard3[i].setImage(image);
             EntranceDashboard3[i].setVisible(true);
             houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
             i--;
         }
+        image = new Image("images/students/student_red.png");
         while (houseMap.get(House.RED) != 0) {
-            image = new Image("images/students/student_red.png");
             EntranceDashboard3[i].setImage(image);
             EntranceDashboard3[i].setVisible(true);
             houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
             i--;
         }
+        image = new Image("images/students/student_green.png");
         while (houseMap.get(House.GREEN) != 0) {
-            image = new Image("images/students/student_green.png");
             EntranceDashboard3[i].setImage(image);
             EntranceDashboard3[i].setVisible(true);
             houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
@@ -2226,8 +2226,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         Map<House, Integer> houseMap = new HashMap<>(gm.getArrayPlayers()[(numMain + 3) % gm.getNumPlayers()].getDashboard().getDiningHall().getStudents());
         int i = 0;
+        image = new Image("images/students/student_green.png");
         while (houseMap.get(House.GREEN) != 0) {
-            image = new Image("images/students/student_green.png");
             DiningDashboard3Green[i].setImage(image);
             DiningDashboard3Green[i].setVisible(true);
             houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
@@ -2238,8 +2238,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             i++;
         }
         i = 0;
+        image = new Image("images/students/student_blue.png");
         while (houseMap.get(House.BLUE) != 0) {
-            image = new Image("images/students/student_blue.png");
             DiningDashboard3Blue[i].setImage(image);
             DiningDashboard3Blue[i].setVisible(true);
             houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
@@ -2250,8 +2250,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             i++;
         }
         i = 0;
+        image = new Image("images/students/student_red.png");
         while (houseMap.get(House.RED) != 0) {
-            image = new Image("images/students/student_red.png");
             DiningDashboard3Red[i].setImage(image);
             DiningDashboard3Red[i].setVisible(true);
             houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
@@ -2262,8 +2262,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             i++;
         }
         i = 0;
+        image = new Image("images/students/student_yellow.png");
         while (houseMap.get(YELLOW) != 0) {
-            image = new Image("images/students/student_yellow.png");
             DiningDashboard3Yellow[i].setImage(image);
             DiningDashboard3Yellow[i].setVisible(true);
             houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
@@ -2274,8 +2274,8 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             i++;
         }
         i = 0;
+        image = new Image("images/students/student_pink.png");
         while (houseMap.get(House.PINK) != 0) {
-            image = new Image("images/students/student_pink.png");
             DiningDashboard3Pink[i].setImage(image);
             DiningDashboard3Pink[i].setVisible(true);
             houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
@@ -2457,36 +2457,36 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             houseMap = new HashMap<>(gm.getArrayClouds()[0].getStudents());
 
             int i = 0;
+            image = new Image("images/students/student_pink.png");
             while (houseMap.get(House.PINK) != 0) {
-                image = new Image("images/students/student_pink.png");
                 Cloud1[i].setImage(image);
                 Cloud1[i].setVisible(true);
                 houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
                 i++;
             }
+            image = new Image("images/students/student_green.png");
             while (houseMap.get(House.GREEN) != 0) {
-                image = new Image("images/students/student_green.png");
                 Cloud1[i].setImage(image);
                 Cloud1[i].setVisible(true);
                 houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
                 i++;
             }
+            image = new Image("images/students/student_yellow.png");
             while (houseMap.get(YELLOW) != 0) {
-                image = new Image("images/students/student_yellow.png");
                 Cloud1[i].setImage(image);
                 Cloud1[i].setVisible(true);
                 houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
                 i++;
             }
+            image = new Image("images/students/student_red.png");
             while (houseMap.get(House.RED) != 0) {
-                image = new Image("images/students/student_red.png");
                 Cloud1[i].setImage(image);
                 Cloud1[i].setVisible(true);
                 houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
                 i++;
             }
+            image = new Image("images/students/student_blue.png");
             while (houseMap.get(House.BLUE) != 0) {
-                image = new Image("images/students/student_blue.png");
                 Cloud1[i].setImage(image);
                 Cloud1[i].setVisible(true);
                 houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
@@ -2495,36 +2495,36 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
             houseMap = new HashMap<>(gm.getArrayClouds()[1].getStudents());
             i = 0;
+            image = new Image("images/students/student_pink.png");
             while (houseMap.get(House.PINK) != 0) {
-                image = new Image("images/students/student_pink.png");
                 Cloud2[i].setImage(image);
                 Cloud2[i].setVisible(true);
                 houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
                 i++;
             }
+            image = new Image("images/students/student_green.png");
             while (houseMap.get(House.GREEN) != 0) {
-                image = new Image("images/students/student_green.png");
                 Cloud2[i].setImage(image);
                 Cloud2[i].setVisible(true);
                 houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
                 i++;
             }
+            image = new Image("images/students/student_yellow.png");
             while (houseMap.get(YELLOW) != 0) {
-                image = new Image("images/students/student_yellow.png");
                 Cloud2[i].setImage(image);
                 Cloud2[i].setVisible(true);
                 houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
                 i++;
             }
+            image = new Image("images/students/student_red.png");
             while (houseMap.get(House.RED) != 0) {
-                image = new Image("images/students/student_red.png");
                 Cloud2[i].setImage(image);
                 Cloud2[i].setVisible(true);
                 houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
                 i++;
             }
+            image = new Image("images/students/student_blue.png");
             while (houseMap.get(House.BLUE) != 0) {
-                image = new Image("images/students/student_blue.png");
                 Cloud2[i].setImage(image);
                 Cloud2[i].setVisible(true);
                 houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
@@ -2534,36 +2534,36 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
             houseMap = new HashMap<>(gm.getArrayClouds()[2].getStudents());
 
             i = 0;
+            image = new Image("images/students/student_pink.png");
             while (houseMap.get(House.PINK) != 0) {
-                image = new Image("images/students/student_pink.png");
                 Cloud3[i].setImage(image);
                 Cloud3[i].setVisible(true);
                 houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
                 i++;
             }
+            image = new Image("images/students/student_green.png");
             while (houseMap.get(House.GREEN) != 0) {
-                image = new Image("images/students/student_green.png");
                 Cloud3[i].setImage(image);
                 Cloud3[i].setVisible(true);
                 houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
                 i++;
             }
+            image = new Image("images/students/student_yellow.png");
             while (houseMap.get(YELLOW) != 0) {
-                image = new Image("images/students/student_yellow.png");
                 Cloud3[i].setImage(image);
                 Cloud3[i].setVisible(true);
                 houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
                 i++;
             }
+            image = new Image("images/students/student_red.png");
             while (houseMap.get(House.RED) != 0) {
-                image = new Image("images/students/student_red.png");
                 Cloud3[i].setImage(image);
                 Cloud3[i].setVisible(true);
                 houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
                 i++;
             }
+            image = new Image("images/students/student_blue.png");
             while (houseMap.get(House.BLUE) != 0) {
-                image = new Image("images/students/student_blue.png");
                 Cloud3[i].setImage(image);
                 Cloud3[i].setVisible(true);
                 houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
@@ -2586,36 +2586,36 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
             houseMap = new HashMap<>(gm.getArrayClouds()[0].getStudents());
             int i = 0;
+            image = new Image("images/students/student_pink.png");
             while (houseMap.get(House.PINK) != 0) {
-                image = new Image("images/students/student_pink.png");
                 Cloud1[i].setImage(image);
                 Cloud1[i].setVisible(true);
                 houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
                 i++;
             }
+            image = new Image("images/students/student_green.png");
             while (houseMap.get(House.GREEN) != 0) {
-                image = new Image("images/students/student_green.png");
                 Cloud1[i].setImage(image);
                 Cloud1[i].setVisible(true);
                 houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
                 i++;
             }
+            image = new Image("images/students/student_yellow.png");
             while (houseMap.get(YELLOW) != 0) {
-                image = new Image("images/students/student_yellow.png");
                 Cloud1[i].setImage(image);
                 Cloud1[i].setVisible(true);
                 houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
                 i++;
             }
+            image = new Image("images/students/student_red.png");
             while (houseMap.get(House.RED) != 0) {
-                image = new Image("images/students/student_red.png");
                 Cloud1[i].setImage(image);
                 Cloud1[i].setVisible(true);
                 houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
                 i++;
             }
+            image = new Image("images/students/student_blue.png");
             while (houseMap.get(House.BLUE) != 0) {
-                image = new Image("images/students/student_blue.png");
                 Cloud1[i].setImage(image);
                 Cloud1[i].setVisible(true);
                 houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
@@ -2624,36 +2624,36 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
             houseMap = new HashMap<>(gm.getArrayClouds()[1].getStudents());
             i = 0;
+            image = new Image("images/students/student_pink.png");
             while (houseMap.get(House.PINK) != 0) {
-                image = new Image("images/students/student_pink.png");
                 Cloud2[i].setImage(image);
                 Cloud2[i].setVisible(true);
                 houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
                 i++;
             }
+            image = new Image("images/students/student_green.png");
             while (houseMap.get(House.GREEN) != 0) {
-                image = new Image("images/students/student_green.png");
                 Cloud2[i].setImage(image);
                 Cloud2[i].setVisible(true);
                 houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
                 i++;
             }
+            image = new Image("images/students/student_yellow.png");
             while (houseMap.get(YELLOW) != 0) {
-                image = new Image("images/students/student_yellow.png");
                 Cloud2[i].setImage(image);
                 Cloud2[i].setVisible(true);
                 houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
                 i++;
             }
+            image = new Image("images/students/student_red.png");
             while (houseMap.get(House.RED) != 0) {
-                image = new Image("images/students/student_red.png");
                 Cloud2[i].setImage(image);
                 Cloud2[i].setVisible(true);
                 houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
                 i++;
             }
+            image = new Image("images/students/student_blue.png");
             while (houseMap.get(House.BLUE) != 0) {
-                image = new Image("images/students/student_blue.png");
                 Cloud2[i].setImage(image);
                 Cloud2[i].setVisible(true);
                 houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
@@ -2673,36 +2673,36 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
                 houseMap = new HashMap<>(gm.getArrayClouds()[2].getStudents());
                 i = 0;
+                image = new Image("images/students/student_pink.png");
                 while (houseMap.get(House.PINK) != 0) {
-                    image = new Image("images/students/student_pink.png");
                     Cloud3[i].setImage(image);
                     Cloud3[i].setVisible(true);
                     houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
                     i++;
                 }
+                image = new Image("images/students/student_green.png");
                 while (houseMap.get(House.GREEN) != 0) {
-                    image = new Image("images/students/student_green.png");
                     Cloud3[i].setImage(image);
                     Cloud3[i].setVisible(true);
                     houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
                     i++;
                 }
+                image = new Image("images/students/student_yellow.png");
                 while (houseMap.get(YELLOW) != 0) {
-                    image = new Image("images/students/student_yellow.png");
                     Cloud3[i].setImage(image);
                     Cloud3[i].setVisible(true);
                     houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
                     i++;
                 }
+                image = new Image("images/students/student_red.png");
                 while (houseMap.get(House.RED) != 0) {
-                    image = new Image("images/students/student_red.png");
                     Cloud3[i].setImage(image);
                     Cloud3[i].setVisible(true);
                     houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
                     i++;
                 }
+                image = new Image("images/students/student_blue.png");
                 while (houseMap.get(House.BLUE) != 0) {
-                    image = new Image("images/students/student_blue.png");
                     Cloud3[i].setImage(image);
                     Cloud3[i].setVisible(true);
                     houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
@@ -2711,36 +2711,36 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
                 houseMap = new HashMap<>(gm.getArrayClouds()[3].getStudents());
                 i = 0;
+                image = new Image("images/students/student_pink.png");
                 while (houseMap.get(House.PINK) != 0) {
-                    image = new Image("images/students/student_pink.png");
                     Cloud4[i].setImage(image);
                     Cloud4[i].setVisible(true);
                     houseMap.replace(House.PINK, houseMap.get(House.PINK) - 1);
                     i++;
                 }
+                image = new Image("images/students/student_green.png");
                 while (houseMap.get(House.GREEN) != 0) {
-                    image = new Image("images/students/student_green.png");
                     Cloud4[i].setImage(image);
                     Cloud4[i].setVisible(true);
                     houseMap.replace(House.GREEN, houseMap.get(House.GREEN) - 1);
                     i++;
                 }
+                image = new Image("images/students/student_yellow.png");
                 while (houseMap.get(YELLOW) != 0) {
-                    image = new Image("images/students/student_yellow.png");
                     Cloud4[i].setImage(image);
                     Cloud4[i].setVisible(true);
                     houseMap.replace(YELLOW, houseMap.get(YELLOW) - 1);
                     i++;
                 }
+                image = new Image("images/students/student_red.png");
                 while (houseMap.get(House.RED) != 0) {
-                    image = new Image("images/students/student_red.png");
                     Cloud4[i].setImage(image);
                     Cloud4[i].setVisible(true);
                     houseMap.replace(House.RED, houseMap.get(House.RED) - 1);
                     i++;
                 }
+                image = new Image("images/students/student_blue.png");
                 while (houseMap.get(House.BLUE) != 0) {
-                    image = new Image("images/students/student_blue.png");
                     Cloud4[i].setImage(image);
                     Cloud4[i].setVisible(true);
                     houseMap.replace(House.BLUE, houseMap.get(House.BLUE) - 1);
@@ -3022,40 +3022,40 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     path = "images/CharacterCards/Monk.jpg";
                     houseMap = new HashMap<>(gm.getCharacterCardDeck()[0].getHouseMap());
                     i = 0;
+                    image = new Image("images/students/student_green.png");
                     while (houseMap.get(GREEN) > 0) {
-                        image = new Image("images/students/student_green.png");
                         Card1Arr[i].setImage(image);
                         Card1Arr[i].setVisible(true);
                         Card1Arr[i].setDisable(false);
                         houseMap.put(GREEN, houseMap.get(GREEN) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_red.png");
                     while (houseMap.get(RED) > 0) {
-                        image = new Image("images/students/student_red.png");
                         Card1Arr[i].setImage(image);
                         Card1Arr[i].setVisible(true);
                         Card1Arr[i].setDisable(false);
                         houseMap.put(RED, houseMap.get(RED) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_yellow.png");
                     while (houseMap.get(YELLOW) > 0) {
-                        image = new Image("images/students/student_yellow.png");
                         Card1Arr[i].setImage(image);
                         Card1Arr[i].setVisible(true);
                         Card1Arr[i].setDisable(false);
                         houseMap.put(YELLOW, houseMap.get(YELLOW) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_pink.png");
                     while (houseMap.get(PINK) > 0) {
-                        image = new Image("images/students/student_pink.png");
                         Card1Arr[i].setImage(image);
                         Card1Arr[i].setVisible(true);
                         Card1Arr[i].setDisable(false);
                         houseMap.put(PINK, houseMap.get(PINK) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_blue.png");
                     while (houseMap.get(BLUE) > 0) {
-                        image = new Image("images/students/student_blue.png");
                         Card1Arr[i].setImage(image);
                         Card1Arr[i].setVisible(true);
                         Card1Arr[i].setDisable(false);
@@ -3080,16 +3080,16 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
                     houseMap = new HashMap<>(gm.getCharacterCardDeck()[0].getHouseMap());
                     i = 0;
+                    image = new Image("images/students/student_green.png");
                     while (houseMap.get(GREEN) > 0) {
-                        image = new Image("images/students/student_green.png");
                         Card1Arr[i].setImage(image);
                         Card1Arr[i].setVisible(true);
                         Card1Arr[i].setDisable(false);
                         houseMap.put(GREEN, houseMap.get(GREEN) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_red.png");
                     while (houseMap.get(RED) > 0) {
-                        image = new Image("images/students/student_red.png");
                         Card1Arr[i].setImage(image);
                         Card1Arr[i].setVisible(true);
                         Card1Arr[i].setDisable(false);
@@ -3097,24 +3097,24 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                         i++;
                     }
 
+                    image = new Image("images/students/student_yellow.png");
                     while (houseMap.get(YELLOW) > 0) {
-                        image = new Image("images/students/student_yellow.png");
                         Card1Arr[i].setImage(image);
                         Card1Arr[i].setVisible(true);
                         Card1Arr[i].setDisable(false);
                         houseMap.put(YELLOW, houseMap.get(YELLOW) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_pink.png");
                     while (houseMap.get(PINK) > 0) {
-                        image = new Image("images/students/student_pink.png");
                         Card1Arr[i].setImage(image);
                         Card1Arr[i].setVisible(true);
                         Card1Arr[i].setDisable(false);
                         houseMap.put(PINK, houseMap.get(PINK) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_blue.png");
                     while (houseMap.get(BLUE) > 0) {
-                        image = new Image("images/students/student_blue.png");
                         Card1Arr[i].setImage(image);
                         Card1Arr[i].setVisible(true);
                         Card1Arr[i].setDisable(false);
@@ -3169,40 +3169,40 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
                     houseMap = new HashMap<>(gm.getCharacterCardDeck()[0].getHouseMap());
                     i = 0;
+                    image = new Image("images/students/student_green.png");
                     while (houseMap.get(GREEN) > 0) {
-                        image = new Image("images/students/student_green.png");
                         Card1Arr[i].setImage(image);
                         Card1Arr[i].setVisible(true);
                         Card1Arr[i].setDisable(false);
                         houseMap.put(GREEN, houseMap.get(GREEN) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_red.png");
                     while (houseMap.get(RED) > 0) {
-                        image = new Image("images/students/student_red.png");
                         Card1Arr[i].setImage(image);
                         Card1Arr[i].setVisible(true);
                         Card1Arr[i].setDisable(false);
                         houseMap.put(RED, houseMap.get(RED) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_yellow.png");
                     while (houseMap.get(YELLOW) > 0) {
-                        image = new Image("images/students/student_yellow.png");
                         Card1Arr[i].setImage(image);
                         Card1Arr[i].setVisible(true);
                         Card1Arr[i].setDisable(false);
                         houseMap.put(YELLOW, houseMap.get(YELLOW) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_pink.png");
                     while (houseMap.get(PINK) > 0) {
-                        image = new Image("images/students/student_pink.png");
                         Card1Arr[i].setImage(image);
                         Card1Arr[i].setVisible(true);
                         Card1Arr[i].setDisable(false);
                         houseMap.put(PINK, houseMap.get(PINK) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_blue.png");
                     while (houseMap.get(BLUE) > 0) {
-                        image = new Image("images/students/student_blue.png");
                         Card1Arr[i].setImage(image);
                         Card1Arr[i].setVisible(true);
                         Card1Arr[i].setDisable(false);
@@ -3288,40 +3288,40 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     path = "images/CharacterCards/Monk.jpg";
                     houseMap = new HashMap<>(gm.getCharacterCardDeck()[1].getHouseMap());
                     i = 0;
+                    image = new Image("images/students/student_green.png");
                     while (houseMap.get(GREEN) > 0) {
-                        image = new Image("images/students/student_green.png");
                         Card2Arr[i].setImage(image);
                         Card2Arr[i].setVisible(true);
                         Card2Arr[i].setDisable(false);
                         houseMap.put(GREEN, houseMap.get(GREEN) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_red.png");
                     while (houseMap.get(RED) > 0) {
-                        image = new Image("images/students/student_red.png");
                         Card2Arr[i].setImage(image);
                         Card2Arr[i].setVisible(true);
                         Card2Arr[i].setDisable(false);
                         houseMap.put(RED, houseMap.get(RED) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_yellow.png");
                     while (houseMap.get(YELLOW) > 0) {
-                        image = new Image("images/students/student_yellow.png");
                         Card2Arr[i].setImage(image);
                         Card2Arr[i].setVisible(true);
                         Card2Arr[i].setDisable(false);
                         houseMap.put(YELLOW, houseMap.get(YELLOW) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_pink.png");
                     while (houseMap.get(PINK) > 0) {
-                        image = new Image("images/students/student_pink.png");
                         Card2Arr[i].setImage(image);
                         Card2Arr[i].setVisible(true);
                         Card2Arr[i].setDisable(false);
                         houseMap.put(PINK, houseMap.get(PINK) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_blue.png");
                     while (houseMap.get(BLUE) > 0) {
-                        image = new Image("images/students/student_blue.png");
                         Card2Arr[i].setImage(image);
                         Card2Arr[i].setVisible(true);
                         Card2Arr[i].setDisable(false);
@@ -3345,16 +3345,16 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
                     houseMap = new HashMap<>(gm.getCharacterCardDeck()[1].getHouseMap());
                     i = 0;
+                    image = new Image("images/students/student_green.png");
                     while (houseMap.get(GREEN) > 0) {
-                        image = new Image("images/students/student_green.png");
                         Card2Arr[i].setImage(image);
                         Card2Arr[i].setVisible(true);
                         Card2Arr[i].setDisable(false);
                         houseMap.put(GREEN, houseMap.get(GREEN) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_red.png");
                     while (houseMap.get(RED) > 0) {
-                        image = new Image("images/students/student_red.png");
                         Card2Arr[i].setImage(image);
                         Card2Arr[i].setVisible(true);
                         Card2Arr[i].setDisable(false);
@@ -3362,24 +3362,24 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                         i++;
                     }
 
+                    image = new Image("images/students/student_yellow.png");
                     while (houseMap.get(YELLOW) > 0) {
-                        image = new Image("images/students/student_yellow.png");
                         Card2Arr[i].setImage(image);
                         Card2Arr[i].setVisible(true);
                         Card2Arr[i].setDisable(false);
                         houseMap.put(YELLOW, houseMap.get(YELLOW) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_pink.png");
                     while (houseMap.get(PINK) > 0) {
-                        image = new Image("images/students/student_pink.png");
                         Card2Arr[i].setImage(image);
                         Card2Arr[i].setVisible(true);
                         Card2Arr[i].setDisable(false);
                         houseMap.put(PINK, houseMap.get(PINK) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_blue.png");
                     while (houseMap.get(BLUE) > 0) {
-                        image = new Image("images/students/student_blue.png");
                         Card2Arr[i].setImage(image);
                         Card2Arr[i].setVisible(true);
                         Card2Arr[i].setDisable(false);
@@ -3434,40 +3434,40 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
                     houseMap = new HashMap<>(gm.getCharacterCardDeck()[1].getHouseMap());
                     i = 0;
+                    image = new Image("images/students/student_green.png");
                     while (houseMap.get(GREEN) > 0) {
-                        image = new Image("images/students/student_green.png");
                         Card2Arr[i].setImage(image);
                         Card2Arr[i].setVisible(true);
                         Card2Arr[i].setDisable(false);
                         houseMap.put(GREEN, houseMap.get(GREEN) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_red.png");
                     while (houseMap.get(RED) > 0) {
-                        image = new Image("images/students/student_red.png");
                         Card2Arr[i].setImage(image);
                         Card2Arr[i].setVisible(true);
                         Card2Arr[i].setDisable(false);
                         houseMap.put(RED, houseMap.get(RED) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_yellow.png");
                     while (houseMap.get(YELLOW) > 0) {
-                        image = new Image("images/students/student_yellow.png");
                         Card2Arr[i].setImage(image);
                         Card2Arr[i].setVisible(true);
                         Card2Arr[i].setDisable(false);
                         houseMap.put(YELLOW, houseMap.get(YELLOW) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_pink.png");
                     while (houseMap.get(PINK) > 0) {
-                        image = new Image("images/students/student_pink.png");
                         Card2Arr[i].setImage(image);
                         Card2Arr[i].setVisible(true);
                         Card2Arr[i].setDisable(false);
                         houseMap.put(PINK, houseMap.get(PINK) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_blue.png");
                     while (houseMap.get(BLUE) > 0) {
-                        image = new Image("images/students/student_blue.png");
                         Card2Arr[i].setImage(image);
                         Card2Arr[i].setVisible(true);
                         Card2Arr[i].setDisable(false);
@@ -3552,40 +3552,40 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     path = "images/CharacterCards/Monk.jpg";
                     houseMap = new HashMap<>(gm.getCharacterCardDeck()[2].getHouseMap());
                     i = 0;
+                    image = new Image("images/students/student_green.png");
                     while (houseMap.get(GREEN) > 0) {
-                        image = new Image("images/students/student_green.png");
                         Card3Arr[i].setImage(image);
                         Card3Arr[i].setVisible(true);
                         Card3Arr[i].setDisable(false);
                         houseMap.put(GREEN, houseMap.get(GREEN) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_red.png");
                     while (houseMap.get(RED) > 0) {
-                        image = new Image("images/students/student_red.png");
                         Card3Arr[i].setImage(image);
                         Card3Arr[i].setVisible(true);
                         Card3Arr[i].setDisable(false);
                         houseMap.put(RED, houseMap.get(RED) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_yellow.png");
                     while (houseMap.get(YELLOW) > 0) {
-                        image = new Image("images/students/student_yellow.png");
                         Card3Arr[i].setImage(image);
                         Card3Arr[i].setVisible(true);
                         Card3Arr[i].setDisable(false);
                         houseMap.put(YELLOW, houseMap.get(YELLOW) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_pink.png");
                     while (houseMap.get(PINK) > 0) {
-                        image = new Image("images/students/student_pink.png");
                         Card3Arr[i].setImage(image);
                         Card3Arr[i].setVisible(true);
                         Card3Arr[i].setDisable(false);
                         houseMap.put(PINK, houseMap.get(PINK) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_blue.png");
                     while (houseMap.get(BLUE) > 0) {
-                        image = new Image("images/students/student_blue.png");
                         Card3Arr[i].setImage(image);
                         Card3Arr[i].setVisible(true);
                         Card3Arr[i].setDisable(false);
@@ -3609,16 +3609,16 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
                     houseMap = new HashMap<>(gm.getCharacterCardDeck()[2].getHouseMap());
                     i = 0;
+                    image = new Image("images/students/student_green.png");
                     while (houseMap.get(GREEN) > 0) {
-                        image = new Image("images/students/student_green.png");
                         Card3Arr[i].setImage(image);
                         Card3Arr[i].setVisible(true);
                         Card3Arr[i].setDisable(false);
                         houseMap.put(GREEN, houseMap.get(GREEN) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_red.png");
                     while (houseMap.get(RED) > 0) {
-                        image = new Image("images/students/student_red.png");
                         Card3Arr[i].setImage(image);
                         Card3Arr[i].setVisible(true);
                         Card3Arr[i].setDisable(false);
@@ -3626,24 +3626,24 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                         i++;
                     }
 
+                    image = new Image("images/students/student_yellow.png");
                     while (houseMap.get(YELLOW) > 0) {
-                        image = new Image("images/students/student_yellow.png");
                         Card3Arr[i].setImage(image);
                         Card3Arr[i].setVisible(true);
                         Card3Arr[i].setDisable(false);
                         houseMap.put(YELLOW, houseMap.get(YELLOW) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_pink.png");
                     while (houseMap.get(PINK) > 0) {
-                        image = new Image("images/students/student_pink.png");
                         Card3Arr[i].setImage(image);
                         Card3Arr[i].setVisible(true);
                         Card3Arr[i].setDisable(false);
                         houseMap.put(PINK, houseMap.get(PINK) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_blue.png");
                     while (houseMap.get(BLUE) > 0) {
-                        image = new Image("images/students/student_blue.png");
                         Card3Arr[i].setImage(image);
                         Card3Arr[i].setVisible(true);
                         Card3Arr[i].setDisable(false);
@@ -3698,40 +3698,40 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
                     houseMap = new HashMap<>(gm.getCharacterCardDeck()[2].getHouseMap());
                     i = 0;
+                    image = new Image("images/students/student_green.png");
                     while (houseMap.get(GREEN) > 0) {
-                        image = new Image("images/students/student_green.png");
                         Card3Arr[i].setImage(image);
                         Card3Arr[i].setVisible(true);
                         Card3Arr[i].setDisable(false);
                         houseMap.put(GREEN, houseMap.get(GREEN) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_red.png");
                     while (houseMap.get(RED) > 0) {
-                        image = new Image("images/students/student_red.png");
                         Card3Arr[i].setImage(image);
                         Card3Arr[i].setVisible(true);
                         Card3Arr[i].setDisable(false);
                         houseMap.put(RED, houseMap.get(RED) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_yellow.png");
                     while (houseMap.get(YELLOW) > 0) {
-                        image = new Image("images/students/student_yellow.png");
                         Card3Arr[i].setImage(image);
                         Card3Arr[i].setVisible(true);
                         Card3Arr[i].setDisable(false);
                         houseMap.put(YELLOW, houseMap.get(YELLOW) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_pink.png");
                     while (houseMap.get(PINK) > 0) {
-                        image = new Image("images/students/student_pink.png");
                         Card3Arr[i].setImage(image);
                         Card3Arr[i].setVisible(true);
                         Card3Arr[i].setDisable(false);
                         houseMap.put(PINK, houseMap.get(PINK) - 1);
                         i++;
                     }
+                    image = new Image("images/students/student_blue.png");
                     while (houseMap.get(BLUE) > 0) {
-                        image = new Image("images/students/student_blue.png");
                         Card3Arr[i].setImage(image);
                         Card3Arr[i].setVisible(true);
                         Card3Arr[i].setDisable(false);
