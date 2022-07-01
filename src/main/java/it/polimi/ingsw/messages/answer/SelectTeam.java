@@ -5,7 +5,7 @@ import it.polimi.ingsw.messages.MessageType;
 
 /**
  * This message is sent from the server to the client to communicate that the player
- * has to choose the team her/she wants to play in this match
+ * has to choose the team he/she wants to play in this match
  *
  * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
