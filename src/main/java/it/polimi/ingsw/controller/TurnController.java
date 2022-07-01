@@ -514,24 +514,27 @@ public class TurnController {
      */
     public void resendActionPhase(String nickname){
 
-        if(gameState == PLANNING) {
-            if(planningController.getNextChoosing() == -1) {
-                if(! gm.getArrayPlayers()[planningController.getFirstPlanner()].getNickname().equals(nickname))
+        if(! reset()) {
+            try {
+                if (gameState == PLANNING) {
+                    if (planningController.getNextChoosing() == -1) {
+                        if (!gm.getArrayPlayers()[planningController.getFirstPlanner()].getNickname().equals(nickname))
+                            virtualViewMap.get(nickname).goToWaitingRoom();
+                    } else {
+                        if (!gm.getArrayPlayers()[planningController.getNextChoosing()].getNickname().equals(nickname))
+                            virtualViewMap.get(nickname).goToWaitingRoom();
+                    }
+                } else if (gm.getPlayerByNickname(nickname).equals(gm.getCurrentPlayer())) {
+                    if (actionController.getToResend())
+                        virtualViewMap.get(nickname).actionPhase(actionController.getActions());
+                } else
                     virtualViewMap.get(nickname).goToWaitingRoom();
             }
-            else {
-                if(! gm.getArrayPlayers()[planningController.getNextChoosing()].getNickname().equals(nickname))
-                    virtualViewMap.get(nickname).goToWaitingRoom();
+            catch (NullPointerException e) {
+                e.printStackTrace();
             }
         }
-
-        else if(gm.getPlayerByNickname(nickname).equals(gm.getCurrentPlayer())) {
-            if (actionController.getToResend())
-                virtualViewMap.get(nickname).actionPhase(actionController.getActions());
-        }
-
-        else
-            virtualViewMap.get(nickname).goToWaitingRoom();
+        System.out.println("esco");
 
     }
 
