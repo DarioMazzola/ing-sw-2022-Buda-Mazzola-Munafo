@@ -1,0 +1,175 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > HerbGranma</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">it.polimi.ingsw.model</a>
+</div>
+
+<h1>Coverage Summary for Class: HerbGranma (it.polimi.ingsw.model)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">HerbGranma</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (15/15)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package it.polimi.ingsw.model;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import java.util.Map;
+<i class="no-highlight">4</i>&nbsp;
+<i class="no-highlight">5</i>&nbsp;import static it.polimi.ingsw.model.CharacterCardEnum.HERB_GRANMA;
+<i class="no-highlight">6</i>&nbsp;
+<i class="no-highlight">7</i>&nbsp;/**
+<i class="no-highlight">8</i>&nbsp; * HerbGranma class represents herb granma character card
+<i class="no-highlight">9</i>&nbsp; *
+<i class="no-highlight">10</i>&nbsp; * @author Dario Mazzola
+<i class="no-highlight">11</i>&nbsp; */
+<i class="no-highlight">12</i>&nbsp;public class HerbGranma extends CharacterCard{
+<i class="no-highlight">13</i>&nbsp;
+<b class="fc"><i class="no-highlight">14</i>&nbsp;    private int noEntryTileNumber = 4;</b>
+<i class="no-highlight">15</i>&nbsp;
+<i class="no-highlight">16</i>&nbsp;    /**
+<i class="no-highlight">17</i>&nbsp;     * Class constructor, initializes card with name and initial cost.
+<i class="no-highlight">18</i>&nbsp;     */
+<i class="no-highlight">19</i>&nbsp;    public HerbGranma() {
+<b class="fc"><i class="no-highlight">20</i>&nbsp;        super(2, &quot;HerbGranma&quot;, HERB_GRANMA);</b>
+<i class="no-highlight">21</i>&nbsp;    }
+<i class="no-highlight">22</i>&nbsp;
+<i class="no-highlight">23</i>&nbsp;    /**
+<i class="no-highlight">24</i>&nbsp;     * Receives parameters, saves them and calls the correct method to perform the wanted operation.
+<i class="no-highlight">25</i>&nbsp;     *
+<i class="no-highlight">26</i>&nbsp;     * @param parameters A map that contains the objects that need to the characterCards and the objects that must be returned
+<i class="no-highlight">27</i>&nbsp;     */
+<i class="no-highlight">28</i>&nbsp;    @Override
+<i class="no-highlight">29</i>&nbsp;    public void doEffect(Map&lt;String, Object&gt; parameters) throws Exception {
+<i class="no-highlight">30</i>&nbsp;
+<b class="fc"><i class="no-highlight">31</i>&nbsp;        if(parameters.get(&quot;Method&quot;).equals(&quot;addNoEntryTile&quot;)){</b>
+<b class="fc"><i class="no-highlight">32</i>&nbsp;            addNoEntryTile((Island)parameters.get(&quot;Island&quot;));</b>
+<b class="fc"><i class="no-highlight">33</i>&nbsp;            super.doEffect(null);</b>
+<i class="no-highlight">34</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">35</i>&nbsp;        else if(parameters.get(&quot;Method&quot;).equals(&quot;removeNoEntryTile&quot;)){</b>
+<b class="fc"><i class="no-highlight">36</i>&nbsp;            removeNoEntryTile();</b>
+<i class="no-highlight">37</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">38</i>&nbsp;        else if(parameters.get(&quot;Method&quot;).equals(&quot;getNoEntryTileNumber&quot;)){</b>
+<b class="fc"><i class="no-highlight">39</i>&nbsp;            parameters.put(&quot;noEntryTileNumber&quot;, noEntryTileNumber);</b>
+<i class="no-highlight">40</i>&nbsp;        }
+<i class="no-highlight">41</i>&nbsp;    }
+<i class="no-highlight">42</i>&nbsp;
+<i class="no-highlight">43</i>&nbsp;    /**
+<i class="no-highlight">44</i>&nbsp;     * Adds a NoEntryTile to the island indicated as a parameter
+<i class="no-highlight">45</i>&nbsp;     * @param island the island in which to add the NoEntryTile
+<i class="no-highlight">46</i>&nbsp;     */
+<i class="no-highlight">47</i>&nbsp;    private void addNoEntryTile(Island island){
+<b class="fc"><i class="no-highlight">48</i>&nbsp;        island.addNoEntryTile();</b>
+<b class="fc"><i class="no-highlight">49</i>&nbsp;        noEntryTileNumber--;</b>
+<i class="no-highlight">50</i>&nbsp;    }
+<i class="no-highlight">51</i>&nbsp;
+<i class="no-highlight">52</i>&nbsp;    /**
+<i class="no-highlight">53</i>&nbsp;     * Removes a NoEntryTile from the game board and put the no entry tile  back on this card
+<i class="no-highlight">54</i>&nbsp;     */
+<i class="no-highlight">55</i>&nbsp;    private void removeNoEntryTile(){
+<b class="fc"><i class="no-highlight">56</i>&nbsp;        noEntryTileNumber++;</b>
+<b class="fc"><i class="no-highlight">57</i>&nbsp;        this.setInUse(false);</b>
+<i class="no-highlight">58</i>&nbsp;    }
+<i class="no-highlight">59</i>&nbsp;
+<i class="no-highlight">60</i>&nbsp;    @Override
+<i class="no-highlight">61</i>&nbsp;    public String getDescription() {
+<b class="fc"><i class="no-highlight">62</i>&nbsp;        return &quot;Place a No Entry Tile on Island of your choice. The first time Mother Nature ends her movement there, \n&quot; +</b>
+<i class="no-highlight">63</i>&nbsp;                    &quot;put the No Entry Tile back onto this card DO NOT calculate influence on that Island, or place any Towers&quot;;
+<i class="no-highlight">64</i>&nbsp;    }
+<i class="no-highlight">65</i>&nbsp;
+<i class="no-highlight">66</i>&nbsp;    @Override
+<i class="no-highlight">67</i>&nbsp;    public CharacterCardEnum getType() {
+<b class="fc"><i class="no-highlight">68</i>&nbsp;        return HERB_GRANMA;</b>
+<i class="no-highlight">69</i>&nbsp;    }
+<i class="no-highlight">70</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-07-01 12:22</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,201 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Thief</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">it.polimi.ingsw.model</a>
+</div>
+
+<h1>Coverage Summary for Class: Thief (it.polimi.ingsw.model)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Thief</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    60%
+  </span>
+  <span class="absValue">
+    (3/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    80,6%
+  </span>
+  <span class="absValue">
+    (25/31)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package it.polimi.ingsw.model;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import it.polimi.ingsw.exceptions.BagException;
+<i class="no-highlight">4</i>&nbsp;import it.polimi.ingsw.exceptions.StudentsTableException;
+<i class="no-highlight">5</i>&nbsp;
+<i class="no-highlight">6</i>&nbsp;import java.util.ArrayList;
+<i class="no-highlight">7</i>&nbsp;import java.util.List;
+<i class="no-highlight">8</i>&nbsp;import java.util.Map;
+<i class="no-highlight">9</i>&nbsp;
+<i class="no-highlight">10</i>&nbsp;import static it.polimi.ingsw.model.CharacterCardEnum.THIEF;
+<i class="no-highlight">11</i>&nbsp;
+<i class="no-highlight">12</i>&nbsp;/**
+<i class="no-highlight">13</i>&nbsp; * Thief class represents thief character card.
+<i class="no-highlight">14</i>&nbsp; *
+<i class="no-highlight">15</i>&nbsp; * @author Alessio Buda
+<i class="no-highlight">16</i>&nbsp; */
+<i class="no-highlight">17</i>&nbsp;public class Thief extends CharacterCard{
+<i class="no-highlight">18</i>&nbsp;
+<i class="no-highlight">19</i>&nbsp;    /**
+<i class="no-highlight">20</i>&nbsp;     * Class constructor, initializes card with name and initial cost.
+<i class="no-highlight">21</i>&nbsp;     *
+<i class="no-highlight">22</i>&nbsp;     */
+<i class="no-highlight">23</i>&nbsp;    public Thief() {
+<b class="fc"><i class="no-highlight">24</i>&nbsp;        super(3, &quot;Thief&quot;, THIEF);</b>
+<i class="no-highlight">25</i>&nbsp;    }
+<i class="no-highlight">26</i>&nbsp;
+<i class="no-highlight">27</i>&nbsp;    /**
+<i class="no-highlight">28</i>&nbsp;     * Receives parameters, saves them and calls the correct method to perform the wanted operation.
+<i class="no-highlight">29</i>&nbsp;     *
+<i class="no-highlight">30</i>&nbsp;     * @param parameters map containing the necessary parameters to perform card operations
+<i class="no-highlight">31</i>&nbsp;     * @throws IllegalArgumentException missing parameter in parameters
+<i class="no-highlight">32</i>&nbsp;     */
+<i class="no-highlight">33</i>&nbsp;    @Override
+<i class="no-highlight">34</i>&nbsp;    public void doEffect(Map&lt;String, Object&gt; parameters) throws IllegalArgumentException{
+<i class="no-highlight">35</i>&nbsp;        try {
+<b class="fc"><i class="no-highlight">36</i>&nbsp;            super.doEffect(null);</b>
+<b class="fc"><i class="no-highlight">37</i>&nbsp;        } catch (Exception ignored) {}</b>
+<i class="no-highlight">38</i>&nbsp;        House wantedHouse;
+<i class="no-highlight">39</i>&nbsp;        Player[] players;
+<i class="no-highlight">40</i>&nbsp;        Bag bag;
+<b class="fc"><i class="no-highlight">41</i>&nbsp;        List&lt;String&gt; expectedParameters = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i class="no-highlight">42</i>&nbsp;        expectedParameters.add(&quot;wantedHouse&quot;);</b>
+<b class="fc"><i class="no-highlight">43</i>&nbsp;        expectedParameters.add(&quot;players&quot;);</b>
+<b class="fc"><i class="no-highlight">44</i>&nbsp;        expectedParameters.add(&quot;bag&quot;);</b>
+<i class="no-highlight">45</i>&nbsp;
+<b class="fc"><i class="no-highlight">46</i>&nbsp;        for (String s : expectedParameters) {</b>
+<b class="fc"><i class="no-highlight">47</i>&nbsp;            if (!parameters.containsKey(s))</b>
+<b class="fc"><i class="no-highlight">48</i>&nbsp;                throw new IllegalArgumentException(&quot;Missing parameter &quot; + s);</b>
+<b class="fc"><i class="no-highlight">49</i>&nbsp;            if (parameters.get(s) == null)</b>
+<b class="fc"><i class="no-highlight">50</i>&nbsp;                throw new NullPointerException(&quot;Null parameter &quot; + s);</b>
+<b class="fc"><i class="no-highlight">51</i>&nbsp;        }</b>
+<i class="no-highlight">52</i>&nbsp;
+<b class="fc"><i class="no-highlight">53</i>&nbsp;        wantedHouse = (House) parameters.get(&quot;wantedHouse&quot;);</b>
+<b class="fc"><i class="no-highlight">54</i>&nbsp;        players = (Player[]) parameters.get(&quot;players&quot;);</b>
+<b class="fc"><i class="no-highlight">55</i>&nbsp;        bag = (Bag) parameters.get(&quot;bag&quot;);</b>
+<b class="fc"><i class="no-highlight">56</i>&nbsp;        this.stealStudents(wantedHouse, players, bag);</b>
+<i class="no-highlight">57</i>&nbsp;    }
+<i class="no-highlight">58</i>&nbsp;
+<i class="no-highlight">59</i>&nbsp;    /**
+<i class="no-highlight">60</i>&nbsp;     * Removes 3 students of the selected house from every player&#39;s dining hall.
+<i class="no-highlight">61</i>&nbsp;     * If less of 3 students are present, all the present students are removed
+<i class="no-highlight">62</i>&nbsp;     *
+<i class="no-highlight">63</i>&nbsp;     * @param wantedHouse house whose students will be removed from players&#39; dining halls
+<i class="no-highlight">64</i>&nbsp;     * @param players array of players
+<i class="no-highlight">65</i>&nbsp;     * @param bag bag where the removed students will be added
+<i class="no-highlight">66</i>&nbsp;     */
+<i class="no-highlight">67</i>&nbsp;    private void stealStudents(House wantedHouse, Player[] players, Bag bag){
+<b class="fc"><i class="no-highlight">68</i>&nbsp;        for (Player p : players) {</b>
+<b class="fc"><i class="no-highlight">69</i>&nbsp;            int numTotStudents = p.getDashboard().getDiningHall().getHouseStudents(wantedHouse);</b>
+<b class="fc"><i class="no-highlight">70</i>&nbsp;            int numStudentsToRemove = Math.min(numTotStudents, 3);</b>
+<i class="no-highlight">71</i>&nbsp;            try {
+<b class="fc"><i class="no-highlight">72</i>&nbsp;                if (numStudentsToRemove != 0)</b>
+<b class="fc"><i class="no-highlight">73</i>&nbsp;                    p.getDashboard().getDiningHall().removeStudents(wantedHouse, numStudentsToRemove, true);</b>
+<b class="nc"><i class="no-highlight">74</i>&nbsp;            } catch (StudentsTableException e) {</b>
+<b class="nc"><i class="no-highlight">75</i>&nbsp;                e.printStackTrace();</b>
+<b class="fc"><i class="no-highlight">76</i>&nbsp;            }</b>
+<i class="no-highlight">77</i>&nbsp;            try {
+<b class="fc"><i class="no-highlight">78</i>&nbsp;                bag.addStudents(wantedHouse, numStudentsToRemove);</b>
+<b class="nc"><i class="no-highlight">79</i>&nbsp;            } catch (BagException e) {</b>
+<b class="nc"><i class="no-highlight">80</i>&nbsp;                e.printStackTrace();</b>
+<b class="fc"><i class="no-highlight">81</i>&nbsp;            }</b>
+<i class="no-highlight">82</i>&nbsp;        }
+<i class="no-highlight">83</i>&nbsp;    }
+<i class="no-highlight">84</i>&nbsp;
+<i class="no-highlight">85</i>&nbsp;    @Override
+<i class="no-highlight">86</i>&nbsp;    public String getDescription() {
+<b class="nc"><i class="no-highlight">87</i>&nbsp;        return &quot;Choose a type a student, every player (including yourself) must return 3 \n&quot; +</b>
+<i class="no-highlight">88</i>&nbsp;                &quot;students of that type from their Dining Room the the bag. \n&quot; +
+<i class="no-highlight">89</i>&nbsp;                &quot;If any player has fewer than 3 students of that type, return as many students as they have&quot;;
+<i class="no-highlight">90</i>&nbsp;    }
+<i class="no-highlight">91</i>&nbsp;
+<i class="no-highlight">92</i>&nbsp;    @Override
+<i class="no-highlight">93</i>&nbsp;    public CharacterCardEnum getType() {
+<b class="nc"><i class="no-highlight">94</i>&nbsp;        return THIEF;</b>
+<i class="no-highlight">95</i>&nbsp;    }
+<i class="no-highlight">96</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-07-01 12:22</div>
+</div>
+</body>
+</html>

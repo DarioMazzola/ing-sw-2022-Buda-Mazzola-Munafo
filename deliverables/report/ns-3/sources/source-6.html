@@ -1,0 +1,229 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > SetupController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">it.polimi.ingsw.controller</a>
+</div>
+
+<h1>Coverage Summary for Class: SetupController (it.polimi.ingsw.controller)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SetupController</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/40)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">SetupController$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/41)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package it.polimi.ingsw.controller;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import it.polimi.ingsw.exceptions.BagException;
+<i class="no-highlight">4</i>&nbsp;import it.polimi.ingsw.exceptions.EntranceException;
+<i class="no-highlight">5</i>&nbsp;import it.polimi.ingsw.messages.command.*;
+<i class="no-highlight">6</i>&nbsp;
+<i class="no-highlight">7</i>&nbsp;import static it.polimi.ingsw.controller.GamePhase.*;
+<i class="no-highlight">8</i>&nbsp;import static it.polimi.ingsw.controller.GameState.*;
+<i class="no-highlight">9</i>&nbsp;import static it.polimi.ingsw.messages.TypeOfError.*;
+<i class="no-highlight">10</i>&nbsp;
+<i class="no-highlight">11</i>&nbsp;/**
+<i class="no-highlight">12</i>&nbsp; * Class representing the setup controller
+<i class="no-highlight">13</i>&nbsp; *
+<i class="no-highlight">14</i>&nbsp; * @author Gabriele Munafo&#39;
+<i class="no-highlight">15</i>&nbsp; */
+<i class="no-highlight">16</i>&nbsp;public class SetupController{
+<i class="no-highlight">17</i>&nbsp;    private int numPlayer;
+<i class="no-highlight">18</i>&nbsp;    private boolean expertMode;
+<i class="no-highlight">19</i>&nbsp;    private Boolean chat;
+<i class="no-highlight">20</i>&nbsp;    private String nickname;
+<i class="no-highlight">21</i>&nbsp;
+<i class="no-highlight">22</i>&nbsp;
+<b class="nc"><i class="no-highlight">23</i>&nbsp;    public SetupController(){</b>
+<b class="nc"><i class="no-highlight">24</i>&nbsp;        this.chat = null;</b>
+<b class="nc"><i class="no-highlight">25</i>&nbsp;        this.expertMode = false;</b>
+<b class="nc"><i class="no-highlight">26</i>&nbsp;        this.numPlayer = 2;</b>
+<i class="no-highlight">27</i>&nbsp;    }
+<i class="no-highlight">28</i>&nbsp;
+<i class="no-highlight">29</i>&nbsp;    /**
+<i class="no-highlight">30</i>&nbsp;     * Gets called to manage the messages from the client
+<i class="no-highlight">31</i>&nbsp;     * @param messageReceived received from the client
+<i class="no-highlight">32</i>&nbsp;     * @param phase which selects the right case of the switch
+<i class="no-highlight">33</i>&nbsp;     */
+<i class="no-highlight">34</i>&nbsp;    public void doAction(CommandMessage messageReceived, GamePhase phase, TurnController tc) {
+<b class="nc"><i class="no-highlight">35</i>&nbsp;        System.out.println(&quot;\n&quot; + messageReceived.getNickname() + &quot; is in setup state\n&quot;);</b>
+<i class="no-highlight">36</i>&nbsp;
+<b class="nc"><i class="no-highlight">37</i>&nbsp;        switch (phase) {</b>
+<i class="no-highlight">38</i>&nbsp;            case CREATE_GAME:
+<b class="nc"><i class="no-highlight">39</i>&nbsp;                this.nickname = messageReceived.getNickname();</b>
+<b class="nc"><i class="no-highlight">40</i>&nbsp;                tc.next_Phase(NUM_PLAYERS);</b>
+<b class="nc"><i class="no-highlight">41</i>&nbsp;                tc.getVirtualViewMap().get(nickname).selectNumPlayers();</b>
+<b class="nc"><i class="no-highlight">42</i>&nbsp;                break;</b>
+<i class="no-highlight">43</i>&nbsp;
+<i class="no-highlight">44</i>&nbsp;            case NUM_PLAYERS:
+<b class="nc"><i class="no-highlight">45</i>&nbsp;                int num = ((ChosenNumPlayers)messageReceived).getNumPlayers();</b>
+<b class="nc"><i class="no-highlight">46</i>&nbsp;                if (num&lt;2 || num&gt;4){</b>
+<b class="nc"><i class="no-highlight">47</i>&nbsp;                    tc.getVirtualViewMap().get(nickname).showError(INVALID_NUM_PLAYERS.toString());</b>
+<b class="nc"><i class="no-highlight">48</i>&nbsp;                    tc.getVirtualViewMap().get(nickname).selectNumPlayers();</b>
+<b class="nc"><i class="no-highlight">49</i>&nbsp;                    break;</b>
+<i class="no-highlight">50</i>&nbsp;                }
+<b class="nc"><i class="no-highlight">51</i>&nbsp;                this.numPlayer = num;</b>
+<b class="nc"><i class="no-highlight">52</i>&nbsp;                if (num == 4){</b>
+<b class="nc"><i class="no-highlight">53</i>&nbsp;                    tc.next_Phase(CHAT);</b>
+<b class="nc"><i class="no-highlight">54</i>&nbsp;                    tc.getVirtualViewMap().get(nickname).selectChat();</b>
+<b class="nc"><i class="no-highlight">55</i>&nbsp;                    break;</b>
+<i class="no-highlight">56</i>&nbsp;                }
+<b class="nc"><i class="no-highlight">57</i>&nbsp;                tc.next_Phase(EXPERT_MODE);</b>
+<b class="nc"><i class="no-highlight">58</i>&nbsp;                tc.getVirtualViewMap().get(nickname).selectExpertMode();</b>
+<b class="nc"><i class="no-highlight">59</i>&nbsp;                break;</b>
+<i class="no-highlight">60</i>&nbsp;
+<i class="no-highlight">61</i>&nbsp;            case CHAT:
+<b class="nc"><i class="no-highlight">62</i>&nbsp;                this.chat = ((ChosenChat)messageReceived).isChat();</b>
+<b class="nc"><i class="no-highlight">63</i>&nbsp;                tc.next_Phase(EXPERT_MODE);</b>
+<b class="nc"><i class="no-highlight">64</i>&nbsp;                tc.getVirtualViewMap().get(nickname).selectExpertMode();</b>
+<b class="nc"><i class="no-highlight">65</i>&nbsp;                break;</b>
+<i class="no-highlight">66</i>&nbsp;
+<i class="no-highlight">67</i>&nbsp;            case EXPERT_MODE:
+<b class="nc"><i class="no-highlight">68</i>&nbsp;                this.expertMode = ((ChosenExpertMode)messageReceived).isExpertMode();</b>
+<i class="no-highlight">69</i>&nbsp;                try {
+<b class="nc"><i class="no-highlight">70</i>&nbsp;                    tc.init();</b>
+<b class="nc"><i class="no-highlight">71</i>&nbsp;                } catch (EntranceException | BagException e) {</b>
+<b class="nc"><i class="no-highlight">72</i>&nbsp;                    e.printStackTrace();</b>
+<b class="nc"><i class="no-highlight">73</i>&nbsp;                }</b>
+<b class="nc"><i class="no-highlight">74</i>&nbsp;                tc.next_State(START);</b>
+<b class="nc"><i class="no-highlight">75</i>&nbsp;                tc.next_Phase(WIZARD);</b>
+<b class="nc"><i class="no-highlight">76</i>&nbsp;                break;</b>
+<i class="no-highlight">77</i>&nbsp;
+<i class="no-highlight">78</i>&nbsp;            default:
+<b class="nc"><i class="no-highlight">79</i>&nbsp;                System.err.println(&quot;Error in SetupController switch&quot;);</b>
+<i class="no-highlight">80</i>&nbsp;        }
+<i class="no-highlight">81</i>&nbsp;    }
+<i class="no-highlight">82</i>&nbsp;
+<i class="no-highlight">83</i>&nbsp;    public int getNumPlayer(){
+<b class="nc"><i class="no-highlight">84</i>&nbsp;        return numPlayer;</b>
+<i class="no-highlight">85</i>&nbsp;    }
+<i class="no-highlight">86</i>&nbsp;
+<i class="no-highlight">87</i>&nbsp;    public boolean isExpertMode(){
+<b class="nc"><i class="no-highlight">88</i>&nbsp;        return expertMode;</b>
+<i class="no-highlight">89</i>&nbsp;    }
+<i class="no-highlight">90</i>&nbsp;
+<i class="no-highlight">91</i>&nbsp;    public String getNickname(){
+<b class="nc"><i class="no-highlight">92</i>&nbsp;        return nickname;</b>
+<i class="no-highlight">93</i>&nbsp;    }
+<i class="no-highlight">94</i>&nbsp;
+<i class="no-highlight">95</i>&nbsp;    public Boolean getChat(){
+<b class="nc"><i class="no-highlight">96</i>&nbsp;        return chat;</b>
+<i class="no-highlight">97</i>&nbsp;    }
+<i class="no-highlight">98</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-07-01 12:22</div>
+</div>
+</body>
+</html>

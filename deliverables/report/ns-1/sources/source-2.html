@@ -1,0 +1,160 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ServerMain</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">it.polimi.ingsw</a>
+</div>
+
+<h1>Coverage Summary for Class: ServerMain (it.polimi.ingsw)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ServerMain</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/25)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package it.polimi.ingsw;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import it.polimi.ingsw.controller.TurnController;
+<i class="no-highlight">4</i>&nbsp;import it.polimi.ingsw.server.Server;
+<i class="no-highlight">5</i>&nbsp;import it.polimi.ingsw.server.SocketServer;
+<i class="no-highlight">6</i>&nbsp;
+<i class="no-highlight">7</i>&nbsp;import java.util.Scanner;
+<i class="no-highlight">8</i>&nbsp;
+<i class="no-highlight">9</i>&nbsp;/**
+<i class="no-highlight">10</i>&nbsp; * Represents the main class for the server. The Client is asked if he wants to play with the CLI or the GUI.
+<i class="no-highlight">11</i>&nbsp; *
+<i class="no-highlight">12</i>&nbsp; * @author Alessio Buda, Dario Mazzola &amp; Gabriele Munafò
+<i class="no-highlight">13</i>&nbsp; */
+<b class="nc"><i class="no-highlight">14</i>&nbsp;public class ServerMain {</b>
+<i class="no-highlight">15</i>&nbsp;    
+<i class="no-highlight">16</i>&nbsp;    private static final int defaultPort = 1234;
+<i class="no-highlight">17</i>&nbsp;
+<i class="no-highlight">18</i>&nbsp;    public static void main(String[] args) {
+<i class="no-highlight">19</i>&nbsp;
+<i class="no-highlight">20</i>&nbsp;        Server server;
+<i class="no-highlight">21</i>&nbsp;
+<b class="nc"><i class="no-highlight">22</i>&nbsp;        Scanner scanner = new Scanner(System.in);</b>
+<b class="nc"><i class="no-highlight">23</i>&nbsp;        int serverPort = 0;</b>
+<i class="no-highlight">24</i>&nbsp;
+<b class="nc"><i class="no-highlight">25</i>&nbsp;        System.out.println(&quot;Server port? [default: 1234]&quot;);</b>
+<i class="no-highlight">26</i>&nbsp;        try{
+<b class="nc"><i class="no-highlight">27</i>&nbsp;            String input = scanner.nextLine();</b>
+<b class="nc"><i class="no-highlight">28</i>&nbsp;            if (input.equals(&quot;&quot;))</b>
+<b class="nc"><i class="no-highlight">29</i>&nbsp;                serverPort = defaultPort;</b>
+<i class="no-highlight">30</i>&nbsp;            else
+<b class="nc"><i class="no-highlight">31</i>&nbsp;                serverPort = Integer.parseInt(input);</b>
+<b class="nc"><i class="no-highlight">32</i>&nbsp;        }catch (NumberFormatException e){</b>
+<b class="nc"><i class="no-highlight">33</i>&nbsp;            System.out.println(&quot;Error while reading port number. Please try again!&quot;);</b>
+<b class="nc"><i class="no-highlight">34</i>&nbsp;            ServerMain.main(null);</b>
+<b class="nc"><i class="no-highlight">35</i>&nbsp;        }</b>
+<i class="no-highlight">36</i>&nbsp;
+<b class="nc"><i class="no-highlight">37</i>&nbsp;        while(serverPort &lt; 1024){</b>
+<b class="nc"><i class="no-highlight">38</i>&nbsp;            System.out.println(&quot;Port number chosen is not valid. Please try again!&quot;);</b>
+<b class="nc"><i class="no-highlight">39</i>&nbsp;            System.out.println(&quot;Server port?&quot;);</b>
+<i class="no-highlight">40</i>&nbsp;            try{
+<b class="nc"><i class="no-highlight">41</i>&nbsp;                serverPort = Integer.parseInt(scanner.nextLine());</b>
+<b class="nc"><i class="no-highlight">42</i>&nbsp;            }catch (NumberFormatException e){</b>
+<b class="nc"><i class="no-highlight">43</i>&nbsp;                System.out.println(&quot;Error while reading port number. Please try again!&quot;);</b>
+<b class="nc"><i class="no-highlight">44</i>&nbsp;                ServerMain.main(null);</b>
+<b class="nc"><i class="no-highlight">45</i>&nbsp;            }</b>
+<i class="no-highlight">46</i>&nbsp;        }
+<i class="no-highlight">47</i>&nbsp;
+<b class="nc"><i class="no-highlight">48</i>&nbsp;        TurnController gameController = new TurnController();</b>
+<b class="nc"><i class="no-highlight">49</i>&nbsp;        server = new Server(gameController);</b>
+<i class="no-highlight">50</i>&nbsp;
+<b class="nc"><i class="no-highlight">51</i>&nbsp;        SocketServer socketServer = new SocketServer(server, serverPort);</b>
+<b class="nc"><i class="no-highlight">52</i>&nbsp;        Thread thread = new Thread(socketServer, &quot;socketserver_&quot;);</b>
+<b class="nc"><i class="no-highlight">53</i>&nbsp;        thread.start();</b>
+<i class="no-highlight">54</i>&nbsp;    }
+<i class="no-highlight">55</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-07-01 12:22</div>
+</div>
+</body>
+</html>

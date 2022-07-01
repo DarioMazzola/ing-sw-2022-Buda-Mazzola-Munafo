@@ -1,0 +1,190 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Minstrel</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">it.polimi.ingsw.model</a>
+</div>
+
+<h1>Coverage Summary for Class: Minstrel (it.polimi.ingsw.model)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Minstrel</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (23/23)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package it.polimi.ingsw.model;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import it.polimi.ingsw.exceptions.EntranceException;
+<i class="no-highlight">4</i>&nbsp;import it.polimi.ingsw.exceptions.IllegalChoiceException;
+<i class="no-highlight">5</i>&nbsp;import it.polimi.ingsw.exceptions.StudentsTableException;
+<i class="no-highlight">6</i>&nbsp;
+<i class="no-highlight">7</i>&nbsp;import java.util.Map;
+<i class="no-highlight">8</i>&nbsp;
+<i class="no-highlight">9</i>&nbsp;import static it.polimi.ingsw.model.CharacterCardEnum.MINSTREL;
+<i class="no-highlight">10</i>&nbsp;
+<i class="no-highlight">11</i>&nbsp;/**
+<i class="no-highlight">12</i>&nbsp; * Minstrel class represents minstrel character card.
+<i class="no-highlight">13</i>&nbsp; *
+<i class="no-highlight">14</i>&nbsp; * @author Dario Mazzola
+<i class="no-highlight">15</i>&nbsp; */
+<i class="no-highlight">16</i>&nbsp;public class Minstrel extends CharacterCard{
+<i class="no-highlight">17</i>&nbsp;
+<i class="no-highlight">18</i>&nbsp;    /**
+<i class="no-highlight">19</i>&nbsp;     * Class constructor, initializes card with name and initial cost.
+<i class="no-highlight">20</i>&nbsp;     */
+<i class="no-highlight">21</i>&nbsp;    public Minstrel(){
+<b class="fc"><i class="no-highlight">22</i>&nbsp;        super(1, &quot;Minstrel&quot;, MINSTREL);</b>
+<i class="no-highlight">23</i>&nbsp;    }
+<i class="no-highlight">24</i>&nbsp;
+<i class="no-highlight">25</i>&nbsp;    /**
+<i class="no-highlight">26</i>&nbsp;     * Receives parameters, saves them and calls the correct method to perform the wanted operation.
+<i class="no-highlight">27</i>&nbsp;     *
+<i class="no-highlight">28</i>&nbsp;     * @param parameters A map that contains the objects that need to the characterCards and the objects that must be returned
+<i class="no-highlight">29</i>&nbsp;     * @throws IllegalChoiceException when a parameter is missing
+<i class="no-highlight">30</i>&nbsp;     * @throws StudentsTableException when the number of wanted students is not on the card
+<i class="no-highlight">31</i>&nbsp;     * @throws EntranceException when students cannot be added to the dashboard&#39;s entrance because it is full (method &quot;move&quot;)
+<i class="no-highlight">32</i>&nbsp;     */
+<i class="no-highlight">33</i>&nbsp;    @Override
+<i class="no-highlight">34</i>&nbsp;    public void doEffect(Map&lt;String, Object&gt; parameters) throws Exception {
+<i class="no-highlight">35</i>&nbsp;
+<b class="fc"><i class="no-highlight">36</i>&nbsp;       super.doEffect(null);</b>
+<i class="no-highlight">37</i>&nbsp;
+<b class="fc"><i class="no-highlight">38</i>&nbsp;        swapStudents((Dashboard) parameters.get(&quot;Dashboard&quot;), (DiningHall) parameters.get(&quot;DiningHall&quot;),</b>
+<b class="fc"><i class="no-highlight">39</i>&nbsp;                (House[]) parameters.get(&quot;fromDashboard&quot;), (House[]) parameters.get(&quot;fromDiningHall&quot;) );</b>
+<i class="no-highlight">40</i>&nbsp;
+<i class="no-highlight">41</i>&nbsp;    }
+<i class="no-highlight">42</i>&nbsp;
+<i class="no-highlight">43</i>&nbsp;    private void swapStudents(Dashboard dashboard, DiningHall diningHall, House[] wanted, House[] leaved)
+<i class="no-highlight">44</i>&nbsp;            throws IllegalChoiceException, StudentsTableException, EntranceException {
+<i class="no-highlight">45</i>&nbsp;
+<b class="fc"><i class="no-highlight">46</i>&nbsp;        if(wanted.length != leaved.length)</b>
+<b class="fc"><i class="no-highlight">47</i>&nbsp;            throw new IllegalArgumentException(&quot;The number of students taken from the dashboard does not match &quot; +</b>
+<i class="no-highlight">48</i>&nbsp;                                                    &quot;the number of students taken from the diningHall&quot;);
+<b class="fc"><i class="no-highlight">49</i>&nbsp;        int numStudent = 0;</b>
+<i class="no-highlight">50</i>&nbsp;
+<b class="fc"><i class="no-highlight">51</i>&nbsp;        for(House h : leaved){</b>
+<b class="fc"><i class="no-highlight">52</i>&nbsp;            if(numStudent == leaved.length - 1)</b>
+<b class="fc"><i class="no-highlight">53</i>&nbsp;                diningHall.removeStudents(h, 1, true);</b>
+<i class="no-highlight">54</i>&nbsp;            else {
+<b class="fc"><i class="no-highlight">55</i>&nbsp;                diningHall.removeStudents(h, 1, false);</b>
+<b class="fc"><i class="no-highlight">56</i>&nbsp;                numStudent++;</b>
+<i class="no-highlight">57</i>&nbsp;            }
+<i class="no-highlight">58</i>&nbsp;        }
+<i class="no-highlight">59</i>&nbsp;
+<b class="fc"><i class="no-highlight">60</i>&nbsp;        int added = 0;</b>
+<b class="fc"><i class="no-highlight">61</i>&nbsp;        for(House h: wanted) {</b>
+<b class="fc"><i class="no-highlight">62</i>&nbsp;            dashboard.removeStudents(h, 1, false);</b>
+<b class="fc"><i class="no-highlight">63</i>&nbsp;            diningHall.addStudents(h, 1, false);</b>
+<i class="no-highlight">64</i>&nbsp;        }
+<i class="no-highlight">65</i>&nbsp;
+<b class="fc"><i class="no-highlight">66</i>&nbsp;        for(House h : leaved){</b>
+<b class="fc"><i class="no-highlight">67</i>&nbsp;            if(added == wanted.length - 1)</b>
+<b class="fc"><i class="no-highlight">68</i>&nbsp;                dashboard.addStudents(h, 1, true);</b>
+<i class="no-highlight">69</i>&nbsp;            else{
+<b class="fc"><i class="no-highlight">70</i>&nbsp;                added++;</b>
+<b class="fc"><i class="no-highlight">71</i>&nbsp;                dashboard.addStudents(h, 1, false);</b>
+<i class="no-highlight">72</i>&nbsp;            }
+<i class="no-highlight">73</i>&nbsp;        }
+<i class="no-highlight">74</i>&nbsp;    }
+<i class="no-highlight">75</i>&nbsp;
+<i class="no-highlight">76</i>&nbsp;    @Override
+<i class="no-highlight">77</i>&nbsp;    public String getDescription() {
+<b class="fc"><i class="no-highlight">78</i>&nbsp;        return &quot;You may exchange up to 2 Students between your Entrance and your Dining Room&quot;;</b>
+<i class="no-highlight">79</i>&nbsp;    }
+<i class="no-highlight">80</i>&nbsp;
+<i class="no-highlight">81</i>&nbsp;    @Override
+<i class="no-highlight">82</i>&nbsp;    public CharacterCardEnum getType() {
+<b class="fc"><i class="no-highlight">83</i>&nbsp;        return MINSTREL;</b>
+<i class="no-highlight">84</i>&nbsp;    }
+<i class="no-highlight">85</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-07-01 12:22</div>
+</div>
+</body>
+</html>

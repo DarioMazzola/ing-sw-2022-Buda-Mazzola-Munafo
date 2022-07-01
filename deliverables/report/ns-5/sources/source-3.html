@@ -1,0 +1,150 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > TypeOfError</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">it.polimi.ingsw.messages</a>
+</div>
+
+<h1>Coverage Summary for Class: TypeOfError (it.polimi.ingsw.messages)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">TypeOfError</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/27)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package it.polimi.ingsw.messages;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;/**
+<i class="no-highlight">4</i>&nbsp; * Enumeration class with all types of errors that can be sent from the server to the client.
+<i class="no-highlight">5</i>&nbsp; *
+<i class="no-highlight">6</i>&nbsp; * @author Alessio Buda, Dario Mazzola, Gabriele Munafo&#39;
+<i class="no-highlight">7</i>&nbsp; */
+<b class="nc"><i class="no-highlight">8</i>&nbsp;public enum TypeOfError {</b>
+<b class="nc"><i class="no-highlight">9</i>&nbsp;        ASSISTANT_CARD_NOT_AVAILABLE(&quot;This card is not present in your deck! Please select another one&quot;),</b>
+<b class="nc"><i class="no-highlight">10</i>&nbsp;        ASSISTANT_CARD_TAKEN(&quot;This assistant card has already been selected by another player! Please select an available assistant card&quot;),</b>
+<b class="nc"><i class="no-highlight">11</i>&nbsp;        TEAM_FULL (&quot;This team is already full! Please select the other team&quot;),</b>
+<b class="nc"><i class="no-highlight">12</i>&nbsp;        INVALID_NUM_PLAYERS(&quot;The number of players chosen is not valid! Please select a number of player between 2 and 4&quot;),</b>
+<b class="nc"><i class="no-highlight">13</i>&nbsp;        INVALID_TEAM(&quot;The selected team doesn&#39;t exists! Please select an existing team&quot;),</b>
+<b class="nc"><i class="no-highlight">14</i>&nbsp;        WIZARD_TAKEN(&quot;The wizard selected has already been selected by another player! Please select an available wizard&quot;),</b>
+<b class="nc"><i class="no-highlight">15</i>&nbsp;        COLOR_TOWER_TAKEN(&quot;The tower color chosen has already been selected by another player! Please select an available tower color&quot;),</b>
+<b class="nc"><i class="no-highlight">16</i>&nbsp;        NICKNAME_TAKEN(&quot;The nickname selected has already been taken by another player! Please choose another nickname&quot;),</b>
+<b class="nc"><i class="no-highlight">17</i>&nbsp;        EMPTY_NICKNAME(&quot;Empty nickname given!&quot;),</b>
+<b class="nc"><i class="no-highlight">18</i>&nbsp;        LEADER_TAKEN (&quot;The leader position for this team has already been taken by another player! You can apply to this same team as a team member&quot;),</b>
+<b class="nc"><i class="no-highlight">19</i>&nbsp;        TEAM_TAKEN (&quot;The team member position for this team has already been taken by another player! You can apply to this same team as team leader&quot;),</b>
+<b class="nc"><i class="no-highlight">20</i>&nbsp;        MAX_STUDENTS_MOVED(&quot;You have already moved the maximum number of students! Please select another action&quot;),</b>
+<b class="nc"><i class="no-highlight">21</i>&nbsp;        STUDENTS_NOT_MOVED(&quot;You have not moved all your students! Please move your students from your entrance to your dining hall or to an island&quot;),</b>
+<b class="nc"><i class="no-highlight">22</i>&nbsp;        INVALID_STUDENT(&quot;The selected student is not available! Please select another one&quot;),</b>
+<b class="nc"><i class="no-highlight">23</i>&nbsp;        INVALID_STUDENT_OR_ISLAND(&quot;The selected island or student is not available! Please select other ones&quot;),</b>
+<b class="nc"><i class="no-highlight">24</i>&nbsp;        ALREADY_USED_CHARACTER_CARD(&quot;You have already used a character card! PLease choose another action&quot;),</b>
+<b class="nc"><i class="no-highlight">25</i>&nbsp;        INVALID_CLOUD(&quot;This cloud is not available! Please select another cloud&quot;),</b>
+<b class="nc"><i class="no-highlight">26</i>&nbsp;        GAME_ALREADY_STARTED(&quot;The game is already started. You cannot join now!&quot;),</b>
+<b class="nc"><i class="no-highlight">27</i>&nbsp;        GAME_RESTORED_NICKNAME_NOT_PRESENT(&quot;There is a game saved on the server that a player has decided to resume. Your nickname is not part of the game. &quot; +</b>
+<i class="no-highlight">28</i>&nbsp;                &quot;Please, if you want to play, wait for the game to end or change your nickname.&quot;),
+<b class="nc"><i class="no-highlight">29</i>&nbsp;        WRONG_MOTHER_MOVES(&quot;You cannot move mother nature in this way! Please try again&quot;),</b>
+<b class="nc"><i class="no-highlight">30</i>&nbsp;        GAME_FULL(&quot;We are sorry, the game you&#39;re trying to join has already reached the maximum number of players.\nYou&#39;ll be disconnected...&quot;),</b>
+<b class="nc"><i class="no-highlight">31</i>&nbsp;        DISCONNECTED(&quot; has disconnected. The game will be stopped and saved on the server. &quot; +</b>
+<i class="no-highlight">32</i>&nbsp;                &quot;You will be able to resume the game at a later time&quot;),
+<b class="nc"><i class="no-highlight">33</i>&nbsp;        SERVER_UNREACHBLE(&quot;The server is no longer reachable. Please try playing again later&quot;);</b>
+<i class="no-highlight">34</i>&nbsp;
+<i class="no-highlight">35</i>&nbsp;        private final String description;
+<i class="no-highlight">36</i>&nbsp;
+<b class="nc"><i class="no-highlight">37</i>&nbsp;        TypeOfError(String errorString) {</b>
+<b class="nc"><i class="no-highlight">38</i>&nbsp;            this.description = errorString;</b>
+<i class="no-highlight">39</i>&nbsp;        }
+<i class="no-highlight">40</i>&nbsp;
+<i class="no-highlight">41</i>&nbsp;        @Override
+<i class="no-highlight">42</i>&nbsp;        public String toString() {
+<b class="nc"><i class="no-highlight">43</i>&nbsp;            return description;</b>
+<i class="no-highlight">44</i>&nbsp;        }
+<i class="no-highlight">45</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-07-01 12:22</div>
+</div>
+</body>
+</html>

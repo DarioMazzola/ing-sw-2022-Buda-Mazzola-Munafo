@@ -1,0 +1,218 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ViewObserver</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">it.polimi.ingsw.observer</a>
+</div>
+
+<h1>Coverage Summary for Class: ViewObserver (it.polimi.ingsw.observer)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">ViewObserver</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package it.polimi.ingsw.observer;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import it.polimi.ingsw.model.*;
+<i class="no-highlight">4</i>&nbsp;
+<i class="no-highlight">5</i>&nbsp;import java.util.Map;
+<i class="no-highlight">6</i>&nbsp;
+<i class="no-highlight">7</i>&nbsp;/**
+<i class="no-highlight">8</i>&nbsp; * Class representing the observer for view elements.
+<i class="no-highlight">9</i>&nbsp; *
+<i class="no-highlight">10</i>&nbsp; * @author Dario Mazzola &amp; Alessio Buda
+<i class="no-highlight">11</i>&nbsp; */
+<i class="no-highlight">12</i>&nbsp;
+<i class="no-highlight">13</i>&nbsp;public interface ViewObserver {
+<i class="no-highlight">14</i>&nbsp;
+<i class="no-highlight">15</i>&nbsp;    /**
+<i class="no-highlight">16</i>&nbsp;     * Called when a client expresses an intention to connect to the server to play.
+<i class="no-highlight">17</i>&nbsp;     *
+<i class="no-highlight">18</i>&nbsp;     * @param ip   the IP address to which the client wants to connect
+<i class="no-highlight">19</i>&nbsp;     * @param port the port number the client wants to connect to.
+<i class="no-highlight">20</i>&nbsp;     */
+<i class="no-highlight">21</i>&nbsp;    void onInit(String ip, int port);
+<i class="no-highlight">22</i>&nbsp;
+<i class="no-highlight">23</i>&nbsp;    /**
+<i class="no-highlight">24</i>&nbsp;     * Method that represents the start of a game.
+<i class="no-highlight">25</i>&nbsp;     *
+<i class="no-highlight">26</i>&nbsp;     * @param nickname the nickname chosen by the client in this game.
+<i class="no-highlight">27</i>&nbsp;     */
+<i class="no-highlight">28</i>&nbsp;    void onCreateNewGame(String nickname);
+<i class="no-highlight">29</i>&nbsp;
+<i class="no-highlight">30</i>&nbsp;    /**
+<i class="no-highlight">31</i>&nbsp;     * Method representing the client sending the nickname. This method is invoked if
+<i class="no-highlight">32</i>&nbsp;     * the nickname, previously sent, is wrong (empty, already in use, ...).
+<i class="no-highlight">33</i>&nbsp;     *
+<i class="no-highlight">34</i>&nbsp;     * @param nickname the new nickname chosen by the client in this game.
+<i class="no-highlight">35</i>&nbsp;     */
+<i class="no-highlight">36</i>&nbsp;    void onUpdateNickname(String nickname);
+<i class="no-highlight">37</i>&nbsp;
+<i class="no-highlight">38</i>&nbsp;    /**
+<i class="no-highlight">39</i>&nbsp;     * Method that represents the sending, by the client who created the game first, of the number
+<i class="no-highlight">40</i>&nbsp;     * of players who will be able to take part in the game.
+<i class="no-highlight">41</i>&nbsp;     *
+<i class="no-highlight">42</i>&nbsp;     * @param numPlayers the number of players in this game.
+<i class="no-highlight">43</i>&nbsp;     */
+<i class="no-highlight">44</i>&nbsp;    void onUpdateNumPlayers(int numPlayers);
+<i class="no-highlight">45</i>&nbsp;
+<i class="no-highlight">46</i>&nbsp;    /**
+<i class="no-highlight">47</i>&nbsp;     * Method that represents the sending of the player preference for communication between team members.
+<i class="no-highlight">48</i>&nbsp;     *
+<i class="no-highlight">49</i>&nbsp;     * @param chat true if the player wants to allow communication between team members
+<i class="no-highlight">50</i>&nbsp;     */
+<i class="no-highlight">51</i>&nbsp;    void onUpdateChat (boolean chat);
+<i class="no-highlight">52</i>&nbsp;
+<i class="no-highlight">53</i>&nbsp;    /**
+<i class="no-highlight">54</i>&nbsp;     * Method that represents the sending of the wizard that the player wants to use in this game.
+<i class="no-highlight">55</i>&nbsp;     *
+<i class="no-highlight">56</i>&nbsp;     * @param wizard the wizard chosen by the player.
+<i class="no-highlight">57</i>&nbsp;     */
+<i class="no-highlight">58</i>&nbsp;    void onUpdateWizard(Wizard wizard);
+<i class="no-highlight">59</i>&nbsp;
+<i class="no-highlight">60</i>&nbsp;    /**
+<i class="no-highlight">61</i>&nbsp;     * Method invoked by the player who first created the game. Used for choosing
+<i class="no-highlight">62</i>&nbsp;     * whether to play the game in expertMode or not.
+<i class="no-highlight">63</i>&nbsp;     *
+<i class="no-highlight">64</i>&nbsp;     * @param expertMode true if the game will be played in expert mode, false otherwise.
+<i class="no-highlight">65</i>&nbsp;     */
+<i class="no-highlight">66</i>&nbsp;    void onUpdateExpertMode(boolean expertMode);
+<i class="no-highlight">67</i>&nbsp;
+<i class="no-highlight">68</i>&nbsp;    /**
+<i class="no-highlight">69</i>&nbsp;     * Method used to specify which team the player wants to belong to and whether
+<i class="no-highlight">70</i>&nbsp;     * the player wants to be the team leader or not,
+<i class="no-highlight">71</i>&nbsp;     *
+<i class="no-highlight">72</i>&nbsp;     * @param selectedTeam the team chosen.
+<i class="no-highlight">73</i>&nbsp;     * @param isTeamLeader true if the player wants to be the team leader, false otherwise.
+<i class="no-highlight">74</i>&nbsp;     */
+<i class="no-highlight">75</i>&nbsp;    void onUpdateTeam(int selectedTeam, boolean isTeamLeader);
+<i class="no-highlight">76</i>&nbsp;
+<i class="no-highlight">77</i>&nbsp;    /**
+<i class="no-highlight">78</i>&nbsp;     * Method used to specify the tower color that the player wants to own in this game.
+<i class="no-highlight">79</i>&nbsp;     *
+<i class="no-highlight">80</i>&nbsp;     * @param towerColor the tower color chosen.
+<i class="no-highlight">81</i>&nbsp;     */
+<i class="no-highlight">82</i>&nbsp;    void onUpdateTowerColor(Color towerColor);
+<i class="no-highlight">83</i>&nbsp;
+<i class="no-highlight">84</i>&nbsp;    /**
+<i class="no-highlight">85</i>&nbsp;     * Method used to specify the tower color that the player wants to use the assistant
+<i class="no-highlight">86</i>&nbsp;     * card specified as a parameters.
+<i class="no-highlight">87</i>&nbsp;     *
+<i class="no-highlight">88</i>&nbsp;     * @param chosenCard the assistant card chosen.
+<i class="no-highlight">89</i>&nbsp;     */
+<i class="no-highlight">90</i>&nbsp;    void onUpdateAssistantCard(Card chosenCard);
+<i class="no-highlight">91</i>&nbsp;
+<i class="no-highlight">92</i>&nbsp;    /**
+<i class="no-highlight">93</i>&nbsp;     * Method used to send the house of student the player wants to move from his/hers dashboard to his/hers dining hall.
+<i class="no-highlight">94</i>&nbsp;     *
+<i class="no-highlight">95</i>&nbsp;     * @param chosenHouse the house of the student to move
+<i class="no-highlight">96</i>&nbsp;     */
+<i class="no-highlight">97</i>&nbsp;    void onMoveStudentsToDiningHall(House chosenHouse);
+<i class="no-highlight">98</i>&nbsp;
+<i class="no-highlight">99</i>&nbsp;    /**
+<i class="no-highlight">100</i>&nbsp;     * Method used send the house of the student the player wants to move from his/hers dashboard to an island and the desired island.
+<i class="no-highlight">101</i>&nbsp;     *
+<i class="no-highlight">102</i>&nbsp;     * @param chosenHouse the house of the student to move
+<i class="no-highlight">103</i>&nbsp;     * @param chosenIsland an index identifying the island where the student should be placed
+<i class="no-highlight">104</i>&nbsp;     */
+<i class="no-highlight">105</i>&nbsp;    void onMoveStudentsToIsland(House chosenHouse, int chosenIsland);
+<i class="no-highlight">106</i>&nbsp;
+<i class="no-highlight">107</i>&nbsp;    /**
+<i class="no-highlight">108</i>&nbsp;     * Method used to send the number of which mother nature should be moved.
+<i class="no-highlight">109</i>&nbsp;     *
+<i class="no-highlight">110</i>&nbsp;     * @param moves the number of moves of which mother nature should be moved
+<i class="no-highlight">111</i>&nbsp;     */
+<i class="no-highlight">112</i>&nbsp;    void onMoveMotherNature(int moves);
+<i class="no-highlight">113</i>&nbsp;
+<i class="no-highlight">114</i>&nbsp;    /**
+<i class="no-highlight">115</i>&nbsp;     * Method used to send the cloud from which the player wants to refill his/hers entrance.
+<i class="no-highlight">116</i>&nbsp;     *
+<i class="no-highlight">117</i>&nbsp;     * @param chosenCloud an index identifying the chosen cloud
+<i class="no-highlight">118</i>&nbsp;     */
+<i class="no-highlight">119</i>&nbsp;    void onUpdateCloud(int chosenCloud);
+<i class="no-highlight">120</i>&nbsp;
+<i class="no-highlight">121</i>&nbsp;    /**
+<i class="no-highlight">122</i>&nbsp;     * Method used to disconnect a client.
+<i class="no-highlight">123</i>&nbsp;     */
+<i class="no-highlight">124</i>&nbsp;    void onDisconnection();
+<i class="no-highlight">125</i>&nbsp;
+<i class="no-highlight">126</i>&nbsp;    /**
+<i class="no-highlight">127</i>&nbsp;     * Method used to send the server the character card the player has chosen to use and the required parameters.
+<i class="no-highlight">128</i>&nbsp;     *
+<i class="no-highlight">129</i>&nbsp;     * @param cardIndex index of the chosen character card in the deck
+<i class="no-highlight">130</i>&nbsp;     * @param parameters the parameters needed to use the card
+<i class="no-highlight">131</i>&nbsp;     */
+<i class="no-highlight">132</i>&nbsp;    void onUpdateCharacterCard(int cardIndex, Map&lt;String, Object&gt; parameters);
+<i class="no-highlight">133</i>&nbsp;
+<i class="no-highlight">134</i>&nbsp;    /**
+<i class="no-highlight">135</i>&nbsp;     * Method used to signal the server whether the player wants to restore a saved game or start a new one.
+<i class="no-highlight">136</i>&nbsp;     *
+<i class="no-highlight">137</i>&nbsp;     * @param toRestore true if the player wants to restore the game, false otherwise
+<i class="no-highlight">138</i>&nbsp;     */
+<i class="no-highlight">139</i>&nbsp;    void onRestoreGame(boolean toRestore);
+<i class="no-highlight">140</i>&nbsp;
+<i class="no-highlight">141</i>&nbsp;    /**
+<i class="no-highlight">142</i>&nbsp;     * Method used to send a chat message to the server.
+<i class="no-highlight">143</i>&nbsp;     *
+<i class="no-highlight">144</i>&nbsp;     * @param message the message to be sent
+<i class="no-highlight">145</i>&nbsp;     */
+<i class="no-highlight">146</i>&nbsp;    void onSendMessage(String message);
+<i class="no-highlight">147</i>&nbsp;
+<i class="no-highlight">148</i>&nbsp;    void waitForMessage();
+<i class="no-highlight">149</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-07-01 12:22</div>
+</div>
+</body>
+</html>

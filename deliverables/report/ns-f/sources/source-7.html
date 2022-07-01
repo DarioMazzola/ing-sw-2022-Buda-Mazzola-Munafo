@@ -1,0 +1,161 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > SelectChatController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">it.polimi.ingsw.view.gui.scenes</a>
+</div>
+
+<h1>Coverage Summary for Class: SelectChatController (it.polimi.ingsw.view.gui.scenes)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SelectChatController</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/19)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package it.polimi.ingsw.view.gui.scenes;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import it.polimi.ingsw.observer.ViewObservable;
+<i class="no-highlight">4</i>&nbsp;import javafx.event.ActionEvent;
+<i class="no-highlight">5</i>&nbsp;import javafx.fxml.FXML;
+<i class="no-highlight">6</i>&nbsp;import javafx.scene.control.*;
+<i class="no-highlight">7</i>&nbsp;
+<i class="no-highlight">8</i>&nbsp;import static javafx.scene.control.Alert.AlertType.ERROR;
+<i class="no-highlight">9</i>&nbsp;
+<b class="nc"><i class="no-highlight">10</i>&nbsp;public class SelectChatController extends ViewObservable implements SceneInterface {</b>
+<i class="no-highlight">11</i>&nbsp;    @FXML
+<i class="no-highlight">12</i>&nbsp;    private RadioButton YesBtn;
+<i class="no-highlight">13</i>&nbsp;
+<i class="no-highlight">14</i>&nbsp;    @FXML
+<i class="no-highlight">15</i>&nbsp;    private RadioButton NoBtn;
+<i class="no-highlight">16</i>&nbsp;
+<i class="no-highlight">17</i>&nbsp;    @FXML
+<i class="no-highlight">18</i>&nbsp;    ToggleGroup YNBtns;
+<i class="no-highlight">19</i>&nbsp;
+<i class="no-highlight">20</i>&nbsp;    @FXML
+<i class="no-highlight">21</i>&nbsp;    Button SelectBtn;
+<i class="no-highlight">22</i>&nbsp;
+<i class="no-highlight">23</i>&nbsp;    public void initialize() {
+<b class="nc"><i class="no-highlight">24</i>&nbsp;        SelectBtn.setDisable(true);</b>
+<i class="no-highlight">25</i>&nbsp;    }
+<i class="no-highlight">26</i>&nbsp;
+<i class="no-highlight">27</i>&nbsp;    public void onBtnClick (ActionEvent e) {
+<b class="nc"><i class="no-highlight">28</i>&nbsp;        SelectBtn.setDisable(false);</b>
+<i class="no-highlight">29</i>&nbsp;    }
+<i class="no-highlight">30</i>&nbsp;
+<i class="no-highlight">31</i>&nbsp;    public void onSelect (ActionEvent e) {
+<b class="nc"><i class="no-highlight">32</i>&nbsp;        RadioButton btn = (RadioButton) YNBtns.getSelectedToggle();</b>
+<b class="nc"><i class="no-highlight">33</i>&nbsp;        if(btn == null) {</b>
+<b class="nc"><i class="no-highlight">34</i>&nbsp;            Alert alert = new Alert(ERROR, &quot;&quot;, ButtonType.OK);</b>
+<b class="nc"><i class="no-highlight">35</i>&nbsp;            alert.setTitle(&quot;Invalid chat selection&quot;);</b>
+<b class="nc"><i class="no-highlight">36</i>&nbsp;            alert.setHeaderText(&quot;You must select whether you want a chat \nfor this game before going on&quot;);</b>
+<b class="nc"><i class="no-highlight">37</i>&nbsp;            alert.showAndWait();</b>
+<i class="no-highlight">38</i>&nbsp;            return;
+<i class="no-highlight">39</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">40</i>&nbsp;        YesBtn.setDisable(true);</b>
+<b class="nc"><i class="no-highlight">41</i>&nbsp;        NoBtn.setDisable(true);</b>
+<i class="no-highlight">42</i>&nbsp;        boolean chat;
+<b class="nc"><i class="no-highlight">43</i>&nbsp;        switch (btn.getText()) {</b>
+<i class="no-highlight">44</i>&nbsp;            case &quot;YES&quot;:
+<b class="nc"><i class="no-highlight">45</i>&nbsp;                chat = true;</b>
+<b class="nc"><i class="no-highlight">46</i>&nbsp;                break;</b>
+<i class="no-highlight">47</i>&nbsp;            case &quot;NO&quot;:
+<b class="nc"><i class="no-highlight">48</i>&nbsp;                chat = false;</b>
+<b class="nc"><i class="no-highlight">49</i>&nbsp;                break;</b>
+<i class="no-highlight">50</i>&nbsp;            default:
+<b class="nc"><i class="no-highlight">51</i>&nbsp;                throw new IllegalStateException(&quot;Unexpected value: &quot; + btn.getText());</b>
+<i class="no-highlight">52</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">53</i>&nbsp;        System.out.println(&quot;chat: &quot; + chat);</b>
+<b class="nc"><i class="no-highlight">54</i>&nbsp;        notifyObserver(observers -&gt; observers.onUpdateChat(chat));</b>
+<i class="no-highlight">55</i>&nbsp;    }
+<i class="no-highlight">56</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-07-01 12:22</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,172 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > MessageType</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">it.polimi.ingsw.messages</a>
+</div>
+
+<h1>Coverage Summary for Class: MessageType (it.polimi.ingsw.messages)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">MessageType</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (54/54)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package it.polimi.ingsw.messages;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;/**
+<i class="no-highlight">4</i>&nbsp; * Enumeration class that contains all types of network messages exchanged between client and server.
+<i class="no-highlight">5</i>&nbsp; *
+<i class="no-highlight">6</i>&nbsp; * @author Alessio Buda, Dario Mazzola &amp; Gabriele Munafò
+<i class="no-highlight">7</i>&nbsp; */
+<b class="fc"><i class="no-highlight">8</i>&nbsp;public enum MessageType {</b>
+<i class="no-highlight">9</i>&nbsp;
+<i class="no-highlight">10</i>&nbsp;    /*--Answer Messages--*/
+<b class="fc"><i class="no-highlight">11</i>&nbsp;    ACTION_PHASE,</b>
+<b class="fc"><i class="no-highlight">12</i>&nbsp;    END_GAME_DISCONNECTION,</b>
+<b class="fc"><i class="no-highlight">13</i>&nbsp;    GAME_FULL,</b>
+<b class="fc"><i class="no-highlight">14</i>&nbsp;    GO_TO_WAITING_ROOM,</b>
+<b class="fc"><i class="no-highlight">15</i>&nbsp;    GO_TO_LOBBY,</b>
+<b class="fc"><i class="no-highlight">16</i>&nbsp;    NACK,</b>
+<b class="fc"><i class="no-highlight">17</i>&nbsp;    PING,</b>
+<b class="fc"><i class="no-highlight">18</i>&nbsp;    PLAYER_MAX_MOVES,</b>
+<b class="fc"><i class="no-highlight">19</i>&nbsp;    SELECT_ASSISTANT_CARD,</b>
+<b class="fc"><i class="no-highlight">20</i>&nbsp;    SELECT_CHARACTER_CARD,</b>
+<b class="fc"><i class="no-highlight">21</i>&nbsp;    SELECT_CLOUD,</b>
+<b class="fc"><i class="no-highlight">22</i>&nbsp;    SELECT_COLOR_TOWER,</b>
+<b class="fc"><i class="no-highlight">23</i>&nbsp;    SELECT_EXPERT_MODE,</b>
+<b class="fc"><i class="no-highlight">24</i>&nbsp;    SELECT_NICKNAME,</b>
+<b class="fc"><i class="no-highlight">25</i>&nbsp;    SELECT_NUM_PLAYERS,</b>
+<b class="fc"><i class="no-highlight">26</i>&nbsp;    SELECT_RESTORE_GAME,</b>
+<b class="fc"><i class="no-highlight">27</i>&nbsp;    SELECT_TEAM,</b>
+<b class="fc"><i class="no-highlight">28</i>&nbsp;    SELECT_WIZARD,</b>
+<b class="fc"><i class="no-highlight">29</i>&nbsp;    SEND_WINNER,</b>
+<b class="fc"><i class="no-highlight">30</i>&nbsp;    STUDENTS_IN_ENTRANCE,</b>
+<b class="fc"><i class="no-highlight">31</i>&nbsp;    UPDATE_CHARACTER_CARD,</b>
+<b class="fc"><i class="no-highlight">32</i>&nbsp;    UPDATE_CLOUD,</b>
+<b class="fc"><i class="no-highlight">33</i>&nbsp;    UPDATE_DASHBOARD,</b>
+<b class="fc"><i class="no-highlight">34</i>&nbsp;    UPDATE_DINING_HALL,</b>
+<b class="fc"><i class="no-highlight">35</i>&nbsp;    UPDATE_GAME_MODEL,</b>
+<b class="fc"><i class="no-highlight">36</i>&nbsp;    UPDATE_ISLAND,</b>
+<b class="fc"><i class="no-highlight">37</i>&nbsp;    UPDATE_PLAYER,</b>
+<b class="fc"><i class="no-highlight">38</i>&nbsp;    USED_ASSISTANT_CARDS,</b>
+<b class="fc"><i class="no-highlight">39</i>&nbsp;    UPDATE_MOTHER_ISLAND,</b>
+<b class="fc"><i class="no-highlight">40</i>&nbsp;    UPDATE_CURRENT_PLAYER,</b>
+<b class="fc"><i class="no-highlight">41</i>&nbsp;    REMEMBER_NICKNAME,</b>
+<b class="fc"><i class="no-highlight">42</i>&nbsp;    SELECT_CHAT,</b>
+<b class="fc"><i class="no-highlight">43</i>&nbsp;    CHAT_MESSAGE_SERVER_CLIENT,</b>
+<b class="fc"><i class="no-highlight">44</i>&nbsp;    WAIT_FOR_OTHERS_MOVES,</b>
+<i class="no-highlight">45</i>&nbsp;
+<i class="no-highlight">46</i>&nbsp;    /*--Command Messages--*/
+<b class="fc"><i class="no-highlight">47</i>&nbsp;    CHOSEN_ASSISTANT_CARD,</b>
+<b class="fc"><i class="no-highlight">48</i>&nbsp;    CHOSEN_CHARACTER_CARD,</b>
+<b class="fc"><i class="no-highlight">49</i>&nbsp;    CHOSEN_CLOUD,</b>
+<b class="fc"><i class="no-highlight">50</i>&nbsp;    CHOSEN_EXPERT_MODE,</b>
+<b class="fc"><i class="no-highlight">51</i>&nbsp;    CHOSEN_NUM_PLAYERS,</b>
+<b class="fc"><i class="no-highlight">52</i>&nbsp;    CHOSEN_CHAT,</b>
+<b class="fc"><i class="no-highlight">53</i>&nbsp;    CHOSEN_RESTORE_GAME,</b>
+<b class="fc"><i class="no-highlight">54</i>&nbsp;    CHOSEN_TEAM,</b>
+<b class="fc"><i class="no-highlight">55</i>&nbsp;    CHOSEN_TOWER_COLOR,</b>
+<b class="fc"><i class="no-highlight">56</i>&nbsp;    CHOSEN_WIZARD,</b>
+<b class="fc"><i class="no-highlight">57</i>&nbsp;    GET_ASSISTANT_CARDS,</b>
+<b class="fc"><i class="no-highlight">58</i>&nbsp;    MOVE_MOTHER,</b>
+<b class="fc"><i class="no-highlight">59</i>&nbsp;    MOVE_STUDENT_TO_DINING_HALL,</b>
+<b class="fc"><i class="no-highlight">60</i>&nbsp;    MOVE_STUDENT_TO_ISLAND,</b>
+<b class="fc"><i class="no-highlight">61</i>&nbsp;    NEW_GAME,</b>
+<b class="fc"><i class="no-highlight">62</i>&nbsp;    NICKNAME,</b>
+<b class="fc"><i class="no-highlight">63</i>&nbsp;    PONG,</b>
+<b class="fc"><i class="no-highlight">64</i>&nbsp;    CHAT_MESSAGE_CLIENT_SERVER,</b>
+<b class="fc"><i class="no-highlight">65</i>&nbsp;    RELOAD_MESSAGES</b>
+<i class="no-highlight">66</i>&nbsp;
+<i class="no-highlight">67</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-07-01 12:22</div>
+</div>
+</body>
+</html>

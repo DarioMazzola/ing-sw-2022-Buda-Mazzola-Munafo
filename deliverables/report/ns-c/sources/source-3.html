@@ -1,0 +1,151 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > UI</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">it.polimi.ingsw.view</a>
+</div>
+
+<h1>Coverage Summary for Class: UI (it.polimi.ingsw.view)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">UI</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package it.polimi.ingsw.view;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import it.polimi.ingsw.client.*;
+<i class="no-highlight">4</i>&nbsp;
+<i class="no-highlight">5</i>&nbsp;import java.util.List;
+<i class="no-highlight">6</i>&nbsp;
+<i class="no-highlight">7</i>&nbsp;public interface UI extends View{
+<i class="no-highlight">8</i>&nbsp;
+<i class="no-highlight">9</i>&nbsp;    /**
+<i class="no-highlight">10</i>&nbsp;     * Asks a nickname to the player to create a new game and notifies the observers.
+<i class="no-highlight">11</i>&nbsp;     */
+<i class="no-highlight">12</i>&nbsp;    void createNewGame();
+<i class="no-highlight">13</i>&nbsp;
+<i class="no-highlight">14</i>&nbsp;    /**
+<i class="no-highlight">15</i>&nbsp;     * Updates the list of islands in the game model according to the changes communicated by the server.
+<i class="no-highlight">16</i>&nbsp;     *
+<i class="no-highlight">17</i>&nbsp;     * @param islands a list of updated islands
+<i class="no-highlight">18</i>&nbsp;     */
+<i class="no-highlight">19</i>&nbsp;    void updateIslands(List&lt;ReducedIsland&gt; islands);
+<i class="no-highlight">20</i>&nbsp;
+<i class="no-highlight">21</i>&nbsp;    /**
+<i class="no-highlight">22</i>&nbsp;     * Updates the given player with an updated version.
+<i class="no-highlight">23</i>&nbsp;     *
+<i class="no-highlight">24</i>&nbsp;     * @param player the updated version of the player
+<i class="no-highlight">25</i>&nbsp;     */
+<i class="no-highlight">26</i>&nbsp;    void updatePlayer(ReducedPlayer player);
+<i class="no-highlight">27</i>&nbsp;
+<i class="no-highlight">28</i>&nbsp;    /**
+<i class="no-highlight">29</i>&nbsp;     * Updates the array of clouds in the game model with an updated version.
+<i class="no-highlight">30</i>&nbsp;     *
+<i class="no-highlight">31</i>&nbsp;     * @param clouds the updated version of the array of clouds
+<i class="no-highlight">32</i>&nbsp;     */
+<i class="no-highlight">33</i>&nbsp;    void updateClouds(ReducedCloud[] clouds);
+<i class="no-highlight">34</i>&nbsp;
+<i class="no-highlight">35</i>&nbsp;    /**
+<i class="no-highlight">36</i>&nbsp;     * Updates the total number of coins in the game model.
+<i class="no-highlight">37</i>&nbsp;     *
+<i class="no-highlight">38</i>&nbsp;     * @param totCoins the updated number of coins
+<i class="no-highlight">39</i>&nbsp;     */
+<i class="no-highlight">40</i>&nbsp;    void updateTotalCoins(int totCoins);
+<i class="no-highlight">41</i>&nbsp;
+<i class="no-highlight">42</i>&nbsp;    /**
+<i class="no-highlight">43</i>&nbsp;     * Updates the position of mother nature.
+<i class="no-highlight">44</i>&nbsp;     *
+<i class="no-highlight">45</i>&nbsp;     * @param motherIsland the updated island on which mother nature is located
+<i class="no-highlight">46</i>&nbsp;     */
+<i class="no-highlight">47</i>&nbsp;    void updateMotherNature(int motherIsland);
+<i class="no-highlight">48</i>&nbsp;
+<i class="no-highlight">49</i>&nbsp;    /**
+<i class="no-highlight">50</i>&nbsp;     * Updates current player in game model.
+<i class="no-highlight">51</i>&nbsp;     *
+<i class="no-highlight">52</i>&nbsp;     * @param currentPlayer the updated current player
+<i class="no-highlight">53</i>&nbsp;     */
+<i class="no-highlight">54</i>&nbsp;    void updateCurrentPlayer(ReducedPlayer currentPlayer);
+<i class="no-highlight">55</i>&nbsp;
+<i class="no-highlight">56</i>&nbsp;    /**
+<i class="no-highlight">57</i>&nbsp;     * Updates the dining hall of the player identified by the nickname (attribute of dining hall).
+<i class="no-highlight">58</i>&nbsp;     *
+<i class="no-highlight">59</i>&nbsp;     * @param diningHall the updated version of the dining hall
+<i class="no-highlight">60</i>&nbsp;     */
+<i class="no-highlight">61</i>&nbsp;    void updateDiningHall(ReducedDiningHall diningHall);
+<i class="no-highlight">62</i>&nbsp;
+<i class="no-highlight">63</i>&nbsp;    /**
+<i class="no-highlight">64</i>&nbsp;     * Updates the dashboard of the player identified by the nickname (attribute of dashboard).
+<i class="no-highlight">65</i>&nbsp;     *
+<i class="no-highlight">66</i>&nbsp;     * @param dashboard the updated version of the dining hall
+<i class="no-highlight">67</i>&nbsp;     */
+<i class="no-highlight">68</i>&nbsp;    void updateDashboard(ReducedDashboard dashboard);
+<i class="no-highlight">69</i>&nbsp;
+<i class="no-highlight">70</i>&nbsp;    /**
+<i class="no-highlight">71</i>&nbsp;     * Updates the game model.
+<i class="no-highlight">72</i>&nbsp;     *
+<i class="no-highlight">73</i>&nbsp;     * @param gameModel the updated version of the game model
+<i class="no-highlight">74</i>&nbsp;     */
+<i class="no-highlight">75</i>&nbsp;    void updateGameModel(ReducedGameModel gameModel);
+<i class="no-highlight">76</i>&nbsp;
+<i class="no-highlight">77</i>&nbsp;    /**
+<i class="no-highlight">78</i>&nbsp;     * Sets stop attribute. It is used to manage player&#39;s actions while in waiting room.
+<i class="no-highlight">79</i>&nbsp;     * @param stop true if the player should exit from the waiting room, false otherwise
+<i class="no-highlight">80</i>&nbsp;     */
+<i class="no-highlight">81</i>&nbsp;    void setStop(boolean stop);
+<i class="no-highlight">82</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-07-01 12:22</div>
+</div>
+</body>
+</html>

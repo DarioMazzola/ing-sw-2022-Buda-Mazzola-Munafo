@@ -1,0 +1,196 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ReducedPlayer</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">it.polimi.ingsw.client</a>
+</div>
+
+<h1>Coverage Summary for Class: ReducedPlayer (it.polimi.ingsw.client)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ReducedPlayer</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    8,3%
+  </span>
+  <span class="absValue">
+    (1/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    54,2%
+  </span>
+  <span class="absValue">
+    (13/24)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package it.polimi.ingsw.client;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import it.polimi.ingsw.model.Card;
+<i class="no-highlight">4</i>&nbsp;import it.polimi.ingsw.model.Player;
+<i class="no-highlight">5</i>&nbsp;import it.polimi.ingsw.model.Wizard;
+<i class="no-highlight">6</i>&nbsp;
+<i class="no-highlight">7</i>&nbsp;import java.util.ArrayList;
+<i class="no-highlight">8</i>&nbsp;import java.util.List;
+<i class="no-highlight">9</i>&nbsp;
+<i class="no-highlight">10</i>&nbsp;/**
+<i class="no-highlight">11</i>&nbsp; * Class that represents a reduced version of a Player
+<i class="no-highlight">12</i>&nbsp; * @author Gabriele Munafo&#39;
+<i class="no-highlight">13</i>&nbsp; */
+<i class="no-highlight">14</i>&nbsp;public class ReducedPlayer {
+<i class="no-highlight">15</i>&nbsp;    private final String nickname;
+<i class="no-highlight">16</i>&nbsp;    private final Wizard wizard;
+<i class="no-highlight">17</i>&nbsp;    private final Boolean teamLeader;
+<i class="no-highlight">18</i>&nbsp;    private final List&lt;Card&gt; deck;
+<i class="no-highlight">19</i>&nbsp;    private final Card cardInUse;
+<i class="no-highlight">20</i>&nbsp;    private final int maxMoves;
+<i class="no-highlight">21</i>&nbsp;    private final Card graveyard;
+<i class="no-highlight">22</i>&nbsp;    private final int coins;
+<i class="no-highlight">23</i>&nbsp;    private ReducedDashboard dashboard;
+<i class="no-highlight">24</i>&nbsp;
+<b class="fc"><i class="no-highlight">25</i>&nbsp;    public ReducedPlayer(Player p){</b>
+<b class="fc"><i class="no-highlight">26</i>&nbsp;        nickname = p.getNickname();</b>
+<i class="no-highlight">27</i>&nbsp;
+<b class="fc"><i class="no-highlight">28</i>&nbsp;        wizard = p.getWizard();</b>
+<i class="no-highlight">29</i>&nbsp;
+<b class="fc"><i class="no-highlight">30</i>&nbsp;        teamLeader = p.isTeamLeader();</b>
+<i class="no-highlight">31</i>&nbsp;
+<b class="fc"><i class="no-highlight">32</i>&nbsp;        deck = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i class="no-highlight">33</i>&nbsp;        deck.addAll(p.getDeck());</b>
+<i class="no-highlight">34</i>&nbsp;
+<b class="fc"><i class="no-highlight">35</i>&nbsp;        cardInUse = p.getCardInUse();</b>
+<i class="no-highlight">36</i>&nbsp;
+<b class="fc"><i class="no-highlight">37</i>&nbsp;        maxMoves = p.getMaxMoves();</b>
+<i class="no-highlight">38</i>&nbsp;
+<b class="fc"><i class="no-highlight">39</i>&nbsp;        graveyard = p.getGraveyard();</b>
+<i class="no-highlight">40</i>&nbsp;
+<b class="fc"><i class="no-highlight">41</i>&nbsp;        coins = p.getCoins();</b>
+<b class="fc"><i class="no-highlight">42</i>&nbsp;        if (p.getDashboard() != null) {</b>
+<b class="fc"><i class="no-highlight">43</i>&nbsp;            dashboard = new ReducedDashboard(p.getDashboard());</b>
+<i class="no-highlight">44</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">45</i>&nbsp;        else dashboard = null;</b>
+<i class="no-highlight">46</i>&nbsp;    }
+<i class="no-highlight">47</i>&nbsp;
+<i class="no-highlight">48</i>&nbsp;    public String getNickname() {
+<b class="nc"><i class="no-highlight">49</i>&nbsp;        return nickname;</b>
+<i class="no-highlight">50</i>&nbsp;    }
+<i class="no-highlight">51</i>&nbsp;
+<i class="no-highlight">52</i>&nbsp;    public Wizard getWizard() {
+<b class="nc"><i class="no-highlight">53</i>&nbsp;        return wizard;</b>
+<i class="no-highlight">54</i>&nbsp;    }
+<i class="no-highlight">55</i>&nbsp;
+<i class="no-highlight">56</i>&nbsp;    public Boolean isTeamLeader() {
+<b class="nc"><i class="no-highlight">57</i>&nbsp;        return teamLeader;</b>
+<i class="no-highlight">58</i>&nbsp;    }
+<i class="no-highlight">59</i>&nbsp;
+<i class="no-highlight">60</i>&nbsp;    public List&lt;Card&gt; getDeck() {
+<b class="nc"><i class="no-highlight">61</i>&nbsp;        return deck;</b>
+<i class="no-highlight">62</i>&nbsp;    }
+<i class="no-highlight">63</i>&nbsp;
+<i class="no-highlight">64</i>&nbsp;    public int getNumCards() {
+<b class="nc"><i class="no-highlight">65</i>&nbsp;        return deck.size();</b>
+<i class="no-highlight">66</i>&nbsp;    }
+<i class="no-highlight">67</i>&nbsp;
+<i class="no-highlight">68</i>&nbsp;    public Card getCardInUse() {
+<b class="nc"><i class="no-highlight">69</i>&nbsp;        return cardInUse;</b>
+<i class="no-highlight">70</i>&nbsp;    }
+<i class="no-highlight">71</i>&nbsp;
+<i class="no-highlight">72</i>&nbsp;    public int getMaxMoves() {
+<b class="nc"><i class="no-highlight">73</i>&nbsp;        return maxMoves;</b>
+<i class="no-highlight">74</i>&nbsp;    }
+<i class="no-highlight">75</i>&nbsp;
+<i class="no-highlight">76</i>&nbsp;    public Card getGraveyard() {
+<b class="nc"><i class="no-highlight">77</i>&nbsp;        return graveyard;</b>
+<i class="no-highlight">78</i>&nbsp;    }
+<i class="no-highlight">79</i>&nbsp;
+<i class="no-highlight">80</i>&nbsp;    public int getCoins() {
+<b class="nc"><i class="no-highlight">81</i>&nbsp;        return coins;</b>
+<i class="no-highlight">82</i>&nbsp;    }
+<i class="no-highlight">83</i>&nbsp;
+<i class="no-highlight">84</i>&nbsp;    public ReducedDashboard getDashboard () {
+<b class="nc"><i class="no-highlight">85</i>&nbsp;        return dashboard;</b>
+<i class="no-highlight">86</i>&nbsp;    }
+<i class="no-highlight">87</i>&nbsp;
+<i class="no-highlight">88</i>&nbsp;    public void setDashboard(ReducedDashboard dashboard) {
+<b class="nc"><i class="no-highlight">89</i>&nbsp;        this.dashboard = dashboard;</b>
+<i class="no-highlight">90</i>&nbsp;    }
+<i class="no-highlight">91</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-07-01 12:22</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,197 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > DiningHall</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">it.polimi.ingsw.model</a>
+</div>
+
+<h1>Coverage Summary for Class: DiningHall (it.polimi.ingsw.model)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DiningHall</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    92%
+  </span>
+  <span class="absValue">
+    (23/25)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package it.polimi.ingsw.model;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import it.polimi.ingsw.client.ReducedDiningHall;
+<i class="no-highlight">4</i>&nbsp;import it.polimi.ingsw.exceptions.StudentsTableException;
+<i class="no-highlight">5</i>&nbsp;import it.polimi.ingsw.messages.answer.UpdateDiningHall;
+<i class="no-highlight">6</i>&nbsp;import it.polimi.ingsw.model.interfaces.StudentModifierInterface;
+<i class="no-highlight">7</i>&nbsp;import it.polimi.ingsw.observer.Observable;
+<i class="no-highlight">8</i>&nbsp;
+<i class="no-highlight">9</i>&nbsp;import java.util.HashMap;
+<i class="no-highlight">10</i>&nbsp;import java.util.Map;
+<i class="no-highlight">11</i>&nbsp;import static it.polimi.ingsw.model.House.*;
+<i class="no-highlight">12</i>&nbsp;
+<i class="no-highlight">13</i>&nbsp;/** Describes the DiningHall
+<i class="no-highlight">14</i>&nbsp; *
+<i class="no-highlight">15</i>&nbsp; * @author Dario Mazzola
+<i class="no-highlight">16</i>&nbsp; */
+<i class="no-highlight">17</i>&nbsp;public class DiningHall extends Observable implements StudentModifierInterface {
+<i class="no-highlight">18</i>&nbsp;
+<i class="no-highlight">19</i>&nbsp;    private final Map&lt;House, Integer&gt; tableOccupation;
+<i class="no-highlight">20</i>&nbsp;    private final String owner;
+<i class="no-highlight">21</i>&nbsp;
+<i class="no-highlight">22</i>&nbsp;    /**
+<i class="no-highlight">23</i>&nbsp;     * Dining hall class constructor: initializes the students&#39; number from each house to zero
+<i class="no-highlight">24</i>&nbsp;     */
+<b class="fc"><i class="no-highlight">25</i>&nbsp;    public DiningHall(String nickname){</b>
+<i class="no-highlight">26</i>&nbsp;
+<b class="fc"><i class="no-highlight">27</i>&nbsp;        this.owner = nickname;</b>
+<b class="fc"><i class="no-highlight">28</i>&nbsp;        tableOccupation = new HashMap&lt;&gt;();</b>
+<i class="no-highlight">29</i>&nbsp;
+<b class="fc"><i class="no-highlight">30</i>&nbsp;        for(House h : values())</b>
+<b class="fc"><i class="no-highlight">31</i>&nbsp;            tableOccupation.put(h, 0);</b>
+<i class="no-highlight">32</i>&nbsp;
+<i class="no-highlight">33</i>&nbsp;    }
+<i class="no-highlight">34</i>&nbsp;
+<i class="no-highlight">35</i>&nbsp;    public int getHouseStudents(House house){
+<b class="fc"><i class="no-highlight">36</i>&nbsp;        return tableOccupation.get(house);</b>
+<i class="no-highlight">37</i>&nbsp;    }
+<i class="no-highlight">38</i>&nbsp;
+<i class="no-highlight">39</i>&nbsp;    @Override
+<i class="no-highlight">40</i>&nbsp;    public Map&lt;House, Integer&gt; getStudents() {
+<b class="fc"><i class="no-highlight">41</i>&nbsp;        return tableOccupation;</b>
+<i class="no-highlight">42</i>&nbsp;    }
+<i class="no-highlight">43</i>&nbsp;
+<i class="no-highlight">44</i>&nbsp;    /**
+<i class="no-highlight">45</i>&nbsp;     * @throws StudentsTableException if the house table to remove a student from is already full
+<i class="no-highlight">46</i>&nbsp;     * @throws NullPointerException If the house given as a parameter is a null value
+<i class="no-highlight">47</i>&nbsp;     * @throws IllegalArgumentException if the number of students given as a parameter is negative
+<i class="no-highlight">48</i>&nbsp;     */
+<i class="no-highlight">49</i>&nbsp;    @Override
+<i class="no-highlight">50</i>&nbsp;    public void addStudents(House house, int numStudents, boolean notify) throws StudentsTableException, NullPointerException, IllegalArgumentException{
+<i class="no-highlight">51</i>&nbsp;
+<b class="fc"><i class="no-highlight">52</i>&nbsp;        if(house == null)</b>
+<b class="fc"><i class="no-highlight">53</i>&nbsp;            throw new NullPointerException(&quot;The house given is null&quot;);</b>
+<i class="no-highlight">54</i>&nbsp;
+<b class="fc"><i class="no-highlight">55</i>&nbsp;        if(numStudents &lt; 0){</b>
+<b class="nc"><i class="no-highlight">56</i>&nbsp;            throw new IllegalArgumentException(&quot;You cannot add a negative number of students!&quot;);</b>
+<i class="no-highlight">57</i>&nbsp;        }
+<i class="no-highlight">58</i>&nbsp;
+<b class="fc"><i class="no-highlight">59</i>&nbsp;        if(tableOccupation.get(house) == 10){</b>
+<b class="fc"><i class="no-highlight">60</i>&nbsp;            throw new StudentsTableException(&quot;The table of the house where you want to add a student is already full&quot;);</b>
+<i class="no-highlight">61</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">62</i>&nbsp;        tableOccupation.replace(house, tableOccupation.get(house) + numStudents);</b>
+<i class="no-highlight">63</i>&nbsp;
+<b class="fc"><i class="no-highlight">64</i>&nbsp;        notifyObserver(new UpdateDiningHall(new ReducedDiningHall(this)));</b>
+<i class="no-highlight">65</i>&nbsp;    }
+<i class="no-highlight">66</i>&nbsp;
+<i class="no-highlight">67</i>&nbsp;    /**
+<i class="no-highlight">68</i>&nbsp;     * @throws StudentsTableException if the house table to remove a student from is already empty
+<i class="no-highlight">69</i>&nbsp;     * @throws NullPointerException If the house given as a parameter is a null value
+<i class="no-highlight">70</i>&nbsp;     * @throws IllegalArgumentException if the number of students given as a parameter is negative
+<i class="no-highlight">71</i>&nbsp;     */
+<i class="no-highlight">72</i>&nbsp;    @Override
+<i class="no-highlight">73</i>&nbsp;    public void removeStudents(House house, int numStudents, boolean notify) throws StudentsTableException, NullPointerException, IllegalArgumentException{
+<i class="no-highlight">74</i>&nbsp;
+<b class="fc"><i class="no-highlight">75</i>&nbsp;        if(house == null)</b>
+<b class="fc"><i class="no-highlight">76</i>&nbsp;            throw new NullPointerException(&quot;The house given is null&quot;);</b>
+<i class="no-highlight">77</i>&nbsp;
+<b class="fc"><i class="no-highlight">78</i>&nbsp;        if(numStudents &lt; 0){</b>
+<b class="nc"><i class="no-highlight">79</i>&nbsp;            throw new IllegalArgumentException(&quot;You cannot remove a negative number of students!&quot;);</b>
+<i class="no-highlight">80</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">81</i>&nbsp;        if (tableOccupation.get(house) == 0)</b>
+<b class="fc"><i class="no-highlight">82</i>&nbsp;            throw new StudentsTableException(&quot;The table of the house where you want to remove a student is already empty&quot;);</b>
+<i class="no-highlight">83</i>&nbsp;
+<b class="fc"><i class="no-highlight">84</i>&nbsp;        tableOccupation.replace(house, tableOccupation.get(house) - numStudents);</b>
+<i class="no-highlight">85</i>&nbsp;
+<b class="fc"><i class="no-highlight">86</i>&nbsp;        if(notify)</b>
+<b class="fc"><i class="no-highlight">87</i>&nbsp;            notifyObserver(new UpdateDiningHall(new ReducedDiningHall(this)));</b>
+<i class="no-highlight">88</i>&nbsp;    }
+<i class="no-highlight">89</i>&nbsp;    public String getOwner() {
+<b class="fc"><i class="no-highlight">90</i>&nbsp;        return owner;</b>
+<i class="no-highlight">91</i>&nbsp;    }
+<i class="no-highlight">92</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-07-01 12:22</div>
+</div>
+</body>
+</html>

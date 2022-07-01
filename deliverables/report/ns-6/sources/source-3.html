@@ -1,0 +1,410 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > AnswerSerializer</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">it.polimi.ingsw.messages.answer</a>
+</div>
+
+<h1>Coverage Summary for Class: AnswerSerializer (it.polimi.ingsw.messages.answer)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AnswerSerializer</td>
+<td class="coverageStat">
+  <span class="percent">
+    66,7%
+  </span>
+  <span class="absValue">
+    (2/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    97,9%
+  </span>
+  <span class="absValue">
+    (138/141)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">AnswerSerializer$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">AnswerSerializer$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    80%
+  </span>
+  <span class="absValue">
+    (4/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    97,9%
+  </span>
+  <span class="absValue">
+    (140/143)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package it.polimi.ingsw.messages.answer;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import com.google.gson.Gson;
+<i class="no-highlight">4</i>&nbsp;import com.google.gson.reflect.TypeToken;
+<i class="no-highlight">5</i>&nbsp;import it.polimi.ingsw.messages.MessageType;
+<i class="no-highlight">6</i>&nbsp;
+<i class="no-highlight">7</i>&nbsp;import java.lang.reflect.Type;
+<i class="no-highlight">8</i>&nbsp;import java.util.ArrayList;
+<i class="no-highlight">9</i>&nbsp;import java.util.List;
+<i class="no-highlight">10</i>&nbsp;
+<i class="no-highlight">11</i>&nbsp;import static it.polimi.ingsw.messages.MessageType.*;
+<i class="no-highlight">12</i>&nbsp;
+<i class="no-highlight">13</i>&nbsp;/**
+<i class="no-highlight">14</i>&nbsp; * Class representing a serializer for answer messages, sent from the server to the client. It is a part
+<i class="no-highlight">15</i>&nbsp; * of logic that hides the network layer to the client controller. So it does not have to know how the messages are sent
+<i class="no-highlight">16</i>&nbsp; * and how they are deserialized
+<i class="no-highlight">17</i>&nbsp; *
+<i class="no-highlight">18</i>&nbsp; * @author Dario Mazzola
+<i class="no-highlight">19</i>&nbsp; */
+<b class="nc"><i class="no-highlight">20</i>&nbsp;public class AnswerSerializer {</b>
+<i class="no-highlight">21</i>&nbsp;
+<i class="no-highlight">22</i>&nbsp;    /**
+<i class="no-highlight">23</i>&nbsp;     * Static method that represents a serializer for an answer message. It receives an answer message and serializes it
+<i class="no-highlight">24</i>&nbsp;     * into the network communication protocol.
+<i class="no-highlight">25</i>&nbsp;     * @param msg The answer message to be serialized
+<i class="no-highlight">26</i>&nbsp;     * @return The message serialized
+<i class="no-highlight">27</i>&nbsp;     * @throws IllegalArgumentException If the message, that the user wants to serialize, does not exist
+<i class="no-highlight">28</i>&nbsp;     */
+<i class="no-highlight">29</i>&nbsp;    public static String serialize(AnswerMessage msg) throws IllegalArgumentException{
+<b class="fc"><i class="no-highlight">30</i>&nbsp;        List&lt;String&gt; list = new ArrayList&lt;&gt;();</b>
+<i class="no-highlight">31</i>&nbsp;
+<b class="fc"><i class="no-highlight">32</i>&nbsp;        Gson gson = new Gson();</b>
+<i class="no-highlight">33</i>&nbsp;
+<b class="fc"><i class="no-highlight">34</i>&nbsp;        MessageType messageType = msg.getType();</b>
+<b class="fc"><i class="no-highlight">35</i>&nbsp;        String gsonMessage = gson.toJson(msg);</b>
+<i class="no-highlight">36</i>&nbsp;
+<b class="fc"><i class="no-highlight">37</i>&nbsp;        switch (messageType) {</b>
+<i class="no-highlight">38</i>&nbsp;            case ACTION_PHASE:
+<b class="fc"><i class="no-highlight">39</i>&nbsp;                list.add(ACTION_PHASE.toString());</b>
+<b class="fc"><i class="no-highlight">40</i>&nbsp;                break;</b>
+<i class="no-highlight">41</i>&nbsp;            case END_GAME_DISCONNECTION:
+<b class="fc"><i class="no-highlight">42</i>&nbsp;                list.add(END_GAME_DISCONNECTION.toString());</b>
+<b class="fc"><i class="no-highlight">43</i>&nbsp;                break;</b>
+<i class="no-highlight">44</i>&nbsp;            case GAME_FULL:
+<b class="fc"><i class="no-highlight">45</i>&nbsp;                list.add(GAME_FULL.toString());</b>
+<b class="fc"><i class="no-highlight">46</i>&nbsp;                break;</b>
+<i class="no-highlight">47</i>&nbsp;            case GO_TO_WAITING_ROOM:
+<b class="fc"><i class="no-highlight">48</i>&nbsp;                list.add(GO_TO_WAITING_ROOM.toString());</b>
+<b class="fc"><i class="no-highlight">49</i>&nbsp;                break;</b>
+<i class="no-highlight">50</i>&nbsp;            case GO_TO_LOBBY:
+<b class="fc"><i class="no-highlight">51</i>&nbsp;                list.add(GO_TO_LOBBY.toString());</b>
+<b class="fc"><i class="no-highlight">52</i>&nbsp;                break;</b>
+<i class="no-highlight">53</i>&nbsp;            case NACK:
+<b class="fc"><i class="no-highlight">54</i>&nbsp;                list.add(NACK.toString());</b>
+<b class="fc"><i class="no-highlight">55</i>&nbsp;                break;</b>
+<i class="no-highlight">56</i>&nbsp;            case PING:
+<b class="fc"><i class="no-highlight">57</i>&nbsp;                list.add(PING.toString());</b>
+<b class="fc"><i class="no-highlight">58</i>&nbsp;                break;</b>
+<i class="no-highlight">59</i>&nbsp;            case SELECT_ASSISTANT_CARD:
+<b class="fc"><i class="no-highlight">60</i>&nbsp;                list.add(SELECT_ASSISTANT_CARD.toString());</b>
+<b class="fc"><i class="no-highlight">61</i>&nbsp;                break;</b>
+<i class="no-highlight">62</i>&nbsp;            case SELECT_CHARACTER_CARD:
+<b class="fc"><i class="no-highlight">63</i>&nbsp;                list.add(SELECT_CHARACTER_CARD.toString());</b>
+<b class="fc"><i class="no-highlight">64</i>&nbsp;                break;</b>
+<i class="no-highlight">65</i>&nbsp;            case SELECT_CLOUD:
+<b class="fc"><i class="no-highlight">66</i>&nbsp;                list.add(SELECT_CLOUD.toString());</b>
+<b class="fc"><i class="no-highlight">67</i>&nbsp;                break;</b>
+<i class="no-highlight">68</i>&nbsp;            case SELECT_COLOR_TOWER:
+<b class="fc"><i class="no-highlight">69</i>&nbsp;                list.add(SELECT_COLOR_TOWER.toString());</b>
+<b class="fc"><i class="no-highlight">70</i>&nbsp;                break;</b>
+<i class="no-highlight">71</i>&nbsp;            case SELECT_EXPERT_MODE:
+<b class="fc"><i class="no-highlight">72</i>&nbsp;                list.add(SELECT_EXPERT_MODE.toString());</b>
+<b class="fc"><i class="no-highlight">73</i>&nbsp;                break;</b>
+<i class="no-highlight">74</i>&nbsp;            case SELECT_NICKNAME:
+<b class="fc"><i class="no-highlight">75</i>&nbsp;                list.add(SELECT_NICKNAME.toString());</b>
+<b class="fc"><i class="no-highlight">76</i>&nbsp;                break;</b>
+<i class="no-highlight">77</i>&nbsp;            case SELECT_NUM_PLAYERS:
+<b class="fc"><i class="no-highlight">78</i>&nbsp;                list.add(SELECT_NUM_PLAYERS.toString());</b>
+<b class="fc"><i class="no-highlight">79</i>&nbsp;                break;</b>
+<i class="no-highlight">80</i>&nbsp;            case SELECT_TEAM:
+<b class="fc"><i class="no-highlight">81</i>&nbsp;                list.add(SELECT_TEAM.toString());</b>
+<b class="fc"><i class="no-highlight">82</i>&nbsp;                break;</b>
+<i class="no-highlight">83</i>&nbsp;            case SELECT_WIZARD:
+<b class="fc"><i class="no-highlight">84</i>&nbsp;                list.add(SELECT_WIZARD.toString());</b>
+<b class="fc"><i class="no-highlight">85</i>&nbsp;                break;</b>
+<i class="no-highlight">86</i>&nbsp;            case SEND_WINNER:
+<b class="fc"><i class="no-highlight">87</i>&nbsp;                list.add(SEND_WINNER.toString());</b>
+<b class="fc"><i class="no-highlight">88</i>&nbsp;                break;</b>
+<i class="no-highlight">89</i>&nbsp;            case SELECT_RESTORE_GAME:
+<b class="fc"><i class="no-highlight">90</i>&nbsp;                list.add(SELECT_RESTORE_GAME.toString());</b>
+<b class="fc"><i class="no-highlight">91</i>&nbsp;                break;</b>
+<i class="no-highlight">92</i>&nbsp;            case UPDATE_CHARACTER_CARD:
+<b class="fc"><i class="no-highlight">93</i>&nbsp;                list.add(UPDATE_CHARACTER_CARD.toString());</b>
+<b class="fc"><i class="no-highlight">94</i>&nbsp;                break;</b>
+<i class="no-highlight">95</i>&nbsp;            case UPDATE_CLOUD:
+<b class="fc"><i class="no-highlight">96</i>&nbsp;                list.add(UPDATE_CLOUD.toString());</b>
+<b class="fc"><i class="no-highlight">97</i>&nbsp;                break;</b>
+<i class="no-highlight">98</i>&nbsp;            case UPDATE_DASHBOARD:
+<b class="fc"><i class="no-highlight">99</i>&nbsp;                list.add(UPDATE_DASHBOARD.toString());</b>
+<b class="fc"><i class="no-highlight">100</i>&nbsp;                break;</b>
+<i class="no-highlight">101</i>&nbsp;            case UPDATE_DINING_HALL:
+<b class="fc"><i class="no-highlight">102</i>&nbsp;                list.add(UPDATE_DINING_HALL.toString());</b>
+<b class="fc"><i class="no-highlight">103</i>&nbsp;                break;</b>
+<i class="no-highlight">104</i>&nbsp;            case UPDATE_GAME_MODEL:
+<b class="fc"><i class="no-highlight">105</i>&nbsp;                list.add(UPDATE_GAME_MODEL.toString());</b>
+<b class="fc"><i class="no-highlight">106</i>&nbsp;                break;</b>
+<i class="no-highlight">107</i>&nbsp;            case UPDATE_ISLAND:
+<b class="fc"><i class="no-highlight">108</i>&nbsp;                list.add(UPDATE_ISLAND.toString());</b>
+<b class="fc"><i class="no-highlight">109</i>&nbsp;                break;</b>
+<i class="no-highlight">110</i>&nbsp;            case UPDATE_PLAYER:
+<b class="fc"><i class="no-highlight">111</i>&nbsp;                list.add(UPDATE_PLAYER.toString());</b>
+<b class="fc"><i class="no-highlight">112</i>&nbsp;                break;</b>
+<i class="no-highlight">113</i>&nbsp;            case UPDATE_CURRENT_PLAYER:
+<b class="fc"><i class="no-highlight">114</i>&nbsp;                list.add(UPDATE_CURRENT_PLAYER.toString());</b>
+<b class="fc"><i class="no-highlight">115</i>&nbsp;                break;</b>
+<i class="no-highlight">116</i>&nbsp;            case UPDATE_MOTHER_ISLAND:
+<b class="fc"><i class="no-highlight">117</i>&nbsp;                list.add(UPDATE_MOTHER_ISLAND.toString());</b>
+<b class="fc"><i class="no-highlight">118</i>&nbsp;                break;</b>
+<i class="no-highlight">119</i>&nbsp;            case REMEMBER_NICKNAME:
+<b class="fc"><i class="no-highlight">120</i>&nbsp;                list.add(REMEMBER_NICKNAME.toString());</b>
+<b class="fc"><i class="no-highlight">121</i>&nbsp;                break;</b>
+<i class="no-highlight">122</i>&nbsp;            case SELECT_CHAT:
+<b class="fc"><i class="no-highlight">123</i>&nbsp;                list.add(SELECT_CHAT.toString());</b>
+<b class="fc"><i class="no-highlight">124</i>&nbsp;                break;</b>
+<i class="no-highlight">125</i>&nbsp;            case CHAT_MESSAGE_SERVER_CLIENT:
+<b class="fc"><i class="no-highlight">126</i>&nbsp;                list.add(CHAT_MESSAGE_SERVER_CLIENT.toString());</b>
+<b class="fc"><i class="no-highlight">127</i>&nbsp;                break;</b>
+<i class="no-highlight">128</i>&nbsp;            case WAIT_FOR_OTHERS_MOVES:
+<b class="fc"><i class="no-highlight">129</i>&nbsp;                list.add(WAIT_FOR_OTHERS_MOVES.toString());</b>
+<b class="fc"><i class="no-highlight">130</i>&nbsp;                break;</b>
+<i class="no-highlight">131</i>&nbsp;            default:
+<b class="nc"><i class="no-highlight">132</i>&nbsp;                throw new IllegalArgumentException(&quot;Message (&quot; + messageType + &quot;) is not an answer message&quot;);</b>
+<i class="no-highlight">133</i>&nbsp;        }
+<i class="no-highlight">134</i>&nbsp;
+<b class="fc"><i class="no-highlight">135</i>&nbsp;        list.add(gsonMessage);</b>
+<i class="no-highlight">136</i>&nbsp;
+<b class="fc"><i class="no-highlight">137</i>&nbsp;        return gson.toJson(list);</b>
+<i class="no-highlight">138</i>&nbsp;    }
+<i class="no-highlight">139</i>&nbsp;
+<i class="no-highlight">140</i>&nbsp;    /**
+<i class="no-highlight">141</i>&nbsp;     * Static method that represents a deserializer for an answer message. It receives the string received by the
+<i class="no-highlight">142</i>&nbsp;     * network layer and deserializes it, from the network communication protocol to AnswerMessage.
+<i class="no-highlight">143</i>&nbsp;     * @param messageReceived The message too be deserialized
+<i class="no-highlight">144</i>&nbsp;     * @return The answer message deserialized
+<i class="no-highlight">145</i>&nbsp;     * @throws IllegalArgumentException If the message received is not valid or not an answer message
+<i class="no-highlight">146</i>&nbsp;     */
+<i class="no-highlight">147</i>&nbsp;    public static AnswerMessage deserialize(String messageReceived) {
+<i class="no-highlight">148</i>&nbsp;
+<b class="fc"><i class="no-highlight">149</i>&nbsp;        Gson gson = new Gson();</b>
+<i class="no-highlight">150</i>&nbsp;
+<b class="fc"><i class="no-highlight">151</i>&nbsp;        Type listOfMyClassObject = new TypeToken&lt;ArrayList&lt;String&gt;&gt;() {}.getType();</b>
+<i class="no-highlight">152</i>&nbsp;
+<b class="fc"><i class="no-highlight">153</i>&nbsp;        List&lt;String&gt; msg = gson.fromJson(messageReceived, listOfMyClassObject);</b>
+<i class="no-highlight">154</i>&nbsp;
+<i class="no-highlight">155</i>&nbsp;        AnswerMessage answer;
+<b class="fc"><i class="no-highlight">156</i>&nbsp;        MessageType messageType = gson.fromJson(msg.get(0), MessageType.class);</b>
+<i class="no-highlight">157</i>&nbsp;
+<b class="fc"><i class="no-highlight">158</i>&nbsp;        String gsonMessage = msg.get(1);</b>
+<i class="no-highlight">159</i>&nbsp;
+<b class="fc"><i class="no-highlight">160</i>&nbsp;        switch (messageType) {</b>
+<i class="no-highlight">161</i>&nbsp;            case ACTION_PHASE:
+<b class="fc"><i class="no-highlight">162</i>&nbsp;                answer = gson.fromJson(gsonMessage, ActionPhase.class);</b>
+<b class="fc"><i class="no-highlight">163</i>&nbsp;                break;</b>
+<i class="no-highlight">164</i>&nbsp;            case END_GAME_DISCONNECTION:
+<b class="fc"><i class="no-highlight">165</i>&nbsp;                answer = gson.fromJson(gsonMessage, EndGameDisconnection.class);</b>
+<b class="fc"><i class="no-highlight">166</i>&nbsp;                break;</b>
+<i class="no-highlight">167</i>&nbsp;            case GAME_FULL:
+<b class="fc"><i class="no-highlight">168</i>&nbsp;                answer = gson.fromJson(gsonMessage, GameFull.class);</b>
+<b class="fc"><i class="no-highlight">169</i>&nbsp;                break;</b>
+<i class="no-highlight">170</i>&nbsp;            case GO_TO_WAITING_ROOM:
+<b class="fc"><i class="no-highlight">171</i>&nbsp;                answer = gson.fromJson(gsonMessage, GoToWaitingRoom.class);</b>
+<b class="fc"><i class="no-highlight">172</i>&nbsp;                break;</b>
+<i class="no-highlight">173</i>&nbsp;            case GO_TO_LOBBY:
+<b class="fc"><i class="no-highlight">174</i>&nbsp;                answer = gson.fromJson(gsonMessage, GoToLobby.class);</b>
+<b class="fc"><i class="no-highlight">175</i>&nbsp;                break;</b>
+<i class="no-highlight">176</i>&nbsp;            case NACK:
+<b class="fc"><i class="no-highlight">177</i>&nbsp;                answer = gson.fromJson(gsonMessage, Nack.class);</b>
+<b class="fc"><i class="no-highlight">178</i>&nbsp;                break;</b>
+<i class="no-highlight">179</i>&nbsp;            case PING:
+<b class="fc"><i class="no-highlight">180</i>&nbsp;                answer = gson.fromJson(gsonMessage, Ping.class);</b>
+<b class="fc"><i class="no-highlight">181</i>&nbsp;                break;</b>
+<i class="no-highlight">182</i>&nbsp;            case SELECT_ASSISTANT_CARD:
+<b class="fc"><i class="no-highlight">183</i>&nbsp;                answer = gson.fromJson(gsonMessage, SelectAssistantCard.class);</b>
+<b class="fc"><i class="no-highlight">184</i>&nbsp;                break;</b>
+<i class="no-highlight">185</i>&nbsp;            case SELECT_CHARACTER_CARD:
+<b class="fc"><i class="no-highlight">186</i>&nbsp;                answer = gson.fromJson(gsonMessage, SelectCharacterCard.class);</b>
+<b class="fc"><i class="no-highlight">187</i>&nbsp;                break;</b>
+<i class="no-highlight">188</i>&nbsp;            case SELECT_CLOUD:
+<b class="fc"><i class="no-highlight">189</i>&nbsp;                answer = gson.fromJson(gsonMessage, SelectCloud.class);</b>
+<b class="fc"><i class="no-highlight">190</i>&nbsp;                break;</b>
+<i class="no-highlight">191</i>&nbsp;            case SELECT_COLOR_TOWER:
+<b class="fc"><i class="no-highlight">192</i>&nbsp;                answer = gson.fromJson(gsonMessage, SelectColorTower.class);</b>
+<b class="fc"><i class="no-highlight">193</i>&nbsp;                break;</b>
+<i class="no-highlight">194</i>&nbsp;            case SELECT_EXPERT_MODE:
+<b class="fc"><i class="no-highlight">195</i>&nbsp;                answer = gson.fromJson(gsonMessage, SelectExpertMode.class);</b>
+<b class="fc"><i class="no-highlight">196</i>&nbsp;                break;</b>
+<i class="no-highlight">197</i>&nbsp;            case SELECT_NICKNAME:
+<b class="fc"><i class="no-highlight">198</i>&nbsp;                answer = gson.fromJson(gsonMessage, SelectNickname.class);</b>
+<b class="fc"><i class="no-highlight">199</i>&nbsp;                break;</b>
+<i class="no-highlight">200</i>&nbsp;            case SELECT_NUM_PLAYERS:
+<b class="fc"><i class="no-highlight">201</i>&nbsp;                answer = gson.fromJson(gsonMessage, SelectNumPlayers.class);</b>
+<b class="fc"><i class="no-highlight">202</i>&nbsp;                break;</b>
+<i class="no-highlight">203</i>&nbsp;            case SELECT_RESTORE_GAME:
+<b class="fc"><i class="no-highlight">204</i>&nbsp;                answer = gson.fromJson(gsonMessage, SelectRestoreGame.class);</b>
+<b class="fc"><i class="no-highlight">205</i>&nbsp;                break;</b>
+<i class="no-highlight">206</i>&nbsp;            case SELECT_TEAM:
+<b class="fc"><i class="no-highlight">207</i>&nbsp;                answer = gson.fromJson(gsonMessage, SelectTeam.class);</b>
+<b class="fc"><i class="no-highlight">208</i>&nbsp;                break;</b>
+<i class="no-highlight">209</i>&nbsp;            case SELECT_WIZARD:
+<b class="fc"><i class="no-highlight">210</i>&nbsp;                answer = gson.fromJson(gsonMessage, SelectWizard.class);</b>
+<b class="fc"><i class="no-highlight">211</i>&nbsp;                break;</b>
+<i class="no-highlight">212</i>&nbsp;            case SEND_WINNER:
+<b class="fc"><i class="no-highlight">213</i>&nbsp;                answer = gson.fromJson(gsonMessage, SendWinner.class);</b>
+<b class="fc"><i class="no-highlight">214</i>&nbsp;                break;</b>
+<i class="no-highlight">215</i>&nbsp;            case UPDATE_CHARACTER_CARD:
+<b class="fc"><i class="no-highlight">216</i>&nbsp;                answer = gson.fromJson(gsonMessage, UpdateCharacterCard.class);</b>
+<b class="fc"><i class="no-highlight">217</i>&nbsp;                break;</b>
+<i class="no-highlight">218</i>&nbsp;            case UPDATE_CLOUD:
+<b class="fc"><i class="no-highlight">219</i>&nbsp;                answer = gson.fromJson(gsonMessage, UpdateCloud.class);</b>
+<b class="fc"><i class="no-highlight">220</i>&nbsp;                break;</b>
+<i class="no-highlight">221</i>&nbsp;            case UPDATE_DASHBOARD:
+<b class="fc"><i class="no-highlight">222</i>&nbsp;                answer = gson.fromJson(gsonMessage, UpdateDashboard.class);</b>
+<b class="fc"><i class="no-highlight">223</i>&nbsp;                break;</b>
+<i class="no-highlight">224</i>&nbsp;            case UPDATE_DINING_HALL:
+<b class="fc"><i class="no-highlight">225</i>&nbsp;                answer = gson.fromJson(gsonMessage, UpdateDiningHall.class);</b>
+<b class="fc"><i class="no-highlight">226</i>&nbsp;                break;</b>
+<i class="no-highlight">227</i>&nbsp;            case UPDATE_GAME_MODEL:
+<b class="fc"><i class="no-highlight">228</i>&nbsp;                answer = gson.fromJson(gsonMessage, UpdateGameModel.class);</b>
+<b class="fc"><i class="no-highlight">229</i>&nbsp;                break;</b>
+<i class="no-highlight">230</i>&nbsp;            case UPDATE_ISLAND:
+<b class="fc"><i class="no-highlight">231</i>&nbsp;                answer = gson.fromJson(gsonMessage, UpdateIsland.class);</b>
+<b class="fc"><i class="no-highlight">232</i>&nbsp;                break;</b>
+<i class="no-highlight">233</i>&nbsp;            case UPDATE_PLAYER:
+<b class="fc"><i class="no-highlight">234</i>&nbsp;                answer = gson.fromJson(gsonMessage, UpdatePlayer.class);</b>
+<b class="fc"><i class="no-highlight">235</i>&nbsp;                break;</b>
+<i class="no-highlight">236</i>&nbsp;            case UPDATE_CURRENT_PLAYER:
+<b class="fc"><i class="no-highlight">237</i>&nbsp;                answer = gson.fromJson(gsonMessage, UpdateCurrentPlayer.class);</b>
+<b class="fc"><i class="no-highlight">238</i>&nbsp;                break;</b>
+<i class="no-highlight">239</i>&nbsp;            case UPDATE_MOTHER_ISLAND:
+<b class="fc"><i class="no-highlight">240</i>&nbsp;                answer = gson.fromJson(gsonMessage, UpdateMotherIsland.class);</b>
+<b class="fc"><i class="no-highlight">241</i>&nbsp;                break;</b>
+<i class="no-highlight">242</i>&nbsp;            case REMEMBER_NICKNAME:
+<b class="fc"><i class="no-highlight">243</i>&nbsp;                answer = gson.fromJson(gsonMessage, RememberNickname.class);</b>
+<b class="fc"><i class="no-highlight">244</i>&nbsp;                break;</b>
+<i class="no-highlight">245</i>&nbsp;            case SELECT_CHAT:
+<b class="fc"><i class="no-highlight">246</i>&nbsp;                answer = gson.fromJson(gsonMessage, SelectChat.class);</b>
+<b class="fc"><i class="no-highlight">247</i>&nbsp;                break;</b>
+<i class="no-highlight">248</i>&nbsp;            case CHAT_MESSAGE_SERVER_CLIENT:
+<b class="fc"><i class="no-highlight">249</i>&nbsp;                answer = gson.fromJson(gsonMessage, ChatMessageServerClient.class);</b>
+<b class="fc"><i class="no-highlight">250</i>&nbsp;                break;</b>
+<i class="no-highlight">251</i>&nbsp;            case WAIT_FOR_OTHERS_MOVES:
+<b class="fc"><i class="no-highlight">252</i>&nbsp;                answer = gson.fromJson(gsonMessage, WaitForOthersMoves.class);</b>
+<b class="fc"><i class="no-highlight">253</i>&nbsp;                break;</b>
+<i class="no-highlight">254</i>&nbsp;            default:
+<b class="nc"><i class="no-highlight">255</i>&nbsp;                throw new IllegalArgumentException(&quot;Message (&quot; + messageType + &quot;) is not an answer message&quot;);</b>
+<i class="no-highlight">256</i>&nbsp;        }
+<i class="no-highlight">257</i>&nbsp;
+<b class="fc"><i class="no-highlight">258</i>&nbsp;        return answer;</b>
+<i class="no-highlight">259</i>&nbsp;    }
+<i class="no-highlight">260</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-07-01 12:22</div>
+</div>
+</body>
+</html>
