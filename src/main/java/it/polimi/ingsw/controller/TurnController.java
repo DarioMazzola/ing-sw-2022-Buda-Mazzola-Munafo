@@ -381,6 +381,7 @@ public class TurnController {
                     }
 
                     next_State(ACTION);
+                    planningController.resetNextChoosing();
                     virtualViewMap.get(gm.getArrayPlayers()[getFirstPlanner()].getNickname()).actionPhase(availableActions);
                     break;
                 }
@@ -512,10 +513,26 @@ public class TurnController {
      * @param nickname of the player who needs the actions again
      */
     public void resendActionPhase(String nickname){
-        if(gm.getPlayerByNickname(nickname).equals(gm.getCurrentPlayer()))
-            virtualViewMap.get(nickname).actionPhase(actionController.getActions());
-        else if (gameState != PLANNING)
+
+        if(gameState == PLANNING) {
+            if(planningController.getNextChoosing() == -1) {
+                if(! gm.getArrayPlayers()[planningController.getFirstPlanner()].getNickname().equals(nickname))
+                    virtualViewMap.get(nickname).goToWaitingRoom();
+            }
+            else {
+                if(! gm.getArrayPlayers()[planningController.getNextChoosing()].getNickname().equals(nickname))
+                    virtualViewMap.get(nickname).goToWaitingRoom();
+            }
+        }
+
+        else if(gm.getPlayerByNickname(nickname).equals(gm.getCurrentPlayer())) {
+            if (actionController.getToResend())
+                virtualViewMap.get(nickname).actionPhase(actionController.getActions());
+        }
+
+        else
             virtualViewMap.get(nickname).goToWaitingRoom();
+
     }
 
     /**

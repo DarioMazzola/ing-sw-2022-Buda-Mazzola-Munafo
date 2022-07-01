@@ -27,12 +27,14 @@ public class ActionController {
     private boolean usedCharacterCard;
     private Player winner;
     private boolean isEnded;
+    private boolean toResend;
 
     public ActionController(GameModel gm) {
         this.isEnded = false;
         this.winner = null;
         this.gm = gm;
         this.studentsMoved = 0;
+        this.toResend = true;
         System.out.println("NumPlayers: " + gm.getNumPlayers());
         if (gm.getNumPlayers() == 2 || gm.getNumPlayers() == 4) {
             this.maxStudMoved = 3;
@@ -61,6 +63,7 @@ public class ActionController {
 
         switch (type) {
             case MOVE_STUDENT_TO_ISLAND:
+                this.toResend = true;
                 if (studentsMoved == maxStudMoved) {
                     tc.getVirtualViewMap().get(messageReceived.getNickname()).showError(MAX_STUDENTS_MOVED.toString());
                     tc.getVirtualViewMap().get(messageReceived.getNickname()).actionPhase(availableActions);
@@ -85,6 +88,8 @@ public class ActionController {
 
                 moveStudentsToDiningHallHandler(messageReceived, tc);
 
+                this.toResend = true;
+
                 studentsMoved++;
 
                 if (studentsMoved == maxStudMoved) {
@@ -94,6 +99,8 @@ public class ActionController {
                 break;
 
             case CHOSEN_CHARACTER_CARD:
+                this.toResend = true;
+
                 if (usedCharacterCard) {
                     tc.getVirtualViewMap().get(messageReceived.getNickname()).showError(ALREADY_USED_CHARACTER_CARD.toString());
                     tc.getVirtualViewMap().get(messageReceived.getNickname()).actionPhase(availableActions);
@@ -125,6 +132,7 @@ public class ActionController {
                 resetActions();
                 usedCharacterCard = false;
                 studentsMoved = 0;
+                this.toResend = false;
 
                 GameEnded();
 
@@ -635,5 +643,9 @@ public class ActionController {
 
     public List<String> getActions() {
         return availableActions;
+    }
+
+    public boolean getToResend() {
+        return toResend;
     }
 }

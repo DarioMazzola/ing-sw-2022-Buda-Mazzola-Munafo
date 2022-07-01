@@ -26,9 +26,10 @@ public class PlanningController {
     private final List<Card> availableAssistantCards;
     private int selected;
     private int position;
+    private int nextChoosing;
 
     public PlanningController(GameModel gm) {
-
+        this.nextChoosing = -1;
         this.selected = 0;
         this.firstPlanner = 0;
         this.gm = gm;
@@ -118,8 +119,17 @@ public class PlanningController {
                     break;
                 }
             }
+            this.nextChoosing = (i + 1) % gm.getNumPlayers();
             tc.getVirtualViewMap().get(gm.getArrayPlayers()[(i + 1) % gm.getNumPlayers()].getNickname()).selectAssistantCard(availableAssistantCards);
         }
+    }
+
+    public int getNextChoosing() {
+        return nextChoosing;
+    }
+
+    public void resetNextChoosing() {
+        nextChoosing = -1;
     }
 
     /**
