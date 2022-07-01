@@ -376,23 +376,30 @@ public class GameModel extends Observable {
         try {
             Color color = island.getColorTower();
             if (!color.equals(dashboard.getTowerColor())) {
-                for (int i = 0; i < numTowers; i++) {
-                    dashboard.removeTower();
+                for (int i = 0; i < island.getNumTowers(); i++) {
+                    try{
+                        dashboard.removeTower();
+                    }
+                    catch (Exception e){
+                        break;
+                    }
                 }
                 island.setTowerColor(dashboard.getTowerColor());
                 for (Player p : arrayPlayers) {
                     if (p.getDashboard().getTowerColor().equals(color)) {
                         if (numPlayers == 2 || numPlayers == 3 || (numPlayers == 4 && p.isTeamLeader())) {
-                            p.getDashboard().addTower();
+                            for (int i = 0; i < island.getNumTowers(); i++) {
+                                p.getDashboard().addTower();
+                            }
                             break;
                         }
                     }
                 }
             }
         } catch (IslandException e) {
-            for (int i = 0; i < numTowers; i++) {
-                dashboard.removeTower();
-            }
+
+            dashboard.removeTower();
+
             island.setTowerColor(dashboard.getTowerColor());
             island.addTowers(numTowers);
         }
