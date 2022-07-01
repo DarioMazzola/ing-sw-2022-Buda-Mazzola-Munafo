@@ -361,13 +361,13 @@ public class GameModel extends Observable {
         if (numTowers > dashboard.getNumTowers()) {
             throw new TowerAreaException("There are not enough towers in the dashboard");
         }
-        for (int i = 0; i < numTowers; i++) {
-            dashboard.removeTower();
-        }
 
         try {
             Color color = island.getColorTower();
             if (!color.equals(dashboard.getTowerColor())){
+                for (int i = 0; i < numTowers; i++) {
+                    dashboard.removeTower();
+                }
                 island.setTowerColor(dashboard.getTowerColor());
                 for(Player p :arrayPlayers) {
                     if(p.getDashboard().getTowerColor().equals(color)){
@@ -379,6 +379,9 @@ public class GameModel extends Observable {
                 }
             }
         } catch (IslandException e){
+            for (int i = 0; i < numTowers; i++) {
+                dashboard.removeTower();
+            }
             island.setTowerColor(dashboard.getTowerColor());
             island.addTowers(numTowers);
         }
