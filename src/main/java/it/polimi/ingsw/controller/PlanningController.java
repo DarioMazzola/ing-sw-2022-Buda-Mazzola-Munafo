@@ -27,7 +27,7 @@ public class PlanningController {
     private int selected;
     private int position;
 
-    public PlanningController (GameModel gm){
+    public PlanningController(GameModel gm) {
 
         this.selected = 0;
         this.firstPlanner = 0;
@@ -44,7 +44,7 @@ public class PlanningController {
      * Gets called to manage the messages from the client
      *
      * @param messageReceived received from the client
-     * @param tc the turn controller in use
+     * @param tc              the turn controller in use
      */
     public void doAction(CommandMessage messageReceived, TurnController tc) {
         Persistence persistence = new Persistence();
@@ -77,7 +77,7 @@ public class PlanningController {
         availableAssistantCards.remove(card);
         selected++;
 
-        if(selected == gm.getNumPlayers()){
+        if (selected == gm.getNumPlayers()) {
             selected = 0;
 
             UpdateRanking();
@@ -91,7 +91,7 @@ public class PlanningController {
             if (gm.isExpertMode()) {
                 availableActions.add("Select character card");
             }
-            if(gm.getChat() != null && gm.getChat()) {
+            if (gm.getChat() != null && gm.getChat()) {
                 availableActions.add("Send a message to your team mate");
                 availableActions.add("See received messages");
             }
@@ -102,31 +102,30 @@ public class PlanningController {
 
             persistence.saveData(tc);
 
-            for (int i=0; i<gm.getNumPlayers(); i++){
-                if (!gm.getArrayPlayers()[i].equals(gm.getCurrentPlayer())){
+            for (int i = 0; i < gm.getNumPlayers(); i++) {
+                if (!gm.getArrayPlayers()[i].equals(gm.getCurrentPlayer())) {
                     tc.getVirtualViewMap().get(gm.getArrayPlayers()[i].getNickname()).goToWaitingRoom();
                 }
             }
 
             tc.getVirtualViewMap().get(gm.getArrayPlayers()[ranking[0]].getNickname()).actionPhase(availableActions);
-        }
-        else {
+        } else {
             tc.getVirtualViewMap().get(messageReceived.getNickname()).waitForOthersMoves("assistant card");
 
             int i;
-            for (i=0; i<gm.getNumPlayers(); i++){
-                if (gm.getArrayPlayers()[i].getNickname().equals(messageReceived.getNickname())){
+            for (i = 0; i < gm.getNumPlayers(); i++) {
+                if (gm.getArrayPlayers()[i].getNickname().equals(messageReceived.getNickname())) {
                     break;
                 }
             }
-            tc.getVirtualViewMap().get(gm.getArrayPlayers()[(i + 1)% gm.getNumPlayers()].getNickname()).selectAssistantCard(availableAssistantCards);
+            tc.getVirtualViewMap().get(gm.getArrayPlayers()[(i + 1) % gm.getNumPlayers()].getNickname()).selectAssistantCard(availableAssistantCards);
         }
     }
 
     /**
      * Updates the ranking of the planning phase
      */
-    private void UpdateRanking(){
+    private void UpdateRanking() {
         ranking = createRanking(cardList, gm.getNumPlayers());
         firstPlanner = ranking[0];
     }
@@ -134,10 +133,10 @@ public class PlanningController {
     /**
      * Creates the ranking of the planning phase
      *
-     * @param cardList parameters on which the ranking is based on
+     * @param cardList   parameters on which the ranking is based on
      * @param numPlayers the number of players
      */
-    private int[] createRanking (List<Card> cardList, int numPlayers){
+    private int[] createRanking(List<Card> cardList, int numPlayers) {
 
         Map<Card, Integer> map = new HashMap<>();
 
@@ -211,18 +210,18 @@ public class PlanningController {
                 }
             }
         }
-        return(ranking);
+        return (ranking);
     }
 
-    public int[] getRanking(){
+    public int[] getRanking() {
         return ranking;
     }
 
-    public String toString(){
+    public String toString() {
         return "Planning Controller";
     }
 
-    public void setGameModel(GameModel gm){
+    public void setGameModel(GameModel gm) {
         this.gm = gm;
     }
 
@@ -231,7 +230,7 @@ public class PlanningController {
      *
      * @param messageReceived the message from the client
      */
-    private boolean notOtherCards(CommandMessage messageReceived){
+    private boolean notOtherCards(CommandMessage messageReceived) {
         Set<Card> result = availableAssistantCards.stream().distinct().filter(gm.getPlayerByNickname(messageReceived.getNickname()).getDeck()::contains).collect(Collectors.toSet());
         return result.isEmpty();
     }
@@ -239,25 +238,25 @@ public class PlanningController {
     /**
      * Resets the available actions list
      */
-    public void resetCards(){
+    public void resetCards() {
         this.availableAssistantCards.clear();
         availableAssistantCards.addAll(Arrays.asList(Card.values()));
         this.cardList.clear();
     }
 
-    public int getFirstPlanner(){
+    public int getFirstPlanner() {
         return firstPlanner;
     }
 
-    public void setPosition(int value){
+    public void setPosition(int value) {
         position = value;
     }
 
-    public int getPosition(){
+    public int getPosition() {
         return position;
     }
 
-    public int getSelected(){
+    public int getSelected() {
         return selected;
     }
 }

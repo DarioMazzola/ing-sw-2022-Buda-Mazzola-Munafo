@@ -1,12 +1,14 @@
 package it.polimi.ingsw.model;
 
-/** enum class representing Tower Colors
+/**
+ * Enum class representing Tower Colors
+ *
  * @author Alessio Buda & Dario Mazzola
  */
 public enum Color {
-    WHITE ("WHITE", "\u001B[0m"),
-    GRAY("GRAY","\u001B[37m"),
-    BLACK("BLACK","\u001B[30m");
+    WHITE("WHITE", "\u001B[0m"),
+    GRAY("GRAY", "\u001B[37m"),
+    BLACK("BLACK", "\u001B[30m");
 
     public static final String RESET = "\u001B[0m";
 

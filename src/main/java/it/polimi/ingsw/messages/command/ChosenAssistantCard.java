@@ -14,7 +14,7 @@ public class ChosenAssistantCard extends CommandMessage {
     private final Card assistantCard;
 
     /**
-     * Class constructor.
+     * Class constructor
      *
      * @param nickname player's nickname
      * @param assistantCard the assistant card selected by the player

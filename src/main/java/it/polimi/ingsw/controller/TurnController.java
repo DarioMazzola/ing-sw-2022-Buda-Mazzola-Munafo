@@ -551,6 +551,12 @@ public class TurnController {
         }
     }
 
+    /**
+     * Sends all player, except for the one specified, a wait for others moves message
+     *
+     * @param move the move the player is doing
+     * @param toExclude the player who doesn't receive the message
+     */
     public void sendAllWaitExcept(String move, String toExclude) {
 
         for(String n : virtualViewMap.keySet()) {

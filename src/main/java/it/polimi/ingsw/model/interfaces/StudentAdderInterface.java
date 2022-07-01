@@ -6,13 +6,15 @@ import java.util.Map;
 
 /**
  * Declares methods used to manage the students
+ *
  * @author Gabriele Munafo'
  */
-public interface StudentAdderInterface{
+public interface StudentAdderInterface {
     /**
      * Adds the number of students entered as a parameter
      * to the total number of students for that house
-     * @param house The house that will have the number of students increased
+     *
+     * @param house       The house that will have the number of students increased
      * @param numStudents The students' number added to the house
      */
     void addStudents(House house, int numStudents) throws Exception;
@@ -26,5 +28,5 @@ public interface StudentAdderInterface{
     /**
      * @return A map containing the students' number divided by house
      */
-    Map<House, Integer> getStudents () throws Exception;
+    Map<House, Integer> getStudents() throws Exception;
 }

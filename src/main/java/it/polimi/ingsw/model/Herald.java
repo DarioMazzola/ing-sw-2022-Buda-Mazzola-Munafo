@@ -6,6 +6,7 @@ import static it.polimi.ingsw.model.CharacterCardEnum.HERALD;
 
 /**
  * Class that represent the Herald character card
+ *
  * @author Gabriele Munafò
  */
 public class Herald extends CharacterCard {
@@ -16,22 +17,23 @@ public class Herald extends CharacterCard {
 
     /**
      * Calculates the influence on a provided island
+     *
      * @param parameters map that provides the island where to calculate the influence
      * @throws NullPointerException when parameters is null or when the island given in the map parameters is null
      */
     @Override
-    public void doEffect(Map<String, Object> parameters) throws Exception{
+    public void doEffect(Map<String, Object> parameters) throws Exception {
         super.doEffect(parameters);
 
-        if (parameters == null){
+        if (parameters == null) {
             throw new NullPointerException();
         }
         Island island = (Island) parameters.get("Island");
-        if (island == null){
+        if (island == null) {
             throw new NullPointerException();
         }
         Player[] arrayPlayers = (Player[]) parameters.get("ArrayPlayers");
-        if (arrayPlayers == null){
+        if (arrayPlayers == null) {
             throw new NullPointerException();
         }
         int numPlayers = (int) parameters.get("NumPlayers");

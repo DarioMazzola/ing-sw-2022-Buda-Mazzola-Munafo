@@ -11,8 +11,7 @@ import static it.polimi.ingsw.messages.MessageType.SELECT_EXPERT_MODE;
 public class SelectExpertMode extends AnswerMessage {
 
     /**
-     * Class constructor.
-     *
+     * Class constructor
      */
     public SelectExpertMode() {
         super(SELECT_EXPERT_MODE);

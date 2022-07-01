@@ -11,7 +11,7 @@ import static it.polimi.ingsw.messages.MessageType.SELECT_RESTORE_GAME;
 public class SelectRestoreGame extends AnswerMessage{
 
     /**
-     * Class constructor.
+     * Class constructor
      */
     public SelectRestoreGame() {
         super(SELECT_RESTORE_GAME);

@@ -1,7 +1,6 @@
 package it.polimi.ingsw.messages.command;
 
 import it.polimi.ingsw.model.House;
-import it.polimi.ingsw.model.Island;
 
 import static it.polimi.ingsw.messages.MessageType.MOVE_STUDENT_TO_ISLAND;
 

@@ -3,7 +3,6 @@ package it.polimi.ingsw.messages.command;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import it.polimi.ingsw.model.House;
-import it.polimi.ingsw.model.Island;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;

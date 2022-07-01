@@ -2,15 +2,10 @@ package it.polimi.ingsw.view.gui.scenes;
 
 import it.polimi.ingsw.observer.ViewObservable;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  * Scene representing the waiting room for the player when another player is choosing the color of the towers,
@@ -29,7 +24,7 @@ public class WaitForOthersMoveSceneController extends ViewObservable implements 
     private final String move;
 
     /**
-     * Class constructor.
+     * Class constructor
      *
      * @param move the choice that the player is waiting for.
      */

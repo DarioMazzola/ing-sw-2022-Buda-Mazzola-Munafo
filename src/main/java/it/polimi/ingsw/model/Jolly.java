@@ -112,7 +112,6 @@ public class Jolly extends CharacterCard{
         int numWantedStudents = 0;
         int numReturnedStudents = 0;
 
-        // checks
         for (House h : House.values()) {
             if (houseMap.get(h) < wantedStudents.get(h))
                 throw new NotEnoughStudentsOnCardException("Not enough students of" + h + "house on the card");

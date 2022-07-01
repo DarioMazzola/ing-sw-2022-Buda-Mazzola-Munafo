@@ -13,6 +13,7 @@ import static it.polimi.ingsw.model.House.*;
 
 /**
  * Class that represents the GameModel
+ *
  * @author Gabriele Munafo'
  */
 public class GameModel extends Observable {
@@ -31,6 +32,7 @@ public class GameModel extends Observable {
 
     /**
      * Class constructor, initializes the GameModel based on the number of players and the mode chosen
+     *
      * @param numPlayers the number of players chosen
      * @param expertMode specifies the mode chosen
      */
@@ -44,15 +46,15 @@ public class GameModel extends Observable {
         int numIsland = 12;
         for (int i = 0; i < numIsland; i++) islandList.add(new Island(expertMode));
 
-        Map<House,Integer> houseMap = new HashMap<>();
+        Map<House, Integer> houseMap = new HashMap<>();
         houseMap.put(YELLOW, 2);
         houseMap.put(BLUE, 2);
         houseMap.put(GREEN, 2);
         houseMap.put(RED, 2);
         houseMap.put(PINK, 2);
 
-        for (int i=1; i<numIsland; i++) {
-            if (i!=6) {
+        for (int i = 1; i < numIsland; i++) {
+            if (i != 6) {
                 Random rand = new Random();
                 int value;
                 House chosen;
@@ -71,12 +73,12 @@ public class GameModel extends Observable {
         bag = new Bag();
         arrayClouds = new Cloud[numPlayers];
         arrayPlayers = new Player[numPlayers];
-        for (int i=0; i<numPlayers; i++){
+        for (int i = 0; i < numPlayers; i++) {
             arrayClouds[i] = new Cloud(numPlayers);
             arrayPlayers[i] = new Player(numPlayers);
         }
 
-        if (expertMode){
+        if (expertMode) {
             totalCoins = 20 - numPlayers;
             characterCardDeck = new CharacterCard[3];
             CharacterCardFactory characterCardFactory = new CharacterCardFactory();
@@ -85,15 +87,14 @@ public class GameModel extends Observable {
             int randomNum;
             CharacterCardEnum cardType;
 
-            for (int i=0; i<3; i++){
+            for (int i = 0; i < 3; i++) {
                 randomNum = rand.nextInt(charList.size());
                 cardType = charList.get(randomNum);
                 charList.remove(randomNum);
 
                 characterCardDeck[i] = characterCardFactory.getCharacterCard(cardType, bag);
             }
-        }
-        else {
+        } else {
             characterCardDeck = null;
         }
 
@@ -104,47 +105,49 @@ public class GameModel extends Observable {
 
     /**
      * Initialize the dashboard of a certain player with the chosen tower color
-     * @param player the player whose dashboard will be initialized
+     *
+     * @param player     the player whose dashboard will be initialized
      * @param towerColor the tower color that has to be set
-     * @throws BagException when the bag.pull fails
+     * @throws BagException      when the bag.pull fails
      * @throws EntranceException when the dashboard is already full
      */
     public void initializeDashboard(Player player, Color towerColor) throws BagException, EntranceException {
         player.setDashboard(towerColor, player.getNickname());
 
         int numRep;
-        if (numPlayers == 2 || numPlayers == 4){
+        if (numPlayers == 2 || numPlayers == 4) {
             numRep = 7;
-        }
-        else {
+        } else {
             numRep = 9;
         }
 
-        for (int j=0; j<numRep; j++) {
+        for (int j = 0; j < numRep; j++) {
             player.getDashboard().addStudents(bag.pull(), 1, false);
         }
     }
 
     /**
      * Calculates the influence of each player on a certain island and selects, if present, the player who has the highest influence
+     *
      * @param island the island where we calculate the influence on
      * @return the player who has the highest influence on the island
      */
     public Player checkInfluence(Island island) throws Exception {
-        return(context.checkInfluence(island, expertMode, numPlayers, arrayPlayers, characterCardDeck));
+        return (context.checkInfluence(island, expertMode, numPlayers, arrayPlayers, characterCardDeck));
     }
 
     /**
      * Sets the right context for the character card played
+     *
      * @param card the index of the character card the player wants to use
-     * @param map contains the parameters used by the character cards
+     * @param map  contains the parameters used by the character cards
      * @throws IllegalArgumentException when the player hasn't got enough coins or when the card used does not exist
      */
     public void useCharacterCard(int card, Map<String, Object> map) throws Exception {
-        if (card < 0 || card > 3){
+        if (card < 0 || card > 3) {
             throw new IllegalArgumentException("This character card doesn't exists!");
         }
-        if (currentPlayer.getCoins() < characterCardDeck[card].getCost()){
+        if (currentPlayer.getCoins() < characterCardDeck[card].getCost()) {
             throw new IllegalArgumentException("The player doesn't have enough coins to play this card!");
         }
         currentPlayer.removeCoins(characterCardDeck[card].getCost());
@@ -161,7 +164,7 @@ public class GameModel extends Observable {
     /**
      * Sets the basic context
      */
-    public void setBaseContext(){
+    public void setBaseContext() {
         context = new ContextCharacterCard(new CharacterCard(0, "Base", null));
 
         notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
@@ -169,22 +172,23 @@ public class GameModel extends Observable {
 
     /**
      * Checks the correct position of a certain professor
+     *
      * @param house the kind of prof to check
      */
-    public void checkProf(House house) throws IllegalChoiceException{
+    public void checkProf(House house) throws IllegalChoiceException {
         context.checkProf(arrayPlayers, currentPlayer, house);
     }
 
     /**
      * Adds a certain number of coins to totalCoins
+     *
      * @param numCoins the number of coins added
      * @throws TotalCoinsException if the number of coins exceeds the maximum number of coins acceptable
      */
     public void addCoins(int numCoins) throws TotalCoinsException {
-        if (this.totalCoins == 20){
+        if (this.totalCoins == 20) {
             throw new TotalCoinsException("The number of coins is already the maximum possible");
-        }
-        else if (this.totalCoins + numCoins > 20){
+        } else if (this.totalCoins + numCoins > 20) {
             throw new TotalCoinsException("Cannot add so many coins");
         }
         this.totalCoins = this.totalCoins + numCoins;
@@ -194,11 +198,12 @@ public class GameModel extends Observable {
 
     /**
      * Removes a certain number of coins to totalCoins
+     *
      * @param numCoins the number of coins removed
      * @throws TotalCoinsException if the number of coins is below the number requested
      */
-    public void removeCoins(int numCoins) throws TotalCoinsException{
-        if (this.totalCoins < numCoins){
+    public void removeCoins(int numCoins) throws TotalCoinsException {
+        if (this.totalCoins < numCoins) {
             throw new TotalCoinsException("There aren't enough coins available");
         }
         this.totalCoins = this.totalCoins - numCoins;
@@ -208,14 +213,15 @@ public class GameModel extends Observable {
 
     /**
      * Moves a certain number of students belonging to a certain house from a position to another
-     * @param from the StudentModifierInterface where we remove the students
-     * @param to the StudentAdderInterface where we add the students
-     * @param house the house where the students belongs
+     *
+     * @param from        the StudentModifierInterface where we remove the students
+     * @param to          the StudentAdderInterface where we add the students
+     * @param house       the house where the students belongs
      * @param numStudents number of students moved
      * @throws NullPointerException when at least one among from, to and house are null
      */
-    public void moveStudents (StudentModifierInterface from, StudentAdderInterface to, House house, int numStudents) throws Exception {
-        if (from == null || to == null || house == null){
+    public void moveStudents(StudentModifierInterface from, StudentAdderInterface to, House house, int numStudents) throws Exception {
+        if (from == null || to == null || house == null) {
             throw new NullPointerException();
         }
 
@@ -223,7 +229,7 @@ public class GameModel extends Observable {
 
         try {
             to.addStudents(house, numStudents);
-        } catch (Exception e){
+        } catch (Exception e) {
             from.addStudents(house, numStudents, false);
             throw new Exception();
         }
@@ -233,12 +239,13 @@ public class GameModel extends Observable {
 
     /**
      * Moves a certain number of students belonging to a certain house from a position to another. If the game is in expert mode, it may add coins to the current player if needed
-     * @param from the StudentModifierInterface where we remove the students
-     * @param to the StudentModifierInterface where we add the students
-     * @param house the house where the students belongs
+     *
+     * @param from        the StudentModifierInterface where we remove the students
+     * @param to          the StudentModifierInterface where we add the students
+     * @param house       the house where the students belongs
      * @param numStudents number of students moved
      */
-    public void moveStudents (StudentModifierInterface from, StudentModifierInterface to, House house, int numStudents, boolean notify) throws NullPointerException, IllegalChoiceException {
+    public void moveStudents(StudentModifierInterface from, StudentModifierInterface to, House house, int numStudents, boolean notify) throws NullPointerException, IllegalChoiceException {
         if (from == null || to == null || house == null) {
             throw new NullPointerException();
         }
@@ -267,22 +274,23 @@ public class GameModel extends Observable {
         }
         checkProf(house);
 
-        if(notify)
+        if (notify)
             notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
     }
 
     /**
      * Moves a certain number of students belonging to a certain house from a position to another
-     * @param from the Bag from where we pull the students
-     * @param to the StudentAdderInterface where we add the students
+     *
+     * @param from        the Bag from where we pull the students
+     * @param to          the StudentAdderInterface where we add the students
      * @param numStudents number of students moved
      */
-    public void moveStudents (Bag from, StudentAdderInterface to, int numStudents) throws NullPointerException, BagException {
+    public void moveStudents(Bag from, StudentAdderInterface to, int numStudents) throws NullPointerException, BagException {
         if (from == null || to == null) {
             throw new NullPointerException();
         }
         House pulled;
-        for (int i=0; i<numStudents; i++) {
+        for (int i = 0; i < numStudents; i++) {
             pulled = from.pull();
 
             try {
@@ -297,16 +305,17 @@ public class GameModel extends Observable {
 
     /**
      * Moves a certain number of students belonging to a certain house from a position to another
-     * @param from the Bag from where we pull the students
-     * @param to the StudentModifierInterface where we add the students
+     *
+     * @param from        the Bag from where we pull the students
+     * @param to          the StudentModifierInterface where we add the students
      * @param numStudents number of students moved
      */
-    public void moveStudents (Bag from, StudentModifierInterface to, int numStudents, boolean notify) throws NullPointerException, BagException {
+    public void moveStudents(Bag from, StudentModifierInterface to, int numStudents, boolean notify) throws NullPointerException, BagException {
         if (from == null || to == null) {
             throw new NullPointerException();
         }
         House pulled;
-        for (int i=0; i<numStudents; i++) {
+        for (int i = 0; i < numStudents; i++) {
             pulled = from.pull();
             try {
                 to.addStudents(pulled, 1, false);
@@ -315,21 +324,22 @@ public class GameModel extends Observable {
             }
         }
 
-        if(notify)
+        if (notify)
             notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
     }
 
     /**
      * Moves the cloud's students in the player's dashboard
+     *
      * @param cloud from where the students are taken
      * @throws NullPointerException when the cloud passed is null
      */
     public void refillFromCloud(Cloud cloud) throws NullPointerException, IllegalChoiceException {
-        if (cloud == null){
+        if (cloud == null) {
             throw new NullPointerException();
         }
         int numStud;
-        for (House house : House.values()){
+        for (House house : House.values()) {
             numStud = cloud.getHouseStudents(house);
             if (numStud > 0) {
                 moveStudents(cloud, currentPlayer.getDashboard(), house, numStud, false);
@@ -339,7 +349,7 @@ public class GameModel extends Observable {
         ReducedCloud[] reducedClouds = new ReducedCloud[arrayClouds.length];
 
         int j = 0;
-        for(Cloud i : arrayClouds) {
+        for (Cloud i : arrayClouds) {
             reducedClouds[j] = new ReducedCloud(i);
             j++;
         }
@@ -350,8 +360,9 @@ public class GameModel extends Observable {
 
     /**
      * Moves a certain number of towers from a dashboard to an island
+     *
      * @param dashboard the player's dashboard where we remove the towers
-     * @param island the island where we add the towers
+     * @param island    the island where we add the towers
      * @param numTowers number of towers moved
      */
     public void moveTowers(Dashboard dashboard, Island island, int numTowers) throws NullPointerException, TowerAreaException {
@@ -364,13 +375,13 @@ public class GameModel extends Observable {
 
         try {
             Color color = island.getColorTower();
-            if (!color.equals(dashboard.getTowerColor())){
+            if (!color.equals(dashboard.getTowerColor())) {
                 for (int i = 0; i < numTowers; i++) {
                     dashboard.removeTower();
                 }
                 island.setTowerColor(dashboard.getTowerColor());
-                for(Player p :arrayPlayers) {
-                    if(p.getDashboard().getTowerColor().equals(color)){
+                for (Player p : arrayPlayers) {
+                    if (p.getDashboard().getTowerColor().equals(color)) {
                         if (numPlayers == 2 || numPlayers == 3 || (numPlayers == 4 && p.isTeamLeader())) {
                             p.getDashboard().addTower();
                             break;
@@ -378,7 +389,7 @@ public class GameModel extends Observable {
                     }
                 }
             }
-        } catch (IslandException e){
+        } catch (IslandException e) {
             for (int i = 0; i < numTowers; i++) {
                 dashboard.removeTower();
             }
@@ -395,7 +406,8 @@ public class GameModel extends Observable {
                         merge(0, i);
                         i = 0;
                     }
-                } catch (IslandException ignored) {}
+                } catch (IslandException ignored) {
+                }
 
                 try {
                     if (i > 0 && islandList.get(i).getColorTower().equals(islandList.get(i - 1).getColorTower())) {
@@ -403,7 +415,8 @@ public class GameModel extends Observable {
                     } else if (i == 0 && islandList.get(i).getColorTower().equals(islandList.get(getNumIslands() - 1).getColorTower())) {
                         merge(i, getNumIslands() - 1);
                     }
-                } catch (IslandException ignored) {}
+                } catch (IslandException ignored) {
+                }
                 break;
             }
         }
@@ -412,7 +425,7 @@ public class GameModel extends Observable {
 
         List<ReducedIsland> reducedIslands = new ArrayList<>();
 
-        for(Island i : islandList)
+        for (Island i : islandList)
             reducedIslands.add(new ReducedIsland(i));
 
         notifyObserver(new UpdateIsland(reducedIslands));
@@ -420,10 +433,11 @@ public class GameModel extends Observable {
 
     /**
      * Merges two island in one, copying the parameters of the second one in the first one. It also moves the mother accordingly
+     *
      * @param island1 the resulting island after the operation
      * @param island2 the island that got merged, which won't exist anymore in the list
      */
-    private void merge(int island1, int island2){
+    private void merge(int island1, int island2) {
         if (motherIsland == island2) {
             motherIsland = island1;
         }
@@ -440,7 +454,7 @@ public class GameModel extends Observable {
 
         List<ReducedIsland> reducedIslands = new ArrayList<>();
 
-        for(Island i : islandList)
+        for (Island i : islandList)
             reducedIslands.add(new ReducedIsland(i));
 
         notifyObserver(new UpdateIsland(reducedIslands));
@@ -452,16 +466,16 @@ public class GameModel extends Observable {
      */
     public void refillClouds() throws IllegalChoiceException, BagException {
         int numCloud = 3;
-        if (numPlayers == 3){
+        if (numPlayers == 3) {
             numCloud = 4;
         }
-        for (int i=0; i<numPlayers; i++){
+        for (int i = 0; i < numPlayers; i++) {
             moveStudents(bag, arrayClouds[i], numCloud, false);
         }
 
         ReducedCloud[] reducedClouds = new ReducedCloud[arrayClouds.length];
 
-        for(int i=0; i<arrayClouds.length; i++) {
+        for (int i = 0; i < arrayClouds.length; i++) {
             reducedClouds[i] = new ReducedCloud(arrayClouds[i]);
         }
 
@@ -470,13 +484,14 @@ public class GameModel extends Observable {
 
     /**
      * Modifies the position of the mother. If it exceeds the 11th island, it starts over from the 0 one
+     *
      * @param moves how many steps mother has to take
      */
-    public void setMotherIsland (int moves){
-        if (moves < 1 || moves > currentPlayer.getMaxMoves()){
+    public void setMotherIsland(int moves) {
+        if (moves < 1 || moves > currentPlayer.getMaxMoves()) {
             throw new IllegalArgumentException("You can't move mother nature in this way!");
         }
-        this.motherIsland = (this.getMotherIsland()+moves)%this.getNumIslands();
+        this.motherIsland = (this.getMotherIsland() + moves) % this.getNumIslands();
 
         notifyObserver(new UpdateMotherIsland(motherIsland));
     }
@@ -484,8 +499,8 @@ public class GameModel extends Observable {
     /**
      * Checks that all professors are in the correct place. It is used mainly for character cards
      */
-    public void checkAllProf(){
-        for (House h: House.values()){
+    public void checkAllProf() {
+        for (House h : House.values()) {
             try {
                 checkProf(h);
             } catch (IllegalChoiceException e) {
@@ -496,10 +511,11 @@ public class GameModel extends Observable {
 
     /**
      * Sets the current player
+     *
      * @param player the player that has to be the current player
      */
-    public void setCurrentPlayer(int player) throws IllegalArgumentException{
-        if (player < 0 || player >= numPlayers){
+    public void setCurrentPlayer(int player) throws IllegalArgumentException {
+        if (player < 0 || player >= numPlayers) {
             throw new IllegalArgumentException("This player does not exit!");
         }
         currentPlayer = arrayPlayers[player];
@@ -507,24 +523,24 @@ public class GameModel extends Observable {
         notifyObserver(new UpdateCurrentPlayer(new ReducedPlayer(currentPlayer)));
     }
 
-    public ContextCharacterCard getContext(){
+    public ContextCharacterCard getContext() {
         return context;
     }
 
-    public int getNumPlayers(){
-        return(this.numPlayers);
+    public int getNumPlayers() {
+        return (this.numPlayers);
     }
 
-    public boolean isExpertMode(){
-        return(this.expertMode);
+    public boolean isExpertMode() {
+        return (this.expertMode);
     }
 
-    public int getNumIslands(){
-        return(islandList.size());
+    public int getNumIslands() {
+        return (islandList.size());
     }
 
-    public int getMotherIsland (){
-        return(motherIsland);
+    public int getMotherIsland() {
+        return (motherIsland);
     }
 
     public Player[] getArrayPlayers() {
@@ -533,23 +549,23 @@ public class GameModel extends Observable {
         return result;
     }
 
-    public List<Island> getIslandList(){
+    public List<Island> getIslandList() {
         return (new ArrayList<>(islandList));
     }
 
-    public Bag getBag(){
+    public Bag getBag() {
         return (bag);
     }
 
-    public Cloud[] getArrayClouds(){
+    public Cloud[] getArrayClouds() {
         return (arrayClouds);
     }
 
-    public int getTotalCoins(){
+    public int getTotalCoins() {
         return (totalCoins);
     }
 
-    public Player getCurrentPlayer(){
+    public Player getCurrentPlayer() {
         return currentPlayer;
     }
 
@@ -557,24 +573,31 @@ public class GameModel extends Observable {
         return (characterCardDeck);
     }
 
-    public Player getPlayerByNickname(String nickname){
+    public Player getPlayerByNickname(String nickname) {
         return Arrays.stream(getArrayPlayers()).
-                filter((x)-> x.getNickname().equals(nickname)).
+                filter((x) -> x.getNickname().equals(nickname)).
                 findFirst().orElse(null);
     }
 
-    public Boolean getChat(){
+    public Boolean getChat() {
         return chat;
     }
 
-    public void setCharacterCardDeck(CharacterCard[] deck){
+    public void setCharacterCardDeck(CharacterCard[] deck) {
         this.characterCardDeck = deck;
     }
+
+    /**
+     * Gets the team member of a certain player
+     *
+     * @param nickname of the player who is in the team
+     * @return the other member of the team
+     */
     public String getTeamMate(String nickname) {
         Player sender = getPlayerByNickname(nickname);
 
-        for(Player p : getArrayPlayers()){
-            if((! p.equals(sender)) && p.getDashboard().getTowerColor().equals(sender.getDashboard().getTowerColor())){
+        for (Player p : getArrayPlayers()) {
+            if ((!p.equals(sender)) && p.getDashboard().getTowerColor().equals(sender.getDashboard().getTowerColor())) {
                 return p.getNickname();
             }
         }

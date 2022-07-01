@@ -42,8 +42,9 @@ public class StartController {
 
     /**
      * Gets called to manage the messages from the client
+     *
      * @param messageReceived received from the client
-     * @param phase which selects the right case of the switch
+     * @param phase           which selects the right case of the switch
      */
     public void doAction(CommandMessage messageReceived, GamePhase phase, TurnController tc) {
         System.out.println("\n" + messageReceived.getNickname() + " is in start state\n");
@@ -121,8 +122,7 @@ public class StartController {
                     tc.getVirtualViewMap().get(teamArray[0]).waitForOthersMoves("tower's color");
                     tc.getVirtualViewMap().get(teamArray[1]).waitForOthersMoves("tower's color");
 
-                }
-                else {
+                } else {
                     tc.getVirtualViewMap().get(messageReceived.getNickname()).waitForOthersMoves("team");
                 }
                 break;
@@ -159,7 +159,7 @@ public class StartController {
 
                     tc.sendAllModel();
 
-                    for (int i=1; i<gm.getNumPlayers(); i++){
+                    for (int i = 1; i < gm.getNumPlayers(); i++) {
                         tc.getVirtualViewMap().get(gm.getArrayPlayers()[i].getNickname()).waitForOthersMoves("assistant card");
                     }
 
@@ -180,6 +180,7 @@ public class StartController {
 
     /**
      * Checks if the wizard is already been taken by another player
+     *
      * @param wizard that has to be checked
      */
     private boolean wizardTaken(Wizard wizard) {
@@ -191,12 +192,13 @@ public class StartController {
         return false;
     }
 
-    public void setGameModel(GameModel gm){
+    public void setGameModel(GameModel gm) {
         this.gm = gm;
     }
 
     /**
      * Checks if the color tower is already been taken by another player
+     *
      * @param color that has to be checked
      */
     private boolean colorTowerTaken(Color color) {

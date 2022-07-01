@@ -7,10 +7,11 @@ import static it.polimi.ingsw.messages.MessageType.PONG;
  *
  * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
-public class Pong extends CommandMessage{
+public class Pong extends CommandMessage {
 
     /**
      * Message constructor
+     *
      * @param nickname the nickname of the player sending the message
      */
     public Pong(String nickname) {

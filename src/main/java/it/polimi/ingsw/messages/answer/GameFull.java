@@ -11,8 +11,7 @@ import static it.polimi.ingsw.messages.MessageType.GAME_FULL;
 public class GameFull extends AnswerMessage {
 
     /**
-     * Class constructor.
-     *
+     * Class constructor
      */
     public GameFull() {
         super(GAME_FULL);

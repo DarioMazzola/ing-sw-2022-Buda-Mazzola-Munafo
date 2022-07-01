@@ -22,11 +22,12 @@ public class AnswerSerializer {
     /**
      * Static method that represents a serializer for an answer message. It receives an answer message and serializes it
      * into the network communication protocol.
+     *
      * @param msg The answer message to be serialized
      * @return The message serialized
      * @throws IllegalArgumentException If the message, that the user wants to serialize, does not exist
      */
-    public static String serialize(AnswerMessage msg) throws IllegalArgumentException{
+    public static String serialize(AnswerMessage msg) throws IllegalArgumentException {
         List<String> list = new ArrayList<>();
 
         Gson gson = new Gson();
@@ -140,6 +141,7 @@ public class AnswerSerializer {
     /**
      * Static method that represents a deserializer for an answer message. It receives the string received by the
      * network layer and deserializes it, from the network communication protocol to AnswerMessage.
+     *
      * @param messageReceived The message too be deserialized
      * @return The answer message deserialized
      * @throws IllegalArgumentException If the message received is not valid or not an answer message
@@ -148,7 +150,8 @@ public class AnswerSerializer {
 
         Gson gson = new Gson();
 
-        Type listOfMyClassObject = new TypeToken<ArrayList<String>>() {}.getType();
+        Type listOfMyClassObject = new TypeToken<ArrayList<String>>() {
+        }.getType();
 
         List<String> msg = gson.fromJson(messageReceived, listOfMyClassObject);
 

@@ -13,10 +13,11 @@ import static it.polimi.ingsw.messages.MessageType.SELECT_ASSISTANT_CARD;
  * @author Alessio Buda & Dario Mazzola & Gabriele Munafo'
  */
 public class SelectAssistantCard extends AnswerMessage {
+
     private final List<Card> availableAssistantCards;
 
     /**
-     * Class constructor.
+     * Class constructor
      *
      * @param availableAssistantCard the deck of the player
      */

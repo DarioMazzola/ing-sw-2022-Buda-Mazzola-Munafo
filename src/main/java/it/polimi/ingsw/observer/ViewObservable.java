@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
-
 /**
  * ViewObservable manages a list of observers of the view.
  *

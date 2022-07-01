@@ -14,7 +14,7 @@ public class UpdateGameModel extends AnswerMessage{
     private final ReducedGameModel gameModel;
 
     /**
-     * Class constructor.
+     * Class constructor
      *
      * @param gameModel the gameModel to send
      */

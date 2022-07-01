@@ -15,16 +15,17 @@ public class ContextCharacterCard {
 
     /**
      * Class constructor: creates a new context
+     *
      * @param card The character card used to set the context
      */
-    public ContextCharacterCard (CharacterCard card){
+    public ContextCharacterCard(CharacterCard card) {
         this.card = card;
     }
 
     /**
      * @see CharacterCard#doEffect(Map parameters)
      */
-    public void doEffect(Map<String, Object> parameters) throws Exception{
+    public void doEffect(Map<String, Object> parameters) throws Exception {
         card.doEffect(parameters);
     }
 
@@ -32,7 +33,7 @@ public class ContextCharacterCard {
      * @see CharacterCard#checkProf(Player[] players, Player currentPlayer, House house)
      */
     protected void checkProf(Player[] players, Player currentPlayer, House house) throws IllegalChoiceException {
-       card.checkProf(players, currentPlayer, house);
+        card.checkProf(players, currentPlayer, house);
     }
 
     /**

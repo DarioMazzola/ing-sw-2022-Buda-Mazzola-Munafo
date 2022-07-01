@@ -22,11 +22,12 @@ public class CommandSerializer {
     /**
      * Static method that represents a serializer for a command message. It receives a command message and serializes it
      * into the network communication protocol.
+     *
      * @param msg The command message to be serialized
      * @return The message serialized
      * @throws IllegalArgumentException If the message, that the user wants to serialize, does not exist
      */
-    public static String serialize(CommandMessage msg) throws IllegalArgumentException{
+    public static String serialize(CommandMessage msg) throws IllegalArgumentException {
         List<String> list = new ArrayList<>();
 
         Gson gson = new Gson();
@@ -90,7 +91,7 @@ public class CommandSerializer {
                 list.add(RELOAD_MESSAGES.toString());
                 break;
             default:
-                throw new IllegalArgumentException("Message received (" + messageType +") is not a command message");
+                throw new IllegalArgumentException("Message received (" + messageType + ") is not a command message");
         }
 
         list.add(gsonMessage);
@@ -101,6 +102,7 @@ public class CommandSerializer {
     /**
      * Static method that represents a deserializer for a command message. It receives the string received by the
      * network layer and deserializes it, from the network communication protocol to CommandMessage.
+     *
      * @param messageReceived The message too be deserialized
      * @return The command message deserialized
      * @throws IllegalArgumentException If the message received is not valid or not a command message
@@ -109,7 +111,8 @@ public class CommandSerializer {
 
         Gson gson = new Gson();
 
-        Type listOfMyClassObject = new TypeToken<ArrayList<String>>() {}.getType();
+        Type listOfMyClassObject = new TypeToken<ArrayList<String>>() {
+        }.getType();
 
         List<String> msg = gson.fromJson(messageReceived, listOfMyClassObject);
 

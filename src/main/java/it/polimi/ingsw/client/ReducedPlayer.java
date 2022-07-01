@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * Class that represents a reduced version of a Player
+ *
  * @author Gabriele Munafo'
  */
 public class ReducedPlayer {
@@ -22,7 +23,7 @@ public class ReducedPlayer {
     private final int coins;
     private ReducedDashboard dashboard;
 
-    public ReducedPlayer(Player p){
+    public ReducedPlayer(Player p) {
         nickname = p.getNickname();
 
         wizard = p.getWizard();
@@ -41,8 +42,7 @@ public class ReducedPlayer {
         coins = p.getCoins();
         if (p.getDashboard() != null) {
             dashboard = new ReducedDashboard(p.getDashboard());
-        }
-        else dashboard = null;
+        } else dashboard = null;
     }
 
     public String getNickname() {
@@ -81,7 +81,7 @@ public class ReducedPlayer {
         return coins;
     }
 
-    public ReducedDashboard getDashboard () {
+    public ReducedDashboard getDashboard() {
         return dashboard;
     }
 

@@ -12,7 +12,7 @@ import static it.polimi.ingsw.messages.MessageType.NICKNAME;
 public class Nickname extends CommandMessage {
 
     /**
-     * Class constructor.
+     * Class constructor
      *
      * @param nickname player's chosen nickname
      */

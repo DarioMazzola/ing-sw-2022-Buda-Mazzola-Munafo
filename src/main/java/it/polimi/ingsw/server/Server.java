@@ -28,7 +28,7 @@ public class Server {
     private Map<String, ClientHandler> clientHandlerMap;
 
     /**
-     * Class constructor.
+     * Class constructor
      *
      * @param turnController the controller of the game.
      */

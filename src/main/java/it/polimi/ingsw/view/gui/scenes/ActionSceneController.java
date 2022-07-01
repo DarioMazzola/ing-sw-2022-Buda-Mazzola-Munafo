@@ -1410,7 +1410,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
     private Button[] islandButtons;
 
     /**
-     * Class constructor.
+     * Class constructor
      *
      * @param gm       the game model to load
      * @param nickname the nickname of the player
@@ -1557,7 +1557,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
      * Initializes the dining hall and professors of the main player
      */
     private void initializeDiningHallMain() {
-        // parameters
         Map<House, Boolean> profMap;
         Image image;
 
@@ -2938,7 +2937,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         //second player
         initializeSecondPlayer();
 
-        if (gm.getNumPlayers() == 2) { //show of hid dashboards
+        if (gm.getNumPlayers() == 2) { //show or hid dashboards
             Dashboard2.setVisible(false);
             Dashboard3.setVisible(false);
             Chat.setVisible(false);
@@ -4673,7 +4672,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         for (Button c : cloudsButtons) {
             c.setOnMouseClicked(doNothing);
         }
-
     }
 
     /**
@@ -4848,7 +4846,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                         n.getStyleClass().add("dropShadow");
                     }
                     break;
-                case HERB_GRANMA: //ok
+                case HERB_GRANMA:
                     for (Button island : islandButtons) {
                         island.setOnMouseClicked(addNoEntryTile);
                     }
@@ -4893,7 +4891,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
                     }
                     break;
 
-                case THIEF: //ok
+                case THIEF:
                 case MUSHROOM_HUNTER:
                     for (Node n : getVBoxByCard(cardSelected).getChildren()) {
                         n.setOnMouseClicked(selectStudentForMushroomHunter_Thief);
@@ -5011,7 +5009,6 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
 
         notifyObserver(observer -> observer.onUpdateCharacterCard(cardSelected, parameters));
 
-        //cardSelected = null;
         for (Node n : box.getChildren()) {
             n.setOnMouseClicked(doNothing);
             n.getStyleClass().clear();
@@ -5107,6 +5104,7 @@ public class ActionSceneController extends ViewObservable implements SceneInterf
         } else {
             Alert alert;
             SceneController sceneController = new SceneController();
+
             //if the player has already used a card in this round
             alert = new Alert(Alert.AlertType.ERROR);
             alert.initOwner(sceneController.getActiveScene().getWindow());

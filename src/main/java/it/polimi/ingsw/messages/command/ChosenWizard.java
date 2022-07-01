@@ -14,7 +14,7 @@ public class ChosenWizard extends CommandMessage {
     private final Wizard wizard;
 
     /**
-     * Class constructor.
+     * Class constructor
      *
      * @param nickname player's nickname
      * @param wizard the player's selected wizard for this game

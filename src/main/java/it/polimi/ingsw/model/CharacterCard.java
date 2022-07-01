@@ -10,7 +10,8 @@ import it.polimi.ingsw.observer.Observable;
 import java.util.HashMap;
 import java.util.Map;
 
-/** CharacterCard class represents the base context and the class from which all the other character cards inherit.
+/**
+ * CharacterCard class represents the base context and the class from which all the other character cards inherit.
  * It implements the base version of the methods reimplemented by the different character cards and utility methods.
  *
  * @author Dario Mazzola & Gabriele Munafo'
@@ -25,10 +26,11 @@ public class CharacterCard extends Observable {
 
     /**
      * CharacterCard constructor
-     * @param cost how much does the card cost on first use
+     *
+     * @param cost     how much does the card cost on first use
      * @param cardName the name of the CharacterCard
      */
-    public CharacterCard(int cost, String cardName, CharacterCardEnum type){
+    public CharacterCard(int cost, String cardName, CharacterCardEnum type) {
         this.cost = cost;
         neverUsed = true;
         inUse = false;
@@ -40,11 +42,11 @@ public class CharacterCard extends Observable {
         return cost;
     }
 
-    private void increaseCost(){
+    private void increaseCost() {
         cost++;
     }
 
-    private void setNotNeverUsed(){
+    private void setNotNeverUsed() {
         neverUsed = false;
     }
 
@@ -52,7 +54,7 @@ public class CharacterCard extends Observable {
         return neverUsed;
     }
 
-    public void setInUse (boolean isCardInUse){
+    public void setInUse(boolean isCardInUse) {
         inUse = isCardInUse;
     }
 
@@ -62,9 +64,10 @@ public class CharacterCard extends Observable {
 
     /**
      * Returns a description of the CharacterCard's effect
+     *
      * @return A description of the CharacterCard's effect
      */
-    public String getDescription(){
+    public String getDescription() {
         return "Standard context";
     }
 
@@ -72,10 +75,11 @@ public class CharacterCard extends Observable {
      * Performs the effect of the characterCard selected.
      * If the card chosen is that of the basic context,
      * or if the game is not played in expert mode it will never be called
+     *
      * @param parameters A map that contains the objects that need to the characterCards and the objects that must be returned
      */
-    public void doEffect(Map<String, Object> parameters) throws Exception{
-        if(isNeverUsed()) {
+    public void doEffect(Map<String, Object> parameters) throws Exception {
+        if (isNeverUsed()) {
             increaseCost();
             setNotNeverUsed();
         }
@@ -93,16 +97,17 @@ public class CharacterCard extends Observable {
      * the professor is removed from his dashboard and assigned to the current player.
      * If the professor does not belong to anyone and the current player has at least one player,
      * then the professor is assigned to the current player
-     * @param players An array that contains references to all players in the game
+     *
+     * @param players       An array that contains references to all players in the game
      * @param currentPlayer The player who is playing this turn
-     * @param house The house of the professor to check
+     * @param house         The house of the professor to check
      * @throws IllegalChoiceException if the professor of the given house is not present in the dashboard from which to remove it
      */
     protected void checkProf(Player[] players, Player currentPlayer, House house) throws IllegalChoiceException {
 
         Player owner = null;
         Player playerWithMostStudents;
-        for(Player p : players){
+        for (Player p : players) {
             if (p.getDashboard().isProfPresent(house)) {
                 owner = p;
                 break;
@@ -110,11 +115,11 @@ public class CharacterCard extends Observable {
         }
 
         int numMaxStudents = (owner == null) ? 0 : owner.getDashboard().getDiningHall().getHouseStudents(house);
-        if(numMaxStudents == 0 && currentPlayer.getDashboard().getDiningHall().getHouseStudents(house) > 0) {
+        if (numMaxStudents == 0 && currentPlayer.getDashboard().getDiningHall().getHouseStudents(house) > 0) {
             currentPlayer.getDashboard().addProf(house);
             return;
         }
-        if(owner != null) {
+        if (owner != null) {
             playerWithMostStudents = (owner.getDashboard().getDiningHall().getHouseStudents(house)
                     >= currentPlayer.getDashboard().getDiningHall().getHouseStudents(house))
                     ? owner : currentPlayer;
@@ -128,12 +133,13 @@ public class CharacterCard extends Observable {
 
     /**
      * Moves a professor of a given house from a dashboard to another one
-     * @param from the dashboard from which to remove the professor of the house indicated as a parameter
-     * @param to the dashboard in which to add the professor of the house indicated as a parameter
+     *
+     * @param from  the dashboard from which to remove the professor of the house indicated as a parameter
+     * @param to    the dashboard in which to add the professor of the house indicated as a parameter
      * @param house the professor's house that has to be moved
      * @throws IllegalChoiceException if the professor of the given house is not present in the dashboard from which to remove it
      */
-    protected void moveProf(Dashboard from, Dashboard to, House house) throws IllegalChoiceException{
+    protected void moveProf(Dashboard from, Dashboard to, House house) throws IllegalChoiceException {
         from.removeProf(house);
         to.addProf(house);
 
@@ -143,14 +149,15 @@ public class CharacterCard extends Observable {
 
     /**
      * Calculates the influence of each player on a certain island and selects, if present, the player who has the highest influence
+     *
      * @param island the island where we calculate the influence on
      * @return the player who has the highest influence on the island, null if no one has the highest influence
      */
     public Player checkInfluence(Island island, Boolean expertMode, int numPlayers, Player[] arrayPlayers, CharacterCard[] characterCardDeck) throws Exception {
 
-        if (expertMode && island.isNoEntryTilePresent()){
-            removeNoEntryTile(island, characterCardDeck);
-            return(null);
+        if (expertMode && island.isNoEntryTilePresent()) {
+            removeNoEntryTile(characterCardDeck);
+            return (null);
         }
         int[] influences;
 
@@ -163,12 +170,11 @@ public class CharacterCard extends Observable {
                         influences[i] = influences[i] + island.getHouseStudents(house);
                     }
                 }
-                try{
+                try {
                     if ((arrayPlayers[i].getDashboard().getTowerColor()).equals(island.getColorTower())) {
                         influences[i] = influences[i] + island.getNumTowers();
                     }
-                }
-                catch (IslandException e){
+                } catch (IslandException e) {
                     influences[i] = influences[i];
                 }
 
@@ -202,13 +208,12 @@ public class CharacterCard extends Observable {
             int[] teamOne = new int[2];
             int[] teamTwo = new int[2];
 
-            for(int i=0; i<numPlayers; i++) {
-                if(arrayPlayers[i].isTeamLeader() && q ==0) {
+            for (int i = 0; i < numPlayers; i++) {
+                if (arrayPlayers[i].isTeamLeader() && q == 0) {
                     teamOneLeader = i;
                     teamOne[0] = i;
                     q++;
-                }
-                else if(arrayPlayers[i].isTeamLeader()) {
+                } else if (arrayPlayers[i].isTeamLeader()) {
                     teamTwoLeader = i;
                     teamTwo[0] = i;
                     q = 0;
@@ -216,7 +221,7 @@ public class CharacterCard extends Observable {
                 }
             }
 
-            for(int i=0; i<numPlayers; i++) {
+            for (int i = 0; i < numPlayers; i++) {
                 if (i != teamOneLeader && i != teamTwoLeader) {
                     if (arrayPlayers[i].getDashboard().getTowerColor().equals(arrayPlayers[teamOneLeader].getDashboard().getTowerColor())) {
                         teamOne[1] = i;
@@ -229,15 +234,15 @@ public class CharacterCard extends Observable {
 
             boolean towerAdded = false;
 
-            for(int i=0; i<2; i++){
+            for (int i = 0; i < 2; i++) {
                 influences[i] = 0;
 
-                for(House h : House.values()) {
+                for (House h : House.values()) {
                     if (i == 0) {
-                        if(arrayPlayers[teamOne[0]].getDashboard().isProfPresent(h)){
+                        if (arrayPlayers[teamOne[0]].getDashboard().isProfPresent(h)) {
                             influences[i] += island.getHouseStudents(h);
                         }
-                        if(arrayPlayers[teamOne[1]].getDashboard().isProfPresent(h)){
+                        if (arrayPlayers[teamOne[1]].getDashboard().isProfPresent(h)) {
                             influences[i] += island.getHouseStudents(h);
                         }
                         try {
@@ -245,17 +250,16 @@ public class CharacterCard extends Observable {
                                 influences[i] = influences[i] + island.getNumTowers();
                                 towerAdded = true;
                             }
-                        }
-                        catch (IslandException e){
+                        } catch (IslandException e) {
                             influences[q] = influences[q];
                         }
 
                     }
                     if (i == 1) {
-                        if(arrayPlayers[teamTwo[0]].getDashboard().isProfPresent(h)){
+                        if (arrayPlayers[teamTwo[0]].getDashboard().isProfPresent(h)) {
                             influences[i] += island.getHouseStudents(h);
                         }
-                        if(arrayPlayers[teamTwo[1]].getDashboard().isProfPresent(h)){
+                        if (arrayPlayers[teamTwo[1]].getDashboard().isProfPresent(h)) {
                             influences[i] += island.getHouseStudents(h);
                         }
                         try {
@@ -263,8 +267,7 @@ public class CharacterCard extends Observable {
                                 influences[i] = influences[i] + island.getNumTowers();
                                 towerAdded = true;
                             }
-                        }
-                        catch (IslandException e){
+                        } catch (IslandException e) {
                             influences[q] = influences[q];
                         }
                     }
@@ -284,7 +287,7 @@ public class CharacterCard extends Observable {
             if (tie) {
                 return (null);
             } else {
-                if (max == 0){
+                if (max == 0) {
                     return (arrayPlayers[teamOneLeader]);
                 } else {
                     return (arrayPlayers[teamTwoLeader]);
@@ -293,18 +296,24 @@ public class CharacterCard extends Observable {
         }
     }
 
-    void removeNoEntryTile(Island island, CharacterCard[] characterCardDeck) throws Exception{
+    /**
+     * Removes the no entry tile from an island
+     *
+     * @param characterCardDeck the deck of cards
+     * @throws Exception when herb granma is not in deck
+     */
+    void removeNoEntryTile(CharacterCard[] characterCardDeck) throws Exception {
         boolean cardPresent = false;
         HerbGranma herbGranma = null;
 
-        for(CharacterCard c : characterCardDeck){
+        for (CharacterCard c : characterCardDeck) {
             if (c instanceof HerbGranma) {
                 cardPresent = true;
                 herbGranma = (HerbGranma) c;
                 break;
             }
         }
-        if(!cardPresent){
+        if (!cardPresent) {
             throw new CardNotInDeckException();
         }
 
@@ -315,7 +324,7 @@ public class CharacterCard extends Observable {
         herbGranma.doEffect(parameters);
     }
 
-    public CharacterCardEnum getType(){
+    public CharacterCardEnum getType() {
         return type;
     }
 }

@@ -4,20 +4,22 @@ import static it.polimi.ingsw.model.CharacterCardEnum.CENTAUR;
 
 /**
  * Class that represent the Centaur character card
+ *
  * @author Gabriele Munafò
  */
 public class Centaur extends CharacterCard {
 
-        public Centaur() {
+    public Centaur() {
         super(3, "Centaur", CENTAUR);
     }
 
     /**
      * Calculates the influence on a certain island, not considering the presence of towers
-     * @param island where to calculate the influence
-     * @param expertMode the mode the game is in
-     * @param numPlayers the number of players
-     * @param arrayPlayers the array of players
+     *
+     * @param island            where to calculate the influence
+     * @param expertMode        the mode the game is in
+     * @param numPlayers        the number of players
+     * @param arrayPlayers      the array of players
      * @param characterCardDeck the array of Character card
      * @return the player with the highest influence
      */
@@ -25,7 +27,7 @@ public class Centaur extends CharacterCard {
     public Player checkInfluence(Island island, Boolean expertMode, int numPlayers, Player[] arrayPlayers, CharacterCard[] characterCardDeck) {
         if (expertMode && island.isNoEntryTilePresent()) {
             try {
-                super.removeNoEntryTile(island, characterCardDeck);
+                super.removeNoEntryTile(characterCardDeck);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -62,8 +64,7 @@ public class Centaur extends CharacterCard {
             } else {
                 return (arrayPlayers[max]);
             }
-        }
-        else {
+        } else {
             influences = new int[2];
             int q = 0;
             int teamOneLeader = 0;

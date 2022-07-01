@@ -10,15 +10,16 @@ import java.util.Map;
 
 /**
  * Class that represents a reduced version of an Island
+ *
  * @author Gabriele Munafo'
  */
 public class ReducedIsland {
-    private final Map<House,Integer> houseMap;
+    private final Map<House, Integer> houseMap;
     private Color towerColor;
     private final int numTowers;
     private final Integer noEntryTile;
 
-    public ReducedIsland(Island i){
+    public ReducedIsland(Island i) {
         houseMap = new HashMap<>();
         houseMap.putAll(i.getStudents());
         try {
@@ -31,19 +32,21 @@ public class ReducedIsland {
     }
 
     public Color getColorTower() throws IslandException {
-        if (towerColor == null){
+        if (towerColor == null) {
             throw new IslandException("There isn't any tower on the island");
         }
         return (this.towerColor);
     }
 
-    public Map<House, Integer> getStudents() {return (houseMap);}
-
-    public Integer getNoEntryTile(){
-        return(noEntryTile);
+    public Map<House, Integer> getStudents() {
+        return (houseMap);
     }
 
-    public int getNumTowers(){
+    public Integer getNoEntryTile() {
+        return (noEntryTile);
+    }
+
+    public int getNumTowers() {
         return (this.numTowers);
     }
 
@@ -56,7 +59,7 @@ public class ReducedIsland {
         string.append("\nSTUDENTS:");
         for (House h : House.values()) {
             string.append(" ").append(h.getColouredHouse()).append(": ").append(getStudents().get(h));
-            if (!h.equals(House.values()[House.values().length-1]))
+            if (!h.equals(House.values()[House.values().length - 1]))
                 string.append(",");
         }
         return string.toString();

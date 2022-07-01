@@ -14,7 +14,7 @@ public class ChosenTowerColor extends CommandMessage {
     private final Color towerColor;
 
     /**
-     * Class constructor.
+     * Class constructor
      *
      * @param nickname player's nickname
      * @param towerColor the tower color selected by the player

@@ -13,7 +13,6 @@ public class SendWinner extends AnswerMessage {
 
     /**
      * Message constructor
-     *
      */
     public SendWinner(String winner) {
         super(SEND_WINNER);

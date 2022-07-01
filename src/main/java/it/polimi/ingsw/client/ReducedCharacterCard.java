@@ -11,6 +11,7 @@ import static it.polimi.ingsw.model.CharacterCardEnum.*;
 
 /**
  * Class that represents a reduced version of a CharacterCard
+ *
  * @author Gabriele Munafo'
  */
 public class ReducedCharacterCard {
@@ -22,7 +23,7 @@ public class ReducedCharacterCard {
     private final Map<House, Integer> houseMap;
     private Integer noEntryTile;
 
-    public ReducedCharacterCard(CharacterCard c){
+    public ReducedCharacterCard(CharacterCard c) {
         cost = c.getCost();
         inUse = c.isInUse();
         cardName = c.toString();
@@ -41,12 +42,11 @@ public class ReducedCharacterCard {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-        else {
+        } else {
             houseMap = null;
         }
 
-        if (c.getType() == HERB_GRANMA){
+        if (c.getType() == HERB_GRANMA) {
             Map<String, Object> parameters = new HashMap<>();
             parameters.put("Method", "getNoEntryTileNumber");
             try {
@@ -55,13 +55,12 @@ public class ReducedCharacterCard {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-        else {
+        } else {
             noEntryTile = null;
         }
     }
 
-    public String getCardName(){
+    public String getCardName() {
         return cardName;
     }
 
@@ -77,15 +76,15 @@ public class ReducedCharacterCard {
         return description;
     }
 
-    public boolean isInUse(){
+    public boolean isInUse() {
         return inUse;
     }
 
-    public Integer getNoEntryTile(){
+    public Integer getNoEntryTile() {
         return noEntryTile;
     }
 
-    public Map<House, Integer> getHouseMap(){
+    public Map<House, Integer> getHouseMap() {
         return houseMap;
     }
 
@@ -95,7 +94,7 @@ public class ReducedCharacterCard {
         if (houseMap != null) {
             for (House h : House.values()) {
                 string.append(h.getColouredHouse()).append(": ").append(houseMap.get(h));
-                if (h != House.values()[House.values().length-1])
+                if (h != House.values()[House.values().length - 1])
                     string.append(", ");
                 else
                     string.append(".\n");

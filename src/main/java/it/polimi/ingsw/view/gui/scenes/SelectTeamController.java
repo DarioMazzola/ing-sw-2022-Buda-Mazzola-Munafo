@@ -5,8 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-import javax.swing.text.View;
-
 import static javafx.scene.control.Alert.AlertType.ERROR;
 
 /**

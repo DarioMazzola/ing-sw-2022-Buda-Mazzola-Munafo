@@ -14,7 +14,7 @@ public class UpdateCharacterCard extends AnswerMessage{
     private final ReducedCharacterCard characterCard;
 
     /**
-     * Class constructor.
+     * Class constructor
      *
      * @param characterCard the characterCard to send
      */

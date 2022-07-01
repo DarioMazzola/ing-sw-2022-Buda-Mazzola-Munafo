@@ -6,13 +6,15 @@ import java.util.Map;
 
 /**
  * Declares the remove method, used to manage the students
+ *
  * @author Gabriele Munafo'
  */
-public interface StudentModifierInterface{
+public interface StudentModifierInterface {
     /**
      * Adds the number of students entered as a parameter
      * to the total number of students for that house
-     * @param house The house that will have the number of students increased
+     *
+     * @param house       The house that will have the number of students increased
      * @param numStudents The students' number added to the house
      */
     void addStudents(House house, int numStudents, boolean notify) throws Exception;
@@ -20,7 +22,8 @@ public interface StudentModifierInterface{
     /**
      * Removes the number of students entered as a parameter
      * to the total number of students for that house
-     * @param house the students' house to be removed
+     *
+     * @param house       the students' house to be removed
      * @param numStudents the students' number to be removed
      */
     void removeStudents(House house, int numStudents, boolean notify) throws Exception;
@@ -34,5 +37,5 @@ public interface StudentModifierInterface{
     /**
      * @return A map containing the students' number divided by house
      */
-    Map<House, Integer> getStudents () throws Exception;
+    Map<House, Integer> getStudents() throws Exception;
 }

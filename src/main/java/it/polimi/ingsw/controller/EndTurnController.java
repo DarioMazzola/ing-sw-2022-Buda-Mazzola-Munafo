@@ -20,23 +20,24 @@ import static it.polimi.ingsw.messages.TypeOfError.*;
  *
  * @author Gabriele Munafo'
  */
-public class EndTurnController{
+public class EndTurnController {
     private transient GameModel gm;
 
-    public EndTurnController(GameModel gm){
+    public EndTurnController(GameModel gm) {
 
         this.gm = gm;
     }
 
     /**
      * Gets called to manage the messages from the client
+     *
      * @param messageReceived received from the client
      */
     public void doAction(CommandMessage messageReceived, TurnController tc) {
         Persistence persistence = new Persistence();
         System.out.println("\n" + messageReceived.getNickname() + " is in end turn state\n");
 
-        int numCloud = ((ChosenCloud)messageReceived).getCloud();
+        int numCloud = ((ChosenCloud) messageReceived).getCloud();
 
         if (gm.getArrayClouds()[numCloud].isFull()) {
             try {
@@ -50,7 +51,7 @@ public class EndTurnController{
             return;
         }
 
-        if (tc.isThereNextPlayer()){
+        if (tc.isThereNextPlayer()) {
 
             tc.getVirtualViewMap().get(messageReceived.getNickname()).goToWaitingRoom();
 
@@ -66,16 +67,15 @@ public class EndTurnController{
                 availableActions.add("Select character card");
             }
 
-            if (gm.getChat()!=null){
-                if (gm.getChat()){
+            if (gm.getChat() != null) {
+                if (gm.getChat()) {
                     availableActions.add("Send a message to your team mate");
                     availableActions.add("See received messages");
                 }
             }
 
             tc.getVirtualViewMap().get(gm.getCurrentPlayer().getNickname()).actionPhase(availableActions);
-        }
-        else {
+        } else {
             tc.next_State(GameState.PLANNING);
             setAllGraveyard();
             try {
@@ -92,19 +92,19 @@ public class EndTurnController{
         persistence.saveData(tc);
     }
 
-    public void setGameModel(GameModel gm){
+    public void setGameModel(GameModel gm) {
         this.gm = gm;
     }
 
-    public String toString(){
+    public String toString() {
         return "End Turn Controller";
     }
 
     /**
      * Calls setGraveyard on every player
      */
-    private void setAllGraveyard(){
-        for (Player p : gm.getArrayPlayers()){
+    private void setAllGraveyard() {
+        for (Player p : gm.getArrayPlayers()) {
             p.setGraveyard();
         }
     }

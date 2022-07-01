@@ -38,7 +38,7 @@ public class ClientHandler implements Runnable {
     private transient String nickname;
 
     /**
-     * Class constructor.
+     * Class constructor
      *
      * @param socketServer the SocketServer that handles connection for the server.
      * @param client the socket related to the client.

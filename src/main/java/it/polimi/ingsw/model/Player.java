@@ -188,7 +188,7 @@ public class Player extends Observable {
         notifyObserver(new UpdatePlayer(new ReducedPlayer(this)));
     }
 
-    /**Sets player's dashboard
+    /** Sets player's dashboard
      *
      * @param towerColor player's tower color
      */

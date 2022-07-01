@@ -14,7 +14,7 @@ public class UpdatePlayer extends AnswerMessage{
     private final ReducedPlayer player;
 
     /**
-     * Class constructor.
+     * Class constructor
      *
      * @param player the player to send
      */

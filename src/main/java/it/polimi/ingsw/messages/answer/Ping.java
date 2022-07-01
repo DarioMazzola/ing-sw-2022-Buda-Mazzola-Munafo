@@ -11,7 +11,6 @@ public class Ping extends AnswerMessage{
 
     /**
      * Message constructor
-     *
      */
     public Ping() {
         super(PING);

@@ -47,7 +47,7 @@ public class MainGui extends Application {
         MenuController controller = loader.getController();
         controller.addObserver(clientController);
 
-        // Show the scene containing the root layout.
+        // Show the scene containing the root layout
         Scene scene = new Scene(root, Color.LIGHTSKYBLUE);
         stage.setScene(scene);
 

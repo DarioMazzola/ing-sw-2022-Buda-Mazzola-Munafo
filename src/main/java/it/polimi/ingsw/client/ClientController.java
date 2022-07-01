@@ -50,16 +50,16 @@ public class ClientController extends Observer implements ViewObserver {
             client = new ServerHandler(ip, port);
 
             client.addObserver(this);
-            client.readMessage(); // Starts an asynchronous reading from the server.
+            client.readMessage(); // Starts an asynchronous reading from the server
             client.sendPong();
             showTaskQueue.execute(view::createNewGame);
         } catch (IOException e) {
-            update(new EndGameDisconnection(TypeOfError.SERVER_UNREACHBLE.toString()));
+            update(new EndGameDisconnection(TypeOfError.SERVER_UNREACHABLE.toString()));
         }
     }
 
     /**
-     * @see ViewObserver#onCreateNewGame(String) 
+     * @see ViewObserver#onCreateNewGame(String)
      */
     @Override
     public void onCreateNewGame(String nickname) {
@@ -193,9 +193,10 @@ public class ClientController extends Observer implements ViewObserver {
      */
     @Override
     public void onDisconnection() {
-        try{
+        try {
             client.disconnect();
-        }catch (NullPointerException ignored){}
+        } catch (NullPointerException ignored) {
+        }
         showTaskQueue.shutdown();
         System.exit(-12);
     }
@@ -204,7 +205,7 @@ public class ClientController extends Observer implements ViewObserver {
      * @see ViewObserver#waitForMessage()
      */
     @Override
-    public void waitForMessage(){
+    public void waitForMessage() {
         client.sendMessage(new ReloadMessages(this.nickname));
     }
 
@@ -351,7 +352,7 @@ public class ClientController extends Observer implements ViewObserver {
                 showTaskQueue.execute(() -> view.rememberNickname(nickname));
                 break;
             case WAIT_FOR_OTHERS_MOVES:
-                String move = ((WaitForOthersMoves)message).getMove();
+                String move = ((WaitForOthersMoves) message).getMove();
                 showTaskQueue.execute(() -> view.waitForOthersMoves(move));
                 break;
             default:

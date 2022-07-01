@@ -12,7 +12,7 @@ public class ChosenChat extends CommandMessage {
     private final boolean chat;
 
     /**
-     * Class constructor.
+     * Class constructor
      *
      * @param nickname the player's nickname
      * @param chat true if the player wants to allow communication between team members

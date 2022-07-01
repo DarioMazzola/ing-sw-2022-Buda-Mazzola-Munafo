@@ -1,7 +1,6 @@
 package it.polimi.ingsw.messages.answer;
 
 import it.polimi.ingsw.messages.MessageType;
-import it.polimi.ingsw.messages.answer.AnswerMessage;
 
 import java.util.List;
 

@@ -15,7 +15,7 @@ public class UpdateDashboard extends AnswerMessage{
     private final ReducedDashboard dashboard;
 
     /**
-     * Class constructor.
+     * Class constructor
      *
      * @param dashboard the dashboard to send
      */

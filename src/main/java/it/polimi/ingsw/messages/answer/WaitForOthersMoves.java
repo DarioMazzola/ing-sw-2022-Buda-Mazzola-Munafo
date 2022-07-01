@@ -13,8 +13,7 @@ public class WaitForOthersMoves extends AnswerMessage {
     private final String move;
 
     /**
-     * Class constructor.
-     *
+     * Class constructor
      */
     public WaitForOthersMoves(String move) {
         super(WAIT_FOR_OTHERS_MOVES);

@@ -13,7 +13,7 @@ public class ChosenExpertMode extends CommandMessage {
     private final boolean expertMode;
 
     /**
-     * CLass constructor.
+     * CLass constructor
      *
      * @param expertMode true if player wants to play in expert mode, false otherwise
      * @param nickname player's nickname

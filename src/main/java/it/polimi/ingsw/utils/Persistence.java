@@ -18,7 +18,7 @@ public class Persistence {
     Gson gson;
 
     /**
-     * Class constructor.
+     * Class constructor
      */
     public Persistence() {
         gson = new Gson();

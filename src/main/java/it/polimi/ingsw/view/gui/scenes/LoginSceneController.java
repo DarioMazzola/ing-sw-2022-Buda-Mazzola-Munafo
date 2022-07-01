@@ -8,8 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 
-import java.io.IOException;
-
 import static javafx.scene.control.Alert.AlertType.*;
 
 /**

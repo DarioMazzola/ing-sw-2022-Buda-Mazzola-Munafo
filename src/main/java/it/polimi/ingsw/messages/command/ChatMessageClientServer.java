@@ -12,7 +12,7 @@ public class ChatMessageClientServer extends CommandMessage {
     private final String message;
 
     /**
-     * Class constructor.
+     * Class constructor
      *
      * @param nickname the player's nickname
      * @param message the message the player wants to send to his/hers teammate

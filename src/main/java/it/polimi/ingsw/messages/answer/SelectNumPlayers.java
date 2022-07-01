@@ -12,7 +12,6 @@ public class SelectNumPlayers extends AnswerMessage {
 
     /**
      * Class constructor
-     *
      */
     public SelectNumPlayers() {
         super(SELECT_NUM_PLAYERS);

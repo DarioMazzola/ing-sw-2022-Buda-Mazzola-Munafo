@@ -29,7 +29,7 @@ public class Cli extends ViewObservable implements UI {
     private boolean stop;
 
     /**
-     * Class constructor.
+     * Class constructor
      */
     public Cli() {
         scanner = new Scanner(System.in);
@@ -41,7 +41,7 @@ public class Cli extends ViewObservable implements UI {
     }
 
     /**
-     * Initiates the communication with the server.
+     * Initiates the communication with the server
      */
     public void start() {
         clearCli();
@@ -110,7 +110,7 @@ public class Cli extends ViewObservable implements UI {
         System.out.println(errorMsg);
 
         if(errorMsg.endsWith(TypeOfError.DISCONNECTED.toString()) || errorMsg.endsWith(TypeOfError.GAME_FULL.toString())
-                || errorMsg.endsWith(TypeOfError.GAME_ALREADY_STARTED.toString()) || errorMsg.endsWith(TypeOfError.SERVER_UNREACHBLE.toString())) {
+                || errorMsg.endsWith(TypeOfError.GAME_ALREADY_STARTED.toString()) || errorMsg.endsWith(TypeOfError.SERVER_UNREACHABLE.toString())) {
             notifyObserver(ViewObserver::onDisconnection);
         }
     }
@@ -215,7 +215,7 @@ public class Cli extends ViewObservable implements UI {
     }
 
     @Override
-    public void selectTeam(String[] teamArray, String[] leaderArray) { // TODO: modificare e testare
+    public void selectTeam(String[] teamArray, String[] leaderArray) {
         int numPlayersTeam1 = (teamArray[0] == null ? 0 : 1) + (leaderArray[0] == null ? 0 : 1);
         int numPlayersTeam2 = (teamArray[1] == null ? 0 : 1) + (leaderArray[1] == null ? 0 : 1);
         boolean hasLeader1 = (leaderArray[0] != null);

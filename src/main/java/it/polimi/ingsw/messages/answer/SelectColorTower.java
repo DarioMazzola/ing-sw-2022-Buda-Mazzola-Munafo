@@ -15,7 +15,7 @@ public class SelectColorTower extends AnswerMessage{
     private final List<Color> availableColors;
 
     /**
-     * Class constructor.
+     * Class constructor
      *
      * @param availableColors the tower colors not chosen by other players
      */

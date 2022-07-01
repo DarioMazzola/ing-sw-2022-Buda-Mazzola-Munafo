@@ -8,9 +8,10 @@ import static it.polimi.ingsw.model.CharacterCardEnum.MUSHROOM_HUNTER;
 
 /**
  * Class that represent the MushroomHunter character card
+ *
  * @author Gabriele Munafò
  */
-public class MushroomHunter extends CharacterCard{
+public class MushroomHunter extends CharacterCard {
 
     private House houseToIgnore = null;
 
@@ -20,6 +21,7 @@ public class MushroomHunter extends CharacterCard{
 
     /**
      * Temporary removes a specified professor from a player, calculates the influence and then gives the professor back
+     *
      * @param parameters the map containing the house to ignore, the island where to calculate the influence, the number of players and the array of players
      * @throws NullPointerException when parameters is null or when house, arrayPlayers or island are null
      */
@@ -40,10 +42,11 @@ public class MushroomHunter extends CharacterCard{
 
     /**
      * Calculates the influence on a certain island, removing a certain professor
-     * @param island where to calculate the influence
-     * @param expertMode the mode the game is in
-     * @param numPlayers the number of players
-     * @param arrayPlayers the array of players
+     *
+     * @param island            where to calculate the influence
+     * @param expertMode        the mode the game is in
+     * @param numPlayers        the number of players
+     * @param arrayPlayers      the array of players
      * @param characterCardDeck the array of Character Card
      * @return the player with the highest influence
      */

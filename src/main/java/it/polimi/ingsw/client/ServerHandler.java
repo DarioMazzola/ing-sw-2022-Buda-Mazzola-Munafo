@@ -74,7 +74,7 @@ public class ServerHandler extends Observable {
                     }
                 } catch (IOException | ClassNotFoundException e) {
                     disconnect();
-                    notifyObserver(new EndGameDisconnection(TypeOfError.SERVER_UNREACHBLE.toString()));
+                    notifyObserver(new EndGameDisconnection(TypeOfError.SERVER_UNREACHABLE.toString()));
                     readTask.shutdownNow();
                 }
 

@@ -13,7 +13,7 @@ public class ChosenNumPlayers extends CommandMessage {
     private final int numPlayers;
 
     /**
-     * Class constructor.
+     * Class constructor
      *
      * @param numPlayers number of players for this game
      * @param nickname player's nickname

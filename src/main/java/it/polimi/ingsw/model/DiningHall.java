@@ -8,9 +8,11 @@ import it.polimi.ingsw.observer.Observable;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import static it.polimi.ingsw.model.House.*;
 
-/** Describes the DiningHall
+/**
+ * Describes the DiningHall
  *
  * @author Dario Mazzola
  */
@@ -22,17 +24,17 @@ public class DiningHall extends Observable implements StudentModifierInterface {
     /**
      * Dining hall class constructor: initializes the students' number from each house to zero
      */
-    public DiningHall(String nickname){
+    public DiningHall(String nickname) {
 
         this.owner = nickname;
         tableOccupation = new HashMap<>();
 
-        for(House h : values())
+        for (House h : values())
             tableOccupation.put(h, 0);
 
     }
 
-    public int getHouseStudents(House house){
+    public int getHouseStudents(House house) {
         return tableOccupation.get(house);
     }
 
@@ -42,21 +44,21 @@ public class DiningHall extends Observable implements StudentModifierInterface {
     }
 
     /**
-     * @throws StudentsTableException if the house table to remove a student from is already full
-     * @throws NullPointerException If the house given as a parameter is a null value
+     * @throws StudentsTableException   if the house table to remove a student from is already full
+     * @throws NullPointerException     If the house given as a parameter is a null value
      * @throws IllegalArgumentException if the number of students given as a parameter is negative
      */
     @Override
-    public void addStudents(House house, int numStudents, boolean notify) throws StudentsTableException, NullPointerException, IllegalArgumentException{
+    public void addStudents(House house, int numStudents, boolean notify) throws StudentsTableException, NullPointerException, IllegalArgumentException {
 
-        if(house == null)
+        if (house == null)
             throw new NullPointerException("The house given is null");
 
-        if(numStudents < 0){
+        if (numStudents < 0) {
             throw new IllegalArgumentException("You cannot add a negative number of students!");
         }
 
-        if(tableOccupation.get(house) == 10){
+        if (tableOccupation.get(house) == 10) {
             throw new StudentsTableException("The table of the house where you want to add a student is already full");
         }
         tableOccupation.replace(house, tableOccupation.get(house) + numStudents);
@@ -65,17 +67,17 @@ public class DiningHall extends Observable implements StudentModifierInterface {
     }
 
     /**
-     * @throws StudentsTableException if the house table to remove a student from is already empty
-     * @throws NullPointerException If the house given as a parameter is a null value
+     * @throws StudentsTableException   if the house table to remove a student from is already empty
+     * @throws NullPointerException     If the house given as a parameter is a null value
      * @throws IllegalArgumentException if the number of students given as a parameter is negative
      */
     @Override
-    public void removeStudents(House house, int numStudents, boolean notify) throws StudentsTableException, NullPointerException, IllegalArgumentException{
+    public void removeStudents(House house, int numStudents, boolean notify) throws StudentsTableException, NullPointerException, IllegalArgumentException {
 
-        if(house == null)
+        if (house == null)
             throw new NullPointerException("The house given is null");
 
-        if(numStudents < 0){
+        if (numStudents < 0) {
             throw new IllegalArgumentException("You cannot remove a negative number of students!");
         }
         if (tableOccupation.get(house) == 0)
@@ -83,9 +85,10 @@ public class DiningHall extends Observable implements StudentModifierInterface {
 
         tableOccupation.replace(house, tableOccupation.get(house) - numStudents);
 
-        if(notify)
+        if (notify)
             notifyObserver(new UpdateDiningHall(new ReducedDiningHall(this)));
     }
+
     public String getOwner() {
         return owner;
     }

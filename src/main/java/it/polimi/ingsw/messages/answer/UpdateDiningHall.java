@@ -14,7 +14,7 @@ public class UpdateDiningHall extends AnswerMessage{
     private final ReducedDiningHall diningHall;
 
     /**
-     * Class constructor.
+     * Class constructor
      *
      * @param diningHall the diningHall to send
      */

@@ -100,6 +100,11 @@ public interface View {
      */
     void goToLobby();
 
+    /**
+     * Sends a wait message to a player
+     *
+     * @param move the action been done by the current player
+     */
     void waitForOthersMoves(String move);
 
     /**
@@ -107,9 +112,24 @@ public interface View {
      */
     void selectRestoreGame();
 
+    /**
+     * Sends the nickname to the player
+     *
+     * @param nickname the nickname of the player
+     */
     void rememberNickname(String nickname);
 
+    /**
+     * Sends the received messages
+     *
+     * @param message the message sent by the team mate
+     */
     void onChatMessageReceived(String message);
 
+    /**
+     * Sends an error message after a disconnection
+     *
+     * @param errorCause the cause of the error
+     */
     void endGameDisconnection(String errorCause);
 }

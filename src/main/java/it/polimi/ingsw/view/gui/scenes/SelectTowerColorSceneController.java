@@ -2,13 +2,9 @@ package it.polimi.ingsw.view.gui.scenes;
 
 import it.polimi.ingsw.model.Color;
 import it.polimi.ingsw.observer.ViewObservable;
-import it.polimi.ingsw.view.gui.SceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.effect.Bloom;
-import javafx.scene.effect.Glow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 

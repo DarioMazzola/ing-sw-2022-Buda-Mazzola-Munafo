@@ -1,9 +1,5 @@
 package it.polimi.ingsw.messages.answer;
 
-import it.polimi.ingsw.model.Cloud;
-
-import java.util.List;
-
 import static it.polimi.ingsw.messages.MessageType.SELECT_CLOUD;
 
 /**

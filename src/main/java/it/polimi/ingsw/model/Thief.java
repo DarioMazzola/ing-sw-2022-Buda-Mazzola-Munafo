@@ -17,8 +17,7 @@ import static it.polimi.ingsw.model.CharacterCardEnum.THIEF;
 public class Thief extends CharacterCard{
 
     /**
-     * Class constructor, initializes card with name and initial cost.
-     *
+     * Class constructor, initializes card with name and initial cost
      */
     public Thief() {
         super(3, "Thief", THIEF);

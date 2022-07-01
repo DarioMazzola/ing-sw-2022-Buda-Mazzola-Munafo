@@ -8,6 +8,7 @@ import static it.polimi.ingsw.model.CharacterCardEnum.KNIGHT;
 
 /**
  * Class that represent the Knight character card
+ *
  * @author Gabriele Munafò
  */
 public class Knight extends CharacterCard {
@@ -20,41 +21,42 @@ public class Knight extends CharacterCard {
 
     /**
      * Calculates the influence on a certain island, using a different version of checkInfluence
+     *
      * @param parameters the map containing the island where to calculate the influence
      * @throws NullPointerException when parameters is null or when island is null
      */
     @Override
-    public void doEffect(Map<String, Object> parameters) throws Exception{
+    public void doEffect(Map<String, Object> parameters) throws Exception {
         super.doEffect(parameters);
 
-        if (parameters == null){
+        if (parameters == null) {
             throw new NullPointerException();
         }
         currentPlayer = (Player) parameters.get("CurrentPlayer");
-        if (currentPlayer == null){
+        if (currentPlayer == null) {
             throw new NullPointerException();
         }
     }
 
 
-
     /**
      * Calculates the influence on a certain island, giving 2 extra points to the player who played the card
-     * @param island where to calculate the influence
-     * @param expertMode the mode the game is in
-     * @param numPlayers the number of players
+     *
+     * @param island       where to calculate the influence
+     * @param expertMode   the mode the game is in
+     * @param numPlayers   the number of players
      * @param arrayPlayers the array of players
      * @return the player with highest influence
      */
     @Override
     public Player checkInfluence(Island island, Boolean expertMode, int numPlayers, Player[] arrayPlayers, CharacterCard[] characterCardDeck) throws Exception {
-        if (expertMode && island.isNoEntryTilePresent()){
-            removeNoEntryTile(island, characterCardDeck);
-            return(null);
+        if (expertMode && island.isNoEntryTilePresent()) {
+            removeNoEntryTile(characterCardDeck);
+            return (null);
         }
         int[] influences;
 
-            if (numPlayers == 2 || numPlayers == 3) {
+        if (numPlayers == 2 || numPlayers == 3) {
             influences = new int[numPlayers];
             for (int i = 0; i < numPlayers; i++) {
                 influences[i] = 0;
@@ -66,12 +68,11 @@ public class Knight extends CharacterCard {
                         influences[i] = influences[i] + island.getHouseStudents(house);
                     }
                 }
-                try{
+                try {
                     if ((arrayPlayers[i].getDashboard().getTowerColor()).equals(island.getColorTower())) {
                         influences[i] = influences[i] + island.getNumTowers();
                     }
-                }
-                catch (IslandException e){
+                } catch (IslandException e) {
                     influences[i] = influences[i];
                 }
 
@@ -97,7 +98,7 @@ public class Knight extends CharacterCard {
             }
         }
         //four players
-            else {
+        else {
             influences = new int[2];
             int q = 0;
             int teamOneLeader = 0;
@@ -105,13 +106,12 @@ public class Knight extends CharacterCard {
             int[] teamOne = new int[2];
             int[] teamTwo = new int[2];
 
-            for(int i=0; i<numPlayers; i++) {
-                if(arrayPlayers[i].isTeamLeader() && q ==0) {
+            for (int i = 0; i < numPlayers; i++) {
+                if (arrayPlayers[i].isTeamLeader() && q == 0) {
                     teamOneLeader = i;
                     teamOne[0] = i;
                     q++;
-                }
-                else if(arrayPlayers[i].isTeamLeader()) {
+                } else if (arrayPlayers[i].isTeamLeader()) {
                     teamTwoLeader = i;
                     teamTwo[0] = i;
                     q = 0;
@@ -119,7 +119,7 @@ public class Knight extends CharacterCard {
                 }
             }
 
-            for(int i=0; i<numPlayers; i++) {
+            for (int i = 0; i < numPlayers; i++) {
                 if (i != teamOneLeader && i != teamTwoLeader) {
                     if (arrayPlayers[i].getDashboard().getTowerColor().equals(arrayPlayers[teamOneLeader].getDashboard().getTowerColor())) {
                         teamOne[1] = i;
@@ -133,15 +133,15 @@ public class Knight extends CharacterCard {
             boolean towerAdded = false;
             boolean added = false;
 
-            for(int i=0; i<2; i++){
+            for (int i = 0; i < 2; i++) {
                 influences[i] = 0;
 
-                for(House h : House.values()) {
+                for (House h : House.values()) {
                     if (i == 0) {
-                        if(arrayPlayers[teamOne[0]].getDashboard().isProfPresent(h)){
+                        if (arrayPlayers[teamOne[0]].getDashboard().isProfPresent(h)) {
                             influences[i] += island.getHouseStudents(h);
                         }
-                        if(arrayPlayers[teamOne[1]].getDashboard().isProfPresent(h)){
+                        if (arrayPlayers[teamOne[1]].getDashboard().isProfPresent(h)) {
                             influences[i] += island.getHouseStudents(h);
                         }
                         try {
@@ -149,8 +149,7 @@ public class Knight extends CharacterCard {
                                 influences[i] = influences[i] + island.getNumTowers();
                                 towerAdded = true;
                             }
-                        }
-                        catch (IslandException e){
+                        } catch (IslandException e) {
                             influences[q] = influences[q];
                         }
 
@@ -161,10 +160,10 @@ public class Knight extends CharacterCard {
 
                     }
                     if (i == 1) {
-                        if(arrayPlayers[teamTwo[0]].getDashboard().isProfPresent(h)){
+                        if (arrayPlayers[teamTwo[0]].getDashboard().isProfPresent(h)) {
                             influences[i] += island.getHouseStudents(h);
                         }
-                        if(arrayPlayers[teamTwo[1]].getDashboard().isProfPresent(h)){
+                        if (arrayPlayers[teamTwo[1]].getDashboard().isProfPresent(h)) {
                             influences[i] += island.getHouseStudents(h);
                         }
                         try {
@@ -172,8 +171,7 @@ public class Knight extends CharacterCard {
                                 influences[i] = influences[i] + island.getNumTowers();
                                 towerAdded = true;
                             }
-                        }
-                        catch (IslandException e){
+                        } catch (IslandException e) {
                             influences[q] = influences[q];
                         }
                         if (!added && (arrayPlayers[teamTwo[0]].equals(currentPlayer) || arrayPlayers[teamTwo[1]].equals(currentPlayer))) {
@@ -198,7 +196,7 @@ public class Knight extends CharacterCard {
             if (tie) {
                 return (null);
             } else {
-                if (max == 0){
+                if (max == 0) {
                     return (arrayPlayers[teamOneLeader]);
                 } else {
                     return (arrayPlayers[teamTwoLeader]);

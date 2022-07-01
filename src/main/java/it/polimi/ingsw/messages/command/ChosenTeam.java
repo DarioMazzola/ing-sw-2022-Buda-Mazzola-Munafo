@@ -14,7 +14,7 @@ public class ChosenTeam extends CommandMessage {
     private final boolean isTeamLeader;
 
     /**
-     * Class constructor.
+     * Class constructor
      *
      * @param nickname player's nickname
      * @param selectedTeam the team chosen by the player identified by nickname

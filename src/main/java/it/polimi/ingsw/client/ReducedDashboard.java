@@ -12,6 +12,7 @@ import java.util.Map;
 
 /**
  * Class that represents a reduced version of a dashboard
+ *
  * @author Gabriele Munafo'
  */
 public class ReducedDashboard {
@@ -25,7 +26,7 @@ public class ReducedDashboard {
     private ReducedDiningHall diningHall;
     private final String nickname;
 
-    public ReducedDashboard(Dashboard d){
+    public ReducedDashboard(Dashboard d) {
         houseMap = new HashMap<>();
         houseMap.putAll(d.getStudents());
 
@@ -47,7 +48,7 @@ public class ReducedDashboard {
         nickname = d.getOwner();
     }
 
-    public Map<House, Integer> getStudents(){
+    public Map<House, Integer> getStudents() {
         return houseMap;
     }
 
@@ -55,9 +56,9 @@ public class ReducedDashboard {
         return numStudentsIn;
     }
 
-    public int getHouseStudents(House house) throws NullPointerException{
+    public int getHouseStudents(House house) throws NullPointerException {
 
-        if(house == null)
+        if (house == null)
             throw new NullPointerException("The house given is null");
         return houseMap.get(house);
     }
@@ -74,13 +75,13 @@ public class ReducedDashboard {
         return towerColor;
     }
 
-    public boolean isProfPresent(House house) throws NullPointerException{
-        if(house == null)
+    public boolean isProfPresent(House house) throws NullPointerException {
+        if (house == null)
             throw new NullPointerException("The house given is null");
         return profMap.get(house);
     }
 
-    public ReducedDiningHall getDiningHall(){
+    public ReducedDiningHall getDiningHall() {
         return diningHall;
     }
 
@@ -88,15 +89,15 @@ public class ReducedDashboard {
         return numMaxStudents;
     }
 
-    public Map<House, Boolean> getProfMap(){
+    public Map<House, Boolean> getProfMap() {
         return profMap;
     }
 
-    public int getNumMaxTowers(){
+    public int getNumMaxTowers() {
         return numMaxTowers;
     }
 
-    public void setDiningHall(ReducedDiningHall d){
+    public void setDiningHall(ReducedDiningHall d) {
         diningHall = d;
     }
 
@@ -129,7 +130,7 @@ public class ReducedDashboard {
         }
         for (House h : presentHouses) {
             string.append(h.getColouredHouse());
-            if (!h.equals(presentHouses.get(presentHouses.size()-1))) {
+            if (!h.equals(presentHouses.get(presentHouses.size() - 1))) {
                 string.append(", ");
             }
         }

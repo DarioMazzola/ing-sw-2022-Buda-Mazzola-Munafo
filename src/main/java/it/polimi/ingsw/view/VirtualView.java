@@ -21,7 +21,7 @@ public class VirtualView extends Observer implements View {
     private transient final ClientHandler clientHandler;
 
     /**
-     * Class constructor.
+     * Class constructor
      *
      * @param clientHandler the client handler used to send messages to the client.
      */
@@ -30,9 +30,9 @@ public class VirtualView extends Observer implements View {
     }
 
     /**
-     * Returns the client handler associated to a client.
+     * Returns the client handler associated to a client
      *
-     * @return client handler.
+     * @return client handler
      */
     public ClientHandler getClientHandler() {
         return clientHandler;

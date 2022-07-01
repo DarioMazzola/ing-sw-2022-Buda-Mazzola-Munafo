@@ -16,7 +16,7 @@ public class UpdateIsland extends AnswerMessage{
     private final List<ReducedIsland> island;
 
     /**
-     * Class constructor.
+     * Class constructor
      *
      * @param island the island to send.
      */
