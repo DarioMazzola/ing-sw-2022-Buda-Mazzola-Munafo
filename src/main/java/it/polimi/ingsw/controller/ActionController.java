@@ -209,6 +209,8 @@ public class ActionController {
         } else if (type == CharacterCardEnum.SPOILED_PRINCESS) {
             gm.checkAllProf();
         }
+
+        tc.sendAllModel();
     }
 
     /**

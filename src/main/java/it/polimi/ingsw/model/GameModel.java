@@ -157,8 +157,6 @@ public class GameModel extends Observable {
 
         context.doEffect(map);
         characterCardDeck[card].setInUse(false);
-
-        notifyObserver(new UpdateGameModel(new ReducedGameModel(this)));
     }
 
     /**
