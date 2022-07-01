@@ -26,7 +26,7 @@ public class Dashboard extends Observable implements StudentModifierInterface {
     private int numStudentsIn;
     private final int numMaxTowers;
     private int numTowersIn;
-    private String owner;
+    private final String owner;
 
     private final DiningHall diningHall;
 
@@ -248,23 +248,6 @@ public class Dashboard extends Observable implements StudentModifierInterface {
 
     public int getNumMaxTowers(){
         return numMaxTowers;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder string = new StringBuilder("Player's dashboard:\nENTRANCE:");
-        for (House h : House.values()) {
-            string.append("\n").append(h).append(": ").append(getHouseStudents(h));
-        }
-        string.append("\nDININGHALL:");
-        for (House h : House.values()) {
-            string.append("\n").append(h).append(": ").append(getDiningHall().getHouseStudents(h));
-        }
-        return string.toString();
-    }
-
-    public void setOwner(String owner) {
-        this.owner = owner;
     }
 
     public String getOwner() {
