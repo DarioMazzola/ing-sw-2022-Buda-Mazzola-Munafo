@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import static it.polimi.ingsw.model.Color.WHITE;
 import static it.polimi.ingsw.model.House.PINK;
 import static it.polimi.ingsw.model.House.YELLOW;
 import static org.junit.jupiter.api.Assertions.*;
@@ -1148,6 +1149,38 @@ class GameModelTest {
         String nickname = "Foo";
         gm.getArrayPlayers()[0].setNickname(nickname);
         assertEquals(gm.getArrayPlayers()[0], gm.getPlayerByNickname(nickname));
+    }
+
+    /**
+     * Verifies that, when playing in 4 players, for each player the correct name of his/hers teammate is returned.
+     */
+    @Test
+    void getTeamMateTest() {
+        try {
+            gm = new GameModel(4, false, true);
+        } catch (EntranceException | BagException e) {
+            e.printStackTrace();
+            fail();
+        }
+        gm.getArrayPlayers()[0].setNickname("a");
+        gm.getArrayPlayers()[1].setNickname("b");
+        gm.getArrayPlayers()[2].setNickname("c");
+        gm.getArrayPlayers()[3].setNickname("d");
+
+        gm.getArrayPlayers()[0].setTeamLeader(true);
+        gm.getArrayPlayers()[1].setTeamLeader(false);
+        gm.getArrayPlayers()[2].setTeamLeader(true);
+        gm.getArrayPlayers()[3].setTeamLeader(false);
+
+        gm.getArrayPlayers()[0].setDashboard(WHITE, gm.getArrayPlayers()[0].getNickname());
+        gm.getArrayPlayers()[1].setDashboard(WHITE, gm.getArrayPlayers()[1].getNickname());
+        gm.getArrayPlayers()[2].setDashboard(Color.BLACK, gm.getArrayPlayers()[2].getNickname());
+        gm.getArrayPlayers()[3].setDashboard(Color.BLACK, gm.getArrayPlayers()[3].getNickname());
+
+        assertEquals(gm.getTeamMate("a"), "b");
+        assertEquals(gm.getTeamMate("b"), "a");
+        assertEquals(gm.getTeamMate("c"), "d");
+        assertEquals(gm.getTeamMate("d"), "c");
     }
 
     /**
