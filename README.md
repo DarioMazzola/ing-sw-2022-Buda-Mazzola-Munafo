@@ -1,7 +1,5 @@
 # Final test Software Engineering 2022
 
-<img src="https://www.craniocreations.it/wp-content/uploads/2021/06/Eriantys_scatolaFrontombra-600x600.png" width=240px height=240px align="right" alt=""/>
-
 ## Group PSP21
 
 - 10675063    [**Alessio Buda**](https://github.com/alessio-buda) <br>alessio.buda@mail.polimi.it
